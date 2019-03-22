@@ -25,12 +25,14 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
 			WebFont.load({
-                google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-                active: function() {
-                    sessionStorage.fonts = true;
-                }
-            });
-        </script>
+				google: {
+					"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+				},
+				active: function() {
+					sessionStorage.fonts = true;
+				}
+			});
+		</script>
 
 		<!--end::Fonts -->
 
@@ -1470,7 +1472,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 										<!-- begin:: Mycart -->
 										<div class="kt-mycart">
-											<div class="kt-mycart__head kt-head" style="background-image: url(./assets/media/misc/bg-1.jpg);">
+											<div class="kt-mycart__head kt-head" style="background-image: url(../assets/media/misc/bg-1.jpg);">
 												<div class="kt-mycart__info">
 													<span class="kt-mycart__icon"><i class="flaticon2-shopping-cart-1 kt-font-success"></i></span>
 													<h3 class="kt-mycart__title">My Cart</h3>
@@ -1989,9 +1991,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="kt-form kt-form--label-align-right kt-margin-t-10 kt-margin-b-30">
 										<div class="row">
 											<div class="col-lg-2">
-												<div class="input-group m-input-group">
+												<div class="input-group kt-input-group">
 													<div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">ID:</span></div>
-													<input type="text" class="form-control m-input" id="kt_datatable_check_input" value="463978155-5">
+													<input type="text" class="form-control kt-input" id="kt_datatable_check_input" value="1">
 													<div class="input-group-append">
 														<button class="btn btn-secondary" type="button" id="kt_datatable_check">Select row</button>
 													</div>
@@ -2001,11 +2003,11 @@ License: You must have a valid license purchased only from themeforest(the above
 												<button class="btn btn-secondary" type="button" id="kt_datatable_reload">Reload</button>
 												<button class="btn btn-secondary" type="button" id="kt_datatable_check_all">Select all rows</button>
 												<button class="btn btn-secondary" type="button" id="kt_datatable_uncheck_all">Unselect all rows</button>
-												<button class="btn btn-secondary" type="button" id="kt_datatable_hide_column">Hide Email</button>
-												<button class="btn btn-secondary" type="button" id="kt_datatable_show_column">Show Email</button>
+												<button class="btn btn-secondary" type="button" id="kt_datatable_hide_column">Hide Date</button>
+												<button class="btn btn-secondary" type="button" id="kt_datatable_show_column">Show Date</button>
 												<button class="btn btn-secondary" type="button" id="kt_datatable_remove_row">Remove active row</button>
-												<button class="btn btn-secondary" type="button" id="kt_datatable_sort_asc">Sort Name [asc]</button>
-												<button class="btn btn-secondary" type="button" id="kt_datatable_sort_desc">Sort Name [desc]</button>
+												<button class="btn btn-secondary" type="button" id="kt_datatable_sort_asc">Sort Status [asc]</button>
+												<button class="btn btn-secondary" type="button" id="kt_datatable_sort_desc">Sort Status [desc]</button>
 											</div>
 										</div>
 									</div>

@@ -277,7 +277,7 @@ var KTApp = function() {
             var skin = (options && options.skin) ? options.skin : 'light';
             var alignment = (options && options.alignment) ? options.alignment : 'right';
             var size = (options && options.size) ? 'kt-spinner--' + options.size : '';
-            var classes = 'kt-loader ' + 'kt-loader--' + skin + ' kt-loader--' + alignment + ' kt-loader--' + size;
+            var classes = 'kt-spinner ' + 'kt-spinner--' + skin + ' kt-spinner--' + alignment + ' kt-spinner--' + size; 
 
             KTApp.unprogress(target);
 

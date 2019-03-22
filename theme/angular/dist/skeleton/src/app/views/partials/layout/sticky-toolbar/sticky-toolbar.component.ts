@@ -16,4 +16,11 @@ export class StickyToolbarComponent {
 		closeBy: 'kt_demo_panel_close',
 		toggleBy: 'kt_demo_panel_toggle'
 	};
+
+	baseHref: string;
+
+	constructor() {
+		// @ts-ignore
+		this.baseHref = (document.getElementsByTagName('base')[0] || {}).href;
+	}
 }

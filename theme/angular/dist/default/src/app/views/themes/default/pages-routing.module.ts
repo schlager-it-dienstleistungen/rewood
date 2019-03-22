@@ -30,13 +30,13 @@ const routes: Routes = [
 			{
 				path: 'ecommerce',
 				loadChildren: 'app/views/pages/apps/e-commerce/e-commerce.module#ECommerceModule',
-				canActivate: [NgxPermissionsGuard],
-				data: {
-				 	permissions: {
-				 		only: ['accessToECommerceModule'],
-				 		redirectTo: 'error/403'
-					}
-				}
+				// canActivate: [NgxPermissionsGuard],
+				// data: {
+				//  	permissions: {
+				//  		only: ['accessToECommerceModule'],
+				//  		redirectTo: 'error/403'
+				// 	}
+				// }
 			},
 			{
 				path: 'ngbootstrap',

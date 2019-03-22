@@ -851,7 +851,7 @@
 									width = maxWidthList[field];
 								}
 								else {
-									var cells = $(datatable.table).find('.' + pfx + 'datatable__cell[data-field="' + field + '"]');
+									var cells = $(datatable.tableBody).find('.' + pfx + 'datatable__cell[data-field="' + field + '"]');
 									width = maxWidthList[field] = Math.max.apply(null,
 											$(cells).map(function() {
 												return $(this).outerWidth();
@@ -1739,6 +1739,10 @@
 						if (!nav.prev) $(pagerPrev).remove();
 						if (!nav.next) $(pagerNext).remove();
 						if (!nav.last) $(pagerLast).remove();
+						if (!nav.more) {
+							$(pagerMorePrev).remove();
+							$(pagerMoreNext).remove();
+						}
 					},
 				};
 				pg.init(meta);
@@ -3160,9 +3164,9 @@
 			 */
 			rows: function(selector) {
 				if (Plugin.isLocked()) {
-					Plugin.nodeTr = Plugin.recentNode = t(datatable.tableBody).find(selector).filter('.' + pfx + 'datatable__lock--scroll > .' + pfx + 'datatable__row');
+					Plugin.nodeTr = Plugin.recentNode = $(datatable.tableBody).find(selector).filter('.' + pfx + 'datatable__lock--scroll > .' + pfx + 'datatable__row');
 				} else {
-					Plugin.nodeTr = Plugin.recentNode = t(datatable.tableBody).find(selector).filter('.' + pfx + 'datatable__row');
+					Plugin.nodeTr = Plugin.recentNode = $(datatable.tableBody).find(selector).filter('.' + pfx + 'datatable__row');
 				}
 				return datatable;
 			},
@@ -3461,10 +3465,11 @@
 
 					// navigation buttons
 					navigation: {
-						prev: true, // display prev link
-						next: true, // display next link
-						first: true, // display first link
-						last: true, // display last link
+						prev: true, // display prev button
+						next: true, // display next button
+						first: true, // display first button
+						last: true, // display last button
+						more: false // display more button
 					},
 
 					// page size select

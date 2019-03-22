@@ -10,11 +10,26 @@
 	</div>
 	<div class="kt-subheader__toolbar">
 		<div class="kt-subheader__wrapper">
-			<a href="javascript:;" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-placement="left" ngbTooltip="Select dashboard daterange">
-				<span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
-				<span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">{{today | date:'MMM dd'}}</span>
-				<i class="flaticon2-calendar-1"></i>
-			</a>
+			<div ngbDropdown [placement]="'bottom-right'" class="dropdown dropdown-inline" data-placement="left">
+				<a ngbDropdownToggle href="javascript:;" class="btn kt-subheader__btn-daterange"
+					id="kt_dashboard_daterangepicker" data-placement="left" ngbTooltip="Select dashboard daterange">
+					<span class="kt-subheader__btn-daterange-title"
+						id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+					<span class="kt-subheader__btn-daterange-date"
+						id="kt_dashboard_daterangepicker_date">{{today | date:'MMM dd'}}</span>
+					<i class="flaticon2-calendar-1"></i>
+				</a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+					<a href="javascript:;" class="dropdown-item">Today</a>
+					<a href="javascript:;" class="dropdown-item">Yesterday</a>
+					<a href="javascript:;" class="dropdown-item">Last 7 Days</a>
+					<a href="javascript:;" class="dropdown-item">Last 30 Days</a>
+					<a href="javascript:;" class="dropdown-item">This Month</a>
+					<a href="javascript:;" class="dropdown-item">Last Month</a>
+					<a href="javascript:;" class="dropdown-item">Yesterday</a>
+					<a href="javascript:;" class="dropdown-item">Custom Range</a>
+				</div>
+			</div>
 
 			<a href="javascript:;" class="btn kt-subheader__btn-primary btn-icon">
 				<i class="flaticon2-file"></i>
@@ -32,7 +47,8 @@
 				<i class="flaticon2-settings"></i>
 			</a>
 
-			<div ngbDropdown [placement]="'bottom-right'" class="dropdown dropdown-inline" data-placement="left" ngbTooltip="Quick actions">
+			<div ngbDropdown [placement]="'bottom-right'" class="dropdown dropdown-inline" data-placement="left"
+				ngbTooltip="Quick actions">
 				<a ngbDropdownToggle href="javascript:;" class="btn btn-brand btn-icon">
 					<i class="flaticon2-plus"></i>
 				</a>
