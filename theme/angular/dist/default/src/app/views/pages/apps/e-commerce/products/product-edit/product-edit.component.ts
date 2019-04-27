@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 // RxJS
 import { Observable, BehaviorSubject, Subscription, of } from 'rxjs';
-import { map, startWith, delay, first} from 'rxjs/operators';
+import { map, startWith, delay, first } from 'rxjs/operators';
 // NGRX
 import { Store, select } from '@ngrx/store';
 import { Dictionary, Update } from '@ngrx/entity';
@@ -22,16 +22,17 @@ import {
 	SPECIFICATIONS_DICTIONARY,
 	ProductModel,
 	ProductOnServerCreated,
-	ProductUpdated
+	ProductUpdated,
+	ProductsService
 } from '../../../../../../core/e-commerce';
 
 const AVAILABLE_COLORS: string[] =
 	['Red', 'CadetBlue', 'Gold', 'LightSlateGrey', 'RoyalBlue', 'Crimson', 'Blue', 'Sienna', 'Indigo', 'Green', 'Violet',
-	'GoldenRod', 'OrangeRed', 'Khaki', 'Teal', 'Purple', 'Orange', 'Pink', 'Black', 'DarkTurquoise'];
+		'GoldenRod', 'OrangeRed', 'Khaki', 'Teal', 'Purple', 'Orange', 'Pink', 'Black', 'DarkTurquoise'];
 
 const AVAILABLE_MANUFACTURES: string[] =
 	['Pontiac', 'Subaru', 'Mitsubishi', 'Oldsmobile', 'Chevrolet', 'Chrysler', 'Suzuki', 'GMC', 'Cadillac', 'Mercury', 'Dodge',
-	'Ram', 'Lexus', 'Lamborghini', 'Honda', 'Nissan', 'Ford', 'Hyundai', 'Saab', 'Toyota'];
+		'Ram', 'Lexus', 'Lamborghini', 'Honda', 'Nissan', 'Ford', 'Hyundai', 'Saab', 'Toyota'];
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -79,8 +80,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		public dialog: MatDialog,
 		private subheaderService: SubheaderService,
 		private layoutUtilsService: LayoutUtilsService,
-		private layoutConfigService: LayoutConfigService) {
-		}
+		private layoutConfigService: LayoutConfigService,
+		private productService: ProductsService,
+		private cdr: ChangeDetectorRef) {
+	}
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -98,32 +101,49 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		this.activatedRoute.params.subscribe(params => {
 			const id = params['id'];
 			if (id && id > 0) {
+
 				this.store.pipe(
-					select(selectProductById(id)),
-					first(res => {
-						return res !== undefined;
-					})
+					select(selectProductById(id))
 				).subscribe(result => {
-					this.product = result;
-					this.productId$ = of(result.id);
-					this.oldProduct = Object.assign({}, result);
-					this.initProduct();
+					if (!result) {
+						this.loadProductFromService(id);
+						return;
+					}
+
+					this.loadProduct(result);
 				});
 			} else {
-					const newProduct = new ProductModel();
-					newProduct.clear();
-					this.productId$ = of(newProduct.id);
-					this.product = newProduct;
-					this.oldProduct = Object.assign({}, newProduct);
-					this.initProduct();
-				}
-			});
+				const newProduct = new ProductModel();
+				newProduct.clear();
+				this.loadProduct(newProduct);
+			}
+		});
 
 		// sticky portlet header
 		window.onload = () => {
 			const style = getComputedStyle(document.getElementById('kt_header'));
 			this.headerMargin = parseInt(style.height, 0);
 		};
+	}
+
+	loadProduct(_product, fromService: boolean = false) {
+		if (!_product) {
+			this.goBack('');
+		}
+		this.product = _product;
+		this.productId$ = of(_product.id);
+		this.oldProduct = Object.assign({}, _product);
+		this.initProduct();
+		if (fromService) {
+			this.cdr.detectChanges();
+		}
+	}
+
+	// If product didn't find in store
+	loadProductFromService(productId) {
+		this.productService.getProductById(productId).subscribe(res => {
+			this.loadProduct(res, true);
+		});
 	}
 
 	/**
@@ -145,7 +165,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		if (!this.product.id) {
 			this.subheaderService.setBreadcrumbs([
 				{ title: 'eCommerce', page: `../${prefix}/ecommerce` },
-				{ title: 'Products',  page: `../${prefix}/ecommerce/products` },
+				{ title: 'Products', page: `../${prefix}/ecommerce/products` },
 				{ title: 'Create product', page: `../${prefix}/ecommerce/products/add` }
 			]);
 			return;
@@ -153,7 +173,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		this.subheaderService.setTitle('Edit product');
 		this.subheaderService.setBreadcrumbs([
 			{ title: 'eCommerce', page: `../${prefix}/ecommerce` },
-			{ title: 'Products',  page: `../${prefix}/ecommerce/products` },
+			{ title: 'Products', page: `../${prefix}/ecommerce/products` },
 			{ title: 'Edit product', page: `../${prefix}/ecommerce/products/edit`, queryParams: { id: this.product.id } }
 		]);
 	}
@@ -184,7 +204,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 			.pipe(
 				startWith(''),
 				map(val => this.filterColor(val.toString()))
-		);
+			);
 	}
 
 	/**
@@ -244,8 +264,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		this.createForm();
 		this.hasFormErrors = false;
 		this.productForm.markAsPristine();
-        this.productForm.markAsUntouched();
-        this.productForm.updateValueAndValidity();
+		this.productForm.markAsUntouched();
+		this.productForm.updateValueAndValidity();
 	}
 
 	/**
@@ -324,9 +344,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 			if (withBack) {
 				this.goBack(newId);
 			} else {
-			 	const message = `New product successfully has been added.`;
-			 	this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, true);
-			 	this.refreshProduct(true, newId);
+				const message = `New product successfully has been added.`;
+				this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, true);
+				this.refreshProduct(true, newId);
 			}
 		});
 	}
@@ -352,11 +372,11 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
 		of(undefined).pipe(delay(3000)).subscribe(() => { // Remove this line
 			if (withBack) {
-		 		this.goBack(_product.id);
+				this.goBack(_product.id);
 			} else {
 				const message = `Product successfully has been saved.`;
 				this.layoutUtilsService.showActionNotification(message, MessageType.Update, 10000, true, true);
-		 		this.refreshProduct(false);
+				this.refreshProduct(false);
 			}
 		}); // Remove this line
 	}

@@ -68,7 +68,7 @@ export class HtmlClassService {
 	 * Returns Classes
 	 *
 	 * @param path: string
-	 * @param toStringL boolean
+	 * @param toString boolean
 	 */
 	getClasses(path?: string, toString?: boolean): ClassType | string[] | string {
 		if (path) {
@@ -86,7 +86,11 @@ export class HtmlClassService {
 	 */
 	private initLayout() {
 		if (objectPath.has(this.config, 'self.body.class')) {
-			document.body.classList.add(objectPath.get(this.config, 'self.body.class'));
+			const _selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
+			if (_selfBodyClass) {
+				const bodyClasses: string[] = _selfBodyClass.split(' ');
+				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
+			}
 		}
 		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
 			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
@@ -94,6 +98,11 @@ export class HtmlClassService {
 		if (objectPath.get(this.config, 'width')) {
 			document.body.classList.add('kt-page--' + objectPath.get(this.config, 'width'));
 		}
+
+		// Offcanvas directions
+		document.body.classList.add('kt-quick-panel--right');
+		document.body.classList.add('kt-demo-panel--right');
+		document.body.classList.add('kt-offcanvas-panel--right');
 	}
 
 	/**

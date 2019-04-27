@@ -1,5 +1,5 @@
 <kt-portlet>
-	<kt-portlet-header [title]="getComponentTitle()" [class]="'kt-portlet__head--lg'" [viewLoading$]="loading$">
+	<kt-portlet-header [sticky]="true" [title]="getComponentTitle()" [class]="'kt-portlet__head--lg'" [viewLoading$]="loading$">
 		<ng-container ktPortletTools>
 			<a [routerLink]="['../../']" class="btn btn-secondary kt-margin-r-10"  mat-raised-button matTooltip="Back to the products list">
 				<i class="la la-arrow-left"></i>

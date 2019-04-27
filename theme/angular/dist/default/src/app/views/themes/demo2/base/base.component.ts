@@ -10,6 +10,7 @@ import { HtmlClassService } from '../html-class.service';
 import { LayoutConfig } from '../../../../core/_config/demo2/layout.config';
 import { MenuConfig } from '../../../../core/_config/demo2/menu.config';
 import { PageConfig } from '../../../../core/_config/demo2/page.config';
+// User permissions
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Permission, currentUserPermissions } from '../../../../core/auth';
 import { Store, select } from '@ngrx/store';

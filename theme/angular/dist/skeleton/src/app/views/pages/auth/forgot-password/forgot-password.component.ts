@@ -108,7 +108,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
 			takeUntil(this.unsubscribe),
 			finalize(() => {
 				this.loading = false;
-				this.cdr.detectChanges();
+				this.cdr.markForCheck();
 			})
 		).subscribe();
 	}

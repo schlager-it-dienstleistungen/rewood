@@ -3,7 +3,10 @@ export interface LayoutConfigModel {
 	self: {
 		layout?: string;
 		body?: {
-			'background-image'?: string
+			'background-image'?: string,
+			'class'?: string,
+			'background-position'?: string,
+			'background-size'?: string
 		};
 		logo: any | string;
 	};
@@ -44,7 +47,7 @@ export interface LayoutConfigModel {
 				mobile: boolean
 			}
 		};
-		topbar: {
+		topbar?: {
 			search: {
 				display: boolean;
 				layout: 'offcanvas' | 'dropdown';

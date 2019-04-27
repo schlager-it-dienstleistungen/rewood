@@ -17,6 +17,7 @@
 	<li [attr.aria-haspopup]="true"
 		[attr.data-ktmenu-submenu-toggle]="getItemAttrSubmenuToggle(item)"
 		(mouseleave)="mouseLeave($event)"
+		(mouseenter)="mouseEnter($event)"
 		[ngClass]="getItemCssClasses(item)">
 
 		<!-- if item has submenu -->

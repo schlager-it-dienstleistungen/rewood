@@ -1,0 +1,87 @@
+//
+// App(general layout for apps)
+//
+
+
+
+// Config
+$kt-app-config: (
+	aside: (
+        self: (
+          width: 350px  
+        ),
+		offcanvas: (
+			layout: (
+				self: (
+					zindex: 1001,
+					width: 300px
+				),
+				close: (
+					size: 25px,
+					font-size: 1.4rem
+				)
+			),
+			skin: (
+				overlay: (
+					bg-color: rgba(#000000, 0.05)
+                ),
+                close: (
+                    bg-color: (
+                        default: kt-base-color(grey, 1),
+                        hover: transparent
+                    ),
+                    icon-color: (
+                        default: kt-base-color(label, 2),
+                        hover: kt-brand-color()
+                    )
+                )
+			)
+		)
+    ),
+    content: (
+
+    ),
+    detail: (
+        width: 600px
+    )
+);
+
+// Base
+.kt-app {
+    @include kt-desktop {
+        .kt-app__aside {
+            width: kt-get($kt-app-config, aside, self, width);
+        }
+
+        .kt-app__content {
+            margin-left: $grid-gutter-width;
+        }
+
+        .kt-app__detail {
+            margin-left: $grid-gutter-width;
+            width: kt-get($kt-app-config, detail, width);
+        }
+    }
+
+    @include kt-tablet-and-mobile {
+        .kt-app__aside {
+            padding: 30px 15px 15px 15px;
+            background-color: #ffffff;
+
+            .kt-portlet {
+                box-shadow: 0px 0px 30px 0px rgba(82,63,105, 0.1);
+            }
+        }
+
+        .kt-app__content {
+            
+        }
+
+        .kt-app__detail {
+
+        }
+    }
+}
+
+// App aside  offcanvas
+@include kt-offcanvas-build(kt-app__aside, tablet-and-mobile, kt-get($kt-app-config, aside, offcanvas) );

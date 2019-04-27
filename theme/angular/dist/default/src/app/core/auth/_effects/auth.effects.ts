@@ -1,14 +1,14 @@
 // Angular
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 // RxJS
-import { tap, withLatestFrom, filter, mergeMap } from 'rxjs/operators';
-import { of, Observable, defer } from 'rxjs';
+import { filter, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { defer, Observable, of } from 'rxjs';
 // NGRX
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store, select } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 // Auth actions
-import { AuthActionTypes, Login, Logout, Register, UserRequested, UserLoaded } from '../_actions/auth.actions';
+import { AuthActionTypes, Login, Logout, Register, UserLoaded, UserRequested } from '../_actions/auth.actions';
 import { AuthService } from '../_services/index';
 import { AppState } from '../../reducers';
 import { environment } from '../../../../environments/environment';
@@ -30,7 +30,7 @@ export class AuthEffects {
         ofType<Logout>(AuthActionTypes.Logout),
         tap(() => {
             localStorage.removeItem(environment.authTokenKey);
-            this.router.navigateByUrl('/auth/login');
+			this.router.navigate(['/auth/login'], {queryParams: {returnUrl: this.returnUrl}});
         })
     );
 
@@ -68,8 +68,17 @@ export class AuthEffects {
         return observableResult;
     });
 
+    private returnUrl: string;
+
     constructor(private actions$: Actions,
         private router: Router,
         private auth: AuthService,
-        private store: Store<AppState>) { }
+        private store: Store<AppState>) {
+
+		this.router.events.subscribe(event => {
+			if (event instanceof NavigationEnd) {
+				this.returnUrl = event.url;
+			}
+		});
+	}
 }

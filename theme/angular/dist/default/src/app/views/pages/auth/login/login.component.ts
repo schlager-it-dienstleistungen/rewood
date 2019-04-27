@@ -1,6 +1,6 @@
 // Angular
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // RxJS
 import { Observable, Subject } from 'rxjs';
@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 	isLoggedIn$: Observable<boolean>;
 	errors: any = [];
 
-	private unsubscribe: Subject<any>; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+	private unsubscribe: Subject<any>;
+
+	private returnUrl: any;
+
+	// Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
 	/**
 	 * Component constructor
@@ -45,6 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 * @param store: Store<AppState>
 	 * @param fb: FormBuilder
 	 * @param cdr
+	 * @param route
 	 */
 	constructor(
 		private router: Router,
@@ -53,7 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private translate: TranslateService,
 		private store: Store<AppState>,
 		private fb: FormBuilder,
-		private cdr: ChangeDetectorRef
+		private cdr: ChangeDetectorRef,
+		private route: ActivatedRoute
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -67,6 +73,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		this.initLoginForm();
+
+		// redirect back to the returnUrl before login
+		this.route.queryParams.subscribe(params => {
+			this.returnUrl = params['returnUrl'] || '/';
+		});
 	}
 
 	/**
@@ -134,7 +145,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 				tap(user => {
 					if (user) {
 						this.store.dispatch(new Login({authToken: user.accessToken}));
-						this.router.navigateByUrl('/'); // Main page
+						this.router.navigateByUrl(this.returnUrl); // Main page
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}
@@ -142,7 +153,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 				takeUntil(this.unsubscribe),
 				finalize(() => {
 					this.loading = false;
-					this.cdr.detectChanges();
+					this.cdr.markForCheck();
 				})
 			)
 			.subscribe();

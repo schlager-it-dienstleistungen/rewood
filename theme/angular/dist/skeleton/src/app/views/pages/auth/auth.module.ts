@@ -1,11 +1,11 @@
 // Angular
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Material
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 // Translate
 import { TranslateModule } from '@ngx-translate/core';
 // NGRX
@@ -20,7 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
 // Auth
-import { AuthService, authReducer, AuthGuard, AuthEffects  } from '../../../core/auth';
+import { AuthEffects, AuthGuard, authReducer, AuthService } from '../../../core/auth';
 
 const routes: Routes = [
 	{
@@ -34,7 +34,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'login',
-				component: LoginComponent
+				component: LoginComponent,
+				data: {returnUrl: window.location.pathname}
 			},
 			{
 				path: 'register',
@@ -61,15 +62,15 @@ const routes: Routes = [
 		MatCheckboxModule,
 		TranslateModule.forChild(),
 		StoreModule.forFeature('auth', authReducer),
-        EffectsModule.forFeature([AuthEffects])
+		EffectsModule.forFeature([AuthEffects])
 	],
 	providers: [
 		InterceptService,
-      	{
-        	provide: HTTP_INTERCEPTORS,
-       	 	useClass: InterceptService,
-        	multi: true
-      	},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptService,
+			multi: true
+		},
 	],
 	exports: [AuthComponent],
 	declarations: [
@@ -82,13 +83,13 @@ const routes: Routes = [
 })
 
 export class AuthModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: AuthModule,
-            providers: [
+	static forRoot(): ModuleWithProviders {
+		return {
+			ngModule: AuthModule,
+			providers: [
 				AuthService,
 				AuthGuard
-            ]
-        };
-    }
+			]
+		};
+	}
 }

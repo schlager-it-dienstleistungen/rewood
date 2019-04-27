@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v8.5.0
+* sweetalert2 v8.8.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -187,6 +187,16 @@ var uniqueArray = function uniqueArray(arr) {
   return result;
 };
 /**
+ * Returns the array ob object values (Object.values isn't supported in IE11)
+ * @param obj
+ */
+
+var objectValues = function objectValues(obj) {
+  return Object.keys(obj).map(function (key) {
+    return obj[key];
+  });
+};
+/**
  * Convert NodeList to Array
  * @param nodeList
  */
@@ -247,6 +257,13 @@ var warnOnce = function warnOnce(message) {
     previousWarnOnceMessages.push(message);
     warn(message);
   }
+};
+/**
+ * Show a one-time console warning about deprecated params/methods
+ */
+
+var warnAboutDepreation = function warnAboutDepreation(deprecatedParam, useInstead) {
+  warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
 };
 /**
  * If `arg` is a function, call it (with no arguments or context) and return the result.
@@ -316,6 +333,42 @@ var states = {
 var hasClass = function hasClass(elem, className) {
   return elem.classList.contains(className);
 };
+var applyCustomClass = function applyCustomClass(elem, customClass, className) {
+  // Clean up previous custom classes
+  toArray(elem.classList).forEach(function (className) {
+    if (!(objectValues(swalClasses).indexOf(className) !== -1) && !(objectValues(iconTypes).indexOf(className) !== -1)) {
+      elem.classList.remove(className);
+    }
+  });
+
+  if (customClass && customClass[className]) {
+    addClass(elem, customClass[className]);
+  }
+};
+function getInput(content, inputType) {
+  if (!inputType) {
+    return null;
+  }
+
+  switch (inputType) {
+    case 'select':
+    case 'textarea':
+    case 'file':
+      return getChildByClass(content, swalClasses[inputType]);
+
+    case 'checkbox':
+      return content.querySelector(".".concat(swalClasses.checkbox, " input"));
+
+    case 'radio':
+      return content.querySelector(".".concat(swalClasses.radio, " input:checked")) || content.querySelector(".".concat(swalClasses.radio, " input:first-child"));
+
+    case 'range':
+      return content.querySelector(".".concat(swalClasses.range, " input"));
+
+    default:
+      return getChildByClass(content, swalClasses.input);
+  }
+}
 var focusInput = function focusInput(input) {
   input.focus(); // place cursor at end of text in text input
 
@@ -326,8 +379,7 @@ var focusInput = function focusInput(input) {
     input.value = val;
   }
 };
-
-var addOrRemoveClass = function addOrRemoveClass(target, classList, add) {
+var toggleClass = function toggleClass(target, classList, condition) {
   if (!target || !classList) {
     return;
   }
@@ -339,19 +391,18 @@ var addOrRemoveClass = function addOrRemoveClass(target, classList, add) {
   classList.forEach(function (className) {
     if (target.forEach) {
       target.forEach(function (elem) {
-        add ? elem.classList.add(className) : elem.classList.remove(className);
+        condition ? elem.classList.add(className) : elem.classList.remove(className);
       });
     } else {
-      add ? target.classList.add(className) : target.classList.remove(className);
+      condition ? target.classList.add(className) : target.classList.remove(className);
     }
   });
 };
-
 var addClass = function addClass(target, classList) {
-  addOrRemoveClass(target, classList, true);
+  toggleClass(target, classList, true);
 };
 var removeClass = function removeClass(target, classList) {
-  addOrRemoveClass(target, classList, false);
+  toggleClass(target, classList, false);
 };
 var getChildByClass = function getChildByClass(elem, className) {
   for (var i = 0; i < elem.childNodes.length; i++) {
@@ -360,13 +411,24 @@ var getChildByClass = function getChildByClass(elem, className) {
     }
   }
 };
+var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
+  if (value || parseInt(value) === 0) {
+    elem.style[property] = typeof value === 'number' ? value + 'px' : value;
+  } else {
+    elem.style.removeProperty(property);
+  }
+};
 var show = function show(elem) {
+  var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'flex';
   elem.style.opacity = '';
-  elem.style.display = elem.id === swalClasses.content ? 'block' : 'flex';
+  elem.style.display = display;
 };
 var hide = function hide(elem) {
   elem.style.opacity = '';
   elem.style.display = 'none';
+};
+var toggle = function toggle(elem, condition, display) {
+  condition ? show(elem, display) : hide(elem);
 }; // borrowed from jquery $(elem).is(':visible') implementation
 
 var isVisible = function isVisible(elem) {
@@ -381,7 +443,6 @@ var contains = function contains(haystack, needle) {
 var getContainer = function getContainer() {
   return document.body.querySelector('.' + swalClasses.container);
 };
-
 var elementBySelector = function elementBySelector(selectorString) {
   var container = getContainer();
   return container ? container.querySelector(selectorString) : null;
@@ -475,32 +536,29 @@ var isNodeEnv = function isNodeEnv() {
 };
 
 var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <div class=\"").concat(swalClasses.header, "\">\n     <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.error, "\">\n       <span class=\"swal2-x-mark\"><span class=\"swal2-x-mark-line-left\"></span><span class=\"swal2-x-mark-line-right\"></span></span>\n     </div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.question, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.warning, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.info, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.success, "\">\n       <div class=\"swal2-success-circular-line-left\"></div>\n       <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n       <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n       <div class=\"swal2-success-circular-line-right\"></div>\n     </div>\n     <img class=\"").concat(swalClasses.image, "\" />\n     <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n     <button type=\"button\" class=\"").concat(swalClasses.close, "\">&times;</button>\n   </div>\n   <div class=\"").concat(swalClasses.content, "\">\n     <div id=\"").concat(swalClasses.content, "\"></div>\n     <input class=\"").concat(swalClasses.input, "\" />\n     <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n     <div class=\"").concat(swalClasses.range, "\">\n       <input type=\"range\" />\n       <output></output>\n     </div>\n     <select class=\"").concat(swalClasses.select, "\"></select>\n     <div class=\"").concat(swalClasses.radio, "\"></div>\n     <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n       <input type=\"checkbox\" />\n       <span class=\"").concat(swalClasses.label, "\"></span>\n     </label>\n     <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n     <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   </div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\">OK</button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\">Cancel</button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\">\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
-/*
- * Add modal + backdrop to DOM
- */
 
-var init = function init(params) {
-  // Clean up the old popup if it exists
-  var c = getContainer();
+var resetOldContainer = function resetOldContainer() {
+  var oldContainer = getContainer();
 
-  if (c) {
-    c.parentNode.removeChild(c);
-    removeClass([document.documentElement, document.body], [swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['has-column']]);
-  }
-  /* istanbul ignore if */
-
-
-  if (isNodeEnv()) {
-    error('SweetAlert2 requires document to initialize');
+  if (!oldContainer) {
     return;
   }
 
-  var container = document.createElement('div');
-  container.className = swalClasses.container;
-  container.innerHTML = sweetHTML;
-  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
-  targetElement.appendChild(container);
-  var popup = getPopup();
+  oldContainer.parentNode.removeChild(oldContainer);
+  removeClass([document.documentElement, document.body], [swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['has-column']]);
+};
+
+var oldInputVal; // IE11 workaround, see #1109 for details
+
+var resetValidationMessage = function resetValidationMessage(e) {
+  if (Swal.isVisible() && oldInputVal !== e.target.value) {
+    Swal.resetValidationMessage();
+  }
+
+  oldInputVal = e.target.value;
+};
+
+var addInputChangeListeners = function addInputChangeListeners() {
   var content = getContent();
   var input = getChildByClass(content, swalClasses.input);
   var file = getChildByClass(content, swalClasses.file);
@@ -508,30 +566,7 @@ var init = function init(params) {
   var rangeOutput = content.querySelector(".".concat(swalClasses.range, " output"));
   var select = getChildByClass(content, swalClasses.select);
   var checkbox = content.querySelector(".".concat(swalClasses.checkbox, " input"));
-  var textarea = getChildByClass(content, swalClasses.textarea); // a11y
-
-  popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
-  popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
-
-  if (!params.toast) {
-    popup.setAttribute('aria-modal', 'true');
-  } // RTL
-
-
-  if (window.getComputedStyle(targetElement).direction === 'rtl') {
-    addClass(getContainer(), swalClasses.rtl);
-  }
-
-  var oldInputVal; // IE11 workaround, see #1109 for details
-
-  var resetValidationMessage = function resetValidationMessage(e) {
-    if (Swal.isVisible() && oldInputVal !== e.target.value) {
-      Swal.resetValidationMessage();
-    }
-
-    oldInputVal = e.target.value;
-  };
-
+  var textarea = getChildByClass(content, swalClasses.textarea);
   input.oninput = resetValidationMessage;
   file.onchange = resetValidationMessage;
   select.onchange = resetValidationMessage;
@@ -547,33 +582,73 @@ var init = function init(params) {
     resetValidationMessage(e);
     range.nextSibling.value = range.value;
   };
+};
 
-  return popup;
+var getTarget = function getTarget(target) {
+  return typeof target === 'string' ? document.querySelector(target) : target;
+};
+
+var setupAccessibility = function setupAccessibility(params) {
+  var popup = getPopup();
+  popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
+  popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
+
+  if (!params.toast) {
+    popup.setAttribute('aria-modal', 'true');
+  }
+};
+
+var setupRTL = function setupRTL(targetElement) {
+  if (window.getComputedStyle(targetElement).direction === 'rtl') {
+    addClass(getContainer(), swalClasses.rtl);
+  }
+};
+/*
+ * Add modal + backdrop to DOM
+ */
+
+
+var init = function init(params) {
+  // Clean up the old popup container if it exists
+  resetOldContainer();
+  /* istanbul ignore if */
+
+  if (isNodeEnv()) {
+    error('SweetAlert2 requires document to initialize');
+    return;
+  }
+
+  var container = document.createElement('div');
+  container.className = swalClasses.container;
+  container.innerHTML = sweetHTML;
+  var targetElement = getTarget(params.target);
+  targetElement.appendChild(container);
+  setupAccessibility(params);
+  setupRTL(targetElement);
+  addInputChangeListeners();
 };
 
 var parseHtmlToContainer = function parseHtmlToContainer(param, target) {
-  if (!param) {
-    return hide(target);
-  } // DOM element
-
-
+  // DOM element
   if (param instanceof HTMLElement) {
     target.appendChild(param); // JQuery element(s)
   } else if (_typeof(param) === 'object') {
-    target.innerHTML = '';
-
-    if (0 in param) {
-      for (var i = 0; i in param; i++) {
-        target.appendChild(param[i].cloneNode(true));
-      }
-    } else {
-      target.appendChild(param.cloneNode(true));
-    }
+    handleJqueryElem(target, param); // Plain string
   } else if (param) {
     target.innerHTML = param;
   }
+};
 
-  show(target);
+var handleJqueryElem = function handleJqueryElem(target, elem) {
+  target.innerHTML = '';
+
+  if (0 in elem) {
+    for (var i = 0; i in elem; i++) {
+      target.appendChild(elem[i].cloneNode(true));
+    }
+  } else {
+    target.appendChild(elem.cloneNode(true));
+  }
 };
 
 var animationEndEvent = function () {
@@ -628,22 +703,14 @@ var renderActions = function renderActions(params) {
     hide(actions);
   } else {
     show(actions);
-  } // Cancel button
+  } // Custom class
 
 
-  if (params.showCancelButton) {
-    cancelButton.style.display = 'inline-block';
-  } else {
-    hide(cancelButton);
-  } // Confirm button
+  applyCustomClass(actions, params.customClass, 'actions'); // Confirm button
 
+  toggle(confirmButton, params.showConfirmButton, 'inline-block'); // Cancel button
 
-  if (params.showConfirmButton) {
-    confirmButton.style.removeProperty('display');
-  } else {
-    hide(confirmButton);
-  } // Edit text on confirm and cancel buttons
-
+  toggle(cancelButton, params.showCancelButton, 'inline-block'); // Edit text on confirm and cancel buttons
 
   confirmButton.innerHTML = params.confirmButtonText;
   cancelButton.innerHTML = params.cancelButtonText; // ARIA labels for confirm and cancel buttons
@@ -652,19 +719,11 @@ var renderActions = function renderActions(params) {
   cancelButton.setAttribute('aria-label', params.cancelButtonAriaLabel); // Add buttons custom classes
 
   confirmButton.className = swalClasses.confirm;
+  applyCustomClass(confirmButton, params.customClass, 'confirmButton');
   addClass(confirmButton, params.confirmButtonClass);
-
-  if (params.customClass) {
-    addClass(confirmButton, params.customClass.confirmButton);
-  }
-
   cancelButton.className = swalClasses.cancel;
-  addClass(cancelButton, params.cancelButtonClass);
-
-  if (params.customClass) {
-    addClass(cancelButton, params.customClass.cancelButton);
-  } // Buttons styling
-
+  applyCustomClass(cancelButton, params.customClass, 'cancelButton');
+  addClass(cancelButton, params.cancelButtonClass); // Buttons styling
 
   if (params.buttonsStyling) {
     addClass([confirmButton, cancelButton], swalClasses.styled); // Buttons background colors
@@ -688,130 +747,435 @@ var renderActions = function renderActions(params) {
   }
 };
 
+var renderContainer = function renderContainer(params) {
+  var container = getContainer();
+
+  if (!container) {
+    return;
+  } // Backdrop
+
+
+  if (typeof params.backdrop === 'string') {
+    container.style.background = params.backdrop;
+  } else if (!params.backdrop) {
+    addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
+  }
+
+  if (!params.backdrop && params.allowOutsideClick) {
+    warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
+  } // Position
+
+
+  if (params.position in swalClasses) {
+    addClass(container, swalClasses[params.position]);
+  } else {
+    warn('The "position" parameter is not valid, defaulting to "center"');
+    addClass(container, swalClasses.center);
+  } // Grow
+
+
+  if (params.grow && typeof params.grow === 'string') {
+    var growClass = 'grow-' + params.grow;
+
+    if (growClass in swalClasses) {
+      addClass(container, swalClasses[growClass]);
+    }
+  } // Custom class
+
+
+  applyCustomClass(container, params.customClass, 'container');
+
+  if (params.customContainerClass) {
+    // @deprecated
+    addClass(container, params.customContainerClass);
+  }
+};
+
+var renderInput = function renderInput(params) {
+  var content = getContent();
+  var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+
+  var setInputPlaceholder = function setInputPlaceholder(input) {
+    if (!input.placeholder || params.inputPlaceholder) {
+      input.placeholder = params.inputPlaceholder;
+    }
+  };
+
+  var input;
+
+  for (var i = 0; i < inputTypes.length; i++) {
+    var inputClass = swalClasses[inputTypes[i]];
+    var inputContainer = getChildByClass(content, inputClass);
+    input = getInput(content, inputTypes[i]); // set attributes
+
+    if (input) {
+      for (var j in input.attributes) {
+        if (input.attributes.hasOwnProperty(j)) {
+          var attrName = input.attributes[j].name;
+
+          if (attrName !== 'type' && attrName !== 'value') {
+            input.removeAttribute(attrName);
+          }
+        }
+      }
+
+      for (var attr in params.inputAttributes) {
+        // Do not set a placeholder for <input type="range">
+        // it'll crash Edge, #1298
+        if (inputTypes[i] === 'range' && attr === 'placeholder') {
+          continue;
+        }
+
+        input.setAttribute(attr, params.inputAttributes[attr]);
+      }
+    } // set class
+
+
+    inputContainer.className = inputClass;
+
+    if (params.inputClass) {
+      addClass(inputContainer, params.inputClass);
+    }
+
+    if (params.customClass) {
+      addClass(inputContainer, params.customClass.input);
+    }
+
+    hide(inputContainer);
+  }
+
+  switch (params.input) {
+    case 'text':
+    case 'email':
+    case 'password':
+    case 'number':
+    case 'tel':
+    case 'url':
+      {
+        input = getChildByClass(content, swalClasses.input);
+
+        if (typeof params.inputValue === 'string' || typeof params.inputValue === 'number') {
+          input.value = params.inputValue;
+        } else if (!isPromise(params.inputValue)) {
+          warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(params.inputValue), "\""));
+        }
+
+        setInputPlaceholder(input);
+        input.type = params.input;
+        show(input);
+        break;
+      }
+
+    case 'file':
+      {
+        input = getChildByClass(content, swalClasses.file);
+        setInputPlaceholder(input);
+        input.type = params.input;
+        show(input);
+        break;
+      }
+
+    case 'range':
+      {
+        var range = getChildByClass(content, swalClasses.range);
+        var rangeInput = range.querySelector('input');
+        var rangeOutput = range.querySelector('output');
+        rangeInput.value = params.inputValue;
+        rangeInput.type = params.input;
+        rangeOutput.value = params.inputValue;
+        show(range);
+        break;
+      }
+
+    case 'select':
+      {
+        var select = getChildByClass(content, swalClasses.select);
+        select.innerHTML = '';
+
+        if (params.inputPlaceholder) {
+          var placeholder = document.createElement('option');
+          placeholder.innerHTML = params.inputPlaceholder;
+          placeholder.value = '';
+          placeholder.disabled = true;
+          placeholder.selected = true;
+          select.appendChild(placeholder);
+        }
+
+        show(select);
+        break;
+      }
+
+    case 'radio':
+      {
+        var radio = getChildByClass(content, swalClasses.radio);
+        radio.innerHTML = '';
+        show(radio);
+        break;
+      }
+
+    case 'checkbox':
+      {
+        var checkbox = getChildByClass(content, swalClasses.checkbox);
+        var checkboxInput = getInput(content, 'checkbox');
+        checkboxInput.type = 'checkbox';
+        checkboxInput.value = 1;
+        checkboxInput.id = swalClasses.checkbox;
+        checkboxInput.checked = Boolean(params.inputValue);
+        var label = checkbox.querySelector('span');
+        label.innerHTML = params.inputPlaceholder;
+        show(checkbox);
+        break;
+      }
+
+    case 'textarea':
+      {
+        var textarea = getChildByClass(content, swalClasses.textarea);
+        textarea.value = params.inputValue;
+        setInputPlaceholder(textarea);
+        show(textarea);
+        break;
+      }
+
+    case null:
+      {
+        break;
+      }
+
+    default:
+      error("Unexpected type of input! Expected \"text\", \"email\", \"password\", \"number\", \"tel\", \"select\", \"radio\", \"checkbox\", \"textarea\", \"file\" or \"url\", got \"".concat(params.input, "\""));
+      break;
+  }
+};
+
 var renderContent = function renderContent(params) {
   var content = getContent().querySelector('#' + swalClasses.content); // Content as HTML
 
   if (params.html) {
-    parseHtmlToContainer(params.html, content); // Content as plain text
+    parseHtmlToContainer(params.html, content);
+    show(content, 'block'); // Content as plain text
   } else if (params.text) {
     content.textContent = params.text;
-    show(content);
+    show(content, 'block'); // No content
   } else {
     hide(content);
   }
+
+  renderInput(params); // Custom class
+
+  applyCustomClass(getContent(), params.customClass, 'content');
+};
+
+var renderFooter = function renderFooter(params) {
+  var footer = getFooter();
+  toggle(footer, params.footer);
+
+  if (params.footer) {
+    parseHtmlToContainer(params.footer, footer);
+  } // Custom class
+
+
+  applyCustomClass(footer, params.customClass, 'footer');
+};
+
+var renderCloseButton = function renderCloseButton(params) {
+  var closeButton = getCloseButton(); // Custom class
+
+  applyCustomClass(closeButton, params.customClass, 'closeButton');
+  toggle(closeButton, params.showCloseButton);
+  closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
 };
 
 var renderIcon = function renderIcon(params) {
+  // if the icon with the given type already rendered,
+  // apply the custom class without re-rendering the icon
+  var currentIcon = getIcon();
+
+  if (currentIcon && currentIcon.classList.contains(iconTypes[params.type])) {
+    applyCustomClass(currentIcon, params.customClass, 'icon');
+    return;
+  }
+
+  hideAllIcons();
+
+  if (!params.type) {
+    return;
+  }
+
+  adjustSuccessIconBackgoundColor();
+
+  if (Object.keys(iconTypes).indexOf(params.type) !== -1) {
+    var icon = elementBySelector(".".concat(swalClasses.icon, ".").concat(iconTypes[params.type]));
+    show(icon); // Custom class
+
+    applyCustomClass(icon, params.customClass, 'icon'); // Animate icon
+
+    toggleClass(icon, "swal2-animate-".concat(params.type, "-icon"), params.animation);
+  } else {
+    error("Unknown type! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.type, "\""));
+  }
+};
+
+var hideAllIcons = function hideAllIcons() {
   var icons = getIcons();
 
   for (var i = 0; i < icons.length; i++) {
     hide(icons[i]);
   }
-
-  if (params.type) {
-    if (Object.keys(iconTypes).indexOf(params.type) !== -1) {
-      var icon = Swal.getPopup().querySelector(".".concat(swalClasses.icon, ".").concat(iconTypes[params.type]));
-      show(icon); // Custom class
-
-      if (params.customClass) {
-        addClass(icon, params.customClass.icon);
-      } // Animate icon
+}; // Adjust success icon background color to match the popup background color
 
 
-      if (params.animation) {
-        addClass(icon, "swal2-animate-".concat(params.type, "-icon"));
-      }
-    } else {
-      error("Unknown type! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.type, "\""));
-    }
+var adjustSuccessIconBackgoundColor = function adjustSuccessIconBackgoundColor() {
+  var popup = getPopup();
+  var popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
+  var successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
+
+  for (var i = 0; i < successIconParts.length; i++) {
+    successIconParts[i].style.backgroundColor = popupBackgroundColor;
   }
 };
 
 var renderImage = function renderImage(params) {
   var image = getImage();
 
-  if (params.imageUrl) {
-    image.setAttribute('src', params.imageUrl);
-    image.setAttribute('alt', params.imageAlt);
-    show(image);
-
-    if (params.imageWidth) {
-      image.setAttribute('width', params.imageWidth);
-    } else {
-      image.removeAttribute('width');
-    }
-
-    if (params.imageHeight) {
-      image.setAttribute('height', params.imageHeight);
-    } else {
-      image.removeAttribute('height');
-    }
-
-    image.className = swalClasses.image;
-
-    if (params.imageClass) {
-      addClass(image, params.imageClass);
-    }
-
-    if (params.customClass) {
-      addClass(image, params.customClass.image);
-    }
-  } else {
-    hide(image);
+  if (!params.imageUrl) {
+    return hide(image);
   }
+
+  show(image); // Src, alt
+
+  image.setAttribute('src', params.imageUrl);
+  image.setAttribute('alt', params.imageAlt); // Width, height
+
+  applyNumericalStyle(image, 'width', params.imageWidth);
+  applyNumericalStyle(image, 'height', params.imageHeight); // Class
+
+  image.className = swalClasses.image;
+  applyCustomClass(image, params.customClass, 'image');
+
+  if (params.imageClass) {
+    addClass(image, params.imageClass);
+  }
+};
+
+var createStepElement = function createStepElement(step) {
+  var stepEl = document.createElement('li');
+  addClass(stepEl, swalClasses['progress-step']);
+  stepEl.innerHTML = step;
+  return stepEl;
+};
+
+var createLineElement = function createLineElement(params) {
+  var lineEl = document.createElement('li');
+  addClass(lineEl, swalClasses['progress-step-line']);
+
+  if (params.progressStepsDistance) {
+    lineEl.style.width = params.progressStepsDistance;
+  }
+
+  return lineEl;
 };
 
 var renderProgressSteps = function renderProgressSteps(params) {
   var progressStepsContainer = getProgressSteps();
-  var currentProgressStep = parseInt(params.currentProgressStep === null ? Swal.getQueueStep() : params.currentProgressStep, 10);
 
-  if (params.progressSteps && params.progressSteps.length) {
-    show(progressStepsContainer);
-    progressStepsContainer.innerHTML = '';
+  if (!params.progressSteps || params.progressSteps.length === 0) {
+    return hide(progressStepsContainer);
+  }
 
-    if (currentProgressStep >= params.progressSteps.length) {
-      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
+  show(progressStepsContainer);
+  progressStepsContainer.innerHTML = '';
+  var currentProgressStep = parseInt(params.currentProgressStep === null ? Swal.getQueueStep() : params.currentProgressStep);
+
+  if (currentProgressStep >= params.progressSteps.length) {
+    warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
+  }
+
+  params.progressSteps.forEach(function (step, index) {
+    var stepEl = createStepElement(step);
+    progressStepsContainer.appendChild(stepEl);
+
+    if (index === currentProgressStep) {
+      addClass(stepEl, swalClasses['active-progress-step']);
     }
 
-    params.progressSteps.forEach(function (step, index) {
-      var stepEl = document.createElement('li');
-      addClass(stepEl, swalClasses['progress-step']);
-      stepEl.innerHTML = step;
-
-      if (index === currentProgressStep) {
-        addClass(stepEl, swalClasses['active-progress-step']);
-      }
-
-      progressStepsContainer.appendChild(stepEl);
-
-      if (index !== params.progressSteps.length - 1) {
-        var line = document.createElement('li');
-        addClass(line, swalClasses['progress-step-line']);
-
-        if (params.progressStepsDistance) {
-          line.style.width = params.progressStepsDistance;
-        }
-
-        progressStepsContainer.appendChild(line);
-      }
-    });
-  } else {
-    hide(progressStepsContainer);
-  }
+    if (index !== params.progressSteps.length - 1) {
+      var lineEl = createLineElement(step, index);
+      progressStepsContainer.appendChild(lineEl);
+    }
+  });
 };
 
 var renderTitle = function renderTitle(params) {
   var title = getTitle();
+  toggle(title, params.title || params.titleText);
+
+  if (params.title) {
+    parseHtmlToContainer(params.title, title);
+  }
 
   if (params.titleText) {
     title.innerText = params.titleText;
-  } else if (params.title) {
-    if (typeof params.title === 'string') {
-      params.title = params.title.split('\n').join('<br />');
-    }
+  } // Custom class
 
-    parseHtmlToContainer(params.title, title);
-  }
+
+  applyCustomClass(title, params.customClass, 'title');
+};
+
+var renderHeader = function renderHeader(params) {
+  var header = getHeader(); // Custom class
+
+  applyCustomClass(header, params.customClass, 'header'); // Progress steps
+
+  renderProgressSteps(params); // Icon
+
+  renderIcon(params); // Image
+
+  renderImage(params); // Title
+
+  renderTitle(params); // Close button
+
+  renderCloseButton(params);
+};
+
+var renderPopup = function renderPopup(params) {
+  var popup = getPopup(); // Width
+
+  applyNumericalStyle(popup, 'width', params.width); // Padding
+
+  applyNumericalStyle(popup, 'padding', params.padding); // Background
+
+  if (params.background) {
+    popup.style.background = params.background;
+  } // Default Class
+
+
+  popup.className = swalClasses.popup;
+
+  if (params.toast) {
+    addClass([document.documentElement, document.body], swalClasses['toast-shown']);
+    addClass(popup, swalClasses.toast);
+  } else {
+    addClass(popup, swalClasses.modal);
+  } // Custom class
+
+
+  applyCustomClass(popup, params.customClass, 'popup');
+
+  if (typeof params.customClass === 'string') {
+    addClass(popup, params.customClass);
+  } // CSS animation
+
+
+  toggleClass(popup, swalClasses.noanimation, !params.animation);
+};
+
+var render = function render(params) {
+  renderPopup(params);
+  renderContainer(params);
+  renderHeader(params);
+  renderContent(params);
+  renderActions(params);
+  renderFooter(params);
 };
 
 /*
@@ -899,9 +1263,10 @@ var queue = function queue(steps) {
   var Swal = this;
   currentSteps = steps;
 
-  var resetQueue = function resetQueue() {
+  var resetAndResolve = function resetAndResolve(resolve, value) {
     currentSteps = [];
     document.body.removeAttribute('data-swal2-queue-step');
+    resolve(value);
   };
 
   var queueResult = [];
@@ -914,15 +1279,13 @@ var queue = function queue(steps) {
             queueResult.push(result.value);
             step(i + 1, callback);
           } else {
-            resetQueue();
-            resolve({
+            resetAndResolve(resolve, {
               dismiss: result.dismiss
             });
           }
         });
       } else {
-        resetQueue();
-        resolve({
+        resetAndResolve(resolve, {
           value: queueResult
         });
       }
@@ -985,18 +1348,22 @@ var showLoading = function showLoading() {
 var RESTORE_FOCUS_TIMEOUT = 100;
 
 var globalState = {};
+var focusPreviousActiveElement = function focusPreviousActiveElement() {
+  if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
+    globalState.previousActiveElement.focus();
+    globalState.previousActiveElement = null;
+  } else if (document.body) {
+    document.body.focus();
+  }
+}; // Restore previous active (focused) element
+
+
 var restoreActiveElement = function restoreActiveElement() {
   return new Promise(function (resolve) {
     var x = window.scrollX;
     var y = window.scrollY;
     globalState.restoreFocusTimeout = setTimeout(function () {
-      if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
-        globalState.previousActiveElement.focus();
-        globalState.previousActiveElement = null;
-      } else if (document.body) {
-        document.body.focus();
-      }
-
+      focusPreviousActiveElement();
       resolve();
     }, RESTORE_FOCUS_TIMEOUT); // issues/900
 
@@ -1124,6 +1491,7 @@ var defaultParams = {
   onClose: null,
   scrollbarPadding: true
 };
+var updatableParams = ['title', 'titleText', 'text', 'html', 'type', 'customClass', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonClass', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonClass', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeigth', 'imageAlt', 'imageClass', 'progressSteps', 'currentProgressStep'];
 var deprecatedParams = {
   customContainerClass: 'customClass',
   confirmButtonClass: 'customClass',
@@ -1146,7 +1514,7 @@ var isValidParameter = function isValidParameter(paramName) {
  */
 
 var isUpdatableParameter = function isUpdatableParameter(paramName) {
-  return ['title', 'titleText', 'text', 'html', 'type', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonClass', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonClass', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeigth', 'imageAlt', 'imageClass', 'progressSteps', 'currentProgressStep'].indexOf(paramName) !== -1;
+  return updatableParams.indexOf(paramName) !== -1;
 };
 /**
  * Is deprecated parameter
@@ -1156,25 +1524,40 @@ var isUpdatableParameter = function isUpdatableParameter(paramName) {
 var isDeprecatedParameter = function isDeprecatedParameter(paramName) {
   return deprecatedParams[paramName];
 };
+
+var checkIfParamIsValid = function checkIfParamIsValid(param) {
+  if (!isValidParameter(param)) {
+    warn("Unknown parameter \"".concat(param, "\""));
+  }
+};
+
+var checkIfToastParamIsValid = function checkIfToastParamIsValid(param) {
+  if (toastIncompatibleParams.indexOf(param) !== -1) {
+    warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
+  }
+};
+
+var checkIfParamIsDeprecated = function checkIfParamIsDeprecated(param) {
+  if (isDeprecatedParameter(param)) {
+    warnAboutDepreation(param, isDeprecatedParameter(param));
+  }
+};
 /**
  * Show relevant warnings for given params
  *
  * @param params
  */
 
+
 var showWarningsForParams = function showWarningsForParams(params) {
   for (var param in params) {
-    if (!isValidParameter(param)) {
-      warn("Unknown parameter \"".concat(param, "\""));
+    checkIfParamIsValid(param);
+
+    if (params.toast) {
+      checkIfToastParamIsValid(param);
     }
 
-    if (params.toast && toastIncompatibleParams.indexOf(param) !== -1) {
-      warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
-    }
-
-    if (isDeprecatedParameter(param)) {
-      warnOnce("The parameter \"".concat(param, "\" is deprecated and will be removed in the next major release. Please use \"").concat(isDeprecatedParameter(param), "\" instead."));
-    }
+    checkIfParamIsDeprecated();
   }
 };
 
@@ -1258,33 +1641,10 @@ function hideLoading() {
   domCache.cancelButton.disabled = false;
 }
 
-function getInput(inputType) {
-  var innerParams = privateProps.innerParams.get(this);
-  var domCache = privateProps.domCache.get(this);
-  inputType = inputType || innerParams.input;
-
-  if (!inputType) {
-    return null;
-  }
-
-  switch (inputType) {
-    case 'select':
-    case 'textarea':
-    case 'file':
-      return getChildByClass(domCache.content, swalClasses[inputType]);
-
-    case 'checkbox':
-      return domCache.popup.querySelector(".".concat(swalClasses.checkbox, " input"));
-
-    case 'radio':
-      return domCache.popup.querySelector(".".concat(swalClasses.radio, " input:checked")) || domCache.popup.querySelector(".".concat(swalClasses.radio, " input:first-child"));
-
-    case 'range':
-      return domCache.popup.querySelector(".".concat(swalClasses.range, " input"));
-
-    default:
-      return getChildByClass(domCache.content, swalClasses.input);
-  }
+function getInput$1(instance) {
+  var innerParams = privateProps.innerParams.get(instance || this);
+  var domCache = privateProps.domCache.get(instance || this);
+  return getInput(domCache.content, innerParams.input);
 }
 
 var fixScrollbar = function fixScrollbar() {
@@ -1409,6 +1769,41 @@ var privateMethods = {
  * Instance method to close sweetAlert
  */
 
+function removePopupAndResetState(container, onAfterClose) {
+  if (!isToast()) {
+    restoreActiveElement().then(function () {
+      return triggerOnAfterClose(onAfterClose);
+    });
+    globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
+      capture: globalState.keydownListenerCapture
+    });
+    globalState.keydownHandlerAdded = false;
+  } else {
+    triggerOnAfterClose(onAfterClose);
+  }
+
+  if (container.parentNode) {
+    container.parentNode.removeChild(container);
+  }
+
+  removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
+
+  if (isModal()) {
+    undoScrollbar();
+    undoIOSfix();
+    undoIEfix();
+    unsetAriaHidden();
+  }
+}
+
+function swalCloseEventFinished(popup, container, onAfterClose) {
+  popup.removeEventListener(animationEndEvent, swalCloseEventFinished);
+
+  if (hasClass(popup, swalClasses.hide)) {
+    removePopupAndResetState(container, onAfterClose);
+  }
+}
+
 function close(resolveValue) {
   var container = getContainer();
   var popup = getPopup();
@@ -1426,47 +1821,13 @@ function close(resolveValue) {
   }
 
   removeClass(popup, swalClasses.show);
-  addClass(popup, swalClasses.hide);
-
-  var removePopupAndResetState = function removePopupAndResetState() {
-    if (!isToast()) {
-      restoreActiveElement().then(function () {
-        return triggerOnAfterClose(onAfterClose);
-      });
-      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
-        capture: globalState.keydownListenerCapture
-      });
-      globalState.keydownHandlerAdded = false;
-    } else {
-      triggerOnAfterClose(onAfterClose);
-    }
-
-    if (container.parentNode) {
-      container.parentNode.removeChild(container);
-    }
-
-    removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
-
-    if (isModal()) {
-      undoScrollbar();
-      undoIOSfix();
-      undoIEfix();
-      unsetAriaHidden();
-    }
-  }; // If animation is supported, animate
-
+  addClass(popup, swalClasses.hide); // If animation is supported, animate
 
   if (animationEndEvent && !hasClass(popup, swalClasses.noanimation)) {
-    popup.addEventListener(animationEndEvent, function swalCloseEventFinished() {
-      popup.removeEventListener(animationEndEvent, swalCloseEventFinished);
-
-      if (hasClass(popup, swalClasses.hide)) {
-        removePopupAndResetState();
-      }
-    });
+    popup.addEventListener(animationEndEvent, swalCloseEventFinished.bind(null, popup, container, onAfterClose));
   } else {
     // Otherwise, remove immediately
-    removePopupAndResetState();
+    removePopupAndResetState(container, onAfterClose);
   } // Resolve Swal promise
 
 
@@ -1481,27 +1842,14 @@ var triggerOnAfterClose = function triggerOnAfterClose(onAfterClose) {
   }
 };
 
-function enableButtons() {
-  var domCache = privateProps.domCache.get(this);
-  domCache.confirmButton.disabled = false;
-  domCache.cancelButton.disabled = false;
+function setButtonsDisabled(instance, buttons, disabled) {
+  var domCache = privateProps.domCache.get(instance);
+  buttons.forEach(function (button) {
+    domCache[button].disabled = disabled;
+  });
 }
-function disableButtons() {
-  var domCache = privateProps.domCache.get(this);
-  domCache.confirmButton.disabled = true;
-  domCache.cancelButton.disabled = true;
-}
-function enableConfirmButton() {
-  var domCache = privateProps.domCache.get(this);
-  domCache.confirmButton.disabled = false;
-}
-function disableConfirmButton() {
-  var domCache = privateProps.domCache.get(this);
-  domCache.confirmButton.disabled = true;
-}
-function enableInput() {
-  var input = this.getInput();
 
+function setInputDisabled(input, disabled) {
   if (!input) {
     return false;
   }
@@ -1511,29 +1859,34 @@ function enableInput() {
     var radios = radiosContainer.querySelectorAll('input');
 
     for (var i = 0; i < radios.length; i++) {
-      radios[i].disabled = false;
+      radios[i].disabled = disabled;
     }
   } else {
-    input.disabled = false;
+    input.disabled = disabled;
   }
 }
+
+function enableButtons() {
+  setButtonsDisabled(this, ['confirmButton', 'cancelButton'], false);
+}
+function disableButtons() {
+  setButtonsDisabled(this, ['confirmButton', 'cancelButton'], true);
+} // @deprecated
+
+function enableConfirmButton() {
+  warnAboutDepreation('Swal.disableConfirmButton()', "Swal.getConfirmButton().removeAttribute('disabled')");
+  setButtonsDisabled(this, ['confirmButton'], false);
+} // @deprecated
+
+function disableConfirmButton() {
+  warnAboutDepreation('Swal.enableConfirmButton()', "Swal.getConfirmButton().setAttribute('disabled', '')");
+  setButtonsDisabled(this, ['confirmButton'], true);
+}
+function enableInput() {
+  return setInputDisabled(this.getInput(), false);
+}
 function disableInput() {
-  var input = this.getInput();
-
-  if (!input) {
-    return false;
-  }
-
-  if (input && input.type === 'radio') {
-    var radiosContainer = input.parentNode.parentNode;
-    var radios = radiosContainer.querySelectorAll('input');
-
-    for (var i = 0; i < radios.length; i++) {
-      radios[i].disabled = true;
-    }
-  } else {
-    input.disabled = true;
-  }
+  return setInputDisabled(this.getInput(), true);
 }
 
 function showValidationMessage(error) {
@@ -1553,7 +1906,7 @@ function showValidationMessage(error) {
   }
 } // Hide block with validation message
 
-function resetValidationMessage() {
+function resetValidationMessage$1() {
   var domCache = privateProps.domCache.get(this);
 
   if (domCache.validationMessage) {
@@ -1570,10 +1923,12 @@ function resetValidationMessage() {
 }
 
 function getProgressSteps$1() {
+  warnAboutDepreation('Swal.getProgressSteps()', "const swalInstance = Swal.fire({progressSteps: ['1', '2', '3']}); const progressSteps = swalInstance.params.progressSteps");
   var innerParams = privateProps.innerParams.get(this);
   return innerParams.progressSteps;
 }
 function setProgressSteps(progressSteps) {
+  warnAboutDepreation('Swal.setProgressSteps()', 'Swal.update()');
   var innerParams = privateProps.innerParams.get(this);
 
   var updatedParams = _extends({}, innerParams, {
@@ -1592,65 +1947,76 @@ function hideProgressSteps() {
   hide(domCache.progressSteps);
 }
 
-var Timer = function Timer(callback, delay) {
-  _classCallCheck(this, Timer);
+var Timer =
+/*#__PURE__*/
+function () {
+  function Timer(callback, delay) {
+    _classCallCheck(this, Timer);
 
-  var id,
-      started,
-      remaining = delay;
-  this.running = false;
+    this.callback = callback;
+    this.remaining = delay;
+    this.running = false;
+    this.start();
+  }
 
-  this.start = function () {
-    if (!this.running) {
-      this.running = true;
-      started = new Date();
-      id = setTimeout(callback, remaining);
+  _createClass(Timer, [{
+    key: "start",
+    value: function start() {
+      if (!this.running) {
+        this.running = true;
+        this.started = new Date();
+        this.id = setTimeout(this.callback, this.remaining);
+      }
+
+      return this.remaining;
     }
+  }, {
+    key: "stop",
+    value: function stop() {
+      if (this.running) {
+        this.running = false;
+        clearTimeout(this.id);
+        this.remaining -= new Date() - this.started;
+      }
 
-    return remaining;
-  };
-
-  this.stop = function () {
-    if (this.running) {
-      this.running = false;
-      clearTimeout(id);
-      remaining -= new Date() - started;
+      return this.remaining;
     }
+  }, {
+    key: "increase",
+    value: function increase(n) {
+      var running = this.running;
 
-    return remaining;
-  };
+      if (running) {
+        this.stop();
+      }
 
-  this.increase = function (n) {
-    var running = this.running;
+      this.remaining += n;
 
-    if (running) {
-      this.stop();
+      if (running) {
+        this.start();
+      }
+
+      return this.remaining;
     }
+  }, {
+    key: "getTimerLeft",
+    value: function getTimerLeft() {
+      if (this.running) {
+        this.stop();
+        this.start();
+      }
 
-    remaining += n;
-
-    if (running) {
-      this.start();
+      return this.remaining;
     }
-
-    return remaining;
-  };
-
-  this.getTimerLeft = function () {
-    if (this.running) {
-      this.stop();
-      this.start();
+  }, {
+    key: "isRunning",
+    value: function isRunning() {
+      return this.running;
     }
+  }]);
 
-    return remaining;
-  };
-
-  this.isRunning = function () {
-    return this.running;
-  };
-
-  this.start();
-};
+  return Timer;
+}();
 
 var defaultInputValidators = {
   email: function email(string, validationMessage) {
@@ -1677,144 +2043,35 @@ function setParameters(params) {
         params.inputValidator = defaultInputValidators[key];
       }
     });
-  } // Determine if the custom target element is valid
-
-
-  if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
-    warn('Target parameter is not valid, defaulting to "body"');
-    params.target = 'body';
-  } // Animation
-
-
-  if (typeof params.animation === 'function') {
-    params.animation = params.animation.call();
-  }
-
-  var popup;
-  var oldPopup = getPopup();
-  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target; // If the model target has changed, refresh the popup
-
-  if (oldPopup && targetElement && oldPopup.parentNode !== targetElement.parentNode) {
-    popup = init(params);
-  } else {
-    popup = oldPopup || init(params);
-  } // Set popup width
-
-
-  if (params.width) {
-    popup.style.width = typeof params.width === 'number' ? params.width + 'px' : params.width;
-  } // Set popup padding
-
-
-  if (params.padding !== null) {
-    popup.style.padding = typeof params.padding === 'number' ? params.padding + 'px' : params.padding;
-  } // Set popup background
-
-
-  if (params.background) {
-    popup.style.background = params.background;
-  }
-
-  var popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
-  var successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
-
-  for (var i = 0; i < successIconParts.length; i++) {
-    successIconParts[i].style.backgroundColor = popupBackgroundColor;
-  }
-
-  var container = getContainer();
-  var closeButton = getCloseButton();
-  var header = getHeader();
-  var title = getTitle();
-  var content = getContent();
-  var actions = getActions();
-  var footer = getFooter(); // Title
-
-  renderTitle(params); // Content
-
-  renderContent(params); // Backdrop
-
-  if (typeof params.backdrop === 'string') {
-    getContainer().style.background = params.backdrop;
-  } else if (!params.backdrop) {
-    addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
-  }
-
-  if (!params.backdrop && params.allowOutsideClick) {
-    warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
-  } // Position
-
-
-  if (params.position in swalClasses) {
-    addClass(container, swalClasses[params.position]);
-  } else {
-    warn('The "position" parameter is not valid, defaulting to "center"');
-    addClass(container, swalClasses.center);
-  } // Grow
-
-
-  if (params.grow && typeof params.grow === 'string') {
-    var growClass = 'grow-' + params.grow;
-
-    if (growClass in swalClasses) {
-      addClass(container, swalClasses[growClass]);
-    }
-  } // Close button
-
-
-  if (params.showCloseButton) {
-    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
-    show(closeButton);
-  } else {
-    hide(closeButton);
-  } // Default Class
-
-
-  popup.className = swalClasses.popup;
-
-  if (params.toast) {
-    addClass([document.documentElement, document.body], swalClasses['toast-shown']);
-    addClass(popup, swalClasses.toast);
-  } else {
-    addClass(popup, swalClasses.modal);
-  } // Custom classes
-
-
-  if (params.customClass) {
-    addClass(container, params.customClass.container);
-    addClass(popup, typeof params.customClass === 'string' ? params.customClass : params.customClass.popup);
-    addClass(header, params.customClass.header);
-    addClass(title, params.customClass.title);
-    addClass(closeButton, params.customClass.closeButton);
-    addClass(content, params.customClass.content);
-    addClass(actions, params.customClass.actions);
-    addClass(footer, params.customClass.footer);
-  }
-
-  if (params.customContainerClass) {
-    addClass(container, params.customContainerClass);
-  } // Progress steps
-
-
-  renderProgressSteps(params); // Icon
-
-  renderIcon(params); // Image
-
-  renderImage(params); // Actions (buttons)
-
-  renderActions(params); // Footer
-
-  parseHtmlToContainer(params.footer, footer); // CSS animation
-
-  if (params.animation === true) {
-    removeClass(popup, swalClasses.noanimation);
-  } else {
-    addClass(popup, swalClasses.noanimation);
   } // showLoaderOnConfirm && preConfirm
 
 
   if (params.showLoaderOnConfirm && !params.preConfirm) {
     warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
+  } // params.animation will be actually used in renderPopup.js
+  // but in case when params.animation is a function, we need to call that function
+  // before popup (re)initialization, so it'll be possible to check Swal.isVisible()
+  // inside the params.animation function
+
+
+  params.animation = callIfFunction(params.animation); // Determine if the custom target element is valid
+
+  if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
+    warn('Target parameter is not valid, defaulting to "body"');
+    params.target = 'body';
+  } // Replace newlines with <br> in title
+
+
+  if (typeof params.title === 'string') {
+    params.title = params.title.split('\n').join('<br />');
+  }
+
+  var oldPopup = getPopup();
+  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
+
+  if (!oldPopup || // If the model target has changed, refresh the popup
+  oldPopup && targetElement && oldPopup.parentNode !== targetElement.parentNode) {
+    init(params);
   }
 }
 
@@ -1884,6 +2141,54 @@ var openPopup = function openPopup(params) {
   }
 };
 
+var populateInputOptions = {
+  select: function select(content, inputOptions, params) {
+    var select = getChildByClass(content, swalClasses.select);
+    inputOptions.forEach(function (inputOption) {
+      var optionValue = inputOption[0];
+      var optionLabel = inputOption[1];
+      var option = document.createElement('option');
+      option.value = optionValue;
+      option.innerHTML = optionLabel;
+
+      if (params.inputValue.toString() === optionValue.toString()) {
+        option.selected = true;
+      }
+
+      select.appendChild(option);
+    });
+    select.focus();
+  },
+  radio: function radio(content, inputOptions, params) {
+    var radio = getChildByClass(content, swalClasses.radio);
+    inputOptions.forEach(function (inputOption) {
+      var radioValue = inputOption[0];
+      var radioLabel = inputOption[1];
+      var radioInput = document.createElement('input');
+      var radioLabelElement = document.createElement('label');
+      radioInput.type = 'radio';
+      radioInput.name = swalClasses.radio;
+      radioInput.value = radioValue;
+
+      if (params.inputValue.toString() === radioValue.toString()) {
+        radioInput.checked = true;
+      }
+
+      var label = document.createElement('span');
+      label.innerHTML = radioLabel;
+      label.className = swalClasses.label;
+      radioLabelElement.appendChild(radioInput);
+      radioLabelElement.appendChild(label);
+      radio.appendChild(radioLabelElement);
+    });
+    var radios = radio.querySelectorAll('input');
+
+    if (radios.length) {
+      radios[0].focus();
+    }
+  }
+};
+
 function _main(userParams) {
   var _this = this;
 
@@ -1914,6 +2219,7 @@ function _main(userParams) {
     progressSteps: getProgressSteps()
   };
   privateProps.domCache.set(this, domCache);
+  render(innerParams);
   var constructor = this.constructor;
   return new Promise(function (resolve) {
     // functions to handle all closings/dismissals
@@ -2228,215 +2534,13 @@ function _main(userParams) {
       addClass(document.body, swalClasses['toast-column']);
     } else {
       removeClass(document.body, swalClasses['toast-column']);
-    } // inputs
-
-
-    var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
-
-    var setInputPlaceholder = function setInputPlaceholder(input) {
-      if (!input.placeholder || innerParams.inputPlaceholder) {
-        input.placeholder = innerParams.inputPlaceholder;
-      }
-    };
-
-    var input;
-
-    for (var _i3 = 0; _i3 < inputTypes.length; _i3++) {
-      var inputClass = swalClasses[inputTypes[_i3]];
-      var inputContainer = getChildByClass(domCache.content, inputClass);
-      input = _this.getInput(inputTypes[_i3]); // set attributes
-
-      if (input) {
-        for (var j in input.attributes) {
-          if (input.attributes.hasOwnProperty(j)) {
-            var attrName = input.attributes[j].name;
-
-            if (attrName !== 'type' && attrName !== 'value') {
-              input.removeAttribute(attrName);
-            }
-          }
-        }
-
-        for (var attr in innerParams.inputAttributes) {
-          // Do not set a placeholder for <input type="range">
-          // it'll crash Edge, #1298
-          if (inputTypes[_i3] === 'range' && attr === 'placeholder') {
-            continue;
-          }
-
-          input.setAttribute(attr, innerParams.inputAttributes[attr]);
-        }
-      } // set class
-
-
-      inputContainer.className = inputClass;
-
-      if (innerParams.inputClass) {
-        addClass(inputContainer, innerParams.inputClass);
-      }
-
-      if (innerParams.customClass) {
-        addClass(inputContainer, innerParams.customClass.input);
-      }
-
-      hide(inputContainer);
-    }
-
-    var populateInputOptions;
-
-    switch (innerParams.input) {
-      case 'text':
-      case 'email':
-      case 'password':
-      case 'number':
-      case 'tel':
-      case 'url':
-        {
-          input = getChildByClass(domCache.content, swalClasses.input);
-
-          if (typeof innerParams.inputValue === 'string' || typeof innerParams.inputValue === 'number') {
-            input.value = innerParams.inputValue;
-          } else if (!isPromise(innerParams.inputValue)) {
-            warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(innerParams.inputValue), "\""));
-          }
-
-          setInputPlaceholder(input);
-          input.type = innerParams.input;
-          show(input);
-          break;
-        }
-
-      case 'file':
-        {
-          input = getChildByClass(domCache.content, swalClasses.file);
-          setInputPlaceholder(input);
-          input.type = innerParams.input;
-          show(input);
-          break;
-        }
-
-      case 'range':
-        {
-          var range = getChildByClass(domCache.content, swalClasses.range);
-          var rangeInput = range.querySelector('input');
-          var rangeOutput = range.querySelector('output');
-          rangeInput.value = innerParams.inputValue;
-          rangeInput.type = innerParams.input;
-          rangeOutput.value = innerParams.inputValue;
-          show(range);
-          break;
-        }
-
-      case 'select':
-        {
-          var select = getChildByClass(domCache.content, swalClasses.select);
-          select.innerHTML = '';
-
-          if (innerParams.inputPlaceholder) {
-            var placeholder = document.createElement('option');
-            placeholder.innerHTML = innerParams.inputPlaceholder;
-            placeholder.value = '';
-            placeholder.disabled = true;
-            placeholder.selected = true;
-            select.appendChild(placeholder);
-          }
-
-          populateInputOptions = function populateInputOptions(inputOptions) {
-            inputOptions.forEach(function (inputOption) {
-              var optionValue = inputOption[0];
-              var optionLabel = inputOption[1];
-              var option = document.createElement('option');
-              option.value = optionValue;
-              option.innerHTML = optionLabel;
-
-              if (innerParams.inputValue.toString() === optionValue.toString()) {
-                option.selected = true;
-              }
-
-              select.appendChild(option);
-            });
-            show(select);
-            select.focus();
-          };
-
-          break;
-        }
-
-      case 'radio':
-        {
-          var radio = getChildByClass(domCache.content, swalClasses.radio);
-          radio.innerHTML = '';
-
-          populateInputOptions = function populateInputOptions(inputOptions) {
-            inputOptions.forEach(function (inputOption) {
-              var radioValue = inputOption[0];
-              var radioLabel = inputOption[1];
-              var radioInput = document.createElement('input');
-              var radioLabelElement = document.createElement('label');
-              radioInput.type = 'radio';
-              radioInput.name = swalClasses.radio;
-              radioInput.value = radioValue;
-
-              if (innerParams.inputValue.toString() === radioValue.toString()) {
-                radioInput.checked = true;
-              }
-
-              var label = document.createElement('span');
-              label.innerHTML = radioLabel;
-              label.className = swalClasses.label;
-              radioLabelElement.appendChild(radioInput);
-              radioLabelElement.appendChild(label);
-              radio.appendChild(radioLabelElement);
-            });
-            show(radio);
-            var radios = radio.querySelectorAll('input');
-
-            if (radios.length) {
-              radios[0].focus();
-            }
-          };
-
-          break;
-        }
-
-      case 'checkbox':
-        {
-          var checkbox = getChildByClass(domCache.content, swalClasses.checkbox);
-
-          var checkboxInput = _this.getInput('checkbox');
-
-          checkboxInput.type = 'checkbox';
-          checkboxInput.value = 1;
-          checkboxInput.id = swalClasses.checkbox;
-          checkboxInput.checked = Boolean(innerParams.inputValue);
-          var label = checkbox.querySelector('span');
-          label.innerHTML = innerParams.inputPlaceholder;
-          show(checkbox);
-          break;
-        }
-
-      case 'textarea':
-        {
-          var textarea = getChildByClass(domCache.content, swalClasses.textarea);
-          textarea.value = innerParams.inputValue;
-          setInputPlaceholder(textarea);
-          show(textarea);
-          break;
-        }
-
-      case null:
-        {
-          break;
-        }
-
-      default:
-        error("Unexpected type of input! Expected \"text\", \"email\", \"password\", \"number\", \"tel\", \"select\", \"radio\", \"checkbox\", \"textarea\", \"file\" or \"url\", got \"".concat(innerParams.input, "\""));
-        break;
     }
 
     if (innerParams.input === 'select' || innerParams.input === 'radio') {
+      var content = getContent();
+
       var processInputOptions = function processInputOptions(inputOptions) {
-        return populateInputOptions(formatInputOptions(inputOptions));
+        return populateInputOptions[innerParams.input](content, formatInputOptions(inputOptions), innerParams);
       };
 
       if (isPromise(innerParams.inputOptions)) {
@@ -2452,6 +2556,7 @@ function _main(userParams) {
         error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(innerParams.inputOptions)));
       }
     } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(innerParams.input) !== -1 && isPromise(innerParams.inputValue)) {
+      var input = constructor.getInput();
       constructor.showLoading();
       hide(input);
       innerParams.inputValue.then(function (inputValue) {
@@ -2492,7 +2597,7 @@ function _main(userParams) {
 }
 
 /**
- * Updates popup options.
+ * Updates popup parameters.
  */
 
 function update(params) {
@@ -2507,21 +2612,17 @@ function update(params) {
   });
   var innerParams = privateProps.innerParams.get(this);
 
-  var updatedParams = _extends({}, innerParams, validUpdatableParams); // Actions
+  var updatedParams = _extends({}, innerParams, validUpdatableParams);
 
-
-  renderActions(updatedParams); // Content
-
-  renderContent(updatedParams); // Icon
-
-  renderIcon(updatedParams); // Image
-
-  renderImage(updatedParams); // Progress steps
-
-  renderProgressSteps(updatedParams); // Title
-
-  renderTitle(updatedParams);
+  render(updatedParams);
   privateProps.innerParams.set(this, updatedParams);
+  Object.defineProperties(this, {
+    params: {
+      value: _extends({}, this.params, params),
+      writable: false,
+      enumerable: true
+    }
+  });
 }
 
 
@@ -2529,7 +2630,7 @@ function update(params) {
 var instanceMethods = Object.freeze({
 	hideLoading: hideLoading,
 	disableLoading: hideLoading,
-	getInput: getInput,
+	getInput: getInput$1,
 	close: close,
 	closePopup: close,
 	closeModal: close,
@@ -2541,7 +2642,7 @@ var instanceMethods = Object.freeze({
 	enableInput: enableInput,
 	disableInput: disableInput,
 	showValidationMessage: showValidationMessage,
-	resetValidationMessage: resetValidationMessage,
+	resetValidationMessage: resetValidationMessage$1,
 	getProgressSteps: getProgressSteps$1,
 	setProgressSteps: setProgressSteps,
 	showProgressSteps: showProgressSteps,
@@ -2578,7 +2679,8 @@ function SweetAlert() {
     params: {
       value: outerParams,
       writable: false,
-      enumerable: true
+      enumerable: true,
+      configurable: true
     }
   });
 
@@ -2615,7 +2717,7 @@ Object.keys(instanceMethods).forEach(function (key) {
   };
 });
 SweetAlert.DismissReason = DismissReason;
-SweetAlert.version = '8.5.0';
+SweetAlert.version = '8.8.1';
 
 var Swal = SweetAlert;
 Swal.default = Swal;

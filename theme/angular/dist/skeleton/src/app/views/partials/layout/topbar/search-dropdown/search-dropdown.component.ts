@@ -102,7 +102,7 @@ export class SearchDropdownComponent implements OnInit {
 			setTimeout(() => {
 				this.data = this.result;
 				this.loading = false;
-				this.cdr.detectChanges();
+				this.cdr.markForCheck();
 			}, 500);
 		}
 	}

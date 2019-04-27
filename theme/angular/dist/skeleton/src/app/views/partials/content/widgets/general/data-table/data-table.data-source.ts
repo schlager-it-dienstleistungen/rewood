@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject, of} from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 // CRUD
 import { QueryParamsModel,  QueryResultsModel, HttpExtenstionsModel } from '../../../../../../core/_base/crud';
-import { DataTableService, DataTableItemModel } from '../../../../../../core/_base/metronic';
+import { DataTableService, DataTableItemModel } from '../../../../../../core/_base/layout';
 
 // Why not use MatTableDataSource?
 /*  In this example, we will not be using the built-in MatTableDataSource because its designed for filtering,

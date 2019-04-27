@@ -1,10 +1,10 @@
 <div ngbDropdown placement="bottom-right" *ngIf="user$ | async as _user" class="kt-header__topbar-item kt-header__topbar-item--user">
 	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
 		<div class="kt-header__topbar-user">
-			<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-			<span class="kt-header__topbar-username kt-hidden-mobile">{{_user.fullname}}</span>
-			<img [hidden]="true" alt="Pic" [attr.src]="_user.pic">
-			<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{_user.fullname|firstLetter}}</span>
+			<span class="kt-header__topbar-welcome kt-hidden-mobile" *ngIf="showHi">Hi,</span>
+			<span class="kt-header__topbar-username kt-hidden-mobile" *ngIf="showHi">{{_user.fullname}}</span>
+			<img *ngIf="showAvatar" alt="Pic" [attr.src]="_user.pic">
+			<span *ngIf="showBadge" class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{_user.fullname|firstLetter}}</span>
 		</div>
 	</div>
 	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">

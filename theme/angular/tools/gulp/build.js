@@ -7,37 +7,37 @@ var release = true;
 
 // merge with default parameters
 var args = Object.assign({
-	prod: false,
-	default: false,
-	angular: false,
-	theme: '',
+    prod: false,
+    default: false,
+    angular: false,
+    theme: '',
 }, yargs.argv);
 
 var themes = ['bWV0cm9uaWM=', 'a2Vlbg==', 'YXRsYXM='];
-var pkg = 'angular';
+var pkg = 'default';
 var confPath = '';
 var theme = atob(themes[0]);
 
 if (release) {
-	['default', 'angular'].forEach(function(p) {
-		if (args[p]) {
-			pkg = p;
-		}
-	});
-	confPath = './../conf/' + pkg + '.json';
+    confPath = './../build.json';
 } else {
-	themes.forEach(function(t) {
-		var th = atob(t);
-		if (args[th]) {
-			theme = th;
-		}
-		['default', 'angular'].forEach(function(p) {
-			if (args[p]) {
-				pkg = p;
-			}
-		});
-	});
-	confPath = './../../themes/themes/' + theme + '/tools/conf/' + pkg + '.json';
+    themes.forEach(function (t) {
+        var th = atob(t);
+        if (args[th]) {
+            theme = th;
+        }
+        ['default', 'angular'].forEach(function (p) {
+            if (args[p]) {
+                pkg = p;
+            }
+        });
+    });
+
+    var folder = pkg;
+    if (pkg === 'default') {
+        folder = 'preview';
+    }
+    confPath = './../../themes/themes/' + theme + '/dist/' + folder + '/build.json';
 }
 
 var d = new Date();

@@ -6,9 +6,7 @@ import { filter } from 'rxjs/operators';
 // Object-Path
 import * as objectPath from 'object-path';
 // Layout
-import { LayoutConfigService, MenuConfigService, MenuHorizontalService, MenuOptions } from '../../../../../core/_base/layout';
-// Metronic
-import { OffcanvasOptions } from '../../../../../core/_base/metronic';
+import { LayoutConfigService, MenuConfigService, MenuHorizontalService, MenuOptions, OffcanvasOptions } from '../../../../../core/_base/layout';
 // HTML Class
 import { HtmlClassService } from '../../html-class.service';
 
@@ -90,6 +88,17 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 			.subscribe(event => {
 				this.currentRouteUrl = this.router.url;
 			});
+	}
+
+	/**
+	 * Use for fixed left aside menu, to show menu on mouseenter event.
+	 * @param e Event
+	 */
+	mouseEnter(e: Event) {
+		// check if the left aside menu is fixed
+		if (!document.body.classList.contains('kt-menu__item--hover')) {
+			this.render.addClass(document.body, 'kt-menu__item--hover');
+		}
 	}
 
 	/**

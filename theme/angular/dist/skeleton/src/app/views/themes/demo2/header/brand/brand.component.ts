@@ -1,9 +1,7 @@
 // Angular
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 // Layout
-import { LayoutConfigService } from '../../../../../core/_base/layout';
-// Metronic
-import { ToggleOptions } from '../../../../../core/_base/metronic';
+import { LayoutConfigService, ToggleOptions } from '../../../../../core/_base/layout';
 import { HtmlClassService } from '../../html-class.service';
 
 @Component({

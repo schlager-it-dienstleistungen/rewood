@@ -46,7 +46,6 @@ export function productsReducer(state = initialProductsState, action: ProductAct
         case ProductActionTypes.ProductUpdated: return adapter.updateOne(action.payload.partialProduct, state);
         case ProductActionTypes.ProductsStatusUpdated: {
             const _partialProducts: Update<ProductModel>[] = [];
-            // tslint:disable-next-line:prefer-const
             for (let i = 0; i < action.payload.products.length; i++) {
                 _partialProducts.push({
 				    id: action.payload.products[i].id,

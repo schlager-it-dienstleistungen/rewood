@@ -7,11 +7,8 @@ import { tap } from 'rxjs/operators';
 import { merge } from 'rxjs';
 // Crud
 import { QueryParamsModel } from '../../../../../../core/_base/crud';
-// Metronic
-import {
-	DataTableItemModel,
-	DataTableService
-} from '../../../../../../core/_base/metronic';
+// Layout
+import { DataTableItemModel, DataTableService } from '../../../../../../core/_base/layout';
 import { DataTableDataSource } from './data-table.data-source';
 
 @Component({

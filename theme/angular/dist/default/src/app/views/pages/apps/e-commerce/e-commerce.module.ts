@@ -14,7 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 // UI
 import { PartialsModule } from '../../../partials/partials.module';
 // Core
-import { FakeApiService } from '../../../../core/_base/metronic';
+import { FakeApiService } from '../../../../core/_base/layout';
 // Auth
 import { ModuleGuard } from '../../../../core/auth';
 // Core => Services

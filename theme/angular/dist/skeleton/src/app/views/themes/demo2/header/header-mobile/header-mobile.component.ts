@@ -1,9 +1,7 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
-// Metronic
-import { ToggleOptions } from '../../../../../core/_base/metronic';
 // Layout
-import { LayoutConfigService } from '../../../../../core/_base/layout';
+import { LayoutConfigService, ToggleOptions } from '../../../../../core/_base/layout';
 
 @Component({
 	selector: 'kt-header-mobile',

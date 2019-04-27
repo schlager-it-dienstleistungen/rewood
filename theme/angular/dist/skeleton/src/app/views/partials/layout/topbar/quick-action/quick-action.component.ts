@@ -11,6 +11,8 @@ export class QuickActionComponent implements OnInit, AfterViewInit {
 	// Set icon class name
 	@Input() icon: string = 'flaticon2-gear';
 
+	@Input() iconType: '' | 'warning';
+
 	// Set true to icon as SVG or false as icon class
 	@Input() useSVG: boolean;
 
@@ -19,6 +21,8 @@ export class QuickActionComponent implements OnInit, AfterViewInit {
 
 	// Set skin color, default to light
 	@Input() skin: 'light' | 'dark' = 'light';
+
+	@Input() gridNavSkin: 'light' | 'dark' = 'light';
 
 	/**
 	 * Component constructor

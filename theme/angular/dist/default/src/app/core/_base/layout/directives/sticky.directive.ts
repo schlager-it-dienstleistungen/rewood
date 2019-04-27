@@ -30,15 +30,17 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 	marginTop$ = new BehaviorSubject(0);
 	marginBottom$ = new BehaviorSubject(0);
 	enable$ = new BehaviorSubject(true);
-	@Input() spacerElement: HTMLElement | undefined;
-	@Input() boundaryElement: HTMLElement | undefined;
+
+	@Input() scrollContainer: string | HTMLElement;
+	@Input('spacerElement') spacerElement: HTMLElement | undefined;
+	@Input('boundaryElement') boundaryElement: HTMLElement | undefined;
 	@HostBinding('class.is-sticky') sticky = false;
 	@HostBinding('class.boundary-reached') boundaryReached = false;
 	/**
 	 * The field represents some position values in normal (not sticky) mode.
 	 * If the browser size or the content of the page changes, this value must be recalculated.
 	 */
-	private scroll$ = new Subject<any>();
+	private scroll$ = new Subject<number>();
 	private scrollThrottled$: Observable<number>;
 	private resize$ = new Subject<void>();
 	private resizeThrottled$: Observable<void>;
@@ -52,7 +54,6 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 		this.scrollThrottled$ = this.scroll$
 			.pipe(
 				throttleTime(0, animationFrame),
-				map(() => window.pageYOffset),
 				share()
 			);
 
@@ -64,7 +65,6 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 				startWith(null),
 				share()
 			);
-
 
 		this.status$ = combineLatest(
 			this.enable$,
@@ -109,31 +109,6 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 		}
 	}
 
-	@HostListener('window:resize', [])
-	onWindowResize(): void {
-		if (isPlatformBrowser(this.platformId)) {
-			this.resize$.next();
-		}
-	}
-
-	@HostListener('window:scroll', [])
-	adapter(): void {
-		if (isPlatformBrowser(this.platformId)) {
-			this.scroll$.next();
-		}
-	}
-
-	ngOnDestroy(): void {
-		this.componentDestroyed.next();
-	}
-
-	ngOnInit(): void {
-		// this.checkSetup();
-	}
-
-	getComputedStyle(el: HTMLElement): ClientRect | DOMRect {
-		return el.getBoundingClientRect();
-	}
 
 	/**
 	 * This is nasty code that should be refactored at some point.
@@ -143,7 +118,7 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 	 * emit in order to reset and call removeSticky. So this method basically
 	 * turns the filter in "filter, but let the first pass".
 	 */
-	private checkEnabled(enabled: boolean): boolean {
+	checkEnabled(enabled: boolean): boolean {
 
 		if (!isPlatformBrowser(this.platformId)) {
 			return false;
@@ -167,6 +142,61 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 		}
 
 
+	}
+
+	@HostListener('window:resize', [])
+	onWindowResize(): void {
+		if (isPlatformBrowser(this.platformId)) {
+			this.resize$.next();
+		}
+	}
+
+	setupListener(): void {
+		if (isPlatformBrowser(this.platformId)) {
+			const target = this.getScrollTarget();
+			target.addEventListener('scroll', this.listener);
+		}
+	}
+
+	removeListener() {
+		if (isPlatformBrowser(this.platformId)) {
+			const target = this.getScrollTarget();
+			target.removeEventListener('scroll', this.listener);
+		}
+	}
+
+	listener = (e: Event) => {
+		const upperScreenEdgeAt = (e.target as HTMLElement).scrollTop || window.pageYOffset;
+		this.scroll$.next(upperScreenEdgeAt);
+	}
+
+
+	ngOnInit(): void {
+		// this.checkSetup();
+		this.setupListener();
+	}
+
+	ngOnDestroy(): void {
+		this.componentDestroyed.next();
+		this.removeListener();
+	}
+
+	getComputedStyle(el: HTMLElement): ClientRect | DOMRect {
+		return el.getBoundingClientRect();
+	}
+
+	private getScrollTarget(): Element | Window {
+
+		let target: Element | Window;
+
+		if (this.scrollContainer && typeof this.scrollContainer === 'string') {
+			target = document.querySelector(this.scrollContainer);
+		} else if (this.scrollContainer && this.scrollContainer instanceof HTMLElement) {
+			target = this.scrollContainer;
+		} else {
+			target = window;
+		}
+		return target;
 	}
 
 	private determineStatus(originalVals: StickyPositions, pageYOffset: number, marginTop: number, marginBottom: number, enabled: boolean): StickyStatus {
@@ -212,8 +242,9 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 		const offSet = boundaryReached ? (this.getComputedStyle(this.boundaryElement).bottom - height - this.marginBottom$.value) : this.marginTop$.value;
 
 		this.sticky = true;
-		this.stickyElement.nativeElement.style.position = 'fixed';
-		this.stickyElement.nativeElement.style.top = offSet + 'px';
+		this.stickyElement.nativeElement.style.position = 'sticky';
+		this.stickyElement.nativeElement.style.backgroundColor = '#fff';
+		this.stickyElement.nativeElement.style.top = this.marginTop$.value + 'px';
 		// this.stickyElement.nativeElement.style.left = left + 'px';
 		this.stickyElement.nativeElement.style.width = `${width}px`;
 		if (this.spacerElement) {

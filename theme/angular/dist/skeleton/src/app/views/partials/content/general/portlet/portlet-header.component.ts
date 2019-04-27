@@ -1,9 +1,20 @@
-import { KtDialogService } from './../../../../../core/_base/layout';
+import { KtDialogService, StickyDirective } from '../../../../../core/_base/layout';
 // Angular
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	HostBinding,
+	HostListener,
+	Inject,
+	Input,
+	OnDestroy,
+	OnInit,
+	PLATFORM_ID,
+	ViewChild
+} from '@angular/core';
 // RXJS
 import { Observable, Subscription } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
 	selector: 'kt-portlet-header',
@@ -38,6 +49,7 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	viewLoading: boolean = false;
 
 	@HostBinding('class') classes: string = 'kt-portlet__head';
+	@HostBinding('attr.ktSticky') stickyDirective: StickyDirective;
 
 	@ViewChild('refIcon') refIcon: ElementRef;
 	hideIcon: boolean;
@@ -45,9 +57,59 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	@ViewChild('refTools') refTools: ElementRef;
 	hideTools: boolean;
 
+	private lastScrollTop = 0;
 	private subscriptions: Subscription[] = [];
+	private isScrollDown = false;
 
-	constructor(private el: ElementRef, private ktDialogService: KtDialogService) {
+	constructor(private el: ElementRef, @Inject(PLATFORM_ID) private platformId: string, private ktDialogService: KtDialogService) {
+		this.stickyDirective = new StickyDirective(this.el, this.platformId);
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onResize() {
+		this.updateStickyPosition();
+	}
+
+	@HostListener('window:scroll', ['$event'])
+	onScroll() {
+		this.updateStickyPosition();
+		const st = window.pageYOffset || document.documentElement.scrollTop;
+		this.isScrollDown = st > this.lastScrollTop;
+		this.lastScrollTop = st <= 0 ? 0 : st;
+	}
+
+	updateStickyPosition() {
+		if (this.sticky) {
+			Promise.resolve(null).then(() => {
+				// get boundary top margin for sticky header
+				const headerElement = <HTMLElement>document.querySelector('.kt-header');
+				const subheaderElement = <HTMLElement>document.querySelector('.kt-subheader');
+				const headerMobileElement = <HTMLElement>document.querySelector('.kt-header-mobile');
+
+				let height = 0;
+
+				// mobile header
+				if (window.getComputedStyle(headerElement).height === '0px') {
+					height += headerMobileElement.offsetHeight;
+				} else {
+					// desktop header
+					if (document.body.classList.contains('kt-header--minimize-topbar')) {
+						// hardcoded minimized header height
+						height = 60;
+					} else {
+						// normal fixed header
+						if (document.body.classList.contains('kt-header--fixed')) {
+							height += headerElement.offsetHeight;
+						}
+						if (document.body.classList.contains('kt-subheader--fixed')) {
+							height += subheaderElement.offsetHeight;
+						}
+					}
+				}
+
+				this.stickyDirective.marginTop = height;
+			});
+		}
 	}
 
 	/**
@@ -58,6 +120,10 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	 * On init
 	 */
 	ngOnInit() {
+		if (this.sticky) {
+			this.stickyDirective.ngOnInit();
+		}
+
 		// append custom class
 		this.classes += this.class ? ' ' + this.class : '';
 
@@ -70,6 +136,11 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	}
 
 	ngAfterViewInit(): void {
+		if (this.sticky) {
+			this.updateStickyPosition();
+			this.stickyDirective.ngAfterViewInit();
+		}
+
 		// initialize loading dialog
 		if (this.viewLoading$) {
 			const loadingSubscription = this.viewLoading$.subscribe(res => this.toggleLoading(res));
@@ -90,5 +161,8 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach(sb => sb.unsubscribe());
+		if (this.sticky) {
+			this.stickyDirective.ngOnDestroy();
+		}
 	}
 }

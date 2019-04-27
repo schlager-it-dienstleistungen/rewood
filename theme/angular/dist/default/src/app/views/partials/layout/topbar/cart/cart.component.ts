@@ -11,6 +11,7 @@ export class CartComponent implements OnInit, AfterViewInit {
 
 	// Set icon class name
 	@Input() icon: string = 'flaticon2-shopping-cart-1';
+	@Input() iconType: '' | 'brand';
 
 	// Set true to icon as SVG or false as icon class
 	@Input() useSVG: boolean;

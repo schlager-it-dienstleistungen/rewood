@@ -1,10 +1,10 @@
 // Angular
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, Input } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 // RxJS
 import { filter } from 'rxjs/operators';
 // Translate
-import { TranslationService } from '../../../../../core/_base/metronic';
+import { TranslationService } from '../../../../../core/_base/layout';
 
 interface LanguageFlag {
 	lang: string;
@@ -20,6 +20,7 @@ interface LanguageFlag {
 export class LanguageSelectorComponent implements OnInit {
 	// Public properties
 	@HostBinding('class') classes = '';
+	@Input() iconType: '' | 'brand';
 
 	language: LanguageFlag;
 	languages: LanguageFlag[] = [

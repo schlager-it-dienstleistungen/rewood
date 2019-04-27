@@ -43,7 +43,7 @@ export class HeaderDirective implements AfterViewInit {
 	 * Setup options to header
 	 */
 	private setupOptions() {
-		if (this.el.nativeElement.getAttribute('data-ktheader-minimize') === '1') {
+		if (this.el.nativeElement.getAttribute('data-ktheader-minimize') == '1') {
 			objectPath.set(this.options, 'minimize.desktop.on', 'kt-header--minimize');
 			objectPath.set(this.options, 'offset.desktop', 150);
 		}

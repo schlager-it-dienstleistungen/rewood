@@ -32,6 +32,8 @@ import {
 @Injectable()
 export class RoleEffects {
     showPageLoadingDistpatcher = new RolesPageToggleLoading({ isLoading: true });
+    hidePageLoadingDistpatcher = new RolesPageToggleLoading({ isLoading: false });
+
     showActionLoadingDistpatcher = new RolesActionToggleLoading({ isLoading: true });
     hideActionLoadingDistpatcher = new RolesActionToggleLoading({ isLoading: false });
 
@@ -60,6 +62,8 @@ export class RoleEffects {
             map(response => {
                 const result: QueryResultsModel = response[0];
                 const lastQuery: QueryParamsModel = response[1];
+                this.store.dispatch(this.hidePageLoadingDistpatcher);
+
                 return new RolesPageLoaded({
                     roles: result.items,
                     totalCount: result.totalCount,

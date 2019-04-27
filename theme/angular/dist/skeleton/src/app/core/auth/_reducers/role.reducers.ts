@@ -33,7 +33,7 @@ export const initialRolesState: RolesState = adapter.getInitialState({
 export function rolesReducer(state = initialRolesState, action: RoleActions): RolesState {
     switch  (action.type) {
         case RoleActionTypes.RolesPageToggleLoading: return {
-            ...state, listLoading: action.payload.isLoading, lastCreatedRoleId: undefined
+                ...state, listLoading: action.payload.isLoading, lastCreatedRoleId: undefined
         };
         case RoleActionTypes.RolesActionToggleLoading: return {
             ...state, actionsloading: action.payload.isLoading
@@ -58,7 +58,7 @@ export function rolesReducer(state = initialRolesState, action: RoleActions): Ro
             queryRowsCount: action.payload.totalCount,
             queryResult: action.payload.roles,
             lastQuery: action.payload.page,
-            showInitWaitingMessage: true
+            showInitWaitingMessage: false
         });
         default: return state;
     }

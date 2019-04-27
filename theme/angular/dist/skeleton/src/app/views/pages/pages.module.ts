@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Partials
 import { PartialsModule } from '../partials/partials.module';
+// Pages
 import { CoreModule } from '../../core/core.module';
 
 @NgModule({

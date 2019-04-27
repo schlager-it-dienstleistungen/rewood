@@ -50,8 +50,11 @@ import {
 	Subheader1Component,
 	Subheader2Component,
 	Subheader3Component,
+	Subheader4Component,
+	Subheader5Component,
 	UserProfile2Component,
 	UserProfileComponent,
+	UserProfile3Component
 } from './layout';
 // General
 import { NoticeComponent } from './content/general/notice/notice.component';
@@ -85,6 +88,8 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		Subheader1Component,
 		Subheader2Component,
 		Subheader3Component,
+		Subheader4Component,
+		Subheader5Component,
 		LanguageSelectorComponent,
 		NotificationComponent,
 		QuickActionComponent,
@@ -92,6 +97,7 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		SearchDropdownComponent,
 		UserProfileComponent,
 		UserProfile2Component,
+		UserProfile3Component,
 		CartComponent,
 
 		ErrorComponent,
@@ -119,6 +125,8 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		Subheader1Component,
 		Subheader2Component,
 		Subheader3Component,
+		Subheader4Component,
+		Subheader5Component,
 		LanguageSelectorComponent,
 		NotificationComponent,
 		QuickActionComponent,
@@ -126,6 +134,7 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		SearchDropdownComponent,
 		UserProfileComponent,
 		UserProfile2Component,
+		UserProfile3Component,
 		CartComponent,
 
 		ErrorComponent,

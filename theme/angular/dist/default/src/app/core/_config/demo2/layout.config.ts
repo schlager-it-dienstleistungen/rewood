@@ -62,42 +62,6 @@ export class LayoutConfig {
 					'mobile': true
 				}
 			},
-			'topbar': {
-				'search': {
-					'display': true,
-					'layout': 'dropdown'
-				},
-				'notifications': {
-					'display': true,
-					'layout': 'dropdown',
-					'dropdown': {
-						'style': 'light'
-					}
-				},
-				'quick-actions': {
-					'display': true,
-					'layout': 'dropdown',
-					'dropdown': {
-						'style': 'light'
-					}
-				},
-				'user': {
-					'display': true,
-					'layout': 'dropdown',
-					'dropdown': {
-						'style': 'light'
-					}
-				},
-				'languages': {
-					'display': true
-				},
-				'cart': {
-					'display': true
-				},
-				'quick-panel': {
-					'display': true
-				}
-			},
 			'search': {
 				'display': true
 			},

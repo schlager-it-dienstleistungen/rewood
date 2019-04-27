@@ -1,6 +1,6 @@
 <kt-portlet>
 
-	<kt-portlet-header [title]="'Products list'" [class]="'kt-portlet__head--lg'" [viewLoading$]="dataSource.loading$">
+	<kt-portlet-header [sticky]="true" [title]="'Products list'" [class]="'kt-portlet__head--lg'" [viewLoading$]="dataSource.loading$">
 		<ng-container ktPortletTools>
 			<button [routerLink]="['../products/add']" mat-raised-button color="primary" matTooltip="Create new product">New product</button>
 		</ng-container>
@@ -9,7 +9,7 @@
 
 	<kt-portlet-body>
 		<!-- start::FILTERS & GROUP ACTIONS -->
-		<div class="kt-form">
+		<div class="kt-form kt-margin-b-30">
 			<!-- start::FILTERS -->
 			<div class="kt-form__filtration">
 				<div class="row align-items-center">

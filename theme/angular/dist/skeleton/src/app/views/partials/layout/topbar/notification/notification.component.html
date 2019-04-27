@@ -1,8 +1,12 @@
 <div ngbDropdown placement="bottom-right" autoClose="outside" class="kt-header__topbar-item">
 	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon" [ngClass]="{'kt-pulse kt-pulse--brand': pulse}">
+		<span class="kt-header__topbar-icon"
+			[ngClass]="{'kt-pulse kt-pulse--brand': pulse, 'kt-pulse--light' : pulseLight, 'kt-header__topbar-icon--success' : iconType === 'success'	}">
 			<i *ngIf="!useSVG" [ngClass]="icon"></i>
-			<span class="kt-svg-icon" *ngIf="useSVG" [inlineSVG]="icon"></span>
+			<span *ngIf="useSVG"
+ 				class="kt-svg-icon"
+				[ngClass]="{'kt-svg-icon--success' : iconType === 'success'	}"
+				[inlineSVG]="icon"></span>
 			<span class="kt-pulse__ring" [hidden]="!pulse"></span>
 		</span>
 		<span class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand" [hidden]="!dot"></span>
@@ -10,11 +14,11 @@
 	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-lg">
 		<form>
 			<!--begin: Head -->
-			<div class="kt-head kt-head--skin-{{skin}} kt-head--fit-x kt-head--fit-b" [ngStyle]="{'background-image': 'url('+bgImage+')'}">
+			<div class="kt-head kt-head--skin-{{skin}} kt-head--fit-x kt-head--fit-b" [ngStyle]="{'background-image': backGroundStyle() }">
 				<h3 class="kt-head__title">
-					User Notifications&nbsp;<span class="btn btn-success btn-sm btn-bold btn-font-md">23 new</span>
+					User Notifications&nbsp;<span class="btn btn-{{ type }} btn-sm btn-bold btn-font-md">23 new</span>
 				</h3>
-				<ul ktTabClickEvent class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-success kt-notification-item-padding-x" role="tablist">
+				<ul ktTabClickEvent class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-{{ type }} kt-notification-item-padding-x" role="tablist">
 					<li class="nav-item">
 						<a (click)="tab.select('tab-id-1')" class="nav-link active show" data-toggle="tab" href="javascript:;" role="tab" aria-selected="true">Alerts</a>
 					</li>

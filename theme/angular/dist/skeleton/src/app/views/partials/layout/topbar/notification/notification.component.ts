@@ -15,8 +15,11 @@ export class NotificationComponent {
 	// Show pulse on icon
 	@Input() pulse: boolean;
 
+	@Input() pulseLight: boolean;
+
 	// Set icon class name
 	@Input() icon: string = 'flaticon2-bell-alarm-symbol';
+	@Input() iconType: '' | 'success';
 
 	// Set true to icon as SVG or false as icon class
 	@Input() useSVG: boolean;
@@ -27,11 +30,21 @@ export class NotificationComponent {
 	// Set skin color, default to light
 	@Input() skin: 'light' | 'dark' = 'light';
 
+	@Input() type: 'brand' | 'success' = 'success';
+
 	/**
 	 * Component constructor
 	 *
 	 * @param sanitizer: DomSanitizer
 	 */
 	constructor(private sanitizer: DomSanitizer) {
+	}
+
+	backGroundStyle(): string {
+		if (!this.bgImage) {
+			return 'none';
+		}
+
+		return 'url(' + this.bgImage + ')';
 	}
 }

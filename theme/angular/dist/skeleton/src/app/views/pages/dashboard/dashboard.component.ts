@@ -5,7 +5,7 @@ import { shuffle } from 'lodash';
 // Services
 import { LayoutConfigService } from '../../../core/_base/layout';
 // Widgets model
-import { SparklineChartOptions } from '../../../core/_base/metronic';
+import { SparklineChartOptions } from '../../../core/_base/layout';
 import { Widget4Data } from '../../partials/content/widgets/widget4/widget4.component';
 
 @Component({

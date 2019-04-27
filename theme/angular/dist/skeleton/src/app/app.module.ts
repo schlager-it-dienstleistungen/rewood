@@ -34,8 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 // Partials
 import { PartialsModule } from './views/partials/partials.module';
-// Metronic Services
-import { DataTableService, FakeApiService } from './core/_base/metronic';
+// Services
+import { DataTableService, FakeApiService } from './core/_base/layout';
 // Layout Services
 import { LayoutConfigService, LayoutRefService, MenuAsideService, MenuConfigService, MenuHorizontalService, PageConfigService, SplashScreenService, SubheaderService,
 	KtDialogService } from './core/_base/layout';
@@ -45,7 +45,7 @@ import { AuthService, PermissionEffects, permissionsReducer, RoleEffects, rolesR
 // CRUD
 import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
 // Config
-import { LayoutConfig } from './core/_config/default/layout.config';
+import { LayoutConfig } from './core/_config/demo1/layout.config';
 // Highlight JS
 import { HIGHLIGHT_OPTIONS, HighlightLanguage } from 'ngx-highlightjs';
 import * as typescript from 'highlight.js/lib/languages/typescript';

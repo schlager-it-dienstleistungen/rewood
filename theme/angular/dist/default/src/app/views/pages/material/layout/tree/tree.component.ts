@@ -989,7 +989,7 @@ export class DynamicDataSource {
 			// notify the change
       this.dataChange.next(this.data);
       node.isLoading = false;
-      this.cdr.detectChanges();
+      this.cdr.markForCheck();
 		}, 500);
 	}
 }

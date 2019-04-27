@@ -1,9 +1,13 @@
 <!--begin: Quick actions -->
 <div ngbDropdown placement="bottom-right" autoClose="outside" class="kt-header__topbar-item">
 	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon">
+		<span class="kt-header__topbar-icon"
+			[ngClass]="{ 'kt-header__topbar-icon--warning': iconType === 'warning' }">
 			<i *ngIf="!useSVG" [ngClass]="icon"></i>
-			<span class="kt-svg-icon" *ngIf="useSVG" [inlineSVG]="icon"></span>
+			<span *ngIf="useSVG"
+				class="kt-svg-icon"
+				[inlineSVG]="icon"
+				[ngClass]="{ 'kt-svg-icon--warning': iconType === 'warning' }"></span>
 		</span>
 	</div>
 	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -18,7 +22,7 @@
 			</div>
 			<!--end: Head -->
 			<!--begin: Grid Nav -->
-			<div class="kt-grid-nav" [ngClass]="{'kt-grid-nav--skin-dark': skin === 'light', 'kt-grid-nav--skin-light': skin === 'dark'}">
+			<div class="kt-grid-nav kt-grid-nav--skin-{{ gridNavSkin }}">
 				<div class="kt-grid-nav__row">
 					<a href="javascript:;" class="kt-grid-nav__item">
 						<span class="kt-grid-nav__icon" [inlineSVG]="'./assets/media/icons/svg/Shopping/Euro.svg'" (onSVGInserted)="onSVGInserted($event)"></span>

@@ -28,7 +28,7 @@ export class PortletComponent implements OnInit, AfterViewInit {
 	// portlet root classes
 	@Input() class: string;
 
-	@ViewChild('refPortlet') refPortlet: ElementRef;
+	@ViewChild('portlet') portlet: ElementRef;
 
 	// portlet header component template
 	@ViewChild(PortletHeaderComponent) header: PortletHeaderComponent;

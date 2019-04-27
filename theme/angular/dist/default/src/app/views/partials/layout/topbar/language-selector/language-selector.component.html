@@ -1,6 +1,7 @@
 <div ngbDropdown [placement]="'bottom-right'" class="kt-header__topbar-item kt-header__topbar-item--langs">
 	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon">
+		<span class="kt-header__topbar-icon"
+			[ngClass]="{ 'kt-header__topbar-icon--brand' : iconType === 'brand' }">
 			<img class="" src="{{language?.flag}}" alt=""/>
 		</span>
 	</div>

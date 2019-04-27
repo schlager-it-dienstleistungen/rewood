@@ -38,7 +38,7 @@ export class AuthNoticeComponent implements OnInit, OnDestroy {
 				notice = Object.assign({}, {message: '', type: ''}, notice);
 				this.message = notice.message;
 				this.type = notice.type;
-				this.cdr.detectChanges();
+				this.cdr.markForCheck();
 			}
 		));
 	}

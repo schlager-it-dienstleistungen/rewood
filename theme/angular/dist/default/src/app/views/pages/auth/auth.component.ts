@@ -1,9 +1,7 @@
 // Angular
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 // Layout
-import { LayoutConfigService, SplashScreenService } from '../../../core/_base/layout';
-// Metronic
-import { TranslationService } from '../../../core/_base/metronic';
+import { LayoutConfigService, SplashScreenService, TranslationService } from '../../../core/_base/layout';
 // Auth
 import { AuthNoticeService } from '../../../core/auth';
 
@@ -21,12 +19,16 @@ export class AuthComponent implements OnInit {
 	/**
 	 * Component constructor
 	 *
+	 * @param el
+	 * @param render
 	 * @param layoutConfigService: LayoutConfigService
 	 * @param authNoticeService: authNoticeService
 	 * @param translationService: TranslationService
 	 * @param splashScreenService: SplashScreenService
 	 */
 	constructor(
+		private el: ElementRef,
+		private render: Renderer2,
 		private layoutConfigService: LayoutConfigService,
 		public authNoticeService: AuthNoticeService,
 		private translationService: TranslationService,
@@ -45,5 +47,23 @@ export class AuthComponent implements OnInit {
 		this.headerLogo = this.layoutConfigService.getLogo();
 
 		this.splashScreenService.hide();
+
+		// load default styles
+		this.loadCSS('./assets/css/demo1/style.bundle.css');
+	}
+
+	/**
+	 * Load CSS for this specific page only, and destroy when navigate away
+	 * @param styleUrl
+	 */
+	private loadCSS(styleUrl: string) {
+		return new Promise((resolve, reject) => {
+			const styleElement = document.createElement('link');
+			styleElement.href = styleUrl;
+			styleElement.type = 'text/css';
+			styleElement.rel = 'stylesheet';
+			styleElement.onload = resolve;
+			this.render.appendChild(this.el.nativeElement, styleElement);
+		});
 	}
 }
