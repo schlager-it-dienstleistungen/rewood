@@ -15,6 +15,7 @@ var fs = require('fs');
 var filter = require('gulp-filter');
 var autoprefixer = require('gulp-autoprefixer');
 var rtlcss = require('gulp-rtlcss');
+var cleancss = require('gulp-clean-css');
 var yargs = require('yargs');
 
 // merge with default parameters
@@ -115,11 +116,13 @@ module.exports = {
             return sass({
                 errLogToConsole: true,
                 includePaths: includePaths,
-                outputStyle: config.cssMinify ? 'compressed' : '',
+                // outputStyle: config.cssMinify ? 'compressed' : '',
             }).on('error', sass.logError);
         }).pipe(function () {
             // convert rtl for style.bundle.css only here, others already converted before
             return gulpif(rtl, rtlcss());
+        }).pipe(function () {
+            return gulpif(config.cssMinify, cleancss());
         }).pipe(function () {
             return gulpif(true, autoprefixer({
                 browsers: ['last 2 versions'],
@@ -550,6 +553,26 @@ module.exports = {
                                     stream.pipe(output);
                                 }
                                 streams.push(stream);
+
+                                // rtl styles for scss
+                                var shouldRtl = false;
+                                if (build.config.compile.rtl.enabled) {
+                                    bundle.src[type].forEach(function (output) {
+                                        if (output.indexOf('.scss') !== -1) {
+                                            return shouldRtl = true;
+                                        }
+                                    });
+                                    stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.cssChannel(shouldRtl, [
+                                        '../themes/themes/' + module.exports.config.theme + '/src/sass/theme/demos/' + demo + '/', //  development
+                                        '../src/assets/sass/theme/demos/' + demo + '/', // release default package
+                                        '../src/sass/theme/demos/' + demo + '/', // release angular package
+                                    ])()).pipe(rename({suffix: '.rtl'}));
+                                    var output = _self.outputChannel(bundle.output[type], undefined, type)();
+                                    if (output) {
+                                        stream.pipe(output);
+                                    }
+                                    streams.push(stream);
+                                }
                             });
                             break;
                         case 'scripts':

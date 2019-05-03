@@ -18,7 +18,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -49,7 +49,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -80,7 +80,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -111,7 +111,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {

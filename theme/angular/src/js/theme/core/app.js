@@ -82,7 +82,7 @@ var KTApp = function() {
         $('[data-scroll="true"]').each(function() {
             var el = $(this);
             KTUtil.scrollInit(this, {
-                disableForMobile: true,
+                mobileNativeScroll: true,
                 handleWindowResize: true,
                 rememberPosition: (el.data('remember-position') == 'true' ? true : false),
                 height: function() {

@@ -1422,6 +1422,8 @@ var KTUtil = function() {
             return (KTUtil.attr(KTUtil.get('html'), 'direction') == 'rtl');
         },
 
+        // 
+
         // Scroller
         scrollInit: function(element, options) {
             if(!element) return;
@@ -1437,7 +1439,7 @@ var KTUtil = function() {
                 }
 
                 // Destroy scroll on table and mobile modes
-                if (options.disableForMobile && KTUtil.isInResponsiveRange('tablet-and-mobile')) {
+                if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isInResponsiveRange('tablet-and-mobile')) {
                     if (ps = KTUtil.data(element).get('ps')) {
                         if (options.resetHeightOnDestroy) {
                             KTUtil.css(element, 'height', 'auto');
@@ -1462,9 +1464,14 @@ var KTUtil = function() {
                     KTUtil.css(element, 'height', height + 'px');
                 }
 
+                if (options.desktopNativeScroll) {
+                    KTUtil.css(element, 'overflow', 'auto');
+                    return;
+                }
+                
+                // Init scroll
                 KTUtil.css(element, 'overflow', 'hidden');
 
-                // Init scroll
                 if (ps = KTUtil.data(element).get('ps')) {
                     ps.update();
                 } else {
@@ -1472,7 +1479,7 @@ var KTUtil = function() {
                     ps = new PerfectScrollbar(element, {
                         wheelSpeed: 0.5,
                         swipeEasing: true,
-                        wheelPropagation: false,
+                        wheelPropagation: (options.windowScroll === false ? false : true),
                         minScrollbarLength: 40,
                         maxScrollbarLength: 300, 
                         suppressScrollX: KTUtil.attr(element, 'data-scroll-x') != 'true' ? true : false
@@ -1481,13 +1488,12 @@ var KTUtil = function() {
                     KTUtil.data(element).set('ps', ps);
                 }
 
+                // Remember scroll position in cookie
                 var uid = KTUtil.attr(element, 'id');
 
                 if (options.rememberPosition === true && Cookies && uid) {
                     if (Cookies.get(uid)) {
                         var pos = parseInt(Cookies.get(uid));
-
-                        console.log('pos: ' + pos);
 
                         if (pos > 0) {
                             element.scrollTop = pos;
@@ -1495,7 +1501,6 @@ var KTUtil = function() {
                     } 
 
                     element.addEventListener('ps-scroll-y', function() {
-                        console.log('uid: ' + uid + '=' + element.scrollTop);
                         Cookies.set(uid, element.scrollTop);
                     });                                      
                 }

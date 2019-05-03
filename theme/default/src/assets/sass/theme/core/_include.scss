@@ -74,7 +74,13 @@
 @import "general/user-card";
 @import "general/user-card-v2";
 @import "general/user-card-v3";
+@import "general/user-pic";
 @import "general/pagination";
+@import "general/searchbar";
+
+// Widgets - Chat
+@import "general/chat";
+ 
 
 // Layout
 @import "layout/demo-panel";
@@ -96,37 +102,40 @@
 @import "typography/separator";
 @import "typography/svg-icon";
 
-// Widgets - General
-@import "widgets/general/widget1";
-@import "widgets/general/widget2";
-@import "widgets/general/widget3";
-@import "widgets/general/widget4";
-@import "widgets/general/widget5";
-@import "widgets/general/widget6";
-@import "widgets/general/widget7";
-@import "widgets/general/widget9";
-@import "widgets/general/widget10";
-@import "widgets/general/widget11";
-@import "widgets/general/widget12";
-@import "widgets/general/widget13";
-@import "widgets/general/widget14";
-@import "widgets/general/widget15";
-@import "widgets/general/widget16";
-@import "widgets/general/widget17";
-@import "widgets/general/widget19";
-@import "widgets/general/widget20";
-@import "widgets/general/widget21";
-@import "widgets/general/widget24";
-@import "widgets/general/widget25";
-@import "widgets/general/widget26";
-@import "widgets/general/widget27";
-@import "widgets/general/widget28";
-@import "widgets/general/widget29";
-@import "widgets/general/widget30";
-@import "widgets/general/widget31";
+// Widgets - Dashboard
+@import "widgets/dashboard/widget1";
+@import "widgets/dashboard/widget2";
+@import "widgets/dashboard/widget3";
+@import "widgets/dashboard/widget4";
+@import "widgets/dashboard/widget5";
+@import "widgets/dashboard/widget6";
+@import "widgets/dashboard/widget7";
+@import "widgets/dashboard/widget9";
+@import "widgets/dashboard/widget10";
+@import "widgets/dashboard/widget11";
+@import "widgets/dashboard/widget12";
+@import "widgets/dashboard/widget13";
+@import "widgets/dashboard/widget14";
+@import "widgets/dashboard/widget15";
+@import "widgets/dashboard/widget16";
+@import "widgets/dashboard/widget17";
+@import "widgets/dashboard/widget19";
+@import "widgets/dashboard/widget20";
+@import "widgets/dashboard/widget21";
+@import "widgets/dashboard/widget24";
+@import "widgets/dashboard/widget25";
+@import "widgets/dashboard/widget26";
+@import "widgets/dashboard/widget27";
+@import "widgets/dashboard/widget28";
+@import "widgets/dashboard/widget29";
+@import "widgets/dashboard/widget30";
+@import "widgets/dashboard/widget31";
 
-// Widgets - User
-@import "widgets/user/profile-1";
-@import "widgets/user/profile-2";
-@import "widgets/user/profile-3";
-@import "widgets/user/profile-4";
+// Widgets - General
+@import "widgets/general/profile-1";
+@import "widgets/general/profile-2";
+@import "widgets/general/profile-3";
+@import "widgets/general/profile-4";
+
+// Widgets - General - Users
+@import "widgets/general/users";

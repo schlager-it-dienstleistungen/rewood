@@ -22,16 +22,7 @@ export interface LayoutConfigModel {
 		message?: string;
 	};
 	colors: {
-		state?: {
-			brand: string;
-			light: string;
-			dark: string;
-			primary: string;
-			success: string;
-			info: string;
-			warning: string;
-			danger: string;
-		};
+		state?: any;
 		base: {
 			label: string[];
 			shape: string[]

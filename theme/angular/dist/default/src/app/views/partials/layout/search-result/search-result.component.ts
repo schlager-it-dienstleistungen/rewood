@@ -3,7 +3,10 @@ import { Component, Input } from '@angular/core';
 
 export interface ISearchResult {
 	icon: string;
+	img: string;
+	title: string;
 	text: string;
+	url: string;
 }
 
 @Component({

@@ -10,7 +10,7 @@ export class MenuConfig {
 					'toggle': 'click',
 					'custom-class': 'kt-menu__item--active',
 					'alignment': 'left',
-					submenu: []
+					// submenu: []
 				},
 				{
 					'title': 'Features',
@@ -18,7 +18,7 @@ export class MenuConfig {
 					'icon-': 'flaticon-line-graph',
 					'toggle': 'click',
 					'alignment': 'left',
-					submenu: []
+					// submenu: []
 				},
 				{
 					'title': 'Apps',
@@ -26,7 +26,7 @@ export class MenuConfig {
 					'icon-': 'flaticon-paper-plane',
 					'toggle': 'click',
 					'alignment': 'left',
-					submenu: []
+					// submenu: []
 				}
 			]
 		},
@@ -37,7 +37,7 @@ export class MenuConfig {
 					title: 'Dashboard',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: 'dashboard',
+					page: '/dashboard',
 					translate: 'MENU.DASHBOARD',
 					bullet: 'dot',
 				},
@@ -45,7 +45,7 @@ export class MenuConfig {
 					title: 'Layout Builder',
 					root: true,
 					icon: 'flaticon2-expand',
-					page: 'builder'
+					page: '/builder'
 				},
 				{section: 'Custom'},
 				{

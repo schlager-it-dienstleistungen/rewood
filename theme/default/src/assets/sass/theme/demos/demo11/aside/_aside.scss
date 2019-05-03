@@ -32,8 +32,8 @@
 		// Fixed
 		.kt-aside--fixed & {
 			position: fixed;
-			top: kt-get($kt-header-config, base, desktop, default, height) + 25px;
-			bottom: 25px;
+			top: kt-get($kt-header-config, base, desktop, default, height) + kt-get($kt-page-padding, desktop);
+			bottom: kt-get($kt-page-padding, desktop);
 			z-index: kt-get($kt-aside-config, base, fixed, zindex);
 		}
 

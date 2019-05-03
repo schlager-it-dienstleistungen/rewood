@@ -10,6 +10,7 @@
 	.kt-content {
 		padding: kt-get($kt-page-padding, desktop);
 		padding-right: 0;
+		padding-bottom: 0;
 
 		// aside disabled
 		body:not(.kt-aside--enabled) & {

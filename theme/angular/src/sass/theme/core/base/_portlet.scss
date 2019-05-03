@@ -137,7 +137,7 @@
     &.kt-portlet--head-overlay {
         .kt-portlet__head {
             position: relative;
-            z-index: 2;
+            z-index: 1;
             border: 0;
             height: kt-get($kt-portlet, min-height, default, desktop);
         }
@@ -278,7 +278,7 @@
 	}
 
     // Marginless
-    &.kt-portlet--marginless {
+    &.kt-portlet--last {
     	margin-bottom: 0;
     }
 

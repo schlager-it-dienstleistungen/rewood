@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppsUserAddUser = function () {
+var KTAppUserAdd = function () {
 	// Base elements
 	var wizardEl;
 	var formEl;
@@ -122,5 +122,5 @@ var KTAppsUserAddUser = function () {
 }();
 
 jQuery(document).ready(function() {	
-	KTAppsUserAddUser.init();
+	KTAppUserAdd.init();
 });

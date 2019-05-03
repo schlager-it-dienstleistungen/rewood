@@ -31,10 +31,14 @@ export class PageConfigService {
 		let url = this.router.url;
 
 		// remove first route (demo name) from url router
-		if (new RegExp(/^\/de/).test(url)) {
+		if (new RegExp(/^\/demo/).test(url)) {
 			const urls = url.split('/');
 			urls.splice(0, 2);
 			url = urls.join('/');
+		}
+
+		if (url.charAt(0) == '/') {
+			url = url.substr(1);
 		}
 
 		let configPath = url.replace(/\//g, '.');
@@ -50,7 +54,7 @@ export class PageConfigService {
 	/**
 	 * Set existing config with a new value
 	 * @param value: any
-	 * @param sav: boolean?
+	 * @param save: boolean?
 	 */
 	setConfig(value: any, save?: boolean): void {
 		this.pageConfig = merge(this.pageConfig, value);

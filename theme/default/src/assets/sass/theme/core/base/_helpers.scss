@@ -55,6 +55,47 @@
 		.kt-padding-r-#{$num}#{$mode} {
 			padding-right: #{$num}px !important;
 		}
+
+		// short format
+		.kt-m#{$num}#{$mode} {
+			margin: #{$num}px !important;
+		}
+
+		.kt-mt-#{$num}#{$mode} {
+			margin-top: #{$num}px !important;
+		}
+
+		.kt-mb-#{$num}#{$mode} {
+			margin-bottom: #{$num}px !important;
+		}
+
+		.kt-ml-#{$num}#{$mode} {
+			margin-left: #{$num}px !important;
+		}
+
+		.kt-mr-#{$num}#{$mode} {
+			margin-right: #{$num}px !important;
+		}
+
+		.kt-p#{$num}#{$mode} {
+			padding: #{$num}px !important;
+		}
+
+		.kt-pt#{$num}#{$mode} {
+			padding-top: #{$num}px !important;
+		}
+
+		.kt-pb-#{$num}#{$mode} {
+			padding-bottom: #{$num}px !important;
+		}
+
+		.kt-pl#{$num}#{$mode} {
+			padding-left: #{$num}px !important;
+		}
+
+		.kt-pr#{$num}#{$mode} {
+			padding-right: #{$num}px !important;
+		}
 	}
 }
 
@@ -297,6 +338,10 @@ b, strong {
 		> i {
 			color: kt-get($color, inverse) !important;
 		}
+	}
+
+	.kt-bg-light-#{$name} {
+		background-color: rgba(kt-get($color, base), 0.1) !important;
 	}
 }
 

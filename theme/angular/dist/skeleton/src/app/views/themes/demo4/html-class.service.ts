@@ -66,6 +66,12 @@ export class HtmlClassService {
 		this.onClassesUpdated$.next(this.classes);
 	}
 
+	/**
+	 * Returns Classes
+	 *
+	 * @param path: string
+	 * @param toString boolean
+	 */
 	getClasses(path?: string, toString?: boolean): ClassType | string[] | string {
 		if (path) {
 			const classes = objectPath.get(this.classes, path) || '';
@@ -77,6 +83,9 @@ export class HtmlClassService {
 		return this.classes;
 	}
 
+	/**
+	 * Init Layout
+	 */
 	private initLayout() {
 		if (objectPath.has(this.config, 'self.body.class')) {
 			const _selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
@@ -108,9 +117,15 @@ export class HtmlClassService {
 		document.body.classList.add('kt-offcanvas-panel--right');
 	}
 
+	/**
+	 * Init Loader
+	 */
 	private initLoader() {
 	}
 
+	/**
+	 * Init Header
+	 */
 	private initHeader() {
 		// Fixed header
 		if (objectPath.get(this.config, 'header.self.fixed.desktop.enabled')) {
@@ -127,6 +142,9 @@ export class HtmlClassService {
 		}
 	}
 
+	/**
+	 * Inin Subheader
+	 */
 	private initSubheader() {
 		// Fixed content head
 		if (objectPath.get(this.config, 'subheader.fixed')) {
@@ -142,6 +160,9 @@ export class HtmlClassService {
 		}
 	}
 
+	/**
+	 * Init Aside
+	 */
 	private initAside() {
 		if (objectPath.get(this.config, 'aside.self.display') !== true) {
 			return;
@@ -179,6 +200,9 @@ export class HtmlClassService {
 		}
 	}
 
+	/**
+	 * Init Aside Secondary
+	 */
 	private initAsideSecondary() {
 		if (objectPath.get(this.config, 'aside-secondary.self.display')) {
 			document.body.classList.add('kt-aside-secondary--enabled');
@@ -193,6 +217,9 @@ export class HtmlClassService {
 		}
 	}
 
+	/**
+	 * Init Content
+	 */
 	private initContent() {
 		// Fixed content head
 		if (objectPath.get(this.config, 'content.head.fixed.desktop')) {
@@ -208,6 +235,9 @@ export class HtmlClassService {
 		}
 	}
 
+	/**
+	 * Init Footer
+	 */
 	private initFooter() {
 	}
 

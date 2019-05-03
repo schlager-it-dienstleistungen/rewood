@@ -597,7 +597,6 @@ var KTMenu = function(elementId, options) {
 
             var parents = KTUtil.parents(item, '.kt-menu__item--submenu') || [];
             for (var i = 0, len = parents.length; i < len; i++) {
-                console.log(parents[i]);
                 KTUtil.addClass(KTUtil.get(parents[i]), 'kt-menu__item--open');
             }
 

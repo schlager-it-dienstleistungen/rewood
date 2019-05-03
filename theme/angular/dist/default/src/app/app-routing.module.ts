@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 	{path: 'auth', loadChildren: 'app/views/pages/auth/auth.module#AuthModule'},
 
-	// enable this router to set which demo1 theme to load,
+	// enable this router to set which demo theme to load,
 	// leave the path value empty to enter into nested router in ThemeModule
 	// {path: '', loadChildren: 'app/views/themes/demo1/theme.module#ThemeModule'},
 

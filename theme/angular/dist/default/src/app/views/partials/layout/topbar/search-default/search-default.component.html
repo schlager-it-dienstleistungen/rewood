@@ -13,7 +13,7 @@
 				<div class="input-group-append"><span class="input-group-text"><i (click)="clear($event)" [ngStyle]="{'display': 'flex'}" [hidden]="!data || !data?.length" class="la la-close kt-quick-search__close"></i></span></div>
 			</div>
 		</form>
-		<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
+		<div ngbDropdownMenu *ngIf="data?.length" class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
 			<div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '40vh', 'position': 'relative'}" class="kt-quick-search__wrapper">
 				<kt-search-result [data]="data"></kt-search-result>
 			</div>

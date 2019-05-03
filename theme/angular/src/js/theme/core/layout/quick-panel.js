@@ -27,7 +27,7 @@ var KTQuickPanel = function() {
 
     var initNotifications = function() {
         KTUtil.scrollInit(notificationPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -38,7 +38,7 @@ var KTQuickPanel = function() {
 
     var initLogs = function() {
         KTUtil.scrollInit(logsPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -49,7 +49,7 @@ var KTQuickPanel = function() {
 
     var initSettings = function() {
         KTUtil.scrollInit(settingsPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {

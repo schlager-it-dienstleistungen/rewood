@@ -1,6 +1,6 @@
 {
     "name": "metronic",
-    "version": "6.0.2",
+    "version": "6.0.3",
     "config": {
         "demo": "",
         "debug": false,
@@ -391,10 +391,10 @@
                     }
                 },
                 "bundle": {
-                    "styles": "{$config.output}/vendors/global/vendors.bundle.css",
-                    "scripts": "{$config.output}/vendors/global/vendors.bundle.js",
-                    "images": "{$config.output}/vendors/global/img",
-                    "fonts": "{$config.output}/vendors/global/fonts"
+                    "styles": "{$config.dist}/vendors/global/vendors.bundle.css",
+                    "scripts": "{$config.dist}/vendors/global/vendors.bundle.js",
+                    "images": "{$config.dist}/vendors/global/img",
+                    "fonts": "{$config.dist}/vendors/global/fonts"
                 }
             },
             "custom": {
@@ -411,9 +411,9 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/vendors/custom/jquery-ui/jquery-ui.bundle.css",
-                        "scripts": "{$config.output}/vendors/custom/jquery-ui/jquery-ui.bundle.js",
-                        "images": "{$config.output}/vendors/custom/jquery-ui/images"
+                        "styles": "{$config.dist}/vendors/custom/jquery-ui/jquery-ui.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/jquery-ui/jquery-ui.bundle.js",
+                        "images": "{$config.dist}/vendors/custom/jquery-ui/images"
                     }
                 },
                 "fullcalendar": {
@@ -427,8 +427,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/vendors/custom/fullcalendar/fullcalendar.bundle.css",
-                        "scripts": "{$config.output}/vendors/custom/fullcalendar/fullcalendar.bundle.js"
+                        "styles": "{$config.dist}/vendors/custom/fullcalendar/fullcalendar.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/fullcalendar/fullcalendar.bundle.js"
                     }
                 },
                 "gmaps": {
@@ -438,7 +438,7 @@
                         ]
                     },
                     "bundle": {
-                        "scripts": "{$config.output}/vendors/custom/gmaps/gmaps.js"
+                        "scripts": "{$config.dist}/vendors/custom/gmaps/gmaps.js"
                     }
                 },
                 "jquery-flot": {
@@ -454,7 +454,7 @@
                         ]
                     },
                     "bundle": {
-                        "scripts": "{$config.output}/vendors/custom/flot/flot.bundle.js"
+                        "scripts": "{$config.dist}/vendors/custom/flot/flot.bundle.js"
                     }
                 },
                 "datatables.net": {
@@ -501,8 +501,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/vendors/custom/datatables/datatables.bundle.css",
-                        "scripts": "{$config.output}/vendors/custom/datatables/datatables.bundle.js"
+                        "styles": "{$config.dist}/vendors/custom/datatables/datatables.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/datatables/datatables.bundle.js"
                     }
                 },
                 "jstree": {
@@ -520,9 +520,9 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/vendors/custom/jstree/jstree.bundle.css",
-                        "scripts": "{$config.output}/vendors/custom/jstree/jstree.bundle.js",
-                        "images": "{$config.output}/vendors/custom/jstree/images"
+                        "styles": "{$config.dist}/vendors/custom/jstree/jstree.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/jstree/jstree.bundle.js",
+                        "images": "{$config.dist}/vendors/custom/jstree/images"
                     }
                 },
                 "jqvmap": {
@@ -540,8 +540,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/vendors/custom/jqvmap/jqvmap.bundle.css",
-                        "scripts": "{$config.output}/vendors/custom/jqvmap/jqvmap.bundle.js"
+                        "styles": "{$config.dist}/vendors/custom/jqvmap/jqvmap.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/jqvmap/jqvmap.bundle.js"
                     }
                 }
             }
@@ -561,8 +561,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo1/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo1/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo1/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo1/scripts.bundle.js"
                     }
                 },
                 "skins": {
@@ -573,7 +573,7 @@
                             ]
                         },
                         "output": {
-                            "styles": "{$config.output}/css/demo1/skins/header/"
+                            "styles": "{$config.dist}/css/demo1/skins/header/"
                         }
                     },
                     "brand": {
@@ -583,7 +583,7 @@
                             ]
                         },
                         "output": {
-                            "styles": "{$config.output}/css/demo1/skins/brand/"
+                            "styles": "{$config.dist}/css/demo1/skins/brand/"
                         }
                     },
                     "aside": {
@@ -593,7 +593,7 @@
                             ]
                         },
                         "output": {
-                            "styles": "{$config.output}/css/demo1/skins/aside/"
+                            "styles": "{$config.dist}/css/demo1/skins/aside/"
                         }
                     }
                 },
@@ -607,8 +607,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo1/pages/",
-                        "scripts": "{$config.output}/js/demo1/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo1/pages/",
+                        "scripts": "{$config.dist}/js/demo1/pages/"
                     }
                 }
             },
@@ -626,8 +626,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo2/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo2/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo2/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo2/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -640,8 +640,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo2/pages/",
-                        "scripts": "{$config.output}/js/demo2/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo2/pages/",
+                        "scripts": "{$config.dist}/js/demo2/pages/"
                     }
                 }
             },
@@ -659,8 +659,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo3/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo3/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo3/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo3/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -673,8 +673,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo3/pages/",
-                        "scripts": "{$config.output}/js/demo3/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo3/pages/",
+                        "scripts": "{$config.dist}/js/demo3/pages/"
                     }
                 }
             },
@@ -692,8 +692,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo4/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo4/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo4/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo4/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -706,8 +706,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo4/pages/",
-                        "scripts": "{$config.output}/js/demo4/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo4/pages/",
+                        "scripts": "{$config.dist}/js/demo4/pages/"
                     }
                 }
             },
@@ -725,8 +725,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo5/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo5/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo5/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo5/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -739,8 +739,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo5/pages/",
-                        "scripts": "{$config.output}/js/demo5/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo5/pages/",
+                        "scripts": "{$config.dist}/js/demo5/pages/"
                     }
                 }
             },
@@ -758,8 +758,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo6/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo6/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo6/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo6/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -772,8 +772,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo6/pages/",
-                        "scripts": "{$config.output}/js/demo6/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo6/pages/",
+                        "scripts": "{$config.dist}/js/demo6/pages/"
                     }
                 }
             },
@@ -791,8 +791,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo7/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo7/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo7/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo7/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -805,8 +805,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo7/pages/",
-                        "scripts": "{$config.output}/js/demo7/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo7/pages/",
+                        "scripts": "{$config.dist}/js/demo7/pages/"
                     }
                 }
             },
@@ -824,8 +824,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo8/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo8/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo8/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo8/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -838,8 +838,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo8/pages/",
-                        "scripts": "{$config.output}/js/demo8/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo8/pages/",
+                        "scripts": "{$config.dist}/js/demo8/pages/"
                     }
                 }
             },
@@ -857,8 +857,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo9/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo9/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo9/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo9/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -871,8 +871,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo9/pages/",
-                        "scripts": "{$config.output}/js/demo9/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo9/pages/",
+                        "scripts": "{$config.dist}/js/demo9/pages/"
                     }
                 }
             },
@@ -890,8 +890,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo10/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo10/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo10/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo10/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -904,8 +904,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo10/pages/",
-                        "scripts": "{$config.output}/js/demo10/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo10/pages/",
+                        "scripts": "{$config.dist}/js/demo10/pages/"
                     }
                 }
             },
@@ -923,8 +923,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo11/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo11/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo11/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo11/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -937,8 +937,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo11/pages/",
-                        "scripts": "{$config.output}/js/demo11/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo11/pages/",
+                        "scripts": "{$config.dist}/js/demo11/pages/"
                     }
                 }
             },
@@ -956,8 +956,8 @@
                         ]
                     },
                     "bundle": {
-                        "styles": "{$config.output}/css/demo12/style.bundle.css",
-                        "scripts": "{$config.output}/js/demo12/scripts.bundle.js"
+                        "styles": "{$config.dist}/css/demo12/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo12/scripts.bundle.js"
                     }
                 },
                 "pages": {
@@ -970,8 +970,8 @@
                         ]
                     },
                     "output": {
-                        "styles-by-demo": "{$config.output}/css/demo12/pages/",
-                        "scripts": "{$config.output}/js/demo12/pages/"
+                        "styles-by-demo": "{$config.dist}/css/demo12/pages/",
+                        "scripts": "{$config.dist}/js/demo12/pages/"
                     }
                 }
             }
@@ -983,7 +983,7 @@
                 ]
             },
             "output": {
-                "media": "{$config.output}/media/"
+                "media": "{$config.dist}/media/"
             }
         }
     }

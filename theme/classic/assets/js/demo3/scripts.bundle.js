@@ -82,7 +82,7 @@ var KTApp = function() {
         $('[data-scroll="true"]').each(function() {
             var el = $(this);
             KTUtil.scrollInit(this, {
-                disableForMobile: true,
+                mobileNativeScroll: true,
                 handleWindowResize: true,
                 rememberPosition: (el.data('remember-position') == 'true' ? true : false),
                 height: function() {
@@ -1758,6 +1758,8 @@ var KTUtil = function() {
             return (KTUtil.attr(KTUtil.get('html'), 'direction') == 'rtl');
         },
 
+        // 
+
         // Scroller
         scrollInit: function(element, options) {
             if(!element) return;
@@ -1773,7 +1775,7 @@ var KTUtil = function() {
                 }
 
                 // Destroy scroll on table and mobile modes
-                if (options.disableForMobile && KTUtil.isInResponsiveRange('tablet-and-mobile')) {
+                if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isInResponsiveRange('tablet-and-mobile')) {
                     if (ps = KTUtil.data(element).get('ps')) {
                         if (options.resetHeightOnDestroy) {
                             KTUtil.css(element, 'height', 'auto');
@@ -1798,9 +1800,14 @@ var KTUtil = function() {
                     KTUtil.css(element, 'height', height + 'px');
                 }
 
+                if (options.desktopNativeScroll) {
+                    KTUtil.css(element, 'overflow', 'auto');
+                    return;
+                }
+                
+                // Init scroll
                 KTUtil.css(element, 'overflow', 'hidden');
 
-                // Init scroll
                 if (ps = KTUtil.data(element).get('ps')) {
                     ps.update();
                 } else {
@@ -1808,7 +1815,7 @@ var KTUtil = function() {
                     ps = new PerfectScrollbar(element, {
                         wheelSpeed: 0.5,
                         swipeEasing: true,
-                        wheelPropagation: false,
+                        wheelPropagation: (options.windowScroll === false ? false : true),
                         minScrollbarLength: 40,
                         maxScrollbarLength: 300, 
                         suppressScrollX: KTUtil.attr(element, 'data-scroll-x') != 'true' ? true : false
@@ -1817,13 +1824,12 @@ var KTUtil = function() {
                     KTUtil.data(element).set('ps', ps);
                 }
 
+                // Remember scroll position in cookie
                 var uid = KTUtil.attr(element, 'id');
 
                 if (options.rememberPosition === true && Cookies && uid) {
                     if (Cookies.get(uid)) {
                         var pos = parseInt(Cookies.get(uid));
-
-                        console.log('pos: ' + pos);
 
                         if (pos > 0) {
                             element.scrollTop = pos;
@@ -1831,7 +1837,6 @@ var KTUtil = function() {
                     } 
 
                     element.addEventListener('ps-scroll-y', function() {
-                        console.log('uid: ' + uid + '=' + element.scrollTop);
                         Cookies.set(uid, element.scrollTop);
                     });                                      
                 }
@@ -3023,7 +3028,6 @@ var KTMenu = function(elementId, options) {
 
             var parents = KTUtil.parents(item, '.kt-menu__item--submenu') || [];
             for (var i = 0, len = parents.length; i < len; i++) {
-                console.log(parents[i]);
                 KTUtil.addClass(KTUtil.get(parents[i]), 'kt-menu__item--open');
             }
 
@@ -3327,13 +3331,23 @@ var KTOffcanvas = function(elementId, options) {
                         e.preventDefault();
                         Plugin.toggle();
                     }); 
-                } else if (the.options.toggleBy && the.options.toggleBy[0] && the.options.toggleBy[0].target) {
-                    for (var i in the.options.toggleBy) { 
-                        KTUtil.addEvent( the.options.toggleBy[i].target, 'click', function(e) {
-                            e.preventDefault();
-                            Plugin.toggle();
-                        }); 
+                } else if (the.options.toggleBy && the.options.toggleBy[0]) {
+                    if (the.options.toggleBy[0].target) {
+                        for (var i in the.options.toggleBy) { 
+                            KTUtil.addEvent( the.options.toggleBy[i].target, 'click', function(e) {
+                                e.preventDefault();
+                                Plugin.toggle();
+                            }); 
+                        }
+                    } else {
+                        for (var i in the.options.toggleBy) { 
+                            KTUtil.addEvent( the.options.toggleBy[i], 'click', function(e) {
+                                e.preventDefault();
+                                Plugin.toggle();
+                            }); 
+                        }
                     }
+                    
                 } else if (the.options.toggleBy && the.options.toggleBy.target) {
                     KTUtil.addEvent( the.options.toggleBy.target, 'click', function(e) {
                         e.preventDefault();
@@ -8814,25 +8828,172 @@ if (KTUtil.isRTL()) {
 $.extend(true, $.fn.KTDatatable.defaults, defaults);
 "use strict";
 
-var KTAppLayout = function() {
-    var main = function() {    
-        var offcanvas = new KTOffcanvas('kt_app_aside', {
-            overlay: true,  
-            baseClass: 'kt-app__aside',
-            closeBy: 'kt_app_aside_close',
-            toggleBy: 'kt_subheader_mobile_toggle'
-        }); 
-    }
+// Class definition
+var KTChat = function () {
+	var initChat = function (parentEl) {
+		var messageListEl = KTUtil.find(parentEl, '.kt-scroll');
 
-    return {     
-        init: function() {  
-            main(); 
+		if (!messageListEl) {
+			return;
+		}
+
+		// initialize perfect scrollbar(see:  https://github.com/utatti/perfect-scrollbar) 
+		KTUtil.scrollInit(messageListEl, {
+			windowScroll: false, // allow browser scroll when the scroll reaches the end of the side
+			mobileNativeScroll: true,  // enable native scroll for mobile
+			desktopNativeScroll: false, // disable native scroll and use custom scroll for desktop 
+			resetHeightOnDestroy: true,  // reset css height on scroll feature destroyed
+			handleWindowResize: true, // recalculate hight on window resize
+			rememberPosition: true, // remember scroll position in cookie
+			height: function() {  // calculate height
+				var height;
+
+				// Mobile mode
+				if (KTUtil.isInResponsiveRange('tablet-and-mobile')) {
+					return KTUtil.hasAttr(messageListEl, 'data-mobile-height') ? parseInt(KTUtil.attr(messageListEl, 'data-mobile-height')) : 300;
+				} 
+
+				// Desktop mode
+				if (KTUtil.isInResponsiveRange('desktop') && KTUtil.hasAttr(messageListEl, 'data-height')) {
+					return parseInt(KTUtil.attr(messageListEl, 'data-height'));
+				}
+
+				var chatEl = KTUtil.find(parentEl, '.kt-chat');
+				var portletHeadEl = KTUtil.find(parentEl, '.kt-portlet > .kt-portlet__head');
+				var portletBodyEl = KTUtil.find(parentEl, '.kt-portlet > .kt-portlet__body');
+				var portletFootEl = KTUtil.find(parentEl, '.kt-portlet > .kt-portlet__foot');
+				
+				if (KTUtil.isInResponsiveRange('desktop')) {
+					height = KTLayout.getContentHeight();
+				} else {
+					height = KTUtil.getViewPort().height;
+				}
+
+				if (chatEl) {
+					height = height - parseInt(KTUtil.css(chatEl, 'margin-top')) - parseInt(KTUtil.css(chatEl, 'margin-bottom'));
+					height = height - parseInt(KTUtil.css(chatEl, 'padding-top')) - parseInt(KTUtil.css(chatEl, 'padding-bottom'));
+				}
+
+				if (portletHeadEl) {
+					height = height - parseInt(KTUtil.css(portletHeadEl, 'height'));
+					height = height - parseInt(KTUtil.css(portletHeadEl, 'margin-top')) - parseInt(KTUtil.css(portletHeadEl, 'margin-bottom'));
+				}
+
+				if (portletBodyEl) {
+					height = height - parseInt(KTUtil.css(portletBodyEl, 'margin-top')) - parseInt(KTUtil.css(portletBodyEl, 'margin-bottom'));
+					height = height - parseInt(KTUtil.css(portletBodyEl, 'padding-top')) - parseInt(KTUtil.css(portletBodyEl, 'padding-bottom'));
+				}
+
+				if (portletFootEl) {
+					height = height - parseInt(KTUtil.css(portletFootEl, 'height'));
+					height = height - parseInt(KTUtil.css(portletFootEl, 'margin-top')) - parseInt(KTUtil.css(portletFootEl, 'margin-bottom'));
+				}
+
+				// remove additional space
+				height = height - 5;
+				
+				return height;
+			} 
+		});
+
+		// messaging
+		var handleMessaging = function() {
+			var scrollEl = KTUtil.find(parentEl, '.kt-scroll');
+			var messagesEl = KTUtil.find(parentEl, '.kt-chat__messages');
+            var textarea = KTUtil.find(parentEl, '.kt-chat__input textarea');
+            
+            if (textarea.value.length === 0 ) {
+                return;
+            }
+
+			var node = document.createElement("DIV");  
+			KTUtil.addClass(node, 'kt-chat__message kt-chat__message--right');
+
+			var html = 
+				'<div class="kt-chat__user">' +				
+					'<span class="kt-chat__datetime">Just now</span>' +
+					'<a href="#" class="kt-chat__username">Jason Muller</span></a>' +					
+					'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+						'<img src="./assets/media/users/100_12.jpg" alt="image">'  + 
+					'</span>' +
+				'</div>' +
+				'<div class="kt-chat__text kt-bg-light-brand">' + 
+					textarea.value
+				'</div>';
+
+			KTUtil.setHTML(node, html);
+			messagesEl.appendChild(node);
+			textarea.value = '';
+			scrollEl.scrollTop = parseInt(KTUtil.css(messagesEl, 'height'));
+			
+			var ps;
+			if (ps = KTUtil.data(scrollEl).get('ps')) {
+				ps.update();
+			}					
+			
+			setTimeout(function() {
+				var node = document.createElement("DIV");  
+				KTUtil.addClass(node, 'kt-chat__message');
+
+				var html = 
+					'<div class="kt-chat__user">' +
+						'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+							'<img src="./assets/media/users/100_13.jpg" alt="image">'  + 
+						'</span>' +
+						'<a href="#" class="kt-chat__username">Max Born</span></a>' +
+						'<span class="kt-chat__datetime">Just now</span>' +
+					'</div>' +
+					'<div class="kt-chat__text kt-bg-light-success">' + 
+					'Right before vacation season we have the next Big Deal for you. <br>Book the car of your dreams and save up to <b>25%*</b> worldwide.'
+					'</div>';
+
+				KTUtil.setHTML(node, html);
+				messagesEl.appendChild(node);
+				textarea.value = '';
+				scrollEl.scrollTop = parseInt(KTUtil.css(messagesEl, 'height'));
+				
+				var ps;
+				if (ps = KTUtil.data(scrollEl).get('ps')) {
+					ps.update();
+				}					
+			}, 2000);
+		}
+
+		// attach events
+		KTUtil.on(parentEl, '.kt-chat__input textarea', 'keydown', function(e) {
+			if (e.keyCode == 13) {
+				handleMessaging();
+				e.preventDefault();
+
+				return false; 
+			}
+		});
+
+		KTUtil.on(parentEl, '.kt-chat__input .kt-chat__reply', 'click', function(e) {
+			handleMessaging();
+		});
+	}
+
+	return {
+		// public functions
+		init: function() {
+			// init modal chat example
+			initChat( KTUtil.getByID('kt_chat_modal'));
+
+			// trigger click to show popup modal chat on page load
+			setTimeout(function() {
+				//KTUtil.getByID('kt_app_chat_launch_btn').click();
+			}, 1000);
+        },
+        
+        setup: function(element) {
+            initChat(element);
         }
-    };
+	};
 }();
 
-KTUtil.ready(function() {
-    KTAppLayout.init();
+KTUtil.ready(function() {	
+	KTChat.init();
 });
 "use strict";
 
@@ -8923,7 +9084,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -8954,7 +9115,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -8985,7 +9146,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -9016,7 +9177,7 @@ var KTOffcanvasPanel = function() {
         }); 
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -9077,7 +9238,7 @@ var KTQuickPanel = function() {
 
     var initNotifications = function() {
         KTUtil.scrollInit(notificationPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -9088,7 +9249,7 @@ var KTQuickPanel = function() {
 
     var initLogs = function() {
         KTUtil.scrollInit(logsPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -9099,7 +9260,7 @@ var KTQuickPanel = function() {
 
     var initSettings = function() {
         KTUtil.scrollInit(settingsPanel, {
-            disableForMobile: true, 
+            mobileNativeScroll: true, 
             resetHeightOnDestroy: true, 
             handleWindowResize: true, 
             height: function() {
@@ -9627,6 +9788,31 @@ var KTLayout = function() {
         });
     }
 
+	// Calculate content available full height
+	var getContentHeight = function() {
+		var height;
+
+		height = KTUtil.getViewPort().height;
+
+		if (KTUtil.getByID('kt_header')) {
+            height = height - KTUtil.actualHeight('kt_header');
+		}
+
+		if (KTUtil.getByID('kt_subheader')) {
+            height = height - KTUtil.actualHeight('kt_subheader');
+		}
+
+		if (KTUtil.getByID('kt_footer')) {
+			height = height - parseInt(KTUtil.css('kt_footer', 'height'));
+		}
+
+		if (KTUtil.getByID('kt_content')) {
+			height = height - parseInt(KTUtil.css('kt_content', 'padding-top')) - parseInt(KTUtil.css('kt_content', 'padding-bottom'));
+        }
+        
+        return height;
+	}
+
     return {
         init: function() {
             body = KTUtil.get('body');
@@ -9734,7 +9920,11 @@ var KTLayout = function() {
             if (KTUtil.isMobileDevice()) {
                 headerMenuOffcanvas.hide();
             }
-        }
+        },
+
+        getContentHeight: function() {
+			return getContentHeight();
+		}
     };
 }();
 

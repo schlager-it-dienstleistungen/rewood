@@ -1,7 +1,7 @@
 "use strict";
 // Class definition
 
-var KTAppsUserListDatatable = function() {
+var KTAppUserListDatatable = function() {
 
 	// variables
 	var datatable;
@@ -441,5 +441,5 @@ var KTAppsUserListDatatable = function() {
 
 // On document ready
 KTUtil.ready(function() {
-	KTAppsUserListDatatable.init();
+	KTAppUserListDatatable.init();
 });

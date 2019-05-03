@@ -58,13 +58,23 @@ var KTOffcanvas = function(elementId, options) {
                         e.preventDefault();
                         Plugin.toggle();
                     }); 
-                } else if (the.options.toggleBy && the.options.toggleBy[0] && the.options.toggleBy[0].target) {
-                    for (var i in the.options.toggleBy) { 
-                        KTUtil.addEvent( the.options.toggleBy[i].target, 'click', function(e) {
-                            e.preventDefault();
-                            Plugin.toggle();
-                        }); 
+                } else if (the.options.toggleBy && the.options.toggleBy[0]) {
+                    if (the.options.toggleBy[0].target) {
+                        for (var i in the.options.toggleBy) { 
+                            KTUtil.addEvent( the.options.toggleBy[i].target, 'click', function(e) {
+                                e.preventDefault();
+                                Plugin.toggle();
+                            }); 
+                        }
+                    } else {
+                        for (var i in the.options.toggleBy) { 
+                            KTUtil.addEvent( the.options.toggleBy[i], 'click', function(e) {
+                                e.preventDefault();
+                                Plugin.toggle();
+                            }); 
+                        }
                     }
+                    
                 } else if (the.options.toggleBy && the.options.toggleBy.target) {
                     KTUtil.addEvent( the.options.toggleBy.target, 'click', function(e) {
                         e.preventDefault();

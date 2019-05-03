@@ -259,6 +259,43 @@ var KTLayout = function() {
         });
     }
 
+	// Calculate content available full height
+	var getContentHeight = function() {
+		var height;
+
+		height = KTUtil.getViewPort().height;
+
+        var headerEl = KTUtil.getByID('kt_header');
+        var headerBottomEl = KTUtil.find(headerEl, '.kt-header__bottom')
+
+		if (headerEl && headerBottomEl) {
+            height = height - KTUtil.actualHeight(headerBottomEl, 'margin-top');
+            height = height - parseInt(KTUtil.css(headerBottomEl, 'margin-top')) - parseInt(KTUtil.css(headerBottomEl, 'margin-bottom'));
+	    }
+
+		if (KTUtil.getByID('kt_subheader')) {
+            height = height - KTUtil.actualHeight('kt_subheader');
+		}
+
+		if (KTUtil.getByID('kt_footer')) {
+			height = height - parseInt(KTUtil.css('kt_footer', 'height'));
+        }
+
+        if (KTUtil.getByID('kt_wrapper')) {
+			height = height - parseInt(KTUtil.css('kt_wrapper', 'padding-top')) - parseInt(KTUtil.css('kt_wrapper', 'padding-bottom'));
+		}
+        
+        if (KTUtil.getByID('kt_body')) {
+			height = height - parseInt(KTUtil.css('kt_body', 'padding-top')) - parseInt(KTUtil.css('kt_body', 'padding-bottom'));
+		}
+
+		if (KTUtil.getByID('kt_content')) {
+			height = height - parseInt(KTUtil.css('kt_content', 'padding-top')) - parseInt(KTUtil.css('kt_content', 'padding-bottom'));
+		}
+
+		return height;
+	}
+
     return {
         init: function() {
             body = KTUtil.get('body');
@@ -318,7 +355,11 @@ var KTLayout = function() {
             if (KTUtil.isMobileDevice()) {
                 headerMenuOffcanvas.hide();
             }
-        }
+        },
+
+        getContentHeight: function() {
+			return getContentHeight();
+		}
     };
 }();
 

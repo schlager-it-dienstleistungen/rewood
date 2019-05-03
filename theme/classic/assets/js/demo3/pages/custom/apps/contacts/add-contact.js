@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppsContactsAdd = function () {
+var KTAppContactsAdd = function () {
 	// Base elements
 	var wizardEl;
 	var formEl;
@@ -122,5 +122,5 @@ var KTAppsContactsAdd = function () {
 }();
 
 jQuery(document).ready(function() {	
-	KTAppsContactsAdd.init();
+	KTAppContactsAdd.init();
 });

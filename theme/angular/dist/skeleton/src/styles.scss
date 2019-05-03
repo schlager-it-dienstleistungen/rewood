@@ -8,3 +8,13 @@
 .dropdown-toggle::after {
 	display: none !important;
 }
+
+
+.mat-table__wrapper--dashboard .mat-table {
+	min-width: 600px!important;
+	width: 100% !important;
+}
+
+.position-static {
+	position: static;
+}
