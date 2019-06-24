@@ -102,11 +102,6 @@
 			.kt-header__bottom {
 				display: none;
 			}
-
-			// Page fluid mode(below $kt-page-container-width)
-			@include kt-page-fluid-mode {
-				padding: 0 kt-get($kt-page-padding, desktop);
-			}
 		}
 	}
 }

@@ -1,8 +1,6 @@
 // Angular
 import { Component, OnInit, Inject, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-// Lodash
-import * as _lodash from 'lodash';
 // RxJS
 import { Observable, of, Subscription} from 'rxjs';
 // Lodash
@@ -74,7 +72,12 @@ export class RoleEditDialogComponent implements OnInit, OnDestroy {
 				return;
 			}
 
-			this.role = res;
+			this.role = new Role();
+			this.role.id = res.id;
+			this.role.title = res.title;
+			this.role.permissions = res.permissions;
+			this.role.isCoreRole = res.isCoreRole;
+
 			this.allPermissions$ = this.store.pipe(select(selectAllPermissions));
 			this.loadPermissions();
 		});

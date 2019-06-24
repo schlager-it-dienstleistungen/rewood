@@ -20,16 +20,17 @@
 			padding-bottom: kt-get($kt-footer-config, self, fixed, height);
 		} 
 
-		// Aside enabled
-		.kt-aside--enabled & {
-			padding-left: kt-get($kt-page-padding, desktop);
+		.kt-container.kt-container--fluid {
+			.kt-aside--enabled & {
+				padding-left: kt-get($kt-page-padding, desktop);
+			}	
 		}
 	}
 }
 
 @include kt-tablet-and-mobile {
 	.kt-content {
-		padding: kt-get($kt-page-padding, mobile) 0;
+		padding: kt-get($kt-page-padding, mobile)  0;
 
 		// Subheader enabled
 		.kt-subheader--enabled.kt-subheader--transparent & {

@@ -9,12 +9,9 @@ export class LayoutConfig {
 			'body': {
 				'background-image': './assets/media/misc/bg-1.jpg',
 			},
-			'logo': './assets/media/logos/logo-2.png'
-		},
-		// == Portlet Plugin
-		'portlet': {
-			'sticky': {
-				'offset': 50
+			'logo': {
+				'desktop': './assets/media/logos/logo-2.png',
+				'sticky': './assets/media/logos/logo-2-sm.png'
 			}
 		},
 		// == Page Splash Screen loading
@@ -27,7 +24,7 @@ export class LayoutConfig {
 		// == Colors for javascript
 		'colors': {
 			'state': {
-				'brand': '#3d4aed',
+				'brand': '#374afb',
 				'light': '#ffffff',
 				'dark': '#282a3c',
 				'primary': '#5867dd',
@@ -51,9 +48,9 @@ export class LayoutConfig {
 				]
 			}
 		},
-		'width': 'fixed',
 		'header': {
 			'self': {
+				'width': 'fixed',
 				'fixed': {
 					'desktop': {
 						'enabled': true,
@@ -68,7 +65,7 @@ export class LayoutConfig {
 			'menu': {
 				'self': {
 					'display': true,
-					'root-arrow': false
+					'root-arrow': false,
 				},
 				'desktop': {
 					'arrow': true,
@@ -112,14 +109,15 @@ export class LayoutConfig {
 			'display': true,
 			'fixed': false,
 			'layout': 'subheader-v2',
-			'style': 'transparent',
-			'daterangepicker': {
-				'display': true
-			}
+			'width': 'fixed',
+			'style': 'transparent'
+		},
+		'content': {
+			'width': 'fixed'
 		},
 		'footer': {
 			'self': {
-				'layout': 'extended'
+				'width': 'fixed',
 			}
 		}
 	};

@@ -9,12 +9,9 @@ export class LayoutConfig {
 			'body': {
 				'background-image': './assets/media/misc/bg-1.jpg',
 			},
-			'logo': './assets/media/logos/logo-5.png'
-		},
-		// == Portlet Plugin
-		'portlet': {
-			'sticky': {
-				'offset': 50
+			'logo': {
+				'desktop': './assets/media/logos/logo-5.png',
+				'sticky': './assets/media/logos/logo-5-sm.png'
 			}
 		},
 		// == Page Splash Screen loading
@@ -27,14 +24,14 @@ export class LayoutConfig {
 		// == Colors for javascript
 		'colors': {
 			'state': {
-				'brand': '#3d4aed',
+				'brand': '#3d94fb',
 				'light': '#ffffff',
 				'dark': '#282a3c',
 				'primary': '#5867dd',
 				'success': '#34bfa3',
-				'info': '#36a3f7',
+				'info': '#3d94fb',
 				'warning': '#ffb822',
-				'danger': '#fd3995'
+				'danger': '#fd27eb'
 			},
 			'base': {
 				'label': [
@@ -51,9 +48,9 @@ export class LayoutConfig {
 				]
 			}
 		},
-		'width': 'fixed',
 		'header': {
 			'self': {
+				'width': 'fixed',
 				'fixed': {
 					'desktop': {
 						'enabled': true,
@@ -62,13 +59,10 @@ export class LayoutConfig {
 					'mobile': true
 				}
 			},
-			'search': {
-				'display': true
-			},
 			'menu': {
 				'self': {
 					'display': true,
-					'root-arrow': false
+					'root-arrow': false,
 				},
 				'desktop': {
 					'arrow': true,
@@ -86,9 +80,15 @@ export class LayoutConfig {
 				}
 			}
 		},
+		'subheader': {
+			'display': true,
+			'fixed': false,
+			'layout': 'subheader-v1',
+			'width': 'fixed',
+			'style': 'transparent'
+		},
 		'aside': {
 			'self': {
-				'skin': 'light',
 				'fixed': true,
 				'display': false,
 				'minimize': {
@@ -108,17 +108,12 @@ export class LayoutConfig {
 				}
 			}
 		},
-		'subheader': {
-			'display': true,
-			'fixed': false,
-			'layout': 'subheader-v5',
-			'style': 'transparent',
-			'daterangepicker': {
-				'display': true
-			}
+		'content': {
+			'width': 'fixed'
 		},
 		'footer': {
 			'self': {
+				'width': 'fixed',
 				'layout': 'extended'
 			}
 		}

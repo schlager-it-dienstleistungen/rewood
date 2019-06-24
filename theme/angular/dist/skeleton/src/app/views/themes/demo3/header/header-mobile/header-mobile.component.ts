@@ -1,7 +1,7 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
 // Layout
-import { ToggleOptions, LayoutConfigService } from '../../../../../core/_base/layout';
+import { LayoutConfigService, ToggleOptions } from '../../../../../core/_base/layout';
 
 @Component({
 	selector: 'kt-header-mobile',

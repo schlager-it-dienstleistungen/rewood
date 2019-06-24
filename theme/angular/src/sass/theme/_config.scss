@@ -16,6 +16,7 @@
 @import "core/base/mixins/menu-vertical";
 @import "core/base/mixins/offcanvas";
 @import "core/base/mixins/spinner";
+@import "core/base/mixins/wave";
 
 // Theme mixins
 @import "core/layout/mixins/app";
@@ -127,10 +128,10 @@ $kt-state-colors: (
 // Base colors
 $kt-base-colors: (
     label: (
-        1: #adb1c7,
-        2: #a7abc3,
-        3: #6c7293,
-        4: #464457
+        1: #a2a5b9,
+        2: #74788d,
+        3: #595d6e,
+        4: #48465b
     ),
     shape: (
         1: #f0f3ff,
@@ -234,9 +235,12 @@ $kt-portlet: (
 
 // Page padding
 $kt-page-padding: (
-    desktop: 25px,
-    mobile: 15px
+	desktop: 25px,
+	mobile: 15px
 ) !default;
+
+// Page container width
+$kt-page-container-width: 1380px !default;
 
 // Custom Scroll(Perfect Scrollbar) size
 $kt-custom-scroll-size: 4px !default;

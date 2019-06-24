@@ -26,13 +26,19 @@ import {
 	MatTooltipModule
 } from '@angular/material';
 // NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect Scrollbar
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 // Core module
 import { CoreModule } from '../../core/core.module';
 // CRUD Partials
-import { ActionNotificationComponent, AlertComponent, DeleteEntityDialogComponent, FetchEntityDialogComponent, UpdateStatusDialogComponent } from './content/crud';
+import {
+	ActionNotificationComponent,
+	AlertComponent,
+	DeleteEntityDialogComponent,
+	FetchEntityDialogComponent,
+	UpdateStatusDialogComponent
+} from './content/crud';
 // Layout partials
 import {
 	ContextMenu2Component,
@@ -52,9 +58,10 @@ import {
 	Subheader3Component,
 	Subheader4Component,
 	Subheader5Component,
+	SubheaderSearchComponent,
 	UserProfile2Component,
-	UserProfileComponent,
-	UserProfile3Component
+	UserProfile3Component,
+	UserProfileComponent
 } from './layout';
 // General
 import { NoticeComponent } from './content/general/notice/notice.component';
@@ -90,6 +97,7 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		Subheader3Component,
 		Subheader4Component,
 		Subheader5Component,
+		SubheaderSearchComponent,
 		LanguageSelectorComponent,
 		NotificationComponent,
 		QuickActionComponent,
@@ -127,6 +135,7 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		Subheader3Component,
 		Subheader4Component,
 		Subheader5Component,
+		SubheaderSearchComponent,
 		LanguageSelectorComponent,
 		NotificationComponent,
 		QuickActionComponent,
@@ -144,12 +153,13 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		RouterModule,
 		FormsModule,
 		ReactiveFormsModule,
-		NgbModule,
 		PerfectScrollbarModule,
 		InlineSVGModule,
 		CoreModule,
 		PortletModule,
 		WidgetModule,
+
+		// angular material modules
 		MatButtonModule,
 		MatMenuModule,
 		MatSelectModule,
@@ -170,6 +180,11 @@ import { CartComponent } from './layout/topbar/cart/cart.component';
 		MatTabsModule,
 		MatTooltipModule,
 		MatDialogModule,
+
+		// ng-bootstrap modules
+		NgbDropdownModule,
+		NgbTabsetModule,
+		NgbTooltipModule,
 	]
 })
 export class PartialsModule {

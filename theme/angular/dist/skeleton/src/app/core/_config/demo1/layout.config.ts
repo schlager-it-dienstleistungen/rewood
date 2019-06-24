@@ -16,12 +16,6 @@ export class LayoutConfig {
 				'green': './assets/media/logos/logo-light.png',
 			}
 		},
-		// == Portlet Plugin
-		'portlet': {
-			'sticky': {
-				'offset': 50
-			}
-		},
 		// == Page Splash Screen loading
 		'loader': {
 			'enabled': true,
@@ -68,7 +62,7 @@ export class LayoutConfig {
 				'self': {
 					'display': true,
 					'layout': 'default',
-					'root-arrow': false
+					'root-arrow': false,
 				},
 				'desktop': {
 					'arrow': true,
@@ -90,7 +84,11 @@ export class LayoutConfig {
 			'display': true,
 			'layout': 'subheader-v1',
 			'fixed': true,
-			'style': 'transparent'
+			'width': 'fluid',
+			'style': 'solid'
+		},
+		'content': {
+			'width': 'fluid'
 		},
 		'brand': {
 			'self': {
@@ -126,7 +124,7 @@ export class LayoutConfig {
 		},
 		'footer': {
 			'self': {
-				'fixed': false
+				'width': 'fluid'
 			}
 		}
 	};

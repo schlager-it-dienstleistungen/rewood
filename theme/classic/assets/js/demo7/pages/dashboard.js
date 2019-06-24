@@ -1464,8 +1464,6 @@ var KTDashboard = function() {
             },
 
             layout: {
-                theme: 'default',
-                class: '',
                 scroll: true,
                 height: 500,
                 footer: false

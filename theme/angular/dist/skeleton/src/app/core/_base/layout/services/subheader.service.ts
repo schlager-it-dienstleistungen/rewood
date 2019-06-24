@@ -136,23 +136,18 @@ export class SubheaderService {
 	 * @param menus
 	 */
 	getBreadcrumbs(menus: any) {
-		let url = this.router.url;
-
-		// remove first route (demo name) from url router
-		if (new RegExp(/^\/de/).test(url)) {
-			const urls = url.split('/');
-			urls.splice(0, 2);
-			url = urls.join('/');
-		}
+		let url = this.pageConfigService.cleanUrl(this.router.url);
+		url = url.replace(new RegExp(/\./, 'g'), '/');
 
 		const breadcrumbs = [];
-		const menuPath = this.getPath(menus, url);
+		const menuPath = this.getPath(menus, url) || [];
 		menuPath.forEach(key => {
 			menus = menus[key];
 			if (typeof menus !== 'undefined' && menus.title) {
 				breadcrumbs.push(menus);
 			}
 		});
+
 		return breadcrumbs;
 	}
 
@@ -173,8 +168,7 @@ export class SubheaderService {
 	 */
 	getPath(obj, value) {
 		if (typeof obj !== 'object') {
-			// tslint:disable-next-line:no-var-keyword
-			throw new TypeError('Can only operate on Array or Object');
+			return;
 		}
 		const path = [];
 		let found = false;

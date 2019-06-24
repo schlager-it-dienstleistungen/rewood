@@ -1,7 +1,7 @@
 <kt-notice [icon]="'flaticon-warning kt-font-primary'">
 	The layout builder helps to configure the layout with preferred options and preview it in real time.
 	The configured layout options will be saved until you change or reset them.
-	To use the layout builder choose the layout options and click the <code>Preview</code> button to preview the changes.	<a class="kt-link" href="https://ng-bootstrap.github.io/#/components/progressbar/examples" target="_blank">demos & documentation</a>
+	To use the layout builder choose the layout options and click the <code>Preview</code> button to preview the changes.
 </kt-notice>
 
 <form class="kt-form kt-form--label-right" novalidate #form="ngForm" (ngSubmit)="submitPreview($event)">
@@ -9,34 +9,33 @@
 		<kt-portlet-header [noTitle]="true">
 			<ng-container ktPortletTools>
 				<ul ktTabClickEvent class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-left nav-tabs-line-primary" role="tablist">
-					<!-- skins option will be implemented soon -->
 					<li class="nav-item">
-						<a (click)="tab.select('tab-id-2')" class="nav-link active" href="javascript:;" role="tab">
+						<a (click)="tab.select('tab-id-1')" class="nav-link active" href="javascript:;" role="tab">
 							Page
 						</a>
 					</li>
 					<li class="nav-item">
-						<a (click)="tab.select('tab-id-3')" class="nav-link" href="javascript:;" role="tab">
+						<a (click)="tab.select('tab-id-2')" class="nav-link" href="javascript:;" role="tab">
 							Header
 						</a>
 					</li>
 					<li class="nav-item">
-						<a (click)="tab.select('tab-id-4')" class="nav-link" href="javascript:;" role="tab">
-							Topbar
-						</a>
-					</li>
-					<li class="nav-item">
-						<a (click)="tab.select('tab-id-5')" class="nav-link" href="javascript:;" role="tab">
+						<a (click)="tab.select('tab-id-3')" class="nav-link" href="javascript:;" role="tab">
 							Subheader
 						</a>
 					</li>
 					<li class="nav-item">
-						<a (click)="tab.select('tab-id-6')" class="nav-link" href="javascript:;" role="tab">
+						<a (click)="tab.select('tab-id-4')" class="nav-link" href="javascript:;" role="tab">
+							Content
+						</a>
+					</li>
+					<li class="nav-item">
+						<a (click)="tab.select('tab-id-5')" class="nav-link" href="javascript:;" role="tab">
 							Aside
 						</a>
 					</li>
 					<li class="nav-item">
-						<a (click)="tab.select('tab-id-8')" class="nav-link" href="javascript:;" role="tab">
+						<a (click)="tab.select('tab-id-6')" class="nav-link" href="javascript:;" role="tab">
 							Footer
 						</a>
 					</li>
@@ -45,8 +44,7 @@
 		</kt-portlet-header>
 		<kt-portlet-body>
 			<ngb-tabset #tab="ngbTabset">
-				<!-- skins option will be implemented soon -->
-				<ngb-tab id="tab-id-2">
+				<ngb-tab id="tab-id-1">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
 							<div class="kt-section__body">
@@ -66,19 +64,19 @@
 						</div>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="tab-id-3">
+				<ngb-tab id="tab-id-2">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
 							<div class="kt-section__body">
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Desktop Fixed Header:</label>
+									<label class="col-lg-3 col-form-label">Fixed Desktop Header:</label>
 									<div class="col-lg-9 col-xl-4">
 										<span class="kt-switch kt-switch--icon-check">
-										<label>
-									        <input type="checkbox" name="builder[header][self][fixed][desktop]" [(ngModel)]="model.header.self.fixed.desktop" value="true"/>
-									        <span></span>
-									    </label>
-									</span>
+											<label>
+												<input type="checkbox" name="builder[header][self][fixed][desktop]" [(ngModel)]="model.header.self.fixed.desktop" value="true"/>
+												<span></span>
+											</label>
+										</span>
 										<div class="form-text text-muted">Enable fixed header for desktop mode</div>
 									</div>
 								</div>
@@ -86,11 +84,11 @@
 									<label class="col-lg-3 col-form-label">Mobile Fixed Header:</label>
 									<div class="col-lg-9 col-xl-4">
 										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][self][fixed][mobile]" [(ngModel)]="model.header.self.fixed.mobile" value="true"/>
-									        <span></span>
-									    </label>
-									</span>
+											<label>
+												<input type="checkbox" name="builder[header][self][fixed][mobile]" [(ngModel)]="model.header.self.fixed.mobile" value="true"/>
+												<span></span>
+											</label>
+										</span>
 										<div class="form-text text-muted">Enable fixed header for mobile mode</div>
 									</div>
 								</div>
@@ -101,15 +99,14 @@
 									<label class="col-lg-3 col-form-label">Display Header Menu:</label>
 									<div class="col-lg-9 col-xl-4">
 										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][menu][self][display]" [(ngModel)]="model.header.menu.self.display" value="true"/>
-									        <span></span>
-									    </label>
-									</span>
+											<label>
+												<input type="checkbox" name="builder[header][menu][self][display]" [(ngModel)]="model.header.menu.self.display" value="true"/>
+												<span></span>
+											</label>
+										</span>
 										<div class="form-text text-muted">Display header menu</div>
 									</div>
 								</div>
-
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Header Menu Layout:</label>
 									<div class="col-lg-9 col-xl-4">
@@ -121,201 +118,25 @@
 									</div>
 								</div>
 
+								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Header Menu Arrows:</label>
 									<div class="col-lg-9 col-xl-4">
 										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][menu][self][root-arrow]" [(ngModel)]="model.header.menu.self['root-arrow']" value="true"/>
-									        <span></span>
-									    </label>
-									</span>
+											<label>
+												<input type="checkbox" name="builder[header][menu][self][root-arrow]" [(ngModel)]="model.header.menu.self['root-arrow']" value="true"/>
+												<span></span>
+											</label>
+										</span>
 										<div class="form-text text-muted">Enable header menu root link arrows</div>
 									</div>
 								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Header Search Layout:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][search][layout]" [(ngModel)]="model.header.topbar.search.layout">
-											<option value="offcanvas">Offcanvas</option>
-											<option value="dropdown">Dropdown</option>
-										</select>
-										<div class="form-text text-muted">Select header menu layout style</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="tab-id-4">
-					<ng-template ngbTabContent>
-						<div class="kt-section kt-margin-t-30">
-							<div class="kt-section__body">
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Topbar Search:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][search][display]" [(ngModel)]="model.header.topbar.search.display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar search</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar Search Layout:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][search][layout]" [(ngModel)]="model.header.topbar.search.layout">
-											<option value="offcanvas">Offcanvas</option>
-											<option value="dropdown">Dropdown</option>
-										</select>
-										<div class="form-text text-muted">Select topbar search layout style</div>
-									</div>
-								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Topbar Notifications:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][notifications][display]" [(ngModel)]="model.header.topbar.notifications.display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar notifications</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar Notifications Layout:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][notifications][layout]" [(ngModel)]="model.header.topbar.notifications.layout">
-											<option value="offcanvas">Offcanvas</option>
-											<option value="dropdown">Dropdown</option>
-										</select>
-										<div class="form-text text-muted">Select topbar notifications layout style</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar Notifications Dropdown Style:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][notifications][dropdown][style]" [(ngModel)]="model.header.topbar.notifications.dropdown.style">
-											<option value="light">Light</option>
-											<option value="dark">Dark</option>
-										</select>
-										<div class="form-text text-muted">Select topbar notifications dropdown layout style</div>
-									</div>
-								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Topbar Quick Actions:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][quick-actions][display]" [(ngModel)]="model.header.topbar['quick-actions'].display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar quick actions</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar Quick Actions Layout:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][quick-actions][layout]" [(ngModel)]="model.header.topbar['quick-actions'].layout">
-											<option value="offcanvas">Offcanvas</option>
-											<option value="dropdown">Dropdown</option>
-										</select>
-										<div class="form-text text-muted">Select topbar quick actions layout style</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar Quick Actions Dropdown Style:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][quick-actions][dropdown][style]" [(ngModel)]="model.header.topbar['quick-actions'].dropdown.style">
-											<option value="light">Light</option>
-											<option value="dark">Dark</option>
-										</select>
-										<div class="form-text text-muted">Select topbar quick actions dropdown layout style</div>
-									</div>
-								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Topbar User:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][user][display]" [(ngModel)]="model.header.topbar.user.display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar user</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar User Layout:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][user][layout]" [(ngModel)]="model.header.topbar.user.layout">
-											<option value="offcanvas">Offcanvas</option>
-											<option value="dropdown">Dropdown</option>
-										</select>
-										<div class="form-text text-muted">Select topbar user layout style</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Topbar User Dropdown Style:</label>
-									<div class="col-lg-9 col-xl-4">
-										<select class="form-control" name="builder[header][topbar][user][dropdown][style]" [(ngModel)]="model.header.topbar.user.dropdown.style">
-											<option value="light">Light</option>
-											<option value="dark">Dark</option>
-										</select>
-										<div class="form-text text-muted">Select topbar user dropdown layout style</div>
-									</div>
-								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Topbar Languages:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][languages][display]" [(ngModel)]="model.header.topbar.languages.display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar languages</div>
-									</div>
-								</div>
-
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
-
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Display Quick Panel:</label>
-									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
-										<label>
-											<input type="checkbox" name="builder[header][topbar][quick-panel][display]" [(ngModel)]="model.header.topbar['quick-panel'].display" value="true" />
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Display topbar quick panel</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</ng-template>
-				</ngb-tab>
-				<ngb-tab id="tab-id-5">
+				<ngb-tab id="tab-id-3">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
 							<div class="kt-section__body">
@@ -334,13 +155,23 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Fixed Subheader:</label>
 									<div class="col-lg-9 col-xl-4">
-									<span class="kt-switch kt-switch--icon-check">
-										<label>
-									        <input type="checkbox" name="builder[subheader][fixed]" [(ngModel)]="model.subheader.fixed" value="true"/>
-									        <span></span>
-									    </label>
-									</span>
-										<div class="form-text text-muted">Enable fixed(sticky) subheader</div>
+										<span class="kt-switch kt-switch--icon-check">
+											<label>
+												<input type="checkbox" name="builder[subheader][fixed]" [(ngModel)]="model.subheader.fixed" value="true"/>
+												<span></span>
+											</label>
+										</span>
+										<div class="form-text text-muted">Enable fixed(sticky) subheader. Requires <code>Solid</code> subheader style.</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Width:</label>
+									<div class="col-lg-9 col-xl-4">
+										<select class="form-control" name="builder[subheader][width]" [(ngModel)]="model.subheader.width">
+											<option value="fluid">Fluid</option>
+											<option value="fixed">Fixed</option>
+										</select>
+										<div class="form-text text-muted">Select layout width type.</div>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -357,7 +188,7 @@
 									<label class="col-lg-3 col-form-label">Subheader Layout:</label>
 									<div class="col-lg-9 col-xl-4">
 										<select class="form-control" name="builder[subheader][layout]" [(ngModel)]="model.subheader.layout">
-											<option value="subheader-v1">Subheader 1(default)</option>
+											<option value="subheader-v1">Subheader 1</option>
 											<option value="subheader-v2">Subheader 2</option>
 											<option value="subheader-v3">Subheader 3</option>
 										</select>
@@ -368,10 +199,40 @@
 						</div>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="tab-id-6">
+				<ngb-tab id="tab-id-4">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
 							<div class="kt-section__body">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Width:</label>
+									<div class="col-lg-9 col-xl-4">
+										<select class="form-control" name="builder[content][width]" [(ngModel)]="model.content.width">
+											<option value="fluid">Fluid</option>
+											<option value="fixed">Fixed</option>
+										</select>
+										<div class="form-text text-muted">Select layout width type.</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
+				<ngb-tab id="tab-id-5">
+					<ng-template ngbTabContent>
+						<div class="kt-section kt-margin-t-30">
+							<div class="kt-section__body">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Display:</label>
+									<div class="col-lg-9 col-xl-6">
+										<span class="kt-switch kt-switch--icon-check">
+										<label>
+											<input type="checkbox" name="builder[aside][self][display]" [(ngModel)]="model.aside.self.display" value="true"/>
+									        <span></span>
+									    </label>
+									</span>
+										<div class="form-text text-muted">Display aside menu</div>
+									</div>
+								</div>
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Fixed:</label>
 									<div class="col-lg-9 col-xl-4">
@@ -422,7 +283,7 @@
 						</div>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="tab-id-8">
+				<ngb-tab id="tab-id-6">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
 							<div class="kt-section__body">
@@ -435,7 +296,17 @@
 									        <span></span>
 									    </label>
 									</span>
-										<div class="form-text text-muted">Set fixed header</div>
+										<div class="form-text text-muted">Set fixed footer</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Width:</label>
+									<div class="col-lg-9 col-xl-4">
+										<select class="form-control" name="builder[footer][self][width]" [(ngModel)]="model.footer.self.width">
+											<option value="fluid">Fluid</option>
+											<option value="fixed">Fixed</option>
+										</select>
+										<div class="form-text text-muted">Select layout width type.</div>
 									</div>
 								</div>
 							</div>

@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Partials
 import { PartialsModule } from '../partials/partials.module';
 // Pages
@@ -21,7 +19,6 @@ import { MyPageComponent } from './my-page/my-page.component';
 		CommonModule,
 		HttpClientModule,
 		FormsModule,
-		NgbModule,
 		CoreModule,
 		PartialsModule,
 		MailModule,

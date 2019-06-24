@@ -44,6 +44,24 @@
 			text-align: center;
 		}
 	}
+
+	&.kt-form--center{
+		width: 60%;
+		margin: 0 auto;
+	}
+}
+
+// Validation feedback
+.is-valid {
+	.valid-feedback {
+		display: inline-block;
+	}
+}
+
+.is-invalid {
+	.invalid-feedback {
+		display: inline-block;
+	}
 }
 
 @include kt-desktop {

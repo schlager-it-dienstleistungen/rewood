@@ -173,21 +173,21 @@ var KTPortlet = function(elementId, options) {
 
             if (KTUtil.hasClass(body, 'kt-portlet--sticky')) {
                 if (the.options.sticky.position.top instanceof Function) {
-                    top = parseInt(the.options.sticky.position.top.call());
+                    top = parseInt(the.options.sticky.position.top.call(this, the));
                 } else {
                     top = parseInt(the.options.sticky.position.top);
                 }
 
                 var left;
                 if (the.options.sticky.position.left instanceof Function) {
-                    left = parseInt(the.options.sticky.position.left.call());
+                    left = parseInt(the.options.sticky.position.left.call(this, the));
                 } else {
                     left = parseInt(the.options.sticky.position.left);
                 }
 
                 var right;
                 if (the.options.sticky.position.right instanceof Function) {
-                    right = parseInt(the.options.sticky.position.right.call());
+                    right = parseInt(the.options.sticky.position.right.call(this, the));
                 } else {
                     right = parseInt(the.options.sticky.position.right);
                 }

@@ -2,20 +2,20 @@
 import { Injectable } from '@angular/core';
 // RxJS
 import { BehaviorSubject } from 'rxjs';
-// Object-Path
+// Object path
 import * as objectPath from 'object-path';
-// Service
+// Services
 import { MenuConfigService } from './menu-config.service';
 
 @Injectable()
 export class MenuHorizontalService {
 	// Public properties
-	menuList$: BehaviorSubject<any> = new BehaviorSubject({});
+	menuList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
 	/**
 	 * Service constructor
 	 *
-	 * @param menuConfigService: MenuConfigServcie
+	 * @param menuConfigService: MenuConfigService
 	 */
 	constructor(private menuConfigService: MenuConfigService) {
 		this.loadMenu();
@@ -26,7 +26,7 @@ export class MenuHorizontalService {
 	 */
 	loadMenu() {
 		// get menu list
-		const menuItems = objectPath.get(this.menuConfigService.getMenus(), 'header.items');
+		const menuItems: any[] = objectPath.get(this.menuConfigService.getMenus(), 'header.items');
 		this.menuList$.next(menuItems);
 	}
 }

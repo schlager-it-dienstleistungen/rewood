@@ -92,6 +92,12 @@
 			@if kt-has($item, link, arrow, padding) {
 				padding: kt-get($item, link, arrow, padding);
 			}
+
+			&:before {
+				[direction="rtl"] & {
+					content: "#{kt-get($kt-action-icons, left)}" !important;
+				}
+			}
 		}
 		
 		// link border radius

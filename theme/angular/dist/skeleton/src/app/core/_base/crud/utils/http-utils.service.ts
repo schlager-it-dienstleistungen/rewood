@@ -1,8 +1,6 @@
 // Angular
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpHeaders } from '@angular/common/http';
-// Lodash
-import * as _ from 'lodash';
 // CRUD
 import { QueryResultsModel } from '../models/query-models/query-results.model';
 import { QueryParamsModel } from '../models/query-models/query-params.model';

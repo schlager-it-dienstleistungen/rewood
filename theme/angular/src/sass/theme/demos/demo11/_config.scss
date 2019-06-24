@@ -44,10 +44,6 @@ $kt-state-colors: (
     )    
 );
 
-// Layout
-$kt-aside-default-width: 255px;
-$kt-aside-offcanvas-width: 255px;
-
 $kt-page-padding: (
 	desktop: 30px,
 	mobile: 15px
@@ -57,20 +53,19 @@ $kt-page-padding: (
 $kt-brand-hover-color: #f5f6fc;
 $kt-brand-inverse-color: #ffffff !default;
 
-// Body color
-$kt-page-body-bg-color: #f9f9fc;  // page body bg color
+// Layout
+$kt-aside-default-width: 255px;
+$kt-aside-offcanvas-width: 255px;
+
+// Page padding
+$kt-page-padding: (
+	desktop: 30px,
+	mobile: 15px
+);
+
+// Page container
 $kt-page-container-width: 1380px; //  fixed page width
-$kt-page-fluid-container-padding: 80px; // fluid page padding
+$kt-page-fluid-container-padding: 60px; // fluid page padding
 
-// Layout mixins
-@mixin kt-page-fixed-mode {
-	@media ( min-width: #{$kt-page-container-width + (2 * $kt-page-fluid-container-padding)} ) {
-        @content;
-    }
-}
-
-@mixin kt-page-fluid-mode {
-	@media (max-width: #{$kt-page-container-width + (2 * $kt-page-fluid-container-padding) - 1px}) {
-        @content;
-    }
-}
+// Body
+$kt-page-body-bg-color: #f9f9fc;  // page body bg color

@@ -15508,7 +15508,7 @@ if (KTUtil.isRTL()) {
 $.extend(true, $.fn.dataTable.defaults, defaults);
 
 // fix dropdown overflow inside datatable
-// KTApp.initAbsoluteDropdown($('body'));
+KTApp.initAbsoluteDropdown('.dataTables_wrapper');
 /*!
  AutoFill 2.3.3
  ©2008-2018 SpryMedia Ltd - datatables.net/license

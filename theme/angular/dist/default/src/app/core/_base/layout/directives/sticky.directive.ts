@@ -247,6 +247,7 @@ export class StickyDirective implements OnInit, AfterViewInit, OnDestroy {
 		this.stickyElement.nativeElement.style.top = this.marginTop$.value + 'px';
 		// this.stickyElement.nativeElement.style.left = left + 'px';
 		this.stickyElement.nativeElement.style.width = `${width}px`;
+		this.stickyElement.nativeElement.style.zIndex = `2`;
 		if (this.spacerElement) {
 			const spacerHeight = marginBottom + height + marginTop;
 			this.spacerElement.style.height = `${spacerHeight}px`;

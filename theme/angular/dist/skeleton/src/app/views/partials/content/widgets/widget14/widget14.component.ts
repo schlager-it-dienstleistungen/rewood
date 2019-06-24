@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 // Layout
 import { LayoutConfigService } from '../../../../../core/_base/layout';
 // Charts
-import { Chart } from 'chart.js';
+import { Chart } from 'chart.js/dist/Chart.min.js';
 
 @Component({
 	selector: 'kt-widget14',
@@ -15,7 +15,7 @@ export class Widget14Component implements OnInit {
 	@Input() title: string;
 	@Input() desc: string;
 	@Input() data: { labels: string[]; datasets: any[] };
-	@ViewChild('chart') chart: ElementRef;
+	@ViewChild('chart', {static: true}) chart: ElementRef;
 
 	/**
 	 * Component constructor

@@ -1,6 +1,6 @@
 {
     "name": "metronic",
-    "version": "6.0.3",
+    "version": "6.0.4",
     "config": {
         "demo": "",
         "debug": false,
@@ -122,7 +122,8 @@
                             "{$config.path.src}/js/theme/core/base/offcanvas.js",
                             "{$config.path.src}/js/theme/core/base/scrolltop.js",
                             "{$config.path.src}/js/theme/core/base/toggle.js",
-                            "{$config.path.src}/js/theme/core/base/dialog.js"
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
                         ]
                     },
                     "bundle": {
@@ -190,7 +191,8 @@
                             "{$config.path.src}/js/theme/core/base/offcanvas.js",
                             "{$config.path.src}/js/theme/core/base/scrolltop.js",
                             "{$config.path.src}/js/theme/core/base/toggle.js",
-                            "{$config.path.src}/js/theme/core/base/dialog.js"
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
                         ]
                     },
                     "bundle": {
@@ -226,7 +228,8 @@
                             "{$config.path.src}/js/theme/core/base/offcanvas.js",
                             "{$config.path.src}/js/theme/core/base/scrolltop.js",
                             "{$config.path.src}/js/theme/core/base/toggle.js",
-                            "{$config.path.src}/js/theme/core/base/dialog.js"
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
                         ]
                     },
                     "bundle": {
@@ -262,7 +265,8 @@
                             "{$config.path.src}/js/theme/core/base/offcanvas.js",
                             "{$config.path.src}/js/theme/core/base/scrolltop.js",
                             "{$config.path.src}/js/theme/core/base/toggle.js",
-                            "{$config.path.src}/js/theme/core/base/dialog.js"
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
                         ]
                     },
                     "bundle": {
@@ -298,7 +302,8 @@
                             "{$config.path.src}/js/theme/core/base/offcanvas.js",
                             "{$config.path.src}/js/theme/core/base/scrolltop.js",
                             "{$config.path.src}/js/theme/core/base/toggle.js",
-                            "{$config.path.src}/js/theme/core/base/dialog.js"
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
                         ]
                     },
                     "bundle": {
@@ -318,6 +323,191 @@
                     "output": {
                         "styles-by-demo": "{$config.dist}/css/demo5/pages/",
                         "scripts": "{$config.dist}/js/demo5/pages/"
+                    }
+                }
+            },
+            "demo6": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/theme/demos/demo6/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/core/util.js",
+                            "{$config.path.src}/js/theme/core/base/header.js",
+                            "{$config.path.src}/js/theme/core/base/menu.js",
+                            "{$config.path.src}/js/theme/core/base/offcanvas.js",
+                            "{$config.path.src}/js/theme/core/base/scrolltop.js",
+                            "{$config.path.src}/js/theme/core/base/toggle.js",
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/css/demo6/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo6/scripts.bundle.js"
+                    }
+                },
+                "pages": {
+                    "src": {
+                        "styles-by-demo": [
+                            "{$config.path.src}/sass/theme/pages/**/*.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/pages/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "styles-by-demo": "{$config.dist}/css/demo6/pages/",
+                        "scripts": "{$config.dist}/js/demo6/pages/"
+                    }
+                }
+            },
+            "demo7": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/theme/demos/demo7/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/core/util.js",
+                            "{$config.path.src}/js/theme/core/base/header.js",
+                            "{$config.path.src}/js/theme/core/base/menu.js",
+                            "{$config.path.src}/js/theme/core/base/offcanvas.js",
+                            "{$config.path.src}/js/theme/core/base/scrolltop.js",
+                            "{$config.path.src}/js/theme/core/base/toggle.js",
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/css/demo7/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo7/scripts.bundle.js"
+                    }
+                },
+                "pages": {
+                    "src": {
+                        "styles-by-demo": [
+                            "{$config.path.src}/sass/theme/pages/**/*.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/pages/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "styles-by-demo": "{$config.dist}/css/demo7/pages/",
+                        "scripts": "{$config.dist}/js/demo7/pages/"
+                    }
+                }
+            },
+            "demo8": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/theme/demos/demo8/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/core/util.js",
+                            "{$config.path.src}/js/theme/core/base/header.js",
+                            "{$config.path.src}/js/theme/core/base/menu.js",
+                            "{$config.path.src}/js/theme/core/base/offcanvas.js",
+                            "{$config.path.src}/js/theme/core/base/scrolltop.js",
+                            "{$config.path.src}/js/theme/core/base/toggle.js",
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/css/demo8/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo8/scripts.bundle.js"
+                    }
+                },
+                "pages": {
+                    "src": {
+                        "styles-by-demo": [
+                            "{$config.path.src}/sass/theme/pages/**/*.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/pages/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "styles-by-demo": "{$config.dist}/css/demo8/pages/",
+                        "scripts": "{$config.dist}/js/demo8/pages/"
+                    }
+                }
+            },
+            "demo9": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/theme/demos/demo9/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/core/util.js",
+                            "{$config.path.src}/js/theme/core/base/header.js",
+                            "{$config.path.src}/js/theme/core/base/menu.js",
+                            "{$config.path.src}/js/theme/core/base/offcanvas.js",
+                            "{$config.path.src}/js/theme/core/base/scrolltop.js",
+                            "{$config.path.src}/js/theme/core/base/toggle.js",
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/css/demo9/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo9/scripts.bundle.js"
+                    }
+                },
+                "pages": {
+                    "src": {
+                        "styles-by-demo": [
+                            "{$config.path.src}/sass/theme/pages/**/*.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/pages/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "styles-by-demo": "{$config.dist}/css/demo9/pages/",
+                        "scripts": "{$config.dist}/js/demo9/pages/"
+                    }
+                }
+            },
+            "demo10": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/theme/demos/demo10/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/core/util.js",
+                            "{$config.path.src}/js/theme/core/base/header.js",
+                            "{$config.path.src}/js/theme/core/base/menu.js",
+                            "{$config.path.src}/js/theme/core/base/offcanvas.js",
+                            "{$config.path.src}/js/theme/core/base/scrolltop.js",
+                            "{$config.path.src}/js/theme/core/base/toggle.js",
+                            "{$config.path.src}/js/theme/core/base/dialog.js",
+                            "{$config.path.src}/js/theme/core/base/wizard.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/css/demo10/style.bundle.css",
+                        "scripts": "{$config.dist}/js/demo10/scripts.bundle.js"
+                    }
+                },
+                "pages": {
+                    "src": {
+                        "styles-by-demo": [
+                            "{$config.path.src}/sass/theme/pages/**/*.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/theme/pages/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "styles-by-demo": "{$config.dist}/css/demo10/pages/",
+                        "scripts": "{$config.dist}/js/demo10/pages/"
                     }
                 }
             }

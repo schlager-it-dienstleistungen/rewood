@@ -10,7 +10,6 @@ export class LayoutConfig {
 				'background-image': './assets/media/demos/demo4/header.jpg',
 				'background-position': 'center top',
 				'background-size': '100% 350px',
-				'class': 'kt-page--loading-enabled kt-page--fixed kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent'
 			},
 			'logo': './assets/media/logos/logo-4.png'
 		},
@@ -24,7 +23,7 @@ export class LayoutConfig {
 		// == Colors for javascript
 		'colors': {
 			'state': {
-				'brand': '#3d4aed',
+				'brand': '#366cf3',
 				'light': '#ffffff',
 				'dark': '#282a3c',
 				'primary': '#5867dd',
@@ -48,24 +47,21 @@ export class LayoutConfig {
 				]
 			}
 		},
-		'width': 'fixed',
 		'header': {
 			'self': {
+				'width': 'fixed',
 				'fixed': {
 					'desktop': {
 						'enabled': true,
-						'mode': 'topbar'
+						'mode': 'menu'
 					},
 					'mobile': true
 				}
 			},
-			'search': {
-				'display': true
-			},
 			'menu': {
 				'self': {
 					'display': true,
-					'root-arrow': false
+					'root-arrow': false,
 				},
 				'desktop': {
 					'arrow': true,
@@ -83,36 +79,18 @@ export class LayoutConfig {
 				}
 			}
 		},
-		'aside': {
-			'self': {
-				'skin': 'light',
-				'fixed': true,
-				'display': false,
-				'minimize': {
-					'toggle': true,
-					'default': false
-				}
-			},
-			'menu': {
-				'dropdown': false,
-				'scroll': true,
-				'submenu': {
-					'accordion': true,
-					'dropdown': {
-						'arrow': true,
-						'hover-timeout': 500
-					}
-				}
-			}
-		},
 		'subheader': {
 			'display': true,
 			'layout': 'subheader-v4',
-			'fixed': false,
+			'width': 'fixed',
 			'style': 'transparent'
+		},
+		'content': {
+			'width': 'fixed'
 		},
 		'footer': {
 			'self': {
+				'width': 'fixed',
 				'layout': 'extended'
 			}
 		}

@@ -5,7 +5,6 @@ import { MaterialComponent } from './material.component';
 import { AutocompleteComponent } from './formcontrols/autocomplete/autocomplete.component';
 import { CheckboxComponent } from './formcontrols/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CodePreviewModule } from '../../partials/content/general/code-preview/code-preview.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
 import { MaterialPreviewModule } from '../../partials/content/general/material-preview/material-preview.module';
@@ -42,7 +41,6 @@ import {
 	MatButtonToggleModule,
 	MatBottomSheetModule,
 	MatExpansionModule,
-	_MatChipListMixinBase,
 	MatMenuModule,
 	MatTreeModule,
 	MAT_BOTTOM_SHEET_DATA,
@@ -294,7 +292,6 @@ const routes: Routes = [
 		MaterialPreviewModule,
 		FormsModule,
 		ReactiveFormsModule,
-		CodePreviewModule,
 		RouterModule.forChild(routes)
 	],
 	exports: [RouterModule],

@@ -12,4 +12,5 @@ declare var KTToggle: any;
 declare var KTUtil: any;
 declare var KTPortlet: any;
 declare var KTDialog: any;
+declare var KTWizard: any;
 declare var Chart: any;

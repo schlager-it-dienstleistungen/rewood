@@ -125,7 +125,7 @@ module.exports = {
             return gulpif(config.cssMinify, cleancss());
         }).pipe(function () {
             return gulpif(true, autoprefixer({
-                browsers: ['last 2 versions'],
+                overrideBrowserslist: ['last 2 versions'],
                 cascade: false,
             }));
         }).pipe(function () {

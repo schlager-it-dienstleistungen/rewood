@@ -51,10 +51,10 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	@HostBinding('class') classes: string = 'kt-portlet__head';
 	@HostBinding('attr.ktSticky') stickyDirective: StickyDirective;
 
-	@ViewChild('refIcon') refIcon: ElementRef;
+	@ViewChild('refIcon', {static: true}) refIcon: ElementRef;
 	hideIcon: boolean;
 
-	@ViewChild('refTools') refTools: ElementRef;
+	@ViewChild('refTools', {static: true}) refTools: ElementRef;
 	hideTools: boolean;
 
 	private lastScrollTop = 0;

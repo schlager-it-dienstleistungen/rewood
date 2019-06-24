@@ -1,6 +1,6 @@
 {
     "name": "metronic",
-    "version": "6.0.3",
+    "version": "6.0.4",
     "config": {
         "demo": "",
         "debug": false,
@@ -419,11 +419,18 @@
                 "fullcalendar": {
                     "src": {
                         "styles": [
-                            "{$config.path.node_modules}/fullcalendar/dist/fullcalendar.css"
+                            "{$config.path.node_modules}/@fullcalendar/core/main.css",
+                            "{$config.path.node_modules}/@fullcalendar/daygrid/main.css",
+                            "{$config.path.node_modules}/@fullcalendar/list/main.css",
+                            "{$config.path.node_modules}/@fullcalendar/timegrid/main.css"
                         ],
                         "scripts": [
-                            "{$config.path.node_modules}/fullcalendar/dist/fullcalendar.js",
-                            "{$config.path.node_modules}/fullcalendar/dist/gcal.js"
+                            "{$config.path.node_modules}/@fullcalendar/core/main.js",
+                            "{$config.path.node_modules}/@fullcalendar/daygrid/main.js",
+                            "{$config.path.node_modules}/@fullcalendar/google-calendar/main.js",
+                            "{$config.path.node_modules}/@fullcalendar/interaction/main.js",
+                            "{$config.path.node_modules}/@fullcalendar/list/main.js",
+                            "{$config.path.node_modules}/@fullcalendar/timegrid/main.js"
                         ]
                     },
                     "bundle": {

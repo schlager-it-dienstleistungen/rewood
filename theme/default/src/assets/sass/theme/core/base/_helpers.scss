@@ -508,3 +508,12 @@ b, strong {
 .kt-rounded {
 	border-radius: $kt-border-radius !important;
 }
+
+// Negative Spacing
+.kt-negative-spacing {
+	@for $i from 1 through 10 {		
+		&--#{$i}{
+			margin-top: -#{$i}0px;
+		}
+	} 
+}

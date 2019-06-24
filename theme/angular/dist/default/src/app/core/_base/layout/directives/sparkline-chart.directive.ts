@@ -1,7 +1,7 @@
 // Angular
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 // Chart
-import { Chart } from 'chart.js';
+import { Chart } from 'chart.js/dist/Chart.min.js';
 // LayoutConfig
 import { LayoutConfigService } from '../../layout/services/layout-config.service';
 

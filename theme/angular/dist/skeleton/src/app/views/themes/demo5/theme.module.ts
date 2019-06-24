@@ -4,9 +4,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+// Angular Material
 import { MatButtonModule, MatProgressBarModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 // NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbProgressbarModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Translation
 import { TranslateModule } from '@ngx-translate/core';
 // Loading bar
@@ -26,7 +27,7 @@ import { HeaderComponent } from './header/header.component';
 import { AsideLeftComponent } from './aside/aside-left.component';
 import { FooterComponent } from './footer/footer.component';
 import { SubheaderComponent } from './subheader/subheader.component';
-import { BrandComponent } from './header/brand/brand.component';
+import { BrandComponent } from './brand/brand.component';
 import { TopbarComponent } from './header/topbar/topbar.component';
 import { MenuHorizontalComponent } from './header/menu-horizontal/menu-horizontal.component';
 import { PartialsModule } from '../../partials/partials.module';
@@ -100,7 +101,6 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		PartialsModule,
 		CoreModule,
 		PerfectScrollbarModule,
-		NgbModule,
 		FormsModule,
 		MatProgressBarModule,
 		MatTabsModule,
@@ -109,7 +109,11 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		TranslateModule.forChild(),
 		LoadingBarModule,
 		NgxDaterangepickerMd,
-		InlineSVGModule
+		InlineSVGModule,
+
+		// ng-bootstrap modules
+		NgbProgressbarModule,
+		NgbTooltipModule,
 	]
 })
 export class ThemeModule {

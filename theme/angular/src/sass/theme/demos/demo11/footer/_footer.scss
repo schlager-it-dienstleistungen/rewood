@@ -9,7 +9,12 @@
 	align-items: center;
 	justify-content: space-between;
     padding: 1rem 0;
-    margin: 0;   
+	margin: 0;   
+	
+
+	.kt-container {
+		
+	}
 
     .kt-footer__wrapper {
     	display: flex;
@@ -57,11 +62,6 @@
 			.kt-aside--fixed & {
 				margin-left: kt-get($kt-aside-config, base, default, width) + kt-get($kt-page-padding, desktop);
 			}
-		}
-
-		// Aside static mode 
-		.kt-aside--static & {
-			margin-left: kt-get($kt-page-padding, desktop);
 		}
 	}
 }

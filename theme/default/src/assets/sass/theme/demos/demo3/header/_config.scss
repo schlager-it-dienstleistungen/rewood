@@ -244,102 +244,98 @@ $kt-header-config: (
 				),
 			
 				skin: (
-						// Primary item
-						item: (
-							// submenu
-							submenu: (
-								// submenu itself
-								self: (
-									bg-color: #ffffff,
-									box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15)
-								),
-
-								// 
-								item: (
-									link: (
-										self: (
-											bg-color: (
-												active: lighten(#f0f3ff, 2%),
-												here: lighten(#f0f3ff, 2%),
-												hover: lighten(#f0f3ff, 2%)
-											)
-										),
-
-										// link icon
-										icon: (
-											font-color:	(
-												default: #c7c7de,
-												active: kt-brand-color(),
-												here: kt-brand-color(),
-												hover: kt-brand-color()
-											)
-										),
-										// link bullet
-										bullet:	(
-											dot: (
-												bg-color: (
-													default: #c7c7de,
-													active: kt-brand-color(),
-													here: kt-brand-color(),
-													hover: kt-brand-color()
-												)
-											),
-											line: (
-												bg-color: (
-													default: #c7c7de,
-													active: kt-brand-color(),
-													here: kt-brand-color(),
-													hover: kt-brand-color()
-												)
-											)							
-										),	
-												
-										// link text
-										text: (
-											font-color:	(
-												default: #5f6281,
-												active: kt-brand-color(),
-												here: kt-brand-color(),
-												hover: kt-brand-color()
-											)
-										),
-										// link arrow
-										arrow: (
-											font-color:	(
-												default: #c7c7de,
-												active: kt-brand-color(),
-												here: kt-brand-color(),
-												hover: kt-brand-color()
-											)
+					// Primary item
+					item: (
+						// submenu
+						submenu: (
+							// submenu itself
+							self: (
+								bg-color: #ffffff,
+								box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15)
+							),
+							// 
+							item: (
+								link: (
+									self: (
+										bg-color: (
+											active: lighten(#f0f3ff, 2%),
+											here: lighten(#f0f3ff, 2%),
+											hover: lighten(#f0f3ff, 2%)
 										)
 									),
-
-									// mega menu column
-									column: (
-										// separator
-										separator: (
-											border: 1px solid #f6f6f9
+									// link icon
+									icon: (
+										font-color:	(
+											default: #c7c7de,
+											active: kt-brand-color(),
+											here: kt-brand-color(),
+											hover: kt-brand-color()
+										)
+									),
+									// link bullet
+									bullet:	(
+										dot: (
+											bg-color: (
+												default: #c7c7de,
+												active: kt-brand-color(),
+												here: kt-brand-color(),
+												hover: kt-brand-color()
+											)
 										),
+										line: (
+											bg-color: (
+												default: #c7c7de,
+												active: kt-brand-color(),
+												here: kt-brand-color(),
+												hover: kt-brand-color()
+											)
+										)							
+									),	
+								
+									// link text
+									text: (
+										font-color:	(
+											default: #5f6281,
+											active: kt-brand-color(),
+											here: kt-brand-color(),
+											hover: kt-brand-color()
+										)
+									),
+									// link arrow
+									arrow: (
+										font-color:	(
+											default: #c7c7de,
+											active: kt-brand-color(),
+											here: kt-brand-color(),
+											hover: kt-brand-color()
+										)
+									)
+								),
 
-										// heading
-										heading: (
-											// heading caption
-											caption: (										
-												// caption icon
-												icon: (
-													font-color:	#cacad2
-												),
-
-												// caption text
-												text: (
-													font-color:	#5f6281
-												)
+								// mega menu column
+								column: (
+									// separator
+									separator: (
+										border: 1px solid #f6f6f9
+									),
+									// heading
+									heading: (
+										// heading caption
+										caption: (										
+											// caption icon
+											icon: (
+												font-color:	#cacad2
+											),
+											// caption text
+											text: (
+												font-color:	#5f6281
 											)
 										)
 									)
 								)
 							)
-						)			
+						)
+					)			
 				)
 			)
 		),

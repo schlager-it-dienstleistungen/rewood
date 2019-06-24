@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 // Layout
 import { LayoutConfigService } from '../../../../core/_base/layout';
+// Object-Path
+import * as objectPath from 'object-path';
 
 @Component({
 	selector: 'kt-subheader',
@@ -11,6 +13,8 @@ export class SubheaderComponent implements OnInit {
 	// Public properties
 	// subheader layout
 	layout: string;
+	fluid: boolean;
+	clear: boolean;
 
 	/**
 	 * Component constructor
@@ -28,6 +32,10 @@ export class SubheaderComponent implements OnInit {
 	 * On init
 	 */
 	ngOnInit(): void {
-		this.layout = this.layoutConfigService.getConfig('subheader.layout');
+		const config = this.layoutConfigService.getConfig();
+
+		this.layout = objectPath.get(config, 'subheader.layout');
+		this.fluid = objectPath.get(config, 'footer.self.width') === 'fluid';
+		this.clear = objectPath.get(config, 'subheader.clear');
 	}
 }

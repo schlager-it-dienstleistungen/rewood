@@ -21,12 +21,7 @@
 		.kt-container {
 			display: flex;
 			align-items: stretch;
-			flex-grow: 1;
-
-			&.kt-container--fluid {
-				padding: 0 80px;
-			}
-
+			
 			&:before,
 			&:after {
 				display: none !important;
@@ -59,17 +54,6 @@
 		.kt-header--fixed.kt-header--minimize & {
 			transition: height 0.3s ease;
 			height: kt-get($kt-header-config, base, desktop, fixed, height);
-		}
-	}
-
-	// Page fluid mode(below $kt-page-container-width)
-	@include kt-page-fluid-mode {
-		.kt-header {
-			.kt-container {
-				flex-grow: 1;
-				width: 100%;
-				padding: 0 kt-get($kt-page-padding, desktop);
-			}
 		}
 	}
 }

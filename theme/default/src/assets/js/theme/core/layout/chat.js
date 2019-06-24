@@ -79,7 +79,7 @@ var KTChat = function () {
             }
 
 			var node = document.createElement("DIV");  
-			KTUtil.addClass(node, 'kt-chat__message kt-chat__message--right');
+			KTUtil.addClass(node, 'kt-chat__message kt-chat__message--brand kt-chat__message--right');
 
 			var html = 
 				'<div class="kt-chat__user">' +				
@@ -105,7 +105,7 @@ var KTChat = function () {
 			
 			setTimeout(function() {
 				var node = document.createElement("DIV");  
-				KTUtil.addClass(node, 'kt-chat__message');
+				KTUtil.addClass(node, 'kt-chat__message kt-chat__message--success');
 
 				var html = 
 					'<div class="kt-chat__user">' +

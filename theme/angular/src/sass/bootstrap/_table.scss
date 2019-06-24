@@ -5,6 +5,13 @@
 
 
 .table {
+
+	th, td{
+		&.table-center{
+			text-align: center;
+		}
+	}
+
 	thead {
 		th, td {
 			font-weight: 500;
@@ -32,6 +39,40 @@
 		thead {
 			th, td {
 				background-color: kt-base-color(grey, 1);
+			}
+		}
+	}
+
+	&.table-light{
+		tr{
+			border-radius: 5px;
+			color: #9392a0;
+
+			&:nth-child(even){
+				background-color: kt-base-color(grey,1);	
+			}	
+
+			td.table-row-title{
+				color: kt-base-color(label, 4);
+			}
+		}
+
+		thead{
+			tr{
+				background-color: rgba(kt-state-color(brand, base), 0.15);
+				color: kt-state-color(brand, base);
+			}
+		}
+
+		@each $name, $color in $kt-state-colors{
+
+			&--#{$name}{
+				thead{
+					tr{
+						color: kt-state-color(#{$name}, base);
+						background-color: rgba(kt-state-color(#{$name}, base), 0.15);
+					}
+				}
 			}
 		}
 	}

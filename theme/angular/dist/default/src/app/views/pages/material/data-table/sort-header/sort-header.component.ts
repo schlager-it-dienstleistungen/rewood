@@ -118,7 +118,7 @@ import {MatTableDataSource, MatSort} from '@angular/material';\n
 export class TableSortingExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);\n
-  @ViewChild(MatSort) sort: MatSort;\n
+  @ViewChild(MatSort, {static: true}) sort: MatSort;\n
   /**
   * Set the sort after the view init since this component will
   * be able to query its view for the initialized sort.
@@ -246,8 +246,8 @@ export class SortHeaderComponent implements OnInit, AfterViewInit {
 
 	sortedData;
 
-  @ViewChild('sort1') sort1: MatSort;
-  @ViewChild('sort2') sort2: MatSort;
+  @ViewChild('sort1', {static: true}) sort1: MatSort;
+  @ViewChild('sort2', {static: true}) sort2: MatSort;
 
 
 	ngOnInit() {

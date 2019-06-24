@@ -49,9 +49,6 @@ export class HtmlClassService {
 		this.initLayout();
 		this.initLoader();
 
-		// not yet implemented
-		// this.initAsideSecondary();
-
 		// init header and subheader menu
 		this.initHeader();
 		this.initSubheader();
@@ -93,6 +90,7 @@ export class HtmlClassService {
 				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
 			}
 		}
+
 		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
 			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
 		}
@@ -178,31 +176,6 @@ export class HtmlClassService {
 			objectPath.push(this.classes, 'aside_menu', 'kt-aside-menu--dropdown');
 			// enable menu dropdown
 		}
-	}
-
-	/**
-	 * Note yet implementd
-	 * Init Aside Secondary
-	 */
-	private initAsideSecondary() {
-		if (objectPath.get(this.config, 'aside-secondary.self.display')) {
-			document.body.classList.add('kt-aside-secondary--enabled');
-		}
-
-		// tslint:disable-next-line:max-line-length
-		if (objectPath.get(this.config, 'aside-secondary.self.expanded') === true && objectPath.get(this.config, 'aside-secondary.self.layout') !== 'layout-2') {
-			document.body.classList.add('kt-aside-secondary--expanded');
-		}
-
-		if (objectPath.get(this.config, 'aside-secondary.self.layout') === 'layout-3') {
-			document.body.classList.add('kt-aside-secondary--static');
-		}
-	}
-
-	/**
-	 * Init Content
-	 */
-	private initContent() {
 	}
 
 	/**

@@ -56,12 +56,8 @@ export class HtmlClassService {
 		// init aside and aside menu
 		this.initAside();
 
-		this.initContent();
-
 		// init footer
 		this.initFooter();
-
-		this.loadCoreStyles();
 
 		this.onClassesUpdated$.next(this.classes);
 	}
@@ -107,7 +103,7 @@ export class HtmlClassService {
 			document.body.style.backgroundSize = objectPath.get(this.config, 'self.body.background-size');
 		}
 
-		if (objectPath.get(this.config, 'width')) {
+		if (objectPath.has(this.config, 'width')) {
 			document.body.classList.add('kt-page--' + objectPath.get(this.config, 'width'));
 		}
 
@@ -218,29 +214,8 @@ export class HtmlClassService {
 	}
 
 	/**
-	 * Init Content
-	 */
-	private initContent() {
-		// Fixed content head
-		if (objectPath.get(this.config, 'content.head.fixed.desktop')) {
-			document.body.classList.add('kt-content-head--fixed');
-		}
-
-		if (objectPath.get(this.config, 'content.head.fixed.mobile')) {
-			document.body.classList.add('kt-content-head-mobile--fixed');
-		}
-
-		if (objectPath.get(this.config, 'content.head.display')) {
-			document.body.classList.add('kt-content-head--enabled');
-		}
-	}
-
-	/**
 	 * Init Footer
 	 */
 	private initFooter() {
-	}
-
-	private loadCoreStyles() {
 	}
 }

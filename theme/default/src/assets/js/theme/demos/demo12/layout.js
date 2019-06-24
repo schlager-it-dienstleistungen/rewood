@@ -267,57 +267,55 @@ var KTLayout = function() {
         });
     }
 
-    // Init page sticky portlet
-    var initPageStickyPortlet = function() {
-        var asideWidth = 255;
-        var asideMinimizeWidth = 78;
+	// Init page sticky portlet
+	var initPageStickyPortlet = function() {
+		var asideWidth = 265;
+		var asideMinimizeWidth = 70;
+		var asideSecondaryWidth = 60;
+		var asideSecondaryExpandedWidth = 310;
 
-        return new KTPortlet('kt_page_portlet', {
-            sticky: {
-                offset: parseInt(KTUtil.css( KTUtil.get('kt_header'), 'height')),
-                zIndex: 90,
-                position: {
-                    top: function() {
-                        if (KTUtil.isInResponsiveRange('desktop')) {
-                            var h = parseInt(KTUtil.css( KTUtil.get('kt_header'), 'height') );
-                            
-                            if (KTUtil.isInResponsiveRange('desktop') && KTUtil.hasClass(body, 'kt-subheader--fixed') && KTUtil.get('kt_subheader')) {
-                                h = h + parseInt(KTUtil.css( KTUtil.get('kt_subheader'), 'height') );
-                            }
+		return new KTPortlet('kt_page_portlet', {
+			sticky: {
+				offset: parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height')),
+				zIndex: 90,
+				position: {
+					top: function() {
+						var pos = 0;
 
-                            return h;
-                        } else {
-                            return parseInt(KTUtil.css( KTUtil.get('kt_header_mobile'), 'height') );
-                        }                        
-                    },
-                    left: function() {
-                        var left = 0;
+						if (KTUtil.isInResponsiveRange('desktop')) {
+							if (KTUtil.hasClass(body, 'kt-header--fixed')) {
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height'));
+							}
 
-                        if (KTUtil.isInResponsiveRange('desktop')) {
-                            if (KTUtil.hasClass(body, 'kt-aside--minimize')) {
-                                left += asideMinimizeWidth;
-                            } else {
-                                left += asideWidth;
-                            }
-                        }
+							if (KTUtil.hasClass(body, 'kt-subheader--fixed') && KTUtil.get('kt_subheader')) {
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_subheader'), 'height'));
+							}
+						} else {
+							if (KTUtil.hasClass(body, 'kt-header-mobile--fixed')) {
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_header_mobile'), 'height'));
+							}
+						}
 
-                        left += parseInt(KTUtil.css( KTUtil.get('kt_content_body'), 'paddingLeft'));
-
-                        return left; 
-                    },
-                    right: function() {
-                        var right = 0;
-
-                        if (KTUtil.isInResponsiveRange('desktop')) {                            
-                            right = parseInt(KTUtil.css( KTUtil.get('kt_content_body'), 'paddingRight'));
-                        }
-
-                        return right;
-                    }
-                }
-            }
-        });
-    }
+						return pos;
+					},
+					left: function(portlet) {
+						var porletEl = portlet.getSelf();      
+						
+						return KTUtil.offset(porletEl).left;
+					},
+					right: function(portlet) {
+                        var porletEl = portlet.getSelf();      
+                        
+                        var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
+						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
+						var portletOffsetLeft = KTUtil.offset(porletEl).left;
+					
+						return bodyWidth - portletWidth - portletOffsetLeft;
+					}
+				}
+			}
+		});
+	}
 
 	// Calculate content available full height
 	var getContentHeight = function() {

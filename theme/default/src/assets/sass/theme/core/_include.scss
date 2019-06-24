@@ -4,6 +4,7 @@
 
 
 // Base
+@import "../core/base/container";
 @import "../core/base/page-loader";
 @import "../core/base/normalize";
 @import "../core/base/animations";
@@ -24,6 +25,7 @@
 @import "../core/base/loader";
 @import "../core/base/pulse";
 @import "../core/base/dialog";
+@import "../core/base/mixins/wave";
 
 // Vendors
 @import "../../vendors/perfect-scrollbar";
@@ -77,6 +79,10 @@
 @import "general/user-pic";
 @import "general/pagination";
 @import "general/searchbar";
+@import "general/callout";
+@import "general/iconbox";
+@import "general/infobox";
+@import "general/ribbon";
 
 // Widgets - Chat
 @import "general/chat";
@@ -139,3 +145,6 @@
 
 // Widgets - General - Users
 @import "widgets/general/users";
+
+// Widgets - Projects
+@import "widgets/general/project-1";

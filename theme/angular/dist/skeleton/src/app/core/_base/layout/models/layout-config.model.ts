@@ -32,49 +32,53 @@ export interface LayoutConfigModel {
 	header: {
 		self: {
 			skin?: string;
-			layout?: string;
+			width?: string;
 			fixed: {
 				desktop: any;
 				mobile: boolean
 			}
 		};
+		// not implemented yet
 		topbar?: {
-			search: {
+			self?: {
+				width?: string;
+			}
+			search?: {
 				display: boolean;
 				layout: 'offcanvas' | 'dropdown';
 				dropdown?: {
 					style: 'light' | 'dark';
 				}
 			};
-			notifications: {
+			notifications?: {
 				display: boolean;
 				layout: 'offcanvas' | 'dropdown';
 				dropdown: {
 					style: 'light' | 'dark';
 				}
 			};
-			'quick-actions': {
+			'quick-actions'?: {
 				display: boolean;
 				layout: 'offcanvas' | 'dropdown';
 				dropdown: {
 					style: 'light' | 'dark';
 				}
 			};
-			user: {
+			user?: {
 				display: boolean;
 				layout: 'offcanvas' | 'dropdown';
 				dropdown: {
 					style: 'light' | 'dark';
 				}
 			};
-			languages: {
+			languages?: {
 				display: boolean
 			};
 			cart?: {
 				display: boolean
 			};
 			'my-cart'?: any
-			'quick-panel': {
+			'quick-panel'?: {
 				display: boolean
 			}
 		};
@@ -86,6 +90,7 @@ export interface LayoutConfigModel {
 				display: boolean;
 				layout?: string;
 				'root-arrow'?: boolean;
+				width?: string;
 			};
 			desktop: {
 				arrow: boolean;
@@ -124,6 +129,7 @@ export interface LayoutConfigModel {
 			}
 		};
 		menu: {
+			'root-arrow'?: boolean;
 			dropdown: boolean;
 			scroll: boolean;
 			submenu: {
@@ -138,13 +144,15 @@ export interface LayoutConfigModel {
 	'aside-secondary'?: {
 		self: {
 			display: boolean;
-			layout: string
+			layout?: string;
+			expanded?: boolean;
 		}
 	};
 	subheader?: {
 		display: boolean;
 		fixed?: boolean;
-		layout?: 'subheader-v1' | 'subheader-v2' | 'subheader-v3' | 'subheader-v4' | 'subheader-v5' | 'subheader-v6';
+		width?: string;
+		layout?: string;
 		style?: 'light' | 'solid' | 'transparent';
 		daterangepicker?: {
 			display: boolean

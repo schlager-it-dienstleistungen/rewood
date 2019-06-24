@@ -5,7 +5,6 @@ import { NgbootstrapComponent } from './ngbootstrap.component';
 import { AlertComponent } from './alert/alert.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { NgbAlertConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CodePreviewModule } from '../../partials/content/general/code-preview/code-preview.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
 import { MaterialPreviewModule } from '../../partials/content/general/material-preview/material-preview.module';
@@ -108,7 +107,6 @@ const routes: Routes = [
 		CommonModule,
 		PartialsModule,
 		NgbModule,
-		CodePreviewModule,
 		CoreModule,
 		MaterialPreviewModule,
 		RouterModule.forChild(routes),
@@ -116,7 +114,6 @@ const routes: Routes = [
 		ReactiveFormsModule,
 		HttpClientModule,
 		PerfectScrollbarModule
-
 	],
 	exports: [RouterModule],
 	declarations: [

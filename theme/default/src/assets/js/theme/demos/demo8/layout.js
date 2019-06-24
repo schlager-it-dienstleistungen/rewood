@@ -235,25 +235,25 @@ var KTLayout = function() {
                 position: {
                     top: function() {
                         if (KTUtil.isInResponsiveRange('desktop')) {
-                            return parseInt(KTUtil.css( KTUtil.get('kt_header'), 'height') );
+                            return 60; //parseInt(KTUtil.actualHeight( KTUtil.get('kt_header'), 'height') );
                         } else {
                             return parseInt(KTUtil.css( KTUtil.get('kt_header_mobile'), 'height') );
                         }                        
                     },
-                    left: function() {
-                        if (KTUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KTUtil.css( KTUtil.get('kt_content_wrapper'), 'paddingLeft'));
-                        }
-
-                        return;
-                    },
-                    right: function() {
-                        if (KTUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KTUtil.css( KTUtil.get('kt_content_wrapper'), 'paddingRight'));
-                        }
-
-                        return;
-                    }
+                    left: function(portlet) {
+						var porletEl = portlet.getSelf();      
+						
+						return KTUtil.offset(porletEl).left;
+					},
+					right: function(portlet) {
+                        var porletEl = portlet.getSelf();      
+                        
+                        var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
+						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
+						var portletOffsetLeft = KTUtil.offset(porletEl).left;
+					
+						return bodyWidth - portletWidth - portletOffsetLeft;
+					}
                 }
             }
         });

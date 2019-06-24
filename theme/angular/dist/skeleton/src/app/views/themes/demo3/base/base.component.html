@@ -1,16 +1,12 @@
 <!-- begin:: Page -->
 <ng-container *ngIf="selfLayout !== 'blank'; else blankLayout">
-	
 	<!-- begin:: Header Mobile -->
 	<kt-header-mobile></kt-header-mobile>
 	<!-- end:: Header Mobile -->
 
-	<!-- grid -->
 	<div class="kt-grid kt-grid--hor kt-grid--root">
-
 		<!-- begin::Body -->
 		<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
-
 			<!-- begin:: Aside Left -->
 			<ng-container *ngIf="asideDisplay">
 				<button class="kt-aside-close" id="kt_aside_close_btn"><i class="la la-close"></i></button>
@@ -24,13 +20,13 @@
 				<!-- end:: Header -->
 
 				<!-- begin:: Content -->
-				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+				<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 					<!-- begin:: Content Head -->
 					<kt-subheader *ngIf="subheaderDisplay"></kt-subheader>
 					<!-- end:: Content Head -->
 
 					<!-- begin:: Content Body -->
-					<div ktContentAnimate class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+					<div ktContentAnimate class="kt-container kt-grid__item kt-grid__item--fluid" [ngClass]="{'kt-container--fluid': fluid}">
 						<router-outlet></router-outlet>
 					</div>
 					<!-- end:: Content Body -->
@@ -39,15 +35,12 @@
 
 				<kt-footer></kt-footer>
 			</div>
-
-			<!-- begin:: Aside Secondary -->
-			<kt-aside-secondary *ngIf="asideSecondary"></kt-aside-secondary>
-			<!-- end:: Aside Secondary -->
 		</div>
 		<!-- end:: Body -->
 
 		<kt-quick-panel></kt-quick-panel>
 		<kt-scroll-top></kt-scroll-top>
+		<kt-sticky-toolbar></kt-sticky-toolbar>
 	</div>
 </ng-container>
 <!-- end:: Page -->

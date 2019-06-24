@@ -1,12 +1,19 @@
 // Angular
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import {
+	NavigationCancel,
+	NavigationEnd,
+	NavigationStart,
+	RouteConfigLoadEnd,
+	RouteConfigLoadStart,
+	Router
+} from '@angular/router';
 // Object-Path
 import * as objectPath from 'object-path';
 // Loading bar
 import { LoadingBarService } from '@ngx-loading-bar/core';
 // Layout
-import { LayoutRefService, LayoutConfigService } from '../../../../core/_base/layout';
+import { LayoutConfigService, LayoutRefService } from '../../../../core/_base/layout';
 // HTML Class Service
 import { HtmlClassService } from '../html-class.service';
 
@@ -19,7 +26,9 @@ import { HtmlClassService } from '../html-class.service';
 export class HeaderComponent implements OnInit, AfterViewInit {
 	// Public properties
 	menuHeaderDisplay: boolean;
-	@ViewChild('ktHeader') ktHeader: ElementRef;
+	fluid: boolean;
+
+	@ViewChild('ktHeader', {static: true}) ktHeader: ElementRef;
 
 	/**
 	 * Component constructor
@@ -68,6 +77,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 		// get menu header display option
 		this.menuHeaderDisplay = objectPath.get(config, 'header.menu.self.display');
+
+		// header width fluid
+		this.fluid = objectPath.get(config, 'header.self.width') === 'fluid';
 
 		// animate the header minimize the height on scroll down
 		if (objectPath.get(config, 'header.self.fixed.desktop.enabled') || objectPath.get(config, 'header.self.fixed.desktop')) {

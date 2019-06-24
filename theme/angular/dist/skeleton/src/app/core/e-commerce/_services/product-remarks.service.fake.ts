@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 // RxJS
 import { Observable, of, forkJoin } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-// Lodash
-import * as _ from 'lodash';
 // CRUD
 import { HttpUtilsService, QueryParamsModel, QueryResultsModel } from '../../_base/crud';
 // Models

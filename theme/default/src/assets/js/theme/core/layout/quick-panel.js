@@ -17,7 +17,7 @@ var KTQuickPanel = function() {
     }
 
     var initOffcanvas = function() {
-        var offcanvas = new KTOffcanvas(panel, {
+        new KTOffcanvas(panel, {
             overlay: true,  
             baseClass: 'kt-quick-panel',
             closeBy: 'kt_quick_panel_close_btn',

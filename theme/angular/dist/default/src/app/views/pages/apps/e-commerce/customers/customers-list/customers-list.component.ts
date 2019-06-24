@@ -36,10 +36,10 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 	// Table fields
 	dataSource: CustomersDataSource;
 	displayedColumns = ['select', 'id', 'lastName', 'firstName', 'email', 'gender', 'status', 'type', 'actions'];
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('sort1') sort: MatSort;
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild('sort1', {static: true}) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput') searchInput: ElementRef;
+	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 	filterStatus: string = '';
 	filterType: string = '';
 	// Selection

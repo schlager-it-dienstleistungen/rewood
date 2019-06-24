@@ -2,10 +2,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // Layout Directives
-import { ContentAnimateDirective, HeaderDirective, MenuDirective, StickyDirective } from './_base/layout';
-// Pipes
 // Services
-import { FirstLetterPipe, GetObjectPipe, JoinPipe, OffcanvasDirective, SafePipe, ScrollTopDirective, SparklineChartDirective, TabClickEventDirective, TimeElapsedPipe, ToggleDirective } from './_base/layout';
+import {
+	ContentAnimateDirective,
+	FirstLetterPipe,
+	GetObjectPipe,
+	HeaderDirective,
+	JoinPipe,
+	MenuDirective,
+	OffcanvasDirective,
+	SafePipe,
+	ScrollTopDirective,
+	SparklineChartDirective,
+	StickyDirective,
+	TabClickEventDirective,
+	TimeElapsedPipe,
+	ToggleDirective
+} from './_base/layout';
 
 @NgModule({
 	imports: [CommonModule],

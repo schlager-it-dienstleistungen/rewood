@@ -74,7 +74,7 @@
 
 @mixin kt-rounded {
     @if $kt-rounded == true {
-      @content;
+       @content;
     }
 }
 

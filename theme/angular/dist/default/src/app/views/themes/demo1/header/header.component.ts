@@ -26,7 +26,9 @@ import { HtmlClassService } from '../html-class.service';
 export class HeaderComponent implements OnInit, AfterViewInit {
 	// Public properties
 	menuHeaderDisplay: boolean;
-	@ViewChild('ktHeader') ktHeader: ElementRef;
+	fluid: boolean;
+
+	@ViewChild('ktHeader', {static: true}) ktHeader: ElementRef;
 
 	/**
 	 * Component constructor
@@ -75,6 +77,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 		// get menu header display option
 		this.menuHeaderDisplay = objectPath.get(config, 'header.menu.self.display');
+
+		// header width fluid
+		this.fluid = objectPath.get(config, 'header.self.width') === 'fluid';
 
 		// animate the header minimize the height on scroll down. to be removed, not applicable for default demo
 		/*if (objectPath.get(config, 'header.self.fixed.desktop.enabled') || objectPath.get(config, 'header.self.fixed.desktop')) {

@@ -1,5 +1,5 @@
 // Angular
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 // RxJS
 import { Observable } from 'rxjs';
 // NGRX
@@ -16,9 +16,10 @@ export class UserProfileComponent implements OnInit {
 	// Public properties
 	user$: Observable<User>;
 
-	@Input() showAvatar: boolean = true;
-	@Input() showHi: boolean = true;
-	@Input() showBadge: boolean = false;
+	@Input() avatar: boolean = true;
+	@Input() greeting: boolean = true;
+	@Input() badge: boolean;
+	@Input() icon: boolean;
 
 	/**
 	 * Component constructor

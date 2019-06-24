@@ -48,7 +48,6 @@ export class HtmlClassService {
 		// init base layout
 		this.initLayout();
 		this.initLoader();
-		// this.initAsideSecondary();
 
 		// init header and subheader menu
 		this.initHeader();
@@ -112,7 +111,7 @@ export class HtmlClassService {
 	 */
 	private initHeader() {
 		// Fixed header
-		if (objectPath.get(this.config, 'header.self.fixed.desktop.enabled')) {
+		if (objectPath.get(this.config, 'header.self.fixed.desktop')) {
 			document.body.classList.add('kt-header--fixed');
 			objectPath.push(this.classes, 'header', 'kt-header--fixed');
 		} else {

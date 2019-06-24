@@ -29,12 +29,6 @@
 				right: 0;
 				left: 0;
 				z-index: kt-get($kt-header-config, base, desktop, fixed, zindex);
-				padding: 0px $kt-page-fluid-container-padding;
-
-				// Page fluid mode(below $kt-page-container-width)
-				@include kt-page-fluid-mode {
-					padding: 0 kt-get($kt-page-padding, desktop);
-				}
 			}
 
 			// Fixed and minimized header

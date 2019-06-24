@@ -18,12 +18,12 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Google Material',
-							bullet: 'line',
+							bullet: 'dot',
 							icon: 'flaticon-interface-7',
 							submenu: [
 								{
 									title: 'Form Controls',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Auto Complete',
@@ -66,7 +66,7 @@ export class MenuConfig {
 								},
 								{
 									title: 'Navigation',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Menu',
@@ -84,7 +84,7 @@ export class MenuConfig {
 								},
 								{
 									title: 'Layout',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Card',
@@ -126,7 +126,7 @@ export class MenuConfig {
 								},
 								{
 									title: 'Buttons & Indicators',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Button',
@@ -160,7 +160,7 @@ export class MenuConfig {
 								},
 								{
 									title: 'Popups & Modals',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Bottom sheet',
@@ -182,7 +182,7 @@ export class MenuConfig {
 								},
 								{
 									title: 'Data table',
-									bullet: 'line',
+									bullet: 'dot',
 									submenu: [
 										{
 											title: 'Paginator',
@@ -202,7 +202,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Ng-Bootstrap',
-							bullet: 'line',
+							bullet: 'dot',
 							icon: 'flaticon-web',
 							submenu: [
 								{
@@ -281,7 +281,7 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'eCommerce',
-							bullet: 'line',
+							bullet: 'dot',
 							icon: 'flaticon-business',
 							permission: 'accessToECommerceModule',
 							submenu: [
@@ -297,7 +297,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'User Management',
-							bullet: 'line',
+							bullet: 'dot',
 							icon: 'flaticon-user',
 							submenu: [
 								{
@@ -320,33 +320,55 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Error Pages',
-							root: true,
-							bullet: 'line',
+							bullet: 'dot',
 							icon: 'flaticon2-attention',
 							submenu: [
 								{
-									title: 'Error Page - 1',
+									title: 'Error 1',
 									page: 'error/error-v1'
 								},
 								{
-									title: 'Error Page - 2',
+									title: 'Error 2',
 									page: 'error/error-v2'
 								},
 								{
-									title: 'Error Page - 3',
+									title: 'Error 3',
 									page: 'error/error-v3'
 								},
 								{
-									title: 'Error Page - 4',
+									title: 'Error 4',
 									page: 'error/error-v4'
 								},
 								{
-									title: 'Error Page - 5',
+									title: 'Error 5',
 									page: 'error/error-v5'
 								},
 								{
-									title: 'Error Page - 6',
+									title: 'Error 6',
 									page: 'error/error-v6'
+								},
+							]
+						},
+						{
+							title: 'Wizard',
+							bullet: 'dot',
+							icon: 'flaticon2-mail-1',
+							submenu: [
+								{
+									title: 'Wizard 1',
+									page: 'wizard/wizard-1'
+								},
+								{
+									title: 'Wizard 2',
+									page: 'wizard/wizard-2'
+								},
+								{
+									title: 'Wizard 3',
+									page: 'wizard/wizard-3'
+								},
+								{
+									title: 'Wizard 4',
+									page: 'wizard/wizard-4'
 								},
 							]
 						},
@@ -363,7 +385,7 @@ export class MenuConfig {
 					icon: 'flaticon2-architecture-and-city',
 					page: 'dashboard',
 					translate: 'MENU.DASHBOARD',
-					bullet: 'line',
+					bullet: 'dot',
 				},
 				{
 					title: 'Layout Builder',
@@ -371,20 +393,21 @@ export class MenuConfig {
 					icon: 'flaticon2-expand',
 					page: 'builder'
 				},
+				{section: 'Components'},
 				{
 					title: 'Google Material',
 					root: true,
-					bullet: 'line',
+					bullet: 'dot',
 					icon: 'flaticon2-browser-2',
 					submenu: [
 						{
 							title: 'Form Controls',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Auto Complete',
 									page: 'material/form-controls/autocomplete',
-									permissionId: 2
+									permission: 'accessToECommerceModule'
 								},
 								{
 									title: 'Checkbox',
@@ -422,7 +445,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Navigation',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Menu',
@@ -440,7 +463,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Layout',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Card',
@@ -482,7 +505,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Buttons & Indicators',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Button',
@@ -507,12 +530,16 @@ export class MenuConfig {
 								{
 									title: 'Progress spinner',
 									page: 'material/buttons-and-indicators/progress-spinner'
+								},
+								{
+									title: 'Ripples',
+									page: 'material/buttons-and-indicators/ripples'
 								}
 							]
 						},
 						{
 							title: 'Popups & Modals',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Bottom sheet',
@@ -534,7 +561,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Data table',
-							bullet: 'line',
+							bullet: 'dot',
 							submenu: [
 								{
 									title: 'Paginator',
@@ -553,9 +580,9 @@ export class MenuConfig {
 					]
 				},
 				{
-					title: 'Bootstrap',
+					title: 'Ng-Bootstrap',
 					root: true,
-					bullet: 'line',
+					bullet: 'dot',
 					icon: 'flaticon2-digital-marketing',
 					submenu: [
 						{
@@ -624,11 +651,13 @@ export class MenuConfig {
 						}
 					]
 				},
+				{section: 'Applications'},
 				{
 					title: 'eCommerce',
-					bullet: 'line',
+					bullet: 'dot',
 					icon: 'flaticon2-list-2',
 					root: true,
+					permission: 'accessToECommerceModule',
 					submenu: [
 						{
 							title: 'Customers',
@@ -643,9 +672,8 @@ export class MenuConfig {
 				{
 					title: 'User Management',
 					root: true,
-					bullet: 'line',
+					bullet: 'dot',
 					icon: 'flaticon2-user-outline-symbol',
-					permissionId: 2,
 					submenu: [
 						{
 							title: 'Users',
@@ -657,35 +685,60 @@ export class MenuConfig {
 						}
 					]
 				},
+				{section: 'Custom'},
 				{
 					title: 'Error Pages',
 					root: true,
-					bullet: 'line',
+					bullet: 'dot',
 					icon: 'flaticon2-attention',
 					submenu: [
 						{
-							title: 'Error Page - 1',
+							title: 'Error 1',
 							page: 'error/error-v1'
 						},
 						{
-							title: 'Error Page - 2',
+							title: 'Error 2',
 							page: 'error/error-v2'
 						},
 						{
-							title: 'Error Page - 3',
+							title: 'Error 3',
 							page: 'error/error-v3'
 						},
 						{
-							title: 'Error Page - 4',
+							title: 'Error 4',
 							page: 'error/error-v4'
 						},
 						{
-							title: 'Error Page - 5',
+							title: 'Error 5',
 							page: 'error/error-v5'
 						},
 						{
-							title: 'Error Page - 6',
+							title: 'Error 6',
 							page: 'error/error-v6'
+						},
+					]
+				},
+				{
+					title: 'Wizard',
+					root: true,
+					bullet: 'dot',
+					icon: 'flaticon2-mail-1',
+					submenu: [
+						{
+							title: 'Wizard 1',
+							page: 'wizard/wizard-1'
+						},
+						{
+							title: 'Wizard 2',
+							page: 'wizard/wizard-2'
+						},
+						{
+							title: 'Wizard 3',
+							page: 'wizard/wizard-3'
+						},
+						{
+							title: 'Wizard 4',
+							page: 'wizard/wizard-4'
 						},
 					]
 				},

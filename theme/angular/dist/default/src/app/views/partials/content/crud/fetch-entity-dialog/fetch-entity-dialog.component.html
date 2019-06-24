@@ -12,9 +12,9 @@
 			<div class="kt-list-timeline kt-list-timeline--skin-light kt-padding-30">
 				<div class="kt-list-timeline__items">
 					<div class="kt-list-timeline__item" *ngFor="let message of data">
-						<span class="kt-list-timeline__badge kt-list-timeline__badge--{{ getItemCssClassByStatus(message.status)}}"></span>
+						<span class="kt-list-timeline__badge kt-list-timeline__badge--{{getItemCssClassByStatus(message.status)}}"></span>
 						<span class="kt-list-timeline__text">{{message.text}}
-							<span class="kt-badge kt-badge--{{ getItemCssClassByStatus(message.status)}} kt-badge--wide">ID: {{message.id}}</span>
+							<span class="kt-badge kt-badge--{{getItemCssClassByStatus(message.status)}} kt-badge--wide">ID: {{message.id}}</span>
 						</span>
 					</div>
 				</div>

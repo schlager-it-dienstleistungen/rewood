@@ -287,70 +287,43 @@ var KTLayout = function() {
 
 	// Init page sticky portlet
 	var initPageStickyPortlet = function() {
-		var asideWidth = 255;
-		var asideMinimizeWidth = 78;
-		var asideSecondaryWidth = 60;
-		var asideSecondaryExpandedWidth = 310;
-
 		return new KTPortlet('kt_page_portlet', {
 			sticky: {
 				offset: parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height')),
 				zIndex: 90,
 				position: {
 					top: function() {
-						var h = 0;
+						var pos = 0;
 
 						if (KTUtil.isInResponsiveRange('desktop')) {
 							if (KTUtil.hasClass(body, 'kt-header--fixed')) {
-								h = h + parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height'));
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height'));
 							}
 
 							if (KTUtil.hasClass(body, 'kt-subheader--fixed') && KTUtil.get('kt_subheader')) {
-								h = h + parseInt(KTUtil.css(KTUtil.get('kt_subheader'), 'height'));
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_subheader'), 'height'));
 							}
 						} else {
 							if (KTUtil.hasClass(body, 'kt-header-mobile--fixed')) {
-								h = h + parseInt(KTUtil.css(KTUtil.get('kt_header_mobile'), 'height'));
+								pos = pos + parseInt(KTUtil.css(KTUtil.get('kt_header_mobile'), 'height'));
 							}
 						}
 
-						return h;
+						return pos;
 					},
-					left: function() {
-						var left = 0;
-
-						if (KTUtil.isInResponsiveRange('desktop')) {
-							if (KTUtil.hasClass(body, 'kt-aside--minimize')) {
-								left += asideMinimizeWidth;
-							} else if (KTUtil.hasClass(body, 'kt-aside--enabled')) {
-								left += asideWidth;
-							}
-						}
-
-						left += parseInt(KTUtil.css(KTUtil.get('kt_content'), 'paddingLeft'));
-
-						return left;
+					left: function(portlet) {
+						var porletEl = portlet.getSelf();      
+						
+						return KTUtil.offset(porletEl).left;
 					},
-					right: function() {
-						var right = 0;
+					right: function(portlet) {
+						var porletEl = portlet.getSelf();      
 
-						if (KTUtil.isInResponsiveRange('desktop')) {
-							if (KTUtil.hasClass(body, 'kt-aside-secondary--enabled')) {
-								if (KTUtil.hasClass(body, 'kt-aside-secondary--expanded')) {
-									right += asideSecondaryExpandedWidth + asideSecondaryWidth;
-								} else {
-									right += asideSecondaryWidth;
-								}
-							} else {
-								right += parseInt(KTUtil.css(KTUtil.get('kt_content'), 'paddingRight'));
-							}
-						}
-
-						if (KTUtil.get('kt_aside_secondary')) {
-							right += parseInt(KTUtil.css(KTUtil.get('kt_content'), 'paddingRight'));
-						}
-
-						return right;
+						var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
+						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
+						var portletOffsetLeft = KTUtil.offset(porletEl).left;
+					
+						return bodyWidth - portletWidth - portletOffsetLeft;
 					}
 				}
 			}

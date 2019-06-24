@@ -1,7 +1,7 @@
 // Angular
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 // RxJS
-import { Subscription, Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 // Object-Path
 import * as objectPath from 'object-path';
 // Layout
@@ -12,8 +12,8 @@ import { MenuConfig } from '../../../../core/_config/demo4/menu.config';
 import { PageConfig } from '../../../../core/_config/demo4/page.config';
 // User permissions
 import { NgxPermissionsService } from 'ngx-permissions';
-import { Permission, currentUserPermissions } from '../../../../core/auth';
-import { Store, select } from '@ngrx/store';
+import { currentUserPermissions, Permission } from '../../../../core/auth';
+import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../../core/reducers';
 
 @Component({
@@ -23,11 +23,12 @@ import { AppState } from '../../../../core/reducers';
 	encapsulation: ViewEncapsulation.None
 })
 export class BaseComponent implements OnInit, OnDestroy {
-	// Public constructor
+	// Public variables
 	selfLayout: string;
 	asideDisplay: boolean;
 	asideSecondary: boolean;
 	subheaderDisplay: boolean;
+	fluid: boolean;
 
 	// Private properties
 	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
@@ -41,6 +42,8 @@ export class BaseComponent implements OnInit, OnDestroy {
 	 * @param menuConfigService: MenuConfifService
 	 * @param pageConfigService: PageConfigService
 	 * @param htmlClassService: HtmlClassService
+	 * @param store
+	 * @param permissionsService
 	 */
 	constructor(
 		private layoutConfigService: LayoutConfigService,
@@ -52,23 +55,19 @@ export class BaseComponent implements OnInit, OnDestroy {
 		this.loadRolesWithPermissions();
 
 		// register configs by demos
-		const _layoutConfig = new LayoutConfig().configs;
-
 		this.layoutConfigService.loadConfigs(new LayoutConfig().configs);
 		this.menuConfigService.loadConfigs(new MenuConfig().configs);
 		this.pageConfigService.loadConfigs(new PageConfig().configs);
 
 		// setup element classes
-		const _layoutServiceConfig = this.layoutConfigService.getConfig();
-
 		this.htmlClassService.setConfig(this.layoutConfigService.getConfig());
 
-		const layoutSubdscription = this.layoutConfigService.onConfigUpdated$.subscribe(layoutConfig => {
+		const subscr = this.layoutConfigService.onConfigUpdated$.subscribe(layoutConfig => {
 			// reset body class based on global and page level layout config, refer to html-class.service.ts
 			document.body.className = '';
 			this.htmlClassService.setConfig(layoutConfig);
 		});
-		this.unsubscribe.push(layoutSubdscription);
+		this.unsubscribe.push(subscr);
 	}
 
 	/**
@@ -84,14 +83,15 @@ export class BaseComponent implements OnInit, OnDestroy {
 		this.asideDisplay = objectPath.get(config, 'aside.self.display');
 		this.asideSecondary = objectPath.get(config, 'aside-secondary.self.display');
 		this.subheaderDisplay = objectPath.get(config, 'subheader.display');
+		this.fluid = objectPath.get(config, 'content.width') === 'fluid';
 
 		// let the layout type change
-		const layoutConfigSubscription = this.layoutConfigService.onConfigUpdated$.subscribe(cfg => {
+		const subscr = this.layoutConfigService.onConfigUpdated$.subscribe(cfg => {
 			setTimeout(() => {
 				this.selfLayout = objectPath.get(cfg, 'self.layout');
 			});
 		});
-		this.unsubscribe.push(layoutConfigSubscription);
+		this.unsubscribe.push(subscr);
 	}
 
 	/**

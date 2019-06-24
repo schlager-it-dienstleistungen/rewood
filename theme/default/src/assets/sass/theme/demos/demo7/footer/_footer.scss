@@ -5,10 +5,13 @@
 
 
 .kt-footer {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px kt-get($kt-page-padding, desktop);
+	padding: 20px 0;
 	background: #ffffff;
+
+	.kt-container {		
+		display: flex;
+		justify-content: space-between;
+	}
 
 	.kt-footer__copyright {
 		display: flex;
@@ -63,15 +66,16 @@
 
 @include kt-tablet-and-mobile {
 	.kt-footer {
-		padding: 15px kt-get($kt-page-padding, mobile);
+		padding: 15px 0;
 	}
 }
 
 @include kt-mobile {
 	.kt-footer {
-		flex-direction: column;
-		justify-content: center;
-
+		.kt-container {					
+			flex-direction: column;
+			justify-content: center;
+		}
 		.kt-footer__copyright {
 			justify-content: center;
 			padding: 0;

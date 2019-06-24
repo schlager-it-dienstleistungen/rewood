@@ -9,22 +9,6 @@ $kt-subheader-config: (
 	fixed: (
 		height: 54px
 	),
-
-	style: (
-		light: (
-			space: (
-				desktop: 20px,
-				mobile: 10px
-			)
-		),
-		solid: (
-			space: (
-				desktop: 10px,  
-				mobile: 2px				
-			)
-		)
-	),
-
 	toggle: (
 		width: 20px,
 		height: 22px,  
@@ -42,12 +26,17 @@ $kt-subheader-config: (
 
 // Base
 .kt-subheader {
-	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
-	flex-wrap: wrap;
-	padding: kt-get($kt-subheader-config, style, solid, space, desktop) kt-get($kt-page-padding, desktop);
 	background-color: #fff;
+	display: flex;
+	align-items: stretch;
+	margin: 10px 0; 
+	
+	.kt-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+		flex-wrap: wrap;	
+	}
 
 	// Head actions buttons
 	.btn {
@@ -319,8 +308,7 @@ $kt-subheader-config: (
 	// Transparent style
 	.kt-subheader--transparent & {
 		background-color: transparent;
-		padding: kt-get($kt-subheader-config, style, light, space, desktop) kt-get($kt-page-padding, desktop);
-
+		
 		// Main
 		.kt-subheader__main {
 			.kt-subheader__separator {
@@ -413,11 +401,10 @@ $kt-subheader-config: (
 @include kt-tablet-and-mobile {
 	// Subheader
 	.kt-subheader {
-		padding: kt-get($kt-subheader-config, style, solid, space, mobile) kt-get($kt-page-padding, mobile);
+		margin: 2px 0; 
 
 		// Main
 		.kt-subheader__main {
-
 			// Mobile Toggler			
 			@include kt-burger-icon-build(kt-subheader__mobile-toggle, kt-get($kt-subheader-config, toggle));
 			@include kt-burger-icon-skin(kt-subheader__mobile-toggle, kt-get($kt-subheader-config, toggle, color));
@@ -445,7 +432,7 @@ $kt-subheader-config: (
 
 		// Light style
 		.kt-subheader--transparent & {
-			padding: kt-get($kt-subheader-config, style, light, space, mobile) kt-get($kt-page-padding, mobile);
+			background-color: transparent;
 		}
 	}	
 }
@@ -453,6 +440,7 @@ $kt-subheader-config: (
 @include kt-mobile {
 	// Subheader
 	.kt-subheader {
+
 		// Toolbar
 		.kt-subheader__toolbar {
 			padding-top: 0.5rem;

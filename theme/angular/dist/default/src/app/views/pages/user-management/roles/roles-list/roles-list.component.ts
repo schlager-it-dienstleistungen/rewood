@@ -9,8 +9,6 @@ import { fromEvent, merge, Observable, of, Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 // NGRX
 import { Store } from '@ngrx/store';
-// LODASH
-import _ from 'lodash';
 // Services
 import { LayoutUtilsService, MessageType } from '../../../../../core/_base/crud';
 // Models
@@ -37,10 +35,10 @@ export class RolesListComponent implements OnInit, OnDestroy {
 	// Table fields
 	dataSource: RolesDataSource;
 	displayedColumns = ['select', 'id', 'title', 'actions'];
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('sort1') sort: MatSort;
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild('sort1', {static: true}) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput') searchInput: ElementRef;
+	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 	// Selection
 	selection = new SelectionModel<Role>(true, []);
 	rolesResult: Role[] = [];

@@ -107,27 +107,25 @@ var KTApp = function() {
         var sticky = new Sticky('[data-sticky="true"]');
     }
 
-    var initAbsoluteDropdown = function(dropdown) {
+    var initAbsoluteDropdown = function(context) {
         var dropdownMenu;
 
-        if (!dropdown) {
+        if (!context) {
             return;
         }
 
-        dropdown.on('show.bs.dropdown', function(e) {
-            dropdownMenu = $(e.target).find('.dropdown-menu');
-            $('body').append(dropdownMenu.detach());
-            dropdownMenu.css('display', 'block');
-            dropdownMenu.position({
-                'my': 'right top',
-                'at': 'right bottom',
-                'of': $(e.relatedTarget)
-            });
-        });
-
-        dropdown.on('hide.bs.dropdown', function(e) {
-            $(e.target).append(dropdownMenu.detach());
-            dropdownMenu.hide();
+        $('body').on('show.bs.dropdown', context, function(e) {
+        	dropdownMenu = $(e.target).find('.dropdown-menu');
+        	$('body').append(dropdownMenu.detach());
+        	dropdownMenu.css('display', 'block');
+        	dropdownMenu.position({
+        		'my': 'right top',
+        		'at': 'right bottom',
+        		'of': $(e.relatedTarget),
+        	});
+        }).on('hide.bs.dropdown', context, function(e) {
+        	$(e.target).append(dropdownMenu.detach());
+        	dropdownMenu.hide();
         });
     }
 
@@ -208,15 +206,15 @@ var KTApp = function() {
             initSticky();
         },
 
-        initAbsoluteDropdown: function(dropdown) {
-            initAbsoluteDropdown(dropdown);
+        initAbsoluteDropdown: function(context) {
+            initAbsoluteDropdown(context);
         },
 
         block: function(target, options) {
             var el = $(target);
 
             options = $.extend(true, {
-                opacity: 0.03,
+                opacity: 0.05,
                 overlayColor: '#000000',
                 type: '',
                 size: '',

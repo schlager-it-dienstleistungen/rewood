@@ -154,7 +154,7 @@ import {Component, ViewChild} from '@angular/core';\n
 export class NgbdPopoverTplwithcontext {
     greeting = {};
     name = 'World';\n
-    @ViewChild('p') public popover: NgbPopover;\n
+    @ViewChild('p', {static: true}) public popover: NgbPopover;\n
     public changeGreeting(greeting: any): void {
         const isOpen = this.popover.isOpen();
         this.popover.close();
@@ -287,8 +287,8 @@ export class PopoverComponent implements OnInit {
 	greeting = {};
 	name1 = 'World';
 
-	@ViewChild('p') public popover: NgbPopover;
-	@ViewChild('p2') public popover2: NgbPopover;
+	@ViewChild('p', {static: true}) public popover: NgbPopover;
+	@ViewChild('p2', {static: true}) public popover2: NgbPopover;
 
 	constructor(config: NgbPopoverConfig) {
 		// customize default values of popovers used by this component tree

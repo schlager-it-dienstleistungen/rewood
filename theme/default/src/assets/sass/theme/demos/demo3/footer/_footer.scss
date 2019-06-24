@@ -5,10 +5,13 @@
 
 
 .kt-footer {
-	display: flex;
-	justify-content: space-between;
 	padding: 20px kt-get($kt-page-padding, desktop);
 	background: #ffffff;
+
+	.kt-container {		
+		display: flex;
+		justify-content: space-between;
+	}
 
 	.kt-footer__copyright {
 		display: flex;
@@ -69,8 +72,10 @@
 
 @include kt-mobile {
 	.kt-footer {
-		flex-direction: column;
-		justify-content: center;
+		.kt-container {					
+			flex-direction: column;
+			justify-content: center;
+		}
 
 		.kt-footer__copyright {
 			justify-content: center;

@@ -162,7 +162,7 @@ var KTMenu = function(elementId, options) {
         scrollInit: function() {
             if ( the.options.scroll && the.options.scroll.height ) {
                 KTUtil.scrollDestroy(element);
-                KTUtil.scrollInit(element, {disableForMobile: true, resetHeightOnDestroy: true, handleWindowResize: true, height: the.options.scroll.height, rememberPosition: the.options.scroll.rememberPosition});
+                KTUtil.scrollInit(element, {mobileNativeScroll: true, windowScroll: false, resetHeightOnDestroy: true, handleWindowResize: true, height: the.options.scroll.height, rememberPosition: the.options.scroll.rememberPosition});
             } else {
                 KTUtil.scrollDestroy(element);
             }           
@@ -349,6 +349,12 @@ var KTMenu = function(elementId, options) {
          */
         handleLinkClick: function(e) {
             var submenu = this.closest('.kt-menu__item.kt-menu__item--submenu'); //
+
+            var result = Plugin.eventTrigger('linkClick', this, e);
+            if (result === false) {
+                return;
+            } 
+
             if ( submenu && Plugin.getSubmenuMode(submenu) === 'dropdown' ) {
                 Plugin.hideSubmenuDropdowns();
             }
@@ -426,7 +432,7 @@ var KTMenu = function(elementId, options) {
                         Plugin.scrollToItem(item);
                         Plugin.scrollUpdate();
                         
-                        Plugin.eventTrigger('submenuToggle', submenu);
+                        Plugin.eventTrigger('submenuToggle', submenu, e);
                     });
                 
                     KTUtil.addClass(li, 'kt-menu__item--open');
@@ -434,7 +440,7 @@ var KTMenu = function(elementId, options) {
                 } else {
                     KTUtil.slideUp(submenu, speed, function() {
                         Plugin.scrollToItem(item);
-                        Plugin.eventTrigger('submenuToggle', submenu);
+                        Plugin.eventTrigger('submenuToggle', submenu, e);
                     });
 
                     KTUtil.removeClass(li, 'kt-menu__item--open');
@@ -645,17 +651,17 @@ var KTMenu = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name, args) {
+        eventTrigger: function(name, target, e) {
             for (var i = 0; i < the.events.length; i++ ) {
                 var event = the.events[i];
                 if ( event.name == name ) {
                     if ( event.one == true ) {
                         if ( event.fired == false ) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the, args);
+                            return event.handler.call(this, target, e);
                         }
                     } else {
-                        event.handler.call(this, the, args);
+                        return event.handler.call(this, target, e);
                     }
                 }
             }

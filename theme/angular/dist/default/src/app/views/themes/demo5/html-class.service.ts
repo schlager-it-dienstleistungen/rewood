@@ -56,8 +56,6 @@ export class HtmlClassService {
 		// init aside and aside menu
 		this.initAside();
 
-		this.initContent();
-
 		// init footer
 		this.initFooter();
 
@@ -95,7 +93,8 @@ export class HtmlClassService {
 		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
 			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
 		}
-		if (objectPath.get(this.config, 'width')) {
+
+		if (objectPath.has(this.config, 'width')) {
 			document.body.classList.add('kt-page--' + objectPath.get(this.config, 'width'));
 		}
 
@@ -185,37 +184,6 @@ export class HtmlClassService {
 		if (objectPath.get(this.config, 'aside.self.fixed') !== true && objectPath.get(this.config, 'aside.menu.dropdown')) {
 			objectPath.push(this.classes, 'aside_menu', 'kt-aside-menu--dropdown');
 			// enable menu dropdown
-		}
-	}
-
-	/**
-	 * Init Aside Secondary
-	 */
-	private initAsideSecondary() {
-		if (objectPath.get(this.config, 'aside-secondary.self.display')) {
-			document.body.classList.add('kt-aside-secondary--enabled');
-		}
-
-		if (objectPath.get(this.config, 'aside-secondary.self.expanded') === true && objectPath.get(this.config, 'aside-secondary.self.layout') !== 'layout-2') {
-			document.body.classList.add('kt-aside-secondary--expanded');
-		}
-
-		if (objectPath.get(this.config, 'aside-secondary.self.layout') === 'layout-3') {
-			document.body.classList.add('kt-aside-secondary--static');
-		}
-	}
-
-	/**
-	 * Init Content
-	 */
-	private initContent() {
-		// Fixed content head
-		if (objectPath.get(this.config, 'content.head.fixed.desktop')) {
-			document.body.classList.add('kt-content-head--fixed');
-		}
-
-		if (objectPath.get(this.config, 'content.head.fixed.mobile')) {
-			document.body.classList.add('kt-content-head-mobile--fixed');
 		}
 	}
 

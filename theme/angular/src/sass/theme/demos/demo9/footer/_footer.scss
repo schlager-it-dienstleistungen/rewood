@@ -6,12 +6,10 @@
 
 // General mode
 .kt-footer {
-	align-items: center;
-	justify-content: space-between;
     padding: 0;
-    margin: 0;   
+	margin: 0;   
 
-    .kt-footer__bottom {
+    .kt-footer__wrapper {
     	display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -65,10 +63,7 @@
 // Mobile mode(576px and below)
 @include kt-mobile() {
 	.kt-footer {
-		flex-direction: column;
-		justify-content: center;	
-
-		.kt-footer__bottom {
+		.kt-footer__wrapper {
 			display: flex;
 			flex-direction: column;
 			padding: 1.5rem 0;

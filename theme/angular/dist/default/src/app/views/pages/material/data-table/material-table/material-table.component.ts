@@ -143,7 +143,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';\n
 export class TablePaginationExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);\n
-  @ViewChild(MatPaginator) paginator: MatPaginator;\n
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;\n
   /**
   * Set the paginator after the view init since this component will
   * be able to query its view for the initialized paginator.
@@ -238,7 +238,7 @@ import {MatTableDataSource, MatSort} from '@angular/material';\n
 export class TableSortingExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);\n
-  @ViewChild(MatSort) sort: MatSort;\n\n
+  @ViewChild(MatSort, {static: true}) sort: MatSort;\n\n
   /**
   * Set the sort after the view init since this component will
   * be able to query its view for the initialized sort.
@@ -554,8 +554,8 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';\n
 export class TableOverviewExample {
   displayedColumns = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;\n
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;\n
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;\n
   constructor() {
     // Create 100 users
     const users: UserData[] = [];
@@ -642,17 +642,17 @@ export interface UserData {
     <!-- Number Column -->
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.number }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.number}}</mat-cell>
     </ng-container>
     <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
     </ng-container>
     <!-- State Column -->
     <ng-container matColumnDef="state">
       <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.state }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.state}}</mat-cell>
     </ng-container>
     <!-- Created Column -->
     <ng-container matColumnDef="created">
@@ -661,7 +661,7 @@ export interface UserData {
         disableClear="true">
         Created
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.created_at | date}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -695,8 +695,8 @@ export class TableHttpExample implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;\n
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;\n
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;\n
   constructor(private http: HttpClient) {}\n\n\
   ngOnInit() {
     this.exampleDatabase = new ExampleHttpDao(this.http);\n\n
@@ -1008,14 +1008,14 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
   isRateLimitReached = false;
 
 
-  @ViewChild('matPaginator2') paginator2: MatPaginator;
-  @ViewChild('matPaginator6') paginator6: MatPaginator;
-  @ViewChild('matPaginator7') paginator7: MatPaginator;
+  @ViewChild('matPaginator2', {static: true}) paginator2: MatPaginator;
+  @ViewChild('matPaginator6', {static: true}) paginator6: MatPaginator;
+  @ViewChild('matPaginator7', {static: true}) paginator7: MatPaginator;
 
 
-  @ViewChild('sort3') sort3: MatSort;
-  @ViewChild('sort6') sort6: MatSort;
-  @ViewChild('sort7') sort7: MatSort;
+  @ViewChild('sort3', {static: true}) sort3: MatSort;
+  @ViewChild('sort6', {static: true}) sort6: MatSort;
+  @ViewChild('sort7', {static: true}) sort7: MatSort;
 
   ngAfterViewInit() {
   }

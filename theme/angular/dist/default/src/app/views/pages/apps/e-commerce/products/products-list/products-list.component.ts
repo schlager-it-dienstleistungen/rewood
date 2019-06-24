@@ -42,10 +42,10 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	// Table fields
 	dataSource: ProductsDataSource;
 	displayedColumns = ['select', 'VINCode', 'manufacture', 'model', 'modelYear', 'color', 'price', 'condition', 'status', 'actions'];
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('sort1') sort: MatSort;
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild('sort1', {static: true}) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput') searchInput: ElementRef;
+	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 	filterStatus: string = '';
 	filterCondition: string = '';
 	lastQuery: QueryParamsModel;

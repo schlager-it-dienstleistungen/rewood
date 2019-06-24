@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class NotificationComponent {
 
 	// Show dot on top of the icon
-	@Input() dot: boolean;
+	@Input() dot: string;
 
 	// Show pulse on icon
 	@Input() pulse: boolean;

@@ -9,9 +9,17 @@
 @import "../../../../../assets/css/demo1/skins/aside/dark.css";
 
 kt-base {
+	opacity: 0;
 	height: 100%;
 
 	.kt-grid--root {
 		height: 100%;
+	}
+}
+
+.kt-page--loaded {
+	kt-base {
+		opacity: 1;
+		transition: opacity 1s ease-in-out;
 	}
 }

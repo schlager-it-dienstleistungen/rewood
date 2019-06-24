@@ -5,7 +5,7 @@
 
 
 // Desktop mode(1024px and above)
-@include kt-media-above(lg) {
+@include kt-desktop {
 	// Hide mobile header for desktop mode
 	.kt-header-mobile {
 		display: none;
@@ -13,12 +13,13 @@
 }
 
 // Tablet & mobile mode(1024px and below)
-@include kt-media-below(lg) {
+@include kt-tablet-and-mobile {
 	.kt-header-mobile {
 		display: flex;
 		justify-content: space-between;
 		padding: 0 kt-get($kt-page-padding, mobile);
 		height: kt-get($kt-header-config, base, mobile, self, default, height);
+		min-height: kt-get($kt-header-config, base, mobile, self, default, height);
 		position: relative;
 		z-index: 1;
 		box-shadow: 0px 4px 30px -4px rgba(0,51,90, 0.1);
@@ -43,7 +44,11 @@
 		.kt-header-mobile__logo {
 			display: flex;
 			align-items: center;
-			justify-content: flex-start;
+			justify-content: space-between;
+
+			.dropdown {
+				margin-left: 15px;
+			}
 		}
 
 		// Toolbar

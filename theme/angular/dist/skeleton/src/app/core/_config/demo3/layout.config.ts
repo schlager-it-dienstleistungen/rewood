@@ -8,15 +8,8 @@ export class LayoutConfig {
 			'layout': 'fluid', // fluid|boxed
 			'body': {
 				'background-image': './assets/media/misc/bg-1.jpg',
-				'class': 'kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading'
 			},
 			'logo': './assets/media/logos/logo-4.png'
-		},
-		// == Portlet Plugin
-		'portlet': {
-			'sticky': {
-				'offset': 50
-			}
 		},
 		// == Page Splash Screen loading
 		'loader': {
@@ -28,7 +21,7 @@ export class LayoutConfig {
 		// == Colors for javascript
 		'colors': {
 			'state': {
-				'brand': '#3d4aed',
+				'brand': '#2c77f4',
 				'light': '#ffffff',
 				'dark': '#282a3c',
 				'primary': '#5867dd',
@@ -52,24 +45,20 @@ export class LayoutConfig {
 				]
 			}
 		},
-		'width': 'fixed',
 		'header': {
 			'self': {
+				'width': 'fluid',
+				'skin': 'light',
 				'fixed': {
-					'desktop': {
-						'enabled': true,
-						'mode': 'topbar'
-					},
+					'desktop': true,
 					'mobile': true
 				}
-			},
-			'search': {
-				'display': true
 			},
 			'menu': {
 				'self': {
 					'display': true,
-					'root-arrow': false
+					'root-arrow': false,
+					'layout': 'tab'
 				},
 				'desktop': {
 					'arrow': true,
@@ -87,21 +76,41 @@ export class LayoutConfig {
 				}
 			}
 		},
+		'subheader': {
+			'display': true,
+			'fixed': true,
+			'layout': 'subheader-v3',
+			'width': 'fluid',
+			'style': 'solid'
+		},
+		'content': {
+			'width': 'fluid'
+		},
+		'brand': {
+			'self': {
+				'skin': 'navy'
+			}
+		},
 		'aside': {
 			'self': {
-				'skin': 'light',
-				'fixed': true,
 				'display': true,
+				'fixed': true,
 				'minimize': {
 					'toggle': true,
 					'default': false
 				}
 			},
+			'footer': {
+				'self': {
+					'display': true
+				}
+			},
 			'menu': {
-				'dropdown': false,
-				'scroll': true,
+				'root-arrow': false,
+				'dropdown': true,
+				'scroll': false,
 				'submenu': {
-					'accordion': true,
+					'accordion': false,
 					'dropdown': {
 						'arrow': true,
 						'hover-timeout': 500
@@ -109,15 +118,10 @@ export class LayoutConfig {
 				}
 			}
 		},
-		'subheader': {
-			'display': true,
-			'layout': 'subheader-v1',
-			'fixed': true,
-			'style': 'transparent'
-		},
 		'footer': {
 			'self': {
-				'layout': 'extended'
+				'width': 'fluid',
+				'fixed': false
 			}
 		}
 	};

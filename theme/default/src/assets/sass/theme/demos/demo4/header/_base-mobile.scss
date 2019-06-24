@@ -18,6 +18,7 @@
 		justify-content: space-between;
 		padding: 0 kt-get($kt-page-padding, mobile);
 		height: kt-get($kt-header-config, base, mobile, self, default, height);
+		min-height: kt-get($kt-header-config, base, mobile, self, default, height);
 		background-color: #fff;
 		box-shadow: kt-get($kt-header-config, base, mobile, self, fixed, box-shadow);
 		position: relative;

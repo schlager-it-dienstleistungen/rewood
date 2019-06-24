@@ -10,23 +10,19 @@ import { MenuConfigService } from './menu-config.service';
 @Injectable()
 export class MenuAsideService {
 	// Public properties
-	classes: string;
 	menuList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
 	/**
-	 * Service Constructor
+	 * Service constructor
 	 *
 	 * @param menuConfigService: MenuConfigService
-	 * @param store: Store<AppState>
 	 */
-	constructor(
-		private menuConfigService: MenuConfigService
-	) {
+	constructor(private menuConfigService: MenuConfigService) {
 		this.loadMenu();
 	}
 
 	/**
-	 * Load menu
+	 * Load menu list
 	 */
 	loadMenu() {
 		// get menu list

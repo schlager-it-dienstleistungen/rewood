@@ -15,11 +15,11 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'dashboard',
-				loadChildren: 'app/views/pages/dashboard/dashboard.module#DashboardModule'
+				loadChildren: () => import('app/views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
 			},
 			{
 				path: 'builder',
-				loadChildren: 'app/views/themes/demo3/content/builder/builder.module#BuilderModule'
+				loadChildren: () => import('app/views/themes/demo3/content/builder/builder.module').then(m => m.BuilderModule)
 			},
 			{path: 'error/:type', component: ErrorPageComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},

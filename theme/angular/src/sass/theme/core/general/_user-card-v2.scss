@@ -57,6 +57,14 @@
             color: kt-brand-color();
         }
     }
+
+    &.kt-user-card-v2--uncircle {
+        .kt-user-card-v2__pic {
+            img {
+                border-radius: $kt-border-radius;
+            }
+        }
+    }
 }
 
 @include kt-tablet-and-mobile {

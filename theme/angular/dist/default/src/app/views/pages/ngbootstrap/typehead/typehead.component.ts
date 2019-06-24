@@ -120,7 +120,7 @@ styles: [\`.form-control { width: 300px; }\`]
 })
 export class NgbdTypeaheadFocus {
 model: any;\n
-@ViewChild('instance') instance: NgbTypeahead;
+@ViewChild('instance', {static: true}) instance: NgbTypeahead;
 focus$ = new Subject<string>();
 click$ = new Subject<string>();\n
 search = (text$: Observable<string>) => {
@@ -530,7 +530,7 @@ export class TypeheadComponent implements OnInit {
 	exampleGlobalConfigurationOfTypeaheads;
 	public model: any;
 	model2: any;
-	@ViewChild('instance') instance: NgbTypeahead;
+	@ViewChild('instance', {static: true}) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
 	model3: any;

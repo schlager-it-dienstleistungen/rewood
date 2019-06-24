@@ -6,8 +6,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from 'ngx-clipboard';
-// NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect ScrollBar
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { MaterialPreviewComponent } from './material-preview.component';
@@ -20,14 +18,13 @@ import { HighlightModule } from 'ngx-highlightjs';
 @NgModule({
 	imports: [
 		CommonModule,
-		NgbModule,
 		CoreModule,
 		HighlightModule,
 		PerfectScrollbarModule,
 		PortletModule,
 		ClipboardModule,
 
-		// material modules
+		// angular material modules
 		MatTabsModule,
 		MatExpansionModule,
 		MatCardModule,

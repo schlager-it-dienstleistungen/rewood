@@ -90,7 +90,7 @@
 		</i>
 	</ng-container>
 
-	<ng-container *ngIf="!item.badge; else m_menu_link_badge">
+	<ng-container *ngIf="!item.badge; else menuLinkBadge">
 		<span class="kt-menu__item-here"></span>
 		<!-- menu item title text -->
 		<span class="kt-menu__link-text" [translate]="item.translate">
@@ -98,7 +98,7 @@
 		</span>
 	</ng-container>
 
-	<ng-template #m_menu_link_badge>
+	<ng-template #menuLinkBadge>
 		<!-- menu item with badge -->
 		<span class="kt-menu__link-text" [translate]="item.translate">{{item.title}}</span>
 		<span class="kt-menu__link-badge">

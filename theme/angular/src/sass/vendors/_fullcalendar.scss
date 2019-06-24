@@ -399,6 +399,10 @@
             background: kt-base-color(grey, 1);
         }
 
+        .fc-time-grid-event {
+            overflow: hidden;
+        }
+
         // popover
         .fc-popover {
             box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.075);
@@ -481,7 +485,6 @@
             }
         }
 
-
         .fc-divider, .fc-popover .fc-header, .fc-list-heading td {
             background: kt-base-color(grey, 1);
         }
@@ -536,7 +539,7 @@
 
                 &:focus,
                 &:active,
-                &.fc-state-active {
+                &.fc-button-active {
                     background: kt-state-color(brand, base);
                     color: kt-state-color(brand, inverse);
                     border: 1px solid kt-state-color(brand, base);
@@ -548,7 +551,7 @@
                     }    
                 }
 
-                &.fc-state-disabled {
+                &.fc-button-disabled {
                     opacity: 0.7;
                 }
             }

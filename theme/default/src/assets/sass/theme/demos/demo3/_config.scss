@@ -49,10 +49,14 @@ $kt-aside-default-width: 140px;
 $kt-aside-minimize-width: 78px;
 $kt-aside-offcanvas-width: 255px;
 
+// Page padding
 $kt-page-padding: (
 	desktop: 25px,
 	mobile: 15px
 );
+
+// Page container
+$kt-page-container-width: 1380px; //  fixed page width
 
 // Content bg color
 $kt-content-bg-color: #f2f3f8;

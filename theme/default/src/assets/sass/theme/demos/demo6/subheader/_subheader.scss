@@ -13,7 +13,8 @@ $kt-icon-color: #22b9ff; // General Mode
 // Subheader Search
 .kt-subheader-search {
 	background: #564FC1;
-	padding: 40px kt-get($kt-page-padding, desktop);
+	padding: 40px 0;
+	margin-bottom: kt-get($kt-page-padding, desktop);
 	
 	// Title
 	.kt-subheader-search__title {
@@ -91,13 +92,19 @@ $kt-icon-color: #22b9ff; // General Mode
 	.kt-form {
 		margin-top: 2rem;
 	}
+
+	// Clear bottom margin
+	&.kt-subheader-search--clear {
+		margin-bottom: 0;
+	}
 } 
 
 // Tablet and mobile mode
 @include kt-tablet-and-mobile {
 	// Subheader Search
 	.kt-subheader-search {
-		padding: 20px kt-get($kt-page-padding, mobile);
+		padding: 20px 0;
+		margin-bottom: kt-get($kt-page-padding, mobile);
 
 		// Title
 		.kt-subheader-search__title {
@@ -114,6 +121,11 @@ $kt-icon-color: #22b9ff; // General Mode
 		.kt-input-icon {
 			width: auto;
 			margin-bottom: 10px;
+		}
+
+		// Clear bottom margin
+		&.kt-subheader-search--clear {
+			margin-bottom: 0;
 		}
 	}
 }

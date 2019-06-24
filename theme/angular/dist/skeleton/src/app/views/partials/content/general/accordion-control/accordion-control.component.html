@@ -11,7 +11,7 @@
 			[attr.aria-expanded]="panel.isOpen" 
 			[attr.aria-controls]="(panel.isOpen ? panel.id : null)" 
 			[attr.aria-disabled]="panel.disabled">
-			<div class="card-title {{ panel.isOpen ? null : 'collapsed'}} ">
+			<div class="card-title {{panel.isOpen ? null : 'collapsed'}} ">
 				<i [class]="panel.iconClass" *ngIf="panel.iconClass"></i>
 				<span>
 					{{panel.title}}
@@ -22,12 +22,12 @@
 		<!-- end: title -->
 
 		<!-- body without animation -->
-		<div class="{{ panel.hasBodyWrapper ? 'card-body-wrapper' : null }}">
+		<div class="{{panel.hasBodyWrapper ? 'card-body-wrapper' : null}}">
 			<div *ngIf="!hasAnimation && (!destroyOnHide || panel.isOpen)" 
 				id="{{panel.id}}" 
 				role="tabpanel"
 				[attr.aria-labelledby]="panel.id + '-header'" 
-				class="card-body {{panel.isOpen ? 'show' : null }}">
+				class="card-body {{panel.isOpen ? 'show' : null}}">
 				<ng-template [ngTemplateOutlet]="panel.contentTpl?.templateRef"></ng-template>
 			</div>
 		</div>

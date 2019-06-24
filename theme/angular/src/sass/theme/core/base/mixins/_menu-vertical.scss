@@ -16,7 +16,7 @@
 		cursor: pointer;
 
 		// link height
-		height: kt-get($item, link, self, height);
+		min-height: kt-get($item, link, self, height);
 
 		// link margin
 		@include kt-attr(margin, kt-get($item, link, self, margin));

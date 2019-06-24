@@ -23,7 +23,7 @@
                     @include kt-rounded {
                         border-radius: 50%;
                     }                    
-                } 
+                }                 
                 
                 .kt-widget__pic {
                     display: flex;
@@ -49,6 +49,17 @@
                 padding-left: 1rem;
 
                 .kt-widget__username {
+                    font-size: 1.4rem;
+                    color: kt-base-color(label, 4);
+                    font-weight: 500;
+
+                    &:hover {
+                        color: kt-brand-color();
+                        transition: color 0.3s ease;
+                    }
+                }
+
+                .kt-widget__titel {
                     font-size: 1.4rem;
                     color: kt-base-color(label, 4);
                     font-weight: 500;
@@ -162,10 +173,6 @@
             }
         }
     }
-
-    .kt-portlet__body.kt-portlet__body--fit-y & {
-        margin-top: -20px;
-    }
 }
 
 
@@ -184,7 +191,7 @@
                         max-width: 60px;
                         max-height: 60px;                     
                         font-size: 1.2rem;
-                    }
+                    }                    
                 }                
             } 
         } 

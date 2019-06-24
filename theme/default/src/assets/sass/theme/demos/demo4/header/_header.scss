@@ -51,6 +51,14 @@
 		// Animations
 		.kt-header--minimize & {
 			animation: kt-header-minimize .5s ease 1;
+
+			.kt-header__brand-logo-default {
+				display: none;
+			}
+
+			.kt-header__brand-logo-sticky {
+				display: inline-block;
+			}
 		}
 	}
 }

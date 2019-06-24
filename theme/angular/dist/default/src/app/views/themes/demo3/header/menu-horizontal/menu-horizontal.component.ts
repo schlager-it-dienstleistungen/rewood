@@ -1,13 +1,26 @@
 // Angular
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	OnInit,
+	Renderer2
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 // RxJS
 import { filter } from 'rxjs/operators';
 // Object-Path
 import * as objectPath from 'object-path';
 // Layout
-import { LayoutConfigService, MenuConfigService, MenuHorizontalService, MenuOptions } from '../../../../../core/_base/layout';
-import { OffcanvasOptions } from '../../../../../core/_base/layout';
+import {
+	LayoutConfigService,
+	MenuConfigService,
+	MenuHorizontalService,
+	MenuOptions,
+	OffcanvasOptions
+} from '../../../../../core/_base/layout';
 // HTML Class
 import { HtmlClassService } from '../../html-class.service';
 
@@ -55,6 +68,7 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 	 * @param layoutConfigService: LayouConfigService
 	 * @param router: Router
 	 * @param render: Renderer2
+	 * @param cdr: ChangeDetectorRef
 	 */
 	constructor(
 		private el: ElementRef,
@@ -63,7 +77,8 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 		private menuConfigService: MenuConfigService,
 		private layoutConfigService: LayoutConfigService,
 		private router: Router,
-		private render: Renderer2
+		private render: Renderer2,
+		private cdr: ChangeDetectorRef
 	) {
 	}
 
@@ -88,6 +103,7 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 			.pipe(filter(event => event instanceof NavigationEnd))
 			.subscribe(event => {
 				this.currentRouteUrl = this.router.url;
+				this.cdr.markForCheck();
 			});
 	}
 
@@ -121,6 +137,14 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 			classes += ' kt-menu__item--submenu';
 		}
 
+		if (!item.submenu && this.isMenuItemIsActive(item)) {
+			classes += ' kt-menu__item--active kt-menu__item--here';
+		}
+
+		if (item.submenu && this.isMenuItemIsActive(item)) {
+			classes += ' kt-menu__item--open kt-menu__item--here';
+		}
+
 		if (objectPath.get(item, 'resizer')) {
 			classes += ' kt-menu__item--resize';
 		}
@@ -138,10 +162,6 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 
 		if (objectPath.get(item, 'icon-only')) {
 			classes += ' kt-menu__item--icon-only';
-		}
-
-		if (this.isMenuItemIsActive(item)) {
-			classes += ' kt-menu__item--active kt-menu__item--here';
 		}
 
 		return classes;
@@ -226,9 +246,18 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 			}
 		}
 
-		if (item.submenu) {
-			for (const subItem of item.submenu) {
+		if (item.submenu.columns) {
+			for (const subItem of item.submenu.columns) {
 				if (this.isMenuItemIsActive(subItem)) {
+					return true;
+				}
+			}
+		}
+
+		if (typeof item.submenu[Symbol.iterator] === 'function') {
+			for (const subItem of item.submenu) {
+				const active = this.isMenuItemIsActive(subItem);
+				if (active) {
 					return true;
 				}
 			}

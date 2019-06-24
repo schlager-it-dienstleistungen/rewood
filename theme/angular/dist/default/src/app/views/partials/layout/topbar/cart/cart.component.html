@@ -2,12 +2,12 @@
 <div ngbDropdown placement="bottom-right" autoClose="outside" class="kt-header__topbar-item">
 	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
 		<span class="kt-header__topbar-icon"
-			[ngClass]="{'kt-header__topbar-icon--brand':  iconType === 'brand' }">
+			[ngClass]="{'kt-header__topbar-icon--brand':  iconType === 'brand'}">
 			<i *ngIf="!useSVG" [ngClass]="icon"></i>
 			<span *ngIf="useSVG"
 				class="kt-svg-icon"
 				[inlineSVG]="icon"
-				[ngClass]="{'kt-svg-icon--brand':  iconType === 'brand' }"></span>
+				[ngClass]="{'kt-svg-icon--brand':  iconType === 'brand'}"></span>
 		</span>
 	</div>
 	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">

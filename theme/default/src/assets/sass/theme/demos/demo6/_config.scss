@@ -44,16 +44,6 @@ $kt-state-colors: (
     )    
 );
 
-// Layout
-$kt-aside-default-width: 250px;
-$kt-aside-minimize-width: 100px;
-$kt-aside-offcanvas-width: 255px;
-
-$kt-page-padding: (
-	desktop: 25px,
-	mobile: 15px
-);
-
 // Brand Color
 $kt-brand-hover-color: #f5f6fc;
 
@@ -65,3 +55,17 @@ $kt-page-bg-color: #f9f9fc;  // page bg color
 
 // Aside bg color
 $kt-aside-bg-color: #fff;
+
+// Layout
+$kt-aside-default-width: 250px;
+$kt-aside-minimize-width: 100px;
+$kt-aside-offcanvas-width: 255px;
+
+// Page padding
+$kt-page-padding: (
+	desktop: 25px,
+	mobile: 15px
+);
+
+// Page container
+$kt-page-container-width: 1380px; //  fixed page width

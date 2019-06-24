@@ -3,21 +3,13 @@
 var KTCalendarExternalEvents = function() {
 
     var initExternalEvents = function() {
-        $('#kt_calendar_external_events .fc-event').each(function() {
-
+        $('#kt_calendar_external_events .fc-draggable-handle').each(function() {
             // store data so the calendar knows to render an event upon drop
             $(this).data('event', {
                 title: $.trim($(this).text()), // use the element's text as the event title
                 stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                className: $(this).data('color'),
+                classNames: [$(this).data('color')],
                 description: 'Lorem ipsum dolor eius mod tempor labore'
-            });
-
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true, // will cause the event to go back to its
-                revertDuration: 0 //  original position after the drag
             });
         });
     }
@@ -29,30 +21,61 @@ var KTCalendarExternalEvents = function() {
         var TODAY = todayDate.format('YYYY-MM-DD');
         var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
-        var calendar = $('#kt_calendar');
+        var calendarEl = document.getElementById('kt_calendar');
+        var containerEl = document.getElementById('kt_calendar_external_events');
 
-        calendar.fullCalendar({
+        var Draggable = FullCalendarInteraction.Draggable;
+
+        new Draggable(containerEl, {
+            itemSelector: '.fc-draggable-handle',
+            eventData: function(eventEl) {
+                return $(eventEl).data('event');
+            }   
+        });
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+
             isRTL: KTUtil.isRTL(),
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay,listWeek'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
+
+            height: 800,
+            contentHeight: 780,
+            aspectRatio: 3,  // see: https://fullcalendar.io/docs/aspectRatio
+
+            nowIndicator: true,
+            now: TODAY + 'T09:25:00', // just for demo
+
+            views: {
+                dayGridMonth: { buttonText: 'month' },
+                timeGridWeek: { buttonText: 'week' },
+                timeGridDay: { buttonText: 'day' }
+            },
+
+            defaultView: 'dayGridMonth',
+            defaultDate: TODAY,
+
+            droppable: true, // this allows things to be dropped onto the calendar
+            editable: true,
             eventLimit: true, // allow "more" link when too many events
             navLinks: true,
             events: [
                 {
                     title: 'All Day Event',
                     start: YM + '-01',
-                    description: 'Lorem ipsum dolor sit incid idunt ut',
-                    className: "fc-event-success"
+                    description: 'Toto lorem ipsum dolor sit incid idunt ut',
+                    className: "fc-event-danger fc-event-solid-warning"  
                 },
                 {
                     title: 'Reporting',
                     start: YM + '-14T13:30:00',
                     description: 'Lorem ipsum dolor incid idunt ut labore',
                     end: YM + '-14',
-                    className: "fc-event-accent"
+                    className: "fc-event-success"
                 },
                 {
                     title: 'Company Trip',
@@ -62,11 +85,11 @@ var KTCalendarExternalEvents = function() {
                     className: "fc-event-primary"
                 },
                 {
-                    title: 'Expo',
+                    title: 'ICT Expo 2017 - Product Release',
                     start: YM + '-03',
                     description: 'Lorem ipsum dolor sit tempor inci',
                     end: YM + '-05',
-                    className: "fc-event-primary"
+                    className: "fc-event-light fc-event-solid-primary"
                 },
                 {
                     title: 'Dinner',
@@ -92,7 +115,7 @@ var KTCalendarExternalEvents = function() {
                     start: YESTERDAY,
                     end: TOMORROW,
                     description: 'Lorem ipsum dolor eius mod tempor labore',
-                    className: "fc-event-accent"
+                    className: "fc-event-brand"
                 },
                 {
                     title: 'Meeting',
@@ -115,12 +138,13 @@ var KTCalendarExternalEvents = function() {
                 {
                     title: 'Happy Hour',
                     start: TODAY + 'T17:30:00',
-                    className: "fc-event-metal",
+                    className: "fc-event-info",
                     description: 'Lorem ipsum dolor sit amet, conse ctetur'
                 },
                 {
                     title: 'Dinner',
-                    start: TODAY + 'T20:00:00',
+                    start: TOMORROW + 'T05:00:00',
+                    className: "fc-event-solid-danger fc-event-light",
                     description: 'Lorem ipsum dolor sit ctetur adipi scing'
                 },
                 {
@@ -133,45 +157,37 @@ var KTCalendarExternalEvents = function() {
                     title: 'Click for Google',
                     url: 'http://google.com/',
                     start: YM + '-28',
+                    className: "fc-event-solid-info fc-event-light",
                     description: 'Lorem ipsum dolor sit amet, labore'
                 }
             ],
 
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-
-            drop: function(date, jsEvent, ui, resourceId) {
-                var sdate = $.fullCalendar.moment(date.format());  // Create a clone of the dropped date.
-                sdate.stripTime();        // The time should already be stripped but lets do a sanity check.
-                sdate.time('08:00:00');   // Set a default start time.
-
-                var edate = $.fullCalendar.moment(date.format());  // Create a clone.
-                edate.stripTime();        // Sanity check.
-                edate.time('12:00:00');   // Set a default end time.
-
-                $(this).data('event').start = sdate;
-                $(this).data('event').end = edate;
-
+            drop: function(arg) {
                 // is the "remove after drop" checkbox checked?
                 if ($('#kt_calendar_external_events_remove').is(':checked')) {
                     // if so, remove the element from the "Draggable Events" list
-                    $(this).remove();
+                    $(arg.draggedEl).remove();
                 }
             },
 
-            eventRender: function(event, element) {
-                // default render
-                if (element.hasClass('fc-day-grid-event')) {
-                    element.data('content', event.description);
-                    element.data('placement', 'top');
-                    KTApp.initPopover(element);
-                } else if (element.hasClass('fc-time-grid-event')) {
-                    element.find('.fc-title').append('<div class="fc-description">' + event.description + '</div>');
-                } else if (element.find('.fc-list-item-title').lenght !== 0) {
-                    element.find('.fc-list-item-title').append('<div class="fc-description">' + event.description + '</div>');
-                }
+            eventRender: function(info) {
+                var element = $(info.el);
+
+                if (info.event.extendedProps && info.event.extendedProps.description) {
+                    if (element.hasClass('fc-day-grid-event')) {
+                        element.data('content', info.event.extendedProps.description);
+                        element.data('placement', 'top');
+                        KTApp.initPopover(element);
+                    } else if (element.hasClass('fc-time-grid-event')) {
+                        element.find('.fc-title').append('<div class="fc-description">' + info.event.extendedProps.description + '</div>'); 
+                    } else if (element.find('.fc-list-item-title').lenght !== 0) {
+                        element.find('.fc-list-item-title').append('<div class="fc-description">' + info.event.extendedProps.description + '</div>'); 
+                    }
+                } 
             }
         });
+
+        calendar.render();        
     }
 
     return {

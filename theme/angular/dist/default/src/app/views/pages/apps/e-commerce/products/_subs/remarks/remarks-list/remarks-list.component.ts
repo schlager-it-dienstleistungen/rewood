@@ -48,10 +48,10 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	// Table fields
 	dataSource: ProductRemarksDataSource;
 	displayedColumns = ['select', 'id', 'text', 'type', 'dueDate', 'actions'];
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static: true}) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput') searchInput: ElementRef;
+	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 	// Selection
 	selection = new SelectionModel<ProductRemarkModel>(true, []);
 	productRemarksResult: ProductRemarkModel[] = [];

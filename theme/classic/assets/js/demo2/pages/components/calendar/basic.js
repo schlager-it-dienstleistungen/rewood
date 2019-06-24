@@ -11,13 +11,33 @@ var KTCalendarBasic = function() {
             var TODAY = todayDate.format('YYYY-MM-DD');
             var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
 
-            $('#kt_calendar').fullCalendar({
+            var calendarEl = document.getElementById('kt_calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+
                 isRTL: KTUtil.isRTL(),
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,agendaWeek,agendaDay,listWeek'
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+
+                height: 800,
+                contentHeight: 780,
+                aspectRatio: 3,  // see: https://fullcalendar.io/docs/aspectRatio
+
+                nowIndicator: true,
+                now: TODAY + 'T09:25:00', // just for demo
+
+                views: {
+                    dayGridMonth: { buttonText: 'month' },
+                    timeGridWeek: { buttonText: 'week' },
+                    timeGridDay: { buttonText: 'day' }
+                },
+
+                defaultView: 'dayGridMonth',
+                defaultDate: TODAY,
+
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
                 navLinks: true,
@@ -25,7 +45,7 @@ var KTCalendarBasic = function() {
                     {
                         title: 'All Day Event',
                         start: YM + '-01',
-                        description: 'Lorem ipsum dolor sit incid idunt ut',
+                        description: 'Toto lorem ipsum dolor sit incid idunt ut',
                         className: "fc-event-danger fc-event-solid-warning"  
                     },
                     {
@@ -33,7 +53,7 @@ var KTCalendarBasic = function() {
                         start: YM + '-14T13:30:00',
                         description: 'Lorem ipsum dolor incid idunt ut labore',
                         end: YM + '-14',
-                        className: "fc-event-accent"
+                        className: "fc-event-success"
                     },
                     {
                         title: 'Company Trip',
@@ -73,7 +93,7 @@ var KTCalendarBasic = function() {
                         start: YESTERDAY,
                         end: TOMORROW,
                         description: 'Lorem ipsum dolor eius mod tempor labore',
-                        className: "fc-event-accent"
+                        className: "fc-event-brand"
                     },
                     {
                         title: 'Meeting',
@@ -96,13 +116,13 @@ var KTCalendarBasic = function() {
                     {
                         title: 'Happy Hour',
                         start: TODAY + 'T17:30:00',
-                        className: "fc-event-metal",
+                        className: "fc-event-info",
                         description: 'Lorem ipsum dolor sit amet, conse ctetur'
                     },
                     {
                         title: 'Dinner',
-                        start: TODAY + 'T20:00:00',
-                        className: "fc-event-solid-focus fc-event-light",
+                        start: TOMORROW + 'T05:00:00',
+                        className: "fc-event-solid-danger fc-event-light",
                         description: 'Lorem ipsum dolor sit ctetur adipi scing'
                     },
                     {
@@ -120,18 +140,24 @@ var KTCalendarBasic = function() {
                     }
                 ],
 
-                eventRender: function(event, element) {
-                    if (element.hasClass('fc-day-grid-event')) {
-                        element.data('content', event.description);
-                        element.data('placement', 'top');
-                        KTApp.initPopover(element);
-                    } else if (element.hasClass('fc-time-grid-event')) {
-                        element.find('.fc-title').append('<div class="fc-description">' + event.description + '</div>'); 
-                    } else if (element.find('.fc-list-item-title').lenght !== 0) {
-                        element.find('.fc-list-item-title').append('<div class="fc-description">' + event.description + '</div>'); 
-                    }
+                eventRender: function(info) {
+                    var element = $(info.el);
+
+                    if (info.event.extendedProps && info.event.extendedProps.description) {
+                        if (element.hasClass('fc-day-grid-event')) {
+                            element.data('content', info.event.extendedProps.description);
+                            element.data('placement', 'top');
+                            KTApp.initPopover(element);
+                        } else if (element.hasClass('fc-time-grid-event')) {
+                            element.find('.fc-title').append('<div class="fc-description">' + info.event.extendedProps.description + '</div>'); 
+                        } else if (element.find('.fc-list-item-title').lenght !== 0) {
+                            element.find('.fc-list-item-title').append('<div class="fc-description">' + info.event.extendedProps.description + '</div>'); 
+                        }
+                    } 
                 }
             });
+
+            calendar.render();
         }
     };
 }();

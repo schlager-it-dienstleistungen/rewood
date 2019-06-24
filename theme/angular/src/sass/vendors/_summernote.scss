@@ -11,15 +11,14 @@
     }   
 
     .note-editor {
-        z-index: 1;
+        position: static;
+
+        .note-toolbar {
+            position: static;
+        }
         
         @include kt-rounded {
             border-radius: $kt-border-radius;
-        }
-
-        .note-toolbar-wrapper {
-            position: relative;
-            z-index: 1;
         }
 
         .modal {
@@ -35,7 +34,6 @@
 
         .panel-heading.note-toolbar {
             padding: 5px 10px 10px 10px;
-            z-index: 0;
             
             @include kt-rounded {
                 border-top-left-radius: $kt-border-radius;

@@ -1,20 +1,28 @@
 //
-// Base
+// Page
 //
 
 
 
 
+// Page body
 body {
 	background-color: $kt-page-body-bg-color;
 	background-position: auto top;
 	background-repeat: no-repeat;
+
+	// Container 
+	.kt-container {
+		.kt-container {
+			width: 100%;
+		}
+	}
 }
 
 // Subheader
 .kt-subheader {
 	padding: kt-get($kt-page-padding, desktop) 0 !important;
-	height: 140px;
+	height: 120px;
 
 	.kt-aside--enabled & {
 		margin-left: kt-get($kt-page-padding, desktop);
@@ -121,49 +129,36 @@ body {
 
 // Desktop(1024px and above)
 @include kt-desktop() {
-	// Fixed
-	body.kt-header--fixed.kt-header--minimize {
-		//transition: padding-top 0.3s ease;
-		padding-top: kt-get($kt-header-config, base, desktop, fixed, height);
-	}
-}
-
-// Page fixed mode(above $kt-page-container-width)
-@include kt-page-fixed-mode {
-	// Page container
+	// Container 
 	.kt-container {
-		width: $kt-page-container-width;
-		margin: 0 auto;
+		padding: 0 kt-get($kt-page-padding, desktop);
 	}
 
-	// Page fluid width mode
-	.kt-page--fluid {
-		.kt-container {
-			width: auto;
-			margin: 0 $kt-page-fluid-container-padding;
-    		flex-grow: 1;
-			padding: 0;
-		} 
-	}	
+	// Body
+	.kt-body {
+		> .kt-container {
+			padding-right: 0 !important;
+		}
+	}
 }
 
 // Page fluid mode(below $kt-page-container-width)
-@include kt-page-fluid-mode {
+@media (min-width: #{$kt-page-container-width + (2 * $kt-page-fluid-container-padding) - 1px}) {
 	// Page container
-	.kt-container {
-		flex-grow: 1;
+	.kt-container.kt-container--fluid {
+		padding: 0 $kt-page-fluid-container-padding;
+	}
+}
+
+// Fixed container width change to fluid
+@include kt-media-range( lg, $kt-page-container-width + (2 * kt-get($kt-page-padding, desktop)) ) {
+	.kt-container:not(.kt-container--fluid) {
 		width: 100%;
-		padding: 0 kt-get($kt-page-padding, desktop);
 	}
 }
 
 // Tablet & mobile mode(1024px and below)
 @include kt-tablet-and-mobile() {
-	// Subheader
-	.kt-subheader {
-		height: auto;
-	}
-
 	// Page container
 	.kt-container {
 		padding: 0 kt-get($kt-page-padding, mobile);
@@ -175,10 +170,5 @@ body {
 		.kt-header-mobile--fixed & {
 			padding-top: kt-get($kt-header-config, base, mobile, self, default, height);
 		}
-	}
-
-	// Subheader
-	.kt-subheader {
-		padding: kt-get($kt-page-padding, mobile) 0 !important;
 	}
 }

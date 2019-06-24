@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 7
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 8
 Author: KeenThemes
 Website: http://www.keenthemes.com/
 Contact: support@keenthemes.com
@@ -61,7 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
-	<body class="kt-page--fixed kt-page-content-white kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
+	<body class="kt-page-content-white kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading">
 
 		<!-- begin:: Page -->
 
@@ -71,6 +71,52 @@ License: You must have a valid license purchased only from themeforest(the above
 				<a href="demo10/index.html">
 					<img alt="Logo" src="./assets/media/logos/logo-10-sm.png" />
 				</a>
+				<div class="dropdown">
+					<button type="button" class="btn btn-pill btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<i class="flaticon2-layers"></i>
+					</button>
+					<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md">
+						<ul class="kt-nav kt-nav--bold kt-nav--md-space kt-margin-t-20 kt-margin-b-20">
+							<li class="kt-nav__item">
+								<a class="kt-nav__link active" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon2-user"></i></span>
+									<span class="kt-nav__link-text">Human Resources</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a class="kt-nav__link" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon-feed"></i></span>
+									<span class="kt-nav__link-text">Customer Relationship</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a class="kt-nav__link" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon2-settings"></i></span>
+									<span class="kt-nav__link-text">Order Processing</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a class="kt-nav__link" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon2-chart2"></i></span>
+									<span class="kt-nav__link-text">Accounting</span>
+								</a>
+							</li>
+							<li class="kt-nav__separator"></li>
+							<li class="kt-nav__item">
+								<a class="kt-nav__link" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon-security"></i></span>
+									<span class="kt-nav__link-text">Finance</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a class="kt-nav__link" href="#">
+									<span class="kt-nav__link-icon"><i class="flaticon2-cup"></i></span>
+									<span class="kt-nav__link-text">Administration</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="kt-header-mobile__toolbar">
 				<button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
@@ -86,7 +132,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- begin:: Header -->
 					<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed " data-ktheader-minimize="on">
 						<div class="kt-header__top">
-							<div class="kt-container">
+							<div class="kt-container ">
 
 								<!-- begin:: Brand -->
 								<div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
@@ -937,7 +983,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<div class="kt-header__bottom">
-							<div class="kt-container">
+							<div class="kt-container ">
 
 								<!-- begin: Header Menu -->
 								<button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
@@ -955,95 +1001,97 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 
 					<!-- end:: Header -->
-					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch">
-						<div class="kt-container kt-body  kt-grid kt-grid--ver" id="kt_body">
-							<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+					<div class="kt-container  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-grid--stretch">
+						<div class="kt-body kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-grid--stretch" id="kt_body">
+							<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
 								<!-- begin:: Content Head -->
 								<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-									<div class="kt-subheader__main">
-										<h3 class="kt-subheader__title">Dashboard</h3>
-										<span class="kt-subheader__separator kt-subheader__separator--v"></span>
-										<span class="kt-subheader__desc">#XRS-45670</span>
-										<a href="#" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
-											Add New
-										</a>
-									</div>
-									<div class="kt-subheader__toolbar">
-										<div class="kt-subheader__wrapper">
-											<a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-toggle="kt-tooltip" title="Select dashboard daterange" data-placement="left">
-												<span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
-												<span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug 16</span>
-												<i class="flaticon2-calendar-1"></i>
+									<div class="kt-container ">
+										<div class="kt-subheader__main">
+											<h3 class="kt-subheader__title">Dashboard</h3>
+											<span class="kt-subheader__separator kt-subheader__separator--v"></span>
+											<span class="kt-subheader__desc">#XRS-45670</span>
+											<a href="#" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+												Add New
 											</a>
-											<a href="#" class="btn kt-subheader__btn-primary btn-icon">
-												<i class="flaticon2-file"></i>
-											</a>
-											<a href="#" class="btn kt-subheader__btn-primary btn-icon">
-												<i class="flaticon-download-1"></i>
-											</a>
-											<a href="#" class="btn kt-subheader__btn-primary btn-icon">
-												<i class="flaticon2-fax"></i>
-											</a>
-											<a href="#" class="btn kt-subheader__btn-primary btn-icon">
-												<i class="flaticon2-settings"></i>
-											</a>
-											<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="left">
-												<a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
-														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-															<polygon id="Shape" points="0 0 24 0 24 24 0 24" />
-															<path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-															<path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" id="Combined-Shape" fill="#000000" />
-														</g>
-													</svg>
-
-													<!--<i class="flaticon2-plus"></i>-->
+										</div>
+										<div class="kt-subheader__toolbar">
+											<div class="kt-subheader__wrapper">
+												<a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-toggle="kt-tooltip" title="Select dashboard daterange" data-placement="left">
+													<span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+													<span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+													<i class="flaticon2-calendar-1"></i>
 												</a>
-												<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
+												<a href="#" class="btn kt-subheader__btn-primary btn-icon">
+													<i class="flaticon2-file"></i>
+												</a>
+												<a href="#" class="btn kt-subheader__btn-primary btn-icon">
+													<i class="flaticon-download-1"></i>
+												</a>
+												<a href="#" class="btn kt-subheader__btn-primary btn-icon">
+													<i class="flaticon2-fax"></i>
+												</a>
+												<a href="#" class="btn kt-subheader__btn-primary btn-icon">
+													<i class="flaticon2-settings"></i>
+												</a>
+												<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="left">
+													<a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
+															<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																<polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+																<path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+																<path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" id="Combined-Shape" fill="#000000" />
+															</g>
+														</svg>
 
-													<!--begin::Nav-->
-													<ul class="kt-nav">
-														<li class="kt-nav__head">
-															Export Options:
-															<i class="flaticon2-correct kt-font-warning" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
-														</li>
-														<li class="kt-nav__separator"></li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-drop"></i>
-																<span class="kt-nav__link-text">Orders</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-new-email"></i>
-																<span class="kt-nav__link-text">Members</span>
-																<span class="kt-nav__link-badge">
-																	<span class="kt-badge kt-badge--brand kt-badge--rounded">15</span>
-																</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-calendar-8"></i>
-																<span class="kt-nav__link-text">Reports</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-link"></i>
-																<span class="kt-nav__link-text">Finance</span>
-															</a>
-														</li>
-														<li class="kt-nav__separator"></li>
-														<li class="kt-nav__foot">
-															<a class="btn btn-label-brand btn-bold btn-sm" href="#">More options</a>
-															<a class="btn btn-clean btn-bold btn-sm kt-hidden" href="#" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">Learn more</a>
-														</li>
-													</ul>
+														<!--<i class="flaticon2-plus"></i>-->
+													</a>
+													<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
 
-													<!--end::Nav-->
+														<!--begin::Nav-->
+														<ul class="kt-nav">
+															<li class="kt-nav__head">
+																Export Options:
+																<i class="flaticon2-correct kt-font-warning" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+															</li>
+															<li class="kt-nav__separator"></li>
+															<li class="kt-nav__item">
+																<a href="#" class="kt-nav__link">
+																	<i class="kt-nav__link-icon flaticon2-drop"></i>
+																	<span class="kt-nav__link-text">Orders</span>
+																</a>
+															</li>
+															<li class="kt-nav__item">
+																<a href="#" class="kt-nav__link">
+																	<i class="kt-nav__link-icon flaticon2-new-email"></i>
+																	<span class="kt-nav__link-text">Members</span>
+																	<span class="kt-nav__link-badge">
+																		<span class="kt-badge kt-badge--brand kt-badge--rounded">15</span>
+																	</span>
+																</a>
+															</li>
+															<li class="kt-nav__item">
+																<a href="#" class="kt-nav__link">
+																	<i class="kt-nav__link-icon flaticon2-calendar-8"></i>
+																	<span class="kt-nav__link-text">Reports</span>
+																</a>
+															</li>
+															<li class="kt-nav__item">
+																<a href="#" class="kt-nav__link">
+																	<i class="kt-nav__link-icon flaticon2-link"></i>
+																	<span class="kt-nav__link-text">Finance</span>
+																</a>
+															</li>
+															<li class="kt-nav__separator"></li>
+															<li class="kt-nav__foot">
+																<a class="btn btn-label-brand btn-bold btn-sm" href="#">More options</a>
+																<a class="btn btn-clean btn-bold btn-sm kt-hidden" href="#" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">Learn more</a>
+															</li>
+														</ul>
+
+														<!--end::Nav-->
+													</div>
 												</div>
 											</div>
 										</div>
@@ -1053,13 +1101,13 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!-- end:: Content Head -->
 
 								<!-- begin:: Content -->
-								<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+								<div class="kt-container  kt-grid__item kt-grid__item--fluid">
 
 									<!--Begin::Dashboard 2-->
 
-									<!--Begin::Section-->
+									<!--Begin::Row-->
 									<div class="row">
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-4">
 
 											<!--begin:: Widgets/Daily Sales-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -1080,7 +1128,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Daily Sales-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-4">
 
 											<!--begin:: Widgets/Profit Share-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -1118,7 +1166,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Profit Share-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-4">
 
 											<!--begin:: Widgets/Revenue Change-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -1157,11 +1205,11 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 
-									<!--End::Section-->
+									<!--End::Row-->
 
-									<!--Begin::Section-->
+									<!--Begin::Row-->
 									<div class="row">
-										<div class="col-xl-8">
+										<div class="col-xl-8 order-lg-1 order-xl-1">
 											<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
 												<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--noborder kt-portlet__head--break-sm">
 													<div class="kt-portlet__head-label">
@@ -1180,7 +1228,15 @@ License: You must have a valid license purchased only from themeforest(the above
 																<ul class="kt-nav">
 																	<li class="kt-nav__head">
 																		Export Options
-																		<i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+																		<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<rect id="bound" x="0" y="0" width="24" height="24" />
+																					<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+																					<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+																					<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+																				</g>
+																			</svg> </span>
 																	</li>
 																	<li class="kt-nav__separator"></li>
 																	<li class="kt-nav__item">
@@ -1206,7 +1262,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																			<i class="kt-nav__link-icon flaticon2-new-email"></i>
 																			<span class="kt-nav__link-text">Support</span>
 																			<span class="kt-nav__link-badge">
-																				<span class="kt-badge kt-badge--success">5</span>
+																				<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
 																			</span>
 																		</a>
 																	</li>
@@ -1231,7 +1287,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/Inbound Bandwidth-->
 											<div class="kt-portlet kt-portlet--fit kt-portlet--head-noborder kt-portlet--height-fluid-half">
@@ -1360,13 +1416,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Outbound Bandwidth-->
 										</div>
-									</div>
-
-									<!--End::Section-->
-
-									<!--Begin::Section-->
-									<div class="row">
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/Download Files-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -1386,7 +1436,15 @@ License: You must have a valid license purchased only from themeforest(the above
 															<ul class="kt-nav">
 																<li class="kt-nav__head">
 																	Export Options
-																	<i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+																	<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
+																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
+																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																				<rect id="bound" x="0" y="0" width="24" height="24" />
+																				<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+																				<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+																				<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+																			</g>
+																		</svg> </span>
 																</li>
 																<li class="kt-nav__separator"></li>
 																<li class="kt-nav__item">
@@ -1412,7 +1470,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<i class="kt-nav__link-icon flaticon2-new-email"></i>
 																		<span class="kt-nav__link-text">Support</span>
 																		<span class="kt-nav__link-badge">
-																			<span class="kt-badge kt-badge--success">5</span>
+																			<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
 																		</span>
 																	</a>
 																</li>
@@ -1517,7 +1575,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Download Files-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/New Users-->
 											<div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
@@ -1698,7 +1756,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/New Users-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/Last Updates-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -1718,7 +1776,15 @@ License: You must have a valid license purchased only from themeforest(the above
 															<ul class="kt-nav">
 																<li class="kt-nav__head">
 																	Export Options
-																	<i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+																	<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
+																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
+																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																				<rect id="bound" x="0" y="0" width="24" height="24" />
+																				<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+																				<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+																				<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+																			</g>
+																		</svg> </span>
 																</li>
 																<li class="kt-nav__separator"></li>
 																<li class="kt-nav__item">
@@ -1744,7 +1810,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<i class="kt-nav__link-icon flaticon2-new-email"></i>
 																		<span class="kt-nav__link-text">Support</span>
 																		<span class="kt-nav__link-badge">
-																			<span class="kt-badge kt-badge--success">5</span>
+																			<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
 																		</span>
 																	</a>
 																</li>
@@ -1786,7 +1852,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<i class="flaticon2-line-chart kt-font-danger"></i>
 															</span>
 															<a href="#" class="kt-widget4__title kt-widget4__title--light">
-																Metronic Angular 7 version will be landing soon...
+																Metronic Angular 8 version will be landing soon...
 															</a>
 															<span class="kt-widget4__number kt-font-danger">+1080</span>
 														</div>
@@ -1836,11 +1902,11 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 
-									<!--End::Section-->
+									<!--End::Row-->
 
-									<!--Begin::Section-->
+									<!--Begin::Row-->
 									<div class="row">
-										<div class="col-xl-8">
+										<div class="col-xl-8 col-lg-12 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/Application Sales-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -2074,7 +2140,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Application Sales-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-2 order-xl-1">
 
 											<!--begin:: Widgets/Latest Updates-->
 											<div class="kt-portlet kt-portlet--height-fluid ">
@@ -2094,7 +2160,15 @@ License: You must have a valid license purchased only from themeforest(the above
 															<ul class="kt-nav">
 																<li class="kt-nav__head">
 																	Export Options
-																	<i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+																	<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
+																		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
+																			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																				<rect id="bound" x="0" y="0" width="24" height="24" />
+																				<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+																				<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+																				<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+																			</g>
+																		</svg> </span>
 																</li>
 																<li class="kt-nav__separator"></li>
 																<li class="kt-nav__item">
@@ -2120,7 +2194,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<i class="kt-nav__link-icon flaticon2-new-email"></i>
 																		<span class="kt-nav__link-text">Support</span>
 																		<span class="kt-nav__link-badge">
-																			<span class="kt-badge kt-badge--success">5</span>
+																			<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
 																		</span>
 																	</a>
 																</li>
@@ -2186,13 +2260,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Latest Updates-->
 										</div>
-									</div>
-
-									<!--End::Section-->
-
-									<!--Begin::Section-->
-									<div class="row">
-										<div class="col-xl-8">
+										<div class="col-xl-8 col-lg-6 order-lg-1 order-xl-1">
 
 											<!--begin:: Widgets/Best Sellers-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -2521,7 +2589,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Best Sellers-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-2 order-xl-1">
 
 											<!--begin:: Widgets/Authors Profit-->
 											<div class="kt-portlet kt-portlet--bordered-semi kt-portlet--height-fluid">
@@ -2558,8 +2626,8 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<span class="kt-nav__link-text">Reports</span>
 																	</a>
 																</li>
-																<li class="kt-nav__section kt-nav__section--first">
-																	<span class="kt-nav__section-text">HR</span>
+																<li class="kt-nav__section">
+																	<span class="kt-nav__section-text">Customers</span>
 																</li>
 																<li class="kt-nav__item">
 																	<a href="#" class="kt-nav__link">
@@ -2655,13 +2723,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Authors Profit-->
 										</div>
-									</div>
-
-									<!--End::Section-->
-
-									<!--Begin::Section-->
-									<div class="row">
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-2 order-xl-1">
 
 											<!--begin:: Widgets/Tasks -->
 											<div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
@@ -3701,7 +3763,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Tasks -->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-2 order-xl-1">
 
 											<!--begin:: Widgets/Notifications-->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -4045,7 +4107,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 											<!--end:: Widgets/Notifications-->
 										</div>
-										<div class="col-xl-4">
+										<div class="col-xl-4 col-lg-6 order-lg-2 order-xl-1">
 
 											<!--begin:: Widgets/Support Tickets -->
 											<div class="kt-portlet kt-portlet--height-fluid">
@@ -4066,7 +4128,15 @@ License: You must have a valid license purchased only from themeforest(the above
 																<ul class="kt-nav">
 																	<li class="kt-nav__head">
 																		Export Options
-																		<i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="Click to learn more..."></i>
+																		<span data-toggle="kt-tooltip" data-placement="right" title="Click to learn more...">
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--brand kt-svg-icon--md1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<rect id="bound" x="0" y="0" width="24" height="24" />
+																					<circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+																					<rect id="Rectangle-9" fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+																					<rect id="Rectangle-9-Copy" fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+																				</g>
+																			</svg> </span>
 																	</li>
 																	<li class="kt-nav__separator"></li>
 																	<li class="kt-nav__item">
@@ -4092,7 +4162,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																			<i class="kt-nav__link-icon flaticon2-new-email"></i>
 																			<span class="kt-nav__link-text">Support</span>
 																			<span class="kt-nav__link-badge">
-																				<span class="kt-badge kt-badge--success">5</span>
+																				<span class="kt-badge kt-badge--success kt-badge--rounded">5</span>
 																			</span>
 																		</a>
 																	</li>
@@ -4187,7 +4257,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 
-									<!--End::Section-->
+									<!--End::Row-->
 
 									<!--End::Dashboard 2-->
 								</div>
@@ -4199,8 +4269,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 					<!-- begin:: Footer -->
 					<div class="kt-footer kt-grid__item" id="kt_footer">
-						<div class="kt-container">
-							<div class="kt-footer__bottom">
+						<div class="kt-container ">
+							<div class="kt-footer__wrapper">
 								<div class="kt-footer__copyright">
 									2019&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/metronic" target="_blank" class="kt-link">Keenthemes</a>
 								</div>
@@ -4658,7 +4728,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<div class="kt-demo-panel__body">
 				<div class="kt-demo-panel__item ">
 					<div class="kt-demo-panel__item-title">
-						Default
+						Demo 1
 					</div>
 					<div class="kt-demo-panel__item-preview">
 						<img src="./assets/media/demos/preview/demo1.jpg" alt="" />
@@ -4899,8 +4969,8 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 							<div class="kt-portlet__body">
 								<div class="kt-scroll kt-scroll--pull" data-height="410" data-mobile-height="300">
-									<div class="kt-chat__messages kt-chat__messages kt-chat__messages--modal">
-										<div class="kt-chat__message kt-bg-light-success">
+									<div class="kt-chat__messages kt-chat__messages--solid">
+										<div class="kt-chat__message kt-chat__message--success">
 											<div class="kt-chat__user">
 												<span class="kt-userpic kt-userpic--circle kt-userpic--sm">
 													<img src="./assets/media/users/100_12.jpg" alt="image">
@@ -4912,7 +4982,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												How likely are you to recommend our company<br> to your friends and family?
 											</div>
 										</div>
-										<div class="kt-chat__message kt-chat__message--right kt-bg-light-brand">
+										<div class="kt-chat__message kt-chat__message--right kt-chat__message--brand">
 											<div class="kt-chat__user">
 												<span class="kt-chat__datetime">30 Seconds</span>
 												<a href="#" class="kt-chat__username">You</span></a>
@@ -4924,7 +4994,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												Hey there, we’re just writing to let you know that you’ve<br> been subscribed to a repository on GitHub.
 											</div>
 										</div>
-										<div class="kt-chat__message kt-bg-light-success">
+										<div class="kt-chat__message kt-chat__message--success">
 											<div class="kt-chat__user">
 												<span class="kt-userpic kt-userpic--circle kt-userpic--sm">
 													<img src="./assets/media/users/100_12.jpg" alt="image">
@@ -4936,7 +5006,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												Ok, Understood!
 											</div>
 										</div>
-										<div class="kt-chat__message kt-chat__message--right kt-bg-light-brand">
+										<div class="kt-chat__message kt-chat__message--right kt-chat__message--brand">
 											<div class="kt-chat__user">
 												<span class="kt-chat__datetime">Just Now</span>
 												<a href="#" class="kt-chat__username">You</span></a>
@@ -4948,7 +5018,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												You’ll receive notifications for all issues, pull requests!
 											</div>
 										</div>
-										<div class="kt-chat__message kt-bg-light-success">
+										<div class="kt-chat__message kt-chat__message--success">
 											<div class="kt-chat__user">
 												<span class="kt-userpic kt-userpic--circle kt-userpic--sm">
 													<img src="./assets/media/users/100_12.jpg" alt="image">
@@ -4960,7 +5030,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												You were automatically <b class="kt-font-brand">subscribed</b> <br>because you’ve been given access to the repository
 											</div>
 										</div>
-										<div class="kt-chat__message kt-chat__message--right kt-bg-light-brand">
+										<div class="kt-chat__message kt-chat__message--right kt-chat__message--brand">
 											<div class="kt-chat__user">
 												<span class="kt-chat__datetime">30 Seconds</span>
 												<a href="#" class="kt-chat__username">You</span></a>
@@ -4972,7 +5042,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												You can unwatch this repository immediately <br>by clicking here: <a href="#" class="kt-font-bold kt-link"></a>
 											</div>
 										</div>
-										<div class="kt-chat__message kt-bg-light-success">
+										<div class="kt-chat__message kt-chat__message--success">
 											<div class="kt-chat__user">
 												<span class="kt-userpic kt-userpic--circle kt-userpic--sm">
 													<img src="./assets/media/users/100_12.jpg" alt="image">
@@ -4984,7 +5054,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												Discover what students who viewed Learn <br>Figma - UI/UX Design Essential Training also viewed
 											</div>
 										</div>
-										<div class="kt-chat__message kt-chat__message--right kt-bg-light-brand">
+										<div class="kt-chat__message kt-chat__message--right kt-chat__message--brand">
 											<div class="kt-chat__user">
 												<span class="kt-chat__datetime">Just Now</span>
 												<a href="#" class="kt-chat__username">You</span></a>

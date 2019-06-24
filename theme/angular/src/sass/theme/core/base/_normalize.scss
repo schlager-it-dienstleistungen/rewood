@@ -102,3 +102,31 @@ canvas {
         font-size: kt-get($kt-font-size, size, mobile);
     }
 }
+
+// Print media
+@media print {
+    // Layout partials
+    .kt-print-content-only {
+        .kt-header,
+        .kt-header-mobile,
+        .kt-aside,
+        .kt-aside-secondary,
+        .kt-footer,
+        .kt-subheader,
+        .kt-scrolltop,
+        .kt-quick-panel,
+        .kt-demo-panel,
+        .kt-sticky-toolbar {
+            display: none !important;
+        }
+
+        &,
+        .kt-wrapper,
+        .kt-body,
+        .kt-content {		
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+    }    
+}

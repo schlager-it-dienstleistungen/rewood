@@ -212,26 +212,29 @@ var KTLayout = function() {
                 zIndex: 90,
                 position: {
                     top: function() {
+                        var pos;
                         if (KTUtil.isInResponsiveRange('desktop')) {
-                            return parseInt(KTUtil.css( KTUtil.get('kt_header'), 'height') );
+                            pos = parseInt(KTUtil.actualHeight( KTUtil.get('kt_header'), 'height') );
                         } else {
-                            return parseInt(KTUtil.css( KTUtil.get('kt_header_mobile'), 'height') );
-                        }                        
+                            pos = parseInt(KTUtil.css( KTUtil.get('kt_header_mobile'), 'height') );
+                        }        
+                        
+                        return pos;
                     },
-                    left: function() {
-                        if (KTUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KTUtil.css( KTUtil.get('kt_content_wrapper'), 'paddingLeft'));
-                        }
-
-                        return;
-                    },
-                    right: function() {
-                        if (KTUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KTUtil.css( KTUtil.get('kt_content_wrapper'), 'paddingRight'));
-                        }
-
-                        return;
-                    }
+                    left: function(portlet) {
+						var porletEl = portlet.getSelf();      
+						
+						return KTUtil.offset(porletEl).left;
+					},
+					right: function(portlet) {
+                        var porletEl = portlet.getSelf();      
+                        
+                        var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
+						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
+						var portletOffsetLeft = KTUtil.offset(porletEl).left;
+					
+						return bodyWidth - portletWidth - portletOffsetLeft;
+					}
                 }
             }
         });

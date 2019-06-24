@@ -3,9 +3,7 @@ import { Subscription } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 // Layout
-import { LayoutConfigService, SplashScreenService } from './core/_base/layout';
-// Layout
-import { TranslationService } from './core/_base/layout';
+import { LayoutConfigService, SplashScreenService, TranslationService } from './core/_base/layout';
 // language list
 import { locale as enLang } from './core/_config/i18n/en';
 import { locale as chLang } from './core/_config/i18n/ch';
@@ -62,6 +60,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
 				// scroll to top on every route change
 				window.scrollTo(0, 0);
+
+				// to display back the body content
+				setTimeout(() => {
+					document.body.classList.add('kt-page--loaded');
+				}, 500);
 			}
 		});
 		this.unsubscribe.push(routerSubscription);

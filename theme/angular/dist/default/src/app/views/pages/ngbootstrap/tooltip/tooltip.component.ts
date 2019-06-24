@@ -150,7 +150,7 @@ import {Component, ViewChild} from '@angular/core';\n
 export class NgbdTooltipTplwithcontext {
     greeting = {};
     name = 'World';\n
-    @ViewChild('t') public tooltip: NgbTooltip;\n
+    @ViewChild('t', {static: true}) public tooltip: NgbTooltip;\n
     public changeGreeting(greeting: any): void {
         const isOpen = this.tooltip.isOpen();
         this.tooltip.close();
@@ -259,7 +259,7 @@ export class TooltipComponent implements OnInit {
 	greeting = {};
 	name2 = 'World';
 
-	@ViewChild('t2') public tooltip: NgbTooltip;
+	@ViewChild('t2', {static: true}) public tooltip: NgbTooltip;
 
 	public changeGreeting(greeting: any): void {
 		const isOpen = this.tooltip.isOpen();

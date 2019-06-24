@@ -50,6 +50,12 @@
 			font-size: 1rem;
 		}
 	}
+
+	&--no-bg{
+		.card{
+			background-color: transparent;
+		}
+	}
 }
 
 // Light Accordion
@@ -292,4 +298,72 @@
 			}					
 		}
 	}	
+}
+
+// SVG icon
+.accordion.accordion-svg-icon {
+	.card {
+		border-top:0;
+
+		.card-header {
+			.card-title {
+				color: kt-base-color(label, 4);
+				position: relative;
+				font-size: 1.2rem;
+
+				.kt-svg-icon{
+					margin-right: 1.2rem;
+					transform: rotate(90deg);
+					flex: 0 0 2rem;
+					@include kt-transition;
+				}
+
+				&.collapsed {					
+					color: kt-base-color(label, 4);
+
+					.kt-svg-icon{
+						transform: rotate(0);
+					}
+				}	
+			}					
+		}
+
+		.card-body{
+			padding-left: 3.2rem;
+		}
+
+		&:last-child{
+			.card-body{
+				padding-left: 3.2rem;
+			}	
+		}
+	}	
+}
+
+// SVG toggle
+.accordion.accordion-toggle-svg{
+	.card{
+
+		.card-header{
+			.card-title{
+				color: kt-base-color(label, 4);
+				font-size: 1.2rem;
+				background-color: kt-state-color(brand, inverse);
+
+				.kt-svg-icon{
+					margin: auto 0 auto auto;
+					transform: rotate(90deg);
+					@include kt-transition;
+				}
+
+				&.collapsed {		
+					color: kt-base-color(label, 4);			
+
+					.kt-svg-icon{
+						transform: rotate(0);
+					}
+				}	
+			}
+		}
+	}
 }

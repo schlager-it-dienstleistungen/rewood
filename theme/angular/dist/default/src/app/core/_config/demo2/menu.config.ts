@@ -320,33 +320,55 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Error Pages',
-							root: true,
 							bullet: 'dot',
 							icon: 'flaticon2-attention',
 							submenu: [
 								{
-									title: 'Error Page - 1',
+									title: 'Error 1',
 									page: 'error/error-v1'
 								},
 								{
-									title: 'Error Page - 2',
+									title: 'Error 2',
 									page: 'error/error-v2'
 								},
 								{
-									title: 'Error Page - 3',
+									title: 'Error 3',
 									page: 'error/error-v3'
 								},
 								{
-									title: 'Error Page - 4',
+									title: 'Error 4',
 									page: 'error/error-v4'
 								},
 								{
-									title: 'Error Page - 5',
+									title: 'Error 5',
 									page: 'error/error-v5'
 								},
 								{
-									title: 'Error Page - 6',
+									title: 'Error 6',
 									page: 'error/error-v6'
+								},
+							]
+						},
+						{
+							title: 'Wizard',
+							bullet: 'dot',
+							icon: 'flaticon2-mail-1',
+							submenu: [
+								{
+									title: 'Wizard 1',
+									page: 'wizard/wizard-1'
+								},
+								{
+									title: 'Wizard 2',
+									page: 'wizard/wizard-2'
+								},
+								{
+									title: 'Wizard 3',
+									page: 'wizard/wizard-3'
+								},
+								{
+									title: 'Wizard 4',
+									page: 'wizard/wizard-4'
 								},
 							]
 						},
@@ -385,7 +407,7 @@ export class MenuConfig {
 								{
 									title: 'Auto Complete',
 									page: 'material/form-controls/autocomplete',
-									permissionId: 2
+									permission: 'accessToECommerceModule'
 								},
 								{
 									title: 'Checkbox',
@@ -508,6 +530,10 @@ export class MenuConfig {
 								{
 									title: 'Progress spinner',
 									page: 'material/buttons-and-indicators/progress-spinner'
+								},
+								{
+									title: 'Ripples',
+									page: 'material/buttons-and-indicators/ripples'
 								}
 							]
 						},
@@ -631,6 +657,7 @@ export class MenuConfig {
 					bullet: 'dot',
 					icon: 'flaticon2-list-2',
 					root: true,
+					permission: 'accessToECommerceModule',
 					submenu: [
 						{
 							title: 'Customers',
@@ -647,7 +674,6 @@ export class MenuConfig {
 					root: true,
 					bullet: 'dot',
 					icon: 'flaticon2-user-outline-symbol',
-					permissionId: 2,
 					submenu: [
 						{
 							title: 'Users',
@@ -667,28 +693,52 @@ export class MenuConfig {
 					icon: 'flaticon2-attention',
 					submenu: [
 						{
-							title: 'Error Page - 1',
+							title: 'Error 1',
 							page: 'error/error-v1'
 						},
 						{
-							title: 'Error Page - 2',
+							title: 'Error 2',
 							page: 'error/error-v2'
 						},
 						{
-							title: 'Error Page - 3',
+							title: 'Error 3',
 							page: 'error/error-v3'
 						},
 						{
-							title: 'Error Page - 4',
+							title: 'Error 4',
 							page: 'error/error-v4'
 						},
 						{
-							title: 'Error Page - 5',
+							title: 'Error 5',
 							page: 'error/error-v5'
 						},
 						{
-							title: 'Error Page - 6',
+							title: 'Error 6',
 							page: 'error/error-v6'
+						},
+					]
+				},
+				{
+					title: 'Wizard',
+					root: true,
+					bullet: 'dot',
+					icon: 'flaticon2-mail-1',
+					submenu: [
+						{
+							title: 'Wizard 1',
+							page: 'wizard/wizard-1'
+						},
+						{
+							title: 'Wizard 2',
+							page: 'wizard/wizard-2'
+						},
+						{
+							title: 'Wizard 3',
+							page: 'wizard/wizard-3'
+						},
+						{
+							title: 'Wizard 4',
+							page: 'wizard/wizard-4'
 						},
 					]
 				},

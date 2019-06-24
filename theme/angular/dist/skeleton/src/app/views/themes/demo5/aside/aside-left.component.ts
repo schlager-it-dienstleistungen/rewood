@@ -1,9 +1,18 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	OnInit,
+	Renderer2,
+	ViewChild
+} from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import * as objectPath from 'object-path';
-import { LayoutConfigService, MenuAsideService, MenuOptions } from '../../../../core/_base/layout';
-import { OffcanvasOptions } from '../../../../core/_base/layout';
+// Layout
+import { LayoutConfigService, MenuAsideService, MenuOptions, OffcanvasOptions } from '../../../../core/_base/layout';
 import { HtmlClassService } from '../html-class.service';
 
 @Component({
@@ -14,7 +23,7 @@ import { HtmlClassService } from '../html-class.service';
 })
 export class AsideLeftComponent implements OnInit, AfterViewInit {
 
-	@ViewChild('asideMenu') asideMenu: ElementRef;
+	@ViewChild('asideMenu', {static: true}) asideMenu: ElementRef;
 
 	currentRouteUrl: string = '';
 	insideTm: any;
@@ -39,6 +48,11 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 			desktop: {
 				// by default the menu mode set to accordion in desktop mode
 				default: 'dropdown',
+				// whenever body has this class switch the menu mode to dropdown
+				state: {
+					body: 'kt-aside--minimize',
+					mode: 'dropdown'
+				}
 			},
 			tablet: 'accordion', // menu set to accordion in tablet mode
 			mobile: 'accordion' // menu set to accordion in mobile mode
@@ -50,12 +64,23 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		}
 	};
 
+	/**
+	 * Component Conctructor
+	 *
+	 * @param htmlClassService: HtmlClassService
+	 * @param menuAsideService
+	 * @param layoutConfigService: LayouConfigService
+	 * @param router: Router
+	 * @param render: Renderer2
+	 * @param cdr: ChangeDetectorRef
+	 */
 	constructor(
 		public htmlClassService: HtmlClassService,
 		public menuAsideService: MenuAsideService,
 		public layoutConfigService: LayoutConfigService,
 		private router: Router,
-		private render: Renderer2
+		private render: Renderer2,
+		private cdr: ChangeDetectorRef
 	) {
 	}
 
@@ -67,7 +92,10 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 
 		this.router.events
 			.pipe(filter(event => event instanceof NavigationEnd))
-			.subscribe(event => this.currentRouteUrl = this.router.url.split(/[?#]/)[0]);
+			.subscribe(event => {
+				this.currentRouteUrl = this.router.url.split(/[?#]/)[0];
+				this.cdr.markForCheck();
+			});
 
 		const config = this.layoutConfigService.getConfig();
 
@@ -82,6 +110,10 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		}
 	}
 
+	/**
+	 * Check Menu is active
+	 * @param item: any
+	 */
 	isMenuItemIsActive(item): boolean {
 		if (item.submenu) {
 			return this.isMenuRootItemIsActive(item);
@@ -94,6 +126,10 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		return this.currentRouteUrl.indexOf(item.page) !== -1;
 	}
 
+	/**
+	 * Check Menu Root Item is active
+	 * @param item: any
+	 */
 	isMenuRootItemIsActive(item): boolean {
 		let result: boolean = false;
 
@@ -152,6 +188,10 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		}
 	}
 
+	/**
+	 * Returns Submenu CSS Class Name
+	 * @param item: any
+	 */
 	getItemCssClasses(item) {
 		let classes = 'kt-menu__item';
 
@@ -168,8 +208,9 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		}
 
 		// custom class for menu item
-		if (objectPath.has(item, 'custom-class')) {
-			classes += ' ' + item['custom-class'];
+		const customClass = objectPath.get(item, 'custom-class');
+		if (customClass) {
+			classes += ' ' + customClass;
 		}
 
 		if (objectPath.get(item, 'icon-only')) {

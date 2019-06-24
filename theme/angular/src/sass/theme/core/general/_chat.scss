@@ -104,10 +104,10 @@
                     text-align: right;
                     padding: 1.1rem 1.6rem 1.1rem 3.5rem;
                 }
-            }
+            }            
         }
         
-        &.kt-chat__messages--modal {
+        &.kt-chat__messages--solid {
             width: 100%;             
              
             .kt-chat__message {
@@ -125,12 +125,19 @@
 
                 .kt-chat__text {
                     padding: 0;
-                    margin-top: 0.5rem;
+                    margin-top: 0.5rem; 
+                    background: none !important;                  
                 }
 
                 &.kt-chat__message--right {
                     float: right;
-                }
+                } 
+                
+                @each $name, $color in $kt-state-colors {
+                    &.kt-chat__message--#{$name} {                        
+                        background: rgba(kt-get($color, base), 0.1);                      
+                    }
+                } 
             }
         }
     }

@@ -209,8 +209,6 @@
 					Plugin.lockTable.call();
 				}
 
-				Plugin.columnHide.call();
-
 				Plugin.resetScroll();
 
 				// check if not is a locked column
@@ -223,6 +221,8 @@
 					// reset row
 					$(datatable.table).find('.' + pfx + 'datatable__row').css('height', '');
 				}
+
+				Plugin.columnHide.call();
 
 				Plugin.rowEvenOdd.call();
 
@@ -1760,21 +1760,30 @@
 				var screen = util.getViewPort().width;
 				// foreach columns setting
 				$.each(options.columns, function(i, column) {
-					if (typeof column.responsive !== 'undefined') {
+					if (typeof column.responsive !== 'undefined' || typeof column.visible !== 'undefined') {
 						var field = column.field;
 						var tds = $.grep($(datatable.table).find('.' + pfx + 'datatable__cell'), function(n, i) {
 							return field === $(n).data('field');
 						});
-						if (util.getBreakpoint(column.responsive.hidden) >= screen) {
-							$(tds).hide();
-						} else {
-							$(tds).show();
-						}
-						if (util.getBreakpoint(column.responsive.visible) <= screen) {
-							$(tds).show();
-						} else {
-							$(tds).hide();
-						}
+
+						setTimeout(function () {
+							// hide by force
+							if (Plugin.getObject('visible', column) === false) {
+								$(tds).hide();
+							} else {
+								// show/hide by responsive breakpoint
+								if (util.getBreakpoint(Plugin.getObject('responsive.hidden', column)) >= screen) {
+									$(tds).hide();
+								} else {
+									$(tds).show();
+								}
+								if (util.getBreakpoint(Plugin.getObject('responsive.visible', column)) <= screen) {
+									$(tds).show();
+								} else {
+									$(tds).hide();
+								}
+							}
+						});
 					}
 				});
 			},
@@ -3098,46 +3107,6 @@
 				return datatable.originalDataSet;
 			},
 
-			/**
-			 * @deprecated in v5.0.6
-			 * Hide column by column's field name
-			 * @param fieldName
-			 */
-			hideColumn: function(fieldName) {
-				// add hide option for this column
-				$.map(options.columns, function(column) {
-					if (fieldName === column.field) {
-						column.responsive = {hidden: 'xl'};
-					}
-					return column;
-				});
-				// hide current displayed column
-				var tds = $.grep($(datatable.table).find('.' + pfx + 'datatable__cell'), function(n, i) {
-					return fieldName === $(n).data('field');
-				});
-				$(tds).hide();
-			},
-
-			/**
-			 * @deprecated in v5.0.6
-			 * Show column by column's field name
-			 * @param fieldName
-			 */
-			showColumn: function(fieldName) {
-				// add hide option for this column
-				$.map(options.columns, function(column) {
-					if (fieldName === column.field) {
-						delete column.responsive;
-					}
-					return column;
-				});
-				// hide current displayed column
-				var tds = $.grep($(datatable.table).find('.' + pfx + 'datatable__cell'), function(n, i) {
-					return fieldName === $(n).data('field');
-				});
-				$(tds).show();
-			},
-
 			nodeTr: [],
 			nodeTd: [],
 			nodeCols: [],
@@ -3253,15 +3222,16 @@
 
 					if (bool) {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							delete options.columns[index].responsive;
+							delete options.columns[index].visible;
 						}
 						$(Plugin.recentNode).show();
 					} else {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							Plugin.setOption('columns.' + index + '.responsive', {hidden: 'xl'});
+							Plugin.setOption('columns.' + index + '.visible', false);
 						}
 						$(Plugin.recentNode).hide();
 					}
+					Plugin.columnHide();
 					Plugin.redraw();
 				}
 			},

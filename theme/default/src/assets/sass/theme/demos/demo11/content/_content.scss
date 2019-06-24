@@ -12,7 +12,8 @@
 		padding-right: 0;
 		padding-bottom: 0;
 
-		// aside disabled
+		// Aside disabled or non fixed
+		body.kt-aside--enabled.kt-aside--static &,
 		body:not(.kt-aside--enabled) & {
 			padding-left: 0;	
 		}
@@ -26,7 +27,18 @@
 		.kt-footer--fixed & {
 			padding-bottom: kt-get($kt-footer-config, self, fixed, height);
 		} 
+
+		// Content containers
+		.kt-container.kt-container--fluid {
+			.kt-aside--enabled & {
+				padding-left: kt-get($kt-page-padding, desktop);
+			}
+		}
 		
+		// Aside fixed 
+		.kt-aside--enabled.kt-aside--fixed & {
+			padding-left: kt-get($kt-aside-config, base, default, width);
+		}
 	}
 }
 

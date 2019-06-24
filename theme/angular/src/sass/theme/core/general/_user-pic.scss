@@ -8,14 +8,16 @@
     background-repeat: no-repeat; 
     background-position: center center; 
     background-size: cover;
+
+    @include kt-user-pic-size(50px, 1.3rem);
+
         
     @include kt-rounded {
         border-radius: $kt-border-radius;
-    }
-    
-    @include kt-user-pic-size(50px, 1.3rem);
+    }  
 
-    img {        
+    img {                 
+       
         @include kt-rounded {
             border-radius: $kt-border-radius;
         }      
@@ -25,7 +27,7 @@
         display: flex;       
         align-items: center;
         justify-content: center;         
-        font-weight: 600;
+        font-weight: 600;       
             
         @include kt-rounded {
             border-radius: $kt-border-radius;
@@ -45,15 +47,19 @@
     
     // sizing
     &.kt-userpic--sm {
-        @include kt-user-pic-size(27px, 0.8rem);       
+        @include kt-user-pic-size(27px, 0.8rem);         
+    }
+
+    &.kt-userpic--md {
+        @include kt-user-pic-size(47px, 1rem);         
     }
     
     &.kt-userpic--lg {
-        @include kt-user-pic-size(65px, 1.3rem);         
+        @include kt-user-pic-size(65px, 1.3rem);       
     }
     
     &.kt-userpic--xl {
-        @include kt-user-pic-size(80px, 1.7rem);         
+        @include kt-user-pic-size(80px, 1.7rem);       
     }
     
     // circle style

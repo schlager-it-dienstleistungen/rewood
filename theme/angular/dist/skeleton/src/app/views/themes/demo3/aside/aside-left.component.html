@@ -1,14 +1,14 @@
 <!-- BEGIN: Left Aside -->
 <div ktOffcanvas [options]="menuCanvasOptions" class="kt-aside kt-aside--fixed kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+	<!-- begin:: Brand -->
 	<kt-brand></kt-brand>
+	<!-- end:: Brand -->
+
 	<!-- BEGIN: Aside Menu -->
 	<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
-		<div #asideMenu ktMenu [options]="menuOptions" id="kt_aside_menu" class="kt-aside-menu kt-aside-menu--dropdown"
-			[attr.data-ktmenu-vertical]="1"
-			[attr.data-ktmenu-dropdown]="1"
-			[attr.data-ktmenu-scroll]="0"
-			(mouseenter)="mouseEnter($event)"
-			(mouseleave)="mouseLeave($event)">
+		<div #asideMenu ktMenu [options]="menuOptions" id="kt_aside_menu" class="kt-aside-menu"
+			(mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)"
+			[ngClass]="htmlClassService.getClasses('aside_menu', true)">
 			<ul class="kt-menu__nav" [ngClass]="htmlClassService.getClasses('aside_menu_nav', true)">
 				<ng-container [ngTemplateOutlet]="menuListTemplate"></ng-container>
 			</ul>

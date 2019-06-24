@@ -20,7 +20,13 @@ var KTWizard4 = function () {
 			if (validator.form() !== true) {
 				wizardObj.stop();  // don't go to the next step
 			}
-		})
+		});
+
+		wizard.on('beforePrev', function(wizardObj) {
+			if (validator.form() !== true) {
+				wizardObj.stop();  // don't go to the next step
+			}
+		});
 
 		// Change event
 		wizard.on('change', function(wizard) {

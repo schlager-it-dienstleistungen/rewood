@@ -8,8 +8,6 @@ import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 // Angular in memory
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect Scroll bar
 import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 // SVG inline
@@ -34,14 +32,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 // Partials
 import { PartialsModule } from './views/partials/partials.module';
-// Services
-import { DataTableService, FakeApiService } from './core/_base/layout';
 // Layout Services
-import { LayoutConfigService, LayoutRefService, MenuAsideService, MenuConfigService, MenuHorizontalService, PageConfigService, SplashScreenService, SubheaderService,
-	KtDialogService } from './core/_base/layout';
+import {
+	DataTableService,
+	FakeApiService,
+	KtDialogService,
+	LayoutConfigService,
+	LayoutRefService,
+	MenuAsideService,
+	MenuConfigService,
+	MenuHorizontalService,
+	PageConfigService,
+	SplashScreenService,
+	SubheaderService
+} from './core/_base/layout';
 // Auth
 import { AuthModule } from './views/pages/auth/auth.module';
-import { AuthService, PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from './core/auth';
+import { AuthService } from './core/auth';
 // CRUD
 import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
 // Config
@@ -99,10 +106,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 		StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
 		StoreDevtoolsModule.instrument(),
 		AuthModule.forRoot(),
-		NgbModule,
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
-		InlineSVGModule.forRoot()
+		InlineSVGModule.forRoot(),
 	],
 	exports: [],
 	providers: [

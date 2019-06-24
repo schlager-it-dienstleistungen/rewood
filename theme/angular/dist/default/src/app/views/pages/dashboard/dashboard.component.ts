@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // Lodash
 import { shuffle } from 'lodash';
 // Services
-import { LayoutConfigService } from '../../../core/_base/layout';
 // Widgets model
-import { SparklineChartOptions } from '../../../core/_base/layout';
+import { LayoutConfigService, SparklineChartOptions } from '../../../core/_base/layout';
 import { Widget4Data } from '../../partials/content/widgets/widget4/widget4.component';
 
 @Component({
@@ -126,7 +125,7 @@ export class DashboardComponent implements OnInit {
 				valueColor: 'kt-font-success'
 			}, {
 				icon: 'flaticon2-line-chart kt-font-danger',
-				title: 'Metronic Angular 7 version will be landing soon..',
+				title: 'Metronic Angular 8 version will be landing soon..',
 				url: 'https://keenthemes.com.my/metronic',
 				value: '+$1080',
 				valueColor: 'kt-font-danger'

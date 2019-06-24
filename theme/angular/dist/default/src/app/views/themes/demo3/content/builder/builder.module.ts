@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 // NgBootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect Scrollbar
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 // Partials
@@ -22,7 +22,6 @@ import { BuilderComponent } from './builder.component';
 		CommonModule,
 		PartialsModule,
 		FormsModule,
-		NgbModule,
 		MatTabsModule,
 		CoreModule,
 		PerfectScrollbarModule,
@@ -32,7 +31,10 @@ import { BuilderComponent } from './builder.component';
 				path: '',
 				component: BuilderComponent
 			}
-		])
+		]),
+
+		// ng-bootstrap modules
+		NgbTabsetModule,
 	],
 	providers: [],
 	declarations: [BuilderComponent]
