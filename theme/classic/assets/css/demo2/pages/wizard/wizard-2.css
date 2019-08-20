@@ -1,10 +1,19 @@
 .kt-wizard-v2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex; }
   @media (max-width: 768px) {
     .kt-wizard-v2 {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column; } }
   .kt-wizard-v2 .kt-wizard-v2__aside {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 400px;
     flex: 0 0 400px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 400px;
     border-right: 1px solid #eeeef4;
@@ -12,22 +21,38 @@
     .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav {
       width: 100%; }
       .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center; }
         .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item {
           padding: 0.75rem 1.5rem;
           position: relative;
           border-radius: 0.5rem; }
           .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item .kt-wizard-v2__nav-body {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex; }
             .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item .kt-wizard-v2__nav-body .kt-wizard-v2__nav-icon {
               font-size: 2.5rem;
               margin-right: 1.1rem;
               color: #959cb6; }
             .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item .kt-wizard-v2__nav-body .kt-wizard-v2__nav-label {
+              display: -webkit-box;
+              display: -ms-flexbox;
               display: flex;
+              -webkit-box-orient: vertical;
+              -webkit-box-direction: normal;
+              -ms-flex-direction: column;
               flex-direction: column;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
               justify-content: center; }
               .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item .kt-wizard-v2__nav-body .kt-wizard-v2__nav-label .kt-wizard-v2__nav-label-title {
                 color: #50566a;
@@ -38,7 +63,7 @@
           .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item[data-ktwizard-state="current"] {
             background-color: #f4f6f9; }
             .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item[data-ktwizard-state="current"] .kt-wizard-v2__nav-icon {
-              color: #2c77f4; }
+              color: #366cf3; }
             .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item[data-ktwizard-state="current"]:after {
               left: 100%;
               top: 50%;
@@ -54,6 +79,8 @@
     @media (max-width: 768px) {
       .kt-wizard-v2 .kt-wizard-v2__aside {
         padding: 1rem;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         width: 100%; }
         .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item[data-ktwizard-state="current"]:after {
@@ -89,12 +116,22 @@
             margin-bottom: 0;
             padding-bottom: 0; }
       .kt-wizard-v2 .kt-wizard-v2__wrapper .kt-form .kt-form__actions {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between; }
         @media (max-width: 576px) {
           .kt-wizard-v2 .kt-wizard-v2__wrapper .kt-form .kt-form__actions {
+            -ms-flex-wrap: wrap;
             flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
             justify-content: center; } }
         @media (max-width: 576px) {
           .kt-wizard-v2 .kt-wizard-v2__wrapper .kt-form .kt-form__actions .btn {

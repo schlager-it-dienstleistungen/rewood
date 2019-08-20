@@ -35,17 +35,30 @@ body .fc {
 --------------------------------------------------------------------------------------------------*/
 .fc-popover {
   position: absolute;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
 
 .fc-popover .fc-header {
   /* TODO: be more consistent with fc-head/fc-body */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 2px 4px; }
 
 .fc-rtl .fc-popover .fc-header {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
   flex-direction: row-reverse; }
 
 .fc-popover .fc-header .fc-title {
@@ -91,6 +104,7 @@ hr.fc-divider {
 --------------------------------------------------------------------------------------------------*/
 .fc table {
   width: 100%;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* fix scrollbar issue in firefox */
   table-layout: fixed;
@@ -286,6 +300,7 @@ temporary rendered events).
 .fc-event.fc-selected {
   z-index: 9999 !important;
   /* overcomes inline z-index */
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
 
 .fc-event.fc-selected:after {
@@ -305,6 +320,7 @@ temporary rendered events).
 /* Event Dragging
 --------------------------------------------------------------------------------------------------*/
 .fc-event.fc-dragging.fc-selected {
+  -webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); }
 
 .fc-event.fc-dragging:not(.fc-selected) {
@@ -608,6 +624,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-button:focus {
   outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25); }
 
 .fc-button:disabled {
@@ -625,6 +642,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   border-color: #1a252f; }
 
 .fc-button-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5); }
 
 .fc-button-primary:disabled {
@@ -640,6 +658,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-button-primary:not(:disabled):active:focus,
 .fc-button-primary:not(:disabled).fc-button-active:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5); }
 
 /* icons within buttons */
@@ -651,11 +670,15 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 --------------------------------------------------------------------------------------------------*/
 .fc-button-group {
   position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle; }
 
 .fc-button-group > .fc-button {
   position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto; }
 
 .fc-button-group > .fc-button:hover {
@@ -691,8 +714,14 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
 .fc-toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
 
 .fc-toolbar.fc-header-toolbar {
@@ -719,6 +748,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-view-container *,
 .fc-view-container *:before,
 .fc-view-container *:after {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box; }
 
 .fc-view,
@@ -1181,6 +1211,7 @@ be a descendant of the grid when it is being dragged.
   margin-bottom: 1px; }
 
 .fc-time-grid-event-inset {
+  -webkit-box-shadow: 0px 0px 0px 1px #fff;
   box-shadow: 0px 0px 0px 1px #fff; }
 
 .fc-time-grid-event.fc-not-start {

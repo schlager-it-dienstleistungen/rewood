@@ -1,5 +1,7 @@
 //
 // Demo Config
+// Here you can set the demo level SASS variables and override the global variables for this demo.
+// Note: To override the global variables in the demo level use the variables without "!default". More info:  https://sass-lang.com/documentation/variables
 //
 
 
@@ -14,11 +16,11 @@ $kt-state-colors: (
     ),
     light: (
         base: #ffffff,
-        inverse: #282a3c 
+        inverse: #282a3c
     ),
     dark: (
         base: #282a3c,
-        inverse: #ffffff 
+        inverse: #ffffff
     ),
 
     // Bootstrap states
@@ -41,7 +43,7 @@ $kt-state-colors: (
     danger: (
         base: #fd397a,
         inverse: #ffffff
-    )    
+    )
 );
 
 $kt-page-padding: (

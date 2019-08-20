@@ -57,6 +57,10 @@
 @import "../../vendors/sweetalert2";
 @import "../../vendors/datatables";
 @import "../../vendors/jquery-repeater";
+@import "../../vendors/duallistbox";
+@import "../../vendors/uppy";
+@import "../../vendors/quill";
+@import "../../vendors/tagify";
 
 // General
 @import "general/grid-nav-v2";
@@ -76,7 +80,7 @@
 @import "general/user-card";
 @import "general/user-card-v2";
 @import "general/user-card-v3";
-@import "general/user-pic";
+@import "general/media";
 @import "general/pagination";
 @import "general/searchbar";
 @import "general/callout";
@@ -86,7 +90,7 @@
 
 // Widgets - Chat
 @import "general/chat";
- 
+
 
 // Layout
 @import "layout/demo-panel";

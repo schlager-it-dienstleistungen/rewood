@@ -6,6 +6,7 @@
   .kt-pricing-3 .kt-pricing-3__items {
     width: 100%;
     text-align: center;
+    -webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
     box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08); }
     .kt-pricing-3 .kt-pricing-3__items .kt-pricing-3__item .kt-pricing-3__wrapper {
       padding: 4.2rem 1rem;

@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppContactsAdd = function () {
+var KTContactsAdd = function () {
 	// Base elements
 	var wizardEl;
 	var formEl;
@@ -12,7 +12,7 @@ var KTAppContactsAdd = function () {
 	// Private functions
 	var initWizard = function () {
 		// Initialize form wizard
-		wizard = new KTWizard('kt_apps_contacts_add', {
+		wizard = new KTWizard('kt_contacts_add', {
 			startStep: 1,
 		});
 
@@ -105,13 +105,13 @@ var KTAppContactsAdd = function () {
 	}
 	 
 	var initAvatar = function() {
-		avatar = new KTAvatar('kt_apps_contacts_add_avatar');
+		avatar = new KTAvatar('kt_contacts_add_avatar');
 	}	
 
 	return {
 		// public functions
 		init: function() {
-			formEl = $('#kt_apps_contacts_add_form');
+			formEl = $('#kt_contacts_add_form');
 
 			initWizard(); 
 			initValidation();
@@ -122,5 +122,5 @@ var KTAppContactsAdd = function () {
 }();
 
 jQuery(document).ready(function() {	
-	KTAppContactsAdd.init();
+	KTContactsAdd.init();
 });

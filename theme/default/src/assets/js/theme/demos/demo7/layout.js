@@ -96,7 +96,7 @@ var KTLayout = function() {
                 target: 'kt_aside_mobile_toggler',
                 state: 'kt-header-mobile__toolbar-toggler--active'
             }
-        }); 
+        });
     }
 
     // Aside menu
@@ -129,26 +129,28 @@ var KTLayout = function() {
         // Handle full height dropdowns
         if (KTUtil.isInResponsiveRange('desktop')) {
             var query = KTUtil.findAll(aside, '.kt-menu__item--submenu-fullheight .kt-menu__submenu > .kt-menu__wrapper');
-            
+
             for (var i = 0, j = query.length; i < j; i++) {
                 var item = query[i];
-              
-                KTUtil.scrollInit(item, {
-                    mobileNativeScroll: true, 
-                    resetHeightOnDestroy: true, 
-                    handleWindowResize: true,
-                    rememberPosition: true,
-                    height: function() {  
-                        return KTUtil.getViewPort().height; 
-                    } 
-                });
 
-                // Update scroller on submenu toggle
-                asideMenu.on('submenuToggle', function(menu, submenu) {
-                    if (submenu && item && item.contains(submenu)) {
-                        KTUtil.scrollUpdate(item);
-                    }
-                });
+                if (item) {
+                    KTUtil.scrollInit(item, {
+                        mobileNativeScroll: true,
+                        resetHeightOnDestroy: true,
+                        handleWindowResize: true,
+                        rememberPosition: true,
+                        height: function() {
+                            return KTUtil.getViewPort().height;
+                        }
+                    });
+
+                    // Update scroller on submenu toggle
+                    asideMenu.on('submenuToggle', function(submenuEl) {
+                        if (submenuEl && item.contains(submenuEl)) {
+                            KTUtil.scrollUpdate(item);
+                        }
+                    });
+                }
             }
         }
     }
@@ -163,14 +165,14 @@ var KTLayout = function() {
             target: 'body',
             targetState: 'kt-aside--minimize',
             togglerState: 'kt-aside__brand-aside-toggler--active'
-        }); 
+        });
 
-        asideToggler.on('toggle', function(toggle) {  
+        asideToggler.on('toggle', function(toggle) {
             KTUtil.addClass(body, 'kt-aside--minimizing');
 
             if (KTUtil.get('kt_page_portlet')) {
-                pageStickyPortlet.updateSticky();      
-            } 
+                pageStickyPortlet.updateSticky();
+            }
 
             KTUtil.transitionEnd(body, function() {
                 KTUtil.removeClass(body, 'kt-aside--minimizing');
@@ -181,13 +183,13 @@ var KTLayout = function() {
 
             // Remember state in cookie
             Cookies.set('kt_aside_toggle_state', toggle.getState());
-            // to set default minimized left aside use this cookie value in your 
+            // to set default minimized left aside use this cookie value in your
             // server side code and add "kt-brand--minimize kt-aside--minimize" classes to
             // the body tag in order to initialize the minimized left aside mode during page loading.
         });
 
-        asideToggler.on('beforeToggle', function(toggle) {   
-            var body = KTUtil.get('body'); 
+        asideToggler.on('beforeToggle', function(toggle) {
+            var body = KTUtil.get('body');
             if (KTUtil.hasClass(body, 'kt-aside--minimize') === false && KTUtil.hasClass(body, 'kt-aside--minimize-hover')) {
                 KTUtil.removeClass(body, 'kt-aside--minimize-hover');
             }
@@ -234,17 +236,17 @@ var KTLayout = function() {
 						return pos;
 					},
 					left: function(portlet) {
-						var porletEl = portlet.getSelf();      
-						
+						var porletEl = portlet.getSelf();
+
 						return KTUtil.offset(porletEl).left;
 					},
 					right: function(portlet) {
-                        var porletEl = portlet.getSelf();      
-                        
+                        var porletEl = portlet.getSelf();
+
                         var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
 						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
 						var portletOffsetLeft = KTUtil.offset(porletEl).left;
-					
+
 						return bodyWidth - portletWidth - portletOffsetLeft;
 					}
 				}
@@ -286,13 +288,11 @@ var KTLayout = function() {
             this.initPageStickyPortlet();
 
             // Non functional links notice(can be removed in production)
-            $('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function() {
-                if(location.hostname.match('keenthemes.com')) {
-                    swal.fire("You have clicked on a dummy link!", "To browse the theme features please refer to the header menu.", "warning");
-                } else {
-                    swal.fire("You have clicked on a dummy link!", "This demo shows only its unique layout features. <b>Keen's</b> all available features can be re-used in this and any other demos by refering to <b>the default demo</b>.", "warning");
-                }
-            });
+			$('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function(e) {
+				swal.fire("", "You have clicked on a non-functional dummy link!");
+
+				e.preventDefault();
+			});
         },
 
         initHeader: function() {
@@ -302,11 +302,11 @@ var KTLayout = function() {
             initScrolltop();
         },
 
-        initAside: function() { 
+        initAside: function() {
             initAside();
             initAsideMenu();
             initAsideToggler();
-            
+
             this.onAsideToggle(function(e) {
                 // Update sticky portlet
                 if (pageStickyPortlet) {
@@ -319,7 +319,7 @@ var KTLayout = function() {
                     datatables.each(function() {
                         $(this).KTDatatable('redraw');
                     });
-                }                
+                }
             });
         },
 
@@ -327,10 +327,10 @@ var KTLayout = function() {
             if (!KTUtil.get('kt_page_portlet')) {
                 return;
             }
-            
+
             pageStickyPortlet = initPageStickyPortlet();
             pageStickyPortlet.initSticky();
-            
+
             KTUtil.addResizeHandler(function(){
                 pageStickyPortlet.updateSticky();
             });
@@ -369,6 +369,11 @@ var KTLayout = function() {
 		}
     };
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+    module.exports = KTLayout;
+}
 
 $(document).ready(function() {
     KTLayout.init();

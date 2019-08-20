@@ -85,7 +85,7 @@ var KTChat = function () {
 				'<div class="kt-chat__user">' +				
 					'<span class="kt-chat__datetime">Just now</span>' +
 					'<a href="#" class="kt-chat__username">Jason Muller</span></a>' +					
-					'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+					'<span class="kt-media kt-media--circle kt-media--sm">' +
 						'<img src="./assets/media/users/100_12.jpg" alt="image">'  + 
 					'</span>' +
 				'</div>' +
@@ -109,7 +109,7 @@ var KTChat = function () {
 
 				var html = 
 					'<div class="kt-chat__user">' +
-						'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+						'<span class="kt-media kt-media--circle kt-media--sm">' +
 							'<img src="./assets/media/users/100_13.jpg" alt="image">'  + 
 						'</span>' +
 						'<a href="#" class="kt-chat__username">Max Born</span></a>' +
@@ -163,6 +163,11 @@ var KTChat = function () {
         }
 	};
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTChat;
+}
 
 KTUtil.ready(function() {	
 	KTChat.init();

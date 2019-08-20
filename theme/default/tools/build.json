@@ -1,6 +1,7 @@
 {
     "name": "metronic",
-    "version": "6.0.4",
+    "desc": "Metronic build config file for Gulp",
+    "version": "6.0.5",
     "config": {
         "demo": "",
         "debug": false,
@@ -246,7 +247,25 @@
                                 "{$config.path.node_modules}/dropzone/dist/dropzone.css"
                             ],
                             "scripts": [
-                                "{$config.path.node_modules}/dropzone/dist/dropzone.js"
+                                "{$config.path.node_modules}/dropzone/dist/dropzone.js",
+                                "{$config.path.src}/js/vendors/dropzone.init.js"
+                            ]
+                        },
+                        "quil": {
+                            "styles": [
+                                "{$config.path.node_modules}/quill/dist/quill.snow.css"
+                            ],
+                            "scripts": [
+                                "{$config.path.node_modules}/quill/dist/quill.js"
+                            ]
+                        },
+                        "tagify": {
+                            "styles": [
+                                "{$config.path.node_modules}/@yaireo/tagify/dist/tagify.css"
+                            ],
+                            "scripts": [
+                                "{$config.path.node_modules}/@yaireo/tagify/dist/tagify.polyfills.min.js",
+                                "{$config.path.node_modules}/@yaireo/tagify/dist/tagify.min.js"
                             ]
                         },
                         "summernote": {
@@ -294,6 +313,14 @@
                             ],
                             "scripts": [
                                 "{$config.path.node_modules}/toastr/build/toastr.min.js"
+                            ]
+                        },
+                        "dual-listbox": {
+                            "styles": [
+                                "{$config.path.node_modules}/dual-listbox/dist/dual-listbox.css"
+                            ],
+                            "scripts": [
+                                "{$config.path.node_modules}/dual-listbox/dist/dual-listbox.js"
                             ]
                         },
                         "morris.js": {
@@ -448,16 +475,16 @@
                         "scripts": "{$config.dist}/vendors/custom/gmaps/gmaps.js"
                     }
                 },
-                "jquery-flot": {
+                "flot": {
                     "src": {
                         "scripts": [
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.resize.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.categories.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.pie.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.stack.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.crosshair.js",
-                            "{$config.path.node_modules}/jquery-flot/jquery.flot.axislabels.js"
+                            "{$config.path.node_modules}/flot/dist/es5/jquery.flot.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.resize.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.categories.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.pie.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.stack.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.crosshair.js",
+                            "{$config.path.node_modules}/flot/source/jquery.flot.axislabels.js"
                         ]
                     },
                     "bundle": {
@@ -522,8 +549,7 @@
                         ],
                         "images": [
                             "{$config.path.src}/media/vendors/jstree/32px.png",
-                            "{$config.path.node_modules}/jstree/dist/themes/default/40px.png",
-                            "{$config.path.node_modules}/jstree/dist/themes/default/*.gif"
+                            "{$config.path.node_modules}/jstree/dist/themes/default/throbber.gif"
                         ]
                     },
                     "bundle": {
@@ -549,6 +575,20 @@
                     "bundle": {
                         "styles": "{$config.dist}/vendors/custom/jqvmap/jqvmap.bundle.css",
                         "scripts": "{$config.dist}/vendors/custom/jqvmap/jqvmap.bundle.js"
+                    }
+                },
+                "uppy": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.node_modules}/uppy/dist/uppy.min.css"
+                        ],
+                        "scripts": [
+                            "{$config.path.node_modules}/uppy/dist/uppy.min.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/vendors/custom/uppy/uppy.bundle.css",
+                        "scripts": "{$config.dist}/vendors/custom/uppy/uppy.bundle.js"
                     }
                 }
             }

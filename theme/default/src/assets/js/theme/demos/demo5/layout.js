@@ -19,7 +19,7 @@ var KTLayout = function() {
     var initHeader = function() {
         var tmp;
         var headerEl = KTUtil.get('kt_header');
-        
+
         var options = {
             classic: {
                 desktop: true,
@@ -46,7 +46,7 @@ var KTLayout = function() {
             header.on('minimizeOff', function() {
                 asideMenu.scrollReInit();
             });
-        }        
+        }
     }
 
     // Header Menu
@@ -122,7 +122,7 @@ var KTLayout = function() {
                 insideTm = setTimeout(function() {
                     if (KTUtil.hasClass(body, 'kt-aside--minimize') && KTUtil.isInResponsiveRange('desktop')) {
                         KTUtil.removeClass(body, 'kt-aside--minimize');
-                        
+
                         // Minimizing class
                         KTUtil.addClass(body, 'kt-aside--minimizing');
                         KTUtil.transitionEnd(body, function() {
@@ -211,7 +211,7 @@ var KTLayout = function() {
             accordion: {
                 expandAll: false // allow having multiple expanded accordions in the menu
             }
-        });       
+        });
     }
 
     // Scrolltop
@@ -234,20 +234,20 @@ var KTLayout = function() {
                             return 60; //parseInt(KTUtil.actualHeight( KTUtil.get('kt_header'), 'height') );
                         } else {
                             return parseInt(KTUtil.css( KTUtil.get('kt_header_mobile'), 'height') );
-                        }                        
+                        }
                     },
                     left: function(portlet) {
-						var porletEl = portlet.getSelf();      
-						
+						var porletEl = portlet.getSelf();
+
 						return KTUtil.offset(porletEl).left;
 					},
 					right: function(portlet) {
-                        var porletEl = portlet.getSelf();      
-                        
+                        var porletEl = portlet.getSelf();
+
                         var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
 						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
 						var portletOffsetLeft = KTUtil.offset(porletEl).left;
-					
+
 						return bodyWidth - portletWidth - portletOffsetLeft;
 					}
                 }
@@ -289,13 +289,11 @@ var KTLayout = function() {
             this.initPageStickyPortlet();
 
             // Non functional links notice(can be removed in production)
-            $('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function() {
-                if(location.hostname.match('keenthemes.com')) {
-                    swal.fire("You have clicked on a dummy link!", "To browse the theme features please refer to the header menu.", "warning");
-                } else {
-                    swal.fire("You have clicked on a dummy link!", "This demo shows only its unique layout features. <b>Keen's</b> all available features can be re-used in this and any other demos by refering to <b>the default demo</b>.", "warning");
-                }
-            });
+			$('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function(e) {
+				swal.fire("", "You have clicked on a non-functional dummy link!");
+
+				e.preventDefault();
+			});
         },
 
         initHeader: function() {
@@ -305,7 +303,7 @@ var KTLayout = function() {
             initScrolltop();
         },
 
-        initAside: function() { 
+        initAside: function() {
             initAside();
             initAsideMenu();
         },
@@ -318,10 +316,10 @@ var KTLayout = function() {
             if (!KTUtil.get('kt_page_portlet')) {
                 return;
             }
-            
+
             pageStickyPortlet = initPageStickyPortlet();
             pageStickyPortlet.initSticky();
-            
+
             KTUtil.addResizeHandler(function(){
                 pageStickyPortlet.updateSticky();
             });
@@ -346,6 +344,11 @@ var KTLayout = function() {
 		}
     };
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+    module.exports = KTLayout;
+}
 
 $(document).ready(function() {
     KTLayout.init();

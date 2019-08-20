@@ -257,7 +257,7 @@ module.exports = {
      * @param folder
      */
     cssRewriter: function (folder) {
-        var imgRegex = new RegExp(/\.(gif|jpg|jpeg|tiff|png|ico)$/i);
+        var imgRegex = new RegExp(/\.(gif|jpg|jpeg|tiff|png|ico|svg)$/i);
         // var fontRegex = new RegExp(/\.(otf|eot|svg|ttf|woff|woff2)$/i);
         var vendorGlobalRegex = new RegExp(/vendors\/global/i);
         var config = this.config;
@@ -282,7 +282,7 @@ module.exports = {
                             }
                         }
 
-                        var file = module.exports.baseFileName(ctx.targetFile);
+                        var file = path.basename(ctx.targetFile);
 
                         var extension = 'fonts/';
                         if (imgRegex.test(file)) {

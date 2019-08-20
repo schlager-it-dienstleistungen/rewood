@@ -11,21 +11,21 @@ var KTQuickSearch = function() {
     var inputGroup;
     var query = '';
 
-    var hasResult = false; 
-    var timeout = false; 
+    var hasResult = false;
+    var timeout = false;
     var isProcessing = false;
-    var requestTimeout = 200; // ajax request fire timeout in milliseconds 
+    var requestTimeout = 200; // ajax request fire timeout in milliseconds
     var spinnerClass = 'kt-spinner kt-spinner--input kt-spinner--sm kt-spinner--brand kt-spinner--right';
     var resultClass = 'kt-quick-search--has-result';
     var minLength = 2;
 
     var showProgress = function() {
         isProcessing = true;
-        KTUtil.addClass(inputGroup, spinnerClass); 
+        KTUtil.addClass(inputGroup, spinnerClass);
 
         if (closeIcon) {
             KTUtil.hide(closeIcon);
-        }       
+        }
     }
 
     var hideProgress = function() {
@@ -37,14 +37,14 @@ var KTQuickSearch = function() {
                 KTUtil.hide(closeIcon);
             } else {
                 KTUtil.show(closeIcon, 'flex');
-            }            
+            }
         }
     }
 
     var showDropdown = function() {
         if (resultDropdownToggle && !KTUtil.hasClass(resultDropdown, 'show')) {
             $(resultDropdownToggle).dropdown('toggle');
-            $(resultDropdownToggle).dropdown('update'); 
+            $(resultDropdownToggle).dropdown('update');
         }
     }
 
@@ -55,7 +55,7 @@ var KTQuickSearch = function() {
     }
 
     var processSearch = function() {
-        if (hasResult && query === input.value) {  
+        if (hasResult && query === input.value) {
             hideProgress();
             KTUtil.addClass(target, resultClass);
             showDropdown();
@@ -68,10 +68,11 @@ var KTQuickSearch = function() {
 
         KTUtil.removeClass(target, resultClass);
         showProgress();
+        hideDropdown();
 
         setTimeout(function() {
             $.ajax({
-                url: 'inc/api/quick_search.php',
+                url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/quick_search.php',
                 data: {
                     query: query
                 },
@@ -93,7 +94,7 @@ var KTQuickSearch = function() {
                     KTUtil.scrollUpdate(resultWrapper);
                 }
             });
-        }, 1000);       
+        }, 1000);
     }
 
     var handleCancel = function(e) {
@@ -123,20 +124,20 @@ var KTQuickSearch = function() {
 
         timeout = setTimeout(function() {
             processSearch();
-        }, requestTimeout);     
+        }, requestTimeout);
     }
 
-    return {     
-        init: function(element) { 
+    return {
+        init: function(element) {
             // Init
             target = element;
             form = KTUtil.find(target, '.kt-quick-search__form');
             input = KTUtil.find(target, '.kt-quick-search__input');
             closeIcon = KTUtil.find(target, '.kt-quick-search__close');
             resultWrapper = KTUtil.find(target, '.kt-quick-search__wrapper');
-            resultDropdown = KTUtil.find(target, '.dropdown-menu'); 
+            resultDropdown = KTUtil.find(target, '.dropdown-menu');
             resultDropdownToggle = KTUtil.find(target, '[data-toggle="dropdown"]');
-            inputGroup = KTUtil.find(target, '.input-group');           
+            inputGroup = KTUtil.find(target, '.input-group');
 
             // Attach input keyup handler
             KTUtil.addEvent(input, 'keyup', handleSearch);
@@ -144,33 +145,32 @@ var KTQuickSearch = function() {
 
             // Prevent enter click
             form.onkeypress = function(e) {
-                var key = e.charCode || e.keyCode || 0;     
+                var key = e.charCode || e.keyCode || 0;
                 if (key == 13) {
                     e.preventDefault();
                 }
             }
-           
-            KTUtil.addEvent(closeIcon, 'click', handleCancel);     
 
-            // Auto-focus on the form input on dropdown form open
-            var toggle = KTUtil.getByID('kt_quick_search_toggle');
-            if (toggle) {
-                $(toggle).on('shown.bs.dropdown', function () {
-                    input.focus();
-                });
-            }  
+            KTUtil.addEvent(closeIcon, 'click', handleCancel);
         }
     };
 };
 
-var KTQuickSearchMobile = KTQuickSearch;
+var KTQuickSearchInline = KTQuickSearch;
+var KTQuickSearchOffcanvas = KTQuickSearch;
 
-$(document).ready(function() {
-    if (KTUtil.get('kt_quick_search_default')) {
-        KTQuickSearch().init(KTUtil.get('kt_quick_search_default'));
+// Init on page load completed
+
+KTUtil.ready(function() {
+    if (KTUtil.get('kt_quick_search_dropdown')) {
+        KTQuickSearch().init(KTUtil.get('kt_quick_search_dropdown'));
     }
 
     if (KTUtil.get('kt_quick_search_inline')) {
-        KTQuickSearchMobile().init(KTUtil.get('kt_quick_search_inline'));
+        KTQuickSearchInline().init(KTUtil.get('kt_quick_search_inline'));
+    }
+
+    if (KTUtil.get('kt_quick_search_offcanvas')) {
+        KTQuickSearchOffcanvas().init(KTUtil.get('kt_quick_search_offcanvas'));
     }
 });

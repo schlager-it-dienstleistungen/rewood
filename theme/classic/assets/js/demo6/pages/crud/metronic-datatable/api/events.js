@@ -25,7 +25,7 @@ var KTDefaultDatatableDemo = function() {
 			// layout definition
 			layout: {
 				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
-				height: 'auto', // datatable's body's fixed height
+				minHeight: null, // datatable's body's fixed height
 				footer: false, // display/hide footer
 			},
 

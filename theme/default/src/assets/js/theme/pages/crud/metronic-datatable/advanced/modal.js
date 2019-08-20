@@ -21,6 +21,7 @@ var KTDatatableModal = function() {
 			layout: {
 				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
 				height: 400, // datatable's body's fixed height
+				minHeight: 400,
 				footer: false, // display/hide footer
 			},
 
@@ -161,7 +162,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'inc/api/datatables/demos/default.php',
+						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/default.php',
 					},
 				},
 				pageSize: 10, // display 20 records per page
@@ -174,6 +175,7 @@ var KTDatatableModal = function() {
 			layout: {
 				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
 				height: 400, // datatable's body's fixed height
+				minHeight: 400,
 				footer: false, // display/hide footer
 			},
 
@@ -365,7 +367,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'inc/api/datatables/demos/customers.php',
+						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/customers.php',
 					},
 				},
 				pageSize: 10, // display 20 records per page
@@ -488,7 +490,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'inc/api/datatables/demos/orders.php',
+						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/orders.php',
 						params: {
 							query: {
 								generalSearch: '',

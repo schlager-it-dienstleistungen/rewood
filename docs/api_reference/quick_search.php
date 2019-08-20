@@ -4,55 +4,186 @@
 		No record found
 	</div>
 
-	<div class="kt-quick-search__category kt-quick-search__category--first">
-		Documents
-	</div>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-interface-3 kt-font-warning"></i></span>
-		<span class="kt-quick-search__item-text">Annual finance report</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-share kt-font-success"></i></span>
-		<span class="kt-quick-search__item-text">Company meeting schedule</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-paper-plane kt-font-info"></i></span>
-		<span class="kt-quick-search__item-text">Project quotations</span>
-	</a>
-	
-	<div class="kt-quick-search__category">
-		Customers
-	</div>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><img src="assets/media/users/user1.jpg" title=""/></span>
-		<span class="kt-quick-search__item-text">Amanda Anderson</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><img src="assets/media/users/user2.jpg" title=""/></span>
-		<span class="kt-quick-search__item-text">Kennedy Lloyd</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><img src="assets/media/users/user3.jpg" title=""/></span>
-		<span class="kt-quick-search__item-text">Megan Weldon</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><img src="assets/media/users/user4.jpg" title=""/></span>
-		<span class="kt-quick-search__item-text">Marc-André ter Stegen</span>
-	</a>
+    <div class="kt-quick-search__category">
+        Documents
+    </div>
+    <div class="kt-quick-search__section">
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
+                <img src="assets/media/files/doc.svg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+					AirPlus Requirements
+				</a>
+                <div class="kt-quick-search__item-desc">
+                    by Grog John
+                </div>
+            </div>
+        </div>
 
-	<div class="kt-quick-search__category">
-		Files
-	</div>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-lifebuoy kt-font-warning"></i></span>
-		<span class="kt-quick-search__item-text">Revenue report</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-coins kt-font-primary"></i></span>
-		<span class="kt-quick-search__item-text">Anual finance report</span>
-	</a>
-	<a href="#" class="kt-quick-search__item">
-		<span class="kt-quick-search__item-icon"><i class="flaticon-calendar kt-font-danger"></i></span>
-		<span class="kt-quick-search__item-text">Tax calculations</span>
-	</a>
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
+                <img src="assets/media/files/pdf.svg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+				    TechNav Documentation
+				</a>
+                <div class="kt-quick-search__item-desc">
+                    by Mary Broun
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
+                <img src="assets/media/files/zip.svg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+					All Framework Docs
+				</a>
+                <div class="kt-quick-search__item-desc">
+                    by Nick Stone
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
+                <img src="assets/media/files/xml.svg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+					AirPlus Requirements
+				</a>
+                <div class="kt-quick-search__item-desc">
+                    by Tim Hardy
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kt-quick-search__category">
+        Members
+    </div>
+    <div class="kt-quick-search__section">
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img">
+                <img src="assets/media/users/300_14.jpg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									Jimmy Curry
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Software Developer
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img">
+                <img src="assets/media/users/300_20.jpg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									Milena Gibson
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    UI Designer
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img">
+                <img src="assets/media/users/300_21.jpg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									Stefan JohnStefan
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Marketing Manager
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-img">
+                <img src="assets/media/users/300_2.jpg" alt="" />
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									Anna Strong
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Software Developer
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kt-quick-search__category">
+        Files
+    </div>
+    <div class="kt-quick-search__section">
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-icon">
+                <i class="flaticon2-box kt-font-danger"></i>
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									2 New items submitted
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Marketing Manager
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-icon">
+                <i class="flaticon-psd kt-font-brand"></i>
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									79 PSD files generated
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    by Grog John
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-icon">
+                <i class="flaticon2-supermarket kt-font-warning"></i>
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									$2900 worth products sold
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Total 234 items
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-quick-search__item">
+            <div class="kt-quick-search__item-icon">
+                <i class="flaticon-safe-shield-protection kt-font-info"></i>
+            </div>
+            <div class="kt-quick-search__item-wrapper">
+                <a href="#" class="kt-quick-search__item-title">
+									4 New items submitted
+								</a>
+                <div class="kt-quick-search__item-desc">
+                    Marketing Manager
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

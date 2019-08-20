@@ -1,26 +1,32 @@
 var gulp = require('gulp');
 var build = require('./build');
-var replace = require('gulp-replace');
-var func = require('./helpers');
+const path = require("path");
+const glob = require("glob");
+const fs = require("fs");
+var yargs = require('yargs');
 
-const PREG_APIURL = new RegExp(/["|'](inc\/api.*?)["|']/g);
-
-var apiUrlCallback = function(full, part) {
-  return full.replace(part, build.config.path.demo_api_url + part);
-};
+var args = Object.assign({
+    preview: false,
+}, yargs.argv);
 
 // Gulp task to find api path and convert to absolute url
-gulp.task('apiurl', function(cb) {
-  build.config.dist.forEach(function(path) {
-    var output = path;
-    if (path.indexOf('**') !== -1) {
-      func.getDemos().forEach(function(demo) {
-        output = path.replace('**', demo);
-        gulp.src(output + '/**/*.js', {allowEmpty: true}).pipe(replace(PREG_APIURL, apiUrlCallback)).pipe(gulp.dest(output));
-      });
-    } else {
-      gulp.src(output + '/**/*.js', {allowEmpty: true}).pipe(replace(PREG_APIURL, apiUrlCallback)).pipe(gulp.dest(output));
+gulp.task('apiurl', function (cb) {
+    var output = "../../releases/" + build.name + "_v" + build.version + "/theme";
+    if (args.preview) {
+        output = "../../preview/assets";
     }
-  });
-  cb();
+    var files = glob.sync(path.resolve(__dirname, output + '/**/*.js'));
+    files.forEach(filename => {
+        fs.readFile(filename, {}, function (e, src) {
+            if (src) {
+                var text = src.toString();
+                var test = text.match(/["|']inc\/api\/(.*?)["|']/g);
+                if (test) {
+                    var replaced = text.replace(/inc\/api/g, build.config.path.demo_api_url + "inc/api");
+                    fs.writeFileSync(filename, replaced);
+                }
+            }
+        });
+    });
+    cb();
 });

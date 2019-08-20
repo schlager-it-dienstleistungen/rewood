@@ -246,7 +246,7 @@ var KTLayout = function() {
 
 			// Remember state in cookie
 			Cookies.set('kt_aside_toggle_state', toggle.getState());
-			// to set default minimized left aside use this cookie value in your 
+			// to set default minimized left aside use this cookie value in your
 			// server side code and add "kt-brand--minimize kt-aside--minimize" classes to
 			// the body tag in order to initialize the minimized left aside mode during page loading.
 		});
@@ -312,17 +312,17 @@ var KTLayout = function() {
 						return pos;
 					},
 					left: function(portlet) {
-						var porletEl = portlet.getSelf();      
-						
+						var porletEl = portlet.getSelf();
+
 						return KTUtil.offset(porletEl).left;
 					},
 					right: function(portlet) {
-						var porletEl = portlet.getSelf();      
+						var porletEl = portlet.getSelf();
 
 						var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
 						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
 						var portletOffsetLeft = KTUtil.offset(porletEl).left;
-					
+
 						return bodyWidth - portletWidth - portletOffsetLeft;
 					}
 				}
@@ -468,6 +468,11 @@ var KTLayout = function() {
 		}
 	};
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayout;
+}
 
 KTUtil.ready(function() {
 	KTLayout.init();

@@ -4,8 +4,14 @@
   background-repeat: no-repeat;
   margin-bottom: 2rem; }
   .kt-sc .kt-sc__top {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -21,9 +27,18 @@
       .kt-sc .kt-sc__top .kt-sc__nav .kt-link:first-child {
         margin-left: 0; }
   .kt-sc .kt-sc__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     padding-top: 10rem;
     padding-bottom: 10rem; }
@@ -31,6 +46,7 @@
       margin-bottom: 4rem; }
     .kt-sc .kt-sc__bottom .kt-sc__form .input-group {
       width: 630px;
+      -webkit-box-shadow: 0px 0px 9px 0px rgba(122, 104, 181, 0.09);
       box-shadow: 0px 0px 9px 0px rgba(122, 104, 181, 0.09); }
       .kt-sc .kt-sc__bottom .kt-sc__form .input-group .input-group-text {
         border-top-right-radius: 0;

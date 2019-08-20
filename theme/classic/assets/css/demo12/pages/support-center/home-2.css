@@ -1,5 +1,10 @@
 .kt-sc-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   position: relative; }
   .kt-sc-2 .kt-sc__bg {
@@ -8,8 +13,14 @@
     left: 4rem;
     right: 4rem;
     bottom: 4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: flex-end;
     z-index: 0; }
     .kt-sc-2 .kt-sc__bg .kt-svg-icon {
@@ -37,8 +48,15 @@
     z-index: 1; }
     .kt-sc-2 .kt-sc__top .kt-sc__content {
       margin-right: 50%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
       min-height: 385px;
       padding: 0 3rem; }
@@ -49,6 +67,7 @@
         margin-bottom: 2.5rem; }
       .kt-sc-2 .kt-sc__top .kt-sc__content .kt-sc__form .input-group {
         width: 450px;
+        -webkit-box-shadow: 0px 0px 27px 0px rgba(160, 160, 191, 0.2);
         box-shadow: 0px 0px 27px 0px rgba(160, 160, 191, 0.2); }
         .kt-sc-2 .kt-sc__top .kt-sc__content .kt-sc__form .input-group .input-group-text {
           border-top-right-radius: 0;
@@ -80,11 +99,11 @@
           margin-bottom: 25px;
           border-bottom: 2px solid transparent; }
           .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item .nav-link:hover, .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item a.nav-link:hover {
-            border-bottom: 2px solid #5d78ff;
+            border-bottom: 2px solid #2c77f4;
             color: #48465b; }
           .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item .nav-link.active, .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item a.nav-link.active {
-            border-bottom: 2px solid #5d78ff;
-            color: #5d78ff; }
+            border-bottom: 2px solid #2c77f4;
+            color: #2c77f4; }
   .kt-sc-2--wave {
     background-color: #f7f8fa !important;
     overflow: hidden;

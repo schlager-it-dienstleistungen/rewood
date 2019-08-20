@@ -62,9 +62,11 @@
           .kt-login.kt-login--v4 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
             font-size: 1rem;
             color: #74788d;
+            -webkit-transition: color 0.3s ease;
             transition: color 0.3s ease; }
             .kt-login.kt-login--v4 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link:hover {
               color: #5d78ff;
+              -webkit-transition: color 0.3s ease;
               transition: color 0.3s ease; }
         .kt-login.kt-login--v4 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions {
           text-align: center;
@@ -85,9 +87,11 @@
           font-size: 1rem;
           font-weight: 500;
           color: #595d6e;
+          -webkit-transition: color 0.3s ease;
           transition: color 0.3s ease; }
           .kt-login.kt-login--v4 .kt-login__wrapper .kt-login__container .kt-login__account .kt-login__account-link:hover {
             color: #5d78ff;
+            -webkit-transition: color 0.3s ease;
             transition: color 0.3s ease; }
 
 .kt-login.kt-login--v4.kt-login--signin .kt-login__signup {

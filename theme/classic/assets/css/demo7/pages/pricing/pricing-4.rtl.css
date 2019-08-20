@@ -17,6 +17,7 @@
           display: table;
           width: 100%;
           table-layout: fixed;
+          -webkit-box-shadow: 0 -1.3rem 1.07rem 0.71rem #D93371;
           box-shadow: 0 -1.3rem 1.07rem 0.71rem #D93371; }
           .kt-pricing-4 .kt-pricing-4__top .kt-pricing-4__top-container.kt-pricing-4__top-container--fixed .kt-pricing-4__top-body .kt-pricing-4__top-items .kt-pricing-4__top-item {
             display: table-cell;
@@ -109,6 +110,7 @@
         margin: 0 auto;
         margin-top: -21.4rem; }
         .kt-pricing-4 .kt-pricing-4__top .kt-pricing-4__top-container.kt-pricing-4__top-container--fixed .kt-pricing-4__top-body .kt-pricing-4__top-items {
+          -webkit-box-shadow: none;
           box-shadow: none; }
           .kt-pricing-4 .kt-pricing-4__top .kt-pricing-4__top-container.kt-pricing-4__top-container--fixed .kt-pricing-4__top-body .kt-pricing-4__top-items .kt-pricing-4__top-item {
             display: block;
@@ -149,6 +151,7 @@
         margin: 0 auto;
         margin-top: -21.43rem; }
         .kt-pricing-4 .kt-pricing-4__top .kt-pricing-4__top-container.kt-pricing-4__top-container--fixed .kt-pricing-4__top-body .kt-pricing-4__top-items {
+          -webkit-box-shadow: none;
           box-shadow: none; }
           .kt-pricing-4 .kt-pricing-4__top .kt-pricing-4__top-container.kt-pricing-4__top-container--fixed .kt-pricing-4__top-body .kt-pricing-4__top-items .kt-pricing-4__top-item {
             display: block;

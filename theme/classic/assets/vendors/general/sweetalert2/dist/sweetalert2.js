@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v8.8.1
+* sweetalert2 v8.13.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -203,26 +203,6 @@ var objectValues = function objectValues(obj) {
 
 var toArray = function toArray(nodeList) {
   return Array.prototype.slice.call(nodeList);
-};
-/**
- * Converts `inputOptions` into an array of `[value, label]`s
- * @param inputOptions
- */
-
-var formatInputOptions = function formatInputOptions(inputOptions) {
-  var result = [];
-
-  if (typeof Map !== 'undefined' && inputOptions instanceof Map) {
-    inputOptions.forEach(function (value, key) {
-      result.push([key, value]);
-    });
-  } else {
-    Object.keys(inputOptions).forEach(function (key) {
-      result.push([key, inputOptions[key]]);
-    });
-  }
-
-  return result;
 };
 /**
  * Standardise console warnings
@@ -433,6 +413,16 @@ var toggle = function toggle(elem, condition, display) {
 
 var isVisible = function isVisible(elem) {
   return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
+};
+var isScrollable = function isScrollable(elem) {
+  return !!(elem.scrollHeight > elem.clientHeight);
+}; // borrowed from https://stackoverflow.com/a/46352119
+
+var hasCssAnimation = function hasCssAnimation(elem) {
+  var style = window.getComputedStyle(elem);
+  var animDuration = parseFloat(style.getPropertyValue('animation-duration') || '0');
+  var transDuration = parseFloat(style.getPropertyValue('transition-duration') || '0');
+  return animDuration > 0 || transDuration > 0;
 };
 var contains = function contains(haystack, needle) {
   if (typeof haystack.contains === 'function') {
@@ -667,7 +657,7 @@ var animationEndEvent = function () {
   };
 
   for (var i in transEndEventNames) {
-    if (transEndEventNames.hasOwnProperty(i) && typeof testEl.style[i] !== 'undefined') {
+    if (Object.prototype.hasOwnProperty.call(transEndEventNames, i) && typeof testEl.style[i] !== 'undefined') {
       return transEndEventNames[i];
     }
   }
@@ -694,7 +684,36 @@ var measureScrollbar = function measureScrollbar() {
   return scrollbarWidth;
 };
 
-var renderActions = function renderActions(params) {
+function handleButtonsStyling(confirmButton, cancelButton, params) {
+  addClass([confirmButton, cancelButton], swalClasses.styled); // Buttons background colors
+
+  if (params.confirmButtonColor) {
+    confirmButton.style.backgroundColor = params.confirmButtonColor;
+  }
+
+  if (params.cancelButtonColor) {
+    cancelButton.style.backgroundColor = params.cancelButtonColor;
+  } // Loading state
+
+
+  var confirmButtonBackgroundColor = window.getComputedStyle(confirmButton).getPropertyValue('background-color');
+  confirmButton.style.borderLeftColor = confirmButtonBackgroundColor;
+  confirmButton.style.borderRightColor = confirmButtonBackgroundColor;
+}
+
+function renderButton(button, buttonType, params) {
+  toggle(button, params['showC' + buttonType.substring(1) + 'Button'], 'inline-block');
+  button.innerHTML = params[buttonType + 'ButtonText']; // Set caption text
+
+  button.setAttribute('aria-label', params[buttonType + 'ButtonAriaLabel']); // ARIA label
+  // Add buttons custom classes
+
+  button.className = swalClasses[buttonType];
+  applyCustomClass(button, params.customClass, buttonType + 'Button');
+  addClass(button, params[buttonType + 'ButtonClass']);
+}
+
+var renderActions = function renderActions(instance, params) {
   var actions = getActions();
   var confirmButton = getConfirmButton();
   var cancelButton = getCancelButton(); // Actions (buttons) wrapper
@@ -706,40 +725,14 @@ var renderActions = function renderActions(params) {
   } // Custom class
 
 
-  applyCustomClass(actions, params.customClass, 'actions'); // Confirm button
+  applyCustomClass(actions, params.customClass, 'actions'); // Render confirm button
 
-  toggle(confirmButton, params.showConfirmButton, 'inline-block'); // Cancel button
+  renderButton(confirmButton, 'confirm', params); // render Cancel Button
 
-  toggle(cancelButton, params.showCancelButton, 'inline-block'); // Edit text on confirm and cancel buttons
-
-  confirmButton.innerHTML = params.confirmButtonText;
-  cancelButton.innerHTML = params.cancelButtonText; // ARIA labels for confirm and cancel buttons
-
-  confirmButton.setAttribute('aria-label', params.confirmButtonAriaLabel);
-  cancelButton.setAttribute('aria-label', params.cancelButtonAriaLabel); // Add buttons custom classes
-
-  confirmButton.className = swalClasses.confirm;
-  applyCustomClass(confirmButton, params.customClass, 'confirmButton');
-  addClass(confirmButton, params.confirmButtonClass);
-  cancelButton.className = swalClasses.cancel;
-  applyCustomClass(cancelButton, params.customClass, 'cancelButton');
-  addClass(cancelButton, params.cancelButtonClass); // Buttons styling
+  renderButton(cancelButton, 'cancel', params);
 
   if (params.buttonsStyling) {
-    addClass([confirmButton, cancelButton], swalClasses.styled); // Buttons background colors
-
-    if (params.confirmButtonColor) {
-      confirmButton.style.backgroundColor = params.confirmButtonColor;
-    }
-
-    if (params.cancelButtonColor) {
-      cancelButton.style.backgroundColor = params.cancelButtonColor;
-    } // Loading state
-
-
-    var confirmButtonBackgroundColor = window.getComputedStyle(confirmButton).getPropertyValue('background-color');
-    confirmButton.style.borderLeftColor = confirmButtonBackgroundColor;
-    confirmButton.style.borderRightColor = confirmButtonBackgroundColor;
+    handleButtonsStyling(confirmButton, cancelButton, params);
   } else {
     removeClass([confirmButton, cancelButton], swalClasses.styled);
     confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
@@ -747,41 +740,48 @@ var renderActions = function renderActions(params) {
   }
 };
 
-var renderContainer = function renderContainer(params) {
-  var container = getContainer();
-
-  if (!container) {
-    return;
-  } // Backdrop
-
-
-  if (typeof params.backdrop === 'string') {
-    container.style.background = params.backdrop;
-  } else if (!params.backdrop) {
+function handleBackdropParam(container, backdrop) {
+  if (typeof backdrop === 'string') {
+    container.style.background = backdrop;
+  } else if (!backdrop) {
     addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
   }
+}
 
-  if (!params.backdrop && params.allowOutsideClick) {
-    warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
-  } // Position
-
-
-  if (params.position in swalClasses) {
-    addClass(container, swalClasses[params.position]);
+function handlePositionParam(container, position) {
+  if (position in swalClasses) {
+    addClass(container, swalClasses[position]);
   } else {
     warn('The "position" parameter is not valid, defaulting to "center"');
     addClass(container, swalClasses.center);
-  } // Grow
+  }
+}
 
-
-  if (params.grow && typeof params.grow === 'string') {
-    var growClass = 'grow-' + params.grow;
+function handleGrowParam(container, grow) {
+  if (grow && typeof grow === 'string') {
+    var growClass = 'grow-' + grow;
 
     if (growClass in swalClasses) {
       addClass(container, swalClasses[growClass]);
     }
-  } // Custom class
+  }
+}
 
+var renderContainer = function renderContainer(instance, params) {
+  var container = getContainer();
+
+  if (!container) {
+    return;
+  }
+
+  handleBackdropParam(container, params.backdrop);
+
+  if (!params.backdrop && params.allowOutsideClick) {
+    warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
+  }
+
+  handlePositionParam(container, params.position);
+  handleGrowParam(container, params.grow); // Custom class
 
   applyCustomClass(container, params.customClass, 'container');
 
@@ -791,163 +791,176 @@ var renderContainer = function renderContainer(params) {
   }
 };
 
-var renderInput = function renderInput(params) {
+/**
+ * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
+ * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
+ * This is the approach that Babel will probably take to implement private methods/fields
+ *   https://github.com/tc39/proposal-private-methods
+ *   https://github.com/babel/babel/pull/7555
+ * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
+ *   then we can use that language feature.
+ */
+var privateProps = {
+  promise: new WeakMap(),
+  innerParams: new WeakMap(),
+  domCache: new WeakMap()
+};
+
+var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+var renderInput = function renderInput(instance, params) {
   var content = getContent();
-  var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+  var innerParams = privateProps.innerParams.get(instance);
+  var rerender = !innerParams || params.input !== innerParams.input;
+  inputTypes.forEach(function (inputType) {
+    var inputClass = swalClasses[inputType];
+    var inputContainer = getChildByClass(content, inputClass); // set attributes
 
-  var setInputPlaceholder = function setInputPlaceholder(input) {
-    if (!input.placeholder || params.inputPlaceholder) {
-      input.placeholder = params.inputPlaceholder;
+    setAttributes(inputType, params.inputAttributes); // set class
+
+    setClass(inputContainer, inputClass, params);
+
+    if (rerender) {
+      hide(inputContainer);
     }
-  };
+  });
 
-  var input;
-
-  for (var i = 0; i < inputTypes.length; i++) {
-    var inputClass = swalClasses[inputTypes[i]];
-    var inputContainer = getChildByClass(content, inputClass);
-    input = getInput(content, inputTypes[i]); // set attributes
-
-    if (input) {
-      for (var j in input.attributes) {
-        if (input.attributes.hasOwnProperty(j)) {
-          var attrName = input.attributes[j].name;
-
-          if (attrName !== 'type' && attrName !== 'value') {
-            input.removeAttribute(attrName);
-          }
-        }
-      }
-
-      for (var attr in params.inputAttributes) {
-        // Do not set a placeholder for <input type="range">
-        // it'll crash Edge, #1298
-        if (inputTypes[i] === 'range' && attr === 'placeholder') {
-          continue;
-        }
-
-        input.setAttribute(attr, params.inputAttributes[attr]);
-      }
-    } // set class
-
-
-    inputContainer.className = inputClass;
-
-    if (params.inputClass) {
-      addClass(inputContainer, params.inputClass);
-    }
-
-    if (params.customClass) {
-      addClass(inputContainer, params.customClass.input);
-    }
-
-    hide(inputContainer);
-  }
-
-  switch (params.input) {
-    case 'text':
-    case 'email':
-    case 'password':
-    case 'number':
-    case 'tel':
-    case 'url':
-      {
-        input = getChildByClass(content, swalClasses.input);
-
-        if (typeof params.inputValue === 'string' || typeof params.inputValue === 'number') {
-          input.value = params.inputValue;
-        } else if (!isPromise(params.inputValue)) {
-          warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(params.inputValue), "\""));
-        }
-
-        setInputPlaceholder(input);
-        input.type = params.input;
-        show(input);
-        break;
-      }
-
-    case 'file':
-      {
-        input = getChildByClass(content, swalClasses.file);
-        setInputPlaceholder(input);
-        input.type = params.input;
-        show(input);
-        break;
-      }
-
-    case 'range':
-      {
-        var range = getChildByClass(content, swalClasses.range);
-        var rangeInput = range.querySelector('input');
-        var rangeOutput = range.querySelector('output');
-        rangeInput.value = params.inputValue;
-        rangeInput.type = params.input;
-        rangeOutput.value = params.inputValue;
-        show(range);
-        break;
-      }
-
-    case 'select':
-      {
-        var select = getChildByClass(content, swalClasses.select);
-        select.innerHTML = '';
-
-        if (params.inputPlaceholder) {
-          var placeholder = document.createElement('option');
-          placeholder.innerHTML = params.inputPlaceholder;
-          placeholder.value = '';
-          placeholder.disabled = true;
-          placeholder.selected = true;
-          select.appendChild(placeholder);
-        }
-
-        show(select);
-        break;
-      }
-
-    case 'radio':
-      {
-        var radio = getChildByClass(content, swalClasses.radio);
-        radio.innerHTML = '';
-        show(radio);
-        break;
-      }
-
-    case 'checkbox':
-      {
-        var checkbox = getChildByClass(content, swalClasses.checkbox);
-        var checkboxInput = getInput(content, 'checkbox');
-        checkboxInput.type = 'checkbox';
-        checkboxInput.value = 1;
-        checkboxInput.id = swalClasses.checkbox;
-        checkboxInput.checked = Boolean(params.inputValue);
-        var label = checkbox.querySelector('span');
-        label.innerHTML = params.inputPlaceholder;
-        show(checkbox);
-        break;
-      }
-
-    case 'textarea':
-      {
-        var textarea = getChildByClass(content, swalClasses.textarea);
-        textarea.value = params.inputValue;
-        setInputPlaceholder(textarea);
-        show(textarea);
-        break;
-      }
-
-    case null:
-      {
-        break;
-      }
-
-    default:
-      error("Unexpected type of input! Expected \"text\", \"email\", \"password\", \"number\", \"tel\", \"select\", \"radio\", \"checkbox\", \"textarea\", \"file\" or \"url\", got \"".concat(params.input, "\""));
-      break;
+  if (params.input && rerender) {
+    showInput(params);
   }
 };
 
-var renderContent = function renderContent(params) {
+var showInput = function showInput(params) {
+  if (!renderInputType[params.input]) {
+    return error("Unexpected type of input! Expected \"text\", \"email\", \"password\", \"number\", \"tel\", \"select\", \"radio\", \"checkbox\", \"textarea\", \"file\" or \"url\", got \"".concat(params.input, "\""));
+  }
+
+  var input = renderInputType[params.input](params);
+  show(input);
+};
+
+var removeAttributes = function removeAttributes(input) {
+  for (var i = 0; i < input.attributes.length; i++) {
+    var attrName = input.attributes[i].name;
+
+    if (!(['type', 'value', 'style'].indexOf(attrName) !== -1)) {
+      input.removeAttribute(attrName);
+    }
+  }
+};
+
+var setAttributes = function setAttributes(inputType, inputAttributes) {
+  var input = getInput(getContent(), inputType);
+
+  if (!input) {
+    return;
+  }
+
+  removeAttributes(input);
+
+  for (var attr in inputAttributes) {
+    // Do not set a placeholder for <input type="range">
+    // it'll crash Edge, #1298
+    if (inputType === 'range' && attr === 'placeholder') {
+      continue;
+    }
+
+    input.setAttribute(attr, inputAttributes[attr]);
+  }
+};
+
+var setClass = function setClass(inputContainer, inputClass, params) {
+  inputContainer.className = inputClass;
+
+  if (params.inputClass) {
+    addClass(inputContainer, params.inputClass);
+  }
+
+  if (params.customClass) {
+    addClass(inputContainer, params.customClass.input);
+  }
+};
+
+var setInputPlaceholder = function setInputPlaceholder(input, params) {
+  if (!input.placeholder || params.inputPlaceholder) {
+    input.placeholder = params.inputPlaceholder;
+  }
+};
+
+var renderInputType = {};
+
+renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = function (params) {
+  var input = getChildByClass(getContent(), swalClasses.input);
+
+  if (typeof params.inputValue === 'string' || typeof params.inputValue === 'number') {
+    input.value = params.inputValue;
+  } else if (!isPromise(params.inputValue)) {
+    warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(params.inputValue), "\""));
+  }
+
+  setInputPlaceholder(input, params);
+  input.type = params.input;
+  return input;
+};
+
+renderInputType.file = function (params) {
+  var input = getChildByClass(getContent(), swalClasses.file);
+  setInputPlaceholder(input, params);
+  input.type = params.input;
+  return input;
+};
+
+renderInputType.range = function (params) {
+  var range = getChildByClass(getContent(), swalClasses.range);
+  var rangeInput = range.querySelector('input');
+  var rangeOutput = range.querySelector('output');
+  rangeInput.value = params.inputValue;
+  rangeInput.type = params.input;
+  rangeOutput.value = params.inputValue;
+  return range;
+};
+
+renderInputType.select = function (params) {
+  var select = getChildByClass(getContent(), swalClasses.select);
+  select.innerHTML = '';
+
+  if (params.inputPlaceholder) {
+    var placeholder = document.createElement('option');
+    placeholder.innerHTML = params.inputPlaceholder;
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.appendChild(placeholder);
+  }
+
+  return select;
+};
+
+renderInputType.radio = function () {
+  var radio = getChildByClass(getContent(), swalClasses.radio);
+  radio.innerHTML = '';
+  return radio;
+};
+
+renderInputType.checkbox = function (params) {
+  var checkbox = getChildByClass(getContent(), swalClasses.checkbox);
+  var checkboxInput = getInput(getContent(), 'checkbox');
+  checkboxInput.type = 'checkbox';
+  checkboxInput.value = 1;
+  checkboxInput.id = swalClasses.checkbox;
+  checkboxInput.checked = Boolean(params.inputValue);
+  var label = checkbox.querySelector('span');
+  label.innerHTML = params.inputPlaceholder;
+  return checkbox;
+};
+
+renderInputType.textarea = function (params) {
+  var textarea = getChildByClass(getContent(), swalClasses.textarea);
+  textarea.value = params.inputValue;
+  setInputPlaceholder(textarea, params);
+  return textarea;
+};
+
+var renderContent = function renderContent(instance, params) {
   var content = getContent().querySelector('#' + swalClasses.content); // Content as HTML
 
   if (params.html) {
@@ -960,12 +973,12 @@ var renderContent = function renderContent(params) {
     hide(content);
   }
 
-  renderInput(params); // Custom class
+  renderInput(instance, params); // Custom class
 
   applyCustomClass(getContent(), params.customClass, 'content');
 };
 
-var renderFooter = function renderFooter(params) {
+var renderFooter = function renderFooter(instance, params) {
   var footer = getFooter();
   toggle(footer, params.footer);
 
@@ -977,7 +990,7 @@ var renderFooter = function renderFooter(params) {
   applyCustomClass(footer, params.customClass, 'footer');
 };
 
-var renderCloseButton = function renderCloseButton(params) {
+var renderCloseButton = function renderCloseButton(instance, params) {
   var closeButton = getCloseButton(); // Custom class
 
   applyCustomClass(closeButton, params.customClass, 'closeButton');
@@ -985,13 +998,12 @@ var renderCloseButton = function renderCloseButton(params) {
   closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
 };
 
-var renderIcon = function renderIcon(params) {
-  // if the icon with the given type already rendered,
+var renderIcon = function renderIcon(instance, params) {
+  var innerParams = privateProps.innerParams.get(instance); // if the icon with the given type already rendered,
   // apply the custom class without re-rendering the icon
-  var currentIcon = getIcon();
 
-  if (currentIcon && currentIcon.classList.contains(iconTypes[params.type])) {
-    applyCustomClass(currentIcon, params.customClass, 'icon');
+  if (innerParams && params.type === innerParams.type && getIcon()) {
+    applyCustomClass(getIcon(), params.customClass, 'icon');
     return;
   }
 
@@ -1034,7 +1046,7 @@ var adjustSuccessIconBackgoundColor = function adjustSuccessIconBackgoundColor()
   }
 };
 
-var renderImage = function renderImage(params) {
+var renderImage = function renderImage(instance, params) {
   var image = getImage();
 
   if (!params.imageUrl) {
@@ -1075,7 +1087,7 @@ var createLineElement = function createLineElement(params) {
   return lineEl;
 };
 
-var renderProgressSteps = function renderProgressSteps(params) {
+var renderProgressSteps = function renderProgressSteps(instance, params) {
   var progressStepsContainer = getProgressSteps();
 
   if (!params.progressSteps || params.progressSteps.length === 0) {
@@ -1099,13 +1111,13 @@ var renderProgressSteps = function renderProgressSteps(params) {
     }
 
     if (index !== params.progressSteps.length - 1) {
-      var lineEl = createLineElement(step, index);
+      var lineEl = createLineElement(step);
       progressStepsContainer.appendChild(lineEl);
     }
   });
 };
 
-var renderTitle = function renderTitle(params) {
+var renderTitle = function renderTitle(instance, params) {
   var title = getTitle();
   toggle(title, params.title || params.titleText);
 
@@ -1121,23 +1133,23 @@ var renderTitle = function renderTitle(params) {
   applyCustomClass(title, params.customClass, 'title');
 };
 
-var renderHeader = function renderHeader(params) {
+var renderHeader = function renderHeader(instance, params) {
   var header = getHeader(); // Custom class
 
   applyCustomClass(header, params.customClass, 'header'); // Progress steps
 
-  renderProgressSteps(params); // Icon
+  renderProgressSteps(instance, params); // Icon
 
-  renderIcon(params); // Image
+  renderIcon(instance, params); // Image
 
-  renderImage(params); // Title
+  renderImage(instance, params); // Title
 
-  renderTitle(params); // Close button
+  renderTitle(instance, params); // Close button
 
-  renderCloseButton(params);
+  renderCloseButton(instance, params);
 };
 
-var renderPopup = function renderPopup(params) {
+var renderPopup = function renderPopup(instance, params) {
   var popup = getPopup(); // Width
 
   applyNumericalStyle(popup, 'width', params.width); // Padding
@@ -1169,13 +1181,13 @@ var renderPopup = function renderPopup(params) {
   toggleClass(popup, swalClasses.noanimation, !params.animation);
 };
 
-var render = function render(params) {
-  renderPopup(params);
-  renderContainer(params);
-  renderHeader(params);
-  renderContent(params);
-  renderActions(params);
-  renderFooter(params);
+var render = function render(instance, params) {
+  renderPopup(instance, params);
+  renderContainer(instance, params);
+  renderHeader(instance, params);
+  renderContent(instance, params);
+  renderActions(instance, params);
+  renderFooter(instance, params);
 };
 
 /*
@@ -1506,7 +1518,7 @@ var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop',
  */
 
 var isValidParameter = function isValidParameter(paramName) {
-  return defaultParams.hasOwnProperty(paramName);
+  return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
 };
 /**
  * Is valid parameter for Swal.update() method
@@ -1604,21 +1616,6 @@ var staticMethods = Object.freeze({
 });
 
 /**
- * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
- * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
- * This is the approach that Babel will probably take to implement private methods/fields
- *   https://github.com/tc39/proposal-private-methods
- *   https://github.com/babel/babel/pull/7555
- * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
- *   then we can use that language feature.
- */
-var privateProps = {
-  promise: new WeakMap(),
-  innerParams: new WeakMap(),
-  domCache: new WeakMap()
-};
-
-/**
  * Enables buttons and hide loader.
  */
 
@@ -1676,9 +1673,29 @@ var iOSfix = function iOSfix() {
     var offset = document.body.scrollTop;
     document.body.style.top = offset * -1 + 'px';
     addClass(document.body, swalClasses.iosfix);
+    lockBodyScroll();
   }
 };
+
+var lockBodyScroll = function lockBodyScroll() {
+  // #1246
+  var container = getContainer();
+  var preventTouchMove;
+
+  container.ontouchstart = function (e) {
+    preventTouchMove = e.target === container || !isScrollable(container) && e.target.tagName !== 'INPUT' // #1603
+    ;
+  };
+
+  container.ontouchmove = function (e) {
+    if (preventTouchMove) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+};
 /* istanbul ignore next */
+
 
 var undoIOSfix = function undoIOSfix() {
   if (hasClass(document.body, swalClasses.iosfix)) {
@@ -1769,8 +1786,10 @@ var privateMethods = {
  * Instance method to close sweetAlert
  */
 
-function removePopupAndResetState(container, onAfterClose) {
-  if (!isToast()) {
+function removePopupAndResetState(container, isToast, onAfterClose) {
+  if (isToast) {
+    triggerOnAfterClose(onAfterClose);
+  } else {
     restoreActiveElement().then(function () {
       return triggerOnAfterClose(onAfterClose);
     });
@@ -1778,15 +1797,17 @@ function removePopupAndResetState(container, onAfterClose) {
       capture: globalState.keydownListenerCapture
     });
     globalState.keydownHandlerAdded = false;
-  } else {
-    triggerOnAfterClose(onAfterClose);
-  }
+  } // Unset globalState props so GC will dispose globalState (#1569)
+
+
+  delete globalState.keydownHandler;
+  delete globalState.keydownTarget;
 
   if (container.parentNode) {
     container.parentNode.removeChild(container);
   }
 
-  removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
+  removeBodyClasses();
 
   if (isModal()) {
     undoScrollbar();
@@ -1796,43 +1817,61 @@ function removePopupAndResetState(container, onAfterClose) {
   }
 }
 
-function swalCloseEventFinished(popup, container, onAfterClose) {
-  popup.removeEventListener(animationEndEvent, swalCloseEventFinished);
+function removeBodyClasses() {
+  removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
+}
 
+function swalCloseEventFinished(popup, container, isToast, onAfterClose) {
   if (hasClass(popup, swalClasses.hide)) {
-    removePopupAndResetState(container, onAfterClose);
-  }
+    removePopupAndResetState(container, isToast, onAfterClose);
+  } // Unset WeakMaps so GC will be able to dispose them (#1569)
+
+
+  unsetWeakMaps(privateProps);
+  unsetWeakMaps(privateMethods);
 }
 
 function close(resolveValue) {
   var container = getContainer();
   var popup = getPopup();
+
+  if (!popup || hasClass(popup, swalClasses.hide)) {
+    return;
+  }
+
   var innerParams = privateProps.innerParams.get(this);
   var swalPromiseResolve = privateMethods.swalPromiseResolve.get(this);
   var onClose = innerParams.onClose;
   var onAfterClose = innerParams.onAfterClose;
+  removeClass(popup, swalClasses.show);
+  addClass(popup, swalClasses.hide); // If animation is supported, animate
 
-  if (!popup) {
-    return;
+  if (animationEndEvent && hasCssAnimation(popup)) {
+    popup.addEventListener(animationEndEvent, function (e) {
+      if (e.target === popup) {
+        swalCloseEventFinished(popup, container, isToast(), onAfterClose);
+      }
+    });
+  } else {
+    // Otherwise, remove immediately
+    removePopupAndResetState(container, isToast(), onAfterClose);
   }
 
   if (onClose !== null && typeof onClose === 'function') {
     onClose(popup);
-  }
-
-  removeClass(popup, swalClasses.show);
-  addClass(popup, swalClasses.hide); // If animation is supported, animate
-
-  if (animationEndEvent && !hasClass(popup, swalClasses.noanimation)) {
-    popup.addEventListener(animationEndEvent, swalCloseEventFinished.bind(null, popup, container, onAfterClose));
-  } else {
-    // Otherwise, remove immediately
-    removePopupAndResetState(container, onAfterClose);
   } // Resolve Swal promise
 
 
-  swalPromiseResolve(resolveValue || {});
+  swalPromiseResolve(resolveValue || {}); // Unset this.params so GC will dispose it (#1569)
+
+  delete this.params;
 }
+
+var unsetWeakMaps = function unsetWeakMaps(obj) {
+  for (var i in obj) {
+    obj[i] = new WeakMap();
+  }
+};
 
 var triggerOnAfterClose = function triggerOnAfterClose(onAfterClose) {
   if (onAfterClose !== null && typeof onAfterClose === 'function') {
@@ -1935,8 +1974,8 @@ function setProgressSteps(progressSteps) {
     progressSteps: progressSteps
   });
 
+  renderProgressSteps(this, updatedParams);
   privateProps.innerParams.set(this, updatedParams);
-  renderProgressSteps(updatedParams);
 }
 function showProgressSteps() {
   var domCache = privateProps.domCache.get(this);
@@ -2024,7 +2063,7 @@ var defaultInputValidators = {
   },
   url: function url(string, validationMessage) {
     // taken from https://stackoverflow.com/a/3809435 with a small change from #1306
-    return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage ? validationMessage : 'Invalid URL');
+    return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage ? validationMessage : 'Invalid URL');
   }
 };
 
@@ -2075,11 +2114,16 @@ function setParameters(params) {
   }
 }
 
+function swalOpenAnimationFinished(popup, container) {
+  popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
+  container.style.overflowY = 'auto';
+}
 /**
  * Open popup, add necessary classes and styles, fix scrollbar
  *
  * @param {Array} params
  */
+
 
 var openPopup = function openPopup(params) {
   var container = getContainer();
@@ -2092,20 +2136,13 @@ var openPopup = function openPopup(params) {
   if (params.animation) {
     addClass(popup, swalClasses.show);
     addClass(container, swalClasses.fade);
-    removeClass(popup, swalClasses.hide);
-  } else {
-    removeClass(popup, swalClasses.fade);
   }
 
   show(popup); // scrolling is 'hidden' until animation is done, after that 'auto'
 
-  container.style.overflowY = 'hidden';
-
-  if (animationEndEvent && !hasClass(popup, swalClasses.noanimation)) {
-    popup.addEventListener(animationEndEvent, function swalCloseEventFinished() {
-      popup.removeEventListener(animationEndEvent, swalCloseEventFinished);
-      container.style.overflowY = 'auto';
-    });
+  if (animationEndEvent && hasCssAnimation(popup)) {
+    container.style.overflowY = 'hidden';
+    popup.addEventListener(animationEndEvent, swalOpenAnimationFinished.bind(null, popup, container));
   } else {
     container.style.overflowY = 'auto';
   }
@@ -2141,6 +2178,41 @@ var openPopup = function openPopup(params) {
   }
 };
 
+var handleInputOptions = function handleInputOptions(instance, params) {
+  var content = getContent();
+
+  var processInputOptions = function processInputOptions(inputOptions) {
+    return populateInputOptions[params.input](content, formatInputOptions(inputOptions), params);
+  };
+
+  if (isPromise(params.inputOptions)) {
+    showLoading();
+    params.inputOptions.then(function (inputOptions) {
+      instance.hideLoading();
+      processInputOptions(inputOptions);
+    });
+  } else if (_typeof(params.inputOptions) === 'object') {
+    processInputOptions(params.inputOptions);
+  } else {
+    error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(params.inputOptions)));
+  }
+};
+var handleInputValue = function handleInputValue(instance, params) {
+  var input = instance.getInput();
+  hide(input);
+  params.inputValue.then(function (inputValue) {
+    input.value = params.input === 'number' ? parseFloat(inputValue) || 0 : inputValue + '';
+    show(input);
+    input.focus();
+    instance.hideLoading();
+  })["catch"](function (err) {
+    error('Error in inputValue promise: ' + err);
+    input.value = '';
+    show(input);
+    input.focus();
+    instance.hideLoading();
+  });
+};
 var populateInputOptions = {
   select: function select(content, inputOptions, params) {
     var select = getChildByClass(content, swalClasses.select);
@@ -2187,6 +2259,27 @@ var populateInputOptions = {
       radios[0].focus();
     }
   }
+  /**
+   * Converts `inputOptions` into an array of `[value, label]`s
+   * @param inputOptions
+   */
+
+};
+
+var formatInputOptions = function formatInputOptions(inputOptions) {
+  var result = [];
+
+  if (typeof Map !== 'undefined' && inputOptions instanceof Map) {
+    inputOptions.forEach(function (value, key) {
+      result.push([key, value]);
+    });
+  } else {
+    Object.keys(inputOptions).forEach(function (key) {
+      result.push([key, inputOptions[key]]);
+    });
+  }
+
+  return result;
 };
 
 function _main(userParams) {
@@ -2197,8 +2290,7 @@ function _main(userParams) {
   var innerParams = _extends({}, defaultParams, userParams);
 
   setParameters(innerParams);
-  Object.freeze(innerParams);
-  privateProps.innerParams.set(this, innerParams); // clear the previous timer
+  Object.freeze(innerParams); // clear the previous timer
 
   if (globalState.timeout) {
     globalState.timeout.stop();
@@ -2219,7 +2311,8 @@ function _main(userParams) {
     progressSteps: getProgressSteps()
   };
   privateProps.domCache.set(this, domCache);
-  render(innerParams);
+  render(this, innerParams);
+  privateProps.innerParams.set(this, innerParams);
   var constructor = this.constructor;
   return new Promise(function (resolve) {
     // functions to handle all closings/dismissals
@@ -2504,7 +2597,7 @@ function _main(userParams) {
       }
     };
 
-    if (globalState.keydownHandlerAdded) {
+    if (globalState.keydownTarget && globalState.keydownHandlerAdded) {
       globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
         capture: globalState.keydownListenerCapture
       });
@@ -2534,45 +2627,13 @@ function _main(userParams) {
       addClass(document.body, swalClasses['toast-column']);
     } else {
       removeClass(document.body, swalClasses['toast-column']);
-    }
+    } // inputOptions, inputValue
+
 
     if (innerParams.input === 'select' || innerParams.input === 'radio') {
-      var content = getContent();
-
-      var processInputOptions = function processInputOptions(inputOptions) {
-        return populateInputOptions[innerParams.input](content, formatInputOptions(inputOptions), innerParams);
-      };
-
-      if (isPromise(innerParams.inputOptions)) {
-        constructor.showLoading();
-        innerParams.inputOptions.then(function (inputOptions) {
-          _this.hideLoading();
-
-          processInputOptions(inputOptions);
-        });
-      } else if (_typeof(innerParams.inputOptions) === 'object') {
-        processInputOptions(innerParams.inputOptions);
-      } else {
-        error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(innerParams.inputOptions)));
-      }
+      handleInputOptions(_this, innerParams);
     } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(innerParams.input) !== -1 && isPromise(innerParams.inputValue)) {
-      var input = constructor.getInput();
-      constructor.showLoading();
-      hide(input);
-      innerParams.inputValue.then(function (inputValue) {
-        input.value = innerParams.input === 'number' ? parseFloat(inputValue) || 0 : inputValue + '';
-        show(input);
-        input.focus();
-
-        _this.hideLoading();
-      }).catch(function (err) {
-        error('Error in inputValue promise: ' + err);
-        input.value = '';
-        show(input);
-        input.focus();
-
-        _this.hideLoading();
-      });
+      handleInputValue(_this, innerParams);
     }
 
     openPopup(innerParams);
@@ -2614,7 +2675,7 @@ function update(params) {
 
   var updatedParams = _extends({}, innerParams, validUpdatableParams);
 
-  render(updatedParams);
+  render(this, updatedParams);
   privateProps.innerParams.set(this, updatedParams);
   Object.defineProperties(this, {
     params: {
@@ -2695,9 +2756,9 @@ SweetAlert.prototype.then = function (onFulfilled) {
   return promise.then(onFulfilled);
 };
 
-SweetAlert.prototype.finally = function (onFinally) {
+SweetAlert.prototype["finally"] = function (onFinally) {
   var promise = privateProps.promise.get(this);
-  return promise.finally(onFinally);
+  return promise["finally"](onFinally);
 }; // Assign instance methods from src/instanceMethods/*.js to prototype
 
 
@@ -2717,12 +2778,12 @@ Object.keys(instanceMethods).forEach(function (key) {
   };
 });
 SweetAlert.DismissReason = DismissReason;
-SweetAlert.version = '8.8.1';
+SweetAlert.version = '8.13.1';
 
 var Swal = SweetAlert;
-Swal.default = Swal;
+Swal["default"] = Swal;
 
 return Swal;
 
 })));
-if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.sweetAlert = window.Swal = window.SweetAlert = window.Sweetalert2}
+if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}

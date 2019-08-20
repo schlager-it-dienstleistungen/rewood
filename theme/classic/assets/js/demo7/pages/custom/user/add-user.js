@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppUserAdd = function () {
+var KTUserAdd = function () {
 	// Base elements
 	var wizardEl;
 	var formEl;
@@ -12,7 +12,7 @@ var KTAppUserAdd = function () {
 	// Private functions
 	var initWizard = function () {
 		// Initialize form wizard
-		wizard = new KTWizard('kt_apps_user_add_user', {
+		wizard = new KTWizard('kt_user_add_user', {
 			startStep: 1,
 		});
 
@@ -104,23 +104,23 @@ var KTAppUserAdd = function () {
 		});
 	}
 	 
-	var initKTAppsUserAdd = function() {
-		avatar = new KTAvatar('kt_apps_user_add_user_avatar');
+	var initUserForm = function() {
+		avatar = new KTAvatar('kt_user_add_avatar');
 	}	
 
 	return {
 		// public functions
 		init: function() {
-			formEl = $('#kt_apps_user_add_user_form');
+			formEl = $('#kt_user_add_form');
 
 			initWizard(); 
 			initValidation();
 			initSubmit();
-			initKTAppsUserAdd(); 
+			initUserForm(); 
 		}
 	};
 }();
 
 jQuery(document).ready(function() {	
-	KTAppUserAdd.init();
+	KTUserAdd.init();
 });

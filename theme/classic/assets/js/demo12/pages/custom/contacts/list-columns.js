@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppContactsListColumns = function () {
+var KTContactsListColumns = function () {
 
 	// Private functions
 	var initAside = function () {
@@ -23,5 +23,5 @@ var KTAppContactsListColumns = function () {
 }();
 
 KTUtil.ready(function() {	
-	KTAppContactsListColumns.init();
+	KTContactsListColumns.init();
 });

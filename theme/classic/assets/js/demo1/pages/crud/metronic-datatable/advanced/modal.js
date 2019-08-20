@@ -21,6 +21,7 @@ var KTDatatableModal = function() {
 			layout: {
 				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
 				height: 400, // datatable's body's fixed height
+				minHeight: 400,
 				footer: false, // display/hide footer
 			},
 
@@ -174,6 +175,7 @@ var KTDatatableModal = function() {
 			layout: {
 				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
 				height: 400, // datatable's body's fixed height
+				minHeight: 400,
 				footer: false, // display/hide footer
 			},
 

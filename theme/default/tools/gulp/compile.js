@@ -11,6 +11,10 @@ var sass = require('gulp-sass');
 var merge = require('merge-stream');
 var del = require('del');
 
+if (Object.keys(build).length === 0) {
+    return;
+}
+
 // merge with default parameters
 var args = Object.assign({
     prod: false,
@@ -19,6 +23,9 @@ var args = Object.assign({
     theme: '',
     demo: '',
     path: '',
+    angular: false,
+    react: false,
+    vue: false,
 }, yargs.argv);
 
 if (args.prod !== false) {

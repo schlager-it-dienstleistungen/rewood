@@ -136,7 +136,7 @@ var KTApp = function() {
             }
 
             var dropdownMenu = $(e.target).find('.dropdown-menu');
-            
+
             $('body').append(dropdownMenu.detach());
             dropdownMenu.css('display', 'block');
             dropdownMenu.position({
@@ -152,7 +152,7 @@ var KTApp = function() {
             }
 
             var dropdownMenu = $(e.target).find('.dropdown-menu');
-            
+
             $(e.target).append(dropdownMenu.detach());
             dropdownMenu.hide();
         });
@@ -305,8 +305,8 @@ var KTApp = function() {
         progress: function(target, options) {
             var skin = (options && options.skin) ? options.skin : 'light';
             var alignment = (options && options.alignment) ? options.alignment : 'right';
-            var size = (options && options.size) ? 'kt-spinner--' + options.size : '';
-            var classes = 'kt-spinner ' + 'kt-spinner--' + skin + ' kt-spinner--' + alignment + ' kt-spinner--' + size; 
+            var size = (options && options.size) ? ' kt-spinner--' + options.size : '';
+            var classes = 'kt-spinner ' + 'kt-spinner--' + skin + ' kt-spinner--' + alignment + size;
 
             KTApp.unprogress(target);
 
@@ -328,63 +328,64 @@ var KTApp = function() {
     };
 }();
 
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTApp;
+}
+
 // Initialize KTApp class on document ready
 $(document).ready(function() {
     KTApp.init(KTAppOptions);
 });
+
 "use strict";
 /**
  * @class KTUtil  base utilize class that privides helper functions
  */
-// Polyfill
-// matches polyfill
-this.Element && function(ElementPrototype) {
-    ElementPrototype.matches = ElementPrototype.matches ||
-        ElementPrototype.matchesSelector ||
-        ElementPrototype.webkitMatchesSelector ||
-        ElementPrototype.msMatchesSelector ||
-        function(selector) {
-            var node = this,
-                nodes = (node.parentNode || node.document).querySelectorAll(selector),
-                i = -1;
-            while (nodes[++i] && nodes[i] != node);
-            return !!nodes[i];
-        }
-}(Element.prototype);
 
-// closest polyfill
-this.Element && function(ElementPrototype) {
-    ElementPrototype.closest = ElementPrototype.closest ||
-        function(selector) {
-            var el = this;
-            while (el.matches && !el.matches(selector)) el = el.parentNode;
-            return el.matches ? el : null;
-        }
-}(Element.prototype);
-
-// remove polyfill
-if (!('remove' in Element.prototype)) {
-    Element.prototype.remove = function() {
-        if (this.parentNode) {
-            this.parentNode.removeChild(this);
-        }
-    };
+// Polyfills
+/**
+ * Element.matches() polyfill (simple version)
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+ */
+if (!Element.prototype.matches) {
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
-// matches polyfill
-this.Element && function(ElementPrototype) {
-    ElementPrototype.matches = ElementPrototype.matches ||
-        ElementPrototype.matchesSelector ||
-        ElementPrototype.webkitMatchesSelector ||
-        ElementPrototype.msMatchesSelector ||
-        function(selector) {
-            var node = this,
-                nodes = (node.parentNode || node.document).querySelectorAll(selector),
-                i = -1;
-            while (nodes[++i] && nodes[i] != node);
-            return !!nodes[i];
-        }
-}(Element.prototype);
+/**
+ * Element.closest() polyfill
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+ */
+if (!Element.prototype.closest) {
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+	Element.prototype.closest = function (s) {
+		var el = this;
+		var ancestor = this;
+		if (!document.documentElement.contains(el)) return null;
+		do {
+			if (ancestor.matches(s)) return ancestor;
+			ancestor = ancestor.parentElement;
+		} while (ancestor !== null);
+		return null;
+	};
+}
+
+/**
+ * ChildNode.remove() polyfill
+ * https://gomakethings.com/removing-an-element-from-the-dom-the-es6-way/
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+(function (elem) {
+	for (var i = 0; i < elem.length; i++) {
+		if (!window[elem[i]] || 'remove' in window[elem[i]].prototype) continue;
+		window[elem[i]].prototype.remove = function () {
+			this.parentNode.removeChild(this);
+		};
+	}
+})(['Element', 'CharacterData', 'DocumentType']);
 
 //
 // requestAnimationFrame polyfill by Erik Möller.
@@ -446,7 +447,7 @@ this.Element && function(ElementPrototype) {
     });
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
-// Global variables 
+// Global variables
 window.KTUtilElementDataStore = {};
 window.KTUtilElementDataStoreID = 0;
 window.KTUtilDelegatedEventHandlers = {};
@@ -456,15 +457,15 @@ var KTUtil = function() {
 
     /** @type {object} breakpoints The device width breakpoints **/
     var breakpoints = {
-        sm: 544, // Small screen / phone           
-        md: 768, // Medium screen / tablet            
-        lg: 1024, // Large screen / desktop        
+        sm: 544, // Small screen / phone
+        md: 768, // Medium screen / tablet
+        lg: 1024, // Large screen / desktop
         xl: 1200 // Extra large screen / wide desktop
     };
 
     /**
-     * Handle window resize event with some 
-     * delay to attach event handlers upon resize complete 
+     * Handle window resize event with some
+     * delay to attach event handlers upon resize complete
      */
     var _windowResizeHandler = function() {
         var _runResizeHandlers = function() {
@@ -535,8 +536,8 @@ var KTUtil = function() {
             } else {
                 // for IE and other old browsers
                 // causes deprecation warning on modern browsers
-                var evt = window.document.createEvent('UIEvents'); 
-                evt.initUIEvent('resize', true, false, window, 0); 
+                var evt = window.document.createEvent('UIEvents');
+                evt.initUIEvent('resize', true, false, window, 0);
                 window.dispatchEvent(evt);
             }
         },
@@ -544,7 +545,7 @@ var KTUtil = function() {
         /**
          * Get GET parameter value from URL.
          * @param {string} paramName Parameter name.
-         * @returns {string}  
+         * @returns {string}
          */
         getURLParam: function(paramName) {
             var searchString = window.location.search.substring(1),
@@ -562,7 +563,7 @@ var KTUtil = function() {
 
         /**
          * Checks whether current device is mobile touch.
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         isMobileDevice: function() {
             return (this.getViewPort().width < this.getBreakpoint('lg') ? true : false);
@@ -570,7 +571,7 @@ var KTUtil = function() {
 
         /**
          * Checks whether current device is desktop.
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         isDesktopDevice: function() {
             return KTUtil.isMobileDevice() ? false : true;
@@ -579,7 +580,7 @@ var KTUtil = function() {
         /**
          * Gets browser window viewport size. Ref:
          * http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
-         * @returns {object}  
+         * @returns {object}
          */
         getViewPort: function() {
             var e = window,
@@ -599,7 +600,7 @@ var KTUtil = function() {
          * Checks whether given device mode is currently activated.
          * @param {string} mode Responsive mode name(e.g: desktop,
          *     desktop-and-tablet, tablet, tablet-and-mobile, mobile)
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         isInResponsiveRange: function(mode) {
             var breakpoint = this.getViewPort().width;
@@ -626,7 +627,7 @@ var KTUtil = function() {
         /**
          * Generates unique ID for give prefix.
          * @param {string} prefix Prefix for generated ID
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         getUniqueID: function(prefix) {
             return prefix + Math.floor(Math.random() * (new Date()).getTime());
@@ -635,7 +636,7 @@ var KTUtil = function() {
         /**
          * Gets window width for give breakpoint mode.
          * @param {string} mode Responsive mode name(e.g: xl, lg, md, sm)
-         * @returns {number}  
+         * @returns {number}
          */
         getBreakpoint: function(mode) {
             return breakpoints[mode];
@@ -645,7 +646,7 @@ var KTUtil = function() {
          * Checks whether object has property matchs given key path.
          * @param {object} obj Object contains values paired with given key path
          * @param {string} keys Keys path seperated with dots
-         * @returns {object}  
+         * @returns {object}
          */
         isset: function(obj, keys) {
             var stone;
@@ -679,7 +680,7 @@ var KTUtil = function() {
         /**
          * Gets highest z-index of the given element parents
          * @param {object} el jQuery element object
-         * @returns {number}  
+         * @returns {number}
          */
         getHighestZindex: function(el) {
             var elem = KTUtil.get(el),
@@ -712,9 +713,11 @@ var KTUtil = function() {
         /**
          * Checks whether the element has any parent with fixed positionfreg
          * @param {object} el jQuery element object
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         hasFixedPositionedParent: function(el) {
+            var position;
+
             while (el && el !== document) {
                 position = KTUtil.css(el, 'position');
 
@@ -752,7 +755,7 @@ var KTUtil = function() {
 
         /**
          * Checks whether Angular library is included
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         isAngularVersion: function() {
             return window.Zone !== undefined ? true : false;
@@ -783,7 +786,7 @@ var KTUtil = function() {
             return out;
         },
 
-        // extend:  $.extend({}, objA, objB); 
+        // extend:  $.extend({}, objA, objB);
         extend: function(out) {
             out = out || {};
 
@@ -832,7 +835,7 @@ var KTUtil = function() {
 
         getByTag: function(query) {
             var el;
-            
+
             if (el = document.getElementsByTagName(query)) {
                 return el[0];
             } else {
@@ -842,7 +845,7 @@ var KTUtil = function() {
 
         getByClass: function(query) {
             var el;
-            
+
             if (el = document.getElementsByClassName(query)) {
                 return el[0];
             } else {
@@ -854,7 +857,7 @@ var KTUtil = function() {
          * Checks whether the element has given classes
          * @param {object} el jQuery element object
          * @param {string} Classes string
-         * @returns {boolean}  
+         * @returns {boolean}
          */
         hasClasses: function(el, classes) {
             if (!el) {
@@ -894,8 +897,8 @@ var KTUtil = function() {
                     }
                 }
             } else if (!KTUtil.hasClass(el, className)) {
-                for (var i = 0; i < classNames.length; i++) {
-                    el.className += ' ' + KTUtil.trim(classNames[i]);
+                for (var x = 0; x < classNames.length; x++) {
+                    el.className += ' ' + KTUtil.trim(classNames[x]);
                 }
             }
         },
@@ -912,19 +915,20 @@ var KTUtil = function() {
                     el.classList.remove(KTUtil.trim(classNames[i]));
                 }
             } else if (KTUtil.hasClass(el, className)) {
-                for (var i = 0; i < classNames.length; i++) {
-                    el.className = el.className.replace(new RegExp('\\b' + KTUtil.trim(classNames[i]) + '\\b', 'g'), '');
+                for (var x = 0; x < classNames.length; x++) {
+                    el.className = el.className.replace(new RegExp('\\b' + KTUtil.trim(classNames[x]) + '\\b', 'g'), '');
                 }
             }
         },
 
         triggerCustomEvent: function(el, eventName, data) {
+            var event;
             if (window.CustomEvent) {
-                var event = new CustomEvent(eventName, {
+                event = new CustomEvent(eventName, {
                     detail: data
                 });
             } else {
-                var event = document.createEvent('CustomEvent');
+                event = document.createEvent('CustomEvent');
                 event.initCustomEvent(eventName, true, true, data);
             }
 
@@ -986,7 +990,7 @@ var KTUtil = function() {
             }
         },
 
-        index: function( elm ){ 
+        index: function( elm ){
             elm = KTUtil.get(elm);
             var c = elm.parentNode.children, i = 0;
             for(; i < c.length; i++ )
@@ -1017,14 +1021,14 @@ var KTUtil = function() {
             parent = KTUtil.get(parent);
             if (parent) {
                 return parent.querySelector(query);
-            }            
+            }
         },
 
         findAll: function(parent, query) {
             parent = KTUtil.get(parent);
             if (parent) {
                 return parent.querySelectorAll(query);
-            } 
+            }
         },
 
         insertAfter: function(el, referenceNode) {
@@ -1113,15 +1117,15 @@ var KTUtil = function() {
                     }
 
                     if (element.customDataTag === undefined) {
-                        KTUtilElementDataStoreID++;
-                        element.customDataTag = KTUtilElementDataStoreID;
+                        window.KTUtilElementDataStoreID++;
+                        element.customDataTag = window.KTUtilElementDataStoreID;
                     }
 
-                    if (KTUtilElementDataStore[element.customDataTag] === undefined) {
-                        KTUtilElementDataStore[element.customDataTag] = {};
+                    if (window.KTUtilElementDataStore[element.customDataTag] === undefined) {
+                        window.KTUtilElementDataStore[element.customDataTag] = {};
                     }
 
-                    KTUtilElementDataStore[element.customDataTag][name] = data;
+                    window.KTUtilElementDataStore[element.customDataTag][name] = data;
                 },
 
                 get: function(name) {
@@ -1129,28 +1133,28 @@ var KTUtil = function() {
                         return;
                     }
 
-                    if (element.customDataTag === undefined) { 
+                    if (element.customDataTag === undefined) {
                         return null;
                     }
 
-                    return this.has(name) ? KTUtilElementDataStore[element.customDataTag][name] : null;
+                    return this.has(name) ? window.KTUtilElementDataStore[element.customDataTag][name] : null;
                 },
 
                 has: function(name) {
                     if (element === undefined) {
                         return false;
                     }
-                    
-                    if (element.customDataTag === undefined) { 
+
+                    if (element.customDataTag === undefined) {
                         return false;
                     }
 
-                    return (KTUtilElementDataStore[element.customDataTag] && KTUtilElementDataStore[element.customDataTag][name]) ? true : false;
+                    return (window.KTUtilElementDataStore[element.customDataTag] && window.KTUtilElementDataStore[element.customDataTag][name]) ? true : false;
                 },
 
                 remove: function(name) {
                     if (element && this.has(name)) {
-                        delete KTUtilElementDataStore[element.customDataTag][name];
+                        delete window.KTUtilElementDataStore[element.customDataTag][name];
                     }
                 }
             };
@@ -1160,12 +1164,12 @@ var KTUtil = function() {
             var width;
 
             if (margin === true) {
-                var width = parseFloat(el.offsetWidth);
+                width = parseFloat(el.offsetWidth);
                 width += parseFloat(KTUtil.css(el, 'margin-left')) + parseFloat(KTUtil.css(el, 'margin-right'));
 
                 return parseFloat(width);
             } else {
-                var width = parseFloat(el.offsetWidth);
+                width = parseFloat(el.offsetWidth);
 
                 return width;
             }
@@ -1301,7 +1305,7 @@ var KTUtil = function() {
         actualCss: function(el, prop, cache) {
             el = KTUtil.get(el);
             var css = '';
-            
+
             if (el instanceof HTMLElement === false) {
                 return;
             }
@@ -1360,7 +1364,7 @@ var KTUtil = function() {
             if (value !== undefined) {
                 el.style[styleProp] = value;
             } else {
-                var value, defaultView = (el.ownerDocument || document).defaultView;
+                var defaultView = (el.ownerDocument || document).defaultView;
                 // W3C standard way:
                 if (defaultView && defaultView.getComputedStyle) {
                     // sanitize property name to css notation
@@ -1417,7 +1421,7 @@ var KTUtil = function() {
                 calcPaddingBottom = parseInt(KTUtil.data(el).get('slide-padding-bottom'));
             }
 
-            if (dir == 'up') { // up          
+            if (dir == 'up') { // up
                 el.style.cssText = 'display: block; overflow: hidden;';
 
                 if (calcPaddingTop) {
@@ -1510,7 +1514,7 @@ var KTUtil = function() {
 
             var eventId = KTUtil.getUniqueID('event');
 
-            KTUtilDelegatedEventHandlers[eventId] = function(e) {
+            window.KTUtilDelegatedEventHandlers[eventId] = function(e) {
                 var targets = element.querySelectorAll(selector);
                 var target = e.target;
 
@@ -1525,19 +1529,19 @@ var KTUtil = function() {
                 }
             }
 
-            KTUtil.addEvent(element, event, KTUtilDelegatedEventHandlers[eventId]);
+            KTUtil.addEvent(element, event, window.KTUtilDelegatedEventHandlers[eventId]);
 
             return eventId;
         },
 
         off: function(element, event, eventId) {
-            if (!element || !KTUtilDelegatedEventHandlers[eventId]) {
+            if (!element || !window.KTUtilDelegatedEventHandlers[eventId]) {
                 return;
             }
 
-            KTUtil.removeEvent(element, event, KTUtilDelegatedEventHandlers[eventId]);
+            KTUtil.removeEvent(element, event, window.KTUtilDelegatedEventHandlers[eventId]);
 
-            delete KTUtilDelegatedEventHandlers[eventId];
+            delete window.KTUtilDelegatedEventHandlers[eventId];
         },
 
         one: function onetime(el, type, callback) {
@@ -1546,9 +1550,9 @@ var KTUtil = function() {
             el.addEventListener(type, function callee(e) {
                 // remove event
                 if (e.target && e.target.removeEventListener) {
-                    e.target.removeEventListener(e.type, callee);                    
+                    e.target.removeEventListener(e.type, callee);
                 }
-                
+
                 // call handler
                 return callback(e);
             });
@@ -1755,7 +1759,7 @@ var KTUtil = function() {
             return (KTUtil.attr(KTUtil.get('html'), 'direction') == 'rtl');
         },
 
-        // 
+        //
 
         // Scroller
         scrollInit: function(element, options) {
@@ -1773,7 +1777,8 @@ var KTUtil = function() {
 
                 // Destroy scroll on table and mobile modes
                 if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isInResponsiveRange('tablet-and-mobile')) {
-                    if (ps = KTUtil.data(element).get('ps')) {
+                    ps = KTUtil.data(element).get('ps');
+                    if (ps) {
                         if (options.resetHeightOnDestroy) {
                             KTUtil.css(element, 'height', 'auto');
                         } else {
@@ -1801,11 +1806,12 @@ var KTUtil = function() {
                     KTUtil.css(element, 'overflow', 'auto');
                     return;
                 }
-                
+
                 // Init scroll
                 KTUtil.css(element, 'overflow', 'hidden');
 
-                if (ps = KTUtil.data(element).get('ps')) {
+                ps = KTUtil.data(element).get('ps');
+                if (ps) {
                     ps.update();
                 } else {
                     KTUtil.addClass(element, 'kt-scroll');
@@ -1814,7 +1820,7 @@ var KTUtil = function() {
                         swipeEasing: true,
                         wheelPropagation: (options.windowScroll === false ? false : true),
                         minScrollbarLength: 40,
-                        maxScrollbarLength: 300, 
+                        maxScrollbarLength: 300,
                         suppressScrollX: KTUtil.attr(element, 'data-scroll-x') != 'true' ? true : false
                     });
 
@@ -1831,11 +1837,11 @@ var KTUtil = function() {
                         if (pos > 0) {
                             element.scrollTop = pos;
                         }
-                    } 
+                    }
 
                     element.addEventListener('ps-scroll-y', function() {
                         Cookies.set(uid, element.scrollTop);
-                    });                                      
+                    });
                 }
             }
 
@@ -1851,8 +1857,8 @@ var KTUtil = function() {
         },
 
         scrollUpdate: function(element) {
-            var ps;
-            if (ps = KTUtil.data(element).get('ps')) {
+            var ps = KTUtil.data(element).get('ps');
+            if (ps) {
                 ps.update();
             }
         },
@@ -1865,8 +1871,8 @@ var KTUtil = function() {
         },
 
         scrollDestroy: function(element) {
-            var ps;
-            if (ps = KTUtil.data(element).get('ps')) {
+            var ps = KTUtil.data(element).get('ps');
+            if (ps) {
                 ps.destroy();
                 ps = KTUtil.data(element).remove('ps');
             }
@@ -1882,9 +1888,14 @@ var KTUtil = function() {
             if (KTUtil.get(el)) {
                 return KTUtil.get(el).innerHTML;
             }
-        } 
+        }
     }
 }();
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTUtil;
+}
 
 // Initialize KTUtil class on document ready
 KTUtil.ready(function() {
@@ -1892,9 +1903,10 @@ KTUtil.ready(function() {
 });
 
 // CSS3 Transitions only after page load(.kt-page-loading class added to body tag and remove with JS on page load)
-window.onload = function() {    
+window.onload = function() {
     KTUtil.removeClass(KTUtil.get('body'), 'kt-page--loading');
 }
+
 // plugin setup
 var KTAvatar = function(elementId, options) {
     // Main object
@@ -1994,10 +2006,10 @@ var KTAvatar = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the);
+                            return event.handler.call(this, the);
                         }
                     } else {
-                        event.handler.call(this, the);
+                        return event.handler.call(this, the);
                     }
                 }
             }
@@ -2046,6 +2058,11 @@ var KTAvatar = function(elementId, options) {
 
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTAvatar;
+}
 "use strict";
 
 // plugin setup
@@ -2146,10 +2163,10 @@ var KTDialog = function(options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;                            
-                            event.handler.call(this, the);
+                            return event.handler.call(this, the);
                         }
                     } else {
-                        event.handler.call(this, the);
+                        return event.handler.call(this, the);
                     }
                 }
             }
@@ -2228,6 +2245,11 @@ var KTDialog = function(options) {
 
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTDialog;
+}
 "use strict";
 var KTHeader = function(elementId, options) {
     // Main object
@@ -2375,10 +2397,10 @@ var KTHeader = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the, args);
+                            return event.handler.call(this, the, args);
                         }
                     } else {
-                        event.handler.call(this, the, args);
+                        return event.handler.call(this, the, args);
                     }
                 }
             }
@@ -2426,6 +2448,11 @@ var KTHeader = function(elementId, options) {
     // Return plugin instance
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTHeader;
+}
 "use strict";
 var KTMenu = function(elementId, options) {
     // Main object
@@ -2434,19 +2461,19 @@ var KTMenu = function(elementId, options) {
 
     // Get element object
     var element = KTUtil.get(elementId);
-    var body = KTUtil.get('body');  
+    var body = KTUtil.get('body');
 
     if (!element) {
         return;
     }
 
     // Default options
-    var defaultOptions = {       
+    var defaultOptions = {
         // scrollable area with Perfect Scroll
         scroll: {
             rememberPosition: false
         },
-        
+
         // accordion submenu mode
         accordion: {
             slideSpeed: 200, // accordion toggle slide speed in milliseconds
@@ -2568,7 +2595,7 @@ var KTMenu = function(elementId, options) {
          * Reset menu
          * @returns {KTMenu}
          */
-        reset: function() { 
+        reset: function() {
             KTUtil.off( element, 'click', the.eventHandlers['event_1']);
 
             // dropdown submenu - hover toggle
@@ -2578,7 +2605,7 @@ var KTMenu = function(elementId, options) {
             // dropdown submenu - click toggle
             KTUtil.off( element, 'click', the.eventHandlers['event_4']);
             KTUtil.off( element, 'click', the.eventHandlers['event_5']);
-            
+
             // handle link click
             KTUtil.off(element, 'click', the.eventHandlers['event_6']);
         },
@@ -2593,7 +2620,7 @@ var KTMenu = function(elementId, options) {
                 KTUtil.scrollInit(element, {mobileNativeScroll: true, windowScroll: false, resetHeightOnDestroy: true, handleWindowResize: true, height: the.options.scroll.height, rememberPosition: the.options.scroll.rememberPosition});
             } else {
                 KTUtil.scrollDestroy(element);
-            }           
+            }
         },
 
         /**
@@ -2664,7 +2691,7 @@ var KTMenu = function(elementId, options) {
             if ( submenus ) {
                 for (var i = 0, len = submenus.length; i < len; i++) {
                     KTUtil.css(submenus[0], 'display', '');
-                    KTUtil.css(submenus[0], 'overflow', '');                                        
+                    KTUtil.css(submenus[0], 'overflow', '');
                 }
             }
         },
@@ -2715,11 +2742,11 @@ var KTMenu = function(elementId, options) {
             var timeout = setTimeout(function() {
                 if ( item.getAttribute('data-hover') == '1' ) {
                     Plugin.hideSubmenuDropdown(item, true);
-                } 
+                }
             }, time);
 
             item.setAttribute('data-hover', '1');
-            item.setAttribute('data-timeout', timeout);  
+            item.setAttribute('data-timeout', timeout);
         },
 
         /**
@@ -2730,7 +2757,7 @@ var KTMenu = function(elementId, options) {
             if ( Plugin.getSubmenuMode(this) === 'accordion' ) {
                 return;
             }
- 
+
             var item = this.closest('.kt-menu__item');
 
             if ( item.getAttribute('data-ktmenu-submenu-mode') == 'accordion' ) {
@@ -2781,7 +2808,7 @@ var KTMenu = function(elementId, options) {
             var result = Plugin.eventTrigger('linkClick', this, e);
             if (result === false) {
                 return;
-            } 
+            }
 
             if ( submenu && Plugin.getSubmenuMode(submenu) === 'dropdown' ) {
                 Plugin.hideSubmenuDropdowns();
@@ -2837,7 +2864,7 @@ var KTMenu = function(elementId, options) {
                 var hasClosables = false;
 
                 if ( KTUtil.hasClass(li, 'kt-menu__item--open') === false ) {
-                    // hide other accordions                    
+                    // hide other accordions
                     if ( the.options.accordion.expandAll === false ) {
                         var subnav = item.closest('.kt-menu__nav, .kt-menu__subnav');
                         var closables = KTUtil.children(subnav, '.kt-menu__item.kt-menu__item--open.kt-menu__item--submenu:not(.kt-menu__item--here):not(.kt-menu__item--open-always)');
@@ -2850,7 +2877,7 @@ var KTMenu = function(elementId, options) {
                                     KTUtil.slideUp(submenu_, speed, function() {
                                         Plugin.scrollUpdate();
                                         KTUtil.removeClass(el_, 'kt-menu__item--open');
-                                    });                    
+                                    });
                                 }
                             }
                         }
@@ -2859,10 +2886,10 @@ var KTMenu = function(elementId, options) {
                     KTUtil.slideDown(submenu, speed, function() {
                         Plugin.scrollToItem(item);
                         Plugin.scrollUpdate();
-                        
+
                         Plugin.eventTrigger('submenuToggle', submenu, e);
                     });
-                
+
                     KTUtil.addClass(li, 'kt-menu__item--open');
 
                 } else {
@@ -2938,11 +2965,11 @@ var KTMenu = function(elementId, options) {
                         Plugin.hideSubmenuDropdown(el, true);
                     }
                 }
-            } 
+            }
 
             // add submenu activation class
             KTUtil.addClass(item, 'kt-menu__item--hover');
-            
+
             if ( item.getAttribute('data-ktmenu-dropdown-toggle-class') ) {
                 KTUtil.addClass(body, item.getAttribute('data-ktmenu-dropdown-toggle-class'));
             }
@@ -2997,7 +3024,7 @@ var KTMenu = function(elementId, options) {
             var parents;
 
             list = element.querySelectorAll('.kt-menu__item--active');
-            
+
             for (var i = 0, len = list.length; i < len; i++) {
                 var el = list[0];
                 KTUtil.removeClass(el, 'kt-menu__item--active');
@@ -3116,7 +3143,7 @@ var KTMenu = function(elementId, options) {
     //////////////////////////
 
     /**
-     * Set default options 
+     * Set default options
      */
 
     the.setDefaults = function(options) {
@@ -3238,7 +3265,7 @@ var KTMenu = function(elementId, options) {
     KTUtil.addResizeHandler(function() {
         if (init) {
             the.reload();
-        }  
+        }
     });
 
     // Init done
@@ -3247,6 +3274,11 @@ var KTMenu = function(elementId, options) {
     // Return plugin instance
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTMenu;
+}
 
 // Plugin global lazy initialization
 document.addEventListener("click", function (e) {
@@ -3270,10 +3302,11 @@ document.addEventListener("click", function (e) {
                 if ( e.target !== element && element.contains(e.target) === false ) {
                     the.hideDropdowns();
                 }
-            }            
+            }
         }
-    } 
+    }
 });
+
 "use strict";
 var KTOffcanvas = function(elementId, options) {
     // Main object
@@ -3479,10 +3512,10 @@ var KTOffcanvas = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the, args);
+                            return event.handler.call(this, the, args);
                         }
                     } else {
-                        event.handler.call(this, the, args);
+                        return event.handler.call(this, the, args);
                     }
                 }
             }
@@ -3538,6 +3571,11 @@ var KTOffcanvas = function(elementId, options) {
     // Return plugin instance
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTOffcanvas;
+}
 "use strict";
 // plugin setup
 var KTPortlet = function(elementId, options) {
@@ -4020,10 +4058,10 @@ var KTPortlet = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the);
+                            return event.handler.call(this, the);
                         }
                     } else {
-                        event.handler.call(this, the);
+                        return event.handler.call(this, the);
                     }
                 }
             }
@@ -4184,6 +4222,11 @@ var KTPortlet = function(elementId, options) {
 
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTPortlet;
+}
 "use strict";
 var KTScrolltop = function(elementId, options) {
     // Main object
@@ -4297,10 +4340,10 @@ var KTScrolltop = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the, args);
+                            return event.handler.call(this, the, args);
                         }
                     } else {
-                        event.handler.call(this, the, args);
+                       return event.handler.call(this, the, args);
                     }
                 }
             }
@@ -4356,6 +4399,11 @@ var KTScrolltop = function(elementId, options) {
     // Return plugin instance
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTScrolltop;
+}
 "use strict";
 
 // plugin setup
@@ -4499,10 +4547,10 @@ var KTToggle = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;                            
-                            event.handler.call(this, the);
+                            return event.handler.call(this, the);
                         }
                     } else {
-                        event.handler.call(this, the);
+                        return event.handler.call(this, the);
                     }
                 }
             }
@@ -4581,6 +4629,11 @@ var KTToggle = function(elementId, options) {
 
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTToggle;
+}
 // plugin setup
 var KTWizard = function(elementId, options) {
     // Main object
@@ -4597,8 +4650,7 @@ var KTWizard = function(elementId, options) {
 
     // Default options
     var defaultOptions = {
-        startStep: 1,
-        manualStepForward: false
+        startStep: 1
     };
 
     ////////////////////////////
@@ -4667,31 +4719,31 @@ var KTWizard = function(elementId, options) {
             // Next button event handler
             KTUtil.addEvent(the.btnNext, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goNext();
+                Plugin.goTo(Plugin.getNextStep(), true);
             });
 
             // Prev button event handler
             KTUtil.addEvent(the.btnPrev, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goPrev();
+                Plugin.goTo(Plugin.getPrevStep(), true);
             });
 
             // First button event handler
             KTUtil.addEvent(the.btnFirst, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goFirst();
+                Plugin.goTo(Plugin.getFirstStep(), true);
             });
 
             // Last button event handler
             KTUtil.addEvent(the.btnLast, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goLast();
+                Plugin.goTo(Plugin.getLastStep(), true);
             });
 
             KTUtil.on(element, 'a[data-ktwizard-type="step"]', 'click', function() {
                 var index = KTUtil.index(this) + 1;
                 if (index !== the.currentStep) {
-                    Plugin.goTo(index);
+                    Plugin.goTo(index, true);
                 }                
             });
         },
@@ -4699,7 +4751,7 @@ var KTWizard = function(elementId, options) {
         /**
          * Handles wizard click wizard
          */
-        goTo: function(number) {
+        goTo: function(number, eventHandle) {
             // Skip if this step is already shown
             if (number === the.currentStep || number > the.totalSteps || number < 0) {
                 return;
@@ -4715,10 +4767,12 @@ var KTWizard = function(elementId, options) {
             // Before next and prev events
             var callback;
 
-            if (number > the.currentStep) {
-                callback = Plugin.eventTrigger('beforeNext');
-            } else {
-                callback = Plugin.eventTrigger('beforePrev');
+            if (eventHandle === true) {
+                if (number > the.currentStep) {
+                    callback = Plugin.eventTrigger('beforeNext');
+                } else {
+                    callback = Plugin.eventTrigger('beforePrev');
+                }
             }
             
             // Skip if stopped
@@ -4730,7 +4784,9 @@ var KTWizard = function(elementId, options) {
             // Continue if no exit
             if (callback !== false) {
                 // Before change
-                Plugin.eventTrigger('beforeChange');
+                if (eventHandle === true) {
+                    Plugin.eventTrigger('beforeChange');
+                }
 
                 // Set current step 
                 the.currentStep = number;
@@ -4738,14 +4794,18 @@ var KTWizard = function(elementId, options) {
                 Plugin.updateUI();
 
                 // Trigger change event
-                Plugin.eventTrigger('change');
+                if (eventHandle === true) {
+                    Plugin.eventTrigger('change');
+                }
             }
 
             // After next and prev events
-            if (number > the.startStep) {
-                Plugin.eventTrigger('afterNext');
-            } else {
-                Plugin.eventTrigger('afterPrev');
+            if (eventHandle === true) {
+                if (number > the.startStep) {
+                    Plugin.eventTrigger('afterNext');
+                } else {
+                    Plugin.eventTrigger('afterPrev');
+                }
             }
 
             return the;
@@ -4784,34 +4844,6 @@ var KTWizard = function(elementId, options) {
          */
         isBetweenStep: function() {
             return Plugin.isLastStep() === false && Plugin.isFirstStep() === false;
-        },
-
-        /**
-         * Go to the next step
-         */
-        goNext: function() {
-            return Plugin.goTo(Plugin.getNextStep());
-        },
-
-        /**
-         * Go to the prev step
-         */
-        goPrev: function() {
-            return Plugin.goTo(Plugin.getPrevStep());
-        },
-
-        /**
-         * Go to the last step
-         */
-        goLast: function() {
-            return Plugin.goTo(the.totalSteps);
-        },
-
-        /**
-         * Go to the first step
-         */
-        goFirst: function() {
-            return Plugin.goTo(1);
         },
 
         /**
@@ -4898,7 +4930,7 @@ var KTWizard = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name) {
+        eventTrigger: function(name, nested) {
             //KTUtil.triggerCustomEvent(name);
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
@@ -4906,10 +4938,10 @@ var KTWizard = function(elementId, options) {
                     if (event.one == true) {
                         if (event.fired == false) {
                             the.events[i].fired = true;
-                            event.handler.call(this, the);
+                            return event.handler.call(this, the);
                         }
                     } else {
-                        event.handler.call(this, the);
+                        return event.handler.call(this, the);
                     }
                 }
             }
@@ -4942,22 +4974,36 @@ var KTWizard = function(elementId, options) {
     /**
      * Go to the next step 
      */
-    the.goNext = function() {
-        return Plugin.goNext();
+    the.goNext = function(eventHandle) {
+        return Plugin.goTo(Plugin.getNextStep(), eventHandle);
     };
 
     /**
      * Go to the prev step 
      */
-    the.goPrev = function() {
-        return Plugin.goPrev();
+    the.goPrev = function(eventHandle) {
+        return Plugin.goTo(Plugin.getPrevStep(),eventHandle);
     };
 
     /**
      * Go to the last step 
      */
-    the.goLast = function() {
-        return Plugin.goLast();
+    the.goLast = function(eventHandle) {
+        return Plugin.goTo(Plugin.getLastStep(), eventHandle);
+    };
+
+    /**
+     * Go to the first step 
+     */
+    the.goFirst = function(eventHandle) {
+        return Plugin.goTo(Plugin.getFirstStep(), eventHandle);
+    };
+
+    /**
+     * Go to a step
+     */
+    the.goTo = function(number, eventHandle) {
+        return Plugin.goTo(number, eventHandle);
     };
 
     /**
@@ -4972,20 +5018,6 @@ var KTWizard = function(elementId, options) {
      */
     the.start = function() {
         return Plugin.start();
-    };
-
-    /**
-     * Go to the first step 
-     */
-    the.goFirst = function() {
-        return Plugin.goFirst();
-    };
-
-    /**
-     * Go to a step
-     */
-    the.goTo = function(number) {
-        return Plugin.goTo(number);
     };
 
     /**
@@ -5028,6 +5060,11 @@ var KTWizard = function(elementId, options) {
 
     return the;
 };
+
+// webpack support
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = KTWizard;
+}
 'use strict';
 (function($) {
 
@@ -6722,8 +6759,7 @@ var KTWizard = function(elementId, options) {
 						// get visible page
 						var pagerNumber = $(pager).find('.' + pfx + 'datatable__pager-link-number');
 						// get page before of first visible
-						var morePrevPage = Math.max($(pagerNumber).first().data('page') - 1,
-							1);
+						var morePrevPage = Math.max($(pagerNumber).first().data('page') - 1, 1);
 						$(pagerMorePrev).each(function(i, prev) {
 							$(prev).attr('data-page', morePrevPage);
 						});
@@ -7091,10 +7127,12 @@ var KTWizard = function(elementId, options) {
 							var column = $.grep(options.columns, function(n, i) {
 								return field === n.field;
 							})[0];
-							$(detailSubTable).
-								append($('<tr class="' + pfx + 'datatable__row"></tr>').
-									append($('<td class="' + pfx + 'datatable__cell"></td>').append($('<span/>').append(column.title))).
-									append(this));
+							if (typeof column === 'undefined' || column.visible !== false) {
+								$(detailSubTable).
+										append($('<tr class="' + pfx + 'datatable__row"></tr>').
+												append($('<td class="' + pfx + 'datatable__cell"></td>').append($('<span/>').append(column.title))).
+												append(this));
+							}
 						});
 						$(detailRowTd).append(detailSubTable);
 
@@ -8252,12 +8290,12 @@ var KTWizard = function(elementId, options) {
 
 					if (bool) {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							delete options.columns[index].visible;
+							delete options.columns[index-1].visible;
 						}
 						$(Plugin.recentNode).show();
 					} else {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							Plugin.setOption('columns.' + index + '.visible', false);
+							Plugin.setOption('columns.' + (index-1) + '.visible', false);
 						}
 						$(Plugin.recentNode).hide();
 					}
@@ -8372,7 +8410,7 @@ var KTWizard = function(elementId, options) {
 			class: pfx + 'datatable--brand', // custom wrapper class
 			scroll: false, // enable/disable datatable scroll both horizontal and vertical when needed.
 			height: null, // datatable's body's fixed height
-			minHeight: 500,
+			minHeight: null,
 			footer: false, // display/hide footer
 			header: true, // display/hide header
 			customScrollbar: true, // set false to disable custom scrollbar
@@ -8886,7 +8924,7 @@ var KTChat = function () {
 				'<div class="kt-chat__user">' +				
 					'<span class="kt-chat__datetime">Just now</span>' +
 					'<a href="#" class="kt-chat__username">Jason Muller</span></a>' +					
-					'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+					'<span class="kt-media kt-media--circle kt-media--sm">' +
 						'<img src="./assets/media/users/100_12.jpg" alt="image">'  + 
 					'</span>' +
 				'</div>' +
@@ -8910,7 +8948,7 @@ var KTChat = function () {
 
 				var html = 
 					'<div class="kt-chat__user">' +
-						'<span class="kt-userpic kt-userpic--circle kt-userpic--sm">' +
+						'<span class="kt-media kt-media--circle kt-media--sm">' +
 							'<img src="./assets/media/users/100_13.jpg" alt="image">'  + 
 						'</span>' +
 						'<a href="#" class="kt-chat__username">Max Born</span></a>' +
@@ -8964,6 +9002,11 @@ var KTChat = function () {
         }
 	};
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTChat;
+}
 
 KTUtil.ready(function() {	
 	KTChat.init();
@@ -9050,26 +9093,26 @@ var KTOffcanvasPanel = function() {
         var body = KTUtil.find(notificationPanel, '.kt-offcanvas-panel__body');
 
         var offcanvas = new KTOffcanvas(notificationPanel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-offcanvas-panel',
             closeBy: 'kt_offcanvas_toolbar_notifications_close',
             toggleBy: 'kt_offcanvas_toolbar_notifications_toggler_btn'
-        }); 
+        });
 
         KTUtil.scrollInit(body, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 var height = parseInt(KTUtil.getViewPort().height);
-               
+
                 if (head) {
                     height = height - parseInt(KTUtil.actualHeight(head));
                     height = height - parseInt(KTUtil.css(head, 'marginBottom'));
                 }
-        
+
                 height = height - parseInt(KTUtil.css(notificationPanel, 'paddingTop'));
-                height = height - parseInt(KTUtil.css(notificationPanel, 'paddingBottom'));    
+                height = height - parseInt(KTUtil.css(notificationPanel, 'paddingBottom'));
 
                 return height;
             }
@@ -9081,26 +9124,26 @@ var KTOffcanvasPanel = function() {
         var body = KTUtil.find(quickActionsPanel, '.kt-offcanvas-panel__body');
 
         var offcanvas = new KTOffcanvas(quickActionsPanel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-offcanvas-panel',
             closeBy: 'kt_offcanvas_toolbar_quick_actions_close',
             toggleBy: 'kt_offcanvas_toolbar_quick_actions_toggler_btn'
-        }); 
+        });
 
         KTUtil.scrollInit(body, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 var height = parseInt(KTUtil.getViewPort().height);
-               
+
                 if (head) {
                     height = height - parseInt(KTUtil.actualHeight(head));
                     height = height - parseInt(KTUtil.css(head, 'marginBottom'));
                 }
-        
+
                 height = height - parseInt(KTUtil.css(quickActionsPanel, 'paddingTop'));
-                height = height - parseInt(KTUtil.css(quickActionsPanel, 'paddingBottom'));    
+                height = height - parseInt(KTUtil.css(quickActionsPanel, 'paddingBottom'));
 
                 return height;
             }
@@ -9112,26 +9155,26 @@ var KTOffcanvasPanel = function() {
         var body = KTUtil.find(profilePanel, '.kt-offcanvas-panel__body');
 
         var offcanvas = new KTOffcanvas(profilePanel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-offcanvas-panel',
             closeBy: 'kt_offcanvas_toolbar_profile_close',
             toggleBy: 'kt_offcanvas_toolbar_profile_toggler_btn'
-        }); 
+        });
 
         KTUtil.scrollInit(body, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 var height = parseInt(KTUtil.getViewPort().height);
-               
+
                 if (head) {
                     height = height - parseInt(KTUtil.actualHeight(head));
                     height = height - parseInt(KTUtil.css(head, 'marginBottom'));
                 }
-        
+
                 height = height - parseInt(KTUtil.css(profilePanel, 'paddingTop'));
-                height = height - parseInt(KTUtil.css(profilePanel, 'paddingBottom'));    
+                height = height - parseInt(KTUtil.css(profilePanel, 'paddingBottom'));
 
                 return height;
             }
@@ -9141,37 +9184,43 @@ var KTOffcanvasPanel = function() {
     var initSearch = function() {
         var head = KTUtil.find(searchPanel, '.kt-offcanvas-panel__head');
         var body = KTUtil.find(searchPanel, '.kt-offcanvas-panel__body');
-        
+        var search = KTUtil.get('kt_quick_search_offcanvas');
+        var form = KTUtil.find(search, '.kt-quick-search__form');
+        var wrapper = KTUtil.find(search, '.kt-quick-search__wrapper');
+
         var offcanvas = new KTOffcanvas(searchPanel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-offcanvas-panel',
             closeBy: 'kt_offcanvas_toolbar_search_close',
             toggleBy: 'kt_offcanvas_toolbar_search_toggler_btn'
-        }); 
+        });
 
-        KTUtil.scrollInit(body, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+        KTUtil.scrollInit(wrapper, {
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 var height = parseInt(KTUtil.getViewPort().height);
-               
+
+                height = height - parseInt(KTUtil.actualHeight(form));
+                height = height - parseInt(KTUtil.css(form, 'marginBottom'));
+
                 if (head) {
                     height = height - parseInt(KTUtil.actualHeight(head));
                     height = height - parseInt(KTUtil.css(head, 'marginBottom'));
                 }
-        
+
                 height = height - parseInt(KTUtil.css(searchPanel, 'paddingTop'));
-                height = height - parseInt(KTUtil.css(searchPanel, 'paddingBottom'));    
+                height = height - parseInt(KTUtil.css(searchPanel, 'paddingBottom'));
 
                 return height;
             }
         });
     }
 
-    return {     
-        init: function() {  
-            initNotifications(); 
+    return {
+        init: function() {
+            initNotifications();
             initQucikActions();
             initProfile();
             initSearch();
@@ -9179,9 +9228,11 @@ var KTOffcanvasPanel = function() {
     };
 }();
 
-$(document).ready(function() {
+// Init on page load completed
+KTUtil.ready(function() {
     KTOffcanvasPanel.init();
 });
+
 "use strict";
 
 var KTQuickPanel = function() {
@@ -9277,21 +9328,21 @@ var KTQuickSearch = function() {
     var inputGroup;
     var query = '';
 
-    var hasResult = false; 
-    var timeout = false; 
+    var hasResult = false;
+    var timeout = false;
     var isProcessing = false;
-    var requestTimeout = 200; // ajax request fire timeout in milliseconds 
+    var requestTimeout = 200; // ajax request fire timeout in milliseconds
     var spinnerClass = 'kt-spinner kt-spinner--input kt-spinner--sm kt-spinner--brand kt-spinner--right';
     var resultClass = 'kt-quick-search--has-result';
     var minLength = 2;
 
     var showProgress = function() {
         isProcessing = true;
-        KTUtil.addClass(inputGroup, spinnerClass); 
+        KTUtil.addClass(inputGroup, spinnerClass);
 
         if (closeIcon) {
             KTUtil.hide(closeIcon);
-        }       
+        }
     }
 
     var hideProgress = function() {
@@ -9303,14 +9354,14 @@ var KTQuickSearch = function() {
                 KTUtil.hide(closeIcon);
             } else {
                 KTUtil.show(closeIcon, 'flex');
-            }            
+            }
         }
     }
 
     var showDropdown = function() {
         if (resultDropdownToggle && !KTUtil.hasClass(resultDropdown, 'show')) {
             $(resultDropdownToggle).dropdown('toggle');
-            $(resultDropdownToggle).dropdown('update'); 
+            $(resultDropdownToggle).dropdown('update');
         }
     }
 
@@ -9321,7 +9372,7 @@ var KTQuickSearch = function() {
     }
 
     var processSearch = function() {
-        if (hasResult && query === input.value) {  
+        if (hasResult && query === input.value) {
             hideProgress();
             KTUtil.addClass(target, resultClass);
             showDropdown();
@@ -9334,6 +9385,7 @@ var KTQuickSearch = function() {
 
         KTUtil.removeClass(target, resultClass);
         showProgress();
+        hideDropdown();
 
         setTimeout(function() {
             $.ajax({
@@ -9359,7 +9411,7 @@ var KTQuickSearch = function() {
                     KTUtil.scrollUpdate(resultWrapper);
                 }
             });
-        }, 1000);       
+        }, 1000);
     }
 
     var handleCancel = function(e) {
@@ -9389,20 +9441,20 @@ var KTQuickSearch = function() {
 
         timeout = setTimeout(function() {
             processSearch();
-        }, requestTimeout);     
+        }, requestTimeout);
     }
 
-    return {     
-        init: function(element) { 
+    return {
+        init: function(element) {
             // Init
             target = element;
             form = KTUtil.find(target, '.kt-quick-search__form');
             input = KTUtil.find(target, '.kt-quick-search__input');
             closeIcon = KTUtil.find(target, '.kt-quick-search__close');
             resultWrapper = KTUtil.find(target, '.kt-quick-search__wrapper');
-            resultDropdown = KTUtil.find(target, '.dropdown-menu'); 
+            resultDropdown = KTUtil.find(target, '.dropdown-menu');
             resultDropdownToggle = KTUtil.find(target, '[data-toggle="dropdown"]');
-            inputGroup = KTUtil.find(target, '.input-group');           
+            inputGroup = KTUtil.find(target, '.input-group');
 
             // Attach input keyup handler
             KTUtil.addEvent(input, 'keyup', handleSearch);
@@ -9410,36 +9462,36 @@ var KTQuickSearch = function() {
 
             // Prevent enter click
             form.onkeypress = function(e) {
-                var key = e.charCode || e.keyCode || 0;     
+                var key = e.charCode || e.keyCode || 0;
                 if (key == 13) {
                     e.preventDefault();
                 }
             }
-           
-            KTUtil.addEvent(closeIcon, 'click', handleCancel);     
 
-            // Auto-focus on the form input on dropdown form open
-            var toggle = KTUtil.getByID('kt_quick_search_toggle');
-            if (toggle) {
-                $(toggle).on('shown.bs.dropdown', function () {
-                    input.focus();
-                });
-            }  
+            KTUtil.addEvent(closeIcon, 'click', handleCancel);
         }
     };
 };
 
-var KTQuickSearchMobile = KTQuickSearch;
+var KTQuickSearchInline = KTQuickSearch;
+var KTQuickSearchOffcanvas = KTQuickSearch;
 
-$(document).ready(function() {
-    if (KTUtil.get('kt_quick_search_default')) {
-        KTQuickSearch().init(KTUtil.get('kt_quick_search_default'));
+// Init on page load completed
+
+KTUtil.ready(function() {
+    if (KTUtil.get('kt_quick_search_dropdown')) {
+        KTQuickSearch().init(KTUtil.get('kt_quick_search_dropdown'));
     }
 
     if (KTUtil.get('kt_quick_search_inline')) {
-        KTQuickSearchMobile().init(KTUtil.get('kt_quick_search_inline'));
+        KTQuickSearchInline().init(KTUtil.get('kt_quick_search_inline'));
+    }
+
+    if (KTUtil.get('kt_quick_search_offcanvas')) {
+        KTQuickSearchOffcanvas().init(KTUtil.get('kt_quick_search_offcanvas'));
     }
 });
+
 "use strict";
 
 var KTLayout = function() {
@@ -9461,7 +9513,7 @@ var KTLayout = function() {
     var initHeader = function() {
         var tmp;
         var headerEl = KTUtil.get('kt_header');
-        
+
         var options = {
             classic: {
                 desktop: true,
@@ -9488,7 +9540,7 @@ var KTLayout = function() {
             header.on('minimizeOff', function() {
                 asideMenu.scrollReInit();
             });
-        }        
+        }
     }
 
     // Header Menu
@@ -9564,7 +9616,7 @@ var KTLayout = function() {
                 insideTm = setTimeout(function() {
                     if (KTUtil.hasClass(body, 'kt-aside--minimize') && KTUtil.isInResponsiveRange('desktop')) {
                         KTUtil.removeClass(body, 'kt-aside--minimize');
-                        
+
                         // Minimizing class
                         KTUtil.addClass(body, 'kt-aside--minimizing');
                         KTUtil.transitionEnd(body, function() {
@@ -9653,7 +9705,7 @@ var KTLayout = function() {
             accordion: {
                 expandAll: false // allow having multiple expanded accordions in the menu
             }
-        });       
+        });
     }
 
     // Scrolltop
@@ -9685,17 +9737,17 @@ var KTLayout = function() {
 						return pos;
 					},
 					left: function(portlet) {
-						var porletEl = portlet.getSelf();      
-						
+						var porletEl = portlet.getSelf();
+
 						return KTUtil.offset(porletEl).left;
 					},
 					right: function(portlet) {
-						var porletEl = portlet.getSelf();      
+						var porletEl = portlet.getSelf();
 
 						var portletWidth = parseInt(KTUtil.css(porletEl, 'width'));
 						var bodyWidth = parseInt(KTUtil.css(KTUtil.get('body'), 'width'));
 						var portletOffsetLeft = KTUtil.offset(porletEl).left;
-					
+
 						return bodyWidth - portletWidth - portletOffsetLeft;
 					}
 				}
@@ -9737,13 +9789,11 @@ var KTLayout = function() {
             this.initPageStickyPortlet();
 
             // Non functional links notice(can be removed in production)
-            $('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function() {
-                if(location.hostname.match('keenthemes.com')) {
-                    swal.fire("You have clicked on a dummy link!", "To browse the theme features please refer to the header menu.", "warning");
-                } else {
-                    swal.fire("You have clicked on a dummy link!", "This demo shows only its unique layout features. <b>Keen's</b> all available features can be re-used in this and any other demos by refering to <b>the default demo</b>.", "warning");
-                }
-            });
+			$('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function(e) {
+				swal.fire("", "You have clicked on a non-functional dummy link!");
+
+				e.preventDefault();
+			});
         },
 
         initHeader: function() {
@@ -9753,7 +9803,7 @@ var KTLayout = function() {
             initScrolltop();
         },
 
-        initAside: function() { 
+        initAside: function() {
             initAside();
             initAsideMenu();
         },
@@ -9766,10 +9816,10 @@ var KTLayout = function() {
             if (!KTUtil.get('kt_page_portlet')) {
                 return;
             }
-            
+
             pageStickyPortlet = initPageStickyPortlet();
             pageStickyPortlet.initSticky();
-            
+
             KTUtil.addResizeHandler(function(){
                 pageStickyPortlet.updateSticky();
             });
@@ -9794,6 +9844,11 @@ var KTLayout = function() {
 		}
     };
 }();
+
+// webpack support
+if (typeof module !== 'undefined') {
+    module.exports = KTLayout;
+}
 
 $(document).ready(function() {
     KTLayout.init();

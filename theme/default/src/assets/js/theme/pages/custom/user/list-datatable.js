@@ -1,7 +1,7 @@
 "use strict";
 // Class definition
 
-var KTAppUserListDatatable = function() {
+var KTUserListDatatable = function() {
 
 	// variables
 	var datatable;
@@ -15,7 +15,7 @@ var KTAppUserListDatatable = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'inc/api/datatables/demos/default.php',
+						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/default.php',
 					},
 				},
 				pageSize: 10, // display 20 records per page
@@ -441,5 +441,5 @@ var KTAppUserListDatatable = function() {
 
 // On document ready
 KTUtil.ready(function() {
-	KTAppUserListDatatable.init();
+	KTUserListDatatable.init();
 });

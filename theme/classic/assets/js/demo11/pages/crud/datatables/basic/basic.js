@@ -26,7 +26,7 @@ var KTDatatablesBasicBasic = function() {
 			headerCallback: function(thead, data, start, end, display) {
 				thead.getElementsByTagName('th')[0].innerHTML = `
                     <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid">
-                        <input type="checkbox" value="" class="m-group-checkable">
+                        <input type="checkbox" value="" class="kt-group-checkable">
                         <span></span>
                     </label>`;
 			},
@@ -40,7 +40,7 @@ var KTDatatablesBasicBasic = function() {
 					render: function(data, type, full, meta) {
 						return `
                         <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid">
-                            <input type="checkbox" value="" class="m-checkable">
+                            <input type="checkbox" value="" class="kt-checkable">
                             <span></span>
                         </label>`;
 					},
