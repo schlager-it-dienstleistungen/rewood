@@ -141,9 +141,10 @@ var KTPortlet = function(elementId, options) {
 	     */
 	    onScrollSticky: function(e) {
 		    var offset = the.options.sticky.offset;
+
 		    if(isNaN(offset)) return;
 
-		    var st = document.documentElement.scrollTop;
+		    var st = KTUtil.getScrollTop();
 
 		    if (st >= offset && KTUtil.hasClass(body, 'kt-portlet--sticky') === false) {
 			    Plugin.eventTrigger('stickyOn');

@@ -69,6 +69,7 @@ var KTHeader = function(elementId, options) {
             var lastScrollTop = 0;
             var eventTriggerState = true;
             var viewportHeight = KTUtil.getViewPort().height;
+            var documentHeight = KTUtil.getDocumentHeight();
 
             if (the.options.minimize.mobile === false && the.options.minimize.desktop === false) {
                 return;
@@ -87,17 +88,20 @@ var KTHeader = function(elementId, options) {
                     off = the.options.minimize.mobile.off;
                 }
 
-                st = window.pageYOffset;
+                st = KTUtil.getScrollTop();
+
+                console.log('top:' + st);
+                console.log('offset:' + offset);
+                console.log('documentHeight:' + documentHeight);
 
                 if (
                     (KTUtil.isInResponsiveRange('tablet-and-mobile') && the.options.classic && the.options.classic.mobile) ||
                     (KTUtil.isInResponsiveRange('desktop') && the.options.classic && the.options.classic.desktop)
-
                 ) {
                     if (st > offset) { // down scroll mode
                         KTUtil.addClass(body, on);
                         KTUtil.removeClass(body, off);
-                        
+
                         if (eventTriggerState) {
                             Plugin.eventTrigger('minimizeOn', the);
                             eventTriggerState = false;
@@ -108,7 +112,7 @@ var KTHeader = function(elementId, options) {
 
                         if (eventTriggerState == false) {
                             Plugin.eventTrigger('minimizeOff', the);
-                            eventTriggerState = true; 
+                            eventTriggerState = true;
                         }
                     }
                 } else {
@@ -169,7 +173,7 @@ var KTHeader = function(elementId, options) {
     //////////////////////////
 
     /**
-     * Set default options 
+     * Set default options
      */
 
     the.setDefaults = function(options) {

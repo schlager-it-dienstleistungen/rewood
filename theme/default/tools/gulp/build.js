@@ -63,6 +63,9 @@ gulp.task('copy-assets', function(cb) {
     if (pkg === 'angular') {
         copyAngularAssets();
     }
+    if (pkg === 'vue') {
+        copyVueAssets();
+    }
     cb();
 });
 
@@ -75,10 +78,14 @@ function copyReactAssets() {
 }
 
 function reactSassCopyHelper(_from, _to) {
-    var configReplacementFrameworkFrom = '../../../../../../../framework/sass/';
-        gulp.src(_from + '/**/*')
+    var configReplacementFrameworkFrom = '../../../../../../framework/sass/theme/';
+    var configVendrodsReplacementFrameworkFrom2 = '../../../../../../../framework/sass';
+    var configVendrodsReplacementFrameworkFromVendors= '../../../../../../framework/sass/vendors';
+        gulp.src(_from + '/**/*')   
         .pipe(replace(/\.\.\/.*?\/dist\/preview\//g, ''))
-        .pipe(replace(configReplacementFrameworkFrom, '../../'))
+        .pipe(replace(configVendrodsReplacementFrameworkFrom2, '../../'))
+        .pipe(replace(configReplacementFrameworkFrom, '../'))
+        .pipe(replace(configVendrodsReplacementFrameworkFromVendors, '../../vendors'))
         .pipe(replace('@import "../../../../config"', '@import "../../../config"'))
         .pipe(replace('@import "../../../../../config"', '@import "../../../../config"'))
         .pipe(replace('@import "config.scss"', '@import "../../layout/config.scss"'))
@@ -260,6 +267,7 @@ function copyAngularAssets() {
             src: [
                 './../themes/themes/' + theme + '/src/sass/theme/demos/{demo}/**/*',
                 '!./../themes/themes/' + theme + '/src/sass/**/style-react.scss',
+                '!./../themes/themes/' + theme + '/src/sass/**/style-vue.scss',
                 '!./../themes/themes/' + theme + '/src/sass/**/style.scss',
                 '!./../themes/themes/' + theme + '/src/sass/**/skins/**',
             ],
@@ -351,6 +359,120 @@ function copyAngularAssets() {
             });
             gulp.src(newSource)
             .pipe(gulp.dest(source['output'].replace(/{demo}/g, demo)));
+        });
+    });
+}
+
+function copyVueAssets() {
+    // sync vue reusable source code with demo1 for all other demos
+    var vueDemos = fs.readdirSync('./../themes/themes/' + theme + '/dist/vue').filter(function(file) {
+        return !(/(^|\/)\.[^\/\.]/g).test(file);
+    });
+
+    var assetSrc = [
+        {
+            src: ['./../themes/themes/' + theme + '/src/media/**/*'],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/media',
+        },
+        {
+            src: [
+                './../themes/themes/' + theme + '/src/sass/**/*',
+                '!./../themes/themes/' + theme + '/src/sass/theme/demos/**',
+                '!./../themes/themes/' + theme + '/src/sass/theme/_config.scss'
+            ],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/sass',
+            rewrite: [
+                {
+                    search: /\.\.\/.*?\/framework\/sass\//g,
+                    replace: '../../../sass/',
+                }
+            ],
+        },
+        {
+            src: [
+                './../themes/themes/' + theme + '/src/sass/theme/_config.scss'
+            ],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/sass/theme',
+            rewrite: [
+                {
+                    search: /\.\.\/.*?\/framework\/sass\//g,
+                    replace: '../../sass/',
+                }
+            ],
+        },
+        {
+            src: [
+                './../themes/themes/' + theme + '/src/sass/theme/demos/{demo}/**/*',
+                '!./../themes/themes/' + theme + '/src/sass/**/style-react.scss',
+                '!./../themes/themes/' + theme + '/src/sass/**/style-angular.scss',
+                '!./../themes/themes/' + theme + '/src/sass/**/style.scss',
+                '!./../themes/themes/' + theme + '/src/sass/**/skins/**',
+            ],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/sass/theme/layout',
+            rewrite: [
+                {
+                    search: /\.\.\/.*?\/framework\/sass\//g,
+                    replace: '../../../sass/',
+                },
+                {
+                    search: /"\.\.\/\.\.\/config";/g,
+                    replace: '"../config";',
+                },
+                {
+                    search: /\.\.\/.*?\/core/g,
+                    replace: '../core',
+                },
+            ],
+        },
+        {
+            src: ['./../themes/themes/' + theme + '/src/sass/theme/demos/{demo}/**/skins/**'],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/sass/theme/layout',
+            rewrite: [
+                {
+                    search: /\.\.\/\.\.\/\.\.\/\.\.\/config/g,
+                    replace: '../../../config',
+                },
+            ]
+        },
+        {
+            src: [
+                './../themes/framework/js/theme/core/**/*.js',
+                '!./../themes/framework/js/theme/core/base/datatable/*',
+                '!./../themes/framework/js/theme/core/app.js'
+            ],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/public/assets/js',
+            concat: 'script.bundle.js',
+        },
+        {
+            src: ['./../themes/framework/js/theme/core/**/*'],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/media',
+        },
+        {
+            src: ['./../themes/framework/sass/**/*'],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/sass',
+        },
+        {
+            src: ['./../themes/framework/vendors/**/*'],
+            output: './../themes/themes/' + theme + '/dist/vue/{demo}/src/assets/vendors',
+        },
+    ];
+
+    assetSrc.forEach(function(source) {
+        vueDemos.forEach(function(demo) {
+            var newSource = source['src'].map(function(v) {
+                return v.replace(/{demo}/g, demo);
+            });
+
+            var task = gulp.src(newSource);
+            if (source['rewrite']) {
+                source['rewrite'].forEach(function(r) {
+                    task = task.pipe(replace(r['search'], r['replace']));
+                });
+            }
+            if (source['concat']) {
+                task = task.pipe(concat(source['concat']));
+            }
+            task = task.pipe(gulp.dest(source['output'].replace(/{demo}/g, demo)));
         });
     });
 }

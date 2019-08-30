@@ -1548,6 +1548,17 @@ var KTUtil = function() {
             if (KTUtil.get(el)) {
                 return KTUtil.get(el).innerHTML;
             }
+        },
+
+        getDocumentHeight: function() {
+            var body = document.body;
+            var html = document.documentElement;
+
+            return Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+        },
+
+        getScrollTop: function() {
+            return  Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
         }
     }
 }();

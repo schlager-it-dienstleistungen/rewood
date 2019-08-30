@@ -8374,7 +8374,8 @@ a.text-dark:hover, a.text-dark:focus {
     .alert .alert-close i {
       opacity: 0.8;
       -webkit-transition: all 0.3s ease;
-      transition: all 0.3s ease; }
+      transition: all 0.3s ease;
+      cursor: pointer; }
       .alert .alert-close i:hover {
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
@@ -27789,6 +27790,8 @@ body.swal2-height-auto {
         font-size: 1.1rem;
         font-weight: 400;
         color: #9392a0; }
+  .kt-iconbox a.kt-iconbox__body {
+    cursor: pointer; }
   .kt-iconbox--wave {
     background-color: #f7f8fa;
     overflow: hidden;
@@ -32796,7 +32799,8 @@ body.swal2-height-auto {
         font-weight: 500;
         -webkit-box-align: center;
         -ms-flex-align: center;
-        align-items: center; }
+        align-items: center;
+        margin-left: 0.5rem; }
         .kt-widget.kt-widget--user-profile-3 .kt-widget__top .kt-widget__content .kt-widget__head .kt-widget__username:hover {
           color: #366cf3;
           -webkit-transition: color 0.3s ease;
@@ -33472,6 +33476,8 @@ body {
 @media (min-width: 1025px) {
   .kt-container {
     padding: 0 30px; }
+  .kt-header--fixed.kt-header--minimize .kt-body {
+    padding-top: 80px; }
   .kt-body > .kt-container {
     padding-left: 0 !important; }
   .kt-sc-faq-3 .kt-sc__title {
@@ -33663,7 +33669,7 @@ body {
       z-index: 97;
       -webkit-box-shadow: 0px 0px 40px 0px rgba(82, 63, 105, 0.1);
       box-shadow: 0px 0px 40px 0px rgba(82, 63, 105, 0.1);
-      height: 60px;
+      height: 80px;
       background: #fff;
       border-bottom: 0; }
     .kt-header--minimize .kt-header {
@@ -33676,13 +33682,13 @@ body {
 
 @-webkit-keyframes kt-header-minimize {
   from {
-    top: -60px; }
+    top: -80px; }
   to {
     top: 0; } }
 
 @keyframes kt-header-minimize {
   from {
-    top: -60px; }
+    top: -80px; }
   to {
     top: 0; } }
 
@@ -36009,7 +36015,7 @@ body {
     width: 245px;
     z-index: 98; }
   .kt-header--minimize.kt-aside--fixed .kt-aside-menu-wrapper {
-    top: 60px; }
+    top: 80px; }
   .kt-aside-menu {
     margin: 15px 0; }
     .kt-aside--minimize .kt-aside-menu > .kt-menu__nav > .kt-menu__item.kt-menu__item--active .kt-menu__link, .kt-aside--minimize .kt-aside-menu > .kt-menu__nav > .kt-menu__item.kt-menu__item--expanded .kt-menu__link {

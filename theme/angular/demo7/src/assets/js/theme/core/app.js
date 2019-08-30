@@ -309,6 +309,7 @@ var KTApp = function() {
             var classes = 'kt-spinner ' + 'kt-spinner--' + skin + ' kt-spinner--' + alignment + size;
 
             KTApp.unprogress(target);
+            KTUtil.attr(target, 'disabled', true);
 
             $(target).addClass(classes);
             $(target).data('progress-classes', classes);
@@ -316,6 +317,7 @@ var KTApp = function() {
 
         unprogress: function(target) {
             $(target).removeClass($(target).data('progress-classes'));
+            KTUtil.removeAttr(target, 'disabled');
         },
 
         getStateColor: function(name) {

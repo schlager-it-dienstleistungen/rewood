@@ -22,7 +22,7 @@
 		min-height: kt-get($kt-header-config, base, mobile, self, default, height);
 		position: relative;
 		z-index: 1;
-		
+
 		// Fixed
 		.kt-header-mobile--fixed & {
 			position: fixed;
@@ -57,7 +57,7 @@
 				display: flex;
 				align-items: center;
 				margin: 0 0.5rem 0 1rem;
-				
+
 				i {
 					@include kt-transition();
 					color: kt-get($kt-header-config, base, mobile, toolbar, toggler, color, default);

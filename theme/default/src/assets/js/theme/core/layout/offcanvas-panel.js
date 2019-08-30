@@ -1,10 +1,10 @@
 "use strict";
 
 var KTOffcanvasPanel = function() {
-    var notificationPanel = KTUtil.get('kt_offcanvas_toolbar_notifications');
-    var quickActionsPanel = KTUtil.get('kt_offcanvas_toolbar_quick_actions');
-    var profilePanel = KTUtil.get('kt_offcanvas_toolbar_profile');
-    var searchPanel = KTUtil.get('kt_offcanvas_toolbar_search');
+    var notificationPanel;
+    var quickActionsPanel;
+    var profilePanel;
+    var searchPanel;
 
     var initNotifications = function() {
         var head = KTUtil.find(notificationPanel, '.kt-offcanvas-panel__head');
@@ -138,6 +138,11 @@ var KTOffcanvasPanel = function() {
 
     return {
         init: function() {
+            notificationPanel = KTUtil.get('kt_offcanvas_toolbar_notifications');
+            quickActionsPanel = KTUtil.get('kt_offcanvas_toolbar_quick_actions');
+            profilePanel = KTUtil.get('kt_offcanvas_toolbar_profile');
+            searchPanel = KTUtil.get('kt_offcanvas_toolbar_search');
+
             initNotifications();
             initQucikActions();
             initProfile();

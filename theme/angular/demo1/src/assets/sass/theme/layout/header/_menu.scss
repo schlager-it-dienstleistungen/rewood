@@ -10,7 +10,7 @@
 
 // Tablet & Mobile Mode
 @include kt-menu-ver-build-layout(kt-get($kt-header-config, menu, tablet-and-mobile));
-@include kt-menu-ver-build-skin(kt-get($kt-header-config, menu, tablet-and-mobile), default);
+//@include kt-menu-ver-build-skin(kt-get($kt-header-config, menu, tablet-and-mobile), default);
 
 // Header Menu Mobile Offcanvas
 @include kt-offcanvas-build(kt-header-menu-wrapper, tablet-and-mobile, kt-get($kt-header-config, menu, offcanvas-mobile));
@@ -54,7 +54,7 @@
 
 						@include kt-not-rounded {
 							border-radius: 0 !important;
-						}					
+						}
 					}
 				}
 			}
@@ -70,7 +70,7 @@
 						align-items: stretch;
 						background-color: transparent !important;
 						border-radius: 0 !important;
-						padding: 0 !important;			
+						padding: 0 !important;
 						border-bottom: 1px solid transparent;
 						margin-bottom: -1px;
 					}
@@ -93,6 +93,7 @@
 
 @include kt-tablet-and-mobile {
 	.kt-header-menu-wrapper {
+
 		.kt-header-logo {
 			display: none;
 		}

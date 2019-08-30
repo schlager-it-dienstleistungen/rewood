@@ -25,7 +25,7 @@ var KTLayout = function() {
                 mobile: false
             },
             offset: {
-                dekstop: parseInt(KTUtil.css(headerEl, 'height')) + 200
+                desktop: 200
             },
             minimize: {
                 desktop: {

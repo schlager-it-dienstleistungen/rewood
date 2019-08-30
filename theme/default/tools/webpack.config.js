@@ -78,6 +78,7 @@ const filesConfig = [];
 const imageReference = {};
 const exclude = [];
 const nodeMedia = [];
+const entryByDemo = {};
 
 // get all assets config
 let files = glob.sync(configPath + "/webpack/**/*.js");
@@ -140,7 +141,11 @@ demos.forEach((demo) => {
                     imageReference[path.basename(img)] = "css/" + demo + "/" + matched[1] + ".css";
                 });
             }
-            entries["css/" + demo + "/" + matched[1]] = file;
+            // entries['css/' + demo + '/' + matched[1]] = file;
+            if (!entryByDemo[demo]) {
+                entryByDemo[demo] = {};
+            }
+            entryByDemo[demo]['css/' + demo + '/' + matched[1]] = file;
         }
     });
 
@@ -195,7 +200,7 @@ if (apiUrl) {
     }]));
 }
 
-module.exports = function () {
+const mainConfig = function () {
     return {
         // enabled/disable optimizations
         mode: (/true/i).test(prod) ? "production" : "development",
@@ -223,6 +228,11 @@ module.exports = function () {
             }
         },
         plugins: [
+            // webpack log message
+            new WebpackMessages({
+                name: name,
+                logger: str => console.log(`>> ${str}`)
+            }),
             // create css file
             new MiniCssExtractPlugin({
                 filename: "[name].css",
@@ -232,11 +242,6 @@ module.exports = function () {
                 from: srcPath + "/media",
                 to: assetDistPath + "/media",
             }]),
-            // webpack log message
-            new WebpackMessages({
-                name: name,
-                logger: str => console.log(`>> ${str}`)
-            }),
             {
                 apply: (compiler) => {
                     // hook name
@@ -285,7 +290,7 @@ module.exports = function () {
                                 sourceMap: true,
                                 // use for separate css pages (custom pages, eg. wizard, invoices, etc.)
                                 includePaths: demos.map((demo) => {
-                                    return srcPath + "/sass/theme/demos/" + demo;
+                                    return slash(srcPath) + "/sass/theme/demos/" + demo;
                                 })
                             }
                         },
@@ -368,7 +373,24 @@ module.exports = function () {
             compress: true,
             port: 3000
         }
-    };
+    }
+};
+
+const extraConfigs = [];
+demos.forEach(function (demo) {
+    // copy main webpack config
+    const tempConfig = mainConfig();
+    // modify the entry files duplicate for each demo
+    tempConfig.entry = entryByDemo[demo];
+    // change the include for specific demo
+    tempConfig.module.rules[1].use[2].options.includePaths = [slash(srcPath) + '/sass/theme/demos/' + demo];
+    // remove message for extra configs
+    tempConfig.plugins.shift();
+    extraConfigs.push(tempConfig);
+});
+
+module.exports = function () {
+    return [mainConfig()].concat(extraConfigs);
 };
 
 function getRoot(name) {

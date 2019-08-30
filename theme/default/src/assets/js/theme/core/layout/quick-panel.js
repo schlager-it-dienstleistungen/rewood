@@ -1,10 +1,10 @@
 "use strict";
 
 var KTQuickPanel = function() {
-    var panel = KTUtil.get('kt_quick_panel');
-    var notificationPanel = KTUtil.get('kt_quick_panel_tab_notifications');
-    var logsPanel = KTUtil.get('kt_quick_panel_tab_logs');
-    var settingsPanel = KTUtil.get('kt_quick_panel_tab_settings');
+    var panel;
+    var notificationPanel;
+    var logsPanel;
+    var settingsPanel;
 
     var getContentHeight = function() {
         var height;
@@ -18,18 +18,18 @@ var KTQuickPanel = function() {
 
     var initOffcanvas = function() {
         new KTOffcanvas(panel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-quick-panel',
             closeBy: 'kt_quick_panel_close_btn',
             toggleBy: 'kt_quick_panel_toggler_btn'
-        });   
+        });
     }
 
     var initNotifications = function() {
         KTUtil.scrollInit(notificationPanel, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            mobileNativeScroll: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 return getContentHeight();
             }
@@ -38,9 +38,9 @@ var KTQuickPanel = function() {
 
     var initLogs = function() {
         KTUtil.scrollInit(logsPanel, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            mobileNativeScroll: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 return getContentHeight();
             }
@@ -49,9 +49,9 @@ var KTQuickPanel = function() {
 
     var initSettings = function() {
         KTUtil.scrollInit(settingsPanel, {
-            mobileNativeScroll: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            mobileNativeScroll: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 return getContentHeight();
             }
@@ -59,16 +59,21 @@ var KTQuickPanel = function() {
     }
 
     var updatePerfectScrollbars = function() {
-        $(panel).find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) { 
+        $(panel).find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             KTUtil.scrollUpdate(notificationPanel);
             KTUtil.scrollUpdate(logsPanel);
             KTUtil.scrollUpdate(settingsPanel);
         });
     }
 
-    return {     
-        init: function() {  
-            initOffcanvas(); 
+    return {
+        init: function() {
+            panel = KTUtil.get('kt_quick_panel');
+            notificationPanel = KTUtil.get('kt_quick_panel_tab_notifications');
+            logsPanel = KTUtil.get('kt_quick_panel_tab_logs');
+            settingsPanel = KTUtil.get('kt_quick_panel_tab_settings');
+
+            initOffcanvas();
             initNotifications();
             initLogs();
             initSettings();

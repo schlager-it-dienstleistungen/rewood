@@ -254,42 +254,45 @@ module.exports = {
 
     /**
      * Css path rewriter when bundle files moved
-     * @param folder
+     * @param bundle
      */
-    cssRewriter: function (folder) {
+    cssRewriter: function (bundle) {
         var imgRegex = new RegExp(/\.(gif|jpg|jpeg|tiff|png|ico|svg)$/i);
-        // var fontRegex = new RegExp(/\.(otf|eot|svg|ttf|woff|woff2)$/i);
-        var vendorGlobalRegex = new RegExp(/vendors\/global/i);
         var config = this.config;
 
         return lazypipe().pipe(function () {
             // rewrite css relative path
             return rewrite({
-                destination: folder,
+                destination: bundle['styles'],
                 debug: config.debug,
                 adaptPath: function (ctx) {
+
                     var isCss = ctx.sourceFile.match(/\.[css]+$/i);
                     // process css only
                     if (isCss[0] === '.css') {
-                        var pieces = ctx.sourceDir.split(/\\|\//);
 
-                        var vendor = '';
-                        if (vendorGlobalRegex.test(folder)) {
+                        if (/vendors\.bundle/.test(bundle['styles'])) {
+                            var filePcs = ctx.targetFile.split(/\\|\//);
+                            if (filePcs.length > 2) {
+                                filePcs.shift();
+                                filePcs.shift();
+                            }
+
+                            var pieces = ctx.sourceDir.split(/\\|\//);
                             // only vendors/base pass this
-                            vendor = pieces[pieces.indexOf('node_modules') + 1];
+                            var vendor = pieces[pieces.indexOf('node_modules') + 1];
                             if (pieces.indexOf('node_modules') === -1) {
                                 vendor = pieces[pieces.indexOf('vendors') + 1];
                             }
+                            var extension = 'fonts/';
+                            if (imgRegex.test(ctx.targetFile)) {
+                                extension = 'images/';
+                            }
+
+                            return path.join(extension, vendor, filePcs.join('/'));
                         }
 
-                        var file = path.basename(ctx.targetFile);
-
-                        var extension = 'fonts/';
-                        if (imgRegex.test(file)) {
-                            extension = 'images/';
-                        }
-
-                        return path.join(extension + vendor, file);
+                        return ctx.targetFile.replace(/\.?\.\//, '');
                     }
                 },
             });
@@ -447,7 +450,7 @@ module.exports = {
                                     shouldRtl = true;
                                 }
                                 var rtlOutput = _self.pathOnly(bundle.bundle[type]) + '/' + _self.baseName(bundle.bundle[type]) + '.rtl.css';
-                                stream = gulp.src(toRtlFiles, {allowEmpty: true}).pipe(_self.cssRewriter(bundle.bundle[type])()).pipe(concat(_self.baseName(bundle.bundle[type]) + '.rtl.css')).pipe(_self.cssChannel(shouldRtl)());
+                                stream = gulp.src(toRtlFiles, {allowEmpty: true}).pipe(_self.cssRewriter(bundle.bundle)()).pipe(concat(_self.baseName(bundle.bundle[type]) + '.rtl.css')).pipe(_self.cssChannel(shouldRtl)());
                                 var output = _self.outputChannel(rtlOutput, _self.baseName(bundle.bundle[type]) + '.rtl.css', type)();
                                 if (output) {
                                     stream.pipe(output);
@@ -456,7 +459,7 @@ module.exports = {
                             }
 
                             // default css bundle
-                            stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.cssRewriter(bundle.bundle[type])()).pipe(concat(outputFile)).pipe(_self.cssChannel()());
+                            stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.cssRewriter(bundle.bundle)()).pipe(concat(outputFile)).pipe(_self.cssChannel()());
                             var output = _self.outputChannel(bundle.bundle[type], outputFile, type)();
                             if (output) {
                                 stream.pipe(output);

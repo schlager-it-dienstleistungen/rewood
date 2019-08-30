@@ -144,6 +144,11 @@ body {
 
 	// Body
 	.kt-body {
+		// fixed & minimized header
+		.kt-header--fixed.kt-header--minimize & {
+			padding-top: kt-get($kt-header-config, base, desktop, default, height);
+		}
+
 		> .kt-container {
 			padding-right: 0 !important;
 		}

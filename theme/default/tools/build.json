@@ -1,7 +1,7 @@
 {
     "name": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.0.5",
+    "version": "6.0.6",
     "config": {
         "demo": "",
         "debug": false,
@@ -420,7 +420,7 @@
                 "bundle": {
                     "styles": "{$config.dist}/vendors/global/vendors.bundle.css",
                     "scripts": "{$config.dist}/vendors/global/vendors.bundle.js",
-                    "images": "{$config.dist}/vendors/global/img",
+                    "images": "{$config.dist}/vendors/global/images",
                     "fonts": "{$config.dist}/vendors/global/fonts"
                 }
             },
@@ -555,7 +555,7 @@
                     "bundle": {
                         "styles": "{$config.dist}/vendors/custom/jstree/jstree.bundle.css",
                         "scripts": "{$config.dist}/vendors/custom/jstree/jstree.bundle.js",
-                        "images": "{$config.dist}/vendors/custom/jstree/images"
+                        "images": "{$config.dist}/vendors/custom/jstree"
                     }
                 },
                 "jqvmap": {

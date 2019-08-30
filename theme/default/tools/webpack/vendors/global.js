@@ -19,6 +19,7 @@ window.Chart = require("chart.js");
 window.Raphael = require("raphael");
 window.Cookies = require("js-cookie");
 window.Popper = require("popper.js");
+require("jquery-form");
 
 // toastr
 require("toastr/build/toastr.css");

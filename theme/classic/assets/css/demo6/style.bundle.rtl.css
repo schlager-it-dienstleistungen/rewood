@@ -8374,7 +8374,8 @@ a.text-dark:hover, a.text-dark:focus {
     .alert .alert-close i {
       opacity: 0.8;
       -webkit-transition: all 0.3s ease;
-      transition: all 0.3s ease; }
+      transition: all 0.3s ease;
+      cursor: pointer; }
       .alert .alert-close i:hover {
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
@@ -27789,6 +27790,8 @@ body.swal2-height-auto {
         font-size: 1.1rem;
         font-weight: 400;
         color: #9392a0; }
+  .kt-iconbox a.kt-iconbox__body {
+    cursor: pointer; }
   .kt-iconbox--wave {
     background-color: #f7f8fa;
     overflow: hidden;
@@ -32796,7 +32799,8 @@ body.swal2-height-auto {
         font-weight: 500;
         -webkit-box-align: center;
         -ms-flex-align: center;
-        align-items: center; }
+        align-items: center;
+        margin-left: 0.5rem; }
         .kt-widget.kt-widget--user-profile-3 .kt-widget__top .kt-widget__content .kt-widget__head .kt-widget__username:hover {
           color: #22b9ff;
           -webkit-transition: color 0.3s ease;

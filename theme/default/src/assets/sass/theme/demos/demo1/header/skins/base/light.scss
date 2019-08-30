@@ -21,7 +21,7 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 		background-color: kt-get($kt-layout-skins, light);
 		border-bottom: 1px solid #eff0f6;
 
-		// Minimize 
+		// Minimize
 		.kt-header--fixed:not(.kt-subheader--fixed) & {
 			border-bottom: 0;
 			box-shadow: 0px 0px 40px 0px rgba(82,63,105,0.1);
@@ -55,7 +55,7 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 					&:hover {
 						> .kt-menu__link {
 							background-color: $kt-header-item-hover-bg;
-								
+
 							.kt-menu__link-text {
 								color: kt-brand-color();
 							}
@@ -67,14 +67,14 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 							.kt-menu__hor-icon {
 								color: kt-brand-color();
 							}
-						}	
+						}
 					}
 				}
 			}
 		}
 	}
 }
-		
+
 // General mode
 .kt-header {
 	.kt-header__topbar {
@@ -117,10 +117,10 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 						font-size: 1.4rem;
 						font-weight: 600;
 					}
-				}	
-			}		
+				}
+			}
 
-			// Quick panel 
+			// Quick panel
 			&.kt-header__topbar-item--quick-panel {
 				.kt-header__topbar-icon {
 					i {
@@ -138,7 +138,7 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 					i {
 						@include kt-transition();
 						color: kt-brand-color();
-					}	
+					}
 				}
 
 				&.kt-header__topbar-item--user {
@@ -164,7 +164,7 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 						}
 					}
 				}
-			}		
+			}
 
 			// Search
 			&.kt-header__topbar-item--search {
@@ -182,6 +182,11 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 
 // Mobile mode
 @include kt-tablet-and-mobile {
+	// Mobile header
+	.kt-header-mobile {
+		box-shadow: 0px 0px 40px 0px rgba(82,63,105,0.1);
+	}
+
 	// Topbar
 	.kt-header__topbar {
 		background-color: #ffffff;
@@ -189,6 +194,11 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 	}
 
 	.kt-header__topbar--mobile-on {
+		.kt-header-mobile {
+			box-shadow: none;
+			border-bottom-color: transparent;
+		}
+
 		.kt-header__topbar {
 			box-shadow: 0px 0px 40px 0px rgba(82,63,105,0.1);
 			border-top: 1px solid kt-base-color(grey, 2);

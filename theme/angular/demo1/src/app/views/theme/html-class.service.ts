@@ -1,11 +1,11 @@
 // Angular
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 // Object-Path
 import * as objectPath from 'object-path';
 // RxJS
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 // Layout
-import { LayoutConfigModel } from '../../core/_base/layout';
+import {LayoutConfigModel} from '../../core/_base/layout';
 
 export interface ClassType {
 	header: string[];
@@ -57,6 +57,8 @@ export class HtmlClassService {
 
 		// init footer
 		this.initFooter();
+
+		this.initSkins();
 
 		this.onClassesUpdated$.next(this.classes);
 	}
@@ -184,6 +186,24 @@ export class HtmlClassService {
 		// Fixed header
 		if (objectPath.get(this.config, 'footer.self.fixed')) {
 			document.body.classList.add('kt-footer--fixed');
+		}
+	}
+
+	/**
+	 * Set the body class name based on page skin options
+	 */
+	private initSkins() {
+		if (objectPath.get(this.config, 'header.self.skin')) {
+			document.body.classList.add('kt-header-base-' + objectPath.get(this.config, 'header.self.skin'));
+		}
+		if (objectPath.get(this.config, 'header.menu.desktop.submenu.skin')) {
+			document.body.classList.add('kt-header-menu-' + objectPath.get(this.config, 'header.menu.desktop.submenu.skin'));
+		}
+		if (objectPath.get(this.config, 'brand.self.skin')) {
+			document.body.classList.add('kt-brand-' + objectPath.get(this.config, 'brand.self.skin'));
+		}
+		if (objectPath.get(this.config, 'aside.self.skin')) {
+			document.body.classList.add('kt-aside-' + objectPath.get(this.config, 'aside.self.skin'));
 		}
 	}
 }

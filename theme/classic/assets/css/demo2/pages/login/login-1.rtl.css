@@ -103,6 +103,7 @@
         align-items: center;
         margin: 3rem 0; }
         .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__actions .kt-login__link-forgot {
+          font-weight: 400;
           color: #74788d; }
           .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__actions .kt-login__link-forgot:hover {
             color: #5d78ff; }
@@ -111,9 +112,11 @@
               opacity: 0.3; }
         .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__actions .kt-login__btn-secondary,
         .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__actions .kt-login__btn-primary {
+          font-weight: 500;
+          font-size: 1rem;
           height: 50px;
-          padding-right: 2.5rem;
-          padding-left: 2.5rem; }
+          padding-right: 2.75rem;
+          padding-left: 2.75rem; }
       .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__divider {
         margin: 1rem 0 2rem 0; }
         .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__divider:not(:first-child):not(:last-child) {

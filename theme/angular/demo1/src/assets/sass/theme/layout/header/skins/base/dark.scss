@@ -11,6 +11,9 @@
 // Include demo config
 @import "../../../config";
 
+// Include header config
+@import "../../config";
+
 $kt-header-itek-font-color: #ffffff;
 $kt-header-icon-font-color: #6e7899;
 $kt-header-item-hover-bg: #282f48;
@@ -19,7 +22,7 @@ $kt-header-bg-color: #536be2;
 // Desktop mode
 @include kt-desktop {
 	.kt-header {
-		background-color: kt-get($kt-layout-skins, navy);
+		background-color: kt-get($kt-layout-skins, dark);
 		box-shadow: 0px 0px 40px 0px rgba(82,63,105,0.1);
 
 		// Menu
@@ -48,7 +51,7 @@ $kt-header-bg-color: #536be2;
 					&:hover {
 						> .kt-menu__link {
 							background-color: $kt-header-item-hover-bg;
-							
+
 							.kt-menu__link-text {
 								color: $kt-header-itek-font-color;
 							}
@@ -60,7 +63,7 @@ $kt-header-bg-color: #536be2;
 							.kt-menu__hor-icon {
 								color: $kt-header-itek-font-color;
 							}
-						}	
+						}
 					}
 				}
 			}
@@ -71,7 +74,7 @@ $kt-header-bg-color: #536be2;
 // General mode
 .kt-header {
 	.kt-header__topbar {
-		padding-right: 15px;				
+		padding-right: 15px;
 
 		.kt-aside-secondary--enabled & {
 			padding-right: 0;
@@ -100,10 +103,10 @@ $kt-header-bg-color: #536be2;
 
 				.kt-header__topbar-username {
 					color: #c0c4d1;
-				}		
-			}		
+				}
+			}
 
-			// Quick panel 
+			// Quick panel
 			&.kt-header__topbar--quick-panel-toggler {
 				.kt-header__topbar-icon {
 					i {
@@ -119,7 +122,7 @@ $kt-header-bg-color: #536be2;
 
 					i {
 						color: #fff;
-					}	
+					}
 
 					svg {
 						g {
@@ -150,7 +153,7 @@ $kt-header-bg-color: #536be2;
 						}
 					}
 				}
-			}		
+			}
 
 			// Search
 			&.kt-header__topbar-item--search {
@@ -168,6 +171,14 @@ $kt-header-bg-color: #536be2;
 
 // Mobile mode
 @include kt-tablet-and-mobile {
+	// Menu wrapper
+	.kt-header-menu-wrapper {
+        background-color: kt-get($kt-layout-skins, dark);
+
+    	// Scrollbar
+    	@include kt-perfect-scrollbar-skin(#637099);
+	}
+
 	// Topbar
 	.kt-header__topbar {
 		background-color: kt-get($kt-layout-skins, dark);
@@ -177,7 +188,10 @@ $kt-header-bg-color: #536be2;
 	.kt-header__topbar--mobile-on {
 		.kt-header__topbar {
 			box-shadow: 0px 0px 40px 0px rgba(82,63,105,0.1);
-			border-top: 1px solid #2e3448; 
+			border-top: 1px solid #2e3448;
 		}
 	}
+
+	// Build Header Menu Skin
+	@include kt-menu-hor-build-skin(kt-get($kt-header-config, menu, desktop), dark);
 }

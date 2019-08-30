@@ -30,7 +30,7 @@
 		.btn {
 			@include kt-transition();
 			background-color: transparent;
-			
+
 			i {
 				@include kt-transition();
 				color: #364b8b;
@@ -60,7 +60,7 @@
 	i {
 		color: rgba(#fff, 0.7);
 	}
-	
+
 	&:hover {
 		background-color: kt-brand-color();
 

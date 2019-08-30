@@ -5,7 +5,7 @@
 
 
 
-// Custom pages SASS files are compiled per demo as 
+// Custom pages SASS files are compiled per demo as
 // each demo has own config settings that may override the global theme config
 // and pages may slighty different on demos
 
@@ -14,7 +14,7 @@
 @import "../../config";
 
 // Demo config(e.g: sass/theme/layout/[demo]/config.scss) that overrides global theme config.
-// Do not change this path, build tool automatically finds current demo's config file.    
+// Do not change this path, build tool automatically finds current demo's config file.
 @import "config.scss";
 
 // Login Base
@@ -67,12 +67,12 @@
                 .form-control {
                     height: 46px;
                     border-radius: 46px;
-                    border: none;                        
+                    border: none;
                     padding-left: 1.5rem;
                     padding-right: 1.5rem;
                     margin-top: 1.5rem;
                     background: rgba(#4322A7, 0.4);
-
+                    color: #fff;
                     @include kt-input-placeholder(rgba(#fff, 0.7));
                 }
 
@@ -220,7 +220,7 @@
         .kt-login__forgot {
             display: block;
         }
-    }    
+    }
 }
 
 @include kt-tablet-and-mobile {
@@ -235,9 +235,9 @@
                 .kt-login__account {
                     margin-top: 10rem;
                 }
-            }    
+            }
         }
-    }    
+    }
 }
 
 @include kt-mobile() {
@@ -270,5 +270,5 @@
                 }
             }
         }
-    }    
+    }
 }

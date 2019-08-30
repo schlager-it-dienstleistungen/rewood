@@ -99,11 +99,11 @@
           margin-bottom: 25px;
           border-bottom: 2px solid transparent; }
           .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item .nav-link:hover, .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item a.nav-link:hover {
-            border-bottom: 2px solid #716aca;
+            border-bottom: 2px solid #2c77f4;
             color: #48465b; }
           .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item .nav-link.active, .kt-sc-2 .kt-sc__bottom .nav-tabs .nav-item a.nav-link.active {
-            border-bottom: 2px solid #716aca;
-            color: #716aca; }
+            border-bottom: 2px solid #2c77f4;
+            color: #2c77f4; }
   .kt-sc-2--wave {
     background-color: #f7f8fa !important;
     overflow: hidden;

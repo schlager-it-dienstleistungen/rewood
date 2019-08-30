@@ -3013,6 +3013,9 @@
 
 					Plugin.setDataSourceQuery(query);
 
+					// reset pagination to 1 when doing seearching
+					datatable.setDataSourceParam('pagination', Object.assign({}, datatable.getDataSourceParam('pagination'), {page: 1}));
+
 					// local filter only. remote pagination will skip this block
 					if (!options.data.serverFiltering) {
 						Plugin.localDataUpdate();

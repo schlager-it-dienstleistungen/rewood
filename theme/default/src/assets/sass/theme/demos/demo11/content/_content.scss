@@ -15,18 +15,18 @@
 		// Aside disabled or non fixed
 		body.kt-aside--enabled.kt-aside--static &,
 		body:not(.kt-aside--enabled) & {
-			padding-left: 0;	
+			padding-left: 0;
 		}
 
 		// Subheader enabled
 		.kt-subheader--enabled.kt-subheader--transparent:not(.kt-subheader--fixed) & {
 			padding-top: 0;
 		}
-			
+
 		// Fixed footer
 		.kt-footer--fixed & {
 			padding-bottom: kt-get($kt-footer-config, self, fixed, height);
-		} 
+		}
 
 		// Content containers
 		.kt-container.kt-container--fluid {
@@ -34,10 +34,19 @@
 				padding-left: kt-get($kt-page-padding, desktop);
 			}
 		}
-		
-		// Aside fixed 
+
+		// Aside fixed
 		.kt-aside--enabled.kt-aside--fixed & {
 			padding-left: kt-get($kt-aside-config, base, default, width);
+		}
+
+		// Content fit
+		&.kt-content--fit-top {
+			padding-top: 0;
+		}
+
+		&.kt-content--fit-bottom {
+			padding-bottom: 0;
 		}
 	}
 }
@@ -45,6 +54,15 @@
 @include kt-tablet-and-mobile {
 	.kt-content {
 		padding: kt-get($kt-page-padding, mobile) 0;
+
+		// Content fit
+		&.kt-content--fit-top {
+			padding-top: 0;
+		}
+
+		&.kt-content--fit-bottom {
+			padding-bottom: 0;
+		}
 
 		// Subheader enabled
 		.kt-subheader--enabled.kt-subheader--transparent & {

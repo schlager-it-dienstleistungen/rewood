@@ -1,34 +1,34 @@
 "use strict";
 
 var KTDemoPanel = function() {
-    var demoPanel = KTUtil.getByID('kt_demo_panel');
+    var demoPanel;
     var offcanvas;
 
     var init = function() {
         offcanvas = new KTOffcanvas(demoPanel, {
-            overlay: true,  
+            overlay: true,
             baseClass: 'kt-demo-panel',
             closeBy: 'kt_demo_panel_close',
             toggleBy: 'kt_demo_panel_toggle'
-        }); 
+        });
 
         var head = KTUtil.find(demoPanel, '.kt-demo-panel__head');
         var body = KTUtil.find(demoPanel, '.kt-demo-panel__body');
 
         KTUtil.scrollInit(body, {
-            disableForMobile: true, 
-            resetHeightOnDestroy: true, 
-            handleWindowResize: true, 
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
             height: function() {
                 var height = parseInt(KTUtil.getViewPort().height);
-               
+
                 if (head) {
                     height = height - parseInt(KTUtil.actualHeight(head));
                     height = height - parseInt(KTUtil.css(head, 'marginBottom'));
                 }
-        
+
                 height = height - parseInt(KTUtil.css(demoPanel, 'paddingTop'));
-                height = height - parseInt(KTUtil.css(demoPanel, 'paddingBottom'));    
+                height = height - parseInt(KTUtil.css(demoPanel, 'paddingBottom'));
 
                 return height;
             }
@@ -52,13 +52,15 @@ var KTDemoPanel = function() {
                 var expires = new Date(new Date().getTime() + 15 * 60 * 1000); // expire in 15 minutes from now
                 Cookies.set('kt_demo_panel_shown', 1, { expires: expires });
                 offcanvas.show();
-            } 
+            }
         }, 4000);
     }
 
-    return {     
-        init: function() {  
-            init(); 
+    return {
+        init: function() {
+            demoPanel = KTUtil.getByID('kt_demo_panel');
+
+            init();
             remind();
         }
     };

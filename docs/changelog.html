@@ -76,16 +76,55 @@
 
 			<div class="contents__box contents__box--left"><!-- contents__box -->
                 <ul id="changelog" class="accordion">			<li class="card accordion__item">
+				<a class="collapsed" data-toggle="collapse" data-parent="#changelog" href="#metronic3806569329" aria-expanded="false">
+					<div class="accordion__item_top">
+						<h5>Metronic v6.0.6 - 30 August, 2019</h5>
+						<i class="accordion__item_top_icon"></i>
+					</div>
+				</a>
+				<div id="metronic3806569329" class="collapse show" role="tabpanel">
+					<p>New</p>
+<ul>
+    <li>Added <code>Dark Header</code> layout skin for <code>Demo 1</code>. <a href="https://keenthemes.com/metronic/preview/demo1/layout/skins/header-dark.html" target="_blank">Live Preview</a></li>
+    <li>Added <code>Light Aside</code> layout skin for <code>Demo 1</code>. <a href="https://keenthemes.com/metronic/preview/demo1/layout/skins/aside-light.html" target="_blank">Live Preview</a></li>
+    <li>Added new skin options in the <code>Demo 1</code> layout builder. <a href="https://keenthemes.com/metronic/preview/demo1/builder.html" target="_blank">Live Preview</a></li>
+</ul>
+
+<div class="space"></div>
+
+<p>Updates &amp; Improvements</p>
+<ul>
+    <li>Changed Angular <code>HttpHeaders.append()</code> to <code>HttpHeaders.set()</code> in auth service <code>getUserByToken()</code> function</li>
+    <li>Renamed output assets folder name in assets/vendors/global/ from <code>img</code> to <code>images</code>.</li>
+    <li>Added Angular(demo1) skin options to the layout builder.</li>
+</ul>
+
+<div class="space"></div>
+
+<p>Fixes</p>
+<ul>
+    <li>Fixed missing <code>components</code> menu items.</li>
+    <li>Fixed <code>gulp</code> assets' path rewrite for nested assets folder.</li>
+    <li>Fixed missing <code>jquery-form</code> include in <code>webpack</code>.</li>
+    <li>Fixed angular aside menu scroll area height in mobile view.</li>
+    <li>Fixed angular topbar dropdown position in mobile view.</li>
+    <li>Fixed webpack compile for sample demo pages with overriden SCSS config.</li>
+    <li>Fixed KTDatatable pagination issue to reset back to page one in search.</li>
+</ul>
+
+					<div class="space"></div>
+				</div>
+			</li>			<li class="card accordion__item">
 				<a class="collapsed" data-toggle="collapse" data-parent="#changelog" href="#metronic2078995147" aria-expanded="false">
 					<div class="accordion__item_top">
 						<h5>Metronic v6.0.5 - 20 August, 2019</h5>
 						<i class="accordion__item_top_icon"></i>
 					</div>
 				</a>
-				<div id="metronic2078995147" class="collapse show" role="tabpanel">
+				<div id="metronic2078995147" class="collapse " role="tabpanel">
 					<p>New</p>
 <ul>
-    <li>Added <code>Webpack</code> version of the bulding tools. <a href="https://keenthemes.com/metronic/docs/?page=docs&section=webpack-quick-start" target="_blank">Learn more</a></li>
+    <li>Added <code>Webpack</code> version of the bulding tools. <a href="https://keenthemes.com/metronic/?page=docs&section=webpack-quick-start" target="_blank">Learn more</a></li>
     <li>Added new <code>Mail Inbox</code> app. <a href="https://keenthemes.com/metronic/preview/demo1/custom/apps/inbox.html" target="_blank">Live Preview</a></li>
     <li>Added <code>Tagify</code> plugin integration to support advanced tags inputs. <a href="https://keenthemes.com/metronic/preview/demo1/crud/forms/widgets/tagify.html" target="_blank">Live preview</a></li>
     <li>Added <code>Gmail Like Multipe File Upload</code> using <code>DropzoneJs</code> with manual and auto uploading of individual files. <a href="https://keenthemes.com/metronic/preview/demo1/crud/file-upload/dropzonejs.html" target="_blank">Live preview</a></li>
@@ -98,10 +137,6 @@
 <p>Updates &amp; Improvements</p>
 <ul>
     <li>The HTML templates incldued for all demos in the download package.</li>
-    <li>
-        The <code>Classic Version</code> of the theme has been excluded from the original download package due to increasing size of the theme. It still can be provided
-        for the latest available version of the theme upon request via support@keenthemes.com.
-    </li>
     <li>Update flot chart plugin v3.2.2</li>
     <li>Removed <code>gulp</code> build tool from the Angular and now use the Metronic's core assets source (SCSS, JS, etc.) directly.</li>
     <li>Removed Angular skeleton</li>
