@@ -33,30 +33,29 @@
 				"node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
 				"node_modules/socicon/css/socicon.css",
 				"node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-				"src/assets/vendors/line-awesome/css/line-awesome.css",
-				"src/assets/vendors/flaticon/flaticon.css",
-				"src/assets/vendors/flaticon2/flaticon.css",
-				"src/assets/sass/theme/layout/style-angular.scss"
+				"src/assets/plugins/line-awesome/css/line-awesome.css",
+				"src/assets/plugins/flaticon/flaticon.css",
+				"src/assets/plugins/flaticon2/flaticon.css",
+				"src/assets/sass/style.angular.scss"
             ],
             "scripts": [
 				"node_modules/popper.js/dist/umd/popper.js",
 				"node_modules/tooltip.js/dist/umd/tooltip.min.js",
 				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
-				"src/assets/js/theme/core/util.js",
-				"src/assets/js/theme/core/base/header.js",
-				"src/assets/js/theme/core/base/menu.js",
-				"src/assets/js/theme/core/base/offcanvas.js",
-				"src/assets/js/theme/core/base/scrolltop.js",
-				"src/assets/js/theme/core/base/toggle.js",
-				"src/assets/js/theme/core/base/dialog.js",
-				"src/assets/js/theme/core/base/wizard.js"
+				"src/assets/js/global/components/base/util.js",
+				"src/assets/js/global/components/base/header.js",
+				"src/assets/js/global/components/base/menu.js",
+				"src/assets/js/global/components/base/offcanvas.js",
+				"src/assets/js/global/components/base/scrolltop.js",
+				"src/assets/js/global/components/base/toggle.js",
+				"src/assets/js/global/components/base/dialog.js",
+				"src/assets/js/global/components/base/wizard.js"
             ],
-			  "stylePreprocessorOptions": {
-				  "includePaths": [
-					  "src/assets",
-					  "src/assets/sass/theme/layout"
-				  ]
-			  },
+		  	"stylePreprocessorOptions": {
+			  "includePaths": [
+				  "src/assets"
+			  ]
+		  	},
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -67,7 +66,8 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+			  "scripts": [],
+			  "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
