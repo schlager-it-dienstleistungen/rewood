@@ -91,7 +91,7 @@ export class LayoutConfig {
 		aside: {
 			self: {
 				fixed: true,
-				display: true,
+				display: false,
 				minimize: {
 					toggle: true,
 					default: false,
