@@ -1,0 +1,36 @@
+<kt-portlet>
+    <kt-portlet-header title="Produkte">
+    </kt-portlet-header>
+    <kt-portlet-body>
+        <mat-table #tableProducts [dataSource]="dataSource" matSort>
+					<ng-container matColumnDef="id">
+							<mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+							<mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef=title>
+							<mat-header-cell *matHeaderCellDef mat-sort-header>Titel</mat-header-cell>
+							<mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef=category>
+							<mat-header-cell *matHeaderCellDef mat-sort-header>Gruppe</mat-header-cell>
+							<mat-cell *matCellDef="let product"> {{product.category}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef=subcategory>
+							<mat-header-cell *matHeaderCellDef mat-sort-header>Untergruppe</mat-header-cell>
+							<mat-cell *matCellDef="let product"> {{product.subcategory}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef=description>
+							<mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
+							<mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator #matPaginator [pageSizeOptions]="[2, 5, 10, 25, 100]"></mat-paginator>
+    </kt-portlet-body>
+</kt-portlet>

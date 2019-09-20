@@ -22,6 +22,10 @@ const routes: Routes = [
 				loadChildren: './views/pages/dashboard/dashboard.module#DashboardModule'
 			},
 			{
+				path: 'products',
+				loadChildren: './views/pages/products/products.module#ProductsModule'
+			},
+			{
 				path: 'builder',
 				loadChildren: './views/theme/content/builder/builder.module#BuilderModule'
 			},

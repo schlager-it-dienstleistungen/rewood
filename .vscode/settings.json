@@ -1,0 +1,4 @@
+{
+    "window.title": "${rootName}${separator}${dirty}${activeEditorShort}${separator}${appName}",
+    "editor.tabSize": 2
+}

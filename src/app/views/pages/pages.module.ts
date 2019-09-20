@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PartialsModule } from '../partials/partials.module';
 // Pages
 import { CoreModule } from '../../core/core.module';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
 	declarations: [],
@@ -12,7 +13,8 @@ import { CoreModule } from '../../core/core.module';
 	imports: [
 		CommonModule,
 		CoreModule,
-		PartialsModule
+		PartialsModule,
+		ProductsModule
 	],
 	providers: []
 })

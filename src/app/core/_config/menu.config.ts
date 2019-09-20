@@ -11,6 +11,12 @@ export class MenuConfig {
 					translate: 'MENU.DASHBOARD',
 				},
 				{
+					title: 'Produkte',
+					root: true,
+					alignment: 'left',
+					page: '/products',
+				},
+				{
 					title: 'Components',
 					root: true,
 					alignment: 'left',
