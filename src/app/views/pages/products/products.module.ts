@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PortletModule } from '../../partials/content/general/portlet/portlet.module';
-import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
 @NgModule({
@@ -15,6 +15,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
 		MatTableModule,
 		MatPaginatorModule,
 		MatSortModule,
+		MatFormFieldModule,
+		MatInputModule,
 		ProductsRoutingModule
 	]
 })
