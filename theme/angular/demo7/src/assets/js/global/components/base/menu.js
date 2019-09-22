@@ -260,10 +260,7 @@ var KTMenu = function(elementId, options) {
                 item.removeAttribute('data-hover');
                 clearTimeout( item.getAttribute('data-timeout') );
                 item.removeAttribute('data-timeout');
-                //Plugin.hideSubmenuDropdown(item, false);
             }
-
-            // console.log('test!');
 
             Plugin.showSubmenuDropdown(item);
         },

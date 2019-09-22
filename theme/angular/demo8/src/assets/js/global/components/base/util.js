@@ -1558,7 +1558,7 @@ var KTUtil = function() {
         },
 
         getScrollTop: function() {
-            return  Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+            return  (document.scrollingElement || document.documentElement).scrollTop;
         }
     }
 }();

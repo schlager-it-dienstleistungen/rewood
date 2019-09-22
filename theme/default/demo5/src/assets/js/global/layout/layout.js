@@ -352,6 +352,17 @@ var KTLayout = function() {
 
 				e.preventDefault();
 			});
+
+            // Set scrollable full height content
+            /*
+            var headerHeight = parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height'));
+            var subheaderHeight = parseInt(KTUtil.css(KTUtil.get('kt_subheader'), 'height'));
+            var footerHeight = parseInt(KTUtil.css(KTUtil.get('kt_footer'), 'height'));
+            var contentHeight = KTUtil.getViewPort().height - headerHeight - subheaderHeight - footerHeight;
+
+            KTUtil.css(KTUtil.get('kt_content'), 'height', contentHeight + 'px');
+            KTUtil.css(KTUtil.get('kt_content'), 'overflow', 'auto');
+            */
         },
 
         initHeader: function() {

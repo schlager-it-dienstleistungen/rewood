@@ -21,7 +21,7 @@
 
 		<!-- if item has submenu -->
 		<ng-container *ngIf="item.submenu">
-			<a href="javascript:;" [ngClass]="{ 'kt-menu__toggle': item.root }" class="kt-menu__link">
+			<a href="javascript:;" class="kt-menu__link">
 
 				<ng-container [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
 
@@ -38,7 +38,7 @@
 
 		<!-- if item hasn't sumbenu -->
 		<ng-container *ngIf="!item.submenu">
-			<a [routerLink]="item.page" [ngClass]="{ 'kt-menu__toggle': item.root }" class="kt-menu__link">
+			<a [routerLink]="item.page" class="kt-menu__link">
 				<ng-container [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
 			</a>
 		</ng-container>

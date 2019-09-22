@@ -180,6 +180,7 @@ export class NgbdDropdownConfig {
 @Component({
 	selector: 'kt-dropdown',
 	templateUrl: './dropdown.component.html',
+	styleUrls: ['dropdown.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [NgbDropdownConfig] // add NgbDropdownConfig to the component providers
 })

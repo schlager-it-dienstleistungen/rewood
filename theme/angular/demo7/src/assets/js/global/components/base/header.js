@@ -90,10 +90,6 @@ var KTHeader = function(elementId, options) {
 
                 st = KTUtil.getScrollTop();
 
-                console.log('top:' + st);
-                console.log('offset:' + offset);
-                console.log('documentHeight:' + documentHeight);
-
                 if (
                     (KTUtil.isInResponsiveRange('tablet-and-mobile') && the.options.classic && the.options.classic.mobile) ||
                     (KTUtil.isInResponsiveRange('desktop') && the.options.classic && the.options.classic.desktop)

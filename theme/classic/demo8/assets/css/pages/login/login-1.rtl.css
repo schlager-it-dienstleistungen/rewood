@@ -148,8 +148,8 @@
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex; }
-          .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__options > a:not(:first-child):not(:last-child) {
-            margin: 0 1.5rem; }
+          .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__options > a:not(:last-child) {
+            margin: 0 0 0 1.5rem; }
 
 @media (min-width: 1025px) {
   .kt-login.kt-login--v1 .kt-login__aside {

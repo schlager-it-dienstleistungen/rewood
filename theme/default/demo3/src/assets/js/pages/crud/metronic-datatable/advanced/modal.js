@@ -162,7 +162,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/default.php',
+						url: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/default.php',
 					},
 				},
 				pageSize: 10, // display 20 records per page
@@ -223,7 +223,7 @@ var KTDatatableModal = function() {
 						if (number > 5) {
 							output = '<div class="kt-user-card-v2">\
 							<div class="kt-user-card-v2__pic">\
-								<img src="https://keenthemes.com/metronic/preview/assets/media/users/' + user_img + '" alt="photo">\
+								<img src="https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/' + user_img + '" alt="photo">\
 							</div>\
 							<div class="kt-user-card-v2__details">\
 								<a href="#" class="kt-user-card-v2__name">' + data.CompanyAgent + '</a>\
@@ -367,7 +367,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/customers.php',
+						url: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/customers.php',
 					},
 				},
 				pageSize: 10, // display 20 records per page
@@ -490,7 +490,7 @@ var KTDatatableModal = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/datatables/demos/orders.php',
+						url: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/orders.php',
 						params: {
 							query: {
 								generalSearch: '',

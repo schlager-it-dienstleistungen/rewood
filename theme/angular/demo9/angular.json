@@ -41,15 +41,7 @@
             "scripts": [
 				"node_modules/popper.js/dist/umd/popper.js",
 				"node_modules/tooltip.js/dist/umd/tooltip.min.js",
-				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
-				"src/assets/js/global/components/base/util.js",
-				"src/assets/js/global/components/base/header.js",
-				"src/assets/js/global/components/base/menu.js",
-				"src/assets/js/global/components/base/offcanvas.js",
-				"src/assets/js/global/components/base/scrolltop.js",
-				"src/assets/js/global/components/base/toggle.js",
-				"src/assets/js/global/components/base/dialog.js",
-				"src/assets/js/global/components/base/wizard.js"
+				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"
             ],
 		  	"stylePreprocessorOptions": {
 			  "includePaths": [

@@ -136,6 +136,7 @@ window.wNumb = require("wnumb");
 
 // jquery-validation
 require("jquery-validation");
+require("jquery-validation/dist/additional-methods.js");
 require("../../../src/assets/js/global/integration/plugins/jquery-validation.init");
 
 // bootstrap-multiselectsplitter

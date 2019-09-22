@@ -775,10 +775,6 @@ var KTHeader = function(elementId, options) {
 
                 st = KTUtil.getScrollTop();
 
-                console.log('top:' + st);
-                console.log('offset:' + offset);
-                console.log('documentHeight:' + documentHeight);
-
                 if (
                     (KTUtil.isInResponsiveRange('tablet-and-mobile') && the.options.classic && the.options.classic.mobile) ||
                     (KTUtil.isInResponsiveRange('desktop') && the.options.classic && the.options.classic.desktop)
@@ -1153,10 +1149,7 @@ var KTMenu = function(elementId, options) {
                 item.removeAttribute('data-hover');
                 clearTimeout( item.getAttribute('data-timeout') );
                 item.removeAttribute('data-timeout');
-                //Plugin.hideSubmenuDropdown(item, false);
             }
-
-            // console.log('test!');
 
             Plugin.showSubmenuDropdown(item);
         },
@@ -4634,7 +4627,7 @@ var KTUtil = function() {
         },
 
         getScrollTop: function() {
-            return  Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+            return  (document.scrollingElement || document.documentElement).scrollTop;
         }
     }
 }();
@@ -8317,12 +8310,12 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 
 					if (bool) {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							delete options.columns[index-1].visible;
+							delete options.columns[index].visible;
 						}
 						$(Plugin.recentNode).show();
 					} else {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							Plugin.setOption('columns.' + (index-1) + '.visible', false);
+							Plugin.setOption('columns.' + (index) + '.visible', false);
 						}
 						$(Plugin.recentNode).hide();
 					}
@@ -9471,6 +9464,17 @@ var KTLayout = function() {
 
 				e.preventDefault();
 			});
+
+            // Set scrollable full height content
+            /*
+            var headerHeight = parseInt(KTUtil.css(KTUtil.get('kt_header'), 'height'));
+            var subheaderHeight = parseInt(KTUtil.css(KTUtil.get('kt_subheader'), 'height'));
+            var footerHeight = parseInt(KTUtil.css(KTUtil.get('kt_footer'), 'height'));
+            var contentHeight = KTUtil.getViewPort().height - headerHeight - subheaderHeight - footerHeight;
+
+            KTUtil.css(KTUtil.get('kt_content'), 'height', contentHeight + 'px');
+            KTUtil.css(KTUtil.get('kt_content'), 'overflow', 'auto');
+            */
         },
 
         initHeader: function() {
@@ -9899,7 +9903,7 @@ var KTQuickSearch = function() {
 
         setTimeout(function() {
             $.ajax({
-                url: 'inc/api/quick_search.php',
+                url: 'https://keenthemes.com/metronic/tools/preview/inc/api/quick_search.php',
                 data: {
                     query: query
                 },

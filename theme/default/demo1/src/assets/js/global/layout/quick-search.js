@@ -72,7 +72,7 @@ var KTQuickSearch = function() {
 
         setTimeout(function() {
             $.ajax({
-                url: 'inc/api/quick_search.php',
+                url: 'https://keenthemes.com/metronic/tools/preview/inc/api/quick_search.php',
                 data: {
                     query: query
                 },

@@ -2,10 +2,10 @@
 
 // Class definition
 var KTAppInbox = function() {
-    var asideEl = KTUtil.getByID('kt_inbox_aside');
-    var listEl = KTUtil.getByID('kt_inbox_list');
-    var viewEl = KTUtil.getByID('kt_inbox_view');
-    var composeEl = KTUtil.getByID('kt_inbox_compose');
+    var asideEl;
+    var listEl;
+    var viewEl;
+    var composeEl;
 
     var asideOffcanvas;
 
@@ -357,6 +357,11 @@ var KTAppInbox = function() {
     return {
         // public functions
         init: function() {
+            asideEl = KTUtil.getByID('kt_inbox_aside');
+            listEl = KTUtil.getByID('kt_inbox_list');
+            viewEl = KTUtil.getByID('kt_inbox_view');
+            composeEl = KTUtil.getByID('kt_inbox_compose');
+
             // init
             KTAppInbox.initAside();
             KTAppInbox.initList();
@@ -426,7 +431,7 @@ var KTAppInbox = function() {
 
                     KTUtil.css(listEl, 'display', 'none');
                     KTUtil.css(viewEl, 'display', 'flex');
-                }, 800);
+                }, 700);
             });
 
             // Group selection
@@ -474,7 +479,7 @@ var KTAppInbox = function() {
 
                     KTUtil.css(listEl, 'display', 'flex');
                     KTUtil.css(viewEl, 'display', 'none');
-                }, 1000);
+                }, 700);
             });
 
             // Expand/Collapse reply

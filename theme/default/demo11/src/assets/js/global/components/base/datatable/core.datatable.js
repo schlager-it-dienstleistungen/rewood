@@ -3226,12 +3226,12 @@
 
 					if (bool) {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							delete options.columns[index-1].visible;
+							delete options.columns[index].visible;
 						}
 						$(Plugin.recentNode).show();
 					} else {
 						if (Plugin.recentNode === Plugin.nodeCols) {
-							Plugin.setOption('columns.' + (index-1) + '.visible', false);
+							Plugin.setOption('columns.' + (index) + '.visible', false);
 						}
 						$(Plugin.recentNode).hide();
 					}

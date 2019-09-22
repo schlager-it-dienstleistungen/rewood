@@ -37,7 +37,7 @@ $(document).ready(function () {
 			$(hireus.hireUsForm).find(':input').prop('disabled', true).addClass('disabled');
 
 			return $.ajax({
-				url: 'themes/preview/docs/lib/send-email.php',
+				url: 'tools/preview/docs/lib/send-email.php',
 				method: 'POST',
 				headers: ['Content-Type', 'application/json'],
 				data: data,

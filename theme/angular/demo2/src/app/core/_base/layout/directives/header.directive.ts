@@ -43,9 +43,26 @@ export class HeaderDirective implements AfterViewInit {
 	 * Setup options to header
 	 */
 	private setupOptions() {
+		this.options = {
+			classic: {
+				desktop: true,
+				mobile: false
+			},
+		};
+
 		if (this.el.nativeElement.getAttribute('data-ktheader-minimize') == '1') {
-			objectPath.set(this.options, 'minimize.desktop.on', 'kt-header--minimize');
-			objectPath.set(this.options, 'offset.desktop', 150);
+			objectPath.set(this.options, 'minimize', {
+				desktop: {
+					on: 'kt-header--minimize'
+				},
+				mobile: {
+					on: 'kt-header--minimize'
+				}
+			});
+			objectPath.set(this.options, 'offset', {
+				desktop: 200,
+				mobile: 150
+			});
 		}
 	}
 }

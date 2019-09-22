@@ -173,7 +173,7 @@ if (apiUrl) {
         test: /\.js$/,
         rules: [{
             search: /inc\/api\//i,
-            replace: 'https://keenthemes.com/' + themeName + '/themes/themes/' + themeName + '/dist/preview/inc/api/'
+            replace: 'https://keenthemes.com/' + themeName + '/tools/preview/api/'
         }]
     }]));
 }

@@ -15,11 +15,11 @@
 	text-align: center;
 	cursor: pointer;
     border: 2px dashed kt-base-color(grey, 2);
-    
+
     @include kt-rounded {
 		border-radius: $kt-border-radius;
 	}
-	
+
     .dropzone-msg-title {
 		color: kt-base-color(label, 3);
 		margin: 0 0 5px 0;
@@ -27,13 +27,13 @@
 		font-weight: 500;
 		font-size: 1.2rem;
 	}
-    
+
     .dropzone-msg-desc {
         color: kt-base-color(label, 2);
         font-weight: 400;
 		font-size: 1rem;
 	}
-    
+
     .dz-preview {
 		.dz-image {
 			@include kt-rounded {
@@ -41,7 +41,7 @@
 			}
 		}
     }
-    
+
 	// State colors
 	@each $name, $color in $kt-state-colors {
 		&.dropzone-#{$name} {
@@ -54,19 +54,17 @@
 .dropzone.dropzone-multi {
     border: 0;
     padding: 0;
-    
+
     .dz-message{
         display: none;
     }
 
-    .dropzone-panel{
-
+    .dropzone-panel {
         .dropzone-upload,
         .dropzone-remove-all{
             display: none;
         }
     }
-
 
     .dropzone-item {
         display: flex;

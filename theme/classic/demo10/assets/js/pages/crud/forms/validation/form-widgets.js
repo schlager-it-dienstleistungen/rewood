@@ -69,7 +69,7 @@ var KTFormWidgets = function () {
         var countries = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/inc/api/typeahead/countries.json'
+            prefetch: 'https://keenthemes.com/metronic/tools/preview/inc/api/typeahead/countries.json'
         });
 
         $('#kt_typeahead').typeahead(null, {

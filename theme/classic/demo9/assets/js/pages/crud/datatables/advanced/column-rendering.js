@@ -21,7 +21,7 @@ var KTDatatablesAdvancedColumnRendering = function() {
 							output = `
                                 <div class="kt-user-card-v2">
                                     <div class="kt-user-card-v2__pic">
-                                        <img src="https://keenthemes.com/metronic/preview/assets/media/users/` + user_img + `" class="m-img-rounded kt-marginless" alt="photo">
+                                        <img src="https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/` + user_img + `" class="m-img-rounded kt-marginless" alt="photo">
                                     </div>
                                     <div class="kt-user-card-v2__details">
                                         <span class="kt-user-card-v2__name">` + full[2] + `</span>
