@@ -84,9 +84,9 @@ export class HtmlClassService {
 	 */
 	private initLayout() {
 		if (objectPath.has(this.config, 'self.body.class')) {
-			const _selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
-			if (_selfBodyClass) {
-				const bodyClasses: string[] = _selfBodyClass.split(' ');
+			const selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
+			if (selfBodyClass) {
+				const bodyClasses: string[] = selfBodyClass.split(' ');
 				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
 			}
 		}

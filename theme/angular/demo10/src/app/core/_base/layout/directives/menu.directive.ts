@@ -59,7 +59,7 @@ export class MenuDirective implements AfterViewInit {
 		}
 
 		if (typeof objectPath.get(this.options, 'submenu.desktop') === 'object') {
-			objectPath.set(this.options, 'submenu.desktop.default', menuDesktopMode);
+			objectPath.set(this.options, 'submenu.desktop', menuDesktopMode);
 		}
 	}
 }

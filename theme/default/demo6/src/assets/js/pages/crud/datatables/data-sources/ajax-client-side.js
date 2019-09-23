@@ -8,7 +8,7 @@ var KTDatatablesDataSourceAjaxClient = function() {
 		table.DataTable({
 			responsive: true,
 			ajax: {
-				url: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/default.php',
+				url: 'https://keenthemes.com/metronic/tools/preview/api/datatables/demos/default.php',
 				type: 'POST',
 				data: {
 					pagination: {

@@ -1,11 +1,11 @@
 // Angular
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 // Object-Path
 import * as objectPath from 'object-path';
 // RxJS
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 // Layout
-import {LayoutConfigModel} from '../../core/_base/layout';
+import { LayoutConfigModel } from '../../core/_base/layout';
 
 export interface ClassType {
 	header: string[];
@@ -32,6 +32,7 @@ export class HtmlClassService {
 
 	/**
 	 * Build html element classes from layout config
+	 * @param layoutConfig
 	 */
 	setConfig(layoutConfig: LayoutConfigModel) {
 		this.config = layoutConfig;
@@ -173,7 +174,7 @@ export class HtmlClassService {
 
 		// Menu
 		// Dropdown Submenu
-		if (objectPath.get(this.config, 'aside.self.fixed') !== true && objectPath.get(this.config, 'aside.menu.dropdown')) {
+		if (objectPath.get(this.config, 'aside.menu.dropdown')) {
 			objectPath.push(this.classes, 'aside_menu', 'kt-aside-menu--dropdown');
 			// enable menu dropdown
 		}

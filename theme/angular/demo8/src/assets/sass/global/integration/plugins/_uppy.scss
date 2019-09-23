@@ -15,128 +15,124 @@
 		}
 	}
 
-		.uppy-Dashboard-inner {
-			background-color: kt-base-color(grey, 1);
-			border: 1px solid kt-base-color(grey, 2);
+	.uppy-Dashboard-inner {
+		background-color: kt-base-color(grey, 1);
+		border: 1px solid kt-base-color(grey, 2);
 
-			.uppy-DashboardContent-bar,
-			.uppy-Dashboard-AddFilesPanel,
-			.uppy-DashboardContent-panel,
-			.uppy-DashboardItem-progress,
-			.uppy-DashboardItem-action,
-			.uppy-DashboardItem-previewLink{
-				z-index: 1;
-			}
+		.uppy-DashboardContent-bar,
+		.uppy-Dashboard-AddFilesPanel,
+		.uppy-DashboardContent-panel,
+		.uppy-DashboardItem-progress,
+		.uppy-DashboardItem-action,
+		.uppy-DashboardItem-previewLink{
+			z-index: 1;
+		}
 
-			.uppy-DashboardContent-title {
+		.uppy-DashboardContent-title {
+			color: kt-base-color(label, 2);
+			font-size: 1rem;
+			font-weight: 500;
+		}
+
+		.uppy-DashboardTabs {
+			.uppy-Dashboard-dropFilesTitle {
 				color: kt-base-color(label, 2);
-				font-size: 1rem;
+				font-size: 1.3rem;
 				font-weight: 500;
 			}
 
-			.uppy-DashboardTabs {
-				.uppy-Dashboard-dropFilesTitle {
-					color: kt-base-color(label, 2);
-					font-size: 1.3rem;
-					font-weight: 500;
-				}
-
-				.uppy-DashboardTab-name{
-					color: kt-base-color(label, 2);
-				}
-			}
-
-			.uppy-DashboardItem.is-complete .progress{
-					stroke: kt-state-color(success, base);
-					fill: kt-state-color(success, base);
-			}
-
-			.uppy-StatusBar-statusSecondary {
-				overflow: visible;
+			.uppy-DashboardTab-name{
+				color: kt-base-color(label, 2);
 			}
 		}
 
-		.uppy-DashboardAddFiles-info {
-			bottom: 20px !important;
+		.uppy-DashboardItem.is-complete .progress{
+			stroke: kt-state-color(success, base);
+			fill: kt-state-color(success, base);
 		}
 
-		.uppy-Dashboard-note {
+		.uppy-StatusBar-statusSecondary {
+			overflow: visible;
+		}
+	}
+
+	.uppy-DashboardAddFiles-info {
+		bottom: 20px !important;
+	}
+
+	.uppy-Dashboard-note {
+		color: kt-base-color(label, 2);
+		font-size: 0.9rem;
+		font-weight: 400;
+	}
+
+	.uppy-c-btn-primary {
+		font-size: 1rem;
+		font-weight: 400;
+		background: kt-brand-color();
+		color: kt-brand-color(inverse);
+		outline: none !important;
+
+		&:focus,
+		&:hover {
+			background-color: darken(kt-brand-color(), 6%);
+		}
+	}
+
+	.uppy-DashboardContent-back {
+		font-size: 1rem;
+		font-weight: 500;
+		color: kt-brand-color();
+		outline: none !important;
+		&:focus,
+		&:hover {
+			color: darken(kt-brand-color(), 6%);
+		}
+	}
+
+	.uppy-Dashboard-browse {
+		color: kt-state-color(brand, base);
+
+		&:focus,
+		&:hover {
+			color: darken(kt-brand-color(), 6%);
+		}
+	}
+
+	.uppy-DashboardContent-addMore {
+		svg {
+			stroke: kt-state-color(brand, base);
+			fill: kt-state-color(brand, base);
+		}
+	}
+
+	.uppy-ProgressBar{
+		z-index: 1;
+		.uppy-ProgressBar-inner {
+			background-color: kt-brand-color();
+			box-shadow: none;
+		}
+
+		.uppy-ProgressBar-percentage {
 			color: kt-base-color(label, 2);
 			font-size: 0.9rem;
 			font-weight: 400;
 		}
+	}
 
-		.uppy-c-btn-primary {
-			font-size: 1rem;
-			font-weight: 400;
-			background: kt-brand-color();
-			color: kt-brand-color(inverse);
+	.uppy-DragDrop-label {
+		font-size: 1rem;
+		font-weight: 500;
+		color: kt-base-color(label, 2);
 
-			outline: none !important;
-
-			&:focus,
-			&:hover {
-				background-color: darken(kt-brand-color(), 6%);
-			}
-		}
-
-		.uppy-DashboardContent-back {
-			font-size: 1rem;
-			font-weight: 500;
-			color: kt-brand-color();
-			outline: none !important;
-
-			&:focus,
-			&:hover {
-				color: darken(kt-brand-color(), 6%);
-			}
-		}
-
-		.uppy-Dashboard-browse {
+		.uppy-DragDrop-dragText {
 			color: kt-state-color(brand, base);
-
 			&:focus,
 			&:hover {
 				color: darken(kt-brand-color(), 6%);
 			}
 		}
-
-		.uppy-DashboardContent-addMore {
-			svg {
-				stroke: kt-state-color(brand, base);
-				fill: kt-state-color(brand, base);
-			}
-		}
-
-		.uppy-ProgressBar{
-			z-index: 1;
-
-			.uppy-ProgressBar-inner {
-				background-color: kt-brand-color();
-				box-shadow: none;
-			}
-
-			.uppy-ProgressBar-percentage {
-				color: kt-base-color(label, 2);
-				font-size: 0.9rem;
-				font-weight: 400;
-			}
-		}
-
-		.uppy-DragDrop-label {
-			font-size: 1rem;
-			font-weight: 500;
-			color: kt-base-color(label, 2);
-
-			.uppy-DragDrop-dragText {
-				color: kt-state-color(brand, base);
-
-				&:focus,
-				&:hover {
-					color: darken(kt-brand-color(), 6%);
-				}
-			}
-		}
+	}
 
 	.uppy-StatusBar{
 		z-index: 1;

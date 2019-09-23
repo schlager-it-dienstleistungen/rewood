@@ -94,10 +94,6 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 
 		const config = this.layoutConfigService.getConfig();
 
-		if (objectPath.get(config, 'aside.menu.dropdown') !== true && objectPath.get(config, 'aside.self.fixed')) {
-			this.render.setAttribute(this.asideMenu.nativeElement, 'data-ktmenu-scroll', '1');
-		}
-
 		if (objectPath.get(config, 'aside.menu.dropdown')) {
 			this.render.setAttribute(this.asideMenu.nativeElement, 'data-ktmenu-dropdown', '1');
 			// tslint:disable-next-line:max-line-length
@@ -226,5 +222,9 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 		}
 
 		return toggle;
+	}
+
+	disableScroll() {
+		return this.layoutConfigService.getConfig('aside.menu.dropdown') || false;
 	}
 }

@@ -84,12 +84,13 @@ export class HtmlClassService {
 	 */
 	private initLayout() {
 		if (objectPath.has(this.config, 'self.body.class')) {
-			const _selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
-			if (_selfBodyClass) {
-				const bodyClasses: string[] = _selfBodyClass.split(' ');
+			const selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
+			if (selfBodyClass) {
+				const bodyClasses: string[] = selfBodyClass.split(' ');
 				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
 			}
 		}
+
 		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
 			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
 		}
@@ -173,7 +174,7 @@ export class HtmlClassService {
 
 		// Menu
 		// Dropdown Submenu
-		if (objectPath.get(this.config, 'aside.self.fixed') !== true && objectPath.get(this.config, 'aside.menu.dropdown')) {
+		if (objectPath.get(this.config, 'aside.menu.dropdown')) {
 			objectPath.push(this.classes, 'aside_menu', 'kt-aside-menu--dropdown');
 			// enable menu dropdown
 		}

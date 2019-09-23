@@ -6,7 +6,7 @@
 
 	<!-- BEGIN: Aside Menu -->
 	<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
-		<div #asideMenu ktMenu [options]="menuOptions" [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '100vh', 'position': 'relative'}" id="kt_aside_menu" class="kt-aside-menu"
+		<div #asideMenu ktMenu [options]="menuOptions" [perfectScrollbar]="{wheelPropagation: false}" [disabled]="disableScroll()" [ngStyle]="{'max-height': '100vh', 'position': 'relative'}" id="kt_aside_menu" class="kt-aside-menu"
 			(mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)"
 			[ngClass]="htmlClassService.getClasses('aside_menu', true)">
 			<ul class="kt-menu__nav" [ngClass]="htmlClassService.getClasses('aside_menu_nav', true)">

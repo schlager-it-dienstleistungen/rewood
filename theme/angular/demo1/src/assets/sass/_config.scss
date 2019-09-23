@@ -167,8 +167,8 @@ $kt-social-colors: (
 
 // Root Font Settings
 $kt-font-families: (
-    regular: 'Poppins',
-    heading: 'Poppins'
+    regular: unquote('Poppins, Helvetica, sans-serif'),
+    heading: unquote('Poppins, Helvetica, sans-serif')
 ) !default;
 
 // Root Font Settings

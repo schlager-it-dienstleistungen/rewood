@@ -15,7 +15,7 @@ var KTUserListDatatable = function () {
                 type: 'remote',
                 source: {
                     read: {
-                        url: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/client.php',
+                        url: 'https://keenthemes.com/metronic/tools/preview/api/datatables/demos/client.php',
                     },
                 },
                 pageSize: 10, // display 20 records per page
@@ -79,7 +79,7 @@ var KTUserListDatatable = function () {
                             output = '' +
                                 '<div class="kt-user-card-v2">' +
                                 '<div class="kt-user-card-v2__pic">' +
-                                '<img src="https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/' + user_img + '" alt="photo">' +
+                                '<img src="assets/media/users/' + user_img + '" alt="photo">' +
                                 '</div>' +
                                 '<div class="kt-user-card-v2__details">' +
                                 '<a href="#" class="kt-user-card-v2__name">' + data.Name + '</a>' +
@@ -142,7 +142,7 @@ var KTUserListDatatable = function () {
                         var output = '' +
                             '<div class="kt-user-card-v2">' +
                             '<div class="kt-user-card-v2__pic">' +
-                            '<img src="https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/client-logos/logo' + img + '" alt="photo">' +
+                            '<img src="assets/media/client-logos/logo' + img + '" alt="photo">' +
                             '</div>' +
                             '<div class="kt-user-card-v2__details">' +
                             '<a href="#" class="kt-user-card-v2__name">' + data.Company + '</a>' +

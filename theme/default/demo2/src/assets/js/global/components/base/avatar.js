@@ -9,7 +9,7 @@ var KTAvatar = function(elementId, options) {
     var body = KTUtil.get('body');
 
     if (!element) {
-        return; 
+        return;
     }
 
     // Default options
@@ -123,13 +123,13 @@ var KTAvatar = function(elementId, options) {
     //////////////////////////
 
     /**
-     * Set default options 
+     * Set default options
      */
 
     the.setDefaults = function(options) {
         defaultOptions = options;
     };
-    
+
     /**
      * Attach event
      */

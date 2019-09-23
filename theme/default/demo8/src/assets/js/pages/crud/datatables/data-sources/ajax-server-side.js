@@ -10,7 +10,7 @@ var KTDatatablesDataSourceAjaxServer = function() {
 			searchDelay: 500,
 			processing: true,
 			serverSide: true,
-			ajax: 'https://keenthemes.com/metronic/tools/preview/inc/api/datatables/demos/server.php',
+			ajax: 'https://keenthemes.com/metronic/tools/preview/api/datatables/demos/server.php',
 			columns: [
 				{data: 'OrderID'},
 				{data: 'Country'},

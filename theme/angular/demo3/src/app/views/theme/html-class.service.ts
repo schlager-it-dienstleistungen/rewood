@@ -90,6 +90,7 @@ export class HtmlClassService {
 				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
 			}
 		}
+
 		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
 			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
 		}

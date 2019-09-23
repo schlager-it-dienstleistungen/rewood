@@ -10,7 +10,7 @@
     <div class="kt-quick-search__section">
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="assets/media/files/doc.svg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/files/doc.svg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -24,7 +24,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="assets/media/files/pdf.svg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/files/pdf.svg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -38,7 +38,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="assets/media/files/zip.svg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/files/zip.svg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -52,7 +52,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="assets/media/files/xml.svg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/files/xml.svg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -71,7 +71,7 @@
     <div class="kt-quick-search__section">
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img">
-                <img src="assets/media/users/300_14.jpg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/users/300_14.jpg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -85,7 +85,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img">
-                <img src="assets/media/users/300_20.jpg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/users/300_20.jpg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -99,7 +99,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img">
-                <img src="assets/media/users/300_21.jpg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/users/300_21.jpg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">
@@ -113,7 +113,7 @@
 
         <div class="kt-quick-search__item">
             <div class="kt-quick-search__item-img">
-                <img src="assets/media/users/300_2.jpg" alt="" />
+                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) ?>/assets/media/users/300_2.jpg" alt="" />
             </div>
             <div class="kt-quick-search__item-wrapper">
                 <a href="#" class="kt-quick-search__item-title">

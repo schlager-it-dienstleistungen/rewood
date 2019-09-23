@@ -351,7 +351,7 @@ var KTAvatar = function(elementId, options) {
     var body = KTUtil.get('body');
 
     if (!element) {
-        return; 
+        return;
     }
 
     // Default options
@@ -465,13 +465,13 @@ var KTAvatar = function(elementId, options) {
     //////////////////////////
 
     /**
-     * Set default options 
+     * Set default options
      */
 
     the.setDefaults = function(options) {
         defaultOptions = options;
     };
-    
+
     /**
      * Attach event
      */
@@ -496,6 +496,7 @@ var KTAvatar = function(elementId, options) {
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     module.exports = KTAvatar;
 }
+
 "use strict";
 
 // plugin setup
@@ -9896,7 +9897,7 @@ var KTQuickSearch = function() {
 
         setTimeout(function() {
             $.ajax({
-                url: 'https://keenthemes.com/metronic/tools/preview/inc/api/quick_search.php',
+                url: 'https://keenthemes.com/metronic/tools/preview/api/quick_search.php',
                 data: {
                     query: query
                 },
