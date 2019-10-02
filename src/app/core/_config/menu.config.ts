@@ -4,13 +4,6 @@ export class MenuConfig {
 			self: {},
 			items: [
 				{
-					title: 'Dashboards',
-					root: true,
-					alignment: 'left',
-					page: '/dashboard',
-					translate: 'MENU.DASHBOARD',
-				},
-				{
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',

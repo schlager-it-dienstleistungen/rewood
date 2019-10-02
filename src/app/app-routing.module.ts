@@ -18,10 +18,6 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		children: [
 			{
-				path: 'dashboard',
-				loadChildren: './views/pages/dashboard/dashboard.module#DashboardModule'
-			},
-			{
 				path: 'products',
 				loadChildren: './views/pages/products/products.module#ProductsModule'
 			},
@@ -40,8 +36,8 @@ const routes: Routes = [
 				}
 			},
 			{path: 'error/:type', component: ErrorPageComponent},
-			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-			{path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
+			{path: '', redirectTo: 'products', pathMatch: 'full'},
+			{path: '**', redirectTo: 'products', pathMatch: 'full'}
 		]
 	},
 
