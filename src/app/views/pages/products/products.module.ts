@@ -5,6 +5,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PortletModule } from '../../partials/content/general/portlet/portlet.module';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, 
 		MatSortModule,
 		MatFormFieldModule,
 		MatInputModule,
-		ProductsRoutingModule
+		ProductsRoutingModule,
+		ReactiveFormsModule
 	]
 })
 export class ProductsModule { }

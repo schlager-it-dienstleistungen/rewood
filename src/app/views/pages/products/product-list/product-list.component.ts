@@ -1,9 +1,7 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-// RXJS
-import { debounceTime, distinctUntilChanged, tap, skip, delay } from 'rxjs/operators';
-import { Subscription, fromEvent } from 'rxjs';
+import { FormGroup, FormBuilder} from '@angular/forms';
 
 @Component({
 	selector: 'sw-product-list',
@@ -23,9 +21,13 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
 
-	constructor() { }
+	// Search
+	searchForm: FormGroup;
+
+	constructor(private fb: FormBuilder) { }
 
 	ngOnInit() {
+		this.initForm();
 		this.loadProductsList();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
@@ -35,6 +37,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
+		this.initForm();
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 	}
@@ -43,6 +46,42 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		filterValue = filterValue.trim(); // Remove whitespace
 		filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
 		this.dataSource.filter = filterValue;
+	}
+
+	private initForm() {
+		this.searchForm = this.fb.group({
+			title: [''],
+			category: [''],
+			price_from: [''],
+			price_to: ['']
+		});
+	}
+
+	/**
+	 * Search Products
+	 */
+	searchProducts() {
+		const searchValues = this.searchForm.value;
+		if (searchValues.title) {
+			this.dataSource.filterPredicate = (data: Product, filter: string) => data.title.indexOf(filter) !== -1;
+
+			this.dataSource.filter = searchValues.title;
+		}
+		if (searchValues.category) {
+			this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
+
+			this.dataSource.filter = searchValues.category;
+		}
+
+	// TODO RangeFilter: https://stackoverflow.com/questions/48276404/filtering-specific-column-in-angular-material-table-in-angular-5/48400406?noredirect=1#comment84008277_48400406
+	}
+
+	/**
+	 * Reset Search Formular
+	 */
+	resetSearchForm() {
+		this.dataSource.filter = '';
+		this.initForm();
 	}
 
 	/**
