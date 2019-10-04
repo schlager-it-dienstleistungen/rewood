@@ -5,6 +5,7 @@ export interface Product {
 	title: string;
 	category: string;
 	subcategory?: string;
+	price: number;
 	description: string;
 	storage_unit?: PackingUnit;
 	home_country?: string;

@@ -113,6 +113,11 @@
 				<mat-cell *matCellDef="let product"> {{product.subcategory}} </mat-cell>
 			</ng-container>
 
+			<ng-container matColumnDef=price>
+				<mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
+				<mat-cell *matCellDef="let product"> {{product.price | currency}} </mat-cell>
+			</ng-container>
+
 			<ng-container matColumnDef=description>
 				<mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
 				<mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
