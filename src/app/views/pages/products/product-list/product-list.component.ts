@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { ProductStoreService } from '../shared/product-store.service';
 
 @Component({
 	selector: 'sw-product-list',
@@ -24,11 +25,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	// Search
 	searchForm: FormGroup;
 
-	constructor(private fb: FormBuilder) { }
+	constructor(
+		private productService: ProductStoreService,
+		private fb: FormBuilder
+	) { }
 
 	ngOnInit() {
 		this.initForm();
-		this.loadProductsList();
+		this.products = this.productService.getAllProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 
@@ -80,43 +84,5 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	resetSearchForm() {
 		this.dataSource.filter = '';
 		this.initForm();
-	}
-
-	/**
-	 * Load Products List
-	 */
-	loadProductsList() {
-		this.products = [
-			{
-				id: '1',
-				title: 'Spanplatte',
-				category: 'Spanplatte',
-				subcategory: '',
-				price: 10500,
-				description: 'um 2 Zentimeter zu kurz'
-			},
-			{
-				id: '2',
-				title: 'Pfosten',
-				category: 'Bauholz',
-				subcategory: 'Pfosten',
-				price: 1500.55,
-				description: '2,53 statt 2,50 Meter'
-			},
-			{
-				id: '3',
-				title: 'Laminiertes Brett',
-				category: 'Brett',
-				price: 25000,
-				description: 'mit Buche statt Eiche furniert'
-			},
-			{
-				id: '4',
-				title: 'Rigips',
-				category: 'kein Holz',
-				price: 9999.99,
-				description: 'Leider kein Holz'
-			}
-		];
 	}
 }
