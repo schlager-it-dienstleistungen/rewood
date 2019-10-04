@@ -1,25 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
+import { SearchProducts } from './search-products';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ProductStoreService {
-	products: Product[];
 
-	constructor() {
-		this.initProducts();
-	}
+	constructor() {}
 
 	getAllProducts(): Product[] {
-		return this.products;
+		return this.getProducts();
+	}
+
+	searchProducts(searchInput: SearchProducts): Product[] {
+		let products: Product [] = this.getProducts();
+
+		if (searchInput.title) {
+			products = products.filter((product) => product.title.indexOf(searchInput.title) !== -1);
+		}
+		if (searchInput.category) {
+			products = products.filter((product) => product.category.indexOf(searchInput.category) !== -1);
+		}
+
+		return products;
 	}
 
 	/**
 	 * Load Products List
 	 */
-	private initProducts() {
-		this.products = [
+	private getProducts(): Product[] {
+		return [
 			{
 				id: '1',
 				title: 'Spanplatte',

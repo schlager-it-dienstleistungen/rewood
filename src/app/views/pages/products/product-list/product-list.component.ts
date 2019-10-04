@@ -3,6 +3,7 @@ import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { ProductStoreService } from '../shared/product-store.service';
+import { SearchProducts } from '../shared/search-products';
 
 @Component({
 	selector: 'sw-product-list',
@@ -15,7 +16,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	// Sort
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
+	@ViewChild('filterInput', {static: true}) filterInput: ElementRef;
 
 	// Table Fields
 	displayedColumns = ['id', 'title', 'category', 'subcategory', 'price', 'description'];
@@ -66,16 +67,16 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	 */
 	searchProducts() {
 		const searchValues = this.searchForm.value;
-		if (searchValues.title) {
-			this.dataSource.filterPredicate = (data: Product, filter: string) => data.title.indexOf(filter) !== -1;
+		const searchInput: SearchProducts = {
+			title: searchValues.title,
+			category: searchValues.category,
+			subcategory: searchValues.subcategory, // TODO
+			price_from: searchValues.price_from,
+			price_to: searchValues.price_to,
+			description: searchValues.description // TODO
+		};
 
-			this.dataSource.filter = searchValues.title;
-		}
-		if (searchValues.category) {
-			this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
-
-			this.dataSource.filter = searchValues.category;
-		}
+		this.products = this.productService.searchProducts(searchInput);
 	}
 
 	/**
