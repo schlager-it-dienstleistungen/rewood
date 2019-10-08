@@ -11,4 +11,5 @@ export interface Product {
 	home_country?: string;
 	storage_location?: Location;
 	speciality?: string;
+	picture?: string;
 }

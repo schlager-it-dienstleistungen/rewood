@@ -118,6 +118,11 @@
 				<mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
 			</ng-container>
 
+			<ng-container matColumnDef="picture">
+				<mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+				<mat-cell *matCellDef="let product"> <img src="{{product.picture}}" height="80"> </mat-cell>
+			</ng-container>
+
 			<ng-container matColumnDef=title>
 				<mat-header-cell *matHeaderCellDef mat-sort-header>Titel</mat-header-cell>
 				<mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
@@ -147,6 +152,6 @@
 			<mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
 		</mat-table>
 
-		<mat-paginator #matPaginator [pageSizeOptions]="[2, 5, 10, 25, 100]"></mat-paginator>
+		<mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 	</kt-portlet-body>
 </kt-portlet>

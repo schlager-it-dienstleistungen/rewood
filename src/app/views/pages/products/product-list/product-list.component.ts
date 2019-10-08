@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@ViewChild('filterInput', {static: true}) filterInput: ElementRef;
 
 	// Table Fields
-	displayedColumns = ['title', 'category', 'subcategory', 'price', 'description'];
+	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description'];
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
 
