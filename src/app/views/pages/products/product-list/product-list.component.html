@@ -17,6 +17,25 @@
 		</div>
 	</kt-portlet-body>
 
+	<!-- start::FILTERS -->
+	<kt-portlet-body>
+		<div class="kt-section">
+			<span class="kt-section__info">Produkte filtern</span>
+			<div class="kt-form__filtration">
+				<mat-form-field>
+					<mat-select matFilterGruppeInput placeholder="Gruppe" [formControl]="selectFilterGruppe">
+						<mat-option value="Spanplatte">Spanplatte</mat-option>
+						<mat-option value="OSB">OSB</mat-option>
+						<mat-option value="MDF">MDF</mat-option>
+						<mat-option value="HDF">HDF</mat-option>
+						<mat-option value="Sperrholz">Sperrholz</mat-option>
+						<mat-option value="Tischlerplatte">Tischlerplatte</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+	</kt-portlet-body>
+
 	<!-- start:: SEARCH -->
 	<kt-portlet-body>
 		<div class="kt-section">

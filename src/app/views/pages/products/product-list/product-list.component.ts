@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl} from '@angular/forms';
 import { ProductStoreService } from '../shared/product-store.service';
 import { SearchProducts } from '../shared/search-products';
 
@@ -19,9 +19,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@ViewChild('filterInput', {static: true}) filterInput: ElementRef;
 
 	// Table Fields
-	displayedColumns = ['id', 'title', 'category', 'subcategory', 'price', 'description'];
+	displayedColumns = ['title', 'category', 'subcategory', 'price', 'description'];
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
+
+	selectFilterGruppe = new FormControl('');
 
 	// Search
 	searchForm: FormGroup;
@@ -35,6 +37,18 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.initForm();
 		this.products = this.productService.getAllProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
+
+		this.selectFilterGruppe.valueChanges.subscribe(
+			filterGruppe => {
+				this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
+				this.dataSource.filter = filterGruppe;
+			}
+		);
+	}
+
+	filterGruppe(filterGruppe: string) {
+// 		this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
+// 		this.dataSource.filter = filterGruppe;
 	}
 
  /**
