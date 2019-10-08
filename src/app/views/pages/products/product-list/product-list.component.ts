@@ -77,6 +77,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		};
 
 		this.products = this.productService.searchProducts(searchInput);
+		this.dataSource = new MatTableDataSource<Product>(this.products);
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
 	}
 
 	/**
