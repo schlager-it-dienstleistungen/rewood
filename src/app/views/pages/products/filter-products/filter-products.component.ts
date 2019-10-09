@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input, AfterViewInit } from '@
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { Category } from '../shared/category';
+import { ProductStoreService } from '../shared/product-store.service';
 
 @Component({
 	selector: 'sw-filter-products',
@@ -17,9 +19,16 @@ export class FilterProductsComponent implements OnInit {
 	filterCategoryControl = new FormControl('');
 	@Output() filterCategoryEvent = new EventEmitter<string>();
 
-	constructor() { }
+	// Categories
+	categories: Category[];
+
+	constructor(
+		private productService: ProductStoreService
+	) { }
 
 	ngOnInit() {
+		this.categories = this.productService.getCategories();
+
 		this.filterKeyUp$.pipe(
 			// filter(filterValue => filterValue.length >= 3),
 			debounceTime(500),

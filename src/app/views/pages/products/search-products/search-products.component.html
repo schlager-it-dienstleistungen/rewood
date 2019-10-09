@@ -15,12 +15,7 @@
 				<div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">
 					<label>Gruppe:</label>
 					<select class="form-control kt-input" placeholder="E.g: Spanplatte" formControlName="category">
-						<option>Spanplatte</option>
-						<option>OSB</option>
-						<option>MDF</option>
-						<option>HDF</option>
-						<option>Sperrholz</option>
-						<option>Tischlerplatte</option>
+						<option *ngFor="let category of categories" value="{{category.title}}">{{category.title}}</option>
 					</select>
 				</div>
 				<div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">

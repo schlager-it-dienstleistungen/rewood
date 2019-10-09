@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
 import { SearchProducts } from './search-products';
+import { Category } from './category';
 
 @Injectable({
 	providedIn: 'root'
@@ -94,6 +95,43 @@ export class ProductStoreService {
 				price: 20000,
 				description: 'gemischte Laminierungen',
 				picture: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg'
+			}
+		];
+	}
+
+	getCategories(): Category[] {
+		return [
+			{
+				title: 'Spanplatte',
+				description: 'Beschreibungstext',
+				img: 'https://media.bahag.com/assets/resp_product/10/75/1075985_22086959.jpg'
+			},
+			{
+				title: 'OSB',
+				description: 'Beschreibungstext',
+				img: 'https://balkotrade.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/e/g/egger_osb-3_6_4.jpg'
+			},
+			{
+				title: 'MDF',
+				description: 'Beschreibungstext',
+				img: 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjBn_SGsY_lAhUDYVAKHXn0C_' +
+					'wQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.totemtimber.co.uk%2Fproduct%2Fsheet-materials%2Fmdf%2Fmedium-density-' +
+					'fibreboard-mdf-3050x1220x25mm%2F&psig=AOvVaw02dCW7wGTFienXZjayM6ja&ust=1570717533728835'
+			},
+			{
+				title: 'HDF',
+				description: 'Beschreibungstext',
+				img: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg'
+			},
+			{
+				title: 'Sperrholz',
+				description: 'Beschreibungstext',
+				img: 'https://i.ebayimg.com/images/g/gs8AAOSwVaVZy~m2/s-l300.jpg'
+			},
+			{
+				title: 'Tischlerplatte',
+				description: 'Beschreibungstext',
+				img: 'https://feafashionloft.de/wp-content/uploads/2019/02/Tischlerplatte-1.jpg'
 			}
 		];
 	}

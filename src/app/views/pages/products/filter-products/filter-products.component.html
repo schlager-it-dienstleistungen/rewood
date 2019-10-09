@@ -5,12 +5,7 @@
 		<div class="kt-form__filtration kt-margin-b-4">
 			<mat-form-field class="col-lg-2">
 				<mat-select matFilterGruppeInput placeholder="Gruppe" [formControl]="filterCategoryControl">
-					<mat-option value="Spanplatte">Spanplatte</mat-option>
-					<mat-option value="OSB">OSB</mat-option>
-					<mat-option value="MDF">MDF</mat-option>
-					<mat-option value="HDF">HDF</mat-option>
-					<mat-option value="Sperrholz">Sperrholz</mat-option>
-					<mat-option value="Tischlerplatte">Tischlerplatte</mat-option>
+					<mat-option *ngFor="let category of categories" value="{{category.title}}">{{category.title}}</mat-option>
 				</mat-select>
 			</mat-form-field>
 			<mat-form-field class="col-lg-2">

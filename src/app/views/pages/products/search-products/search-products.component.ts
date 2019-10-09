@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SearchProducts } from '../shared/search-products';
+import { Category } from '../shared/category';
+import { ProductStoreService } from '../shared/product-store.service';
 
 @Component({
 	selector: 'sw-search-products',
@@ -16,9 +18,17 @@ export class SearchProductsComponent implements OnInit {
 	// Search
 	searchForm: FormGroup;
 
-	constructor(private fb: FormBuilder) { }
+	// Categories
+	categories: Category[];
+
+	constructor(
+		private productService: ProductStoreService,
+		private fb: FormBuilder
+	) { }
 
 	ngOnInit() {
+		this.categories = this.productService.getCategories();
+
 		this.initForm();
 	}
 
@@ -45,7 +55,7 @@ export class SearchProductsComponent implements OnInit {
 			description: searchValues.description // TODO
 		};
 
-		this.searchProductsEvent.emit(searchValues);
+		this.searchProductsEvent.emit(searchInput);
 	}
 
 	/**
