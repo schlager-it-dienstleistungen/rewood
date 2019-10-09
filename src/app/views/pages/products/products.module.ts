@@ -7,10 +7,11 @@ import { PortletModule } from '../../partials/content/general/portlet/portlet.mo
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
+import { SearchProductsComponent } from './search-products/search-products.component';
 
 
 @NgModule({
-	declarations: [ProductListComponent, FilterProductsComponent],
+	declarations: [ProductListComponent, FilterProductsComponent, SearchProductsComponent],
 	imports: [
 		CommonModule,
 		PortletModule,

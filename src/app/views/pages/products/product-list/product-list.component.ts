@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { FormGroup, FormBuilder, FormControl} from '@angular/forms';
 import { ProductStoreService } from '../shared/product-store.service';
 import { SearchProducts } from '../shared/search-products';
 
@@ -21,16 +20,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
 
-	// Search
-	searchForm: FormGroup;
-
 	constructor(
-		private productService: ProductStoreService,
-		private fb: FormBuilder
+		private productService: ProductStoreService
 	) { }
 
 	ngOnInit() {
-		this.initForm();
 		this.products = this.productService.getAllProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
@@ -40,12 +34,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.initForm();
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 	}
 
 	filterProducts($event) {
+		this.dataSource.filterPredicate = (
+			data: Product, filter: string) => (data.title.indexOf(filter) !== -1 && data.description.indexOf(filter) !== -1
+		);
 		this.dataSource.filter = '' + $event;
 	}
 
@@ -55,40 +51,17 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.dataSource.filter = filterCategory;
 	}
 
-	private initForm() {
-		this.searchForm = this.fb.group({
-			title: [''],
-			category: [''],
-			price_from: [''],
-			price_to: ['']
-		});
-	}
-
 	/**
 	 * Search Products
 	 */
-	searchProducts() {
-		const searchValues = this.searchForm.value;
-		const searchInput: SearchProducts = {
-			title: searchValues.title,
-			category: searchValues.category,
-			subcategory: searchValues.subcategory, // TODO
-			price_from: searchValues.price_from,
-			price_to: searchValues.price_to,
-			description: searchValues.description // TODO
-		};
-
+	searchProducts(searchInput: SearchProducts) {
 		this.products = this.productService.searchProducts(searchInput);
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 	}
 
-	/**
-	 * Reset Search Formular
-	 */
-	resetSearchForm() {
+	resetProducts() {
 		this.dataSource.filter = '';
-		this.initForm();
 	}
 }
