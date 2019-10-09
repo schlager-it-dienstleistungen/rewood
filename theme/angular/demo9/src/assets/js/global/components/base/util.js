@@ -476,9 +476,9 @@ var KTUtil = function() {
 
             if (el = document.getElementById(query)) {
                 return el;
-            } else if (el = document.getElementsByTagName(query)) {
+            } else if (el = document.getElementsByTagName(query), el.length > 0) {
                 return el[0];
-            } else if (el = document.getElementsByClassName(query)) {
+            } else if (el = document.getElementsByClassName(query), el.length > 0) {
                 return el[0];
             } else {
                 return null;
@@ -1157,14 +1157,18 @@ var KTUtil = function() {
 
         addEvent: function(el, type, handler, one) {
             el = KTUtil.get(el);
-            if (typeof el !== 'undefined') {
+
+            if (typeof el !== 'undefined' && el !== null) {
                 el.addEventListener(type, handler);
             }
         },
 
         removeEvent: function(el, type, handler) {
             el = KTUtil.get(el);
-            el.removeEventListener(type, handler);
+
+            if (el !== null) {
+                el.removeEventListener(type, handler);
+            }
         },
 
         on: function(element, selector, event, handler) {
@@ -1526,7 +1530,7 @@ var KTUtil = function() {
         scrollUpdateAll: function(parent) {
             var scrollers = KTUtil.findAll(parent, '.ps');
             for (var i = 0, len = scrollers.length; i < len; i++) {
-                KTUtil.scrollerUpdate(scrollers[i]);
+                KTUtil.scrollUpdate(scrollers[i]);
             }
         },
 

@@ -33,7 +33,7 @@ jQuery.validator.setDefaults({
             help.before(error);
         } else {
             if (element.closest('.bootstrap-select').length > 0) {     //Bootstrap select
-                element.closest('.bootstrap-select').find('.bs-placeholder').after(error);
+                element.closest('.bootstrap-select').wrap('<div class="bootstrap-select-wrapper" />').after(error);
             } else if (element.closest('.input-group').length > 0) {   //Bootstrap group
                 element.after(error);
             } else {                                                   //Checkbox & radios

@@ -9,7 +9,6 @@ var fs = require('fs');
 var pretty = require('pretty');
 var sass = require('gulp-sass');
 var merge = require('merge-stream');
-var del = require('del');
 
 if (Object.keys(build).length === 0) {
     return;
@@ -60,7 +59,7 @@ gulp.task('rtl', function (cb) {
                 var toRtlFile = func.dotPath(val.styles[i]);
 
                 // exclude scss file for now
-                if (toRtlFile.indexOf('.scss') === -1) {
+                if (toRtlFile.indexOf('.scss') === -1 && !(/\*/).test(toRtlFile)) {
                     stream = gulp.src(toRtlFile, {allowEmpty: true}).pipe(rtlcss()).pipe(rename({suffix: '.rtl'})).pipe(gulp.dest(func.pathOnly(toRtlFile)));
                     streams.push(stream);
 

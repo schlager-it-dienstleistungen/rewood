@@ -34,8 +34,7 @@
         .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item {
           padding: 0.75rem 1.5rem;
           position: relative;
-          border-radius: 0.5rem;
-          cursor: pointer; }
+          border-radius: 0.5rem; }
           .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items .kt-wizard-v2__nav-item .kt-wizard-v2__nav-body {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -77,6 +76,8 @@
               position: absolute;
               border-right-color: #f4f6f9;
               border-width: 1rem; }
+        .kt-wizard-v2 .kt-wizard-v2__aside .kt-wizard-v2__nav .kt-wizard-v2__nav-items.kt-wizard-v2__nav-items--clickable .kt-wizard-v2__nav-item {
+          cursor: pointer; }
     @media (max-width: 768px) {
       .kt-wizard-v2 .kt-wizard-v2__aside {
         padding: 1rem;

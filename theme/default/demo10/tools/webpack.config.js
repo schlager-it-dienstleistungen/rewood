@@ -215,11 +215,23 @@ const mainConfig = function () {
             new MiniCssExtractPlugin({
                 filename: "[name].css",
             }),
-            // copy media
-            new CopyWebpackPlugin([{
-                from: srcPath + "/media",
-                to: assetDistPath + "/media",
-            }]),
+            new CopyWebpackPlugin([
+                {
+                  // copy media
+                  from: srcPath + "/media",
+                  to: assetDistPath + "/media",
+                },
+                {
+                  // copy tinymce skins
+                  from: configPath + "/node_modules/tinymce/skins",
+                  to: assetDistPath + "/plugins/custom/tinymce/skins",
+                },
+                {
+                  // copy tinymce plugins
+                  from: configPath + "/node_modules/tinymce/plugins",
+                  to: assetDistPath + "/plugins/custom/tinymce/plugins",
+                },
+            ]),
             {
                 apply: (compiler) => {
                     // hook name

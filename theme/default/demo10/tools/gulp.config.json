@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.0.9",
+    "version": "6.1.0",
     "config": {
         "demo": "",
         "debug": false,
@@ -22,7 +22,8 @@
                     "bootstrap-datepicker",
                     "bootstrap-datetime-picker",
                     "bootstrap-switch",
-                    "nouislider"
+                    "nouislider",
+                    "tinymce"
                 ]
             },
             "jsUglify": false,
@@ -589,6 +590,88 @@
                     "bundle": {
                         "styles": "{$config.dist}/plugins/custom/uppy/uppy.bundle.css",
                         "scripts": "{$config.dist}/plugins/custom/uppy/uppy.bundle.js"
+                    }
+                },
+                "tinymce-js": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/tinymce/tinymce.min.js",
+                            "{$config.path.node_modules}/tinymce/themes/silver/theme.js",
+                            "{$config.path.node_modules}/tinymce/themes/mobile/theme.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/tinymce/tinymce.bundle.js"
+                    }
+                },
+                "tinymce": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.node_modules}/tinymce/skins/**/*.css"
+                        ]
+                    },
+                    "output": {
+                        "styles": "{$config.dist}/plugins/custom/tinymce/skins"
+                    }
+                },
+                "tinymce-plugins": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/tinymce/plugins/**/*.js"
+                        ]
+                    },
+                    "output": {
+                        "scripts": "{$config.dist}/plugins/custom/tinymce/plugins"
+                    }
+                },
+                "ckeditor-classic": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-classic.bundle.js"
+                    }
+                },
+                "ckeditor-inline": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/@ckeditor/ckeditor5-build-inline/build/ckeditor.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-inline.bundle.js"
+                    }
+                },
+                "ckeditor-balloon": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/@ckeditor/ckeditor5-build-balloon/build/ckeditor.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-balloon.bundle.js"
+                    }
+                },
+                "ckeditor-balloon-block": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-balloon-block.bundle.js"
+                    }
+                },
+                "ckeditor-decoupled-document": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor.js"
+                        ]
+                    },
+                    "bundle": {
+                        "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-document.bundle.js"
                     }
                 }
             }

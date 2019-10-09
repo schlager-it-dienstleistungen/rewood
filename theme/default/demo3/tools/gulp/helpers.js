@@ -541,43 +541,6 @@ module.exports = {
                                 streams.push(stream);
                             }
                             break;
-                        case 'styles-by-demo':
-                            // custom scss with suffix demos
-                            module.exports.getDemos().forEach(function (demo) {
-                                // custom page scss
-                                stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.cssChannel(false, [
-                                    '../themes/themes/' + module.exports.config.theme + '/src/sass/theme/demos/' + demo + '/', //  development
-                                    '../src/assets/sass/theme/demos/' + demo + '/', // release default package
-                                    '../src/sass/theme/demos/' + demo + '/', // release angular package
-                                ])());// pipe(rename({ suffix: '.' + demo })).
-
-                                var output = _self.outputChannel(bundle.output[type], undefined, type)();
-                                if (output) {
-                                    stream.pipe(output);
-                                }
-                                streams.push(stream);
-
-                                // rtl styles for scss
-                                var shouldRtl = false;
-                                if (build.config.compile.rtl.enabled) {
-                                    bundle.src[type].forEach(function (output) {
-                                        if (output.indexOf('.scss') !== -1) {
-                                            return shouldRtl = true;
-                                        }
-                                    });
-                                    stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.cssChannel(shouldRtl, [
-                                        '../themes/themes/' + module.exports.config.theme + '/src/sass/theme/demos/' + demo + '/', //  development
-                                        '../src/assets/sass/theme/demos/' + demo + '/', // release default package
-                                        '../src/sass/theme/demos/' + demo + '/', // release angular package
-                                    ])()).pipe(rename({suffix: '.rtl'}));
-                                    var output = _self.outputChannel(bundle.output[type], undefined, type)();
-                                    if (output) {
-                                        stream.pipe(output);
-                                    }
-                                    streams.push(stream);
-                                }
-                            });
-                            break;
                         case 'scripts':
                             stream = gulp.src(bundle.src[type], {allowEmpty: true}).pipe(_self.jsChannel()());
                             var output = _self.outputChannel(bundle.output[type], undefined, type)();

@@ -2,7 +2,7 @@
 
 var KTFormControls = function () {
     // Private functions
-    
+
     var demo1 = function () {
         $( "#kt_form_1" ).validate({
             // define validation rules
@@ -10,10 +10,10 @@ var KTFormControls = function () {
                 email: {
                     required: true,
                     email: true,
-                    minlength: 10 
+                    minlength: 10
                 },
                 url: {
-                    required: true 
+                    required: true
                 },
                 digits: {
                     required: true,
@@ -21,11 +21,11 @@ var KTFormControls = function () {
                 },
                 creditcard: {
                     required: true,
-                    creditcard: true 
+                    creditcard: true
                 },
                 phone: {
                     required: true,
-                    phoneUS: true 
+                    phoneUS: true
                 },
                 option: {
                     required: true
@@ -53,9 +53,18 @@ var KTFormControls = function () {
                     required: true
                 }
             },
-            
-            //display error alert on form submit  
-            invalidHandler: function(event, validator) {     
+
+            errorPlacement: function(error, element) {
+                var group = element.closest('.input-group');
+                if (group.length) {
+                    group.after(error.addClass('invalid-feedback'));
+                } else {
+                    element.after(error.addClass('invalid-feedback'));
+                }
+            },
+
+            //display error alert on form submit
+            invalidHandler: function(event, validator) {
                 var alert = $('#kt_form_1_msg');
                 alert.removeClass('kt--hide').show();
                 KTUtil.scrollTop();
@@ -64,7 +73,7 @@ var KTFormControls = function () {
             submitHandler: function (form) {
                 //form[0].submit(); // submit the form
             }
-        });       
+        });
     }
 
     var demo2 = function () {
@@ -97,7 +106,7 @@ var KTFormControls = function () {
                     required: true
                 },
                 billing_address_2: {
-                    
+
                 },
                 billing_city: {
                     required: true
@@ -114,12 +123,12 @@ var KTFormControls = function () {
                     required: true
                 }
             },
-            
-            //display error alert on form submit  
+
+            //display error alert on form submit
             invalidHandler: function(event, validator) {
                 swal.fire({
-                    "title": "", 
-                    "text": "There are some errors in your submission. Please correct them.", 
+                    "title": "",
+                    "text": "There are some errors in your submission. Please correct them.",
                     "type": "error",
                     "confirmButtonClass": "btn btn-secondary",
                     "onClose": function(e) {
@@ -133,26 +142,26 @@ var KTFormControls = function () {
             submitHandler: function (form) {
                 //form[0].submit(); // submit the form
                 swal.fire({
-                    "title": "", 
-                    "text": "Form validation passed. All good!", 
+                    "title": "",
+                    "text": "Form validation passed. All good!",
                     "type": "success",
                     "confirmButtonClass": "btn btn-secondary"
                 });
 
                 return false;
             }
-        });       
+        });
     }
 
     return {
         // public functions
         init: function() {
-            demo1(); 
+            demo1();
             demo2();
         }
     };
 }();
 
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
     KTFormControls.init();
 });

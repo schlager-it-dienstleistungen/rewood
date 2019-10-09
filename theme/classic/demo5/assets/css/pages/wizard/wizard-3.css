@@ -12,7 +12,8 @@
       -webkit-box-align: end;
       -ms-flex-align: end;
       align-items: flex-end;
-      padding: 0 4rem; }
+      padding: 0 4rem;
+      cursor: pointer; }
       .kt-wizard-v3 .kt-wizard-v3__nav .kt-wizard-v3__nav-items .kt-wizard-v3__nav-item {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -27,8 +28,7 @@
         flex-wrap: wrap;
         -webkit-box-flex: 0;
         -ms-flex: 0 0 20%;
-        flex: 0 0 20%;
-        cursor: pointer; }
+        flex: 0 0 20%; }
         .kt-wizard-v3 .kt-wizard-v3__nav .kt-wizard-v3__nav-items .kt-wizard-v3__nav-item .kt-wizard-v3__nav-body {
           -webkit-box-flex: 1;
           -ms-flex: 1;
@@ -104,6 +104,8 @@
               -ms-flex: 0 0 100%;
               flex: 0 0 100%;
               padding: 0.5rem 2rem; } }
+    .kt-wizard-v3 .kt-wizard-v3__nav.kt-wizard-v3__nav-items--clickable .kt-wizard-v3__nav-item {
+      cursor: pointer; }
   .kt-wizard-v3 .kt-wizard-v3__wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -206,25 +208,3 @@
     display: none; }
   .kt-wizard-v3[data-ktwizard-state="last"] [data-ktwizard-type="action-submit"] {
     display: inline-block; }
-
-/* // Responsive mode(ref $kt-media-breakpoints in framework\_config.scss)
-// Above 1200px
-@include kt-media-above(xl) {
-	.kt-wizard-v3 {
-
-	}
-}
-
-// Above 1024px and below 1200px
-@include kt-media-range(lg, xl) {
-	.kt-wizard-v3 {
-
-	}
-}
-
-// Below 1024px
-@include kt-media-below(lg) {
-	.kt-wizard-v3 {
-
-	}
-} */

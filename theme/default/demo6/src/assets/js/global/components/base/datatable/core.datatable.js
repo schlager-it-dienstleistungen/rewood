@@ -2003,6 +2003,20 @@
 							}
 							break;
 
+						case 'html':
+							return $(data).sort(function(a, b) {
+								// get the text only from html
+								aField = $(a[field]).text();
+								bField = $(b[field]).text();
+								// sort
+								if (sort === 'asc') {
+									return aField > bField ? 1 : aField < bField ? -1 : 0;
+								} else {
+									return aField < bField ? 1 : aField > bField ? -1 : 0;
+								}
+							});
+							break;
+
 						case 'string':
 						default:
 							if (sort === 'asc') {

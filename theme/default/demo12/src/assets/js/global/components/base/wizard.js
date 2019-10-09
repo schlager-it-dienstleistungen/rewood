@@ -96,13 +96,13 @@ var KTWizard = function(elementId, options) {
             // First button event handler
             KTUtil.addEvent(the.btnFirst, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goTo(Plugin.getFirstStep(), true);
+                Plugin.goTo(1, true);
             });
 
             // Last button event handler
             KTUtil.addEvent(the.btnLast, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goTo(Plugin.getLastStep(), true);
+                Plugin.goTo(the.totalSteps, true);
             });
 
             if (the.options.clickableSteps === true) {
@@ -173,6 +173,9 @@ var KTWizard = function(elementId, options) {
                 } else {
                     Plugin.eventTrigger('afterPrev');
                 }
+            } else {
+                // this function called by method, stop for the next call
+                the.stopped = true;
             }
 
             return the;
@@ -356,14 +359,14 @@ var KTWizard = function(elementId, options) {
      * Go to the last step
      */
     the.goLast = function(eventHandle) {
-        return Plugin.goTo(Plugin.getLastStep(), eventHandle);
+        return Plugin.goTo(the.totalSteps, eventHandle);
     };
 
     /**
      * Go to the first step
      */
     the.goFirst = function(eventHandle) {
-        return Plugin.goTo(Plugin.getFirstStep(), eventHandle);
+        return Plugin.goTo(1, eventHandle);
     };
 
     /**

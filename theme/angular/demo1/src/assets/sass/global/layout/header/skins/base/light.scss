@@ -33,7 +33,7 @@ $kt-header-item-hover-bg: rgba(#4d5995, 0.06);
 				> .kt-menu__item {
 					> .kt-menu__link {
 						@include kt-rounded {
-							border-radius: $kt-border-radius !important;
+							border-radius: $kt-border-radius;
 						}
 
 						.kt-menu__link-text {

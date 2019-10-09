@@ -7881,6 +7881,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #ebedf2; } }
 
 .accordion .card {
+  overflow: visible !important;
   margin: 0; }
   .accordion .card .card-header {
     cursor: pointer;
@@ -8029,9 +8030,9 @@ a.text-dark:hover, a.text-dark:focus {
     .accordion.accordion-solid .card .card-header .card-title {
       font-size: 1.1rem;
       padding: 1.25rem;
-      background-color: #f7f8fa; }
+      background-color: #ebedf2; }
   .accordion.accordion-solid .card .card-body {
-    border: 1px solid #f7f8fa; }
+    border: 1px solid #ebedf2; }
 
 .accordion.accordion-toggle-arrow .card .card-header .card-title {
   color: #2c77f4;
@@ -8115,6 +8116,15 @@ a.text-dark:hover, a.text-dark:focus {
     .accordion.accordion-toggle-svg .card .card-header .card-title.collapsed .kt-svg-icon {
       -webkit-transform: rotate(0);
       transform: rotate(0); }
+
+.accordion.accordion-panel .card .card-header .card-title {
+  font-size: 1.1rem;
+  padding: 1.25rem;
+  background-color: #fff; }
+
+.accordion.accordion-panel .card .card-body {
+  padding-top: 0;
+  border: 0; }
 
 .alert {
   display: -webkit-box;
@@ -14745,6 +14755,48 @@ body.swal2-height-auto {
     .tagify__dropdown .tagify__dropdown__item.tagify__dropdown__item--active {
       background: #f7f8fa;
       color: #2c77f4; }
+
+.tox-target {
+  display: none; }
+
+.tox-tinymce {
+  border-radius: 0 !important;
+  height: 500px !important; }
+
+.ck-target {
+  display: none; }
+
+.ck-toolbar {
+  border-radius: 0 !important; }
+
+.ck-content {
+  min-height: 200px;
+  border-radius: 0 !important; }
+  .ck-content.ck-focused {
+    border-color: #2c77f4 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+
+.ck-editor .ck-toolbar {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important; }
+
+.ck-editor .ck-content {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important; }
+
+.ck-body .ck-balloon-panel .ck-content {
+  min-height: 200px;
+  border-color: transparent !important; }
+  .ck-body .ck-balloon-panel .ck-content.ck-focused {
+    border-color: #2c77f4 !important; }
+
+.ck-body .ck-balloon-panel.ck-toolbar-container, .ck-body .ck-balloon-panel .ck-toolbar {
+  border-radius: 0 !important; }
 
 .kt-container, .kt-container.kt-container--fluid {
   width: 100%;

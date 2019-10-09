@@ -33,8 +33,7 @@
       width: calc(25% - 0.25rem);
       background-color: #f7f8fb;
       border-top-right-radius: 0.5rem;
-      border-top-left-radius: 0.5rem;
-      cursor: pointer; }
+      border-top-left-radius: 0.5rem; }
       @media (max-width: 1399px) {
         .kt-wizard-v4 .kt-wizard-v4__nav .kt-wizard-v4__nav-items .kt-wizard-v4__nav-item {
           -webkit-box-flex: 0;
@@ -97,6 +96,8 @@
           background-color: #22b9ff; }
         .kt-wizard-v4 .kt-wizard-v4__nav .kt-wizard-v4__nav-items .kt-wizard-v4__nav-item[data-ktwizard-state="current"] .kt-wizard-v4__nav-body .kt-wizard-v4__nav-label .kt-wizard-v4__nav-label-title {
           color: #22b9ff; }
+    .kt-wizard-v4 .kt-wizard-v4__nav .kt-wizard-v4__nav-items.kt-wizard-v4__nav-items--clickable .kt-wizard-v4__nav-item {
+      cursor: pointer; }
     @media (max-width: 768px) {
       .kt-wizard-v4 .kt-wizard-v4__nav .kt-wizard-v4__nav-items {
         -webkit-box-orient: vertical;
@@ -219,25 +220,3 @@
     display: none; }
   .kt-wizard-v4[data-ktwizard-state="last"] [data-ktwizard-type="action-submit"] {
     display: inline-block; }
-
-/* // Responsive mode(ref $kt-media-breakpoints in framework\_config.scss)
-// Above 1200px
-@include kt-media-above(xl) {
-	.kt-wizard-v4 {
-
-	}
-}
-
-// Above 1024px and below 1200px
-@include kt-media-range(lg, xl) {
-	.kt-wizard-v4 {
-
-	}
-}
-
-// Below 1024px
-@include kt-media-below(lg) {
-	.kt-wizard-v4 {
-
-	}
-} */

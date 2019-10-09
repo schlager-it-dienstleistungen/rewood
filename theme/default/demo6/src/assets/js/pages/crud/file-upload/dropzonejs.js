@@ -88,7 +88,7 @@ var KTDropzoneDemo = function () {
 
         myDropzone4.on("sending", function(file) {
             // Show the total progress bar when upload starts
-            document.querySelector( id + " .progress-bar").style.opacity = "1";
+            $( id + " .progress-bar").css('opacity', '1');
             // And disable the start button
             file.previewElement.querySelector(id + " .dropzone-start").setAttribute("disabled", "disabled");
         });
@@ -152,12 +152,12 @@ var KTDropzoneDemo = function () {
 
          // Update the total progress bar
          myDropzone5.on("totaluploadprogress", function(progress) {
-             document.querySelector( id + " .progress-bar").style.width = progress + "%";
+             $( id + " .progress-bar").css('width', progress + "%");
          });
 
          myDropzone5.on("sending", function(file) {
              // Show the total progress bar when upload starts
-             document.querySelector( id + " .progress-bar").style.opacity = "1";
+             $( id + " .progress-bar").css('opacity', "1");
          });
 
          // Hide the total progress bar when nothing's uploading anymore

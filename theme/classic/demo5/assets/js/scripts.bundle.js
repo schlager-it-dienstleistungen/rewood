@@ -3546,9 +3546,9 @@ var KTUtil = function() {
 
             if (el = document.getElementById(query)) {
                 return el;
-            } else if (el = document.getElementsByTagName(query)) {
+            } else if (el = document.getElementsByTagName(query), el.length > 0) {
                 return el[0];
-            } else if (el = document.getElementsByClassName(query)) {
+            } else if (el = document.getElementsByClassName(query), el.length > 0) {
                 return el[0];
             } else {
                 return null;
@@ -4227,14 +4227,18 @@ var KTUtil = function() {
 
         addEvent: function(el, type, handler, one) {
             el = KTUtil.get(el);
-            if (typeof el !== 'undefined') {
+
+            if (typeof el !== 'undefined' && el !== null) {
                 el.addEventListener(type, handler);
             }
         },
 
         removeEvent: function(el, type, handler) {
             el = KTUtil.get(el);
-            el.removeEventListener(type, handler);
+
+            if (el !== null) {
+                el.removeEventListener(type, handler);
+            }
         },
 
         on: function(element, selector, event, handler) {
@@ -4596,7 +4600,7 @@ var KTUtil = function() {
         scrollUpdateAll: function(parent) {
             var scrollers = KTUtil.findAll(parent, '.ps');
             for (var i = 0, len = scrollers.length; i < len; i++) {
-                KTUtil.scrollerUpdate(scrollers[i]);
+                KTUtil.scrollUpdate(scrollers[i]);
             }
         },
 
@@ -4746,13 +4750,13 @@ var KTWizard = function(elementId, options) {
             // First button event handler
             KTUtil.addEvent(the.btnFirst, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goTo(Plugin.getFirstStep(), true);
+                Plugin.goTo(1, true);
             });
 
             // Last button event handler
             KTUtil.addEvent(the.btnLast, 'click', function(e) {
                 e.preventDefault();
-                Plugin.goTo(Plugin.getLastStep(), true);
+                Plugin.goTo(the.totalSteps, true);
             });
 
             if (the.options.clickableSteps === true) {
@@ -4823,6 +4827,9 @@ var KTWizard = function(elementId, options) {
                 } else {
                     Plugin.eventTrigger('afterPrev');
                 }
+            } else {
+                // this function called by method, stop for the next call
+                the.stopped = true;
             }
 
             return the;
@@ -5006,14 +5013,14 @@ var KTWizard = function(elementId, options) {
      * Go to the last step
      */
     the.goLast = function(eventHandle) {
-        return Plugin.goTo(Plugin.getLastStep(), eventHandle);
+        return Plugin.goTo(the.totalSteps, eventHandle);
     };
 
     /**
      * Go to the first step
      */
     the.goFirst = function(eventHandle) {
-        return Plugin.goTo(Plugin.getFirstStep(), eventHandle);
+        return Plugin.goTo(1, eventHandle);
     };
 
     /**
@@ -7086,6 +7093,20 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 							} else {
 								return aField < bField ? 1 : aField > bField ? -1 : 0;
 							}
+							break;
+
+						case 'html':
+							return $(data).sort(function(a, b) {
+								// get the text only from html
+								aField = $(a[field]).text();
+								bField = $(b[field]).text();
+								// sort
+								if (sort === 'asc') {
+									return aField > bField ? 1 : aField < bField ? -1 : 0;
+								} else {
+									return aField < bField ? 1 : aField > bField ? -1 : 0;
+								}
+							});
 							break;
 
 						case 'string':

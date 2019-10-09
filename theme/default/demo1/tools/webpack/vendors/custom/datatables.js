@@ -6,12 +6,8 @@
  * @output plugins/custom/datatables/datatables.bundle
  */
 
-// dependencies
-window.$ = window.jQuery = require("jquery");
-require("bootstrap/js/dist/tooltip");
-
 // datatables.net
-require("datatables.net");
+window.$.fn.DataTable = require("datatables.net");
 require("datatables.net-bs4");
 require("datatables.net-autofill");
 require("datatables.net-autofill-bs4");

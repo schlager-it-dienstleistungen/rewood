@@ -33,13 +33,12 @@ $kt-wizard-v1-form-inner-bg: #ffffff;
 			width: 70%;
 			margin: 0 auto;
 
-			.kt-wizard-v1__nav-item{
+			.kt-wizard-v1__nav-item {
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				flex-wrap: wrap;
 				flex: 1;
-				cursor: pointer;
 
 				&:after {
 					@include kt-flaticon2-icon(kt-get($kt-action-bold-icons, right));
@@ -96,6 +95,12 @@ $kt-wizard-v1-form-inner-bg: #ffffff;
 							color: $kt-wizard-v1-step-highlight;
 						}
 					}
+				}
+			}
+
+			&.kt-wizard-v1__nav-items--clickable {
+				.kt-wizard-v1__nav-item {
+					cursor: pointer;
 				}
 			}
 
