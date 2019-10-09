@@ -22,6 +22,12 @@ export class ProductStoreService {
 		if (searchInput.category) {
 			products = products.filter((product) => product.category.indexOf(searchInput.category) !== -1);
 		}
+		if (searchInput.price_from) {
+			products = products.filter((product) => product.price >= searchInput.price_from);
+		}
+		if (searchInput.price_to) {
+			products = products.filter((product) => product.price <= searchInput.price_to);
+		}
 
 		return products;
 	}
