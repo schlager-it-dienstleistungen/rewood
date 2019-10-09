@@ -33,7 +33,7 @@ export class ProductStoreService {
 		return [
 			{
 				id: '1',
-				title: 'Spanplatte',
+				title: 'Spanplatte zu kurz',
 				category: 'Spanplatte',
 				subcategory: '',
 				price: 10500,
@@ -42,28 +42,52 @@ export class ProductStoreService {
 			},
 			{
 				id: '2',
-				title: 'Pfosten',
-				category: 'Bauholz',
-				subcategory: 'Pfosten',
+				title: 'Spanplatte zu lang',
+				category: 'Spanplatte',
+				subcategory: '',
 				price: 1500.55,
 				description: '2,53 statt 2,50 Meter',
-				picture: 'https://www.hornbach.at/data/shop/D04/001/780/494/398/61/DV_8_4005034_01_4c_AT_20140605140033.jpg'
+				picture: 'https://media.bahag.com/assets/resp_product/10/75/1075985_22086959.jpg'
 			},
 			{
 				id: '3',
-				title: 'Laminiertes Brett',
-				category: 'Brett',
+				title: 'OSB falsch furniert',
+				category: 'OSB',
 				price: 25000,
 				description: 'mit Buche statt Eiche furniert',
-				picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTej6WQUzMwU3MfotKm2LrHc_bgMxkhHIhVpiTSO9YemGi8QVas'
+				picture: 'https://balkotrade.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/e/g/egger_osb-3_6_4.jpg'
 			},
 			{
 				id: '4',
-				title: 'Rigips',
-				category: 'kein Holz',
+				title: 'Sperrholz',
+				category: 'Sperrholz',
 				price: 9999.99,
-				description: 'Leider kein Holz',
-				picture: 'https://online.muehl24.de/pub/media/catalog/product/cache/c9e0b0ef589f3508e5ba515cde53c5ff/4/0/4002806407188..jpg'
+				description: 'Sperrholz mit leichter Dunkelfärbung',
+				picture: 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Spruce_plywood.JPG'
+			},
+			{
+				id: '5',
+				title: '',
+				category: 'Tischlerplatte',
+				price: 27500,
+				description: 'Tischlerplatte mit Ästen',
+				picture: 'https://feafashionloft.de/wp-content/uploads/2019/02/Tischlerplatte-1.jpg'
+			},
+			{
+				id: '6',
+				title: 'Birkensperrholz',
+				category: 'Sperrholz',
+				price: 10000,
+				description: 'mit Klöpfer',
+				picture: 'https://i.ebayimg.com/images/g/gs8AAOSwVaVZy~m2/s-l300.jpg'
+			},
+			{
+				id: '7',
+				title: '',
+				category: 'HDF',
+				price: 20000,
+				description: 'gemischte Laminierungen',
+				picture: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg'
 			}
 		];
 	}
