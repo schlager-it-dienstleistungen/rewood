@@ -18,6 +18,12 @@ export class PageConfig {
 					title: 'Produkte mit Suche',
 					desc: 'Aktuelle Produkte'
 				}
+			},
+			cardlayout: {
+				page: {
+					title: 'Cardlayout',
+					desc: 'Aktuelle Produkte'
+				}
 			}
 		},
 		'user-management': {

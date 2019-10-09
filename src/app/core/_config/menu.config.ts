@@ -16,6 +16,10 @@ export class MenuConfig {
 						{
 							title: 'Produkte mit Suche',
 							page: '/productswithsearch'
+						},
+						{
+							title: 'Cardlayout',
+							page: '/cardlayout'
 						}
 					]
 				}
