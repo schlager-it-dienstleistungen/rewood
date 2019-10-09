@@ -15,15 +15,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// Sort
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
-	// Filter fields
-	@ViewChild('filterInput', {static: true}) filterInput: ElementRef;
 
 	// Table Fields
 	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description'];
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
-
-	selectFilterGruppe = new FormControl('');
 
 	// Search
 	searchForm: FormGroup;
@@ -37,18 +33,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.initForm();
 		this.products = this.productService.getAllProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
-
-		this.selectFilterGruppe.valueChanges.subscribe(
-			filterGruppe => {
-				this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
-				this.dataSource.filter = filterGruppe;
-			}
-		);
-	}
-
-	filterGruppe(filterGruppe: string) {
-// 		this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
-// 		this.dataSource.filter = filterGruppe;
 	}
 
  /**
@@ -61,10 +45,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.dataSource.sort = this.sort;
 	}
 
-	applyFilter(filterValue: string) {
-		filterValue = filterValue.trim(); // Remove whitespace
-		filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-		this.dataSource.filter = filterValue;
+	filterProducts($event) {
+		this.dataSource.filter = '' + $event;
+	}
+
+	filterProductsWithCategory($event) {
+		const filterCategory = '' + $event;
+		this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
+		this.dataSource.filter = filterCategory;
 	}
 
 	private initForm() {

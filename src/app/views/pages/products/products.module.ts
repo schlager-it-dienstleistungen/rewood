@@ -6,10 +6,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { PortletModule } from '../../partials/content/general/portlet/portlet.module';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterProductsComponent } from './filter-products/filter-products.component';
 
 
 @NgModule({
-	declarations: [ProductListComponent],
+	declarations: [ProductListComponent, FilterProductsComponent],
 	imports: [
 		CommonModule,
 		PortletModule,
