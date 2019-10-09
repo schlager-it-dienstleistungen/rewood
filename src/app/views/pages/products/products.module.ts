@@ -8,10 +8,11 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
 import { SearchProductsComponent } from './search-products/search-products.component';
+import { ProductWithSearchComponent } from './product-with-search/product-with-search.component';
 
 
 @NgModule({
-	declarations: [ProductListComponent, FilterProductsComponent, SearchProductsComponent],
+	declarations: [ProductListComponent, FilterProductsComponent, SearchProductsComponent, ProductWithSearchComponent],
 	imports: [
 		CommonModule,
 		PortletModule,

@@ -7,8 +7,18 @@ export class MenuConfig {
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',
-					page: '/products',
-				},
+					toggle: 'click',
+					submenu: [
+						{
+							title: 'Produkte mit Filter',
+							page: '/productswithfilter'
+						},
+						{
+							title: 'Produkte mit Suche',
+							page: '/productswithsearch'
+						}
+					]
+				}
 			]
 		},
 	};

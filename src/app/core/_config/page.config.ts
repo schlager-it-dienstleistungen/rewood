@@ -7,10 +7,18 @@ export class PageConfig {
 			},
 		},
 		products: {
-			page: {
-				title: 'Produkte',
-				desc: 'Aktuelle Produkte'
+			products: {
+				page: {
+					title: 'Produkte mit Filter',
+					desc: 'Aktuelle Produkte'
+				}
 			},
+			productswithsearch: {
+				page: {
+					title: 'Produkte mit Suche',
+					desc: 'Aktuelle Produkte'
+				}
+			}
 		},
 		'user-management': {
 			users: {

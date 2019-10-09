@@ -1,14 +1,15 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Product } from '../shared/product';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ProductStoreService } from '../shared/product-store.service';
+import { SearchProducts } from '../shared/search-products';
 
 @Component({
-	selector: 'sw-product-list',
-	templateUrl: './product-list.component.html',
-	styleUrls: ['./product-list.component.scss']
+	selector: 'sw-product-with-search',
+	templateUrl: './product-with-search.component.html',
+	styleUrls: ['./product-with-search.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductWithSearchComponent implements OnInit, AfterViewInit {
 	// Paginator
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// Sort
@@ -37,16 +38,17 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.dataSource.sort = this.sort;
 	}
 
-	filterProducts($event) {
-		this.dataSource.filterPredicate = (
-			data: Product, filter: string) => (data.title.indexOf(filter) !== -1 && data.description.indexOf(filter) !== -1
-		);
-		this.dataSource.filter = '' + $event;
+	/**
+	 * Search Products
+	 */
+	searchProducts(searchInput: SearchProducts) {
+		this.products = this.productService.searchProducts(searchInput);
+		this.dataSource = new MatTableDataSource<Product>(this.products);
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
 	}
 
-	filterProductsWithCategory($event) {
-		const filterCategory = '' + $event;
-		this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
-		this.dataSource.filter = filterCategory;
+	resetProducts() {
+		this.dataSource.filter = '';
 	}
 }

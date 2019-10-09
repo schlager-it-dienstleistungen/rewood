@@ -18,7 +18,7 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		children: [
 			{
-				path: 'products',
+				path: '',
 				loadChildren: './views/pages/products/products.module#ProductsModule'
 			},
 			{

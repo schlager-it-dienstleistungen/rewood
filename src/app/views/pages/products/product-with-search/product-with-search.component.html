@@ -1,9 +1,27 @@
 <kt-portlet>
-	<kt-portlet-header title="Produkte mit Filter">
+	<kt-portlet-header title="Produkte mit Suche">
 	</kt-portlet-header>
 
-	<!-- Filter -->
-	<sw-filter-products (filterTextEvent)="filterProducts($event)" (filterCategoryEvent)="filterProductsWithCategory($event)"></sw-filter-products>
+	<!-- start:: SEARCH -->
+	<sw-search-products (searchProductsEvent)="searchProducts($event)" (resetProductsEvent)="resetProducts()"></sw-search-products>
+
+<!--	<kt-portlet-body>
+		<div class="kt-section">
+			<div class="kt-section__info">Gruppe:</div>
+			<div class="kt-section__content kt-section__content--solid--">
+				<div class="kt-searchbar">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">
+								<i class="flaticon-search"></i>
+							</span>
+						</div>
+						<input type="text" class="form-control" placeholder="Suche" aria-descibedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+		</div>
+	</kt-portlet-body> -->
 
 	<!-- MATERIAL TABLE -->
 	<kt-portlet-body>
