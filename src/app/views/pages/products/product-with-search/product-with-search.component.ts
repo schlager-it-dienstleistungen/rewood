@@ -9,14 +9,7 @@ import { SearchProducts } from '../shared/search-products';
 	templateUrl: './product-with-search.component.html',
 	styleUrls: ['./product-with-search.component.scss']
 })
-export class ProductWithSearchComponent implements OnInit, AfterViewInit {
-	// Paginator
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	// Sort
-	@ViewChild(MatSort, {static: true}) sort: MatSort;
-
-	// Table Fields
-	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description'];
+export class ProductWithSearchComponent implements OnInit {
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
 
@@ -29,23 +22,12 @@ export class ProductWithSearchComponent implements OnInit, AfterViewInit {
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 
- /**
-  * Set the paginator and sort after the view init since this component will
-  * be able to query its view for the initialized paginator and sort.
-  */
-	ngAfterViewInit() {
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
-	}
-
 	/**
 	 * Search Products
 	 */
 	searchProducts(searchInput: SearchProducts) {
 		this.products = this.productService.searchProducts(searchInput);
 		this.dataSource = new MatTableDataSource<Product>(this.products);
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
 	}
 
 	resetProducts() {

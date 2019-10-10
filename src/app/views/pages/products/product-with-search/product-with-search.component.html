@@ -5,66 +5,6 @@
 	<!-- start:: SEARCH -->
 	<sw-search-products (searchProductsEvent)="searchProducts($event)" (resetProductsEvent)="resetProducts()"></sw-search-products>
 
-<!--	<kt-portlet-body>
-		<div class="kt-section">
-			<div class="kt-section__info">Gruppe:</div>
-			<div class="kt-section__content kt-section__content--solid--">
-				<div class="kt-searchbar">
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">
-								<i class="flaticon-search"></i>
-							</span>
-						</div>
-						<input type="text" class="form-control" placeholder="Suche" aria-descibedby="basic-addon1">
-					</div>
-				</div>
-			</div>
-		</div>
-	</kt-portlet-body> -->
-
 	<!-- MATERIAL TABLE -->
-	<kt-portlet-body>
-		<mat-table #tableProducts [dataSource]="dataSource" matSort>
-			<ng-container matColumnDef="id">
-				<mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.id}} </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef="picture">
-				<mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-				<mat-cell *matCellDef="let product"> <img src="{{product.picture}}" height="80"> </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef=title>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Titel</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef=category>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Gruppe</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.category}} </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef=subcategory>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Untergruppe</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.subcategory}} </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef=price>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.price | currency}} </mat-cell>
-			</ng-container>
-
-			<ng-container matColumnDef=description>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Beschreibung</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
-			</ng-container>
-
-			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-			<mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
-		</mat-table>
-
-		<mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-	</kt-portlet-body>
+	<sw-product-table [dataSource]="dataSource" [products]="products"></sw-product-table>
 </kt-portlet>
