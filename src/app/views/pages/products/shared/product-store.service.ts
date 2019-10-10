@@ -114,9 +114,7 @@ export class ProductStoreService {
 			{
 				title: 'MDF',
 				description: 'Beschreibungstext',
-				img: 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjBn_SGsY_lAhUDYVAKHXn0C_' +
-					'wQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.totemtimber.co.uk%2Fproduct%2Fsheet-materials%2Fmdf%2Fmedium-density-' +
-					'fibreboard-mdf-3050x1220x25mm%2F&psig=AOvVaw02dCW7wGTFienXZjayM6ja&ust=1570717533728835'
+				img: 'https://images-na.ssl-images-amazon.com/images/I/51OJDffRtFL._SY355_.jpg'
 			},
 			{
 				title: 'HDF',

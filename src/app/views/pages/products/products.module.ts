@@ -11,7 +11,9 @@ import {
 	MatFormFieldModule,
 	MatInputModule,
 	MatSelectModule,
-	MatCardModule
+	MatCardModule,
+	MatGridListModule,
+	MatIconModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
@@ -19,12 +21,18 @@ import { SearchProductsComponent } from './search-products/search-products.compo
 import { ProductWithSearchComponent } from './product-with-search/product-with-search.component';
 import { CardLayoutComponent } from './card-layout/card-layout.component';
 import { PartialsModule } from '../../partials/partials.module';
-import { CardLayoutItemComponent } from './card-layout-item/card-layout-item.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-	declarations: [ProductListComponent, FilterProductsComponent, SearchProductsComponent, ProductWithSearchComponent, CardLayoutComponent, CardLayoutItemComponent],
+	declarations: [
+		ProductListComponent,
+		FilterProductsComponent,
+		SearchProductsComponent,
+		ProductWithSearchComponent,
+		CardLayoutComponent
+	],
 	imports: [
+		FlexLayoutModule,
 		CommonModule,
 		PortletModule,
 		MatTableModule,
@@ -34,6 +42,8 @@ import { CardLayoutItemComponent } from './card-layout-item/card-layout-item.com
 		MatInputModule,
 		MatSelectModule,
 		MatCardModule,
+		MatGridListModule,
+		MatIconModule,
 		ProductsRoutingModule,
 		ReactiveFormsModule,
 		PartialsModule

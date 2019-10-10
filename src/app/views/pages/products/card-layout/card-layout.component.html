@@ -1,1 +1,13 @@
-
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="132px" fxLayoutAlign="flex-start">
+	<ng-container *ngFor="let category of categories">
+		<mat-card fxFlex="0 1 calc(33.3% - 132px)" fxFlex.lt-md="0 1 calc(50% - 132px)" fxFlex.lt-sm="100%">
+			<mat-card-header>
+				<mat-card-title>{{ category.title }}</mat-card-title>
+			</mat-card-header>
+			<img mat-card-image class="img" src="{{ category.img }}" >
+			<mat-card-content>
+				<p>{{ category.description }}</p>
+			</mat-card-content>
+		</mat-card>
+	</ng-container>
+</div>
