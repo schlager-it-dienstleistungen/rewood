@@ -12,4 +12,5 @@ export interface Product {
 	storage_location?: Location;
 	speciality?: string;
 	picture?: string;
+	status: number;
 }

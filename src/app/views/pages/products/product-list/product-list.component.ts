@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 	// Table Fields
-	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description'];
+	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description', 'status'];
 	products: Product[];
 	dataSource: MatTableDataSource<Product>;
 
@@ -48,5 +48,24 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		const filterCategory = '' + $event;
 		this.dataSource.filterPredicate = (data: Product, filter: string) => data.category.indexOf(filter) !== -1;
 		this.dataSource.filter = filterCategory;
+	}
+
+	/* UI */
+	/**
+	 * Returns status string
+	 *
+	 * @param status: number
+	 */
+	getItemStatusString(status: number = 0): string {
+		return this.productService.getItemStatusString(status);
+	}
+
+	/**
+	 * Returns CSS Class by status
+	 *
+	 * @param status: number
+	 */
+	getItemCssClassByStatus(status: number = 0): string {
+		return this.productService.getItemCssClassByStatus(status);
 	}
 }

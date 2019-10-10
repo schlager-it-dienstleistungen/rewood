@@ -43,6 +43,13 @@
 				<mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
 			</ng-container>
 
+			<ng-container matColumnDef=status>
+				<mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+				<mat-cell *matCellDef="let product">
+					<span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(product.status) }} kt-badge--wide">{{ getItemStatusString(product.status) }}</span>
+				</mat-cell>
+			</ng-container>
+
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 			<mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
 		</mat-table>
