@@ -111,32 +111,38 @@ export class ProductStoreService {
 			{
 				title: 'Spanplatte',
 				description: 'Beschreibungstext',
-				img: 'https://media.bahag.com/assets/resp_product/10/75/1075985_22086959.jpg'
+				img: 'https://media.bahag.com/assets/resp_product/10/75/1075985_22086959.jpg',
+				numberofproducts: 5
 			},
 			{
 				title: 'OSB',
 				description: 'Beschreibungstext',
-				img: 'https://balkotrade.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/e/g/egger_osb-3_6_4.jpg'
+				img: 'https://balkotrade.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/e/g/egger_osb-3_6_4.jpg',
+				numberofproducts: 0
 			},
 			{
 				title: 'MDF',
 				description: 'Beschreibungstext',
-				img: 'https://images-na.ssl-images-amazon.com/images/I/51OJDffRtFL._SY355_.jpg'
+				img: 'https://images-na.ssl-images-amazon.com/images/I/51OJDffRtFL._SY355_.jpg',
+				numberofproducts: 3
 			},
 			{
 				title: 'HDF',
 				description: 'Beschreibungstext',
-				img: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg'
+				img: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg',
+				numberofproducts: 1
 			},
 			{
 				title: 'Sperrholz',
 				description: 'Beschreibungstext',
-				img: 'https://i.ebayimg.com/images/g/gs8AAOSwVaVZy~m2/s-l300.jpg'
+				img: 'https://i.ebayimg.com/images/g/gs8AAOSwVaVZy~m2/s-l300.jpg',
+				numberofproducts: 0
 			},
 			{
 				title: 'Tischlerplatte',
 				description: 'Beschreibungstext',
-				img: 'https://feafashionloft.de/wp-content/uploads/2019/02/Tischlerplatte-1.jpg'
+				img: 'https://feafashionloft.de/wp-content/uploads/2019/02/Tischlerplatte-1.jpg',
+				numberofproducts: 2
 			}
 		];
 	}
