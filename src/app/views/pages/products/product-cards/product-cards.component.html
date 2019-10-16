@@ -1,0 +1,26 @@
+<div fxFlex fxLayout="column" fxLayoutGap="10px" style="height: 100vh">
+  <div fxLayout="row wrap">
+    <!-- loop over the cardList and show the cards -->
+    <div
+      *ngFor="let category of categories"
+      fxFlex="25"
+      fxFlex.md="33"
+      fxFlex.sm="50"
+      fxFlex.xs="100"
+      fxLayout="column"
+      style="padding: 5px;"
+    >
+      <!-- cards here -->
+      <mat-card class="mat-elevation-z1">
+        <img mat-card-image src="{{ category.img }}" />
+        <mat-card-title> {{ category.title }} </mat-card-title>
+        <mat-card-content> {{ category.description }} </mat-card-content>
+        <mat-card-footer>
+          <button fxFlex mat-flat-button color="primary">
+            Do Something Button
+          </button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

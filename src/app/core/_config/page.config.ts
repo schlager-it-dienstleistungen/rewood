@@ -19,6 +19,12 @@ export class PageConfig {
 					desc: 'Aktuelle Produkte'
 				}
 			},
+			productcards: {
+				page: {
+					title: 'Produkte als Karten',
+					desc: 'Aktuelle Produkte'
+				}
+			},
 			cardlayout: {
 				page: {
 					title: 'Cardlayout',

@@ -23,6 +23,7 @@ import { CardLayoutComponent } from './card-layout/card-layout.component';
 import { PartialsModule } from '../../partials/partials.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { ProductCardsComponent } from './product-cards/product-cards.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,8 @@ import { ProductTableComponent } from './product-table/product-table.component';
 		SearchProductsComponent,
 		ProductWithSearchComponent,
 		CardLayoutComponent,
-		ProductTableComponent
+		ProductTableComponent,
+		ProductCardsComponent
 	],
 	imports: [
 		FlexLayoutModule,

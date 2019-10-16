@@ -18,6 +18,10 @@ export class MenuConfig {
 							page: '/productswithsearch'
 						},
 						{
+							title: 'Produkte als Karten',
+							page: '/productcards'
+						},
+						{
 							title: 'Cardlayout',
 							page: '/cardlayout'
 						}

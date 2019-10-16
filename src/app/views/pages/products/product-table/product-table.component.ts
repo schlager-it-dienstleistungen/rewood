@@ -18,7 +18,7 @@ export class ProductTableComponent implements OnInit, AfterViewInit {
 	@Input() dataSource: MatTableDataSource<Product>;
 
 	// Table Fields
-	displayedColumns = ['picture', 'title', 'category', 'subcategory', 'price', 'description', 'status'];
+	displayedColumns = ['picture', 'title', 'category', 'price', 'description', 'status'];
 
 	constructor(
 		private productService: ProductStoreService

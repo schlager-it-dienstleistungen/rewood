@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductWithSearchComponent } from './product-with-search/product-with-search.component';
 import { CardLayoutComponent } from './card-layout/card-layout.component';
+import { ProductCardsComponent } from './product-cards/product-cards.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
 			{
 				path: 'productswithsearch',
 				component: ProductWithSearchComponent
+			},
+			{
+				path: 'productcards',
+				component: ProductCardsComponent
 			},
 			{
 				path: 'cardlayout',
