@@ -33,9 +33,6 @@ var KTDualListbox = function () {
 			// get search option
 			var search = ($this.attr('data-search') != null) ? $this.attr('data-search') : "";
 
-            // clear duplicates
-            $this.empty();
-
             // init dual listbox
             var dualListBox = new DualListbox(id,{
                 addEvent: function(value) {

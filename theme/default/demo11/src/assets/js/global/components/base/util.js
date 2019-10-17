@@ -9,7 +9,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
  */
 if (!Element.prototype.matches) {
-	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
 /**
@@ -17,19 +17,19 @@ if (!Element.prototype.matches) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
  */
 if (!Element.prototype.closest) {
-	if (!Element.prototype.matches) {
-		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-	}
-	Element.prototype.closest = function (s) {
-		var el = this;
-		var ancestor = this;
-		if (!document.documentElement.contains(el)) return null;
-		do {
-			if (ancestor.matches(s)) return ancestor;
-			ancestor = ancestor.parentElement;
-		} while (ancestor !== null);
-		return null;
-	};
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    }
+    Element.prototype.closest = function (s) {
+        var el = this;
+        var ancestor = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (ancestor.matches(s)) return ancestor;
+            ancestor = ancestor.parentElement;
+        } while (ancestor !== null);
+        return null;
+    };
 }
 
 /**
@@ -39,12 +39,12 @@ if (!Element.prototype.closest) {
  * @license MIT
  */
 (function (elem) {
-	for (var i = 0; i < elem.length; i++) {
-		if (!window[elem[i]] || 'remove' in window[elem[i]].prototype) continue;
-		window[elem[i]].prototype.remove = function () {
-			this.parentNode.removeChild(this);
-		};
-	}
+    for (var i = 0; i < elem.length; i++) {
+        if (!window[elem[i]] || 'remove' in window[elem[i]].prototype) continue;
+        window[elem[i]].prototype.remove = function () {
+            this.parentNode.removeChild(this);
+        };
+    }
 })(['Element', 'CharacterData', 'DocumentType']);
 
 //
@@ -564,7 +564,7 @@ var KTUtil = function() {
         },
 
         removeClass: function(el, className) {
-          if (!el || typeof className === 'undefined') {
+            if (!el || typeof className === 'undefined') {
                 return;
             }
 
@@ -615,24 +615,24 @@ var KTUtil = function() {
                 // If this switch statement can't map an eventName to an eventClass,
                 // the event firing is going to fail.
                 switch (eventName) {
-                case "click": // Dispatching of 'click' appears to not work correctly in Safari. Use 'mousedown' or 'mouseup' instead.
-                case "mouseenter":
-                case "mouseleave":
-                case "mousedown":
-                case "mouseup":
-                    eventClass = "MouseEvents";
-                    break;
+                    case "click": // Dispatching of 'click' appears to not work correctly in Safari. Use 'mousedown' or 'mouseup' instead.
+                    case "mouseenter":
+                    case "mouseleave":
+                    case "mousedown":
+                    case "mouseup":
+                        eventClass = "MouseEvents";
+                        break;
 
-                case "focus":
-                case "change":
-                case "blur":
-                case "select":
-                    eventClass = "HTMLEvents";
-                    break;
+                    case "focus":
+                    case "change":
+                    case "blur":
+                    case "select":
+                        eventClass = "HTMLEvents";
+                        break;
 
-                default:
-                    throw "fireEvent: Couldn't find an event class for event '" + eventName + "'.";
-                    break;
+                    default:
+                        throw "fireEvent: Couldn't find an event class for event '" + eventName + "'.";
+                        break;
                 }
                 var event = doc.createEvent(eventClass);
 
@@ -772,7 +772,7 @@ var KTUtil = function() {
 
             return {
                 set: function(name, data) {
-                    if (element === undefined) {
+                    if (element == null || element === undefined) {
                         return;
                     }
 
@@ -793,7 +793,7 @@ var KTUtil = function() {
                         return;
                     }
 
-                    if (element.customDataTag === undefined) {
+                    if (element == null || element.customDataTag === undefined) {
                         return null;
                     }
 
@@ -805,7 +805,7 @@ var KTUtil = function() {
                         return false;
                     }
 
-                    if (element.customDataTag === undefined) {
+                    if (element == null || element.customDataTag === undefined) {
                         return false;
                     }
 

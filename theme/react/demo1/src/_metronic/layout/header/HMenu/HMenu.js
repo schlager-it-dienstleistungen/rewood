@@ -57,6 +57,9 @@ class HMenu extends React.Component {
       accordion: {
         slideSpeed: 200, // accordion toggle slide speed in milliseconds
         expandAll: false // allow having multiple expanded accordions in the menu
+      },
+      dropdown: {
+        timeout: 50
       }
     };
 

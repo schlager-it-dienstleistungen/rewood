@@ -13,9 +13,9 @@ class HeaderMobile extends React.Component {
   headerMobileAttributes = this.props.htmlClassService.attributes.aside_menu;
 
   componentDidMount() {
-    // eslint-disable-next-line
     new KTToggle(this.toggleButtonRef.current, this.props.toggleOptions);
   }
+
   render() {
     const { headerLogo, asideDisplay, headerMenuSelfDisplay } = this.props;
     return (

@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.1.0",
+    "version": "6.1.1",
     "config": {
         "demo": "",
         "debug": false,
@@ -371,17 +371,17 @@
                                 "{$config.path.node_modules}/jquery.repeater/src/repeater.js"
                             ]
                         },
+                        "dompurify": {
+                            "scripts": [
+                                "{$config.path.node_modules}/dompurify/dist/purify.js"
+                            ]
+                        },
                         "socicon": {
                             "styles": [
                                 "{$config.path.node_modules}/socicon/css/socicon.css"
                             ],
                             "fonts": [
                                 "{$config.path.node_modules}/socicon/font/**"
-                            ]
-                        },
-                        "dompurify": {
-                            "scripts": [
-                                "{$config.path.node_modules}/dompurify/dist/purify.js"
                             ]
                         },
                         "line-awesome": {
@@ -672,6 +672,20 @@
                     },
                     "bundle": {
                         "scripts": "{$config.dist}/plugins/custom/ckeditor/ckeditor-document.bundle.js"
+                    }
+                },
+                "jkanban": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.node_modules}/jkanban/dist/jkanban.min.css"
+                        ],
+                        "scripts": [
+                            "{$config.path.node_modules}/jkanban/dist/jkanban.min.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.dist}/plugins/custom/kanban/kanban.bundle.css",
+                        "scripts": "{$config.dist}/plugins/custom/kanban/kanban.bundle.js"
                     }
                 }
             }

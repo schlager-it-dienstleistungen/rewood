@@ -32,7 +32,7 @@ export default class MyCart extends React.Component {
                   "kt-svg-icon-brand": iconType === "brand"
                 })}
               >
-                <CartNum3Icon className="kt-svg-icon kt-svg-icon--primary kt-svg-icon--lg" />
+                <CartNum3Icon className="kt-svg-icon kt-svg-icon--primary" />
               </span>
             )}
           </span>

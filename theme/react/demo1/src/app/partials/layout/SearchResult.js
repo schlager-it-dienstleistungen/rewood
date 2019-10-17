@@ -26,8 +26,6 @@ export default class SearchResult extends React.Component {
           <React.Fragment key={index}>
             {item.type === 1 && (
               <div className="kt-quick-search__item">
-                {/* TODO: icons and avatars don't load from array */}
-
                 <div className={clsx({"kt-quick-search__item-img": item.iconImage, "kt-quick-search__item-icon": item.iconClassName})}>
                   {item.iconClassName ? (
                     <i className={item.iconClassName} />
@@ -41,7 +39,7 @@ export default class SearchResult extends React.Component {
                     {item.text}
                   </a>
                   <div className="kt-quick-search__item-desc">
-                    {item.text}
+                    {item.description}
                   </div>
                 </div>
               </div>

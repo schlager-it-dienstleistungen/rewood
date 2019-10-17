@@ -15,47 +15,59 @@ const perfectScrollbarOptions = {
 const fakeData = [
   {
     type: 0,
-    text: "Documents"
+    text: "Reports"
   },
   {
     type: 1,
-    text: "Annual finance report",
-    iconClassName: "flaticon-interface-3 kt-font-warning"
+    text: "AirPlus Requirements",
+    description: "by Grog John",
+    iconImage: toAbsoluteUrl("/media/files/doc.svg")
   },
   {
     type: 1,
-    text: "Company meeting schedule",
-    iconClassName: "flaticon-share kt-font-success"
+    text: "TechNav Documentation",
+    description: "by Mary Brown",
+    iconImage: toAbsoluteUrl("/media/files/pdf.svg")
   },
   {
     type: 1,
-    text: "Project quotations",
-    iconClassName: "flaticon-paper-plane kt-font-info"
+    text: "All Framework Docs",
+    description: "by Grog John",
+    iconImage: toAbsoluteUrl("/media/files/zip.svg")
   },
   {
-    icon: "",
+    type: 1,
+    text: "AirPlus Requirements",
+    description: "by Tim Hardy",
+    iconImage: toAbsoluteUrl("/media/files/xml.svg")
+  },
+  {
     text: "Customers",
     type: 0
   },
   {
     type: 1,
-    text: "Amanda Anderson",
-    iconImage: toAbsoluteUrl("/media/users/user1.jpg")
+    text: "Jimmy Curry",
+    description: "Software Developer",
+    iconImage: toAbsoluteUrl("/media/users/300_11.jpg")
   },
   {
     type: 1,
-    text: "Kennedy Lloyd",
-    iconImage: toAbsoluteUrl("/media/users/user2.jpg")
+    text: "Milena Gibson",
+    description: "UI Designer",
+    iconImage: toAbsoluteUrl("/media/users/300_16.jpg")
   },
   {
     type: 1,
-    text: "Megan Weldon",
-    iconImage: toAbsoluteUrl("/media/users/user3.jpg")
+    text: "Stefan JohnStefan",
+    description: "Marketing Manager",
+    iconImage: toAbsoluteUrl("/media/users/300_22.jpg")
   },
   {
     type: 1,
-    text: "Marc-André ter Stegen",
-    iconImage: toAbsoluteUrl("/media/users/user4.jpg")
+    text: "Anna Strong",
+    description: "Software Developer",
+    iconImage: toAbsoluteUrl("/media/users/300_5.jpg")
   },
   {
     type: 0,
@@ -63,18 +75,27 @@ const fakeData = [
   },
   {
     type: 1,
-    text: "Revenue report",
-    iconClassName: "flaticon-lifebuoy kt-font-warning"
+    text: "2 New items submitted",
+    description: "Marketing Manager",
+    iconClassName: "flaticon2-box kt-font-danger"
   },
   {
     type: 1,
-    text: "Anual finance report",
-    iconClassName: "flaticon-coins kt-font-primary"
+    text: "79 PSD files generated",
+    description: "by Grog John",
+    iconClassName: "flaticon-psd kt-font-brand"
   },
   {
     type: 1,
-    text: "Tax calculations",
-    iconClassName: "flaticon-calendar kt-font-danger"
+    text: "$2900 worth products sold",
+    description: "Total 234 items",
+    iconClassName: "flaticon2-supermarket kt-font-warning"
+  },
+  {
+    type: 1,
+    text: "4 New items submitted",
+    description: "Marketing Manager",
+    iconClassName: "flaticon-safe-shield-protection kt-font-info"
   }
 ];
 

@@ -57,7 +57,7 @@ export class UserRolesListComponent implements OnInit {
 
 				if (role) {
 					this.assignedRoles.push(role);
-					remove(this.unassignedRoles, role);
+					remove(this.unassignedRoles, (el) => el.id === role.id);
 				}
 			});
 		});
@@ -78,7 +78,7 @@ export class UserRolesListComponent implements OnInit {
 
 		if (role) {
 			this.assignedRoles.push(role);
-			remove(this.unassignedRoles, role);
+			remove(this.unassignedRoles, (el) => el.id === role.id);
 			this.roleIdForAdding = 0;
 			this.updateRoles();
 		}
@@ -92,7 +92,7 @@ export class UserRolesListComponent implements OnInit {
 	unassingRole(role: Role) {
 		this.roleIdForAdding = 0;
 		this.unassignedRoles.push(role);
-		remove(this.assignedRoles, role);
+		remove(this.assignedRoles, el => el.id === role.id);
 		this.updateRoles();
 	}
 

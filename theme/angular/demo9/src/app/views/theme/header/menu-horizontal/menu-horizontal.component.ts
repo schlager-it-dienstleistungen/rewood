@@ -47,6 +47,9 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 		accordion: {
 			slideSpeed: 200, // accordion toggle slide speed in milliseconds
 			expandAll: false // allow having multiple expanded accordions in the menu
+		},
+		dropdown: {
+			timeout: 50
 		}
 	};
 
@@ -110,25 +113,6 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
 				this.currentRouteUrl = this.router.url;
 				this.cdr.markForCheck();
 			});
-	}
-
-	/**
-	 * Use for fixed left aside menu, to show menu on mouseenter event.
-	 * @param e Event
-	 */
-	mouseEnter(e: Event) {
-		// check if the left aside menu is fixed
-		if (!document.body.classList.contains('kt-menu__item--hover')) {
-			this.render.addClass(document.body, 'kt-menu__item--hover');
-		}
-	}
-
-	/**
-	 * Mouse Leave event
-	 * @param event: MouseEvent
-	 */
-	mouseLeave(event: MouseEvent) {
-		this.render.removeClass(event.target, 'kt-menu__item--hover');
 	}
 
 	/**

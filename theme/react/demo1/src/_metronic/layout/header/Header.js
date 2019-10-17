@@ -9,7 +9,6 @@ import * as builder from "../../ducks/builder";
 
 class Header extends React.Component {
   headerCommonRef = React.createRef();
-  headerAttributes = this.props.htmlClassService.attributes.header;
 
   componentDidMount() {
     let options = {};
@@ -27,12 +26,13 @@ class Header extends React.Component {
 
   render() {
     const { htmlClassService, menuHeaderDisplay } = this.props;
+    const headerAttributes = htmlClassService.attributes.header;
     return (
       <div
         className={`kt-header kt-grid__item ${this.props.headerClasses}`}
         id="kt_header"
         ref={this.headerCommonRef}
-        {...this.headerAttributes}
+        {...headerAttributes}
       >
         <AnimateLoading />
         {/* <!-- begin: Header Menu --> */}

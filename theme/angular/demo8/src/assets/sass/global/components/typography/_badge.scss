@@ -115,9 +115,9 @@
 
 	// Inline mode
 	&.kt-badge--inline {
-		height: 0;
+		height: auto;
 		width: auto;
-		padding: 0.75rem 0.75rem;
+		padding: 0.15rem 0.75rem;
 
 		// Sizing
 		&.kt-badge--md {
