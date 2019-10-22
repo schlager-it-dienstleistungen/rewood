@@ -67,8 +67,8 @@ class ToggleButtonGroupControlled extends React.Component {
     return (
       <ToggleButtonGroup
         type="checkbox"
-        value={this.state.value}
         onChange={this.handleChange}
+        defaultValue={this.state.value}
         name="toggleButtonGroup"
       >
         <ToggleButton value={1}>Option 1</ToggleButton>
@@ -79,7 +79,7 @@ class ToggleButtonGroupControlled extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ButtonsExamplesPage extends React.Component {
   render() {
     return (
       <>
@@ -203,7 +203,7 @@ export default class AccordionExamplesPage extends React.Component {
                   ARIA roles for you.
                 </span>
                 <div className="kt-separator kt-separator--dashed" />
-                <ButtonToolbar>
+                <ButtonToolbar className="pb-2">
                   <span className="pr-1">
                     <Button href="#">Link</Button>
                   </span>
@@ -213,6 +213,8 @@ export default class AccordionExamplesPage extends React.Component {
                   <span className="pr-1">
                     <Button as="input" type="button" value="Input" />
                   </span>
+                </ButtonToolbar>
+                <ButtonToolbar>
                   <span className="pr-1">
                     <Button as="input" type="submit" value="Submit" />
                   </span>

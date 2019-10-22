@@ -12,7 +12,7 @@ import {
   CardColumns
 } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class CardsExamplesPage extends React.Component {
   render() {
     return (
       <>

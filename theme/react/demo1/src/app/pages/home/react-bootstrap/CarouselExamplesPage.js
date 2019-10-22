@@ -73,7 +73,7 @@ class ControlledCarousel extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class CarouselExamplesPage extends React.Component {
   render() {
     return (
       <>

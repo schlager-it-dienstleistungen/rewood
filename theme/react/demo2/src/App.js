@@ -8,7 +8,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-import { Routes } from "./app/Routes";
+import { LastLocationProvider } from "react-router-last-location";
+import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 
 export default function App({ store, Layout, persistor, basename }) {
@@ -21,14 +22,17 @@ export default function App({ store, Layout, persistor, basename }) {
           <React.Suspense fallback={<LayoutSplashScreen />}>
             {/* Override `basename` (e.g: `homepage` in `package.json`) */}
             <BrowserRouter basename={basename}>
-              {/* Provide Metronic theme overrides. */}
-              <ThemeProvider>
-                {/* Provide `react-intl` context synchronized with Redux state.  */}
-                <I18nProvider>
-                  {/* Render routes with provided `Layout`. */}
-                  <Routes Layout={Layout} />
-                </I18nProvider>
-              </ThemeProvider>
+                {/*This library only returns the location that has been active before the recent location change in the current window lifetime.*/}
+                <LastLocationProvider>
+                  {/* Provide Metronic theme overrides. */}
+                  <ThemeProvider>
+                    {/* Provide `react-intl` context synchronized with Redux state.  */}
+                    <I18nProvider>
+                      {/* Render routes with provided `Layout`. */}
+                      <Routes Layout={Layout} />
+                    </I18nProvider>
+                  </ThemeProvider>
+                </LastLocationProvider>
             </BrowserRouter>
           </React.Suspense>
         </PersistGate>

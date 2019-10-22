@@ -39,7 +39,7 @@ class Example extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class TooltipsExamplesPage extends React.Component {
   render() {
     return (
       <>

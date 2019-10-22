@@ -12,7 +12,7 @@ import {
   Container
 } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class NavbarExamplesPage extends React.Component {
   render() {
     return (
       <>

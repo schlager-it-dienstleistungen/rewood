@@ -78,7 +78,7 @@ class CustomMenu extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class DropdownsExamplesPage extends React.Component {
   render() {
     return (
       <>

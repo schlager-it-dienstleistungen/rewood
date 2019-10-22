@@ -107,7 +107,7 @@ var KTWizard = function(elementId, options) {
 
             if (the.options.clickableSteps === true) {
                 KTUtil.on(element, '[data-ktwizard-type="step"]', 'click', function() {
-                    var index = KTUtil.index(this) + 1;
+                    var index = Array.prototype.indexOf.call(the.steps, this) + 1;
                     if (index !== the.currentStep) {
                         Plugin.goTo(index, true);
                     }

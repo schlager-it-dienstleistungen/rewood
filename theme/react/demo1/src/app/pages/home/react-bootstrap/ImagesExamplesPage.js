@@ -3,7 +3,7 @@ import Notice from "../../../partials/content/Notice";
 import CodeExample from "../../../partials/content/CodeExample";
 import { Image, Container, Row, Col } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ImagesExamplesPage extends React.Component {
   render() {
     return (
       <>

@@ -9,7 +9,7 @@ import {
   Dropdown
 } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class InputGroupExamplesPage extends React.Component {
   render() {
     return (
       <>

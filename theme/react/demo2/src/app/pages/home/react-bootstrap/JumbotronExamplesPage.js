@@ -3,7 +3,7 @@ import Notice from "../../../partials/content/Notice";
 import CodeExample from "../../../partials/content/CodeExample";
 import { Jumbotron, Container, Button } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class JumbotronExamplesPage extends React.Component {
   render() {
     return (
       <>

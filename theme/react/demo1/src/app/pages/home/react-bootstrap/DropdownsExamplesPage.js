@@ -78,7 +78,7 @@ class CustomMenu extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class DropdownsExamplesPage extends React.Component {
   render() {
     return (
       <>
@@ -114,7 +114,7 @@ export default class AccordionExamplesPage extends React.Component {
                   <code>&lt;DropdownToggle&gt;</code> will render a Button
                   component and accepts all the same props.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Dropdown Button
@@ -143,7 +143,7 @@ export default class AccordionExamplesPage extends React.Component {
                   Similarly, You create a split dropdown by combining the
                   Dropdown components with another Button and a ButtonGroup.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <Dropdown as={ButtonGroup}>
                   <Button variant="success">Split Button</Button>
 
@@ -175,51 +175,56 @@ export default class AccordionExamplesPage extends React.Component {
                 <span className="kt-section__sub">
                   Dropdowns work with buttons of all sizes.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <>
                   <ButtonToolbar>
                     {[DropdownButton, SplitButton].map((DropdownType, idx) => (
-                      <DropdownType
-                        size="lg"
-                        title="Drop small"
-                        id={`dropdown-button-drop-${idx}`}
-                        key={idx}
-                      >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey="3">
-                          Something else here
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">
-                          Separated link
-                        </Dropdown.Item>
-                      </DropdownType>
+                      <div key={idx} className="pr-1">
+                        <DropdownType
+                          size="lg"
+                          title="Drop small"
+                          id={`dropdown-button-drop-${idx}`}
+                          key={idx}
+                        >
+                          <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                          <Dropdown.Item eventKey="2">
+                            Another action
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="3">
+                            Something else here
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="4">
+                            Separated link
+                          </Dropdown.Item>
+                        </DropdownType>
+                      </div>
                     ))}
                   </ButtonToolbar>
+                  <br />
                   <ButtonToolbar>
                     {[DropdownButton, SplitButton].map((DropdownType, idx) => (
-                      <DropdownType
-                        size="sm"
-                        variant="secondary"
-                        title="Drop small"
-                        id={`dropdown-button-drop-${idx}`}
-                        key={idx}
-                      >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey="3">
-                          Something else here
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">
-                          Separated link
-                        </Dropdown.Item>
-                      </DropdownType>
+                      <div key={idx} className="pr-1">
+                        <DropdownType
+                          size="sm"
+                          variant="secondary"
+                          title="Drop small"
+                          id={`dropdown-button-drop-${idx}`}
+                          key={idx}
+                        >
+                          <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                          <Dropdown.Item eventKey="2">
+                            Another action
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="3">
+                            Something else here
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="4">
+                            Separated link
+                          </Dropdown.Item>
+                        </DropdownType>
+                      </div>
                     ))}
                   </ButtonToolbar>
                 </>
@@ -233,53 +238,57 @@ export default class AccordionExamplesPage extends React.Component {
                   Trigger dropdown menus above, below, left, or to the right of
                   their toggle elements, with the <code>drop</code> prop.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <>
                   <ButtonToolbar>
                     {["up", "down", "left", "right"].map(direction => (
-                      <DropdownButton
-                        drop={direction}
-                        variant="secondary"
-                        title={` Drop ${direction} `}
-                        id={`dropdown-button-drop-${direction}`}
-                        key={direction}
-                      >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey="3">
-                          Something else here
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">
-                          Separated link
-                        </Dropdown.Item>
-                      </DropdownButton>
+                      <div className="pr-1 pb-1" key={direction}>
+                        <DropdownButton
+                          drop={direction}
+                          variant="secondary"
+                          title={` Drop ${direction} `}
+                          id={`dropdown-button-drop-${direction}`}
+                          key={direction}
+                        >
+                          <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                          <Dropdown.Item eventKey="2">
+                            Another action
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="3">
+                            Something else here
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="4">
+                            Separated link
+                          </Dropdown.Item>
+                        </DropdownButton>
+                      </div>
                     ))}
                   </ButtonToolbar>
 
                   <ButtonToolbar>
                     {["up", "down", "left", "right"].map(direction => (
-                      <SplitButton
-                        drop={direction}
-                        variant="secondary"
-                        title={`Drop ${direction}`}
-                        id={`dropdown-button-drop-${direction}`}
-                        key={direction}
-                      >
-                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey="3">
-                          Something else here
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">
-                          Separated link
-                        </Dropdown.Item>
-                      </SplitButton>
+                      <div className="pr-1" key={direction}>
+                        <SplitButton
+                          drop={direction}
+                          variant="secondary"
+                          title={`Drop ${direction}`}
+                          id={`dropdown-button-drop-${direction}`}
+                          key={direction}
+                        >
+                          <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                          <Dropdown.Item eventKey="2">
+                            Another action
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="3">
+                            Something else here
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="4">
+                            Separated link
+                          </Dropdown.Item>
+                        </SplitButton>
+                      </div>
                     ))}
                   </ButtonToolbar>
                 </>
@@ -298,7 +307,7 @@ export default class AccordionExamplesPage extends React.Component {
                   <code>&lt;button&gt;</code> elements in your dropdowns instead
                   of just <code>&lt;a&gt;</code>s.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <DropdownButton
                   id="dropdown-item-button"
                   title="Dropdown button"
@@ -317,7 +326,7 @@ export default class AccordionExamplesPage extends React.Component {
                   By default, a dropdown menu is aligned to the left, but you
                   can switch it by passing the <code>alignRight</code> prop.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <DropdownButton
                   alignRight
                   title="Dropdown right"
@@ -346,40 +355,51 @@ export default class AccordionExamplesPage extends React.Component {
                   using the more basic <code>&lt;Dropdown&gt;</code> Component
                   to explicitly specify the Toggle and Menu components
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <ButtonToolbar>
-                  <Dropdown>
-                    <Dropdown.Toggle id="dropdown-custom-1">
-                      Pow! Zoom!
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className="super-colors">
-                      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                      <Dropdown.Item eventKey="3" active>
-                        Active Item
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-
-                  <Dropdown as={ButtonGroup}>
-                    <Button variant="info">mix it up style-wise</Button>
-                    <Dropdown.Toggle
-                      split
-                      variant="success"
-                      id="dropdown-custom-2"
-                    />
-                    <Dropdown.Menu className="super-colors">
-                      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                      <Dropdown.Item eventKey="3" active>
-                        Active Item
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <div className="pr-1">
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-custom-1">
+                        Pow! Zoom!
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="super-colors">
+                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="3" active>
+                          Active Item
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item eventKey="4">
+                          Separated link
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                  <div className="pr-1">
+                    <Dropdown as={ButtonGroup}>
+                      <Button variant="info">mix it up style-wise</Button>
+                      <Dropdown.Toggle
+                        split
+                        variant="success"
+                        id="dropdown-custom-2"
+                      />
+                      <Dropdown.Menu className="super-colors">
+                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="3" active>
+                          Active Item
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item eventKey="4">
+                          Separated link
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
                 </ButtonToolbar>
               </div>
             </CodeExample>
@@ -397,7 +417,7 @@ export default class AccordionExamplesPage extends React.Component {
                   can control how each component behaves. Custom toggle and menu
                   components must be able to accept refs.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className="kt-separator kt-separator--dashed" />
                 <Dropdown>
                   <Dropdown.Toggle
                     as={CustomToggle}

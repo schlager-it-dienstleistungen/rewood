@@ -1721,6 +1721,8 @@ var KTDashboard = function() {
                 field: "ShipDate",
                 title: "Date",
                 width: 100,
+                type: "date",
+                format: 'MM/DD/YYYY',
                 template: function(data) {
                     return '<span class="kt-font-bold">' + data.ShipDate + '</span>';
                 }

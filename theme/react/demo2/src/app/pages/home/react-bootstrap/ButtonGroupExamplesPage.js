@@ -11,7 +11,7 @@ import {
   DropdownButton
 } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ButtonGroupExamplesPage extends React.Component {
   render() {
     return (
       <>

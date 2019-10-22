@@ -103,7 +103,7 @@ class Example1 extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ToastsExamplesPage extends React.Component {
   render() {
     return (
       <>

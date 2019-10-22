@@ -25,7 +25,7 @@ const paginationBasic = (
   </div>
 );
 
-export default class AccordionExamplesPage extends React.Component {
+export default class PaginationExamplesPage extends React.Component {
   render() {
     return (
       <>

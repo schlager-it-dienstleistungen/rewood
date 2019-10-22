@@ -2,6 +2,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { put, takeLatest } from "redux-saga/effects";
 import { getUserByToken } from "../../crud/auth.crud";
+import * as routerHelpers from "../../router/RouterHelpers";
 
 export const actionTypes = {
   Login: "[Login] Action",
@@ -17,7 +18,7 @@ const initialAuthState = {
 };
 
 export const reducer = persistReducer(
-  { storage, key: "auth", whitelist: ["user", "authToken"] },
+  { storage, key: "demo2-auth", whitelist: ["user", "authToken"] },
   (state = initialAuthState, action) => {
     switch (action.type) {
       case actionTypes.Login: {
@@ -32,8 +33,10 @@ export const reducer = persistReducer(
         return { authToken, user: undefined };
       }
 
-      case actionTypes.Logout:
+      case actionTypes.Logout: {
+        routerHelpers.forgotLastLocation();
         return initialAuthState;
+      }
 
       case actionTypes.UserLoaded: {
         const { user } = action.payload;

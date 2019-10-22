@@ -3,7 +3,7 @@ import Notice from "../../../partials/content/Notice";
 import CodeExample from "../../../partials/content/CodeExample";
 import { Breadcrumb } from "react-bootstrap";
 
-export default class AccordionExamplesPage extends React.Component {
+export default class BreadcrumbExamplesPage extends React.Component {
   render() {
     return (
       <>

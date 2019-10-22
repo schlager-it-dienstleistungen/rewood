@@ -248,7 +248,9 @@ const mainConfig = function () {
                                         if (file) {
                                             const outputPath = assetDistPath + "/" + pathWithoutFile(output) + "/images/";
                                             // create dir
-                                            fs.mkdirSync(outputPath, {recursive: true});
+                                            if (!fs.existsSync(outputPath)) {
+                                                fs.mkdirSync(outputPath, {recursive: true});
+                                            }
                                             // copy image
                                             fs.copyFileSync(fs.realpathSync(srcPath + "/" + file), outputPath + path.basename(file));
                                         }

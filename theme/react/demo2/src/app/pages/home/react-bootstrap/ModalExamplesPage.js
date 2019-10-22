@@ -287,7 +287,7 @@ class Example2 extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ModalExamplesPage extends React.Component {
   render() {
     return (
       <>

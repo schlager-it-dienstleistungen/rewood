@@ -169,7 +169,7 @@ class Example5 extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class OverlaysExamplesPage extends React.Component {
   render() {
     return (
       <>

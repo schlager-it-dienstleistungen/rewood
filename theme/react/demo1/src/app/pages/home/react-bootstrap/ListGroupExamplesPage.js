@@ -7,7 +7,7 @@ function alertClicked() {
   alert("You clicked the third ListGroupItem");
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ListGroupExamplesPage extends React.Component {
   render() {
     return (
       <>

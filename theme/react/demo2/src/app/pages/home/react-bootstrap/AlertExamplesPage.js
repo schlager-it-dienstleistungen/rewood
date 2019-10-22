@@ -62,7 +62,7 @@ class AlertDismissibleExample extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class AlertExamplesPage extends React.Component {
   render() {
     return (
       <>

@@ -13,7 +13,7 @@ var KTDatatableRemoteAjaxDemo = function() {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'http://127.0.0.1/keenthemes/tools/preview/api/datatables/demos/default.php',
+						url: 'https://keenthemes.com/metronic/tools/preview/api/datatables/demos/default.php',
 						// sample custom headers
 						// headers: {'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
 						map: function(raw) {

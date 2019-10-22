@@ -243,7 +243,7 @@ class FormExample extends React.Component {
 //   );
 // }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class FormsExamplesPage extends React.Component {
   render() {
     return (
       <>

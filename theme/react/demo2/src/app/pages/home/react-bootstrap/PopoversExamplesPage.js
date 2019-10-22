@@ -20,7 +20,7 @@ const Example = () => (
   </OverlayTrigger>
 );
 
-export default class AccordionExamplesPage extends React.Component {
+export default class PopoversExamplesPage extends React.Component {
   render() {
     return (
       <>

@@ -7,7 +7,7 @@ const now = 60;
 const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 const progressInstance1 = <ProgressBar now={now} label={`${now}%`} srOnly />;
 
-export default class AccordionExamplesPage extends React.Component {
+export default class ProgressExamplesPage extends React.Component {
   render() {
     return (
       <>

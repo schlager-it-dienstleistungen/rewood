@@ -42,7 +42,7 @@ class ControlledTabs extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class TabsExamplesPage extends React.Component {
   render() {
     return (
       <>

@@ -79,14 +79,14 @@ require("../../../src/assets/js/global/integration/plugins/bootstrap-datepicker.
 require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.css");
 require("bootstrap-datetime-picker");
 
+// select2
+require("select2/dist/css/select2.css");
+require("select2");
+
 // bootstrap-timepicker
 require("bootstrap-timepicker/css/bootstrap-timepicker.css");
 require("bootstrap-timepicker");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-timepicker.init");
-
-// select2
-require("select2/dist/css/select2.css");
-require("select2");
 
 // Tagify
 require("@yaireo/tagify/dist/tagify.css");
@@ -129,6 +129,7 @@ require("ion-rangeslider");
 require("jquery.repeater");
 
 // nouislider
+require("nouislider/distribute/nouislider.css");
 window.noUiSlider = require("nouislider");
 
 // wnumb
@@ -153,6 +154,9 @@ require("bootstrap-touchspin");
 require("bootstrap-markdown/css/bootstrap-markdown.min.css");
 require("bootstrap-markdown/js/bootstrap-markdown");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-markdown.init");
+
+// animate.css
+require("animate.css/animate.css");
 
 // dual-listbox
 import DualListbox from "dual-listbox";

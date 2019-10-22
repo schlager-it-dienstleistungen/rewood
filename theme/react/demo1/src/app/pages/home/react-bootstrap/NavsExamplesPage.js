@@ -40,7 +40,7 @@ class NavDropdownExample extends React.Component {
   }
 }
 
-export default class AccordionExamplesPage extends React.Component {
+export default class NavsExamplesPage extends React.Component {
   render() {
     return (
       <>
