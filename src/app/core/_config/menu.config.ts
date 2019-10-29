@@ -22,7 +22,7 @@ export class MenuConfig {
 							page: '/productcards'
 						},
 						{
-							title: 'Cardlayout',
+							title: 'Kategorien als Karten',
 							page: '/cardlayout'
 						}
 					]

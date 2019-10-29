@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/category';
 import { ProductStoreService } from '../shared/product-store.service';
+import { Product } from '../shared/product';
+import { FormControl } from '@angular/forms';
+import { SearchProducts } from '../shared/search-products';
 
 @Component({
 	selector: 'sw-product-cards',
@@ -9,6 +12,10 @@ import { ProductStoreService } from '../shared/product-store.service';
 })
 export class ProductCardsComponent implements OnInit {
 	categories: Category[];
+	products: Product[];
+
+	// Filter Category
+	filterCategoryControl = new FormControl('');
 
 	constructor(
 		private productService: ProductStoreService
@@ -16,5 +23,15 @@ export class ProductCardsComponent implements OnInit {
 
 	ngOnInit() {
 		this.categories = this.productService.getCategories();
+		this.products = this.productService.getAllProducts();
+
+		this.filterCategoryControl.valueChanges.subscribe(filterCategory => this.filterCategory(filterCategory));
+	}
+
+	filterCategory(filterCategory: any) {
+		const searchInput: SearchProducts = {
+			category: filterCategory
+		};
+		this.products = this.productService.searchProducts(searchInput);
 	}
 }

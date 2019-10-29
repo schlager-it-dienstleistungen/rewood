@@ -27,8 +27,8 @@ export class PageConfig {
 			},
 			cardlayout: {
 				page: {
-					title: 'Cardlayout',
-					desc: 'Aktuelle Produkte'
+					title: 'Kategorien',
+					desc: ''
 				}
 			}
 		},
