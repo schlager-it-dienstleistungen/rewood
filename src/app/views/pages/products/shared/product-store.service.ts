@@ -69,7 +69,7 @@ export class ProductStoreService {
 			},
 			{
 				id: '4',
-				title: 'Sperrholz',
+				title: 'dunkles Sperrholz',
 				category: 'Sperrholz',
 				price: 9999.99,
 				description: 'Sperrholz mit leichter Dunkelfärbung',
@@ -78,7 +78,7 @@ export class ProductStoreService {
 			},
 			{
 				id: '5',
-				title: '',
+				title: 'Tischlerplatte geästet',
 				category: 'Tischlerplatte',
 				price: 27500,
 				description: 'Tischlerplatte mit Ästen',
@@ -96,7 +96,7 @@ export class ProductStoreService {
 			},
 			{
 				id: '7',
-				title: '',
+				title: 'HDF gemischt',
 				category: 'HDF',
 				price: 20000,
 				description: 'gemischte Laminierungen',

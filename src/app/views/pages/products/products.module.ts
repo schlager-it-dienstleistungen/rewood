@@ -13,7 +13,8 @@ import {
 	MatSelectModule,
 	MatCardModule,
 	MatGridListModule,
-	MatIconModule
+	MatIconModule,
+	MatButtonModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
@@ -48,6 +49,7 @@ import { ProductCardsComponent } from './product-cards/product-cards.component';
 		MatCardModule,
 		MatGridListModule,
 		MatIconModule,
+		MatButtonModule,
 		ProductsRoutingModule,
 		ReactiveFormsModule,
 		PartialsModule
