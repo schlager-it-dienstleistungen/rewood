@@ -14,23 +14,34 @@ export class ProductStoreService {
 		return this.getProducts();
 	}
 
+	/**
+	 * TODO Replace with Dataservice
+	 */
 	searchProducts(searchInput: SearchProducts): Product[] {
 		let products: Product [] = this.getProducts();
 
 		if (searchInput.title) {
-			products = products.filter((product) => product.title.indexOf(searchInput.title) !== -1);
+			products = products.filter(product => product.title.indexOf(searchInput.title) !== -1);
 		}
 		if (searchInput.category) {
-			products = products.filter((product) => product.category.indexOf(searchInput.category) !== -1);
+			products = products.filter(product => product.category.indexOf(searchInput.category) !== -1);
 		}
 		if (searchInput.price_from) {
-			products = products.filter((product) => product.price >= searchInput.price_from);
+			products = products.filter(product => product.price >= searchInput.price_from);
 		}
 		if (searchInput.price_to) {
-			products = products.filter((product) => product.price <= searchInput.price_to);
+			products = products.filter(product => product.price <= searchInput.price_to);
 		}
 
 		return products;
+	}
+
+	/**
+	 * TODO Replace with Dataservice
+	 */
+	getProduct(id: string): Product {
+		const products: Product [] = this.getProducts();
+		return products.find(product => product.id === id);
 	}
 
 	/**

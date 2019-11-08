@@ -34,4 +34,23 @@ export class ProductCardsComponent implements OnInit {
 		};
 		this.products = this.productService.searchProducts(searchInput);
 	}
+
+	/* UI */
+	/**
+	 * Returns status string
+	 *
+	 * @param status: number
+	 */
+	getItemStatusString(status: number = 0): string {
+		return this.productService.getItemStatusString(status);
+	}
+
+	/**
+	 * Returns CSS Class by status
+	 *
+	 * @param status: number
+	 */
+	getItemCssClassByStatus(status: number = 0): string {
+		return this.productService.getItemCssClassByStatus(status);
+	}
 }

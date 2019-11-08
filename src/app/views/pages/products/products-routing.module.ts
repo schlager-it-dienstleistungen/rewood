@@ -4,6 +4,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductWithSearchComponent } from './product-with-search/product-with-search.component';
 import { CardLayoutComponent } from './card-layout/card-layout.component';
 import { ProductCardsComponent } from './product-cards/product-cards.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
 			{
 				path: 'cardlayout',
 				component: CardLayoutComponent
+			},
+			{
+				path: 'products/:id',
+				component: ProductDetailsComponent
 			}
 		]
 	}
