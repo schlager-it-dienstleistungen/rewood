@@ -57,7 +57,7 @@ export class ToolbarMultiExample {}
 	};
 
 
-	const multipleRows2 = {
+const multipleRows2 = {
 	beforeCodeTitle: 'Multi-row toolbar',
 		htmlCode: `
 <mat-toolbar color="primary">

@@ -56,8 +56,8 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	selection = new SelectionModel<ProductRemarkModel>(true, []);
 	productRemarksResult: ProductRemarkModel[] = [];
 	// Add and Edit
-	isSwitchedToEditMode: boolean = false;
-	loadingAfterSubmit: boolean = false;
+	isSwitchedToEditMode = false;
+	loadingAfterSubmit = false;
 	formGroup: FormGroup;
 	remarkForEdit: ProductRemarkModel;
 	remarkForAdd: ProductRemarkModel;
@@ -74,10 +74,10 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 * @param layoutUtilsService: LayoutUtilsService
 	 */
 	constructor(private store: Store<AppState>,
-		private fb: FormBuilder,
-		public dialog: MatDialog,
-		public typesUtilsService: TypesUtilsService,
-		private layoutUtilsService: LayoutUtilsService) {}
+		           private fb: FormBuilder,
+		           public dialog: MatDialog,
+		           public typesUtilsService: TypesUtilsService,
+		           private layoutUtilsService: LayoutUtilsService) {}
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -143,7 +143,7 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 */
 	loadRemarksList() {
 		this.selection.clear();
-		let queryParams = new QueryParamsModel(
+		const queryParams = new QueryParamsModel(
 			this.filterConfiguration(),
 			this.sort.direction,
 			this.sort.active,
@@ -179,15 +179,15 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	// ADD REMARK FUNCTIONS: clearAddForm | checkAddForm | addRemarkButtonOnClick | cancelAddButtonOnClick | saveNewRemark
 	clearAddForm() {
 		const controls = this.formGroup.controls;
-		controls['newText'].setValue('');
-		controls['newText'].markAsPristine();
-		controls['newText'].markAsUntouched();
-		controls['newType'].setValue('0');
-		controls['newType'].markAsPristine();
-		controls['newType'].markAsUntouched();
-		controls['newDueDate'].setValue(this.typesUtilsService.getDateFromString());
-		controls['newDueDate'].markAsPristine();
-		controls['newDueDate'].markAsUntouched();
+		controls.newText.setValue('');
+		controls.newText.markAsPristine();
+		controls.newText.markAsUntouched();
+		controls.newType.setValue('0');
+		controls.newType.markAsPristine();
+		controls.newType.markAsUntouched();
+		controls.newDueDate.setValue(this.typesUtilsService.getDateFromString());
+		controls.newDueDate.markAsPristine();
+		controls.newDueDate.markAsUntouched();
 
 		this.remarkForAdd = new ProductRemarkModel();
 		this.remarkForAdd.clear(this.productId);
@@ -200,10 +200,10 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 */
 	checkAddForm() {
 		const controls = this.formGroup.controls;
-		if (controls['newText'].invalid || controls['newType'].invalid || controls['newDueDate'].invalid) {
-			controls['newText'].markAsTouched();
+		if (controls.newText.invalid || controls.newType.invalid || controls.newDueDate.invalid) {
+			controls.newText.markAsTouched();
 			// controls['newType'].markAsTouched();
-			controls['newDueDate'].markAsTouched();
+			controls.newDueDate.markAsTouched();
 			return false;
 		}
 
@@ -236,17 +236,17 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 		}
 
 		const controls = this.formGroup.controls;
-			this.loadingAfterSubmit = false;
-			this.remarkForAdd._isEditMode = false;
-			this.remarkForAdd.text = controls['newText'].value;
-			this.remarkForAdd.type = +controls['newType'].value;
-			const _date = new Date(controls['newDueDate'].value);
-			this.remarkForAdd.dueDate = this.typesUtilsService.getDateStringFromDate(_date);
-			this.remarkForAdd._updatedDate = this.typesUtilsService.getDateStringFromDate();
-			this.remarkForAdd._createdDate = this.remarkForEdit._updatedDate;
-			this.remarkForAdd._userId = 1; // Admin TODO: Get from user servics
-			this.store.dispatch(new ProductRemarkOnServerCreated({ productRemark: this.remarkForAdd }));
-			this.componentSubscriptions = this.store.pipe(
+		this.loadingAfterSubmit = false;
+		this.remarkForAdd._isEditMode = false;
+		this.remarkForAdd.text = controls.newText.value;
+		this.remarkForAdd.type = +controls.newType.value;
+		const _date = new Date(controls.newDueDate.value);
+		this.remarkForAdd.dueDate = this.typesUtilsService.getDateStringFromDate(_date);
+		this.remarkForAdd._updatedDate = this.typesUtilsService.getDateStringFromDate();
+		this.remarkForAdd._createdDate = this.remarkForEdit._updatedDate;
+		this.remarkForAdd._userId = 1; // Admin TODO: Get from user servics
+		this.store.dispatch(new ProductRemarkOnServerCreated({ productRemark: this.remarkForAdd }));
+		this.componentSubscriptions = this.store.pipe(
 				select(selectLastCreatedProductRemarkId)
 			).subscribe(res => {
 				if (!res) {
@@ -263,13 +263,13 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	// EDIT REMARK FUNCTIONS: clearEditForm | checkEditForm | editRemarkButtonOnClick | cancelEditButtonOnClick |
 	clearEditForm() {
 		const controls = this.formGroup.controls;
-		controls['editText'].setValue('');
+		controls.editText.setValue('');
 		// controls['editText'].markAsPristine();
 		// controls['editText'].markAsUntouched();
-		controls['editType'].setValue('0');
+		controls.editType.setValue('0');
 		// controls['editType'].markAsPristine();
 		// controls['editType'].markAsUntouched();
-		controls['editDueDate'].setValue(this.typesUtilsService.getDateFromString());
+		controls.editDueDate.setValue(this.typesUtilsService.getDateFromString());
 		// controls['editDueDate'].markAsPristine();
 		// controls['editDueDate'].markAsUntouched();
 
@@ -284,7 +284,7 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 */
 	checkEditForm() {
 		const controls = this.formGroup.controls;
-		if (controls['editText'].invalid || controls['editType'].invalid || controls['editDueDate'].invalid) {
+		if (controls.editText.invalid || controls.editType.invalid || controls.editDueDate.invalid) {
 			// controls['editText'].markAsTouched();
 			// controls['editType'].markAsTouched();
 			// controls['editDueDate'].markAsTouched();
@@ -301,9 +301,9 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 */
 	editRemarkButtonOnClick(_item: ProductRemarkModel) {
 		const controls = this.formGroup.controls;
-		controls['editText'].setValue(_item.text);
-		controls['editType'].setValue(_item.type.toString());
-		controls['editDueDate'].setValue(this.typesUtilsService.getDateFromString(_item.dueDate));
+		controls.editText.setValue(_item.text);
+		controls.editType.setValue(_item.type.toString());
+		controls.editDueDate.setValue(this.typesUtilsService.getDateFromString(_item.dueDate));
 		const updateProductReamrk: Update<ProductRemarkModel> = {
 			id: _item.id,
 			changes: {
@@ -347,9 +347,9 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 		objectForUpdate.id = _item.id;
 		objectForUpdate.carId = _item.carId;
 		objectForUpdate._isEditMode = _item._isEditMode;
-		objectForUpdate.text = controls['editText'].value;
-		objectForUpdate.type = +controls['editType'].value;
-		const _date = new Date(controls['editDueDate'].value);
+		objectForUpdate.text = controls.editText.value;
+		objectForUpdate.type = +controls.editType.value;
+		const _date = new Date(controls.editDueDate.value);
 		objectForUpdate.dueDate = this.typesUtilsService.getDateStringFromDate(_date);
 		objectForUpdate._updatedDate = this.typesUtilsService.getDateStringFromDate();
 		objectForUpdate._isEditMode = false;
@@ -405,9 +405,9 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 * @param _item: ProductRemarkModel
 	 */
 	deleteRemark(_item: ProductRemarkModel) {
-		const _title: string = 'Remark Delete';
-		const _description: string = 'Are you sure to permanently delete this remark?';
-		const _waitDesciption: string = 'Remark is deleting...';
+		const _title = 'Remark Delete';
+		const _description = 'Are you sure to permanently delete this remark?';
+		const _waitDesciption = 'Remark is deleting...';
 		const _deleteMessage = `Remark has been deleted`;
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
@@ -425,9 +425,9 @@ export class RemarksListComponent implements OnInit, OnDestroy {
 	 * Delete selected remarks
 	 */
 	deleteRemarks() {
-		const _title: string = 'Remarks Delete';
-		const _description: string = 'Are you sure to permanently delete selected remarks?';
-		const _waitDesciption: string = 'Remarks are deleting...';
+		const _title = 'Remarks Delete';
+		const _description = 'Are you sure to permanently delete selected remarks?';
+		const _waitDesciption = 'Remarks are deleting...';
 		const _deleteMessage = 'Selected remarks have been deleted';
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);

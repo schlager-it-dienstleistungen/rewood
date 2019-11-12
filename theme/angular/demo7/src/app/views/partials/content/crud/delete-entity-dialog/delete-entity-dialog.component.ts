@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DeleteEntityDialogComponent implements OnInit {
 	// Public properties
-	viewLoading: boolean = false;
+	viewLoading = false;
 
 	/**
 	 * Component constructor

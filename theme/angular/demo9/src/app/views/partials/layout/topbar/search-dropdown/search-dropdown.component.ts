@@ -9,7 +9,7 @@ export class SearchDropdownComponent implements OnInit {
 	// Public properties
 
 	// Set icon class name
-	@Input() icon: string = 'flaticon2-search-1';
+	@Input() icon = 'flaticon2-search-1';
 
 	// Set true to icon as SVG or false as icon class
 	@Input() useSVG: boolean;

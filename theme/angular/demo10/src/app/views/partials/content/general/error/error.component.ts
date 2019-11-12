@@ -23,5 +23,5 @@ export class ErrorComponent {
 	// return back button title
 	@Input() return = 'Return back';
 
-	@HostBinding('class') classes: string = 'kt-grid kt-grid--ver kt-grid--root';
+	@HostBinding('class') classes = 'kt-grid kt-grid--ver kt-grid--root';
 }

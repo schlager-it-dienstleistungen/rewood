@@ -45,11 +45,11 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 	product: ProductModel;
 	productId$: Observable<number>;
 	oldProduct: ProductModel;
-	selectedTab: number = 0;
+	selectedTab = 0;
 	loadingSubject = new BehaviorSubject<boolean>(true);
 	loading$: Observable<boolean>;
 	productForm: FormGroup;
-	hasFormErrors: boolean = false;
+	hasFormErrors = false;
 	availableYears: number[] = [];
 	filteredColors: Observable<string[]>;
 	filteredManufactures: Observable<string[]>;
@@ -101,7 +101,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		this.loading$ = this.loadingSubject.asObservable();
 		this.loadingSubject.next(true);
 		this.activatedRoute.params.subscribe(params => {
-			const id = params['id'];
+			const id = params.id;
 			if (id && id > 0) {
 
 				this.store.pipe(
@@ -239,7 +239,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		this.router.navigateByUrl(url, { relativeTo: this.activatedRoute });
 	}
 
-	goBackWithoutId	() {
+	goBackWithoutId() {
 		this.router.navigateByUrl('/ecommerce/products', { relativeTo: this.activatedRoute });
 	}
 
@@ -310,16 +310,16 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 		const controls = this.productForm.controls;
 		const _product = new ProductModel();
 		_product.id = this.product.id;
-		_product.model = controls['model'].value;
-		_product.manufacture = controls['manufacture'].value;
-		_product.modelYear = +controls['modelYear'].value;
-		_product.mileage = +controls['mileage'].value;
-		_product.description = controls['description'].value;
-		_product.color = controls['color'].value;
-		_product.price = +controls['price'].value;
-		_product.condition = +controls['condition'].value;
-		_product.status = +controls['status'].value;
-		_product.VINCode = controls['VINCode'].value;
+		_product.model = controls.model.value;
+		_product.manufacture = controls.manufacture.value;
+		_product.modelYear = +controls.modelYear.value;
+		_product.mileage = +controls.mileage.value;
+		_product.description = controls.description.value;
+		_product.color = controls.color.value;
+		_product.price = +controls.price.value;
+		_product.condition = +controls.condition.value;
+		_product.status = +controls.status.value;
+		_product.VINCode = controls.VINCode.value;
 		_product._userId = 1; // TODO: get version from userId
 		_product._createdDate = this.product._createdDate;
 		_product._updatedDate = this.product._updatedDate;

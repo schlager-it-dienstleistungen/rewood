@@ -279,7 +279,7 @@ export interface DialogData {
 
 })
 export class DialogComponent implements OnInit {
-	animal2: string = '';
+	animal2 = '';
 	animalSubject = new BehaviorSubject<string>('');
 	animal$: Observable<string>;
 	animal: string;

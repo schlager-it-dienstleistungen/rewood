@@ -207,8 +207,8 @@ export class ExpansionPanelComponent implements OnInit {
 	exampleBasicPanel;
 	exampleDisabledPanel;
 	exampleAccordion;
-	panelOpenState: boolean = false;
-	isDisabled: boolean = true;
+	panelOpenState = false;
+	isDisabled = true;
 	step = 0;
 
 	ngOnInit() {

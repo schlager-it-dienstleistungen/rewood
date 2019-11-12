@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 // Metronic
-import { PartialsModule } from "../../partials/partials.module";
-import { CoreModule } from "../../../core/core.module";
-import { WizardComponent } from "./wizard.component";
-import { Wizard1Component } from "./wizard1/wizard1.component";
+import { PartialsModule } from '../../partials/partials.module';
+import { CoreModule } from '../../../core/core.module';
+import { WizardComponent } from './wizard.component';
+import { Wizard1Component } from './wizard1/wizard1.component';
 import { Wizard2Component } from './wizard2/wizard2.component';
 import { Wizard3Component } from './wizard3/wizard3.component';
 import { Wizard4Component } from './wizard4/wizard4.component';
+import { MatSelectModule, MatInputModule } from '@angular/material';
 
 @NgModule({
 	declarations: [
@@ -49,6 +50,8 @@ import { Wizard4Component } from './wizard4/wizard4.component';
 				]
 			},
 		]),
+		MatSelectModule,
+		MatInputModule
 	]
 })
 export class WizardModule {

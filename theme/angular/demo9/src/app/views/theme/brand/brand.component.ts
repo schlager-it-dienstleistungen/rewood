@@ -13,7 +13,7 @@ export class BrandComponent implements OnInit, AfterViewInit {
 	headerLogo: string;
 	headerStickyLogo: string;
 
-	@HostBinding('class') classes: string = 'kt-header__brand kt-grid__item';
+	@HostBinding('class') classes = 'kt-header__brand kt-grid__item';
 
 	toggleOptions: ToggleOptions = {
 		target: 'body',

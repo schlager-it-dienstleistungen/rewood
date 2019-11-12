@@ -19,8 +19,8 @@ import { SPECIFICATIONS_DICTIONARY } from '../../../../../../../../core/e-commer
 export class SpecificationEditDialogComponent implements OnInit {
 	// Public properties
 	specificationEditForm: FormGroup;
-	viewLoading: boolean = true;
-	loadingAfterSubmit: boolean = false;
+	viewLoading = true;
+	loadingAfterSubmit = false;
 	specificationsDictionary: string[] = SPECIFICATIONS_DICTIONARY;
 
 	/**
@@ -92,9 +92,9 @@ export class SpecificationEditDialogComponent implements OnInit {
 		this.loadingAfterSubmit = true;
 		this.viewLoading = true;
 
-		const specId = this.getSpecificationIndexByName(controls['name'].value);
-		const specName = controls['name'].value;
-		const specValue = controls['text'].value;
+		const specId = this.getSpecificationIndexByName(controls.name.value);
+		const specName = controls.name.value;
+		const specValue = controls.text.value;
 		/* Server loading imitation. Remove this on real code */
 		of(undefined).pipe(delay(1000)).subscribe(() => { // Remove this line
 			this.viewLoading = false;
@@ -111,7 +111,7 @@ export class SpecificationEditDialogComponent implements OnInit {
 		this.dialogRef.close({
 			isUpdated: true,
 			value: specValue,
-			specId: specId,
+			specId,
 			_specificationName: specName
 		});
 	}

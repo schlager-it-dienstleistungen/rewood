@@ -64,12 +64,12 @@ export class DefaultFormsComponent implements OnInit {
 		{ value: 'pizza-1', viewValue: 'Pizza' },
 		{ value: 'tacos-2', viewValue: 'Tacos' }
 	];
-	isHuman: boolean = true;
-	isHuman2: boolean = true;
-	visible: boolean = true;
-	selectable: boolean = true;
-	removable: boolean = true;
-	addOnBlur: boolean = true;
+	isHuman = true;
+	isHuman2 = true;
+	visible = true;
+	selectable = true;
+	removable = true;
+	addOnBlur = true;
 
 	// Enter, comma
 	separatorKeysCodes = [ENTER, COMMA];

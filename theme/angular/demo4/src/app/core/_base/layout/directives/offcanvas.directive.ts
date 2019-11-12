@@ -35,9 +35,9 @@ export class OffcanvasDirective implements AfterViewInit {
 	 * After view init
 	 */
 	ngAfterViewInit(): void {
-		setTimeout(()=>{
+		setTimeout(() => {
 			this.offcanvas = new KTOffcanvas(this.el.nativeElement, this.options);
-		})
+		});
 	}
 
 	/**

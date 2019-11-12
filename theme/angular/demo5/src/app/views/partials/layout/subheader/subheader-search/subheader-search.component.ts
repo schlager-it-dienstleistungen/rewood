@@ -17,12 +17,12 @@ export class SubheaderSearchComponent implements OnInit, OnDestroy, AfterViewIni
 	@Input() clear: boolean;
 
 	today: number = Date.now();
-	title: string = '';
-	desc: string = '';
+	title = '';
+	desc = '';
 	breadcrumbs: Breadcrumb[] = [];
 
 	// Private properties
-	private subscriptions: Subscription[] = [];
+	private readonly subscriptions: Subscription[] = [];
 
 	/**
 	 * Component constructor

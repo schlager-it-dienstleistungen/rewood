@@ -8,10 +8,10 @@ export class QueryParamsModel {
 
 	// constructor overrides
 	constructor(_filter: any,
-		_sortOrder: string = 'asc',
-		_sortField: string = '',
-		_pageNumber: number = 0,
-		_pageSize: number = 10) {
+		           _sortOrder: string = 'asc',
+		           _sortField: string = '',
+		           _pageNumber: number = 0,
+		           _pageSize: number = 10) {
 		this.filter = _filter;
 		this.sortOrder = _sortOrder;
 		this.sortField = _sortField;

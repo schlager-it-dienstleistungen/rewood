@@ -27,8 +27,8 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 	// Public properties
 	customer: CustomerModel;
 	customerForm: FormGroup;
-	hasFormErrors: boolean = false;
-	viewLoading: boolean = false;
+	hasFormErrors = false;
+	viewLoading = false;
 	// Private properties
 	private componentSubscriptions: Subscription;
 
@@ -42,10 +42,10 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 	 * @param typesUtilsService: TypesUtilsService
 	 */
 	constructor(public dialogRef: MatDialogRef<CustomerEditDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any,
-		private fb: FormBuilder,
-		private store: Store<AppState>,
-		private typesUtilsService: TypesUtilsService) {
+		           @Inject(MAT_DIALOG_DATA) public data: any,
+		           private fb: FormBuilder,
+		           private store: Store<AppState>,
+		           private typesUtilsService: TypesUtilsService) {
 	}
 
 	/**
@@ -115,19 +115,19 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 		const controls = this.customerForm.controls;
 		const _customer = new CustomerModel();
 		_customer.id = this.customer.id;
-		const _date = controls['dob'].value;
+		const _date = controls.dob.value;
 		if (_date) {
 			_customer.dateOfBbirth = this.typesUtilsService.dateFormat(_date);
 		} else {
 			_customer.dateOfBbirth = '';
 		}
-		_customer.firstName = controls['firstName'].value;
-		_customer.lastName = controls['lastName'].value;
-		_customer.email = controls['email'].value;
-		_customer.userName = controls['userName'].value;
-		_customer.gender = controls['gender'].value;
-		_customer.ipAddress = controls['ipAddress'].value;
-		_customer.type = +controls['type'].value;
+		_customer.firstName = controls.firstName.value;
+		_customer.lastName = controls.lastName.value;
+		_customer.email = controls.email.value;
+		_customer.userName = controls.userName.value;
+		_customer.gender = controls.gender.value;
+		_customer.ipAddress = controls.ipAddress.value;
+		_customer.type = +controls.type.value;
 		_customer.status = this.customer.status;
 		return _customer;
 	}

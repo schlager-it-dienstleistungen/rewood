@@ -16,8 +16,8 @@ export class UserProfile3Component implements OnInit {
 	// Public properties
 	user$: Observable<User>;
 
-	@Input() avatar: boolean = true;
-	@Input() greeting: boolean = true;
+	@Input() avatar = true;
+	@Input() greeting = true;
 	@Input() badge: boolean;
 	@Input() icon: boolean;
 

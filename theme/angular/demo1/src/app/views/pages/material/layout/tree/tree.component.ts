@@ -887,7 +887,7 @@ export class FileDatabase {
 /** Flat node with expandable and level information */
 export class DynamicFlatNode {
 	constructor(public item: string, public level = 1, public expandable = false,
-		public isLoading = false) { }
+		           public isLoading = false) { }
 }
 
 /**
@@ -937,8 +937,8 @@ export class DynamicDataSource {
 	}
 
 	constructor(private treeControl: FlatTreeControl<DynamicFlatNode>,
-    private database: DynamicDatabase,
-    private cdr: ChangeDetectorRef) { }
+             private database: DynamicDatabase,
+             private cdr: ChangeDetectorRef) { }
 
 	connect(collectionViewer: CollectionViewer): Observable<DynamicFlatNode[]> {
 		// tslint:disable-next-line:no-non-null-assertion
@@ -987,9 +987,9 @@ export class DynamicDataSource {
 			}
 
 			// notify the change
-      this.dataChange.next(this.data);
-      node.isLoading = false;
-      this.cdr.markForCheck();
+   this.dataChange.next(this.data);
+   node.isLoading = false;
+   this.cdr.markForCheck();
 		}, 500);
 	}
 }
@@ -1106,16 +1106,16 @@ export class LoadmoreNode {
 	}
 
 	constructor(public item: string,
-		public hasChildren = false,
-		public loadMoreParentItem: string | null = null) { }
+		           public hasChildren = false,
+		           public loadMoreParentItem: string | null = null) { }
 }
 
   /** Flat node with expandable and level information */
 export class LoadmoreFlatNode {
 	constructor(public item: string,
-		public level = 1,
-		public expandable = false,
-		public loadMoreParentItem: string | null = null) { }
+		           public level = 1,
+		           public expandable = false,
+		           public loadMoreParentItem: string | null = null) { }
 }
 
 /**
@@ -1228,10 +1228,10 @@ export class TreeComponent implements OnInit {
 	dataSource4: MatTreeFlatDataSource<LoadmoreNode, LoadmoreFlatNode>;
 
 	constructor(database: DynamicDatabase,
-		database2: FileDatabase,
-		private database3: ChecklistDatabase,
-    private database4: LoadmoreDatabase,
-    private cdr: ChangeDetectorRef) {
+		           database2: FileDatabase,
+		           private database3: ChecklistDatabase,
+             private database4: LoadmoreDatabase,
+             private cdr: ChangeDetectorRef) {
 		this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
 		this.dataSource = new DynamicDataSource(this.treeControl, database, this.cdr);
 		this.dataSource.data = database.initialData();
@@ -1258,14 +1258,14 @@ export class TreeComponent implements OnInit {
 		database4.dataChange.subscribe(data => {
 			this.dataSource4.data = data;
 		});
-    database4.initialize();
+  database4.initialize();
 	}
 
 	ngOnInit() {
 		this.exampleTreeWithDynamicData = treeWithDynamicData;
 		this.exampleTreeWithFlatNodes = treeWithFlatNodes;
 		this.exampleTreeWithCheckboxes = treeWithCheckboxes;
-    this.exampleTreeWithPartiallyLoadedData = treeWithPartiallyLoadedData;
+  this.exampleTreeWithPartiallyLoadedData = treeWithPartiallyLoadedData;
 	}
 
 	getLevel = (node: DynamicFlatNode) => node.level;

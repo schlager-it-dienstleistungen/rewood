@@ -131,33 +131,40 @@ var KTApp = function() {
 
     var initAbsoluteDropdowns = function() {
         $('body').on('show.bs.dropdown', function(e) {
-            if ( $(e.target).find("[data-attach='body']").length === 0) {
+            // e.target is always parent (contains toggler and menu)
+            var $toggler = $(e.target).find("[data-attach='body']");
+            if ($toggler.length === 0) {
                 return;
             }
+            var $dropdownMenu = $(e.target).find('.dropdown-menu');
+            // save detached menu
+            var $detachedDropdownMenu = $dropdownMenu.detach();
+            // save reference to detached menu inside data of toggler
+            $toggler.data('dropdown-menu', $detachedDropdownMenu);
 
-            var dropdownMenu = $(e.target).find('.dropdown-menu');
-
-            $('body').append(dropdownMenu.detach());
-            dropdownMenu.css('display', 'block');
-            dropdownMenu.position({
-                'my': 'right top',
-                'at': 'right bottom',
-                'of': $(e.relatedTarget)
+            $('body').append($detachedDropdownMenu);
+            $detachedDropdownMenu.css('display', 'block');
+            $detachedDropdownMenu.position({
+                my: 'right top',
+                at: 'right bottom',
+                of: $(e.relatedTarget),
             });
         });
 
         $('body').on('hide.bs.dropdown', function(e) {
-            if ( $(e.target).find("[data-attach='body']").length === 0) {
+            var $toggler = $(e.target).find("[data-attach='body']");
+            if ($toggler.length === 0) {
                 return;
             }
-
-            var dropdownMenu = $(e.target).find('.dropdown-menu');
-
-            $(e.target).append(dropdownMenu.detach());
-            dropdownMenu.hide();
+            // access to reference of detached menu from data of toggler
+            var $detachedDropdownMenu = $toggler.data('dropdown-menu');
+            // re-append detached menu inside parent
+            $(e.target).append($detachedDropdownMenu.detach());
+            // hide dropdown
+            $detachedDropdownMenu.hide();
         });
-    }
-
+    };
+    
     return {
         init: function(options) {
             if (options && options.colors) {

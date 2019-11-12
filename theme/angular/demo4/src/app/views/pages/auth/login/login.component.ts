@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 		// redirect back to the returnUrl before login
 		this.route.queryParams.subscribe(params => {
-			this.returnUrl = params['returnUrl'] || '/';
+			this.returnUrl = params.returnUrl || '/';
 		});
 	}
 
@@ -136,8 +136,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.loading = true;
 
 		const authData = {
-			email: controls['email'].value,
-			password: controls['password'].value
+			email: controls.email.value,
+			password: controls.password.value
 		};
 		this.auth
 			.login(authData.email, authData.password)

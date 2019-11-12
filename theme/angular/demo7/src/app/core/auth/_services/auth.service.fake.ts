@@ -22,7 +22,7 @@ const API_ROLES_URL = 'api/roles';
 @Injectable()
 export class AuthService {
     constructor(private http: HttpClient,
-        private httpUtils: HttpUtilsService) { }
+                private httpUtils: HttpUtilsService) { }
 
     // Authentication/Authorization
     login(email: string, password: string): Observable<User> {
@@ -36,7 +36,7 @@ export class AuthService {
                     return null;
                 }
 
-                const user = find(result, function(item: User) {
+                const user = find(result, (item: User) => {
                     return (item.email.toLowerCase() === email.toLowerCase() && item.password === password);
                 });
 
@@ -77,7 +77,7 @@ export class AuthService {
                     return null;
                 }
 
-                const user = find(users, function(item: User) {
+                const user = find(users, (item: User) => {
                     return (item.email.toLowerCase() === email.toLowerCase());
                 });
 
@@ -104,7 +104,7 @@ export class AuthService {
                     return null;
                 }
 
-                const user = find(result, function(item: User) {
+                const user = find(result, (item: User) => {
                     return (item.accessToken === userToken.toString());
                 });
 
@@ -125,7 +125,7 @@ export class AuthService {
         const httpHeaders = new HttpHeaders();
         // Note: Add headers if needed (tokens/bearer)
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<User>(API_USERS_URL, user, { headers: httpHeaders});
+		      return this.http.post<User>(API_USERS_URL, user, { headers: httpHeaders});
     }
 
     // READ
@@ -138,7 +138,7 @@ export class AuthService {
             return of(null);
         }
 
-		return this.http.get<User>(API_USERS_URL + `/${userId}`);
+		      return this.http.get<User>(API_USERS_URL + `/${userId}`);
     }
 
     // DELETE => delete the user from the server
@@ -151,7 +151,7 @@ export class AuthService {
 	updateUser(_user: User): Observable<any> {
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.put(API_USERS_URL, _user, { headers: httpHeaders }).pipe(
+		      return this.http.put(API_USERS_URL, _user, { headers: httpHeaders }).pipe(
             catchError(err => {
                 return of(null);
             })
@@ -181,14 +181,14 @@ export class AuthService {
         return forkJoin(allRolesRequest, roleRequest).pipe(
 			map(res => {
 				const _allPermissions: Permission[] = res[0];
-                const _role: Role = res[1];
-                if (!_allPermissions || _allPermissions.length === 0) {
+    const _role: Role = res[1];
+    if (!_allPermissions || _allPermissions.length === 0) {
                     return [];
                 }
 
-                const _rolePermission = _role ? _role.permissions : [];
-                const result: Permission[] = this.getRolePermissionsTree(_allPermissions, _rolePermission);
-                return result;
+    const _rolePermission = _role ? _role.permissions : [];
+    const result: Permission[] = this.getRolePermissionsTree(_allPermissions, _rolePermission);
+    return result;
             })
         );
     }
@@ -206,7 +206,7 @@ export class AuthService {
     }
 
     private collectChildrenPermission(_allPermission: Permission[] = [],
-        _parentId: number, _rolePermissionIds: number[]  = []): Permission[] {
+                                      _parentId: number, _rolePermissionIds: number[]  = []): Permission[] {
         const result: Permission[] = [];
         const _children: Permission[] = filter(_allPermission, (item: Permission) => item.parentId === _parentId);
         if (_children.length === 0) {
@@ -236,14 +236,14 @@ export class AuthService {
 		// Note: Add headers if needed (tokens/bearer)
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<Role>(API_ROLES_URL, role, { headers: httpHeaders});
+		      return this.http.post<Role>(API_ROLES_URL, role, { headers: httpHeaders});
 	}
 
     // UPDATE => PUT: update the role on the server
 	updateRole(role: Role): Observable<any> {
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.put(API_ROLES_URL, role, { headers: httpHeaders });
+		      return this.http.put(API_ROLES_URL, role, { headers: httpHeaders });
 	}
 
 	// DELETE => delete the role from the server

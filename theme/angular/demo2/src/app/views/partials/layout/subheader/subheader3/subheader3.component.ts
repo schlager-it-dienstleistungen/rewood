@@ -17,8 +17,8 @@ export class Subheader3Component implements OnInit, OnDestroy, AfterViewInit {
 	@Input() clear: boolean;
 
 	today: number = Date.now();
-	title: string = '';
-	desc: string = '';
+	title = '';
+	desc = '';
 	breadcrumbs: Breadcrumb[] = [];
 
 	// Private properties

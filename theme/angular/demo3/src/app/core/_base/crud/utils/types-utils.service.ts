@@ -56,14 +56,14 @@ export class TypesUtilsService {
 	 * @param date: any
 	 */
 	dateCustomFormat(date: any): string {
-		let stringDate: string = '';
+		let stringDate = '';
 		if (date) {
 			stringDate += this.isNumber(date.month) ? this.padNumber(date.month) + '/' : '';
-            stringDate += this.isNumber(date.day) ? this.padNumber(date.day) + '/' : '';
+   stringDate += this.isNumber(date.day) ? this.padNumber(date.day) + '/' : '';
 
 			stringDate += date.year;
         }
-        return stringDate;
+  return stringDate;
 	}
 
 	/**

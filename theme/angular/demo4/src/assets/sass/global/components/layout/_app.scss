@@ -53,7 +53,7 @@ $kt-app-config: (
         &.kt-app__aside--lg {
             @include kt-app-aside-width(450px);
         }
-        
+
         // Extra large size
         &.kt-app__aside--xl {
             @include kt-app-aside-width(600px);
@@ -69,21 +69,19 @@ $kt-app-config: (
     .kt-app__detail {
         margin-left: $grid-gutter-width;
 
+		// Default size
+        @include kt-app-detail-width(550px);
+
         // Small size
         &.kt-app__detail--sm {
             @include kt-app-detail-width(400px);
-        }
-
-        // Mediaum size
-        &.kt-app__detail--sm {
-            @include kt-app-detail-width(550px);
         }
 
         // Large size
         &.kt-app__detail--lg {
             @include kt-app-detail-width(700px);
         }
-        
+
         // Extra large size
         &.kt-app__detail--xl {
             @include kt-app-detail-width(850px);
@@ -91,7 +89,7 @@ $kt-app-config: (
     }
 }
 
-// Tablet & Mobile Mode.  
+// Tablet & Mobile Mode.
 .kt-app {
      // Media range 1024px and below(see: $kt-media-breakpoints in sass/theme/_config.scss and sass/themes/core/_mixins.scss)
      @include kt-tablet-and-mobile {
@@ -110,13 +108,13 @@ $kt-app-config: (
                     box-shadow:none;
                 }
             }
-        }   
+        }
 
         // Content
         .kt-app__content {
             margin-left: 0;
         }
-    
+
         // Detail
         .kt-app__detail {
             margin-left:0;

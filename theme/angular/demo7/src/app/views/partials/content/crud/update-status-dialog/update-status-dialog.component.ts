@@ -9,8 +9,8 @@ import { FormControl } from '@angular/forms';
 })
 export class UpdateStatusDialogComponent implements OnInit {
 	selectedStatusForUpdate = new FormControl('');
-	viewLoading: boolean = false;
-	loadingAfterSubmit: boolean = false;
+	viewLoading = false;
+	loadingAfterSubmit = false;
 	constructor(
 		public dialogRef: MatDialogRef<UpdateStatusDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any) {}

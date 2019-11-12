@@ -9,7 +9,7 @@ export class QuickActionComponent implements OnInit, AfterViewInit {
 	// Public properties
 
 	// Set icon class name
-	@Input() icon: string = 'flaticon2-gear';
+	@Input() icon = 'flaticon2-gear';
 
 	@Input() iconType: '' | 'warning';
 

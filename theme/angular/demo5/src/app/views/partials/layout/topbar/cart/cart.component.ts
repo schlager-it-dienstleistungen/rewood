@@ -10,7 +10,7 @@ export class CartComponent implements OnInit, AfterViewInit {
 	// Public properties
 
 	// Set icon class name
-	@Input() icon: string = 'flaticon2-shopping-cart-1';
+	@Input() icon = 'flaticon2-shopping-cart-1';
 	@Input() iconType: '' | 'brand';
 
 	// Set true to icon as SVG or false as icon class

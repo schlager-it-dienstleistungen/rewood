@@ -10,7 +10,7 @@ export class KtDialogService {
 
 	// Public properties
 	constructor() {
-		this.ktDialog = new KTDialog({'type': 'loader', 'placement': 'top center', 'message': 'Loading ...'});
+		this.ktDialog = new KTDialog({type: 'loader', placement: 'top center', message: 'Loading ...'});
 	}
 
 	show() {

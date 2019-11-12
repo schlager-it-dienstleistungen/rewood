@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 // Angular Material
 import { MatButtonModule, MatProgressBarModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 // NgBootstrap
-import { NgbProgressbarModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbProgressbarModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Translation
 import { TranslateModule } from '@ngx-translate/core';
 // Loading bar
@@ -110,6 +110,7 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		InlineSVGModule,
 
 		// ng-bootstrap modules
+		NgbDropdownModule,
 		NgbProgressbarModule,
 		NgbTooltipModule,
 	]

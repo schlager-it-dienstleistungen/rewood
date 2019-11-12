@@ -24,8 +24,8 @@ var KTDatatableChildRemoteDataDemo = function() {
 
 			// layout definition
 			layout: {
-				scroll: false,
-				height: null,
+				scroll: true,
+				height: 400,
 				footer: false,
 			},
 

@@ -16,7 +16,7 @@ import { skip, distinctUntilChanged } from 'rxjs/operators';
 **/
 export class BaseDataSource implements DataSource<BaseModel> {
 	entitySubject = new BehaviorSubject<any[]>([]);
-	hasItems: boolean = true; // Need to show message: 'No records found'
+	hasItems = true; // Need to show message: 'No records found'
 
 	// Loading | Progress bar
 	loading$: Observable<boolean>;
@@ -46,8 +46,8 @@ export class BaseDataSource implements DataSource<BaseModel> {
 	disconnect(collectionViewer: CollectionViewer): void {
 		// Disonnecting data source
         this.entitySubject.complete();
-		this.paginatorTotalSubject.complete();
-		this.subscriptions.forEach(sb => sb.unsubscribe());
+		      this.paginatorTotalSubject.complete();
+		      this.subscriptions.forEach(sb => sb.unsubscribe());
 	}
 
 	baseFilter(_entities: any[], _queryParams: QueryParamsModel, _filtrationFields: string[] = []): QueryResultsModel {

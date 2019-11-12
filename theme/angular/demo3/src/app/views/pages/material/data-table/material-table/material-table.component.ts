@@ -624,7 +624,7 @@ export interface UserData {
 	isExampleExpanded: true
 };
 
-	const hTTP = {
+const hTTP = {
 	beforeCodeTitle: 'Table retrieving data through HTTP',
 	htmlCode: `
 <div class="example-container mat-elevation-z8">
@@ -887,7 +887,7 @@ function createNewUser(id: number): UserData {
 
   return {
     id: id.toString(),
-    name: name,
+    name,
     progress: Math.round(Math.random() * 100).toString(),
     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
   };
@@ -1034,19 +1034,19 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
 		this.exampleFiltering = filtering;
 		this.exampleSelection = selection;
 		this.exampleHTTP = hTTP;
-    this.exampleMain = main;
+  this.exampleMain = main;
 
-    this.dataSource2.paginator = this.paginator2;
+  this.dataSource2.paginator = this.paginator2;
 
-    this.dataSource3.sort = this.sort3;
+  this.dataSource3.sort = this.sort3;
 
     // Example 6
-    this.exampleDatabase = new ExampleHttpDao(this.http);
+  this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
-    this.sort6.sortChange.subscribe(() => this.paginator6.pageIndex = 0);
+  this.sort6.sortChange.subscribe(() => this.paginator6.pageIndex = 0);
 
-    merge(this.sort6.sortChange, this.paginator6.page)
+  merge(this.sort6.sortChange, this.paginator6.page)
     .pipe(
       startWith({}),
       switchMap(() => {
@@ -1072,8 +1072,8 @@ export class MaterialTableComponent implements OnInit, AfterViewInit {
     ).subscribe(data => this.dataSource6 = data);
 
     // Example 7
-    this.dataSource7.paginator = this.paginator7;
-    this.dataSource7.sort = this.sort7;
+  this.dataSource7.paginator = this.paginator7;
+  this.dataSource7.sort = this.sort7;
   }
 
   applyFilter4(filterValue: string) {

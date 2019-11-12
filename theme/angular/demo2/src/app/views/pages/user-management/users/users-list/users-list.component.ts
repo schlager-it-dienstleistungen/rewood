@@ -177,9 +177,9 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	 * @param _item: User
 	 */
 	deleteUser(_item: User) {
-		const _title: string = 'User Delete';
-		const _description: string = 'Are you sure to permanently delete this user?';
-		const _waitDesciption: string = 'User is deleting...';
+		const _title = 'User Delete';
+		const _description = 'Are you sure to permanently delete this user?';
+		const _waitDesciption = 'User is deleting...';
 		const _deleteMessage = `User has been deleted`;
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);

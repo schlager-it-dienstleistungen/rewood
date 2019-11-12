@@ -33,13 +33,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	user: User;
 	userId$: Observable<number>;
 	oldUser: User;
-	selectedTab: number = 0;
+	selectedTab = 0;
 	loading$: Observable<boolean>;
 	rolesSubject = new BehaviorSubject<number[]>([]);
 	addressSubject = new BehaviorSubject<Address>(new Address());
 	soicialNetworksSubject = new BehaviorSubject<SocialNetworks>(new SocialNetworks());
 	userForm: FormGroup;
-	hasFormErrors: boolean = false;
+	hasFormErrors = false;
 	// Private properties
 	private subscriptions: Subscription[] = [];
 
@@ -55,12 +55,12 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * @param layoutConfigService: LayoutConfigService
 	 */
 	constructor(private activatedRoute: ActivatedRoute,
-		private router: Router,
-		private userFB: FormBuilder,
-		private subheaderService: SubheaderService,
-		private layoutUtilsService: LayoutUtilsService,
-		private store: Store<AppState>,
-		private layoutConfigService: LayoutConfigService) { }
+		           private router: Router,
+		           private userFB: FormBuilder,
+		           private subheaderService: SubheaderService,
+		           private layoutUtilsService: LayoutUtilsService,
+		           private store: Store<AppState>,
+		           private layoutConfigService: LayoutConfigService) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -73,7 +73,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.loading$ = this.store.pipe(select(selectUsersActionLoading));
 
 		const routeSubscription =  this.activatedRoute.params.subscribe(params => {
-			const id = params['id'];
+			const id = params.id;
 			if (id && id > 0) {
 				this.store.pipe(select(selectUserById(id))).subscribe(res => {
 					if (res) {
@@ -172,8 +172,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		this.createForm();
 		this.hasFormErrors = false;
 		this.userForm.markAsPristine();
-        this.userForm.markAsUntouched();
-        this.userForm.updateValueAndValidity();
+  this.userForm.markAsUntouched();
+  this.userForm.updateValueAndValidity();
 	}
 
 	/**
@@ -219,12 +219,12 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		_user.refreshToken = this.user.refreshToken;
 		_user.pic = this.user.pic;
 		_user.id = this.user.id;
-		_user.username = controls['username'].value;
-		_user.email = controls['email'].value;
-		_user.fullname = controls['fullname'].value;
-		_user.occupation = controls['occupation'].value;
-		_user.phone = controls['phone'].value;
-		_user.companyName = controls['companyName'].value;
+		_user.username = controls.username.value;
+		_user.email = controls.email.value;
+		_user.fullname = controls.fullname.value;
+		_user.occupation = controls.occupation.value;
+		_user.phone = controls.phone.value;
+		_user.companyName = controls.companyName.value;
 		_user.password = this.user.password;
 		return _user;
 	}

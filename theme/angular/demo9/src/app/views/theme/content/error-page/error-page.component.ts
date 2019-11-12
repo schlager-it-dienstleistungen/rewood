@@ -15,19 +15,19 @@ import { LayoutConfigService } from '../../../../core/_base/layout';
 export class ErrorPageComponent implements OnInit, OnDestroy {
 	// Public properties
 	// type of error template to be used, accepted values; error-v1 | error-v2 | error-v3 | error-v4 | error-v5 | error-v6
-	@Input() type: string = 'error-v1';
+	@Input() type = 'error-v1';
 	// full background image
 	@Input() image: string;
 	// error code, some error types template has it
-	@Input() code: string = '404';
+	@Input() code = '404';
 	// error title
 	@Input() title: string;
 	// error subtitle, some error types template has it
 	@Input() subtitle: string;
 	// error descriptions
-	@Input() desc: string = 'Oops! Something went wrong!';
+	@Input() desc = 'Oops! Something went wrong!';
 	// return back button title
-	@Input() return: string = 'Return back';
+	@Input() return = 'Return back';
 
 	private sub: Subscription;
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Stockholm-icons / Home / Lamp#1</title>
+    <title>Stockholm-icons / Home / Lamp1</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Stockholm-icons-/-Home-/-Lamp#1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Stockholm-icons-/-Home-/-Lamp1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect id="bound" x="0" y="0" width="24" height="24"></rect>
         <path d="M10,19 L14,19 C15.1045695,19 16,19.8954305 16,21 L8,21 L8,21 C8,19.8954305 8.8954305,19 10,19 Z" id="Rectangle-98-Copy" fill="#000000"></path>
         <rect id="Rectangle" fill="#000000" opacity="0.3" x="11" y="12" width="2" height="6" rx="1"></rect>

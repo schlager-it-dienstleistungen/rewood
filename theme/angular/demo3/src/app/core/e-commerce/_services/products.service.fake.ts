@@ -18,7 +18,7 @@ export class ProductsService {
 	lastFilter$: BehaviorSubject<QueryParamsModel> = new BehaviorSubject(new QueryParamsModel({}, 'asc', '', 0, 10));
 
 	constructor(private http: HttpClient,
-		private httpUtils: HttpUtilsService) { }
+		           private httpUtils: HttpUtilsService) { }
 
 	// CREATE =>  POST: add a new product to the server
 	createProduct(product): Observable<ProductModel> {

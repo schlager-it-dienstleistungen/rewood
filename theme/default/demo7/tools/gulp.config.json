@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.1.2",
+    "version": "6.1.3",
     "config": {
         "demo": "",
         "debug": false,

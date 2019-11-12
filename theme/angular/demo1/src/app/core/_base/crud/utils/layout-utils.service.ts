@@ -24,7 +24,7 @@ export class LayoutUtilsService {
 	 * @param dialog: MatDialog
 	 */
 	constructor(private snackBar: MatSnackBar,
-		private dialog: MatDialog) { }
+		           private dialog: MatDialog) { }
 
 	/**
 	 * Showing (Mat-Snackbar) Notification

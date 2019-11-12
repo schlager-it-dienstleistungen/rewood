@@ -50,7 +50,7 @@ export class SidenavDrawerOverviewExample {}
 		isExampleExpanded: true
 	};
 
-	const autosizeSidenav = {
+const autosizeSidenav = {
 		beforeCodeTitle: 'Autosize sidenav',
 		htmlCode: `
 <mat-drawer-container class="example-container" autosize>

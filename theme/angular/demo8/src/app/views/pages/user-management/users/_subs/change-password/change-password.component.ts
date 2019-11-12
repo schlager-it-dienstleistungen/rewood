@@ -40,7 +40,7 @@ export class ChangePasswordComponent implements OnInit {
 	// Public properties
 	@Input() userId: number;
 	@Input() loadingSubject = new BehaviorSubject<boolean>(false);
-	hasFormErrors: boolean = false;
+	hasFormErrors = false;
 	user: User;
 	changePasswordForm: FormGroup;
 
@@ -95,8 +95,8 @@ export class ChangePasswordComponent implements OnInit {
 		this.hasFormErrors = false;
 		this.loadingSubject.next(false);
 		this.changePasswordForm.markAsPristine();
-				this.changePasswordForm.markAsUntouched();
-				this.changePasswordForm.updateValueAndValidity();
+		this.changePasswordForm.markAsUntouched();
+		this.changePasswordForm.updateValueAndValidity();
 	}
 
 	/**
@@ -117,7 +117,7 @@ export class ChangePasswordComponent implements OnInit {
 			return;
 		}
 
-		this.user.password = controls['password'].value;
+		this.user.password = controls.password.value;
 		const updatedUser: Update<User> = {
 			id: this.user.id,
 			changes: this.user

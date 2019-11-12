@@ -95,7 +95,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
 		this.loading = true;
 
-		const email = controls['email'].value;
+		const email = controls.email.value;
 		this.authService.requestPassword(email).pipe(
 			tap(response => {
 				if (response) {

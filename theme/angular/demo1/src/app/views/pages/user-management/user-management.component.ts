@@ -10,7 +10,7 @@ import { AppState } from '../../../core/reducers';
 // Auth
 import { Permission } from '../../../core/auth';
 
-const userManagementPermissionId: number = 2;
+const userManagementPermissionId = 2;
 @Component({
 	selector: 'kt-user-management',
 	templateUrl: './user-management.component.html',

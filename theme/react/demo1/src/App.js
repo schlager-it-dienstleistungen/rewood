@@ -1,8 +1,6 @@
 /**
  * Entry application component used to compose providers and render Routes.
- *
- * Note: Because of
- */
+ * */
 
 import React from "react";
 import { Provider } from "react-redux";

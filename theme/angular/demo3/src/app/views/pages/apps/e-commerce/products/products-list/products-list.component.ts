@@ -46,8 +46,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	@ViewChild('sort1', {static: true}) sort: MatSort;
 	// Filter fields
 	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
-	filterStatus: string = '';
-	filterCondition: string = '';
+	filterStatus = '';
+	filterCondition = '';
 	lastQuery: QueryParamsModel;
 	// Selection
 	selection = new SelectionModel<ProductModel>(true, []);
@@ -65,11 +65,11 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	 * @param store: Store<AppState>
 	 */
 	constructor(public dialog: MatDialog,
-		private activatedRoute: ActivatedRoute,
-		private router: Router,
-		private subheaderService: SubheaderService,
-		private layoutUtilsService: LayoutUtilsService,
-		private store: Store<AppState>) { }
+		           private activatedRoute: ActivatedRoute,
+		           private router: Router,
+		           private subheaderService: SubheaderService,
+		           private layoutUtilsService: LayoutUtilsService,
+		           private store: Store<AppState>) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -214,9 +214,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	 * @param _item: ProductModel
 	 */
 	deleteProduct(_item: ProductModel) {
-		const _title: string = 'Product Delete';
-		const _description: string = 'Are you sure to permanently delete this product?';
-		const _waitDesciption: string = 'Product is deleting...';
+		const _title = 'Product Delete';
+		const _description = 'Are you sure to permanently delete this product?';
+		const _waitDesciption = 'Product is deleting...';
 		const _deleteMessage = `Product has been deleted`;
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
@@ -234,9 +234,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	 * Delete products
 	 */
 	deleteProducts() {
-		const _title: string = 'Products Delete';
-		const _description: string = 'Are you sure to permanently delete selected products?';
-		const _waitDesciption: string = 'Products are deleting...';
+		const _title = 'Products Delete';
+		const _description = 'Are you sure to permanently delete selected products?';
+		const _waitDesciption = 'Products are deleting...';
 		const _deleteMessage = 'Selected products have been deleted';
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);

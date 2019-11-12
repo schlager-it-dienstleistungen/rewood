@@ -24,8 +24,8 @@ export interface LayoutConfigModel {
 	colors: {
 		state?: any;
 		base: {
-			label: string[];
-			shape: string[]
+			label: Array<string>;
+			shape: Array<string>
 		}
 	};
 	width?: string;

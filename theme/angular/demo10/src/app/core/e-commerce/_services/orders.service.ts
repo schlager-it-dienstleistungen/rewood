@@ -11,7 +11,7 @@ export class OrdersService {
 	httpOptions = this.httpUtils.getHTTPHeaders();
 
 	constructor(private http: HttpClient,
-		private httpUtils: HttpUtilsService) { }
+		           private httpUtils: HttpUtilsService) { }
 
 	// CREATE
 	// READ

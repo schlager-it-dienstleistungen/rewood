@@ -50,7 +50,7 @@ export class Wizard2Component implements OnInit, AfterViewInit {
 		});
 
 		// Validation before going to next page
-		wizard.on('beforeNext', function (wizardObj) {
+		wizard.on('beforeNext', (wizardObj) => {
 			// https://angular.io/guide/forms
 			// https://angular.io/guide/form-validation
 
@@ -59,8 +59,8 @@ export class Wizard2Component implements OnInit, AfterViewInit {
 		});
 
 		// Change event
-		wizard.on('change', function (wizard) {
-			setTimeout(function () {
+		wizard.on('change', () => {
+			setTimeout(() => {
 				KTUtil.scrollTop();
 			}, 500);
 		});

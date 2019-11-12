@@ -132,7 +132,7 @@ export class MenuIconsExample {}
 	};
 
 
-	const toggling = {
+const toggling = {
 		beforeCodeTitle: 'Customizing menu position',
 		htmlCode: `
 <mat-menu #appMenu="matMenu" yPosition="above">

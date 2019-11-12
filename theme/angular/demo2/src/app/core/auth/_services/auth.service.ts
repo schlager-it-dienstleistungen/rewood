@@ -74,14 +74,14 @@ export class AuthService {
 	updateUser(_user: User): Observable<any> {
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.put(API_USERS_URL, _user, { headers: httpHeaders });
+		      return this.http.put(API_USERS_URL, _user, { headers: httpHeaders });
 	}
 
     // CREATE =>  POST: add a new user to the server
 	createUser(user: User): Observable<User> {
     	const httpHeaders = new HttpHeaders();
-        httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<User>(API_USERS_URL, user, { headers: httpHeaders});
+     httpHeaders.set('Content-Type', 'application/json');
+		   return this.http.post<User>(API_USERS_URL, user, { headers: httpHeaders});
 	}
 
     // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
@@ -89,7 +89,7 @@ export class AuthService {
 	findUsers(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<QueryResultsModel>(API_USERS_URL + '/findUsers', queryParams, { headers: httpHeaders});
+		      return this.http.post<QueryResultsModel>(API_USERS_URL + '/findUsers', queryParams, { headers: httpHeaders});
     }
 
     // Permission
@@ -115,14 +115,14 @@ export class AuthService {
 		// Note: Add headers if needed (tokens/bearer)
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<Role>(API_ROLES_URL, role, { headers: httpHeaders});
+		      return this.http.post<Role>(API_ROLES_URL, role, { headers: httpHeaders});
 	}
 
     // UPDATE => PUT: update the role on the server
 	updateRole(role: Role): Observable<any> {
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.put(API_ROLES_URL, role, { headers: httpHeaders });
+		      return this.http.put(API_ROLES_URL, role, { headers: httpHeaders });
 	}
 
 	// DELETE => delete the role from the server
@@ -140,7 +140,7 @@ export class AuthService {
         // This code imitates server calls
         const httpHeaders = new HttpHeaders();
         httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<QueryResultsModel>(API_ROLES_URL + '/findRoles', queryParams, { headers: httpHeaders});
+		      return this.http.post<QueryResultsModel>(API_ROLES_URL + '/findRoles', queryParams, { headers: httpHeaders});
 	}
 
  	/*

@@ -154,10 +154,10 @@ export class ChipsComponent implements OnInit {
 	exampleInput;
 	exampleStacked;
 
-	visible: boolean = true;
-	selectable: boolean = true;
-	removable: boolean = true;
-	addOnBlur: boolean = true;
+	visible = true;
+	selectable = true;
+	removable = true;
+	addOnBlur = true;
 
 	// Enter, comma
 	separatorKeysCodes = [ENTER, COMMA];

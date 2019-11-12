@@ -23,7 +23,7 @@ export class SocialNetworksComponent implements OnInit {
 	// Incoming data
 	@Input() loadingSubject = new BehaviorSubject<boolean>(false);
 	@Input() socialNetworksSubject: BehaviorSubject<SocialNetworks>;
-	hasFormErrors: boolean = false;
+	hasFormErrors = false;
 	socialNetworksForm: FormGroup;
 
 	/**
@@ -35,9 +35,9 @@ export class SocialNetworksComponent implements OnInit {
 	 * @param layoutUtilsService: LayoutUtilsService
 	 */
 	constructor(private fb: FormBuilder,
-		private auth: AuthService,
-		private store: Store<AppState>,
-		private layoutUtilsService: LayoutUtilsService) {}
+		           private auth: AuthService,
+		           private store: Store<AppState>,
+		           private layoutUtilsService: LayoutUtilsService) {}
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -96,10 +96,10 @@ export class SocialNetworksComponent implements OnInit {
 
 		const newSocialNetworks = new SocialNetworks();
 		newSocialNetworks.clear();
-		newSocialNetworks.linkedIn = controls['linkedIn'].value;
-		newSocialNetworks.facebook = controls['facebook'].value;
-		newSocialNetworks.twitter = controls['twitter'].value;
-		newSocialNetworks.instagram = controls['instagram'].value;
+		newSocialNetworks.linkedIn = controls.linkedIn.value;
+		newSocialNetworks.facebook = controls.facebook.value;
+		newSocialNetworks.twitter = controls.twitter.value;
+		newSocialNetworks.instagram = controls.instagram.value;
 		this.socialNetworksSubject.next(newSocialNetworks);
 		this.loadingSubject.next(false);
 	}

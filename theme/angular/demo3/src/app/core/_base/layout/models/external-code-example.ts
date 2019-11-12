@@ -10,6 +10,6 @@ export  class ExternalCodeExample {
 	afterCodeTitle: string;
 	afterCodeDescription: string;
 	sourceLink: string;
-	isCodeVisible: boolean = true;
+	isCodeVisible = true;
 	isExampleExpanded: boolean;
 }

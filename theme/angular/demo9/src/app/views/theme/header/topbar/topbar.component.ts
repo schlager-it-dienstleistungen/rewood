@@ -8,6 +8,6 @@ import { Component, HostBinding } from '@angular/core';
 })
 export class TopbarComponent {
 
-	@HostBinding('class') classes: string = 'kt-header__topbar kt-grid__item';
+	@HostBinding('class') classes = 'kt-header__topbar kt-grid__item';
 
 }

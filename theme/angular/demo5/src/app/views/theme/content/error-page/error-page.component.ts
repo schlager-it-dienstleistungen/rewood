@@ -25,7 +25,7 @@ export class ErrorPageComponent implements OnInit, OnDestroy {
 	// error subtitle, some error types template has it
 	@Input() subtitle: string;
 	// error descriptions
-	@Input() desc: string = 'Oops! Something went wrong!';
+	@Input() desc = 'Oops! Something went wrong!';
 	// return back button title
 	@Input() return = 'Return back';
 

@@ -51,10 +51,10 @@ const routes: Routes = [
 				path: 'error/403',
 				component: ErrorPageComponent,
 				data: {
-					'type': 'error-v6',
-					'code': 403,
-					'title': '403... Access forbidden',
-					'desc': 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
+					type: 'error-v6',
+					code: 403,
+					title: '403... Access forbidden',
+					desc: 'Looks like you don\'t have permission to access for requested page.<br> Please, contact administrator'
 				}
 			},
 			{path: 'error/:type', component: ErrorPageComponent},

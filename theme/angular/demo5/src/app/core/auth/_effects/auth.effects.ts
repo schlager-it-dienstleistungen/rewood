@@ -30,7 +30,7 @@ export class AuthEffects {
         ofType<Logout>(AuthActionTypes.Logout),
         tap(() => {
             localStorage.removeItem(environment.authTokenKey);
-			this.router.navigate(['/auth/login'], {queryParams: {returnUrl: this.returnUrl}});
+			         this.router.navigate(['/auth/login'], {queryParams: {returnUrl: this.returnUrl}});
         })
     );
 
@@ -71,9 +71,9 @@ export class AuthEffects {
     private returnUrl: string;
 
     constructor(private actions$: Actions,
-        private router: Router,
-        private auth: AuthService,
-        private store: Store<AppState>) {
+                private router: Router,
+                private auth: AuthService,
+                private store: Store<AppState>) {
 
 		this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {

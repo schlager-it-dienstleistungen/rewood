@@ -4,11 +4,11 @@
  */
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
-import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
-import store, { persistor } from "./app/store/store";
+import axios from "axios";
 import { mockAxios, setupAxios } from "./_metronic";
+import store, { persistor } from "./app/store/store";
 import App from "./App";
 import "./index.scss"; // Standard version
 // import "./sass/style.react.rtl.css"; // RTL version

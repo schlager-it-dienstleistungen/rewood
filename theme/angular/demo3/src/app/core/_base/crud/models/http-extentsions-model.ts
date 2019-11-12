@@ -74,7 +74,7 @@ export class HttpExtenstionsModel {
 		let resultBuffer: any[] = [];
 		const indexes: number[] = [];
 		let firstIndexes: number[] = [];
-		let doSearch: boolean = false;
+		let doSearch = false;
 
 		_filtrationFields.forEach(item => {
 			if (item in _queryObj) {

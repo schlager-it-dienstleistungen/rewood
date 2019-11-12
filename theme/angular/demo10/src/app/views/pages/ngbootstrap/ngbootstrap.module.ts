@@ -137,7 +137,7 @@ const routes: Routes = [
 		TypeheadComponent
 	],
 	providers: [
-		NgbAlertConfig,],
+		NgbAlertConfig, ],
 	entryComponents: [
 		NgbdModalContentComponent
 	]

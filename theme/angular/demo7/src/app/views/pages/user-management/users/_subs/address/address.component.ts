@@ -22,7 +22,7 @@ export class AddressComponent implements OnInit {
 	// Public properties
 	// Incoming data
 	@Input() addressSubject: BehaviorSubject<Address>;
-	hasFormErrors: boolean = false;
+	hasFormErrors = false;
 	addressForm: FormGroup;
 
 	/**
@@ -34,9 +34,9 @@ export class AddressComponent implements OnInit {
 	 * @param layoutUtilsService: LayoutUtilsService
 	 */
 	constructor(private fb: FormBuilder,
-		private auth: AuthService,
-		private store: Store<AppState>,
-		private layoutUtilsService: LayoutUtilsService) {}
+		           private auth: AuthService,
+		           private store: Store<AppState>,
+		           private layoutUtilsService: LayoutUtilsService) {}
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -95,10 +95,10 @@ export class AddressComponent implements OnInit {
 
 		const newAddress = new Address();
 		newAddress.clear();
-		newAddress.addressLine = controls['addressLine'].value;
-		newAddress.city = controls['city'].value;
-		newAddress.postCode = controls['postCode'].value;
-		newAddress.state = controls['state'].value;
+		newAddress.addressLine = controls.addressLine.value;
+		newAddress.city = controls.city.value;
+		newAddress.postCode = controls.postCode.value;
+		newAddress.state = controls.state.value;
 		this.addressSubject.next(newAddress);
 	}
 

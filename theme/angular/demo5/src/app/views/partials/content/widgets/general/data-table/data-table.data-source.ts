@@ -15,7 +15,7 @@ import { DataTableService, DataTableItemModel } from '../../../../../../core/_ba
 export class DataTableDataSource implements DataSource<DataTableItemModel> {
 	// Public properties
 	entitySubject = new BehaviorSubject<any[]>([]);
-	hasItems: boolean = false; // Need to show message: 'No records found
+	hasItems = false; // Need to show message: 'No records found
 
 	// Loading | Progress bar
 	loadingSubject = new BehaviorSubject<boolean>(false);
@@ -54,8 +54,8 @@ export class DataTableDataSource implements DataSource<DataTableItemModel> {
 	disconnect(collectionViewer: CollectionViewer): void {
 		// Disonnecting data source
         this.entitySubject.complete();
-		this.loadingSubject.complete();
-		this.paginatorTotalSubject.complete();
+		      this.loadingSubject.complete();
+		      this.paginatorTotalSubject.complete();
 	}
 
 	baseFilter(_entities: any[], _queryParams: QueryParamsModel): QueryResultsModel {

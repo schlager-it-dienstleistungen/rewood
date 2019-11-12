@@ -40,8 +40,8 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 	@ViewChild('sort1', {static: true}) sort: MatSort;
 	// Filter fields
 	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
-	filterStatus: string = '';
-	filterType: string = '';
+	filterStatus = '';
+	filterType = '';
 	// Selection
 	selection = new SelectionModel<CustomerModel>(true, []);
 	customersResult: CustomerModel[] = [];

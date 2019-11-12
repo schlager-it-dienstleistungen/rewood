@@ -34,9 +34,9 @@ export class AppComponent implements OnInit, OnDestroy {
 	 * @param splashScreenService: SplashScreenService
 	 */
 	constructor(private translationService: TranslationService,
-				private router: Router,
-				private layoutConfigService: LayoutConfigService,
-				private splashScreenService: SplashScreenService) {
+				         private router: Router,
+				         private layoutConfigService: LayoutConfigService,
+				         private splashScreenService: SplashScreenService) {
 
 		// register translations
 		this.translationService.loadTranslations(enLang, chLang, esLang, jpLang, deLang, frLang);

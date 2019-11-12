@@ -25,7 +25,7 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('asideMenu', {static: true}) asideMenu: ElementRef;
 
-	currentRouteUrl: string = '';
+	currentRouteUrl = '';
 	insideTm: any;
 	outsideTm: any;
 
@@ -131,7 +131,7 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 	 * @param item: any
 	 */
 	isMenuRootItemIsActive(item): boolean {
-		let result: boolean = false;
+		let result = false;
 
 		for (const subItem of item.submenu) {
 			result = this.isMenuItemIsActive(subItem);

@@ -166,8 +166,8 @@ export class CheckboxComponent implements OnInit {
 	indeterminate = false;
 	align = 'start';
 	disabled = false;
-	labelPosition: string = 'before';
-	myValue: boolean = true;
+	labelPosition = 'before';
+	myValue = true;
 
 	constructor() { }
 

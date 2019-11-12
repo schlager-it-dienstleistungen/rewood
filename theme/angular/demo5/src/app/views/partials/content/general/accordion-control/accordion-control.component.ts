@@ -115,9 +115,9 @@ export interface AccordionControlPanelChangeEvent {
 	selector: 'kt-accordion-control',
 	exportAs: 'AccordionControl',
 	host: {
-		'role': 'tablist',
+		role: 'tablist',
 		'[attr.aria-multiselectable]': '!closeOtherPanels',
-		'class': 'accordion'
+		class: 'accordion'
 	},
 	templateUrl: './accordion-control.component.html',
 	styles: [`
@@ -137,7 +137,7 @@ export class AccordionControlComponent implements AfterContentChecked {
 	 * An array or comma separated strings of panel identifiers that should be opened
 	 */
 	@Input() activeIds: string | string[] = [];
-	@Input() hasAnimation: boolean = false;
+	@Input() hasAnimation = false;
 
 	/**
 	 *  Whether the other panels should be closed when a panel is opened
@@ -147,7 +147,7 @@ export class AccordionControlComponent implements AfterContentChecked {
 	/**
 	 * Whether the closed panels should be hidden without destroying them
 	 */
-	@Input() destroyOnHide: boolean = true;
+	@Input() destroyOnHide = true;
 
 	/**
 	 *  Accordion's types of panels to be applied globally.
@@ -178,7 +178,7 @@ export class AccordionControlComponent implements AfterContentChecked {
 			}
 
 			this.panelChange.emit(
-				{ panelId: panelId, nextState: !panel.isOpen, preventDefault: () => { defaultPrevented = true; } });
+				{ panelId, nextState: !panel.isOpen, preventDefault: () => { defaultPrevented = true; } });
 
 			if (!defaultPrevented) {
 				panel.isOpen = !panel.isOpen;

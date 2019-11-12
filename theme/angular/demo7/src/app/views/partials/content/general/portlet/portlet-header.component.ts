@@ -46,9 +46,9 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	@Input() sticky: boolean;
 	// enable loading to display
 	@Input() viewLoading$: Observable<boolean>;
-	viewLoading: boolean = false;
+	viewLoading = false;
 
-	@HostBinding('class') classes: string = 'kt-portlet__head';
+	@HostBinding('class') classes = 'kt-portlet__head';
 	@HostBinding('attr.ktSticky') stickyDirective: StickyDirective;
 
 	@ViewChild('refIcon', {static: true}) refIcon: ElementRef;
@@ -82,9 +82,9 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 		if (this.sticky) {
 			Promise.resolve(null).then(() => {
 				// get boundary top margin for sticky header
-				const headerElement = <HTMLElement>document.querySelector('.kt-header');
-				const subheaderElement = <HTMLElement>document.querySelector('.kt-subheader');
-				const headerMobileElement = <HTMLElement>document.querySelector('.kt-header-mobile');
+				const headerElement = document.querySelector('.kt-header') as HTMLElement;
+				const subheaderElement = document.querySelector('.kt-subheader') as HTMLElement;
+				const headerMobileElement = document.querySelector('.kt-header-mobile') as HTMLElement;
 
 				let height = 0;
 

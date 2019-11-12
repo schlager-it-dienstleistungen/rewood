@@ -129,7 +129,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
 		this.loading = true;
 
-		if (!controls['agree'].value) {
+		if (!controls.agree.value) {
 			// you must agree the terms and condition
 			// checkbox cannot work inside mat-form-field https://github.com/angular/material2/issues/7891
 			this.authNoticeService.setNotice('You must agree the terms and condition', 'danger');
@@ -138,10 +138,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
 		const _user: User = new User();
 		_user.clear();
-		_user.email = controls['email'].value;
-		_user.username = controls['username'].value;
-		_user.fullname = controls['fullname'].value;
-		_user.password = controls['password'].value;
+		_user.email = controls.email.value;
+		_user.username = controls.username.value;
+		_user.fullname = controls.fullname.value;
+		_user.password = controls.password.value;
 		_user.roles = [];
 		this.auth.register(_user).pipe(
 			tap(user => {

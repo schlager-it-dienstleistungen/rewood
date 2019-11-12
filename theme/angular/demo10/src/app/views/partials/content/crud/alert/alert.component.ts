@@ -8,10 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class AlertComponent implements OnInit {
 	// Public properties
 	@Input() type: 'primary | accent | warn';
-	@Input() duration: number = 0;
-	@Input() showCloseButton: boolean = true;
+	@Input() duration = 0;
+	@Input() showCloseButton = true;
 	@Output() close = new EventEmitter<boolean>();
-	alertShowing: boolean = true;
+	alertShowing = true;
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks

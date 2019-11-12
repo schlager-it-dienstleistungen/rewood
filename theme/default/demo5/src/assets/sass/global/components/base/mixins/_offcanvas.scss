@@ -7,7 +7,7 @@
 
 @mixin kt-offcanvas-base($class, $layout) {
 	$width: kt-get($layout, self, width);
-	$transition: left 0.3s ease, right 0.3s ease; 
+	$transition: left 0.3s ease, right 0.3s ease;
 
 	// Base
 	.#{$class} {
@@ -17,7 +17,7 @@
 		-webkit-overflow-scrolling: touch;
 		top: 0;
 		bottom: 0;
-		overflow-y: auto; 				
+		overflow-y: auto;
 		-webkit-transform: translate3d(0, 0, 0);
 		backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
@@ -25,7 +25,7 @@
 		transition: $transition;
 		left: -($width + 20px);
 
-		&.#{$class}--on {			
+		&.#{$class}--on {
 			transition: $transition;
 			left: 0;
 		}
@@ -41,7 +41,7 @@
 			right: -($width + 20px);
 			left: auto;
 
-			&.#{$class}--on {			
+			&.#{$class}--on {
 				transition: $transition;
 				right: 0;
 				left: auto;
@@ -62,8 +62,8 @@
 			border: 0;
 			box-shadow: none;
 			@include kt-rounded {
-				border-radius: 3px; 
-			}			
+				border-radius: 3px;
+			}
 			cursor: pointer;
 			outline: none !important;
 			display: flex;
@@ -74,7 +74,7 @@
 				transition: none !important;
 			}
 
-			> i {					
+			> i {
 				line-height: 0;
 				font-size: kt-get($layout, close, font-size);
 			}
@@ -91,7 +91,7 @@
 				right: - (kt-get($layout, close, size));
 			}
 
-			.#{$class}--on & {			
+			.#{$class}--on & {
 				transition: $transition;
 				left: $width - kt-get($layout, close, size) - 1px;
 			}

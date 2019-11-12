@@ -61,7 +61,8 @@
 }
 
 @mixin kt-hack-ie {
-	@media screen\0 {
+	//IE10 and IE11
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 		@content;
 	}
 }

@@ -124,16 +124,16 @@
 				var width;
 				var initialWidth = false;
 				$(window).resize(function() {
-					// get initial width
-					if (!initialWidth) {
-						width = $(this).width();
-						initialWidth = true;
-					}
 					// issue: URL Bar Resizing on mobile, https://developers.google.com/web/updates/2016/12/url-bar-resizing
 					// trigger datatable resize on width change only
 					if ($(this).width() !== width) {
 						width = $(this).width();
 						Plugin.fullRender();
+					}
+					// get initial width
+					if (!initialWidth) {
+						width = $(this).width();
+						initialWidth = true;
 					}
 				});
 
@@ -514,10 +514,10 @@
 					// scrollbar offset
 					bodyHeight -= 2;
 
-					$(datatable.tableBody).css('max-height', bodyHeight);
+					$(datatable.tableBody).css('max-height', Math.floor(parseFloat(bodyHeight)));
 
 					// set scrollable area fixed height
-					$(datatable.tableBody).find('.' + pfx + 'datatable__lock--scroll').css('height', bodyHeight);
+					// $(datatable.tableBody).find('.' + pfx + 'datatable__lock--scroll').css('height', Math.floor(parseFloat(bodyHeight)));
 				}
 			},
 
@@ -951,9 +951,7 @@
 						// get initial scroll position
 						scroll.initPosition = $(scrollable).scrollLeft();
 						$(scrollable).css('overflow-y', 'auto').off().on('scroll', scroll.onScrolling);
-						if (Plugin.getOption('rows.autoHide') !== true) {
-							$(scrollable).css('overflow-x', 'auto');
-						}
+						$(scrollable).css('overflow-x', 'auto');
 					},
 					onScrolling: function(e) {
 						var left = $(this).scrollLeft();
@@ -995,10 +993,11 @@
 					return;
 				}
 				$(datatable.tableBody).css('overflow', '');
-				if (util.hasClass(element, 'ps')) {
-					$(element).data('ps').update();
+				var ps = $(element).data('ps');
+				if (util.hasClass(element, 'ps') && typeof ps !== 'undefined') {
+					ps.update();
 				} else {
-					var ps = new PerfectScrollbar(element, Object.assign({}, {
+					ps = new PerfectScrollbar(element, Object.assign({}, {
 						wheelSpeed: 0.5,
 						swipeEasing: true,
 						// wheelPropagation: false,
@@ -1007,12 +1006,12 @@
 						suppressScrollX: Plugin.getOption('rows.autoHide') && !Plugin.isLocked()
 					}, options));
 					$(element).data('ps', ps);
-
-					// reset perfect scrollbar on resize
-					$(window).resize(function() {
-						ps.update();
-					});
 				}
+
+				// reset perfect scrollbar on resize
+				$(window).resize(function() {
+					ps.update();
+				});
 			},
 
 			/**
@@ -1247,9 +1246,9 @@
 			},
 
 			updateTableComponents: function() {
-				datatable.tableHead = $(datatable.table).children('thead');
-				datatable.tableBody = $(datatable.table).children('tbody');
-				datatable.tableFoot = $(datatable.table).children('tfoot');
+				datatable.tableHead = $(datatable.table).children('thead').get(0);
+				datatable.tableBody = $(datatable.table).children('tbody').get(0);
+				datatable.tableFoot = $(datatable.table).children('tfoot').get(0);
 			},
 
 			/**

@@ -18,7 +18,7 @@ export class NotificationComponent {
 	@Input() pulseLight: boolean;
 
 	// Set icon class name
-	@Input() icon: string = 'flaticon2-bell-alarm-symbol';
+	@Input() icon = 'flaticon2-bell-alarm-symbol';
 	@Input() iconType: '' | 'success';
 
 	// Set true to icon as SVG or false as icon class

@@ -1,6 +1,6 @@
 //
 // Button Customization
-// 
+//
 
 
 
@@ -25,7 +25,7 @@ button.btn {
 // Clean button
 .btn.btn-clean {
 	border-color: transparent;
-	background: transparent;	
+	background: transparent;
 	color: kt-base-color(shape, 3);
 
 	i {
@@ -48,7 +48,7 @@ button.btn {
 // Default button
 .btn.btn-default {
 	border: 0;
-	background: transparent;	
+	background: transparent;
 	color: kt-base-color(label, 2);
 	border: 1px solid kt-base-color(shape, 2);
 
@@ -86,7 +86,7 @@ button.btn {
 		background-color: $btn-secondary-hover-bg-color;
 	}
 }
-  
+
 // Button states
 @each $name, $color in join($kt-state-colors, $kt-social-colors) {
     .btn-#{$name} {
@@ -139,7 +139,7 @@ button.btn {
 // Hover states
 @each $name, $color in $kt-state-colors {
     .btn-hover-#{$name} {
-    	//background: transparent; 
+    	//background: transparent;
     	//color: kt-get($color, base);
 
     	.show > &,
@@ -153,16 +153,16 @@ button.btn {
     }
 
     .btn-outline-hover-#{$name} {
-    	//background: transparent; 
+    	//background: transparent;
 
 	  	&.btn-clean {
-    		border: 1px solid transparent;		
+    		border: 1px solid transparent;
     	}
 
     	.show > &,
 	  	&.active,
 	  	&:active,
-	  	&:hover {    	
+	  	&:hover {
 	  		color: kt-get($color, base);
 			border-color: kt-get($color, base);
 			background-color: transparent;
@@ -223,7 +223,7 @@ button.btn {
 			box-shadow: 0px 4px 16px 0px rgba($base-color,0.15);
 
 			.show > &,
-			&:focus,  
+			&:focus,
 			&.active,
 	  		&:active,
 	  		&:hover {
@@ -243,7 +243,7 @@ button.btn {
 	  	&.btn-#{$name}.btn-elevate-hover {
 			.show > &,
 			&.active,
-			&:focus,  
+			&:focus,
 	  		&:active,
 	  		&:hover {
 	  			box-shadow: 0px 9px 16px 0px rgba($base-color, 0.25) !important;
@@ -298,8 +298,8 @@ button.btn {
 	}
 
 	&.btn-lower {
-		text-transform: lowercase;	
-	}	
+		text-transform: lowercase;
+	}
 }
 
 // Custom sizing
@@ -360,7 +360,7 @@ button.btn {
 	i {
 		padding-right: 0.5rem;
 		vertical-align: middle;
-		line-height: 0;
+		//line-height: 0;
 	}
 
 	&.btn-sm {
@@ -398,7 +398,7 @@ input.btn.btn-label {
 	&.active {
 	    background-color: kt-brand-color();
 	    color: kt-brand-color(inverse);
-	}	
+	}
 }
 
 // Label button states
@@ -443,10 +443,10 @@ input.btn.btn-label {
 	i {
 		padding: 0;
 		margin: 0;
-		line-height: 0;
+		//line-height: 0;
 	}
 
-	[class^="socicon-"], 
+	[class^="socicon-"],
 	[class*=" socicon-"] {
 		line-height: 1;
 	}
@@ -454,7 +454,7 @@ input.btn.btn-label {
 	& {
 		height: 3rem;
 		width: 3rem;
-	}	
+	}
 
 	&.btn-sm {
 		height: 2.5rem;
@@ -502,7 +502,7 @@ input.btn.btn-label {
 .btn-icon-h {
 	& {
 		height: 3rem;
-	}	
+	}
 
 	&.btn-sm {
 		height: 2.25rem;
@@ -530,7 +530,7 @@ input.btn.btn-label {
 			&:before {
 				left: $input-btn-padding-x;
 			}
-		}	
+		}
 
 		// Right
 		&.kt-spinner--right {
@@ -543,7 +543,7 @@ input.btn.btn-label {
 			}
 		}
 	}
-	
+
 	&.kt-spinner--sm {
 		&:not(.kt-spinner--center) {
 			padding-left: 2.5 * $input-btn-padding-x;
@@ -551,7 +551,7 @@ input.btn.btn-label {
 			&:before {
 				left: $input-btn-padding-x;
 			}
-		}	
+		}
 
 		// Right
 		&.kt-spinner--right {
@@ -572,7 +572,7 @@ input.btn.btn-label {
 			&:before {
 				left: $input-btn-padding-x;
 			}
-		}	
+		}
 
 		// Right
 		&.kt-spinner--right {

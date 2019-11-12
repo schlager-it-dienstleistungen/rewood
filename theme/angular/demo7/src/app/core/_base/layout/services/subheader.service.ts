@@ -158,7 +158,7 @@ export class SubheaderService {
 	 */
 	setTitle(title: string) {
 		this.manualTitle[this.router.url] = title;
-		this.title$.next({title: title});
+		this.title$.next({title});
 	}
 
 	/**

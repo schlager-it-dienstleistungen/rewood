@@ -32,9 +32,9 @@ export class RoleEditDialogComponent implements OnInit, OnDestroy {
 	// Public properties
 	role: Role;
 	role$: Observable<Role>;
-	hasFormErrors: boolean = false;
-	viewLoading: boolean = false;
-	loadingAfterSubmit: boolean = false;
+	hasFormErrors = false;
+	viewLoading = false;
+	loadingAfterSubmit = false;
 	allPermissions$: Observable<Permission[]>;
 	rolePermissions: Permission[] = [];
 	// Private properties
@@ -48,8 +48,8 @@ export class RoleEditDialogComponent implements OnInit, OnDestroy {
 	 * @param store: Store<AppState>
 	 */
 	constructor(public dialogRef: MatDialogRef<RoleEditDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any,
-		private store: Store<AppState>) { }
+		           @Inject(MAT_DIALOG_DATA) public data: any,
+		           private store: Store<AppState>) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks

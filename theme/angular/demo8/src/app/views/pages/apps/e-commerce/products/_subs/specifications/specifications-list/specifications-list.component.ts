@@ -69,8 +69,8 @@ export class SpecificationsListComponent implements OnInit, OnDestroy {
 	 * @param layoutUtilsService: LayoutUtilsService
 	 */
 	constructor(private store: Store<AppState>,
-		public dialog: MatDialog,
-		private layoutUtilsService: LayoutUtilsService) { }
+		           public dialog: MatDialog,
+		           private layoutUtilsService: LayoutUtilsService) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -189,9 +189,9 @@ export class SpecificationsListComponent implements OnInit, OnDestroy {
 	 * @param _item: ProductSpecificationModel
 	 */
 	deleteSpec(_item: ProductSpecificationModel) {
-		const _title: string = 'Specification Delete';
-		const _description: string = 'Are you sure to permanently delete this specification?';
-		const _waitDesciption: string = 'Specification is deleting...';
+		const _title = 'Specification Delete';
+		const _description = 'Are you sure to permanently delete this specification?';
+		const _waitDesciption = 'Specification is deleting...';
 		const _deleteMessage = `Specification has been deleted`;
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
@@ -210,9 +210,9 @@ export class SpecificationsListComponent implements OnInit, OnDestroy {
 	 * Delete specs
 	 */
 	deleteSpecs() {
-		const _title: string = 'Specifications Delete';
-		const _description: string = 'Are you sure to permanently delete selected specifications?';
-		const _waitDesciption: string = 'Specifications are deleting...';
+		const _title = 'Specifications Delete';
+		const _description = 'Are you sure to permanently delete selected specifications?';
+		const _waitDesciption = 'Specifications are deleting...';
 		const _deleteMessage = 'Selected specifications have been deleted';
 
 		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
