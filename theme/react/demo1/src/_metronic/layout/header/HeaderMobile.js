@@ -7,22 +7,24 @@ import KTToggle from "../../_assets/js/toggle";
 
 class HeaderMobile extends React.Component {
   toggleButtonRef = React.createRef();
-  headerMobileCssClasses = this.props.htmlClassService.classes.header_mobile.join(
-    " "
-  );
-  headerMobileAttributes = this.props.htmlClassService.attributes.aside_menu;
 
   componentDidMount() {
     new KTToggle(this.toggleButtonRef.current, this.props.toggleOptions);
   }
 
   render() {
-    const { headerLogo, asideDisplay, headerMenuSelfDisplay } = this.props;
+    const {
+      headerLogo,
+      asideDisplay,
+      headerMenuSelfDisplay,
+      headerMobileCssClasses,
+      headerMobileAttributes
+    } = this.props;
     return (
       <div
         id="kt_header_mobile"
-        className={`kt-header-mobile ${this.headerMobileCssClasses}`}
-        {...this.headerMobileAttributes}
+        className={`kt-header-mobile ${headerMobileCssClasses}`}
+        {...headerMobileAttributes}
       >
         <div className="kt-header-mobile__logo">
           <Link to="/">
@@ -75,7 +77,14 @@ const mapStateToProps = store => ({
     target: "body",
     targetState: "kt-header__topbar--mobile-on",
     togglerState: "kt-header-mobile__toolbar-topbar-toggler--active"
-  }
+  },
+  headerMobileCssClasses: builder.selectors.getClasses(store, {
+    path: "header_mobile",
+    toString: true
+  }),
+  headerMobileAttributes: builder.selectors.getAttributes(store, {
+    path: "aside_menu"
+  })
 });
 
 export default connect(mapStateToProps)(HeaderMobile);

@@ -13,6 +13,11 @@ const ReactBootstrapPage = lazy(() =>
 );
 
 export default function HomePage() {
+  // useEffect(() => {
+  //   console.log('Home page');
+  // }, []) // [] - is required if you need only one call
+  // https://reactjs.org/docs/hooks-reference.html#useeffect
+
   return (
     <Suspense fallback={<LayoutSplashScreen />}>
       <Switch>

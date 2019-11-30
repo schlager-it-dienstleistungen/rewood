@@ -69,6 +69,14 @@ export default class HtmlClassService {
     return this.classes;
   }
 
+  getAttributes(path) {
+    if (path) {
+      const attributes = objectPath.get(this.attributes, path) || [];
+      return attributes;
+    }
+    return [];
+  }
+
   /**
    * Init Layout
    */

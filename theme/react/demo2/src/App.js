@@ -12,7 +12,7 @@ import { LastLocationProvider } from "react-router-last-location";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 
-export default function App({ store, Layout, persistor, basename }) {
+export default function App({ store, persistor, basename }) {
   return (
       /* Provide Redux store */
       <Provider store={store} loading={<LayoutSplashScreen />}>
@@ -29,7 +29,7 @@ export default function App({ store, Layout, persistor, basename }) {
                     {/* Provide `react-intl` context synchronized with Redux state.  */}
                     <I18nProvider>
                       {/* Render routes with provided `Layout`. */}
-                      <Routes Layout={Layout} />
+                      <Routes />
                     </I18nProvider>
                   </ThemeProvider>
                 </LastLocationProvider>

@@ -26,7 +26,6 @@ export function setupAxios(axios, store) {
   );
 }
 
-
 /*  removeStorage: removes a key from localStorage and its sibling expiracy key
     params:
         key <string>     : localStorage key to remove

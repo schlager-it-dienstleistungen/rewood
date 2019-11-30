@@ -52,3 +52,37 @@
 // @import "./_metronic/_assets/plugins/line-awesome/css/line-awesome.css";
 // @import "./_metronic/_assets/plugins/flaticon/flaticon.css";
 // @import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
+
+
+@-webkit-keyframes fadeInUpContent {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -5%, 0);
+    transform: translate3d(0, -5%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUpContent {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -5%, 0);
+    transform: translate3d(0, -5%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUpContent {
+  -webkit-animation-name: fadeInUpContent;
+  animation-name: fadeInUpContent;
+}

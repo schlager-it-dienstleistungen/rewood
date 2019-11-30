@@ -13,7 +13,7 @@ export default class DemosList extends React.Component {
             <img
               alt=""
               src={toAbsoluteUrl("/media/demos/preview/demo1.jpg")}
-            />
+            />ы
 
             <div className="kt-demo-panel__item-preview-overlay">
               <a href="/" className="btn btn-brand btn-elevate ">

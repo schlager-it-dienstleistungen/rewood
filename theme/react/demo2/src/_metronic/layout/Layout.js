@@ -12,9 +12,9 @@ import LayoutConfig from "./LayoutConfig";
 import MenuConfig from "./MenuConfig";
 import LayoutInitializer from "./LayoutInitializer";
 import AsideLeft from "./aside/AsideLeft";
-import KtContent from "../../app/partials/layout/KtContent";
 import SubHeader from "./sub-header/SubHeader";
 import QuickPanel from "../../app/partials/layout/QuickPanel";
+import KtContent from "./KtContent";
 import("./assets/Base.scss");
 
 const styles = [];
@@ -57,7 +57,7 @@ function Layout({
           >
             {/* <!-- begin:: Header READY --> */}
 
-            <Header htmlClassService={htmlClassService} />
+            <Header />
             {/* <!-- end:: Header --> */}
 
             {/* <!-- begin:: Content --> */}
@@ -69,14 +69,12 @@ function Layout({
                 <div
                   className={`kt-container ${contentContainerClasses} kt-grid kt-grid--ver`}
                 >
-                  <AsideLeft htmlClassService={htmlClassService} />
+                  <AsideLeft />
                   <div
                     className={`kt-content ${contentClasses} kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor`}
                     id="kt_content"
                   >
-                    {subheaderDisplay && (
-                      <SubHeader htmlClassService={htmlClassService} />
-                    )}
+                    {subheaderDisplay && <SubHeader />}
                     {contentExtended ? (
                       { children }
                     ) : (
@@ -93,17 +91,11 @@ function Layout({
                   className={`kt-content ${contentClasses} kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor`}
                   id="kt_content"
                 >
-                  {subheaderDisplay && (
-                    <SubHeader htmlClassService={htmlClassService} />
-                  )}
+                  {subheaderDisplay && <SubHeader />}
                   {contentExtended ? (
                     { children }
                   ) : (
-                    <div
-                      className={`kt-container ${contentContainerClasses} kt-grid__item kt-grid__item--fluid`}
-                    >
-                      {children}
-                    </div>
+                    <KtContent>{children}</KtContent>
                   )}
                 </div>
               )}
@@ -111,7 +103,7 @@ function Layout({
             </div>
             {/* <!-- end:: Content --> */}
 
-            <Footer htmlClassService={htmlClassService} />
+            <Footer />
           </div>
         </div>
         {/* <!-- end:: Body --> */}

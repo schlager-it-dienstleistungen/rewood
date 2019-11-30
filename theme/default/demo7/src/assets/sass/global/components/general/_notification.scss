@@ -77,7 +77,10 @@ $kt-notification-item-padding-y: 1.1rem;
 
 		&:after {
 		    border: 0;
-		    @include kt-arrow-icon(right, true);
+			@include kt-arrow-icon(left, true);
+			/*rtl:begin:remove*/
+			@include kt-arrow-icon(right, true);
+			/*rtl:end:remove*/
 		    font-size: 0.8rem;
 		    line-height: 0;
 		    position: relative;

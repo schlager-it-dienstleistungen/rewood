@@ -6,11 +6,11 @@
  * @output plugins/custom/jquery-ui/jquery-ui.bundle
  */
 
-// dependencies
+// Dependencies
 window.jQuery = window.$ = require("jquery");
 require("bootstrap/js/dist/tooltip");
 
-// jquery ui
+// jQueryUI
 require("jquery-ui");
 require("jquery-ui/ui/widgets/sortable");
 require("jquery-ui/ui/disable-selection");

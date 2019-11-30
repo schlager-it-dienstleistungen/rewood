@@ -6,5 +6,5 @@
  * @output plugins/custom/ckeditor/ckeditor-document.bundle
  */
 
-// ckeditor classic
+// CKeditor Classic
 window.DecoupledEditor = require("@ckeditor/ckeditor5-build-decoupled-document");

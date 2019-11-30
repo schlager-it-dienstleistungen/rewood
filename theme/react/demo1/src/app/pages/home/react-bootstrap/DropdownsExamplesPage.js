@@ -13,27 +13,16 @@ import {
   ButtonToolbar
 } from "react-bootstrap";
 
-class CustomToggle extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-
-    this.props.onClick(e);
-  }
-
-  render() {
-    return (
-      <a href="" onClick={this.handleClick}>
-        {this.props.children}
+const CustomToggle =  React.forwardRef((props, ref) => {
+  return (
+      <a href="" ref={ref} onClick={e => {
+        e.preventDefault();
+        this.props.handleClick(e);
+      }}>
+        {props.children}
       </a>
-    );
-  }
-}
+  );
+});
 
 class CustomMenu extends React.Component {
   constructor(props, context) {

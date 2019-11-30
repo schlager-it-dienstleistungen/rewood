@@ -135,6 +135,8 @@
     [class^="flaticon2-"],
     [class*=" flaticon2-"] {
         font-size: kt-get($config, flaticon);
+        // fix icon position for RTL
+        float: left;
     }
 }
 

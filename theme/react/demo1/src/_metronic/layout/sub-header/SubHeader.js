@@ -3,24 +3,27 @@ import React from "react";
 import { connect } from "react-redux";
 import objectPath from "object-path";
 import { withRouter } from "react-router-dom";
-import { QuickActions } from "./quick-actions/QuickActions";
+import { QuickActions } from "./components/QuickActions";
 import { LayoutContextConsumer } from "../LayoutContext";
 import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
+import * as builder from "../../ducks/builder";
+// import BreadCrumbs from "./components/BreadCrumbs";
 
 class SubHeader extends React.Component {
-  subheaderCssClasses = this.props.htmlClassService.classes.subheader;
-  subheaderContainerCssClasses = this.props.htmlClassService.classes
-    .subheader_container;
-
   render() {
+    const {
+      subheaderCssClasses,
+      subheaderContainerCssClasses,
+      subheaderMobileToggle
+    } = this.props;
     return (
       <div
         id="kt_subheader"
-        className={`kt-subheader ${this.subheaderCssClasses} kt-grid__item`}
+        className={`kt-subheader ${subheaderCssClasses} kt-grid__item`}
       >
-        <div className={`kt-container ${this.subheaderContainerCssClasses}`}>
+        <div className={`kt-container ${subheaderContainerCssClasses}`}>
           <div className="kt-subheader__main">
-            {this.props.subheaderMobileToggle && (
+            {subheaderMobileToggle && (
               <button
                 className="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left"
                 id="kt_subheader_mobile_toggle"
@@ -30,8 +33,13 @@ class SubHeader extends React.Component {
             )}
 
             <LayoutContextConsumer>
+              {/*{({ subheader: { title, breadcrumb } }) => (*/}
+
               {({ subheader: { title } }) => (
-                <h3 className="kt-subheader__title">{title}</h3>
+                <>
+                  <h3 className="kt-subheader__title">{title}</h3>
+                  {/*<BreadCrumbs items={breadcrumb} />*/}
+                </>
               )}
             </LayoutContextConsumer>
 
@@ -66,7 +74,15 @@ const mapStateToProps = store => ({
   subheaderMobileToggle: objectPath.get(
     store.builder.layoutConfig,
     "subheader.mobile-toggle"
-  )
+  ),
+  subheaderCssClasses: builder.selectors.getClasses(store, {
+    path: "subheader",
+    toString: true
+  }),
+  subheaderContainerCssClasses: builder.selectors.getClasses(store, {
+    path: "subheader_container",
+    toString: true
+  })
 });
 
 export default withRouter(connect(mapStateToProps)(SubHeader));

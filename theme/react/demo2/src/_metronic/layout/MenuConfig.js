@@ -14,10 +14,12 @@ export default {
         root: true,
         alignment: "left",
         toggle: "click",
+        page: "google-material",
         submenu: [
           {
             title: "Layout",
             bullet: "dot",
+            page: "google-material/layout/box",
             submenu: [
               {
                 title: "Box",
@@ -49,6 +51,7 @@ export default {
           {
             title: "Inputs",
             bullet: "dot",
+            page: "google-material/inputs/autocomplete",
             submenu: [
               {
                 title: "Autocomplete",
@@ -101,6 +104,7 @@ export default {
           {
             title: "Navigation",
             bullet: "dot",
+            page: "google-material/navigation/bottom-navigation",
             submenu: [
               {
                 title: "Bottom Navigation",
@@ -142,6 +146,7 @@ export default {
           {
             title: "Surfaces",
             bullet: "dot",
+            page: "google-material/surfaces/app-bar",
             submenu: [
               {
                 title: "App Bar",
@@ -168,6 +173,7 @@ export default {
           {
             title: "Feedback",
             bullet: "dot",
+            page: "google-material/feedback/progress",
             submenu: [
               {
                 title: "Progress",
@@ -189,6 +195,7 @@ export default {
           {
             title: "Data Display",
             bullet: "dot",
+            page: "google-material/data-displays/avatars",
             submenu: [
               {
                 title: "Avatars",
@@ -240,6 +247,7 @@ export default {
           {
             title: "Utils",
             bullet: "dot",
+            page: "google-material/utils/click-away-listener",
             submenu: [
               {
                 title: "Click Away Listener",
@@ -290,6 +298,7 @@ export default {
         root: true,
         alignment: "left",
         toggle: "click",
+        page: "react-bootstrap",
         submenu: {
           type: "mega",
           width: "800px",
@@ -436,23 +445,6 @@ export default {
           ]
         }
       },
-      // {
-      //   title: "Components",
-      //   root: true,
-      //   alignment: "left",
-      //   toggle: "click",
-      //   submenu: [
-      //     {
-      //       title: "React Bootstrap",
-      //       bullet: "dot",
-      //       icon: "flaticon-web",
-      //       submenu: [
-      //
-      //
-      //       ]
-      //     }
-      //   ]
-      // },
       {
         title: "Custom",
         root: true,
@@ -468,6 +460,7 @@ export default {
             title: "Error Pages",
             bullet: "dot",
             icon: "flaticon2-warning",
+            page: "error/error-v1",
             submenu: [
               {
                 title: "Error 1",
@@ -522,10 +515,12 @@ export default {
         root: true,
         bullet: "dot",
         icon: "flaticon2-browser-2",
+        page: "google-material",
         submenu: [
           {
             title: "Layout",
             bullet: "dot",
+            page: "google-material/layout/box",
             submenu: [
               {
                 title: "Box",
@@ -595,6 +590,7 @@ export default {
           {
             title: "Navigation",
             bullet: "dot",
+            page: "google-material/navigation/bottom-navigation",
             submenu: [
               {
                 title: "Bottom Navigation",
@@ -629,6 +625,7 @@ export default {
           {
             title: "Surfaces",
             bullet: "dot",
+            page: "google-material/surfaces/app-bar",
             submenu: [
               {
                 title: "App Bar",
@@ -651,6 +648,7 @@ export default {
           {
             title: "Feedback",
             bullet: "dot",
+            page: "google-material/feedback/progress",
             submenu: [
               {
                 title: "Progress",
@@ -669,6 +667,7 @@ export default {
           {
             title: "Data Display",
             bullet: "dot",
+            page: "google-material/data-displays/avatars",
             submenu: [
               {
                 title: "Avatars",
@@ -711,6 +710,7 @@ export default {
           {
             title: "Utils",
             bullet: "dot",
+            page: "google-material/utils/click-away-listener",
             submenu: [
               {
                 title: "Click Away Listener",
@@ -753,6 +753,7 @@ export default {
         root: true,
         bullet: "dot",
         icon: "flaticon2-digital-marketing",
+        page: "react-bootstrap",
         submenu: [
           {
             title: "Alerts",
@@ -865,24 +866,11 @@ export default {
         ]
       },
       { section: "Custom" },
-      // {
-      //   root: true,
-      //   title: "Documentation",
-      //   bullet: "dot",
-      //   icon: "flaticon2-file-1",
-      //   submenu: [
-      //     { title: "Quick Start", page: "docs/quick-start" },
-      //     { title: "Overview", page: "docs/overview" },
-      //     { title: "Deployment", page: "docs/deployment" },
-      //     { title: "Internationalization", page: "docs/i18n" },
-      //     { title: "Mock Backend", page: "docs/mock-backend" },
-      //     { title: "Create a Page", page: "docs/create-a-page" }
-      //   ]
-      // },
       {
         title: "Error Pages",
         root: true,
         bullet: "dot",
+        page: "error/error-v1",
         icon: "flaticon-danger",
         submenu: [
           {

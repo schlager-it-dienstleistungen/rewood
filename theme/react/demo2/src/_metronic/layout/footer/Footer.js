@@ -6,13 +6,12 @@ import { Link } from "react-router-dom";
 import objectPath from "object-path";
 import { connect } from "react-redux";
 import { toAbsoluteUrl } from "../../utils/utils";
+import * as builder from "../../ducks/builder";
 
 class Footer extends React.Component {
   render() {
     const today = new Date().getFullYear();
-    const { footerSelfLayoutIsExtended, htmlClassService } = this.props;
-    const footerClasses = htmlClassService.classes.footer.join(" ");
-    const footerContainerClasses = htmlClassService.classes.footer_container.join(" ");
+    const { footerSelfLayoutIsExtended, footerClasses, footerContainerClasses } = this.props;
     return (
         <div
           className={`kt-footer ${footerClasses} kt-grid__item`}
@@ -97,7 +96,9 @@ class Footer extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  footerSelfLayoutIsExtended: objectPath.get(store.builder.layoutConfig, "footer.self.layout") === "extended"
+  footerSelfLayoutIsExtended: objectPath.get(store.builder.layoutConfig, "footer.self.layout") === "extended",
+  footerClasses: builder.selectors.getClasses(store, { path: "footer", toString: true}),
+  footerContainerClasses: builder.selectors.getClasses(store, { path: "footer_container", toString: true}),
 });
 
 export default connect(mapStateToProps)(Footer);

@@ -14,9 +14,10 @@ import AuthPage from "../pages/auth/AuthPage";
 import ErrorsPage from "../pages/errors/ErrorsPage";
 import LogoutPage from "../pages/auth/Logout";
 import { LayoutContextProvider } from "../../_metronic";
+import Layout from "../../_metronic/layout/Layout";
 import * as routerHelpers from "../router/RouterHelpers";
 
-export const Routes = withRouter(({ Layout, history }) => {
+export const Routes = withRouter(({ history }) => {
   const lastLocation = useLastLocation();
   routerHelpers.saveLastLocation(lastLocation);
   const { isAuthorized, menuConfig, userLastLocation } = useSelector(

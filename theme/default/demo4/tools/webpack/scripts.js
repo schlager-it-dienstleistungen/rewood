@@ -6,7 +6,7 @@
  * @output js/scripts.bundle
  */
 
-// Keentheme"s plugins
+// Core Plugins
 window.KTUtil = require("../../src/assets/js/global/components/base/util");
 window.KTApp = require("../../src/assets/js/global/components/base/app");
 window.KTAvatar = require("../../src/assets/js/global/components/base/avatar");
@@ -22,7 +22,7 @@ require("../../src/assets/js/global/components/base/datatable/core.datatable");
 require("../../src/assets/js/global/components/base/datatable/datatable.checkbox");
 require("../../src/assets/js/global/components/base/datatable/datatable.rtl");
 
-// Layout scripts
+// Layout Scripts
 window.KTLayout = require("../../src/assets/js/global/layout/layout");
 window.KTChat = require("../../src/assets/js/global/layout/chat");
 require("../../src/assets/js/global/layout/demo-panel");

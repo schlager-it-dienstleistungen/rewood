@@ -1467,6 +1467,7 @@
 							addClass('selectpicker ' + pfx + 'datatable__pager-size').
 							attr('title', Plugin.getOption('translate.toolbar.pagination.items.default.select')).
 							attr('data-width', '60px').
+							attr('data-container', 'body').
 							val(pg.meta.perpage).
 							on('change', pg.updatePerpage).
 							prependTo(pg.pagerLayout['info']);
@@ -1624,7 +1625,8 @@
 						// page info update
 						$(pg.pager).find('.' + pfx + 'datatable__pager-info').find('.' + pfx + 'datatable__pager-detail').html(Plugin.dataPlaceholder(
 							Plugin.getOption('translate.toolbar.pagination.items.info'), {
-								start: start,
+								// set start page 0 if the is no records. eg. Showing 0 - 0 of 0
+								start: pg.meta.total === 0 ? 0 : start,
 								end: pg.meta.perpage === -1 ? pg.meta.total : end,
 								pageSize: pg.meta.perpage === -1 ||
 								pg.meta.perpage >= pg.meta.total
@@ -2888,10 +2890,6 @@
 				$(cell).each(function(i, td) {
 					// normal table
 					var row = $(td).closest('tr').addClass(pfx + 'datatable__row--active');
-					var colIndex = $(row).index() + 1;
-
-					// lock table
-					$(row).closest('tbody').find('tr:nth-child(' + colIndex + ')').not('.' + pfx + 'datatable__row-subtable').addClass(pfx + 'datatable__row--active');
 
 					var id = $(td).attr('value');
 					if (typeof id !== 'undefined') {
@@ -2918,10 +2916,6 @@
 				$(cell).each(function(i, td) {
 					// normal table
 					var row = $(td).closest('tr').removeClass(pfx + 'datatable__row--active');
-					var colIndex = $(row).index() + 1;
-
-					// lock table
-					$(row).closest('tbody').find('tr:nth-child(' + colIndex + ')').not('.' + pfx + 'datatable__row-subtable').removeClass(pfx + 'datatable__row--active');
 
 					var id = $(td).attr('value');
 					if (typeof id !== 'undefined') {

@@ -72,6 +72,14 @@ export default class HtmlClassService {
     return this.classes;
   }
 
+  getAttributes(path) {
+    if (path) {
+      const attributes = objectPath.get(this.attributes, path) || [];
+      return attributes;
+    }
+    return [];
+  }
+
   /**
    * Init Layout
    */
@@ -222,9 +230,14 @@ export default class HtmlClassService {
       this.attributes.aside_menu["data-ktmenu-scroll"] = "1";
     }
 
-    const asideSubmenuDHoverTimeout = objectPath.get(this.config, "aside.menu.submenu.dropdown.hover-timeout");
+    const asideSubmenuDHoverTimeout = objectPath.get(
+      this.config,
+      "aside.menu.submenu.dropdown.hover-timeout"
+    );
     if (asideSubmenuDHoverTimeout) {
-      this.attributes.aside_menu["data-ktmenu-dropdown-timeout"] = asideSubmenuDHoverTimeout;
+      this.attributes.aside_menu[
+        "data-ktmenu-dropdown-timeout"
+      ] = asideSubmenuDHoverTimeout;
     }
   }
 

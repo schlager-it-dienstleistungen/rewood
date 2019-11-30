@@ -52,7 +52,7 @@ const actionTypes = {
  *
  * Returns `undefined` if there are no matches.
  */
-function findPageConfig(currentPage, items) {
+function findPageConfig(currentPage, items, breadcrumbs) {
   // Ignore non array `items`.
   if (!items || !Array.isArray(items)) {
     return;
@@ -60,15 +60,15 @@ function findPageConfig(currentPage, items) {
 
   for (const item of items) {
     // Return `item` if it's `page` matches `currentPage`
-    if (currentPage === item.page) {
+    if (currentPage === item.page && !item.submenu) {
       return item;
     }
 
     // Try to `pageConfig` in `item.submenu` if it is defined.
     if (item.submenu) {
-      const pageConfig = findPageConfig(currentPage, item.submenu);
-
+      const pageConfig = findPageConfig(currentPage, item.submenu, breadcrumbs);
       if (pageConfig) {
+        breadcrumbs.push(item);
         return pageConfig;
       }
     }
@@ -80,14 +80,17 @@ function findPageConfig(currentPage, items) {
  */
 function init({ pathname, menuConfig }) {
   const currentPage = pathname.slice(1 /* Remove leading slash. */);
+  let breadcrumbs = [];
   const pageConfig =
-      findPageConfig(currentPage, menuConfig.aside.items) ||
-      findPageConfig(currentPage, menuConfig.header.items);
+      findPageConfig(currentPage, menuConfig.aside.items, breadcrumbs) ||
+      findPageConfig(currentPage, menuConfig.header.items, breadcrumbs);
 
-  const state = { subheader: {}, splashScreen: { refs: {} } };
-
+  breadcrumbs.reverse();
+  const state = { subheader: { title: "", breadcrumb: [], description: "" }, splashScreen: { refs: {} } };
   if (pageConfig) {
+    breadcrumbs.push(pageConfig);
     state.subheader.title = pageConfig.title;
+    state.subheader.breadcrumb = breadcrumbs;
   }
 
   return state;

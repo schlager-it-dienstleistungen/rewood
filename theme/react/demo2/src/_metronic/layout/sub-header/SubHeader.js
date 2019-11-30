@@ -5,14 +5,14 @@ import { withRouter } from "react-router-dom";
 import objectPath from "object-path";
 import { LayoutContextConsumer } from "../LayoutContext";
 import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
-import { QuickActions } from "./quick-actions/QuickActions";
+import { QuickActions } from "./components/QuickActions";
+import * as builder from "../../ducks/builder";
+// import BreadCrumbs from "./components/BreadCrumbs";
 
 class SubHeader extends React.Component {
 
   render() {
-    const { htmlClassService } = this.props;
-    const subheaderClasses = htmlClassService.classes.subheader.join(" ");
-    const subheaderContainerClasses = htmlClassService.classes.subheader_container.join(" ");
+    const { subheaderClasses, subheaderContainerClasses } = this.props;
     return (
       <>
         <div className={`kt-subheader kt-grid__item ${subheaderClasses}`} id="kt_subheader">
@@ -20,8 +20,12 @@ class SubHeader extends React.Component {
             {/*Subheader Main*/}
             <div className="kt-subheader__main">
               <LayoutContextConsumer>
+                {/*{({ subheader: { title, breadcrumb } }) => (*/}
                 {({ subheader: { title } }) => (
-                    <h3 className="kt-subheader__title">{title}</h3>
+                    <>
+                      <h3 className="kt-subheader__title">{title}</h3>
+                      {/*<BreadCrumbs items={breadcrumb} />*/}
+                    </>
                 )}
               </LayoutContextConsumer>
               <span className="kt-subheader__separator kt-subheader__separator--v" />
@@ -71,7 +75,15 @@ const mapStateToProps = store => ({
   layout: objectPath.get(store.builder.layoutConfig, 'subheader.layout'),
   fluid: objectPath.get(store.builder.layoutConfig, 'footer.self.width') === 'fluid',
   clear: objectPath.get(store.builder.layoutConfig, 'subheader.clear'),
-  isOpen: false
+  isOpen: false,
+  subheaderClasses: builder.selectors.getClasses(store, {
+    path: "subheader",
+    toString: true
+  }),
+  subheaderContainerClasses: builder.selectors.getClasses(store, {
+    path: "subheader_container",
+    toString: true
+  }),
 });
 
 export default withRouter(connect(mapStateToProps)(SubHeader));

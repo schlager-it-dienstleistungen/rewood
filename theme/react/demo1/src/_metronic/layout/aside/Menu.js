@@ -9,15 +9,11 @@ import MenuList from "./MenuList";
 import KTMenu from "../../_assets/js/menu";
 import KTUtil from "../../_assets/js/util";
 
-
-
 class AsideLeft extends React.Component {
   asideMenuRef = React.createRef();
 
   insideTm;
   outsideTm;
-
-  asideMenuAttr = this.props.htmlClassService.attributes.aside_menu;
 
   componentDidMount() {
     this.initMenu(); // By ID
@@ -65,7 +61,9 @@ class AsideLeft extends React.Component {
 
     // init aside menu
     let menuDesktopMode = "accordion";
-    const dataKtmenuDropdown = this.asideMenuRef.current.getAttribute("data-ktmenu-dropdown");
+    const dataKtmenuDropdown = this.asideMenuRef.current.getAttribute(
+      "data-ktmenu-dropdown"
+    );
     if (dataKtmenuDropdown === "1") {
       menuDesktopMode = "dropdown";
     }
@@ -143,6 +141,7 @@ class AsideLeft extends React.Component {
       ulClasses,
       menuConfig,
       layoutConfig,
+      asideMenuAttr,
       asideClassesFromConfig,
       location: { pathname }
     } = this.props;
@@ -157,7 +156,7 @@ class AsideLeft extends React.Component {
           onMouseLeave={this.mouseLeave}
           data-ktmenu-vertical="1"
           className={clsx("kt-aside-menu", asideClassesFromConfig)}
-          {...this.asideMenuAttr}
+          {...asideMenuAttr}
         >
           {this.props.disableAsideSelfDisplay && (
             <div className="kt-header-logo">
@@ -183,6 +182,7 @@ const mapStateToProps = store => ({
   menuConfig: store.builder.menuConfig,
   layoutConfig: store.builder.layoutConfig,
   headerLogo: builder.selectors.getLogo(store),
+  asideMenuAttr: builder.selectors.getAttributes(store, { path: "aside_menu" }),
   disableAsideSelfDisplay:
     builder.selectors.getConfig(store, "aside.self.display") === false,
 

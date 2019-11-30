@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import objectPath from "object-path";
 import Header from "./header/Header";
 import SubHeader from "./sub-header/SubHeader";
-import { withRouter } from "react-router-dom";
 import HeaderMobile from "./header/HeaderMobile";
 import AsideLeft from "./aside/AsideLeft";
 import Footer from "./footer/Footer";
@@ -13,40 +12,34 @@ import HTMLClassService from "./HTMLClassService";
 import LayoutConfig from "./LayoutConfig";
 import MenuConfig from "./MenuConfig";
 import LayoutInitializer from "./LayoutInitializer";
-import KtContent from "./KtContent";
 import QuickPanel from "../../app/partials/layout/QuickPanel";
+import KtContent from "./KtContent";
 import("./assets/Base.scss");
 
 const htmlClassService = new HTMLClassService();
-
-const styles = [
-  // toAbsoluteUrl("/assetsFromPublic/css/style.bundle.css"),
-];
 
 function Layout({
   children,
   asideDisplay,
   subheaderDisplay,
   selfLayout,
-  fitTop,
-  fluid,
-  layoutConfig
+  layoutConfig,
+  contentContainerClasses
 }) {
   htmlClassService.setConfig(layoutConfig);
   // scroll to top after location changes
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 
   const contentCssClasses = htmlClassService.classes.content.join(" ");
 
   return selfLayout !== "blank" ? (
     <LayoutInitializer
-      styles={styles}
       menuConfig={MenuConfig}
       layoutConfig={LayoutConfig}
       htmlClassService={htmlClassService}
     >
       {/* <!-- begin:: Header Mobile --> */}
-      <HeaderMobile htmlClassService={htmlClassService} />
+      <HeaderMobile />
       {/* <!-- end:: Header Mobile --> */}
 
       <div className="kt-grid kt-grid--hor kt-grid--root">
@@ -55,7 +48,7 @@ function Layout({
           {/* <!-- begin:: Aside Left --> */}
           {asideDisplay && (
             <>
-              <AsideLeft htmlClassService={htmlClassService} />
+              <AsideLeft />
             </>
           )}
           {/* <!-- end:: Aside Left --> */}
@@ -65,7 +58,7 @@ function Layout({
           >
             {/* <!-- begin:: Header READY --> */}
 
-            <Header htmlClassService={htmlClassService} />
+            <Header />
             {/* <!-- end:: Header --> */}
 
             {/* <!-- begin:: Content --> */}
@@ -75,13 +68,15 @@ function Layout({
             >
               {/* <!-- begin:: Content Head --> */}
               {subheaderDisplay && (
-                <SubHeader htmlClassService={htmlClassService} />
+                <SubHeader />
               )}
               {/* <!-- end:: Content Head --> */}
 
               {/* <!-- begin:: Content Body --> */}
               {/* TODO: add class to animate  kt-grid--animateContent-finished */}
-              <KtContent>{children}</KtContent>
+              <KtContent>
+                {children}
+              </KtContent>
               {/*<!-- end:: Content Body -->*/}
             </div>
             {/* <!-- end:: Content --> */}
@@ -97,7 +92,9 @@ function Layout({
   ) : (
     // BLANK LAYOUT
     <div className="kt-grid kt-grid--ver kt-grid--root">
-      <KtContent>{children}</KtContent>
+      <KtContent>
+        {children}
+      </KtContent>
     </div>
   );
 }
@@ -111,8 +108,11 @@ const mapStateToProps = ({ builder: { layoutConfig } }) => ({
     layoutConfig,
     "header.self.fixed.desktop"
   ),
-  fitTop: objectPath.get(layoutConfig, "content.fit-top"),
-  fluid: objectPath.get(layoutConfig, "content.width") === "fluid"
+  contentContainerClasses: ""
+  // contentContainerClasses: builder.selectors.getClasses(store, {
+  //   path: "content_container",
+  //   toString: true
+  // })
 });
 
-export default withRouter(connect(mapStateToProps)(Layout));
+export default connect(mapStateToProps)(Layout);

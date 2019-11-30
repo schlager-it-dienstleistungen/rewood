@@ -6,7 +6,7 @@
  * @output plugins/custom/flot/flot.bundle
  */
 
-// flot
+// Flot
 require("flot");
 
 require("flot/source/jquery.flot.resize.js");

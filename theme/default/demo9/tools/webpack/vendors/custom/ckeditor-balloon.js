@@ -6,5 +6,5 @@
  * @output plugins/custom/ckeditor/ckeditor-balloon.bundle
  */
 
-// ckeditor classic
+// CKeditor Classic
 window.BalloonEditor = require("@ckeditor/ckeditor5-build-balloon");

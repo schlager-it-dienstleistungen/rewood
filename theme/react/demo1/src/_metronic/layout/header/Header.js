@@ -25,23 +25,26 @@ class Header extends React.Component {
   }
 
   render() {
-    const { htmlClassService, menuHeaderDisplay } = this.props;
-    const headerAttributes = htmlClassService.attributes.header;
+    const {
+      menuHeaderDisplay,
+      headerAttributes,
+      headerClasses
+    } = this.props;
     return (
       <div
-        className={`kt-header kt-grid__item ${this.props.headerClasses}`}
+        className={`kt-header kt-grid__item ${headerClasses}`}
         id="kt_header"
         ref={this.headerCommonRef}
         {...headerAttributes}
       >
         <AnimateLoading />
         {/* <!-- begin: Header Menu --> */}
-        {menuHeaderDisplay && <HMenu htmlClassService={htmlClassService} />}
+        {menuHeaderDisplay && <HMenu />}
         {/* <!-- end: Header Menu --> */}
         {/* <!-- begin:: Header Topbar --> */}
         {/* <!-- empty div to fix topbar to stay on the right when menu-horizontal is hidden --> */}
         {!menuHeaderDisplay && <div />}
-        <Topbar htmlClassService={htmlClassService} />
+        <Topbar />
         {/* <!-- end:: Header Topbar --> */}
       </div>
     );
@@ -53,6 +56,7 @@ const mapStateToProps = store => ({
     path: "header",
     toString: true
   }),
+  headerAttributes: builder.selectors.getAttributes(store, { path: "header" }),
   menuHeaderDisplay: objectPath.get(
     store.builder.layoutConfig,
     "header.menu.self.display"

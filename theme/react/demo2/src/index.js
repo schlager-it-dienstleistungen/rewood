@@ -41,14 +41,9 @@ const { PUBLIC_URL } = process.env;
  */
 setupAxios(axios, store);
 
-const Layout = React.lazy(() =>
-  import("./_metronic/layout/Layout.js")
-);
-
 ReactDOM.render(
     <App
       store={store}
-      Layout={Layout}
       persistor={persistor}
       basename={PUBLIC_URL}
     />,

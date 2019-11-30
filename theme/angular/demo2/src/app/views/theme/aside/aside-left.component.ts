@@ -223,8 +223,4 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
 
 		return toggle;
 	}
-
-	disableScroll() {
-		return this.layoutConfigService.getConfig('aside.menu.dropdown') || false;
-	}
 }

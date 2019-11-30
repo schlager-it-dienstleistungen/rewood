@@ -6,6 +6,7 @@ import Topbar from "./Topbar/Topbar";
 import HMenu from "./HMenu/HMenu";
 import AnimateLoading from "../../../app/partials/layout/AnimateLoading";
 import KTHeader from "../../_assets/js/header";
+import * as builder from "../../ducks/builder";
 
 class Header extends React.Component {
   headerCommonRef = React.createRef();
@@ -46,13 +47,12 @@ class Header extends React.Component {
   }
 
   render() {
-    const { htmlClassService, menuHeaderDisplay } = this.props;
-    const headerAttributes = htmlClassService.attributes.header;
-    const headerClasses = htmlClassService.classes.header.join(" ");
-    const headerContainerClasses = htmlClassService.classes.header_container.join(
-      " "
-    );
-
+    const {
+      menuHeaderDisplay,
+      headerContainerClasses,
+      headerAttributes,
+      headerClasses
+    } = this.props;
     return (
       <div
         className={`kt-header kt-grid__item ${headerClasses}`}
@@ -63,15 +63,15 @@ class Header extends React.Component {
         <AnimateLoading />
         <div className="kt-header__top">
           <div className={`kt-container ${headerContainerClasses}`}>
-            <Brand htmlClassService={htmlClassService} />
-            <Topbar htmlClassService={htmlClassService} />
+            <Brand />
+            <Topbar />
           </div>
         </div>
 
         <div className="kt-header__bottom">
           <div className={`kt-container ${headerContainerClasses}`}>
             {/* <!-- begin: Header Menu --> */}
-            {menuHeaderDisplay && <HMenu htmlClassService={htmlClassService} />}
+            {menuHeaderDisplay && <HMenu />}
             {/* <!-- end: Header Menu --> */}
           </div>
         </div>
@@ -81,6 +81,15 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = store => ({
+  headerClasses: builder.selectors.getClasses(store, {
+    path: "header",
+    toString: true
+  }),
+  headerAttributes: builder.selectors.getAttributes(store, { path: "header" }),
+  headerContainerClasses: builder.selectors.getClasses(store, {
+    path: "header_container",
+    toString: true
+  }),
   menuHeaderDisplay: objectPath.get(
     store.builder.layoutConfig,
     "header.menu.self.display"

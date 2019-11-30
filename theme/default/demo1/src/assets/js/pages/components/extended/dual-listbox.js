@@ -25,11 +25,15 @@ var KTDualListbox = function() {
       $this.children('option').each(function() {
         var value = $(this).val();
         var label = $(this).text();
-        options.push({text: label, value: value});
+        var selected = !!($(this).is(':selected'));
+        options.push({text: label, value: value, selected: selected});
       });
 
       // get search option
       var search = ($this.attr('data-search') != null) ? $this.attr('data-search') : '';
+
+      // clear duplicates
+      $this.empty();
 
       // init dual listbox
       var dualListBox = new DualListbox($this.get(0), {

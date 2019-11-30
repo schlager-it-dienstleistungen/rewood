@@ -6,7 +6,7 @@
  * @output plugins/custom/datatables/datatables.bundle
  */
 
-// datatables.net
+// Datatables.net
 window.$.fn.DataTable = require("datatables.net");
 require("datatables.net-bs4");
 require("datatables.net-autofill");

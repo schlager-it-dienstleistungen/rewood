@@ -6,7 +6,7 @@
  * @output plugins/custom/tinymce/tinymce.bundle
  */
 
-// tinymce
+// Tinymce
 window.tinymce = require("tinymce");
 require("tinymce/themes/silver/theme");
 require("tinymce/themes/mobile/theme");

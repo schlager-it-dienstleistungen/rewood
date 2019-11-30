@@ -6,5 +6,5 @@
  * @output plugins/custom/ckeditor/ckeditor-inline.bundle
  */
 
-// ckeditor inline
+// CKeditor Inline
 window.InlineEditor = require("@ckeditor/ckeditor5-build-inline");

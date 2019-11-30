@@ -6,5 +6,5 @@
  * @output css/style.bundle
  */
 
-// demo styles
+// Main Stylesheet
 require("../../src/assets/sass/style.scss");

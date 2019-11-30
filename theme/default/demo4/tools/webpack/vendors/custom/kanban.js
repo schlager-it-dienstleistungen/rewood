@@ -6,6 +6,6 @@
  * @output plugins/custom/kanban/kanban.bundle
  */
 
-// jkanban
+// jKanban
 require("jkanban/dist/jkanban.css");
 window.kanban = require("jkanban");

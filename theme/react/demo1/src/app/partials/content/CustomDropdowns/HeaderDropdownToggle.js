@@ -1,24 +1,19 @@
 import React from "react";
 
-export default class HeaderDropdownToggle extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+const HeaderDropdownToggle = React.forwardRef((props, ref) => {
+  return (
+    <div
+      ref={ref}
+      className="kt-header__topbar-wrapper"
+      onClick={e => {
+        e.preventDefault();
+        props.onClick(e);
+      }}
+    >
+      {props.children}
+    </div>
+  );
+});
 
-  handleClick(e) {
-    e.preventDefault();
-    this.props.onClick(e);
-  }
-
-  render() {
-    return (
-      <div
-        className="kt-header__topbar-wrapper"
-        onClick={this.handleClick}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+HeaderDropdownToggle.displayName = 'HeaderDropdownToggle';
+export default HeaderDropdownToggle;

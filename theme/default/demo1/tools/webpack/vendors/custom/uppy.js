@@ -6,6 +6,6 @@
  * @output plugins/custom/uppy/uppy.bundle
  */
 
-// uppy
+// Uppy
 require("uppy/dist/uppy.css");
 window.Uppy = require("uppy");

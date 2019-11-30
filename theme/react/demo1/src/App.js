@@ -10,12 +10,12 @@ import { LastLocationProvider } from "react-router-last-location";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 
-export default function App({ store, Layout, persistor, basename }) {
+export default function App({ store, persistor, basename }) {
   return (
     /* Provide Redux store */
-    <Provider store={store} loading={<LayoutSplashScreen />}>
+    <Provider store={store}>
       {/* Asynchronously persist redux stores and show `SplashScreen` while it's loading. */}
-      <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor} loading={<LayoutSplashScreen />}>
         {/* Add high level `Suspense` in case if was not handled inside the React tree. */}
         <React.Suspense fallback={<LayoutSplashScreen />}>
           {/* Override `basename` (e.g: `homepage` in `package.json`) */}
@@ -27,7 +27,7 @@ export default function App({ store, Layout, persistor, basename }) {
                 {/* Provide `react-intl` context synchronized with Redux state.  */}
                 <I18nProvider>
                   {/* Render routes with provided `Layout`. */}
-                  <Routes Layout={Layout} />
+                  <Routes />
                 </I18nProvider>
               </ThemeProvider>
             </LastLocationProvider>

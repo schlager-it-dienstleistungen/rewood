@@ -6,7 +6,7 @@
  * @output plugins/custom/jqvmap/jqvmap.bundle
  */
 
-// jqvmap
+// jqVMap
 require("jqvmap/dist/jqvmap.css");
 require("jqvmap/dist/jquery.vmap.js");
 require("jqvmap/dist/maps/jquery.vmap.world.js");

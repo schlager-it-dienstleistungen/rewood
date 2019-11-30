@@ -20,7 +20,17 @@ export const selectors = {
         ? htmlClassServiceObjects.getClasses(params.path, params.toString)
         : "";
   },
+  getAttributes: (store, params) => {
+    if (params.path) {
+      // if path is specified, get the value within object
+      const { htmlClassServiceObjects } = store.builder;
 
+      return htmlClassServiceObjects
+          ? htmlClassServiceObjects.getAttributes(params.path)
+          : [];    }
+
+    return [];
+  },
   getConfig: (state, path) => {
     const { layoutConfig } = state.builder;
 

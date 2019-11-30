@@ -6,7 +6,7 @@
  * @output plugins/custom/fullcalendar/fullcalendar.bundle
  */
 
-// fullcalendar
+// Fullcalendar
 require("@fullcalendar/core/main.css");
 require("@fullcalendar/daygrid/main.css");
 require("@fullcalendar/list/main.css");
