@@ -5,22 +5,20 @@ import { ProductWithSearchComponent } from './product-with-search/product-with-s
 import { CardLayoutComponent } from './card-layout/card-layout.component';
 import { ProductCardsComponent } from './product-cards/product-cards.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductsComponent } from './products.component';
 
 
 const routes: Routes = [
 	{
 		path: '',
-		// component: MaterialComponent,
+		component: ProductsComponent,
 		children: [
 			{
 				path: '',
-				redirectTo: 'productswithfilter',
-				pathMatch: 'full'
-			},
-			{
-				path: 'productswithfilter',
-				component: ProductListComponent
-			},
+				component: CardLayoutComponent
+			}
+
+/*			,
 			{
 				path: 'productswithsearch',
 				component: ProductWithSearchComponent
@@ -36,7 +34,7 @@ const routes: Routes = [
 			{
 				path: 'products/:id',
 				component: ProductDetailsComponent
-			}
+			}*/
 		]
 	}
 ];

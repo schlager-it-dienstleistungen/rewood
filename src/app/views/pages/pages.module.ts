@@ -6,6 +6,7 @@ import { PartialsModule } from '../partials/partials.module';
 // Pages
 import { CoreModule } from '../../core/core.module';
 import { ProductsModule } from './products/products.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
 	declarations: [],
@@ -14,6 +15,7 @@ import { ProductsModule } from './products/products.module';
 		CommonModule,
 		CoreModule,
 		PartialsModule,
+		HomeModule,
 		ProductsModule
 	],
 	providers: []

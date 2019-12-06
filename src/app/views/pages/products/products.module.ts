@@ -26,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductCardsComponent } from './product-cards/product-cards.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductsComponent } from './products.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 		CardLayoutComponent,
 		ProductTableComponent,
 		ProductCardsComponent,
-		ProductDetailsComponent
+		ProductDetailsComponent,
+		ProductsComponent
 	],
 	imports: [
 		FlexLayoutModule,

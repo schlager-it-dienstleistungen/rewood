@@ -4,6 +4,19 @@ export class MenuConfig {
 			self: {},
 			items: [
 				{
+					title: 'Home',
+					root: true,
+					alignment: 'left',
+					page: '/home'
+// translate: 'MENU.HOME'
+				},
+				{
+					title: 'Produkte',
+					root: true,
+					alignment: 'left',
+					page: '/products'
+				}
+/*				{
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',
@@ -26,7 +39,7 @@ export class MenuConfig {
 							page: '/cardlayout'
 						}
 					]
-				}
+				}*/
 			]
 		},
 	};

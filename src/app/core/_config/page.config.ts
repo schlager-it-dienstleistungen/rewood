@@ -1,12 +1,18 @@
 export class PageConfig {
 	public defaults: any = {
-		dashboard: {
+		home: {
 			page: {
-				title: 'Dashboard',
-				desc: 'Latest updates and statistic charts'
+				title: 'Home',
+				desc: 'Latest updates and News'
 			},
 		},
 		products: {
+			page: {
+				title: 'Produkte',
+				desc: 'Latest Products'
+			}
+		},
+		/*products: {
 			products: {
 				page: {
 					title: 'Produkte mit Filter',
@@ -31,7 +37,8 @@ export class PageConfig {
 					desc: ''
 				}
 			}
-		},
+		},*/
+
 		'user-management': {
 			users: {
 				page: {title: 'Users', desc: ''}

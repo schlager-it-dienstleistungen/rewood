@@ -9,16 +9,16 @@ import { AuthGuard } from './core/auth';
 
 const routes: Routes = [
 	{
-		path: 'auth',
-		loadChildren: './views/pages/auth/auth.module#AuthModule'
-	},
-	{
 		path: '',
 		component: BaseComponent,
-		canActivate: [AuthGuard],
+// canActivate: [AuthGuard],
 		children: [
 			{
-				path: '',
+				path: 'home',
+				loadChildren: './views/pages/home/home.module#HomeModule'
+			},
+			{
+				path: 'products',
 				loadChildren: './views/pages/products/products.module#ProductsModule'
 			},
 			{
@@ -36,8 +36,8 @@ const routes: Routes = [
 				}
 			},
 			{path: 'error/:type', component: ErrorPageComponent},
-			{path: '', redirectTo: 'products', pathMatch: 'full'},
-			{path: '**', redirectTo: 'products', pathMatch: 'full'}
+			{path: '', redirectTo: 'home', pathMatch: 'full'},
+			{path: '**', redirectTo: 'home', pathMatch: 'full'}
 		]
 	},
 
