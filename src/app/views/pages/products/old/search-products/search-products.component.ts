@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { SearchProducts } from '../shared/search-products';
-import { Category } from '../shared/category';
-import { ProductStoreService } from '../shared/product-store.service';
+import { SearchProducts } from '../../shared/search-products';
+import { Category } from '../../shared/category';
+import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
 	selector: 'sw-search-products',

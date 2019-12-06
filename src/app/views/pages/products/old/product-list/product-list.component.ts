@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Product } from '../shared/product';
+import { Product } from '../../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { ProductStoreService } from '../shared/product-store.service';
+import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
 	selector: 'sw-product-list',

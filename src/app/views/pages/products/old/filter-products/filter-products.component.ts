@@ -2,8 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input, AfterViewInit } from '@
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
-import { Category } from '../shared/category';
-import { ProductStoreService } from '../shared/product-store.service';
+import { Category } from '../../shared/category';
+import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
 	selector: 'sw-filter-products',

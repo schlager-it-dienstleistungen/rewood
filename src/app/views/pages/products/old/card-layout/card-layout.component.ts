@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductStoreService } from '../shared/product-store.service';
-import { Category } from '../shared/category';
+import { ProductStoreService } from '../../shared/product-store.service';
+import { Category } from '../../shared/category';
 
 @Component({
 	selector: 'sw-card-layout',

@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Product } from '../shared/product';
-import { ProductStoreService } from '../shared/product-store.service';
-import { SearchProducts } from '../shared/search-products';
+import { Product } from '../../shared/product';
+import { ProductStoreService } from '../../shared/product-store.service';
+import { SearchProducts } from '../../shared/search-products';
 
 @Component({
 	selector: 'sw-product-with-search',

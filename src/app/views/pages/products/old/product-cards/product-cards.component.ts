@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../shared/category';
-import { ProductStoreService } from '../shared/product-store.service';
-import { Product } from '../shared/product';
+import { Category } from '../../shared/category';
+import { ProductStoreService } from '../../shared/product-store.service';
+import { Product } from '../../shared/product';
 import { FormControl } from '@angular/forms';
-import { SearchProducts } from '../shared/search-products';
+import { SearchProducts } from '../../shared/search-products';
 
 @Component({
 	selector: 'sw-product-cards',
