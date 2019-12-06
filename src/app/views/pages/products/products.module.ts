@@ -27,6 +27,7 @@ import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductCardsComponent } from './product-cards/product-cards.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsComponent } from './products.component';
+import { ProductcategoriesComponent } from './productcategories/productcategories.component';
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { ProductsComponent } from './products.component';
 		ProductTableComponent,
 		ProductCardsComponent,
 		ProductDetailsComponent,
-		ProductsComponent
+		ProductsComponent,
+		ProductcategoriesComponent
 	],
 	imports: [
 		FlexLayoutModule,

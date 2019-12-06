@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductWithSearchComponent } from './product-with-search/product-with-search.component';
-import { CardLayoutComponent } from './card-layout/card-layout.component';
-import { ProductCardsComponent } from './product-cards/product-cards.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsComponent } from './products.component';
+import { ProductcategoriesComponent } from './productcategories/productcategories.component';
 
 
 const routes: Routes = [
@@ -15,7 +11,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: CardLayoutComponent
+				component: ProductcategoriesComponent
 			}
 
 /*			,
