@@ -3,11 +3,11 @@ import { Category } from '../shared/category';
 import { ProductStoreService } from '../shared/product-store.service';
 
 @Component({
-	selector: 'sw-productcategories',
-	templateUrl: './productcategories.component.html',
-	styleUrls: ['./productcategories.component.scss']
+	selector: 'sw-product-category',
+	templateUrl: './product-category.component.html',
+	styleUrls: ['./product-category.component.scss']
 })
-export class ProductcategoriesComponent implements OnInit {
+export class ProductCategoryComponent implements OnInit {
 	categories: Category[];
 
 	constructor(
