@@ -40,19 +40,19 @@
 				<mat-cell *matCellDef="let product"> {{product.title}} </mat-cell>
 			</ng-container>
 
-			<ng-container matColumnDef=category>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Gruppe</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.category}} </mat-cell>
-			</ng-container>
-
 			<ng-container matColumnDef=subcategory>
 				<mat-header-cell *matHeaderCellDef mat-sort-header>Untergruppe</mat-header-cell>
 				<mat-cell *matCellDef="let product"> {{product.subcategory}} </mat-cell>
 			</ng-container>
 
-			<ng-container matColumnDef=price>
-				<mat-header-cell *matHeaderCellDef mat-sort-header>Preis</mat-header-cell>
-				<mat-cell *matCellDef="let product"> {{product.price | currency}} </mat-cell>
+			<ng-container matColumnDef=measure>
+				<mat-header-cell *matHeaderCellDef mat-sort-header>Maße</mat-header-cell>
+				<mat-cell *matCellDef="let product"> {{product.measure}} </mat-cell>
+			</ng-container>
+
+			<ng-container matColumnDef=amount>
+				<mat-header-cell *matHeaderCellDef mat-sort-header>Menge</mat-header-cell>
+				<mat-cell *matCellDef="let product"> {{product.amount}} </mat-cell>
 			</ng-container>
 
 			<ng-container matColumnDef=description>

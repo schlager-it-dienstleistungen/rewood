@@ -5,6 +5,8 @@ export interface Product {
 	title: string;
 	category: string;
 	subcategory?: string;
+	measure?: number; // Maß
+	amount?: number; // Menge
 	price: number;
 	description: string;
 	storage_unit?: PackingUnit;

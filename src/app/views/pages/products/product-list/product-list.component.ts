@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@Input() dataSource: MatTableDataSource<Product>;
 
 	// Table Fields
-	displayedColumns = ['picture', 'title', 'category', 'price', 'description', 'status'];
+	displayedColumns = ['picture', 'subcategory', 'title', 'measure', 'amount', 'description', 'status'];
 
 	constructor(
 		private route: ActivatedRoute,
