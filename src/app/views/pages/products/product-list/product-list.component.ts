@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/cor
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ProductStoreService } from '../shared/product-store.service';
+import { ActivatedRoute } from '@angular/router';
+import { SearchProducts } from '../shared/search-products';
 
 @Component({
 	selector: 'sw-product-list',
@@ -21,11 +23,16 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	displayedColumns = ['picture', 'title', 'category', 'price', 'description', 'status'];
 
 	constructor(
+		private route: ActivatedRoute,
 		private productService: ProductStoreService
 	) { }
 
 	ngOnInit() {
-		this.products = this.productService.getAllProducts();
+		const params = this.route.snapshot.paramMap;
+		const searchInput: SearchProducts = {
+			title: params.get('title')
+		};
+		this.products = this.productService.searchProducts(searchInput);
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 
