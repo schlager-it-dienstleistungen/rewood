@@ -18,7 +18,7 @@ const routes: Routes = [
 				loadChildren: './views/pages/home/home.module#HomeModule'
 			},
 			{
-				path: 'categories',
+				path: 'products',
 				loadChildren: './views/pages/products/products.module#ProductsModule'
 			},
 			{
