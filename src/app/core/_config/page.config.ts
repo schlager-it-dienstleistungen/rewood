@@ -6,12 +6,6 @@ export class PageConfig {
 				desc: 'Latest updates and News'
 			},
 		},
-		categories: {
-			page: {
-				title: 'Kategorien',
-				desc: 'Alle Kategorien'
-			}
-		},
 		products: {
 			page: {
 				title: 'Produkte',

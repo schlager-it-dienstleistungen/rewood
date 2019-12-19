@@ -14,7 +14,7 @@ export class MenuConfig {
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',
-					page: '/categories'
+					page: '/products'
 				}
 /*				{
 					title: 'Produkte',
