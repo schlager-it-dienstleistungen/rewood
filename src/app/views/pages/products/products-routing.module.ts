@@ -11,7 +11,7 @@ const routes: Routes = [
 		component: ProductsComponent,
 		children: [
 			{
-				path: '',
+				path: 'categories',
 				component: ProductCategoryComponent
 			},
 			{
