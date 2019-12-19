@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { PortletModule } from '../../partials/content/general/portlet/portlet.module';
 import {
-	MatCardModule, MatTableModule, MatPaginatorModule, MatSortModule
+	MatCardModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
@@ -27,6 +27,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 		MatPaginatorModule,
 		MatSortModule,
 		MatCardModule,
+		MatFormFieldModule,
+		MatInputModule,
 		ProductsRoutingModule,
 		ReactiveFormsModule,
 		PartialsModule

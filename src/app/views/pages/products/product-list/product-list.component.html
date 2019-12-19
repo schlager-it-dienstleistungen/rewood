@@ -1,26 +1,21 @@
 <kt-portlet>
-	<kt-portlet-header title="Produkte mit Filter">
+	<kt-portlet-header title="Produkte der Kategorie {{category}}">
 	</kt-portlet-header>
 
 	<!-- Filter -->
-<!--	<kt-portlet-body>
+	<kt-portlet-body>
 		<div class="kt-section">
 			<span class="kt-section__info">Produkte filtern</span>
 			<div class="kt-form__filtration kt-margin-b-4">
 				<mat-form-field class="col-lg-2">
-					<mat-select matFilterGruppeInput placeholder="Gruppe" [formControl]="filterCategoryControl">
-						<mat-option *ngFor="let category of categories" value="{{category.title}}">{{category.title}}</mat-option>
-					</mat-select>
+					<input matInput (keyup)="filterMeasureKeyUp$.next($event.target.value)" placeholder="Maße">
 				</mat-form-field>
 				<mat-form-field class="col-lg-2">
-					<input matInput (keyup)="filterKeyUp$.next($event.target.value)" placeholder="Filter">
-					<mat-hint align="start">
-						<strong>Filter in all fields</strong>
-					</mat-hint>
+					<input matInput (keyup)="filterAmountKeyUp$.next($event.target.value)" placeholder="Menge">
 				</mat-form-field>
 			</div>
 		</div>
-	</kt-portlet-body>-->
+	</kt-portlet-body>
 
 	<!-- MATERIAL TABLE -->
 	<kt-portlet-body>
