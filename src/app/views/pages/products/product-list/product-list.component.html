@@ -63,7 +63,7 @@
 			</ng-container>
 
 			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-			<mat-row *matRowDef="let product; columns: displayedColumns"></mat-row>
+			<mat-row *matRowDef="let product; columns: displayedColumns" (click)="selectedProduct(product.id)" ></mat-row>
 		</mat-table>
 
 		<mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

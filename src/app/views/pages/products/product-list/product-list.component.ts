@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/cor
 import { Product } from '../shared/product';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ProductStoreService } from '../shared/product-store.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SearchProducts } from '../shared/search-products';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
 	constructor(
 		private route: ActivatedRoute,
+		private router: Router,
 		private productService: ProductStoreService
 	) { }
 
@@ -85,6 +86,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 			data: Product, filter: string) => (('' + data.amount).indexOf(filter) !== -1
 		);
 		this.dataSource.filter = '' + $event;
+	}
+
+	selectedProduct(id) {
+		this.router.navigate(['..', 'product', id], { relativeTo: this.route});
 	}
 
 	/* UI */
