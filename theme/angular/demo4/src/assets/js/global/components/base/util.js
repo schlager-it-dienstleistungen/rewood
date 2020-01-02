@@ -1316,23 +1316,18 @@ var KTUtil = function() {
         },
 
         scrollTo: function(target, offset, duration) {
-            var duration = duration ? duration : 500;
-            var target = KTUtil.get(target);
+            duration = duration ? duration : 500;
+            target = KTUtil.get(target);
             var targetPos = target ? KTUtil.offset(target).top : 0;
             var scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
             var from, to;
 
-            if (targetPos > scrollPos) {
-                from = targetPos;
-                to = scrollPos;
-            } else {
-                from = scrollPos;
-                to = targetPos;
+            if (offset) {
+                scrollPos += offset;
             }
 
-            if (offset) {
-                to += offset;
-            }
+            from = scrollPos;
+            to = targetPos;
 
             KTUtil.animate(from, to, duration, function(value) {
                 document.documentElement.scrollTop = value;

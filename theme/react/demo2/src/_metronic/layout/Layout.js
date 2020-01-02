@@ -15,7 +15,7 @@ import AsideLeft from "./aside/AsideLeft";
 import SubHeader from "./sub-header/SubHeader";
 import QuickPanel from "../../app/partials/layout/QuickPanel";
 import KtContent from "./KtContent";
-import("./assets/Base.scss");
+import "./assets/Base.scss";
 
 const styles = [];
 const htmlClassService = new HTMLClassService();
@@ -125,7 +125,6 @@ const mapStateToProps = ({ builder: { layoutConfig } }) => ({
   asideDisplay: objectPath.get(layoutConfig, "aside.self.display"),
   subheaderDisplay: objectPath.get(layoutConfig, "subheader.display"),
   fluid: objectPath.get(layoutConfig, "content.width") === "fluid",
-
   contentExtended: objectPath.get(layoutConfig, "content.extended")
 });
 

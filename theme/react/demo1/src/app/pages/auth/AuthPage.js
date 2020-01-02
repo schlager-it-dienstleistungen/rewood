@@ -1,33 +1,15 @@
 import React from "react";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
-import Registration from "./Registration";
-import ForgotPassword from "./ForgotPassword";
-import Login from "./Login";
-import { Helmet } from "react-helmet";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
 import { toAbsoluteUrl } from "../../../_metronic";
 import "../../../_metronic/_assets/sass/pages/login/login-1.scss";
+import Login from "./Login";
+import Registration from "./Registration";
+import ForgotPassword from "./ForgotPassword";
 
 export default function AuthPage() {
+  console.log("authPage");
   return (
     <>
-      {/* https://github.com/nfl/react-helmet */}
-      <Helmet>
-        {/* <link
-            type="text/css"
-            rel="stylesheet"
-            href={toAbsoluteUrl(
-                "/assets/css/demo1/style.bundle.css"
-            )}
-        />
-        <link
-          type="text/css"
-          rel="stylesheet"
-          href={toAbsoluteUrl(
-            "/assets/css/demo1/pages/login/login-1.css"
-          )}
-        /> */}
-      </Helmet>
-
       <div className="kt-grid kt-grid--ver kt-grid--root">
         <div
           id="kt_login"
@@ -79,14 +61,14 @@ export default function AuthPage() {
 
             <div className="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper">
               <Switch>
-                <Redirect from="/auth" exact={true} to="/auth/login" />
-
                 <Route path="/auth/login" component={Login} />
                 <Route path="/auth/registration" component={Registration} />
                 <Route
                   path="/auth/forgot-password"
                   component={ForgotPassword}
                 />
+                <Redirect from="/auth" exact={true} to="/auth/login" />
+                <Redirect to="/auth/login" />
               </Switch>
             </div>
           </div>

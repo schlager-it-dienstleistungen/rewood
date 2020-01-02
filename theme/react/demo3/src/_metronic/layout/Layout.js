@@ -15,7 +15,7 @@ import MenuConfig from "./MenuConfig";
 import LayoutInitializer from "./LayoutInitializer";
 import KtContent from "./KtContent";
 import QuickPanel from "../../app/partials/layout/QuickPanel";
-import("./assets/Base.scss");
+import "./assets/Base.scss";
 
 const htmlClassService = new HTMLClassService();
 

@@ -367,7 +367,8 @@ button.btn {
 		@include kt-icons-size((lineawesome: 1.3rem, fontawesome: 1rem, flaticon: 1rem));
 
 		i {
-			padding-right: 0.35rem;
+			margin-right: 0.35rem;
+			padding: 0;
 		}
 	}
 
@@ -375,7 +376,8 @@ button.btn {
 		@include kt-icons-size((lineawesome: 1.7rem, fontawesome: 1.4rem, flaticon: 1.3rem));
 
 		i {
-			padding-right: 0.75rem;
+			margin-right: 0.75rem;
+			padding: 0;
 		}
 	}
 }

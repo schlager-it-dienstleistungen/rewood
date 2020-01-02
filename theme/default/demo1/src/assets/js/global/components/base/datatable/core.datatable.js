@@ -139,9 +139,15 @@
 
 				$(datatable).height('');
 
+				var prevKeyword = '';
 				$(Plugin.getOption('search.input')).on('keyup', function(e) {
 					if (Plugin.getOption('search.onEnter') && e.which !== 13) return;
-					Plugin.search($(this).val());
+					var keyword = $(this).val();
+					// prevent multiple search request on every button keyup
+					if (prevKeyword !== keyword) {
+						Plugin.search(keyword);
+						prevKeyword = keyword;
+					}
 				});
 
 				return datatable;
@@ -259,6 +265,13 @@
 				}).on('hide.bs.dropdown', '.' + pfx + 'datatable .' + pfx + 'datatable__body', function(e) {
 					$(e.target).append(dropdownMenu.detach());
 					dropdownMenu.hide();
+				});
+
+				// remove dropdown if window resize
+				$(window).on('resize', function(e) {
+					if (typeof dropdownMenu !== 'undefined') {
+						dropdownMenu.hide();
+					}
 				});
 			},
 
@@ -1547,6 +1560,9 @@
 						// fix white space, when perpage is set from many records to less records
 						// $('html, body').animate({scrollTop: $(datatable).position().top});
 						// }
+
+						// hide dropdown after select
+						$(this).selectpicker('toggle');
 
 						pg.pager = $(datatable.table).siblings('.' + pfx + 'datatable__pager').removeClass(pfx + 'datatable--paging-loaded');
 

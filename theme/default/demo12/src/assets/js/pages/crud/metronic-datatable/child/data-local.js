@@ -14,14 +14,8 @@ var KTDatatableChildDataLocalDemo = function() {
 			// layout definition
 			layout: {
 				scroll: true,
-				height: 300,
+				height: 400,
 				footer: false,
-
-				// enable/disable datatable spinner.
-				spinner: {
-					type: 1,
-					theme: 'default',
-				},
 			},
 
 			sortable: true,

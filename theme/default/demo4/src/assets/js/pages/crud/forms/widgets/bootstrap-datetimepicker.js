@@ -105,7 +105,15 @@ var KTBootstrapDatetimepicker = function () {
             forceParse: 0,
             pickerPosition: 'bottom-left'
         });
-    }
+
+        // locale
+        $('#kt_datetimepicker_8').datetimepicker({
+            todayHighlight: true,
+            autoclose: true,
+            format: 'yyyy.mm.dd hh:ii',
+            language: moment.locale('fr')
+        });
+    };
 
     return {
         // public functions

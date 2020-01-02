@@ -109,7 +109,17 @@ var KTBootstrapDatepicker = function () {
             todayHighlight: true,
             templates: arrows
         });
-    }
+
+        // locale
+        $('#kt_datepicker_7').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            templates: arrows,
+            language: moment.locale('fr')
+        });
+
+    };
 
     return {
         // public functions

@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.1.5",
+    "version": "6.1.6",
     "config": {
         "demo": "",
         "debug": false,
@@ -62,7 +62,8 @@
                         },
                         "moment": {
                             "scripts": [
-                                "{$config.path.node_modules}/moment/min/moment.min.js"
+                                "{$config.path.node_modules}/moment/min/moment.min.js",
+                                "{$config.path.node_modules}/moment/locale/fr.js"
                             ]
                         },
                         "tooltip.js": {
@@ -112,6 +113,7 @@
                             ],
                             "scripts": [
                                 "{$config.path.node_modules}/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+                                "{$config.path.node_modules}/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js",
                                 "{$config.path.src}/js/global/integration/plugins/bootstrap-datepicker.init.js"
                             ]
                         },
@@ -120,7 +122,8 @@
                                 "{$config.path.node_modules}/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css"
                             ],
                             "scripts": [
-                                "{$config.path.node_modules}/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js"
+                                "{$config.path.node_modules}/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js",
+                                "{$config.path.node_modules}/bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.fr.js"
                             ]
                         },
                         "bootstrap-timepicker": {
@@ -194,9 +197,9 @@
                                 "{$config.path.node_modules}/ion-rangeslider/img/sprite-skin-flat.png"
                             ]
                         },
-                        "typeahead.js": {
+                        "corejs-typeahead": {
                             "scripts": [
-                                "{$config.path.node_modules}/typeahead.js/dist/typeahead.bundle.js",
+                                "{$config.path.node_modules}/corejs-typeahead/dist/typeahead.bundle.js",
                                 "{$config.path.node_modules}/handlebars/dist/handlebars.js"
                             ]
                         },
@@ -275,7 +278,7 @@
                                 "{$config.path.node_modules}/summernote/dist/font/**"
                             ]
                         },
-                        "bootstrap-makrdown": {
+                        "bootstrap-markdown": {
                             "styles": [
                                 "{$config.path.node_modules}/bootstrap-markdown/css/bootstrap-markdown.min.css"
                             ],

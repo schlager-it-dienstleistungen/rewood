@@ -38,7 +38,7 @@ window.PerfectScrollbar = require("perfect-scrollbar/dist/perfect-scrollbar");
 
 
 //** Begin: Global optional plugins
-// Qwl.carousel
+// Owl.Carousel
 require("owl.carousel/dist/assets/owl.carousel.css");
 require("owl.carousel/dist/assets/owl.theme.default.css");
 require("owl.carousel");
@@ -54,10 +54,10 @@ require("bootstrap-select");
 // Bootstrap-Session-Timeout
 require("../../../src/assets/plugins/bootstrap-session-timeout/dist/bootstrap-session-timeout.js");
 
-// jQuery-idletimer
+// jQuery-Idletimer
 require("../../../src/assets/plugins/jquery-idletimer/idle-timer.js");
 
-// Bootstrap-switch
+// Bootstrap-Switch
 require("bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css");
 require("bootstrap-switch");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-switch.init.js");
@@ -69,16 +69,16 @@ window.swal = swal;
 require("es6-promise-polyfill/promise.min.js");
 require("../../../src/assets/js/global/integration/plugins/sweetalert2.init");
 
-// Bootstrap-notify
+// Bootstrap-Notify
 require("bootstrap-notify");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-notify.init.js");
 
-// Bootstrap-datepicker
+// Bootstrap-Datepicker
 require("bootstrap-datepicker/dist/css/bootstrap-datepicker3.css");
 require("bootstrap-datepicker");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-datepicker.init");
 
-// Bootstrap-datetime-picker
+// Bootstrap-Datetimepicker
 require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.css");
 require("bootstrap-datetime-picker");
 
@@ -86,7 +86,7 @@ require("bootstrap-datetime-picker");
 require("select2/dist/css/select2.css");
 require("select2");
 
-// Bootstrap-timepicker
+// Bootstrap-Timepicker
 require("bootstrap-timepicker/css/bootstrap-timepicker.css");
 require("bootstrap-timepicker");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-timepicker.init");
@@ -97,7 +97,7 @@ window.Tagify = require("@yaireo/tagify/dist/tagify");
 require("@yaireo/tagify/dist/tagify.polyfills.min");
 
 // Typeahead
-window.Bloodhound = require("typeahead.js");
+window.Bloodhound = require("corejs-typeahead");
 window.Handlebars = require("handlebars/dist/handlebars.js");
 
 // Dropzone
@@ -124,14 +124,14 @@ require("inputmask/dist/jquery.inputmask.bundle");
 require("inputmask/dist/inputmask/inputmask.date.extensions");
 require("inputmask/dist/inputmask/inputmask.numeric.extensions");
 
-// ion-rangeslider
+// iOn-Rangeslider
 require("ion-rangeslider/css/ion.rangeSlider.css");
 require("ion-rangeslider");
 
-// jQuery.repeater
+// jQuery.Repeater
 require("jquery.repeater");
 
-// noUIslider
+// noUISlider
 require("nouislider/distribute/nouislider.css");
 window.noUiSlider = require("nouislider");
 
@@ -161,12 +161,12 @@ require("../../../src/assets/js/global/integration/plugins/bootstrap-markdown.in
 // Animate.css
 require("animate.css/animate.css");
 
-// Dual-Listbox
+// Dual-listbox
 import DualListbox from "dual-listbox";
 window.DualListbox = DualListbox;
 require("dual-listbox/dist/dual-listbox.css");
 
-// Fonts Icons
+// Font Icons
 require("../../../src/assets/plugins/line-awesome/css/line-awesome.css");
 require("../../../src/assets/plugins/flaticon/flaticon.css");
 require("../../../src/assets/plugins/flaticon2/flaticon.css");

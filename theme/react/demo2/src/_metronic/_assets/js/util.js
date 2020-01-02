@@ -1323,17 +1323,12 @@ var KTUtil = function() {
             var scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
             var from, to;
 
-            if (targetPos > scrollPos) {
-                from = targetPos;
-                to = scrollPos;
-            } else {
-                from = scrollPos;
-                to = targetPos;
+            if (offset) {
+                scrollPos += offset;
             }
 
-            if (offset) {
-                to += offset;
-            }
+            from = scrollPos;
+            to = targetPos;
 
             KTUtil.animate(from, to, duration, function(value) {
                 document.documentElement.scrollTop = value;

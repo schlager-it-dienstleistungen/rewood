@@ -6,5 +6,5 @@
  * @output plugins/custom/ckeditor/ckeditor-classic.bundle
  */
 
-// CKeditor Classic
+// CKEditor Classic
 window.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");

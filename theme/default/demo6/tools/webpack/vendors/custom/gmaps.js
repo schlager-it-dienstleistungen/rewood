@@ -6,5 +6,5 @@
  * @output plugins/custom/gmaps/gmaps
  */
 
-// gMaps
+// GMaps
 window.GMaps = require("gmaps");

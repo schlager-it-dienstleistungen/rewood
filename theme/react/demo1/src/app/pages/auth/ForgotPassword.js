@@ -96,11 +96,13 @@ class ForgotPassword extends Component {
                   </div>
 
                   <div className="kt-login__actions">
-                    <Link
-                      to="/auth"
-                      className="btn btn-secondary btn-elevate kt-login__btn-secondary"
-                    >
-                      Back
+                    <Link to="/auth">
+                      <button
+                        type="button"
+                        className="btn btn-secondary btn-elevate kt-login__btn-secondary"
+                      >
+                        Back
+                      </button>
                     </Link>
 
                     <button
@@ -121,9 +123,4 @@ class ForgotPassword extends Component {
   }
 }
 
-export default injectIntl(
-  connect(
-    null,
-    auth.actions
-  )(ForgotPassword)
-);
+export default injectIntl(connect(null, auth.actions)(ForgotPassword));

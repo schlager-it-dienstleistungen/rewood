@@ -124,7 +124,7 @@ var KTFormWidgets = function () {
             invalidHandler: function(event, validator) {             
                 var alert = $('#kt_form_1_msg');
                 alert.removeClass('kt--hide').show();
-                KTUtil.scrollTo('m_form_1_msg', -200);
+                KTUtil.scrollTo('kt_form_1_msg', -200);
             },
 
             submitHandler: function (form) {

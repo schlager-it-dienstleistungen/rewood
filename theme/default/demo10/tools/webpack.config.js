@@ -264,6 +264,8 @@ const mainConfig = function () {
         ].concat(extraPlugins),
         module: {
             rules: [
+                // datatables.net
+                {test: /datatables\.net.*/, loader: 'imports-loader?define=>false'},
                 {
                     test: /\.css$/,
                     use: [

@@ -5,6 +5,9 @@
 
 // Base
 .kt-scroll {
+    position: relative;
+	overflow: hidden;
+
     &.kt-scroll--pull {
         padding-right: 12px;
         margin-right: -12px;

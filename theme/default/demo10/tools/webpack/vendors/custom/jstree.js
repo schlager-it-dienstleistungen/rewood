@@ -7,7 +7,7 @@
  * @images ../assets/media/plugins/jstree/32px.png
  */
 
-// dependencies
+// Dependencies
 window.$ = window.jQuery = require("jquery");
 require("bootstrap/js/dist/tooltip");
 

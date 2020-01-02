@@ -92,14 +92,8 @@
 			@if kt-has($item, link, arrow, padding) {
 				padding: kt-get($item, link, arrow, padding);
 			}
-
-			&:before {
-				[direction="rtl"] & {
-					content: "#{kt-get($kt-action-icons, left)}" !important;
-				}
-			}
 		}
-		
+
 		// link border radius
 		@include kt-rounded {
 			@include kt-attr(border-radius, kt-get($item, link, self, border-radius));
@@ -109,7 +103,7 @@
 		.kt-menu__item-here {
 			display: none;
 		}
-	}	
+	}
 }
 
 @mixin kt-menu-hor-item-skin($item) {
@@ -839,6 +833,12 @@
 						}
 					}
 				}			
+			}
+		}
+
+		.kt-menu__subnav .kt-menu__hor-arrow:before {
+			[direction="rtl"] & {
+				content: "#{kt-get($kt-action-icons, left)}" !important;
 			}
 		}
 	}

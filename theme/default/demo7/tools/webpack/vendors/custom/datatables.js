@@ -7,10 +7,11 @@
  */
 
 // Datatables.net
-window.$.fn.DataTable = require("datatables.net");
+require("datatables.net")(window, window.$);
 require("datatables.net-bs4");
 require("datatables.net-autofill");
 require("datatables.net-autofill-bs4");
+require("datatables.net-buttons");
 require("datatables.net-buttons-bs4");
 require("datatables.net-buttons/js/buttons.print.js");
 require("datatables.net-buttons/js/buttons.html5.js");
@@ -26,9 +27,10 @@ require("datatables.net-rowreorder-bs4");
 require("datatables.net-scroller-bs4");
 require("datatables.net-select-bs4");
 
-require("jszip/dist/jszip.min.js");
-require("pdfmake/build/pdfmake.min.js");
-require("pdfmake/build/vfs_fonts.js");
+window.JSZip = require("jszip/dist/jszip.js");
+var pdfMake = require("pdfmake/build/pdfmake.js");
+var pdfFonts = require("pdfmake/build/vfs_fonts.js");
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 require("datatables.net-bs4/css/dataTables.bootstrap4.css");
 require("datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css");
