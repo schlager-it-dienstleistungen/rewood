@@ -33,6 +33,9 @@ import { CoreModule } from './core/core.module';
 import { ThemeModule } from './views/theme/theme.module';
 // Partials
 import { PartialsModule } from './views/partials/partials.module';
+// Firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 // Layout Services
 import {
 	DataTableService,
@@ -110,7 +113,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
-		ThemeModule
+		ThemeModule,
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule
 	],
 	exports: [],
 	providers: [
