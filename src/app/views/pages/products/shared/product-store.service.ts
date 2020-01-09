@@ -2,23 +2,59 @@ import { Injectable } from '@angular/core';
 import { Product } from './product';
 import { SearchProducts } from './search-products';
 import { Category } from './category';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ProductStoreService {
 
-	constructor() {}
+	constructor(private db: AngularFirestore) {}
 
-	getAllProducts(): Product[] {
-		return this.getProducts();
+	getAllProducts(): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products');
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products.map(product => {
+					const data = product.payload.doc.data() as Product;
+					const id = product.payload.doc.id;
+					return { id, ...data };
+				});
+			})
+		);
+	}
+
+	getProductsToCategory(category: string): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products', ref => ref.where('category', '==', category));
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products.map(product => {
+					const data = product.payload.doc.data() as Product;
+					const id = product.payload.doc.id;
+					return { id, ...data };
+				});
+			})
+		);
+	}
+
+	getProduct(id: string): Observable<Product> {
+		return this.db.collection('products').doc(id).snapshotChanges().pipe(
+			map(product => {
+				const data = product.payload.data() as Product;
+				const mappedId = product.payload.id;
+				return { mappedId, ...data };
+			})
+		);
 	}
 
 	/**
 	 * TODO Replace with Dataservice
+	 * @deprecated
 	 */
-	searchProducts(searchInput: SearchProducts): Product[] {
-		let products: Product [] = this.getProducts();
+	searchStaticProducts(searchInput: SearchProducts): Product[] {
+		let products: Product [] = this.getStaticProducts();
 
 		if (searchInput.title) {
 			products = products.filter(product => product.title.indexOf(searchInput.title) !== -1);
@@ -38,16 +74,18 @@ export class ProductStoreService {
 
 	/**
 	 * TODO Replace with Dataservice
+	 * @deprecated
 	 */
-	getProduct(id: string): Product {
-		const products: Product [] = this.getProducts();
+	getStaticProduct(id: string): Product {
+		const products: Product [] = this.getStaticProducts();
 		return products.find(product => product.id === id);
 	}
 
 	/**
 	 * Load Products List
+	 * @deprecated
 	 */
-	private getProducts(): Product[] {
+	getStaticProducts(): Product[] {
 		return [
 			{
 				id: '1',

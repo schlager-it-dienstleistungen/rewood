@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../shared/product';
 import { ProductStoreService } from '../shared/product-store.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'sw-product-detail',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-	product: Product;
+	product$: Observable<Product>;
 
 	constructor(
 		private productService: ProductStoreService,
@@ -19,7 +20,7 @@ export class ProductDetailComponent implements OnInit {
 	ngOnInit() {
 		const params = this.route.snapshot.paramMap;
 		const id = params.get('id');
-		this.product = this.productService.getProduct(id);
+		this.product$ = this.productService.getProduct(id);
 	}
 
 	/* UI */

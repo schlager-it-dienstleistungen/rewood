@@ -5,7 +5,7 @@ import { ProductStoreService } from '../shared/product-store.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchProducts } from '../shared/search-products';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
 
 @Component({
 	selector: 'sw-product-list',
@@ -18,11 +18,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	// Sort
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
-	// Input
-	@Input() products: Product[];
-	@Input() dataSource: MatTableDataSource<Product>;
+	dataSource: MatTableDataSource<Product>;
 
-	// Export
+	// Category
 	category: string;
 
 	// Table Fields
@@ -41,11 +39,18 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 		const params = this.route.snapshot.paramMap;
 		this.category = params.get('category');
-		const searchInput: SearchProducts = {
-			title: this.category
-		};
-		this.products = this.productService.searchProducts(searchInput);
-		this.dataSource = new MatTableDataSource<Product>(this.products);
+	}
+
+	/**
+  * Set the paginator and sort after the view init since this component will
+  * be able to query its view for the initialized paginator and sort.
+  */
+	ngAfterViewInit() {
+		this.productService.getProductsToCategory(this.category).subscribe(data => {
+			this.dataSource = new MatTableDataSource<Product>(data);
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 
 		this.filterMeasureKeyUp$.pipe(
 			// filter(filterValue => filterValue.length >= 3),
@@ -64,15 +69,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 			// switchMap(filterValue => this.filterEvent.emit(filterValue))
 			// tap(() => this.isLoading = false)
 		).subscribe(filterValue => this.filterProdutsByAmount(filterValue));
-	}
-
-	/**
-  * Set the paginator and sort after the view init since this component will
-  * be able to query its view for the initialized paginator and sort.
-  */
-	ngAfterViewInit() {
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
 	}
 
 	filterProdutsByMeasure($event) {

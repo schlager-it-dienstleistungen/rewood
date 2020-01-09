@@ -23,7 +23,7 @@ export class ProductCardsComponent implements OnInit {
 
 	ngOnInit() {
 		this.categories = this.productService.getCategories();
-		this.products = this.productService.getAllProducts();
+		this.products = this.productService.getStaticProducts();
 
 		this.filterCategoryControl.valueChanges.subscribe(filterCategory => this.filterCategory(filterCategory));
 	}
@@ -32,7 +32,7 @@ export class ProductCardsComponent implements OnInit {
 		const searchInput: SearchProducts = {
 			category: filterCategory
 		};
-		this.products = this.productService.searchProducts(searchInput);
+		this.products = this.productService.searchStaticProducts(searchInput);
 	}
 
 	/* UI */

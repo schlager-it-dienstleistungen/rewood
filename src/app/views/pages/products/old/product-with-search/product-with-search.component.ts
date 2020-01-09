@@ -18,7 +18,7 @@ export class ProductWithSearchComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.products = this.productService.getAllProducts();
+		this.products = this.productService.getStaticProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 
@@ -26,7 +26,7 @@ export class ProductWithSearchComponent implements OnInit {
 	 * Search Products
 	 */
 	searchProducts(searchInput: SearchProducts) {
-		this.products = this.productService.searchProducts(searchInput);
+		this.products = this.productService.searchStaticProducts(searchInput);
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 

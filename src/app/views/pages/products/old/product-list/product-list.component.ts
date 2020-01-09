@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.products = this.productService.getAllProducts();
+		this.products = this.productService.getStaticProducts();
 		this.dataSource = new MatTableDataSource<Product>(this.products);
 	}
 
