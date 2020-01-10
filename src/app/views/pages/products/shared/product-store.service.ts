@@ -5,6 +5,7 @@ import { Category } from './category';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ProductFactoryService } from './product-factory.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,11 +18,7 @@ export class ProductStoreService {
 		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products');
 		return productsFS.snapshotChanges().pipe(
 			map(products => {
-				return products.map(product => {
-					const data = product.payload.doc.data() as Product;
-					const id = product.payload.doc.id;
-					return { id, ...data };
-				});
+				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
 			})
 		);
 	}
@@ -30,22 +27,14 @@ export class ProductStoreService {
 		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products', ref => ref.where('category', '==', category));
 		return productsFS.snapshotChanges().pipe(
 			map(products => {
-				return products.map(product => {
-					const data = product.payload.doc.data() as Product;
-					const id = product.payload.doc.id;
-					return { id, ...data };
-				});
+				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
 			})
 		);
 	}
 
-	getProduct(id: string): Observable<Product> {
-		return this.db.collection('products').doc(id).snapshotChanges().pipe(
-			map(product => {
-				const data = product.payload.data() as Product;
-				const mappedId = product.payload.id;
-				return { mappedId, ...data };
-			})
+	getProduct(productId: string): Observable<Product> {
+		return this.db.collection('products').doc(productId).snapshotChanges().pipe(
+			map(product => ProductFactoryService.fromFirestoreDocument(product.payload.data() as Product, product.payload.id))
 		);
 	}
 
