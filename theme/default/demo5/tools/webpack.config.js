@@ -264,8 +264,11 @@ const mainConfig = function () {
         ].concat(extraPlugins),
         module: {
             rules: [
-                // datatables.net
+                // datatables.net disable amd loader
                 {test: /datatables\.net.*/, loader: 'imports-loader?define=>false'},
+                // jstree disable amd and module.exports loaders
+                {test: /jstree/, loader: 'imports-loader?define=>false'},
+                {test: /jstree/, loader: 'imports-loader?module.exports=>false'},
                 {
                     test: /\.css$/,
                     use: [

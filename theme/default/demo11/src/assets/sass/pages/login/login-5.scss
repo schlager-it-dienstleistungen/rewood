@@ -182,18 +182,46 @@
 
     // Login Modes
     &.kt-login--signin {
+        .kt-login__signup {
+            display: none;
+        }
+
         .kt-login__signin {
             display: block;
         }
+
         .kt-login__forgot {
             display: none;
         }
     }
 
-    &.kt-login--forgot {
+    &.kt-login--signup {
+        .kt-login__signup {
+            display: block;
+        }
+
         .kt-login__signin {
             display: none;
         }
+
+        .kt-login__forgot {
+            display: none;
+        }
+
+        .kt-login__account {
+            display: none;
+        }
+    }
+
+    &.kt-login--forgot {
+        .kt-login__signup {
+            display: none;
+        }
+
+        .kt-login__signin {
+            display: none;
+        }
+
         .kt-login__forgot {
             display: block;
         }

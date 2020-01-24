@@ -39,9 +39,6 @@ var KTDatatableRecordSelectionDemo = function() {
             title: '#',
             sortable: false,
             width: 20,
-            selector: {
-                class: 'kt-checkbox--solid'
-            },
             textAlign: 'center',
         }, {
             field: 'OrderID',

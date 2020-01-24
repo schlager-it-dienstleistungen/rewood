@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.1.6",
+    "version": "6.1.7",
     "config": {
         "demo": "",
         "debug": false,
@@ -320,6 +320,14 @@
                             ],
                             "scripts": [
                                 "{$config.path.node_modules}/dual-listbox/dist/dual-listbox.js"
+                            ]
+                        },
+                        "cropperjs": {
+                            "styles": [
+                                "{$config.path.node_modules}/cropperjs/dist/cropper.css"
+                            ],
+                            "scripts": [
+                                "{$config.path.node_modules}/cropperjs/dist/cropper.js"
                             ]
                         },
                         "morris.js": {

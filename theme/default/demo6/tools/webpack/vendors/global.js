@@ -166,6 +166,10 @@ import DualListbox from "dual-listbox";
 window.DualListbox = DualListbox;
 require("dual-listbox/dist/dual-listbox.css");
 
+// Cropper.js
+window.Cropper = require("cropperjs");
+require("cropperjs/dist/cropper.css");
+
 // Font Icons
 require("../../../src/assets/plugins/line-awesome/css/line-awesome.css");
 require("../../../src/assets/plugins/flaticon/flaticon.css");

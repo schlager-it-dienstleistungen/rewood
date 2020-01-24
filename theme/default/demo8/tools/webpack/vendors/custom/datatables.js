@@ -8,24 +8,25 @@
 
 // Datatables.net
 require("datatables.net")(window, window.$);
-require("datatables.net-bs4");
-require("datatables.net-autofill");
-require("datatables.net-autofill-bs4");
-require("datatables.net-buttons");
-require("datatables.net-buttons-bs4");
-require("datatables.net-buttons/js/buttons.print.js");
-require("datatables.net-buttons/js/buttons.html5.js");
-require("datatables.net-buttons/js/buttons.flash.js");
-require("datatables.net-buttons/js/buttons.colVis.js");
-require("datatables.net-colreorder-bs4");
-require("datatables.net-fixedcolumns-bs4");
-require("datatables.net-fixedheader-bs4");
-require("datatables.net-keytable-bs4");
-require("datatables.net-responsive-bs4");
-require("datatables.net-rowgroup-bs4");
-require("datatables.net-rowreorder-bs4");
-require("datatables.net-scroller-bs4");
-require("datatables.net-select-bs4");
+require("datatables.net-bs4")(window, window.$);
+require("datatables.net-autofill")(window, window.$);
+require("datatables.net-autofill-bs4")(window, window.$);
+require("datatables.net-buttons")(window, window.$);
+require("datatables.net-buttons-bs4")(window, window.$);
+require("datatables.net-buttons/js/buttons.print.js")(window, window.$);
+require("datatables.net-buttons/js/buttons.html5.js")(window, window.$);
+require("datatables.net-buttons/js/buttons.flash.js")(window, window.$);
+require("datatables.net-buttons/js/buttons.colVis.js")(window, window.$);
+require("datatables.net-colreorder-bs4")(window, window.$);
+require("datatables.net-fixedcolumns-bs4")(window, window.$);
+require("datatables.net-fixedheader-bs4")(window, window.$);
+require("datatables.net-keytable-bs4")(window, window.$);
+require("datatables.net-responsive-bs4")(window, window.$);
+require("datatables.net-rowgroup-bs4")(window, window.$);
+require("datatables.net-rowreorder-bs4")(window, window.$);
+require("datatables.net-scroller-bs4")(window, window.$);
+require("datatables.net-select-bs4")(window, window.$);
+require("../../../../src/assets/js/global/integration/plugins/datatables.init.js");
 
 window.JSZip = require("jszip/dist/jszip.js");
 var pdfMake = require("pdfmake/build/pdfmake.js");

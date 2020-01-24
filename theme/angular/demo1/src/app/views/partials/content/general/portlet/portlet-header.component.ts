@@ -21,7 +21,7 @@ import { Observable, Subscription } from 'rxjs';
 	styleUrls: ['portlet-header.component.scss'],
 	template: `
 		<div class="kt-portlet__head-label" [hidden]="noTitle">
-			<span class="kt-portlet__head-icon" #refIcon [hidden]="hideIcon">
+			<span class="kt-portlet__head-icon" #refIcon [hidden]="hideIcon || !icon">
 				<ng-content *ngIf="!icon" select="[ktPortletIcon]"></ng-content>
 				<i *ngIf="icon" [ngClass]="icon"></i>
 			</span>
