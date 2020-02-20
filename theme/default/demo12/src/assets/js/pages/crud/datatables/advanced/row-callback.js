@@ -25,10 +25,8 @@ var KTDatatablesAdvancedColumnVisibility = function() {
 		//main function to initiate the module
 		init: function() {
 			initTable1();
-		},
-
+		}
 	};
-
 }();
 
 jQuery(document).ready(function() {

@@ -9,17 +9,17 @@
         margin: 0;
         padding: 0;
 
-        .kt-notes__item {            
-            left: 8px;               
+        .kt-notes__item {
+            left: 8px;
             border-left: 2px solid kt-base-color(grey, 2);
             padding:0 0 50px 45px;
             position:relative; 
-            margin: 0 5px 0 17px;       
+            margin: 0 5px 0 17px;
 
-            .kt-notes__media {              
+            .kt-notes__media {
                 position: absolute;
                 top: 0;
-                left: -25.5px;                
+                left: -25.5px;
 
                 img {
                     max-width: 50px;
@@ -30,40 +30,40 @@
                     }
                 }
 
-                .kt-notes__icon {                
+                .kt-notes__icon {
                     display: flex;
                     justify-content: center;
-                    align-items: center;    
+                    align-items: center;
                     width: 50px;
-                    height: 50px; 
-                    background-color: #fff; 
-                    border: 2px solid kt-base-color(grey, 2);                    
-                    
+                    height: 50px;
+                    background-color: #fff;
+                    border: 2px solid kt-base-color(grey, 2);
+
                     @include kt-rounded {
                         border-radius: 50%;
-                    } 
-
-                    i {   
-                        color:  kt-base-color(label, 2);
-                        font-size: 1.8rem;                  
                     }
-                                  
+
+                    i {
+                        color:  kt-base-color(label, 2);
+                        font-size: 1.8rem;
+                    }
+
                 }
-                
+
                 .kt-notes__user {
                     display: flex;
                     justify-content: center;
-                    align-items: center;    
+                    align-items: center;
                     width: 50px;
-                    height: 50px;  
-                    font-size: 1.2rem; 
+                    height: 50px;
+                    font-size: 1.2rem;
                     background-color: #fff;
-                    border: 2px solid kt-base-color(grey, 2);    
-                    color:  kt-base-color(label, 2);                
-                    
+                    border: 2px solid kt-base-color(grey, 2);
+                    color:  kt-base-color(label, 2);
+
                     @include kt-rounded {
                         border-radius: 50%;
-                    }                     
+                    }
                 }
 
                 .kt-notes__circle {
@@ -76,11 +76,11 @@
 
                     @include kt-rounded {
                         border-radius: 50%;
-                    }                   
+                    }
                 }
             }
 
-            .kt-notes__content {                 
+            .kt-notes__content {
                 background-color: #F7F8FC;
                 padding: 0.5rem 1rem 1rem 1.5rem;
 
@@ -90,7 +90,7 @@
                     align-items: center;
 
                     .kt-notes__info {
-                        display: flex;          
+                        display: flex;
                         flex-flow: wrap;
                         align-items: baseline;
 
@@ -99,20 +99,20 @@
                             color: kt-base-color(label, 3);
                             font-weight: 500;
                             padding-right: 0.5rem;
-    
+
                             &:hover {
                                 color: kt-brand-color();
                                 transition: color 0.3s ease;
                             }
                         }
-    
+
                         .kt-notes__desc {
                             color: kt-base-color(label, 2);
-                            font-weight: 400; 
+                            font-weight: 400;
                             padding-right: 1rem;
-                        }                                    
-                    }           
-                    
+                        }
+                    }
+
                     .kt-notes__dropdown {
                         .btn-icon {
                             width: 26px;
@@ -123,15 +123,15 @@
 
                 .kt-notes__body {
                     color: kt-base-color(label, 2);
-                    font-weight: 400;                     
+                    font-weight: 400;
                     padding-right: 3rem;
                     padding-top: 0.5rem;
-                    display: block;                   
-                }                      
+                    display: block;
+                }
 
                 @include kt-rounded {
 					border-radius: $kt-border-radius;
-				}                
+				}
 
                 &:after {
 					position: absolute;
@@ -148,15 +148,15 @@
 				}
             }
 
-            &:last-child{ 
+            &:last-child{
                 border-left:0;
-            }               
-            
+            }
+
             &.kt-notes__item--clean {
-                .kt-notes__content {  
+                .kt-notes__content {
                     background-color: #fff;
                     padding: 0;
-                    
+
                     .kt-notes__info {
                         //margin-top: -0.5rem;
                     }
@@ -171,11 +171,11 @@
         .kt-notes__item:last-child {
             .kt-notes__media {
                 .kt-notes__circle {
-                    margin-left: 14px; 
+                    margin-left: 14px;
                 }
             }
         }
-    }        
+    }
 }
 
 
@@ -187,18 +187,18 @@
 
                 .kt-notes__content {
                     padding: 0.5rem 1rem 0.7rem 1rem;
-                    
-                    .kt-notes__desc {                           
-                        padding-top: 0.5rem;
-                        display: block;                     
-                    }
-                    
 
-                    &:after {                        
-                        margin-right: -3.8rem;                        
-                    } 
+                    .kt-notes__desc {
+                        padding-top: 0.5rem;
+                        display: block;
+                    }
+
+
+                    &:after {
+                        margin-right: -3.8rem;
+                    }
                 }
             }
         }
-    }        
+    }
 }

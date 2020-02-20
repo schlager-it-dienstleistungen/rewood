@@ -107,11 +107,12 @@ var KTBootstrapDatetimepicker = function () {
         });
 
         // locale
+        // import bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.XX.js
         $('#kt_datetimepicker_8').datetimepicker({
             todayHighlight: true,
             autoclose: true,
             format: 'yyyy.mm.dd hh:ii',
-            language: moment.locale('fr')
+            language: 'fr'
         });
     };
 

@@ -23,6 +23,11 @@ var KTSelect2 = function() {
             allowClear: true
         });
 
+        // group input
+        $('#kt_select2_group_1, #kt_select2_group_2').select2({
+            placeholder: "Select a state"
+        });
+
         // loading data from array
         var data = [{
             id: 0,
@@ -168,7 +173,7 @@ var KTSelect2 = function() {
             $('#kt_select2_4_modal').select2({
                 placeholder: "Select a state",
                 allowClear: true
-            }); 
+            });
         });
     }
 

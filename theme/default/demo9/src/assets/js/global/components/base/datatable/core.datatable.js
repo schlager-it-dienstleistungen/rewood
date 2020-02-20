@@ -52,9 +52,6 @@
 				Plugin.setupBaseDOM.call();
 				Plugin.setupDOM(datatable.table);
 
-				// set custom query from options
-				Plugin.setDataSourceQuery(Plugin.getOption('data.source.read.params.query'));
-
 				// on event after layout had done setup, show datatable
 				$(datatable).on(pfx + 'datatable--on-layout-updated', Plugin.afterRender);
 
@@ -62,9 +59,22 @@
 					Plugin.stateRemove(Plugin.stateId);
 				}
 
+				/*var es = Plugin.stateGet(Plugin.stateId);
+				var eq = {};
+				if (es && es.hasOwnProperty('query')) {
+					eq = es.query;
+				}
+				Plugin.setDataSourceQuery(Object.assign({}, eq, Plugin.getOption('data.source.read.params.query')));*/
+
+				// set custom query from options
+				Plugin.setDataSourceQuery(Plugin.getOption('data.source.read.params.query'));
+
 				// initialize extensions
 				$.each(Plugin.getOption('extensions'), function(extName, extOptions) {
 					if (typeof $.fn[pluginName][extName] === 'function') {
+						if (typeof extOptions !== 'object') {
+							extOptions = $.extend({}, extOptions);
+						}
 						new $.fn[pluginName][extName](datatable, extOptions);
 					}
 				});
@@ -84,16 +94,16 @@
 					Plugin.dataRender();
 				}
 
-                // if html table, remove and setup a new header
-                if (isHtmlTable) {
-                  $(datatable.tableHead).find('tr').remove();
-                  $(datatable.tableFoot).find('tr').remove();
-                }
+				// if html table, remove and setup a new header
+				if (isHtmlTable) {
+					$(datatable.tableHead).find('tr').remove();
+					$(datatable.tableFoot).find('tr').remove();
+				}
 
-                Plugin.setHeadTitle();
-                if (Plugin.getOption('layout.footer')) {
-                  Plugin.setHeadTitle(datatable.tableFoot);
-                }
+				Plugin.setHeadTitle();
+				if (Plugin.getOption('layout.footer')) {
+					Plugin.setHeadTitle(datatable.tableFoot);
+				}
 
 				// hide header
 				if (typeof options.layout.header !== 'undefined' &&
@@ -394,8 +404,7 @@
 			},
 
 			/**
-			 * After render event, called by
-			 * '+pfx+'-datatable--on-layout-updated
+			 * After render event, called by "datatable-on-layout-updated"
 			 * @param e
 			 * @param args
 			 */
@@ -530,7 +539,7 @@
 					$(datatable.tableBody).css('max-height', Math.floor(parseFloat(bodyHeight)));
 
 					// set scrollable area fixed height
-					// $(datatable.tableBody).find('.' + pfx + 'datatable__lock--scroll').css('height', Math.floor(parseFloat(bodyHeight)));
+					// $(datatable.tableBody).find('.' + pfx + 'datatable-lock-scroll').css('height', Math.floor(parseFloat(bodyHeight)));
 				}
 			},
 
@@ -1487,7 +1496,7 @@
 
 						var pageSizes = Plugin.getOption('toolbar.items.pagination.pageSizeSelect');
 						// default value here, to fix override option by user
-						if (pageSizes.length == 0) pageSizes = [10, 20, 30, 50, 100];
+						if (pageSizes.length == 0) pageSizes = [5, 10, 20, 30, 50, 100];
 						$.each(pageSizes, function(i, size) {
 							var display = size;
 							if (size === -1) display = Plugin.getOption('translate.toolbar.pagination.items.default.all');
@@ -1610,11 +1619,12 @@
 								$(this).find('.' + pfx + 'pager-input[type="text"]').prop('value', meta.page);
 							});
 
-							$(pg.pager).find('.' + pfx + 'datatable__pager-nav').show();
-							if (meta.pages <= 1) {
-								// hide pager if has 1 page
-								$(pg.pager).find('.' + pfx + 'datatable__pager-nav').hide();
-							}
+							// if only 1 page, should hide page?
+							// $(pg.pager).find('.' + pfx + 'datatable-pager-nav').show();
+							// if (meta.pages <= 1) {
+							// 	// hide pager if has 1 page
+							// 	$(pg.pager).find('.' + pfx + 'datatable-pager-nav').hide();
+							// }
 
 							// update datasource params
 							Plugin.setDataSourceParam('pagination', {
@@ -1673,8 +1683,7 @@
 									switch (mode) {
 										case 'desktop':
 										case 'tablet':
-											var end = Math.ceil(currentPage / option.pagesNumber) *
-												option.pagesNumber;
+											var end = Math.ceil(currentPage / option.pagesNumber) * option.pagesNumber;
 											var start = end - option.pagesNumber;
 											$(pagerInput).hide();
 											pg.meta = Plugin.getDataSourceParam('pagination');
@@ -2699,7 +2708,7 @@
 
 			getGeneralSearchKey: function() {
 				var searchInput = $(Plugin.getOption('search.input'));
-				return $(searchInput).prop('name') || $(searchInput).prop('id');
+				return Plugin.getOption('search.key') || $(searchInput).prop('name');
 			},
 
 			/**
@@ -3421,6 +3430,8 @@
 			input: null,
 			// search delay in milliseconds
 			delay: 400,
+			//	remote server search key value
+			key: null
 		},
 
 		rows: {

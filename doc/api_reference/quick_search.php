@@ -1,5 +1,5 @@
 <?php header('Access-Control-Allow-Origin: *');
-$dir = str_replace('/tools', '', dirname($_SERVER['PHP_SELF'])); ?>
+$dir = str_replace('/tools/preview/api', '/preview', dirname($_SERVER['PHP_SELF'])); ?>
 <div class="kt-quick-search__result">
 	<div class="kt-quick-search__message kt-hidden">
 		No record found

@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "6.1.7",
+    "version": "6.1.8",
     "config": {
         "demo": "",
         "debug": false,
@@ -62,8 +62,7 @@
                         },
                         "moment": {
                             "scripts": [
-                                "{$config.path.node_modules}/moment/min/moment.min.js",
-                                "{$config.path.node_modules}/moment/locale/fr.js"
+                                "{$config.path.node_modules}/moment/min/moment.min.js"
                             ]
                         },
                         "tooltip.js": {
@@ -375,11 +374,6 @@
                                 "{$config.path.node_modules}/jquery.repeater/src/lib.js",
                                 "{$config.path.node_modules}/jquery.repeater/src/jquery.input.js",
                                 "{$config.path.node_modules}/jquery.repeater/src/repeater.js"
-                            ]
-                        },
-                        "dompurify": {
-                            "scripts": [
-                                "{$config.path.node_modules}/dompurify/dist/purify.js"
                             ]
                         },
                         "socicon": {

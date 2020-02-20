@@ -8,7 +8,7 @@ var KTDatatableChildDataLocalDemo = function() {
 			data: {
 				type: 'local',
 				source: e.data.Orders,
-				pageSize: 10,
+				pageSize: 5,
 			},
 
 			// layout definition

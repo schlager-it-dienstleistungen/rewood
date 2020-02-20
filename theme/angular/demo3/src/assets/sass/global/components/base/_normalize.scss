@@ -16,17 +16,17 @@ html {
 
 html,
 body {
-    height: 100%;    
+    height: 100%;
     margin: 0px;
     padding: 0px;
 
-    font-size: kt-get($kt-font-size, size, desktop);
+    font-size: kt-get($kt-font-size, size, desktop) !important;
     font-weight: kt-get($kt-font-size, weight);
     font-family: #{kt-get($kt-font-families, regular)};
 
     -ms-text-size-adjust: 100%; // 2
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; 
+    -moz-osx-font-smoothing: grayscale;
 
     a:hover,
     a:active,
@@ -58,7 +58,7 @@ canvas {
 }
 
 /* Customize website's scrollbar like Mac OS */
-/* 
+/*
 ::-webkit-scrollbar {
     background-color:#f6f6f6;
     width:14px;
@@ -92,13 +92,13 @@ canvas {
 @include kt-tablet {
     html,
     body {
-        font-size: kt-get($kt-font-size, size, tablet);
+        font-size: kt-get($kt-font-size, size, tablet) !important;
     }
 }
 
 @include kt-mobile {
     html,
     body {
-        font-size: kt-get($kt-font-size, size, mobile);
+        font-size: kt-get($kt-font-size, size, mobile) !important;
     }
 }

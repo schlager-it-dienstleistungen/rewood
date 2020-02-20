@@ -111,12 +111,13 @@ var KTBootstrapDatepicker = function () {
         });
 
         // locale
+        // import bootstrap-datepicker/js/locales/bootstrap-datepicker.XX.js
         $('#kt_datepicker_7').datepicker({
             rtl: KTUtil.isRTL(),
             todayHighlight: true,
             orientation: "bottom left",
             templates: arrows,
-            language: moment.locale('fr')
+            language: 'fr'
         });
 
     };

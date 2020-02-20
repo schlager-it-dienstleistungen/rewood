@@ -76,11 +76,13 @@ require("../../../src/assets/js/global/integration/plugins/bootstrap-notify.init
 // Bootstrap-Datepicker
 require("bootstrap-datepicker/dist/css/bootstrap-datepicker3.css");
 require("bootstrap-datepicker");
+require("bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js");
 require("../../../src/assets/js/global/integration/plugins/bootstrap-datepicker.init");
 
 // Bootstrap-Datetimepicker
 require("bootstrap-datetime-picker/css/bootstrap-datetimepicker.css");
 require("bootstrap-datetime-picker");
+require("bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.fr.js");
 
 // Select2
 require("select2/dist/css/select2.css");

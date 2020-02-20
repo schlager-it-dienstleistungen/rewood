@@ -39,6 +39,7 @@ var KTDatatableRecordSelectionDemo = function() {
             title: '#',
             sortable: false,
             width: 20,
+            selector: {class: 'kt-checkbox--solid'},
             textAlign: 'center',
         }, {
             field: 'OrderID',
@@ -175,7 +176,7 @@ var KTDatatableRecordSelectionDemo = function() {
 
         // enable extension
         options.extensions = {
-            checkbox: {},
+            checkbox: true,
         };
         options.search = {
             input: $('#generalSearch1'),

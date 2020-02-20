@@ -275,7 +275,7 @@ var KTUserListDatatable = function() {
 			var count = checkedNodes.length; // selected records count
 
 			$('#kt_subheader_group_selected_rows').html(count);
-				
+
 			if (count > 0) {
 				$('#kt_subheader_search').addClass('kt-hidden');
 				$('#kt_subheader_group_actions').removeClass('kt-hidden');
@@ -297,7 +297,7 @@ var KTUserListDatatable = function() {
             setTimeout(function() {
                 loading.hide();
 			}, 1000);
-			
+
 			// fetch selected IDs
 			var ids = datatable.rows('.kt-datatable__row--active').nodes().find('.kt-checkbox--single > [type="checkbox"]').map(function(i, chk) {
 				return $(chk).val();
@@ -305,7 +305,7 @@ var KTUserListDatatable = function() {
 
 			// populate selected IDs
 			var c = document.createDocumentFragment();
-				
+
 			for (var i = 0; i < ids.length; i++) {
 				var li = document.createElement('li');
 				li.setAttribute('data-id', ids[i]);
@@ -336,10 +336,10 @@ var KTUserListDatatable = function() {
 
 					html: "Are you sure to update " + ids.length + " selected records status to " + status + " ?",
 					type: "info",
-	
+
 					confirmButtonText: "Yes, update!",
 					confirmButtonClass: "btn btn-sm btn-bold btn-brand",
-	
+
 					showCancelButton: true,
 					cancelButtonText: "No, cancel",
 					cancelButtonClass: "btn btn-sm btn-bold btn-default"
@@ -416,7 +416,7 @@ var KTUserListDatatable = function() {
 					}
 				});
 			}
-		});		
+		});
 	}
 
 	var updateTotal = function() {

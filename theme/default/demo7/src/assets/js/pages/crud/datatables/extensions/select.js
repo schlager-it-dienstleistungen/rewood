@@ -12,20 +12,20 @@ var KTDatatablesExtensionsKeytable = function() {
 					title: 'Actions',
 					orderable: false,
 					render: function(data, type, full, meta) {
-						return `
-                        <span class="dropdown">
-                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
-                              <i class="la la-ellipsis-h"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
-                            </div>
-                        </span>
-                        <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
-                          <i class="la la-edit"></i>
-                        </a>`;
+						return '\
+                        <span class="dropdown">\
+                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">\
+                              <i class="la la-ellipsis-h"></i>\
+                            </a>\
+                            <div class="dropdown-menu dropdown-menu-right">\
+                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
+                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>\
+                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>\
+                            </div>\
+                        </span>\
+                        <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">\
+                          <i class="la la-edit"></i>\
+                        </a>';
 					},
 				},
 				{
@@ -75,22 +75,22 @@ var KTDatatablesExtensionsKeytable = function() {
 				selector: 'td:first-child .kt-checkable',
 			},
 			headerCallback: function(thead, data, start, end, display) {
-				thead.getElementsByTagName('th')[0].innerHTML = `
-                    <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid kt-checkbox--brand">
-                        <input type="checkbox" value="" class="kt-group-checkable">
-                        <span></span>
-                    </label>`;
+				thead.getElementsByTagName('th')[0].innerHTML = '\
+                    <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid kt-checkbox--brand">\
+                        <input type="checkbox" value="" class="kt-group-checkable">\
+                        <span></span>\
+                    </label>';
 			},
 			columnDefs: [
 				{
 					targets: 0,
 					orderable: false,
 					render: function(data, type, full, meta) {
-						return `
-                        <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid kt-checkbox--brand">
-                            <input type="checkbox" value="" class="kt-checkable">
-                            <span></span>
-                        </label>`;
+						return '\
+                        <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid kt-checkbox--brand">\
+                            <input type="checkbox" value="" class="kt-checkable">\
+                            <span></span>\
+                        </label>';
 					},
 				},
 				{
@@ -98,20 +98,20 @@ var KTDatatablesExtensionsKeytable = function() {
 					title: 'Actions',
 					orderable: false,
 					render: function(data, type, full, meta) {
-						return `
-                        <span class="dropdown">
-                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
-                              <i class="la la-ellipsis-h"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
-                            </div>
-                        </span>
-                        <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
-                          <i class="la la-edit"></i>
-                        </a>`;
+						return '\
+                        <span class="dropdown">\
+                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">\
+                              <i class="la la-ellipsis-h"></i>\
+                            </a>\
+                            <div class="dropdown-menu dropdown-menu-right">\
+                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
+                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>\
+                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>\
+                            </div>\
+                        </span>\
+                        <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">\
+                          <i class="la la-edit"></i>\
+                        </a>';
 					},
 				},
 				{
@@ -173,10 +173,8 @@ var KTDatatablesExtensionsKeytable = function() {
 		init: function() {
 			initTable1();
 			initTable2();
-		},
-
+		}
 	};
-
 }();
 
 jQuery(document).ready(function() {
