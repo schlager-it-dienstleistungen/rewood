@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from 'src/app/core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
 	imports: [
@@ -20,6 +21,7 @@ import { PartialsModule } from '../../partials/partials.module';
 	providers: [],
 	declarations: [
 		HomeComponent,
+		NewsComponent,
 	]
 })
 export class HomeModule { }

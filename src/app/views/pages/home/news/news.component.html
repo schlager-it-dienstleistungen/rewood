@@ -1,0 +1,9 @@
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+	<kt-portlet-header [title]="news.title">
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<p>{{ news.text }}</p>
+		<p>{{ news.date | date }}</p>
+		<a *ngIf="news.link" href="{{ news.link }}" target="_blank">Source</a>
+	</kt-portlet-body>
+</kt-portlet>
