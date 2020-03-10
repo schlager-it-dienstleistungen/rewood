@@ -6,6 +6,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { NewsComponent } from './news/news.component';
 import { CredoComponent } from './credo/credo.component';
+import { CategoryLinkComponent } from './category-link/category-link.component';
 
 @NgModule({
 	imports: [
@@ -24,6 +25,7 @@ import { CredoComponent } from './credo/credo.component';
 		HomeComponent,
 		NewsComponent,
 		CredoComponent,
+		CategoryLinkComponent,
 	]
 })
 export class HomeModule { }
