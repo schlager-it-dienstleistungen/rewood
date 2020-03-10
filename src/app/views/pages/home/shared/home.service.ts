@@ -29,7 +29,7 @@ export class HomeService {
 			},
 			{
 				title: 'EU-Datenschutz-Grundverordnung (DSGVO)',
-				text: 'Am 4. Mai 2016 wurde die „Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates vom 27. April 2016 zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten, zum freien Datenverkehr und zur Aufhebung der Richtlinie 95/46/EG (Datenschutz-Grundverordnung)“ kundgemacht.\nDie Datenschutz-Grundverordnung ist am 25. Mai 2018 in Geltung getreten. Alle Datenverarbeitungen müssen dieser Rechtslage entsprechen.',
+				text: 'Am 4. Mai 2016 wurde die „Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates vom 27. April 2016 zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten, zum freien Datenverkehr und zur Aufhebung der Richtlinie 95/46/EG (Datenschutz-Grundverordnung)“ kundgemacht. \n\n Die Datenschutz-Grundverordnung ist am 25. Mai 2018 in Geltung getreten. Alle Datenverarbeitungen müssen dieser Rechtslage entsprechen.',
 				date: new Date('Wed Mar 04 2020 10:44:57'),
 				link: 'https://www.wko.at/service/wirtschaftsrecht-gewerberecht/EU-Datenschutz-Grundverordnung.html'
 			}

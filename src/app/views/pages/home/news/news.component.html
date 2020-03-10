@@ -2,7 +2,7 @@
 	<kt-portlet-header [title]="news.title">
 	</kt-portlet-header>
 	<kt-portlet-body>
-		<p>{{ news.text }}</p>
+		<p style="white-space: pre-wrap;">{{ news.text }}</p>
 		<p>{{ news.date | date }}</p>
 		<a *ngIf="news.link" href="{{ news.link }}" target="_blank">Source</a>
 	</kt-portlet-body>
