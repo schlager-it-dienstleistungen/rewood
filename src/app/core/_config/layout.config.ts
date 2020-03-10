@@ -10,7 +10,7 @@ export class LayoutConfig {
 				'background-image': './assets/media/misc/bg-1.jpg',
 			},
 			logo: {
-				desktop: './assets/media/logos/logo-9.png',
+				desktop: './assets/media/logos/rewood_logo_pos_green.png',
 				sticky: './assets/media/logos/logo-9-sm.png',
 			},
 		},
@@ -18,7 +18,7 @@ export class LayoutConfig {
 		loader: {
 			enabled: true,
 			type: 'spinner-logo',
-			logo: './assets/media/logos/logo-mini-md.png',
+			logo: './assets/media/logos/rewood_logo_claim_green_pos.png',
 			message: 'Please wait...',
 		},
 		// == Colors for javascript
