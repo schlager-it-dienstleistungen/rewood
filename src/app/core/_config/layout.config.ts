@@ -24,7 +24,7 @@ export class LayoutConfig {
 		// == Colors for javascript
 		colors: {
 			state: {
-				brand: '#024731',
+				brand: '#591df1',
 				light: '#ffffff',
 				dark: '#282a3c',
 				primary: '#5867dd',

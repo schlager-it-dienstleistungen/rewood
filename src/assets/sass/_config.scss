@@ -167,16 +167,16 @@ $kt-social-colors: (
 
 // Root Font Settings
 $kt-font-families: (
-    regular: 'DIN_Bold',
-    heading: 'DIN_Bold'
+    regular: 'Noto Sans TC',
+    heading: 'Noto Sans TC',
 ) !default;
 
 // Root Font Settings
 $kt-font-size: (
     size: (
-        desktop: 16px,
-        tablet: 14px,
-        mobile: 14px
+        desktop: 13px,
+        tablet: 12px,
+        mobile: 12px
     ),
     weight: 300
 ) !default;
