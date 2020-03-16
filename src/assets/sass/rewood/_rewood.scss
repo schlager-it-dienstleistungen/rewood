@@ -1,0 +1,151 @@
+// The styles different from keentheme are set in this SASS file.
+// First the variables and then the usage in the specific part
+
+
+// ### SET VARIABLES
+// Root Font Settings
+$kt-font-families: (
+    regular: 'Noto Sans TC',
+    heading: 'Noto Sans TC',
+);
+
+// Root Font Settings
+$kt-font-size: (
+    size: (
+        desktop: 14px,
+        tablet: 13px,
+        mobile: 13px
+    ),
+    weight: 300
+);
+
+// General Link Settings
+$kt-font-color: (
+    text: #024731
+);
+
+// Brand Color
+$kt-brand-color: #a5d867 !default;
+$kt-brand-inverse-color: #ffffff !default;
+$kt-brand-hover-color: #f5f6fc;
+
+// Base colors
+$kt-base-colors: (
+    label: (
+        1: #a2a5b9,
+        2: #74788d,
+        3: #595d6e,
+        4: #024731
+    ),
+    shape: (
+        1: #f0f3ff,
+        2: #e8ecfa,
+        3: #93a2dd,
+        4: #646c9a
+    ),
+    grey: (
+        1: #f7f8fa, //#f4f5f8
+        2: #ebedf2,
+        3: darken(#ebedf2, 3%),
+        4: darken(#ebedf2, 6%)
+    )
+);
+
+// State colors
+$kt-state-colors: (
+    // Metronic states
+    brand: (
+        base: #a5d867,
+        inverse: #ffffff
+    ),
+    light: (
+        base: #ffffff,
+        inverse: #282a3c
+    ),
+    dark: (
+        base: #282a3c,
+        inverse: #ffffff
+    ),
+
+    // Bootstrap states
+    primary: (
+        base: #5867dd,
+        inverse: #ffffff
+    ),
+    success: (
+        base: #1dc9b7,
+        inverse: #ffffff
+    ),
+    info: (
+        base: #2786fb,
+        inverse: #ffffff
+    ),
+    warning: (
+        base: #ffb822,
+        inverse: #111111
+    ),
+    danger: (
+        base: #fd27eb,
+        inverse: #ffffff
+    )
+);
+
+// ### USAGE OF VARIABLES
+body {
+	color: kt-get($kt-font-color, text);
+	font-size: kt-get($kt-font-size, size, desktop);
+	font-weight: kt-get($kt-font-size, weight);
+	font-family: #{kt-get($kt-font-families, regular)};
+}
+
+.kt-portlet {
+
+	// Base
+	.kt-portlet__head {
+
+		.kt-portlet__head-label {
+
+			.kt-portlet__head-title {
+				color: kt-base-color(label, 4);
+				font-size: 1.2rem;
+			}
+		}
+	}
+}
+
+// Desktop mode(1024px and above)
+@include kt-desktop() {
+	// Header default mode
+	.kt-header-menu-wrapper {
+		// Header menu
+		.kt-header-menu {
+			// Menu nav
+			.kt-menu__nav {
+				// Menu item
+				> .kt-menu__item {
+					// Menu link
+					> .kt-menu__link {
+						.kt-menu__link-text {
+							color: #024731;
+						}
+					}
+					&.kt-menu__item--here,
+					&.kt-menu__item--active {
+						> .kt-menu__link {
+							background-color: $kt-brand-hover-color;
+							.kt-menu__link-text {
+								color: kt-brand-color();
+							}
+							.kt-menu__hor-arrow {
+								color: kt-brand-color();
+							}
+							.kt-menu__hor-icon {
+								color: kt-brand-color();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
