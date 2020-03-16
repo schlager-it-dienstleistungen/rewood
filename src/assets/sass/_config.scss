@@ -115,9 +115,9 @@ $kt-state-colors: (
 $kt-base-colors: (
     label: (
         1: #a2a5b9,
-        2: #74788d,
-        3: #595d6e,
-        4: #48465b
+        2: #024731,
+        3: #024731,
+        4: #024731
     ),
     shape: (
         1: #f0f3ff,
@@ -183,7 +183,7 @@ $kt-font-size: (
 
 // General Link Settings
 $kt-font-color: (
-    text: #646c9a,
+    text: #024731,
     link: (
         default: kt-state-color(brand),
         hover: darken(kt-state-color(brand), 6%)
