@@ -1,5 +1,5 @@
-<kt-portlet [class]="'kt-portlet--height-fluid'">
-	<kt-portlet-header [title]="news.title">
+<kt-portlet [class]="'kt-portlet--height-fluid kt-portlet--bordered'">
+	<kt-portlet-header [title]="news.title" [class]="'kt-portlet__head--noborder'">
 	</kt-portlet-header>
 	<kt-portlet-body>
 		<p style="white-space: pre-wrap;">{{ news.text }}</p>
