@@ -163,40 +163,45 @@ export class ProductStoreService {
 			{
 				title: 'Spanplatte',
 				description: 'Beschreibungstext',
-				img: 'https://media.bahag.com/assets/resp_product/10/75/1075985_22086959.jpg',
+				img: './assets/rewood/categories/Spanplatte_374_374.jpg',
 				numberofproducts: 5
 			},
 			{
 				title: 'OSB',
 				description: 'Beschreibungstext',
-				img: 'https://balkotrade.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/e/g/egger_osb-3_6_4.jpg',
+				img: './assets/rewood/categories/OSB_374_374.jpg',
 				numberofproducts: 0
 			},
 			{
 				title: 'MDF',
 				description: 'Beschreibungstext',
-				img: 'https://images-na.ssl-images-amazon.com/images/I/51OJDffRtFL._SY355_.jpg',
+				img: './assets/rewood/categories/MDF_374_374.jpg',
 				numberofproducts: 3
 			},
 			{
 				title: 'HDF',
 				description: 'Beschreibungstext',
-				img: 'https://5.imimg.com/data5/SL/YW/BT/SELLER-82461688/prelaminated-mdf-board-500x500.jpg',
+				img: './assets/rewood/categories/HDF_374_374.jpg',
 				numberofproducts: 1
 			},
 			{
 				title: 'Sperrholz',
 				description: 'Beschreibungstext',
-				img: 'https://i.ebayimg.com/images/g/gs8AAOSwVaVZy~m2/s-l300.jpg',
+				img: './assets/rewood/categories/Sperrholz_374_374.jpg',
 				numberofproducts: 0
 			},
 			{
 				title: 'Tischlerplatte',
 				description: 'Beschreibungstext',
-				img: 'https://feafashionloft.de/wp-content/uploads/2019/02/Tischlerplatte-1.jpg',
+				img: './assets/rewood/categories/Tischlerplatte_374_374.jpg',
 				numberofproducts: 2
 			}
 		];
+	}
+
+	getCategory(title: string): Category {
+		const categoriesArray: Category[] = this.getCategories();
+		return categoriesArray.find(category => category.title.indexOf(title) !== -1);
 	}
 
 		/* UI */

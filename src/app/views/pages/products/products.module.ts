@@ -10,16 +10,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './products.component';
-import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryItemComponent } from './category-item/category-item.component';
 
 @NgModule({
 	declarations: [
 		ProductsComponent,
-		ProductCategoryComponent,
 		ProductListComponent,
-		ProductDetailComponent
+		ProductDetailComponent,
+		CategoryListComponent,
+		CategoryItemComponent
 	],
 	imports: [
 		FlexLayoutModule,
