@@ -14,6 +14,7 @@ export class PageConfig {
 		},
 		admin: {
 			createSupplier: {page: {title: 'Neuer Lieferant', desc: ''}},
+			createProduct: {page: {title: 'Neues Produkt', desc: ''}},
 		},
 		/*products: {
 			products: {

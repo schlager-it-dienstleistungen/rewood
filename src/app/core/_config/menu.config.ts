@@ -20,7 +20,6 @@ export class MenuConfig {
 					title: 'Admin',
 					root: true,
 					alignment: 'left',
-					page: '/admin',
 					submenu: [
 						{
 							title: 'Neuer Lieferant',
@@ -28,7 +27,7 @@ export class MenuConfig {
 						},
 						{
 							title: 'Neues Produkt',
-							page: '/productswithsearch'
+							page: '/admin/createProduct'
 						}
 					]
 				}
