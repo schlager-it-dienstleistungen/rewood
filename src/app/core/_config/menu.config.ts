@@ -24,7 +24,7 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Neuer Lieferant',
-							page: '/productswithfilter'
+							page: '/admin/createSupplier'
 						},
 						{
 							title: 'Neues Produkt',

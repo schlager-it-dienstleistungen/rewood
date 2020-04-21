@@ -13,10 +13,7 @@ export class PageConfig {
 			}
 		},
 		admin: {
-			page: {
-				title: 'Admin',
-				desc: 'Administration'
-			}
+			createSupplier: {page: {title: 'Neuer Lieferant', desc: ''}},
 		},
 		/*products: {
 			products: {
