@@ -15,6 +15,22 @@ export class MenuConfig {
 					root: true,
 					alignment: 'left',
 					page: '/products'
+				},
+				{
+					title: 'Admin',
+					root: true,
+					alignment: 'left',
+					page: '/admin',
+					submenu: [
+						{
+							title: 'Neuer Lieferant',
+							page: '/productswithfilter'
+						},
+						{
+							title: 'Neues Produkt',
+							page: '/productswithsearch'
+						}
+					]
 				}
 /*				{
 					title: 'Produkte',

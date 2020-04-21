@@ -12,6 +12,12 @@ export class PageConfig {
 				desc: 'Actual Products'
 			}
 		},
+		admin: {
+			page: {
+				title: 'Admin',
+				desc: 'Administration'
+			}
+		},
 		/*products: {
 			products: {
 				page: {
