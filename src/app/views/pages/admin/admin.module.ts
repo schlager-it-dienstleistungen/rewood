@@ -5,8 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-import { FormsModule } from '@angular/forms';
-import { PortletModule } from '../../partials/content/general/portlet/portlet.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from 'src/app/core/core.module';
 
@@ -18,7 +17,8 @@ import { CoreModule } from 'src/app/core/core.module';
 		FormsModule,
 		PartialsModule,
 		CoreModule,
-		AdminRoutingModule
+		AdminRoutingModule,
+		ReactiveFormsModule
 	]
 })
 export class AdminModule { }

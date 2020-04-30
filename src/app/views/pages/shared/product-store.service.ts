@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
+import { CategoryFactoryService } from './category-factory.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -36,6 +37,14 @@ export class ProductStoreService {
 		return this.db.collection('products').doc(productId).snapshotChanges().pipe(
 			map(product => ProductFactoryService.fromFirestoreDocument(product.payload.data() as Product, product.payload.id))
 		);
+	}
+
+	createProductId(): string {
+		return this.db.createId();
+	}
+
+	createProduct(product: Product) {
+		this.db.collection('products').doc(product.id).set(product);
 	}
 
 	/**
@@ -158,49 +167,8 @@ export class ProductStoreService {
 		];
 	}
 
-	getCategories(): Category[] {
-		return [
-			{
-				title: 'Spanplatte',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/Spanplatte_374_374.jpg',
-				numberofproducts: 5
-			},
-			{
-				title: 'OSB',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/OSB_374_374.jpg',
-				numberofproducts: 0
-			},
-			{
-				title: 'MDF',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/MDF_374_374.jpg',
-				numberofproducts: 3
-			},
-			{
-				title: 'HDF',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/HDF_374_374.jpg',
-				numberofproducts: 1
-			},
-			{
-				title: 'Sperrholz',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/Sperrholz_374_374.jpg',
-				numberofproducts: 0
-			},
-			{
-				title: 'Tischlerplatte',
-				description: 'Beschreibungstext',
-				img: './assets/rewood/categories/Tischlerplatte_374_374.jpg',
-				numberofproducts: 2
-			}
-		];
-	}
-
 	getCategory(title: string): Category {
-		const categoriesArray: Category[] = this.getCategories();
+		const categoriesArray: Category[] = CategoryFactoryService.getCategories();
 		return categoriesArray.find(category => category.title.indexOf(title) !== -1);
 	}
 

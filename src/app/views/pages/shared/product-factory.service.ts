@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
-import { DocumentChangeAction, Action, DocumentSnapshot } from 'angularfire2/firestore';
+import { DocumentChangeAction } from 'angularfire2/firestore';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,4 +14,15 @@ export class ProductFactoryService {
 	static fromFirestoreDocument(data: Product, id: string): Product {
 		return { id, ...data };
 	}
+
+	static empty(): Product {
+		return {
+			id: '',
+			title: '',
+			description: '',
+			category: '',
+			price: 0.00,
+			status: 0
+		};
+}
 }

@@ -1,44 +1,36 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Output, Input, EventEmitter, OnChanges } from '@angular/core';
+import { ProductFactoryService } from '../../shared/product-factory.service';
+import { Category } from '../../shared/category';
+import { CategoryFactoryService } from '../../shared/category-factory.service';
+import { Product } from '../../shared/product';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
 	selector: 'rw-create-product',
 	templateUrl: './create-product.component.html',
 	styleUrls: ['./create-product.component.scss']
 })
-export class CreateProductComponent implements OnInit, AfterViewInit {
+export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit {
+
+	productForm: FormGroup;
+	@Output() submitProduct = new EventEmitter<Product>();
+	@Input() product: Product;
+	@Input() editing = false;
+
+	// Categories
+	categories = CategoryFactoryService.getCategories();
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
-	model: any = {
-		fname: 'John',
-		lname: 'Wick',
-		phone: '+61412345678',
-		email: 'john.wick@reeves.com',
-		address1: 'Address Line 1',
-		address2: 'Address Line 2',
-		postcode: '3000',
-		city: 'Melbourne',
-		state: 'VIC',
-		country: 'AU',
-		delivery: 'overnight',
-		packaging: 'regular',
-		preferreddelivery: 'morning',
-		locaddress1: 'Address Line 1',
-		locaddress2: 'Address Line 2',
-		locpostcode: '3072',
-		loccity: 'Preston',
-		locstate: 'VIC',
-		loccountry: 'AU',
-		ccname: 'John Wick',
-		ccnumber: '4444 3333 2222 1111',
-		ccmonth: '01',
-		ccyear: '21',
-		cccvv: '123',
-	};
 
-	constructor() { }
+	constructor(
+		private fb: FormBuilder,
+		private productStoreService: ProductStoreService
+	) { }
 
 	ngOnInit() {
+		this.initForm();
 	}
 
 	ngAfterViewInit(): void {
@@ -69,7 +61,45 @@ export class CreateProductComponent implements OnInit, AfterViewInit {
 		});*/
 	}
 
+	ngOnChanges(): void {
+		this.initForm();
+		this.setFormValues(this.product);
+	}
+
+	private initForm() {
+		if (this.productForm) { return; }
+		this.productForm = this.fb.group({
+			id: this.productStoreService.createProductId(),
+			title: ['', Validators.required],
+			category: '',
+			subcategory: '',
+			price: 0.00,
+			description: 'Beschreibung',
+			status: 0
+		});
+	}
+
+	private setFormValues(product: Product) {
+		this.productForm.patchValue(product);
+
+		/*this.productForm.setControl(
+			'thumbnails',
+			this.buildThumbnailsArray(product.thumbnails)
+		);*/
+	}
+
 	onSubmit() {
 		this.submitted = true;
+
+		const formValue = this.productForm.value;
+
+		// const thumbnails = formValue.thumbnails.filter(thumbnail => thumbnail.url);
+		const newProduct: Product = {
+			...formValue
+		};
+
+		// this.submitProduct.emit(newProduct);
+		this.productStoreService.createProduct(newProduct);
+		this.productForm.reset();
 	}
 }
