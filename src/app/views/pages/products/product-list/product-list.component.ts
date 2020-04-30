@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
-import { Product } from '../shared/product';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { ProductStoreService } from '../shared/product-store.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchProducts } from '../shared/search-products';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { ProductStoreService } from '../../shared/product-store.service';
+import { Product } from '../../shared/product';
 
 @Component({
 	selector: 'sw-product-list',

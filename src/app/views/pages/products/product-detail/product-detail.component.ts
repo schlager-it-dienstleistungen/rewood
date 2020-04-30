@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../shared/product';
-import { ProductStoreService } from '../shared/product-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Product } from '../../shared/product';
+import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
 	selector: 'sw-product-detail',
