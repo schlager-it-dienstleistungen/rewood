@@ -4,15 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "metronic": {
-      "root": "",
-      "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "kt",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "kt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -21,33 +21,24 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
               "src/.htaccess"
             ],
             "styles": [
-              	"src/styles.scss",
-				"node_modules/bootstrap/dist/css/bootstrap.css",
-				"node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-				"node_modules/socicon/css/socicon.css",
-				"node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-				"src/assets/plugins/line-awesome/css/line-awesome.css",
-				"src/assets/plugins/flaticon/flaticon.css",
-				"src/assets/plugins/flaticon2/flaticon.css",
-				"src/assets/sass/style.angular.scss"
+              "src/styles.scss"
             ],
             "scripts": [
-				"node_modules/popper.js/dist/umd/popper.js",
-				"node_modules/tooltip.js/dist/umd/tooltip.min.js",
-				"node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/tooltip.js/dist/umd/tooltip.min.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.js",
+              "node_modules/clipboard/dist/clipboard.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "src/assets/js/layout/extended/examples.js"
             ],
-		  	"stylePreprocessorOptions": {
-			  "includePaths": [
-				  "src/assets"
-			  ]
-		  	},
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -58,8 +49,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-			  "scripts": [],
-			  "optimization": true,
+              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
@@ -71,8 +61,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
+                  "maximumWarning": "7mb",
                   "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "16kb",
+                  "maximumError": "100kb"
                 }
               ]
             }
@@ -100,8 +95,8 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "styles": [
               "src/styles.scss"
             ],
@@ -115,8 +110,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -154,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "metronic"
+  "defaultProject": "metronic",
+  "cli": {
+    "analytics": "b1dfc39d-aa30-4e3a-8d5a-d646228c4f05"
+  }
 }

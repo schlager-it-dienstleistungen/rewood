@@ -1,22 +1,27 @@
-<div ngbDropdown placement="bottom" class="kt-header__topbar-item kt-header__topbar-item--langs">
-	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon"
-			[ngClass]="{ 'kt-header__topbar-icon--brand' : iconType === 'brand' }">
-			<img class="" src="{{language?.flag}}" alt=""/>
-		</span>
+<div ngbDropdown placement="bottom-right" class="dropdown dropdown-fluid">
+  <!--begin::Toggle-->
+  <div ngbDropdownToggle class="topbar-item">
+    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+			<img class="h-25px w-25px rounded" src="{{language?.flag}}" alt="language" />
+		</div>
 	</div>
-	<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
-		<ul class="kt-nav kt-margin-t-10 kt-margin-b-10">
+  <!--end::Toggle-->
+
+  <!--begin::Dropdown-->
+  <div ngbDropdownMenu class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
+		<ul class="navi navi-hover py-4">
 			<ng-container *ngFor="let language of languages">
-				<li class="kt-nav__item" [ngClass]="{'kt-nav__item--active': language.active}">
-					<a href="javascript:;" (click)="setLanguage(language.lang)" [ngClass]="{'kt-nav__link--active': language.active}" class="kt-nav__link">
-						<span class="kt-nav__link-icon">
+				<li class="navi-item" [ngClass]="{'active': language.active}">
+					<a href="javascript:;" (click)="setLanguage(language.lang)" [ngClass]="{'active': language.active}"
+						class="navi-link">
+						<span class="symbol symbol-20 mr-3">
 							<img src="{{language.flag}}">
 						</span>
-						<span class="kt-nav__link-text">{{language.name}}</span>
+						<span class=" navi-text">{{language.name}}</span>
 					</a>
 				</li>
 			</ng-container>
 		</ul>
 	</div>
+  <!--end::Dropdown-->
 </div>

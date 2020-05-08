@@ -1,168 +1,175 @@
 export interface LayoutConfigModel {
-	demo: string;
-	self: {
-		layout?: string;
-		body?: {
-			'background-image'?: string,
-			'class'?: string,
-			'background-position'?: string,
-			'background-size'?: string
-		};
-		logo: any | string;
-	};
-	portlet?: {
-		sticky: {
-			offset: number
-		}
-	};
-	loader: {
-		enabled: boolean;
-		type?: string | 'default' | 'spinner-message' | 'spinner-logo';
-		logo?: string;
-		message?: string;
-	};
-	colors: {
-		state?: any;
-		base: {
-			label: Array<string>;
-			shape: Array<string>
-		}
-	};
-	width?: string;
-	header: {
-		self: {
-			skin?: string;
-			width?: string;
-			fixed: {
-				desktop: any;
-				mobile: boolean
-			}
-		};
-		// not implemented yet
-		topbar?: {
-			self?: {
-				width?: string;
-			}
-			search?: {
-				display: boolean;
-				layout: 'offcanvas' | 'dropdown';
-				dropdown?: {
-					style: 'light' | 'dark';
-				}
-			};
-			notifications?: {
-				display: boolean;
-				layout: 'offcanvas' | 'dropdown';
-				dropdown: {
-					style: 'light' | 'dark';
-				}
-			};
-			'quick-actions'?: {
-				display: boolean;
-				layout: 'offcanvas' | 'dropdown';
-				dropdown: {
-					style: 'light' | 'dark';
-				}
-			};
-			user?: {
-				display: boolean;
-				layout: 'offcanvas' | 'dropdown';
-				dropdown: {
-					style: 'light' | 'dark';
-				}
-			};
-			languages?: {
-				display: boolean
-			};
-			cart?: {
-				display: boolean
-			};
-			'my-cart'?: any
-			'quick-panel'?: {
-				display: boolean
-			}
-		};
-		search?: {
-			display: boolean
-		};
-		menu?: {
-			self: {
-				display: boolean;
-				layout?: string;
-				'root-arrow'?: boolean;
-				width?: string;
-			};
-			desktop: {
-				arrow: boolean;
-				toggle: string;
-				submenu: {
-					skin?: string;
-					arrow: boolean
-				}
-			};
-			mobile: {
-				submenu: {
-					skin: string;
-					accordion: boolean
-				}
-			}
-		}
-	};
-	brand?: {
-		self: {
-			skin: string
-		}
-	};
-	aside?: {
-		self: {
-			skin?: string;
-			display: boolean;
-			fixed?: boolean | any;
-			minimize?: {
-				toggle: boolean;
-				default: boolean
-			}
-		};
-		footer?: {
-			self: {
-				display: boolean
-			}
-		};
-		menu: {
-			'root-arrow'?: boolean;
-			dropdown: boolean;
-			scroll: boolean;
-			submenu: {
-				accordion: boolean;
-				dropdown: {
-					arrow: boolean;
-					'hover-timeout': number
-				}
-			}
-		}
-	};
-	'aside-secondary'?: {
-		self: {
-			display: boolean;
-			layout?: string;
-			expanded?: boolean;
-		}
-	};
-	subheader?: {
-		display: boolean;
-		fixed?: boolean;
-		width?: string;
-		layout?: string;
-		style?: 'light' | 'solid' | 'transparent';
-		daterangepicker?: {
-			display: boolean
-		}
-	};
-	content?: any;
-	footer?: {
-		self?: any;
-	};
-	'quick-panel'?: {
-		display?: boolean
-	};
+  demo: string;
+  js: {
+    breakpoints: {
+      sm?: number,
+      md?: number,
+      lg?: number,
+      xl?: number,
+      xxl?: number,
+    },
+    colors: {
+      theme?: {
+        base: any;
+        light: any;
+        inverse: any;
+      },
+      gray?: any;
+    },
+    fontFamily?: 'Poppins';
+  };
+  self: {
+    layout?: 'default' | 'blank';
+  };
+  'page-loader': {
+    type?: string | 'default' | 'spinner-message' | 'spinner-logo';
+  };
+  header: {
+    self: {
+      display?: boolean;
+      width?: 'fluid' | 'fixed';
+      theme?: 'light' | 'dark';
+      fixed: {
+        desktop: boolean;
+        mobile: boolean
+      }
+    };
+    menu?: {
+      self: {
+        display: boolean;
+        layout?: 'default' | 'tab';
+        rootArrow?: boolean;
+        'icon-style'?: 'duotone' | 'line' | 'bold' | 'solid';
+      };
+      desktop: {
+        arrow: boolean;
+        toggle: string;
+        submenu: {
+          theme?: 'light' | 'dark';
+          arrow: boolean
+        }
+      };
+      mobile: {
+        submenu: {
+          theme: 'dark' | 'light';
+          accordion: boolean
+        }
+      }
+    }
+  };
+  subheader?: {
+    display: boolean;
+    displayDesc?: boolean;
+    displayDaterangepicker?: boolean;
+    layout?: 'subheader-v1' | 'subheader-v2' | 'subheader-v3' | 'subheader-v4';
+    fixed?: boolean;
+    width?: 'fluid' | 'fixed';
+    clear?: boolean;
+    layouts?: any;
+    style?: 'light' | 'solid' | 'transparent';
+  };
+  content?: {
+    width?: 'fluid' | 'fixed'
+  };
+  brand?: {
+    self: {
+      theme: 'light' | 'dark'
+    }
+  };
+  aside?: {
+    self: {
+      theme?: 'dark' | 'light';
+      display: boolean;
+      fixed?: boolean | any;
+      minimize?: {
+        toggle: boolean;
+        default: boolean;
+        hoverable: boolean;
+      }
+    };
+    footer?: {
+      self: {
+        display: boolean
+      }
+    };
+    menu: {
+      dropdown: boolean;
+      scroll: boolean;
+      'icon-style'?: 'duotone' | 'line' | 'bold' | 'solid';
+      submenu: {
+        accordion: boolean;
+        dropdown: {
+          arrow: boolean;
+          'hover-timeout': number
+        }
+      }
+    }
+  };
+  footer?: {
+    width?: 'fluid' | 'fixed';
+    fixed?: boolean
+  };
+  extras: {
+    search?: {
+      display?: boolean;
+      layout?: 'dropdown' | 'offcanvas';
+      offcanvas?: {
+        direction: 'right' | 'left'
+      };
+    };
+    notifications?: {
+      display?: boolean;
+      layout?: 'dropdown' | 'offcanvas';
+      dropdown?: {
+        style?: 'dark' | 'light';
+      };
+      offcanvas?: {
+        direction?: 'right' | 'left'
+      }
+    },
+    'quick-actions'?: {
+      display?: boolean;
+      layout?: 'dropdown' | 'offcanvas';
+      dropdown?: {
+        style: 'light' | 'dark';
+      };
+      offcanvas?: {
+        direction: 'right' | 'left'
+      };
+    };
+    user?: {
+      display?: boolean;
+      layout?: 'offcanvas' | 'dropdown',
+      dropdown?: {
+        style?: 'light' | 'dark'
+      },
+      offcanvas?: {
+        direction: 'right' | 'left'
+      }
+    };
+    languages?: {
+      display?: boolean;
+    };
+    cart?: {
+      display?: boolean;
+      dropdown?: {
+        style: 'dark' | 'light'
+      };
+    };
+    'quick-panel'?: {
+      display?: true;
+      offcanvas?: {
+        direction: 'right' | 'left'
+      };
+    };
+    chat?: {
+      display?: boolean;
+    };
+    toolbar?: {
+      display?: boolean;
+    };
+    scrolltop?: {
+      display: boolean;
+    };
+  };
 }

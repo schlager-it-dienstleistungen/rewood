@@ -2,30 +2,25 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-	selector: 'kt-notice',
-	templateUrl: './notice.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'kt-notice',
+  templateUrl: './notice.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoticeComponent implements OnInit {
-	// Public properties
-	@Input() classes: any = '';
-	@Input() icon: any;
+  // Public properties
+  @Input() classes: string;
+  @Input() icon: string;
+  @Input() svg: string;
 
-	/**
-	 * Component constructor
-	 */
-	constructor() {}
+  /**
+   * Component constructor
+   */
+  constructor() {
+  }
 
-	/**
-	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
-	 */
-
-	/**
-	 * On init
-	 */
-	ngOnInit() {
-		if (this.icon) {
-			this.classes += ' kt-alert--icon';
-		}
-	}
+  /**
+   * On init
+   */
+  ngOnInit() {
+  }
 }

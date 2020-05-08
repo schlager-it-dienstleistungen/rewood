@@ -60,31 +60,27 @@ import { SpecificationEditDialogComponent } from './products/_subs/specification
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 // Material
-import {
-	MatInputModule,
-	MatPaginatorModule,
-	MatProgressSpinnerModule,
-	MatSortModule,
-	MatTableModule,
-	MatSelectModule,
-	MatMenuModule,
-	MatProgressBarModule,
-	MatButtonModule,
-	MatCheckboxModule,
-	MatDialogModule,
-	MatTabsModule,
-	MatNativeDateModule,
-	MatCardModule,
-	MatRadioModule,
-	MatIconModule,
-	MatDatepickerModule,
-	MatAutocompleteModule,
-	MAT_DIALOG_DEFAULT_OPTIONS,
-	MatSnackBarModule,
-	MatTooltipModule
-} from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from '../../../../../environments/environment';
-import { CoreModule } from '../../../../core/core.module';
 import { NgbProgressbarModule, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
@@ -185,7 +181,7 @@ const routes: Routes = [
 			provide: MAT_DIALOG_DEFAULT_OPTIONS,
 			useValue: {
 				hasBackdrop: true,
-				panelClass: 'kt-mat-dialog-container__wrapper',
+				panelClass: 'mat-dialog-container-wrapper',
 				height: 'auto',
 				width: '900px'
 			}

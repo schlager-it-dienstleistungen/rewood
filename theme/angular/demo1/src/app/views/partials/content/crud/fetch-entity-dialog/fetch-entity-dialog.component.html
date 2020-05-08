@@ -1,29 +1,33 @@
-<div class="kt-portlet">
-	<div class="kt-portlet__head kt-portlet__head__custom">
-		<div class="kt-portlet__head-label">
-			<h3 class="kt-portlet__head-title">Fetch selected elements</h3>
-			<span class="kt-portlet__head-icon kt-hide">
-				<i class="la la-gear"></i>
-			</span>
+<div class="card card-custom">
+	<div class="card-header">
+		<div class="card-title">
+			<h3 class="card-label">Fetch selected elements</h3>
 		</div>
 	</div>
-	<div class="kt-form kt-form--label-align-right kt-form--group-seperator-dashed">
-		<div class="kt-portlet__body kt-padding-0">
-			<div class="kt-list-timeline kt-list-timeline--skin-light kt-padding-30">
-				<div class="kt-list-timeline__items">
-					<div class="kt-list-timeline__item" *ngFor="let message of data">
-						<span class="kt-list-timeline__badge kt-list-timeline__badge--{{getItemCssClassByStatus(message.status)}}"></span>
-						<span class="kt-list-timeline__text">{{message.text}}
-							<span class="kt-badge kt-badge--{{getItemCssClassByStatus(message.status)}} kt-badge--wide">ID: {{message.id}}</span>
-						</span>
+	<div class="form">
+		<div class="card-body">
+			<div class="timeline timeline-5 mt-3">
+				<div class="timeline-item align-items-start" *ngFor="let message of data">
+					<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg text-right pr-3"></div>
+					<div class="timeline-badge">
+						<i class="fa fa-genderless text-{{getItemCssClassByStatus(message.status)}} icon-xxl"></i>
+					</div>
+					<div class="timeline-content text-dark-50 mr-5">{{message.text}}
+						<span
+							class="label label-lg label-light-{{getItemCssClassByStatus(message.status)}} label-inline">ID:
+							{{message.id}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="kt-portlet__foot kt-portlet__no-border kt-portlet__foot--fit text-right">
-			<div class="kt-form__actions kt-form__actions--solid">
-				<button mat-button mat-raised-button (click)="onNoClick()">Cancel</button>&nbsp;
-				<button mat-button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>&nbsp;
+		<div class="card-footer">
+			<div class="d-flex justify-content-between">
+				<div class="mr-2"></div>
+				<div>
+					<button mat-button mat-raised-button (click)="onNoClick()">Cancel</button>&nbsp;
+					<button mat-button mat-raised-button color="primary" [mat-dialog-close]="data.animal"
+						cdkFocusInitial>Ok</button>&nbsp;
+				</div>
 			</div>
 		</div>
 	</div>

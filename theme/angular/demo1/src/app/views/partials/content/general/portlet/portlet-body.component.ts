@@ -8,7 +8,7 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 })
 export class PortletBodyComponent implements OnInit {
 	// Public properties
-	@HostBinding('class') classList = 'kt-portlet__body';
+	@HostBinding('class') classList = 'card-body';
 	@Input() class: string;
 
 	/**

@@ -43,23 +43,25 @@ export const selectProductsInitWaitingMessage = createSelector(
 export const selectProductsInStore = createSelector(
     selectProductsState,
     productsState => {
-        const items: ProductModel[] = [];
-        each(productsState.entities, element => {
-            items.push(element);
-        });
-        const httpExtension = new HttpExtenstionsModel();
-        const result: ProductModel[] = httpExtension.sortArray(items, productsState.lastQuery.sortField, productsState.lastQuery.sortOrder);
-        return new QueryResultsModel(result, productsState.totalCount, '');
+      const items: ProductModel[] = [];
+      each(productsState.entities, element => {
+        items.push(element);
+      });
+      const httpExtension = new HttpExtenstionsModel();
+      const result: ProductModel[] = httpExtension.sortArray(items, productsState.lastQuery.sortField, productsState.lastQuery.sortOrder);
+      return new QueryResultsModel(result, productsState.totalCount, '');
     }
 );
 
 export const selectHasProductsInStore = createSelector(
     selectProductsInStore,
     queryResult => {
-        if (!queryResult.totalCount) {
-            return false;
-        }
+      // tslint:disable-next-line
+      if (!queryResult.totalCount) {
+        return false;
+      }
 
-        return true;
+      // tslint:disable-next-line
+      return true;
     }
 );

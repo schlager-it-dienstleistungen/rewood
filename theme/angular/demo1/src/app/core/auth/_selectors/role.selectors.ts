@@ -62,7 +62,6 @@ export const selectQueryResult = createSelector(
         });
         const httpExtension = new HttpExtenstionsModel();
         const result: Role[] = httpExtension.sortArray(items, rolesState.lastQuery.sortField, rolesState.lastQuery.sortOrder);
-
         return new QueryResultsModel(rolesState.queryResult, rolesState.queryRowsCount);
     }
 );

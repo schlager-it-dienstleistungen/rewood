@@ -1,51 +1,68 @@
 <!--begin: Quick actions -->
-<div ngbDropdown placement="bottom" autoClose="outside" class="kt-header__topbar-item">
-	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon" [ngClass]="{ 'kt-header__topbar-icon--warning': iconType === 'warning' }">
-			<i *ngIf="!useSVG" [ngClass]="icon"></i>
-			<span *ngIf="useSVG" class="kt-svg-icon" [inlineSVG]="icon" [ngClass]="{ 'kt-svg-icon--warning': iconType === 'warning' }"></span>
-		</span>
+<div ngbDropdown placement="bottom-right"  autoClose="outside" class="dropdown dropdown-fluid">
+  <!--begin::Toggle-->
+  <div ngbDropdownToggle class="topbar-item">
+    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+			<ng-container *ngIf="!useSVG">
+        <i [ngClass]="icon"></i>
+      </ng-container>
+      <ng-container *ngIf="useSVG">
+        <span class="svg-icon svg-icon-xl svg-icon-primary" [inlineSVG]="icon"></span>
+      </ng-container>
+		</div>
 	</div>
-	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+  <!--end::Toggle-->
+
+  <!--begin::Dropdown-->
+  <div ngbDropdownMenu class="dropdown-menu p-0 m-0 dropdown-menu-fit dropdown-menu-right dropdown-menu-anim-up dropdown-menu-xl">
 		<form>
-			<!--begin: Head -->
-			<div class="kt-head kt-head--skin-{{skin}}" [ngStyle]="{'background-image': 'url('+bgImage+')'}">
-				<h3 class="kt-head__title">
-					User Quick Actions
-					<span class="kt-space-15"></span>
-					<span class="btn btn-success btn-sm btn-bold btn-font-md">23 tasks pending</span>
-				</h3>
+			<!--begin: Header -->
+			<div class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top" [ngStyle]="{'background-image': 'url('+bgImage+')'}">
+				<h4 class="text-white font-weight-bold">Quick Actions</h4>
+				<span class="btn btn-success btn-sm font-weight-bold font-size-sm mt-2">23 tasks pending</span>
 			</div>
-			<!--end: Head -->
+			<!--end: Header -->
 			<!--begin: Grid Nav -->
-			<div class="kt-grid-nav kt-grid-nav--skin-{{ gridNavSkin }}">
-				<div class="kt-grid-nav__row">
-					<a href="javascript:;" class="kt-grid-nav__item">
-						<span class="kt-grid-nav__icon" [inlineSVG]="'./assets/media/icons/svg/Shopping/Euro.svg'" (onSVGInserted)="onSVGInserted($event)"></span>
-						<span class="kt-grid-nav__title">Accounting</span>
-						<span class="kt-grid-nav__desc">eCommerce</span>
-					</a>
-					<a href="javascript:;" class="kt-grid-nav__item">
-						<span class="kt-grid-nav__icon" [inlineSVG]="'./assets/media/icons/svg/Communication/Mail-attachment.svg'" (onSVGInserted)="onSVGInserted($event)"></span>
-						<span class="kt-grid-nav__title">Administration</span>
-						<span class="kt-grid-nav__desc">Console</span>
+			<div class="row row-paddingless">
+				<!--begin:Item-->
+				<div class="col-6">
+					<a href="javascript:;" class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
+						<span class="svg-icon svg-icon-3x svg-icon-success" [inlineSVG]="'./assets/media/svg/icons/Shopping/Euro.svg'"></span>
+						<span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">Accounting</span>
+						<span class="d-block text-dark-50 font-size-lg">eCommerce</span>
 					</a>
 				</div>
-				<div class="kt-grid-nav__row">
-					<a href="javascript:;" class="kt-grid-nav__item">
-						<span class="kt-grid-nav__icon" [inlineSVG]="'./assets/media/icons/svg/Shopping/Box2.svg'" (onSVGInserted)="onSVGInserted($event)"></span>
-						<span class="kt-grid-nav__title">Projects</span>
-						<span class="kt-grid-nav__desc">Pending Tasks</span>
-					</a>
-					<a href="javascript:;" class="kt-grid-nav__item">
-						<span class="kt-grid-nav__icon" [inlineSVG]="'./assets/media/icons/svg/Communication/Group.svg'" (onSVGInserted)="onSVGInserted($event)"></span>
-						<span class="kt-grid-nav__title">Customers</span>
-						<span class="kt-grid-nav__desc">Latest cases</span>
+				<!--end:Item-->
+				<!--begin:Item-->
+				<div class="col-6">
+					<a href="javascript:;" class="d-block py-10 px-5 text-center bg-hover-light border-bottom">
+						<span class="svg-icon svg-icon-3x svg-icon-success" [inlineSVG]="'./assets/media/svg/icons/Communication/Mail-attachment.svg'"></span>
+						<span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">Administration</span>
+						<span class="d-block text-dark-50 font-size-lg">Console</span>
 					</a>
 				</div>
-				<!--end: Grid Nav -->
+				<!--end:Item-->
+				<!--begin:Item-->
+				<div class="col-6">
+					<a href="javascript:;" class="d-block py-10 px-5 text-center bg-hover-light border-right">
+						<span class="svg-icon svg-icon-3x svg-icon-success" [inlineSVG]="'./assets/media/svg/icons/Shopping/Box2.svg'"></span>
+						<span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">Projects</span>
+						<span class="d-block text-dark-50 font-size-lg">Pending Tasks</span>
+					</a>
+				</div>
+				<!--end:Item-->
+				<!--begin:Item-->
+				<div class="col-6">
+					<a href="javascript:;" class="d-block py-10 px-5 text-center bg-hover-light">
+						<span class="svg-icon svg-icon-3x svg-icon-success" [inlineSVG]="'./assets/media/svg/icons/Communication/Group.svg'"></span>
+						<span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">Customers</span>
+						<span class="d-block text-dark-50 font-size-lg">Latest cases</span>
+					</a>
+				</div>
+				<!--end:Item-->
 			</div>
 		</form>
 	</div>
+  <!--end::Dropdown-->
 </div>
 <!--end: Quick actions -->

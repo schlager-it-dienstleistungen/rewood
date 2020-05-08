@@ -2,7 +2,9 @@
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // Material
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort'; 
+import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 // RXJS
 import { debounceTime, distinctUntilChanged, tap, skip, delay } from 'rxjs/operators';
@@ -395,7 +397,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 	getItemCssClassByCondition(condition: number = 0): string {
 		switch (condition) {
 			case 0:
-				return 'accent';
+				return 'danger';
 			case 1:
 				return 'primary';
 		}

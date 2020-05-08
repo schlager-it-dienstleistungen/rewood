@@ -1,154 +1,179 @@
 <!--begin: My Cart -->
-<div ngbDropdown placement="bottom" autoClose="outside" class="kt-header__topbar-item">
-	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
-		<span class="kt-header__topbar-icon"
-			[ngClass]="{'kt-header__topbar-icon--brand':  iconType === 'brand'}">
-			<i *ngIf="!useSVG" [ngClass]="icon"></i>
-			<span *ngIf="useSVG"
-				class="kt-svg-icon"
-				[inlineSVG]="icon"
-				[ngClass]="{'kt-svg-icon--brand':  iconType === 'brand'}"></span>
-		</span>
+<div ngbDropdown placement="bottom-right" autoClose="outside" class="dropdown dropdown-fluid">
+  <!--begin::Toggle-->
+  <div ngbDropdownToggle class="topbar-item">
+    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+      <ng-container *ngIf="useSVG">
+        <span class="svg-icon svg-icon-xl svg-icon-primary" [inlineSVG]="icon"></span>
+      </ng-container>
+      <ng-container *ngIf="!useSVG">
+        <i [ngClass]="icon"></i>
+      </ng-container>
+    </div>
 	</div>
-	<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+  <!--end::Toggle-->
+
+  <!--begin::Dropdown-->
+  <div ngbDropdownMenu class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up">
 		<form>
-			<!-- begin:: Mycart -->
-			<div class="kt-mycart">
-				<div class="kt-mycart__head kt-head" [ngStyle]="{'background-image': 'url('+bgImage+')'}">
-					<div class="kt-mycart__info">
-						<span class="kt-mycart__icon"><i class="flaticon2-shopping-cart-1 kt-font-success"></i></span>
-						<h3 class="kt-mycart__title">My Cart</h3>
+			<!-- begin:: My Cart -->
+			<div class="d-flex align-items-center py-10 px-8 bgi-size-cover bgi-no-repeat rounded-top"
+				[ngStyle]="{'background-image': 'url('+bgImage+')'}">
+				<span class="btn btn-md btn-icon bg-white-o-15 mr-4">
+					<i class="flaticon2-shopping-cart-1 text-success"></i>
+				</span>
+				<h4 class="text-white m-0 flex-grow-1 mr-3">My Cart</h4>
+				<button type="button" class="btn btn-success btn-sm">
+					2 Items
+				</button>
+			</div>
+
+			<div [perfectScrollbar]="{wheelPropagation: false}"
+				[ngStyle]="{'max-height': '28vh', 'position': 'relative'}" class="scroll scroll-push">
+
+				<div class="d-flex align-items-center justify-content-between p-8">
+					<div class="d-flex flex-column mr-2">
+						<a href="#" class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">
+							iBlender
+						</a>
+						<span class="text-muted">Best kichen badge in 2020</span>
+						<div class="d-flex align-items-center mt-2">
+							<span class="font-weight-bold mr-1 text-dark-75 font-size-3">
+								$ 350
+							</span>
+							<span class="text-muted mr-1">for</span>
+							<span class="font-weight-bold mr-2 text-dark-75 font-size-3">
+								5
+							</span>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+								<i class="ki ki-minus icon-xs"></i>
+							</a>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon">
+								<i class="ki ki-plus icon-xs"></i>
+							</a>
+						</div>
 					</div>
-					<div class="kt-mycart__button">
-						<button type="button" class="btn btn-success btn-sm">2 Items</button>
-					</div>
+					<a href="#" class="symbol symbol-70 flex-shrink-0">
+						<img src="./assets/media/stock-600x400/img-1.jpg" alt="" />
+					</a>
 				</div>
 
-				<div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}" class="kt-mycart__body">
-					<div class="kt-mycart__item">
-						<div class="kt-mycart__container">
-							<div class="kt-mycart__info">
-								<a href="javascript:;" class="kt-mycart__title">
-									Samsung
-								</a>
-								<span class="kt-mycart__desc">
-			                        Profile info, Timeline etc
-			                    </span>
+				<div class="separator separator-solid"></div>
 
-								<div class="kt-mycart__action">
-									<span class="kt-mycart__price">$ 450</span>
-									<span class="kt-mycart__text">for</span>
-									<span class="kt-mycart__quantity">7</span>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">−</a>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">+</a>
-								</div>
-							</div>
-
-							<a href="javascript:;" class="kt-mycart__pic">
-								<img src="./assets/media/products/product9.jpg" title="">
+				<div class="d-flex align-items-center justify-content-between p-8">
+					<div class="d-flex flex-column mr-2">
+						<a href="#" class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">
+							SmartCleaner
+						</a>
+						<span class="text-muted">Smart tool for cooking</span>
+						<div class="d-flex align-items-center mt-2">
+							<span class="font-weight-bold mr-1 text-dark-75 font-size-3">
+								$ 650
+							</span>
+							<span class="text-muted mr-1">for</span>
+							<span class="font-weight-bold mr-2 text-dark-75 font-size-3">
+								4
+							</span>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+								<i class="ki ki-minus icon-xs"></i>
+							</a>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon">
+								<i class="ki ki-plus icon-xs"></i>
 							</a>
 						</div>
 					</div>
-
-					<div class="kt-mycart__item">
-						<div class="kt-mycart__container">
-							<div class="kt-mycart__info">
-								<a href="javascript:;" class="kt-mycart__title">
-									Panasonic
-								</a>
-
-								<span class="kt-mycart__desc">
-			                        For PHoto &amp; Others
-			                    </span>
-
-								<div class="kt-mycart__action">
-									<span class="kt-mycart__price">$ 329</span>
-									<span class="kt-mycart__text">for</span>
-									<span class="kt-mycart__quantity">1</span>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">−</a>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">+</a>
-								</div>
-							</div>
-
-							<a href="javascript:;" class="kt-mycart__pic">
-								<img src="./assets/media/products/product13.jpg" title="">
-							</a>
-						</div>
-					</div>
-
-					<div class="kt-mycart__item">
-						<div class="kt-mycart__container">
-							<div class="kt-mycart__info">
-								<a href="javascript:;" class="kt-mycart__title">
-									Fujifilm
-								</a>
-								<span class="kt-mycart__desc">
-			                        Profile info, Timeline etc
-			                    </span>
-
-								<div class="kt-mycart__action">
-									<span class="kt-mycart__price">$ 520</span>
-									<span class="kt-mycart__text">for</span>
-									<span class="kt-mycart__quantity">6</span>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">−</a>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">+</a>
-								</div>
-							</div>
-
-							<a href="javascript:;" class="kt-mycart__pic">
-								<img src="./assets/media/products/product16.jpg" title="">
-							</a>
-						</div>
-					</div>
-
-					<div class="kt-mycart__item">
-						<div class="kt-mycart__container">
-							<div class="kt-mycart__info">
-								<a href="javascript:;" class="kt-mycart__title">
-									Candy Machine
-								</a>
-
-								<span class="kt-mycart__desc">
-			                        For PHoto &amp; Others
-			                    </span>
-
-								<div class="kt-mycart__action">
-									<span class="kt-mycart__price">$ 784</span>
-									<span class="kt-mycart__text">for</span>
-									<span class="kt-mycart__quantity">4</span>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">−</a>
-									<a href="javascript:;" class="btn btn-label-success btn-icon">+</a>
-								</div>
-							</div>
-
-							<a href="javascript:;" class="kt-mycart__pic">
-								<img src="./assets/media/products/product15.jpg" title="" alt="">
-							</a>
-						</div>
-					</div>
+					<a href="#" class="symbol symbol-70 flex-shrink-0">
+						<img src="./assets/media/stock-600x400/img-2.jpg" alt="" />
+					</a>
 				</div>
 
-				<div class="kt-mycart__footer">
-					<div class="kt-mycart__section">
-						<div class="kt-mycart__subtitel">
-							<span>Sub Total</span>
-							<span>Taxes</span>
-							<span>Total</span>
-						</div>
+				<div class="separator separator-solid"></div>
 
-						<div class="kt-mycart__prices">
-							<span>$ 840.00</span>
-							<span>$ 72.00</span>
-							<span class="kt-font-brand">$ 912.00</span>
+				<div class="d-flex align-items-center justify-content-between p-8">
+					<div class="d-flex flex-column mr-2">
+						<a href="#" class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">
+							CameraX
+						</a>
+						<span class="text-muted">
+							Professional camera for edge cutting shots
+						</span>
+						<div class="d-flex align-items-center mt-2">
+							<span class="font-weight-bold mr-1 text-dark-75 font-size-sm">
+								$ 150
+							</span>
+							<span class="text-muted mr-1">for</span>
+							<span class="font-weight-bold mr-2 text-dark-75 font-size-sm">
+								3
+							</span>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+								<i class="ki ki-minus icon-xs"></i>
+							</a>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon">
+								<i class="ki ki-plus icon-xs"></i>
+							</a>
 						</div>
 					</div>
-					<div class="kt-mycart__button kt-align-right">
-						<button type="button" class="btn btn-primary btn-sm">Place Order</button>
+					<a href="#" class="symbol symbol-70 flex-shrink-0">
+						<img src="./assets/media/stock-600x400/img-3.jpg" alt="" />
+					</a>
+				</div>
+
+				<div class="separator separator-solid"></div>
+
+				<div class="d-flex align-items-center justify-content-between p-8">
+					<div class="d-flex flex-column mr-2">
+						<a href="#" class="font-weight-bold text-dark font-size-3 text-hover-primary">
+							3DPrinted
+						</a>
+						<span class="text-muted">Manufactoring unique objects</span>
+						<div class="d-flex align-items-center mt-2">
+							<span class="font-weight-bold mr-1 text-dark-75 font-size-sm">
+								$ 1450
+							</span>
+							<span class="text-muted mr-1">for</span>
+							<span class="font-weight-bold mr-2 text-dark-75 font-size-sm">
+								7
+							</span>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+								<i class="ki ki-minus icon-xs"></i>
+							</a>
+							<a href="#" class="btn btn-xs btn-light-success btn-icon">
+								<i class="ki ki-plus icon-xs"></i>
+							</a>
+						</div>
 					</div>
+					<a href="#" class="symbol symbol-70 flex-shrink-0">
+						<img src="./assets/media/stock-600x400/img-4.jpg" alt="" />
+					</a>
 				</div>
 			</div>
-			<!-- end:: Mycart -->
+
+			<div class="p-8">
+				<div class="d-flex align-items-center justify-content-between mb-4">
+					<span class="font-weight-bold text-muted font-size-sm mr-2">
+						Total
+					</span>
+					<span class="font-weight-bolder text-dark-50 text-right">
+						$1840.00
+					</span>
+				</div>
+				<div class="d-flex align-items-center justify-content-between mb-7">
+					<span class="font-weight-bold text-muted font-size-sm mr-2">
+						Sub total
+					</span>
+					<span class="font-weight-bolder text-primary text-right">
+						$5640.00
+					</span>
+				</div>
+				<div class="text-right">
+					<button type="button" class="btn btn-primary text-weight-bold">
+						Place Order
+					</button>
+				</div>
+			</div>
+			<!-- end:: My Cart -->
 		</form>
 	</div>
+  <!--end::Dropdown-->
 </div>
 <!--end: My Cart -->

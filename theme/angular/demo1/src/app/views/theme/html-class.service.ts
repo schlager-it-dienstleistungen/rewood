@@ -8,203 +8,314 @@ import { BehaviorSubject } from 'rxjs';
 import { LayoutConfigModel } from '../../core/_base/layout';
 
 export interface ClassType {
-	header: string[];
-	header_mobile: string[];
-	header_menu: string[];
-	aside_menu: string[];
+  header: string[];
+  header_container: string[];
+  header_mobile: string[];
+  header_menu: string[];
+  aside_menu: string[];
+  subheader: string[];
+  subheader_container: string[];
+  content: string[];
+  content_container: string[];
+  footer_container: string[];
+}
+
+export interface AttrType {
+  aside_menu: any;
 }
 
 @Injectable()
 export class HtmlClassService {
-	// Public properties
-	config: LayoutConfigModel;
-	classes: ClassType;
-	onClassesUpdated$: BehaviorSubject<ClassType>;
-	// Private properties
-	private loaded: string[] = [];
+  // Public properties
+  config: LayoutConfigModel;
+  classes: ClassType;
+  attrs: AttrType;
+  onClassesUpdated$: BehaviorSubject<ClassType>;
+  // Private properties
+  private loaded: string[] = [];
 
-	/**
-	 * Component constructor
-	 */
-	constructor() {
-		this.onClassesUpdated$ = new BehaviorSubject(this.classes);
-	}
+  /**
+   * Component constructor
+   */
+  constructor() {
+    this.onClassesUpdated$ = new BehaviorSubject(this.classes);
+  }
 
-	/**
-	 * Build html element classes from layout config
-	 * @param layoutConfig
-	 */
-	setConfig(layoutConfig: LayoutConfigModel) {
-		this.config = layoutConfig;
+  /**
+   * Build html element classes from layout config
+   * param layoutConfig
+   */
+  setConfig(layoutConfig: LayoutConfigModel) {
+    this.config = this.preInit(layoutConfig);
 
-		// scope list of classes
-		this.classes = {
-			header: [],
-			header_mobile: [],
-			header_menu: [],
-			aside_menu: [],
-		};
+    // scope list of classes
+    this.classes = {
+      header: [],
+      header_container: [],
+      header_mobile: [],
+      header_menu: [],
+      aside_menu: [],
+      subheader: [],
+      subheader_container: [],
+      content: [],
+      content_container: [],
+      footer_container: []
+    };
 
-		// init base layout
-		this.initLayout();
-		this.initLoader();
+    this.attrs = {
+      aside_menu: {}
+    };
 
-		// init header and subheader menu
-		this.initHeader();
-		this.initSubheader();
+    // init base layout
+    this.initLayout();
+    this.initLoader();
 
-		// init aside and aside menu
-		this.initAside();
+    // init header and subheader menu
+    this.initHeader();
+    this.initSubheader();
 
-		// init footer
-		this.initFooter();
+    // init content
+    this.initContent();
+    // init aside and aside menu
+    this.initAside();
 
-		this.initSkins();
+    // init footer
+    this.initFooter();
 
-		this.onClassesUpdated$.next(this.classes);
-	}
+    this.initSkins();
 
-	/**
-	 * Returns Classes
-	 *
-	 * @param path: string
-	 * @param toString boolean
-	 */
-	getClasses(path?: string, toString?: boolean): ClassType | string[] | string {
-		if (path) {
-			const classes = objectPath.get(this.classes, path) || '';
-			if (toString && Array.isArray(classes)) {
-				return classes.join(' ');
-			}
-			return classes.toString();
-		}
-		return this.classes;
-	}
+    this.onClassesUpdated$.next(this.classes);
+  }
 
-	/**
-	 * Init Layout
-	 */
-	private initLayout() {
-		if (objectPath.has(this.config, 'self.body.class')) {
-			const selfBodyClass = (objectPath.get(this.config, 'self.body.class')).toString();
-			if (selfBodyClass) {
-				const bodyClasses: string[] = selfBodyClass.split(' ');
-				bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
-			}
-		}
+  /**
+   * Returns Classes
+   *
+   * @param path: string
+   * @param toString boolean
+   */
+  getClasses(path?: string, toString?: boolean): ClassType | string[] | string {
+    if (path) {
+      const classes = objectPath.get(this.classes, path) || '';
+      if (toString && Array.isArray(classes)) {
+        return classes.join(' ');
+      }
+      return classes.toString();
+    }
+    return this.classes;
+  }
 
-		if (objectPath.get(this.config, 'self.layout') === 'boxed' && objectPath.has(this.config, 'self.body.background-image')) {
-			document.body.style.backgroundImage = 'url("' + objectPath.get(this.config, 'self.body.background-image') + '")';
-		}
+  getAttributes(path: string): any {
+    return this.attrs[path];
+  }
 
-		// Offcanvas directions
-		document.body.classList.add('kt-quick-panel--right');
-		document.body.classList.add('kt-demo-panel--right');
-		document.body.classList.add('kt-offcanvas-panel--right');
-	}
-
-	/**
-	 * Init Loader
-	 */
-	private initLoader() {
-	}
-
-	/**
-	 * Init Header
-	 */
-	private initHeader() {
-		// Fixed header
-		if (objectPath.get(this.config, 'header.self.fixed.desktop')) {
-			document.body.classList.add('kt-header--fixed');
-			objectPath.push(this.classes, 'header', 'kt-header--fixed');
+  private preInit(layout) {
+    const updatedLayout = Object.assign({}, layout);
+    const subheaderFixed = objectPath.get(updatedLayout, 'subheader.fixed');
+    const headerSelfFixedDesktop = objectPath.get(updatedLayout, 'header.self.fixed.desktop');
+    if (subheaderFixed && headerSelfFixedDesktop) {
+      updatedLayout.subheader.style = 'solid';
 		} else {
-			document.body.classList.add('kt-header--static');
+      updatedLayout.subheader.fixed = false;
 		}
 
-		if (objectPath.get(this.config, 'header.self.fixed.mobile')) {
-			document.body.classList.add('kt-header-mobile--fixed');
-			objectPath.push(this.classes, 'header_mobile', 'kt-header-mobile--fixed');
-		}
+    return layout;
+  }
 
-		if (objectPath.get(this.config, 'header.menu.self.layout')) {
-			objectPath.push(this.classes, 'header_menu', 'kt-header-menu--layout-' + objectPath.get(this.config, 'header.menu.self.layout'));
-		}
-	}
+  /**
+   * Init Layout
+   */
+  private initLayout() {
+    const selfBodyBackgroundImage = objectPath.get(this.config, 'self.body.background-image');
+    if (selfBodyBackgroundImage) {
+      document.body.style.backgroundImage = `url("${selfBodyBackgroundImage}")`;
+    }
 
-	/**
-	 * Inin Subheader
-	 */
-	private initSubheader() {
-		// Fixed content head
-		if (objectPath.get(this.config, 'subheader.fixed')) {
-			document.body.classList.add('kt-subheader--fixed');
-		}
+    const selfBodyClass = ((objectPath.get(this.config, 'self.body.class')) || '').toString();
+    if (selfBodyClass) {
+      const bodyClasses: string[] = selfBodyClass.split(' ');
+      bodyClasses.forEach(cssClass => document.body.classList.add(cssClass));
+    }
+  }
 
-		if (objectPath.get(this.config, 'subheader.display')) {
-			document.body.classList.add('kt-subheader--enabled');
-		}
+  /**
+   * Init Loader
+   */
+  private initLoader() {
+  }
 
-		if (objectPath.has(this.config, 'subheader.style')) {
-			document.body.classList.add('kt-subheader--' + objectPath.get(this.config, 'subheader.style'));
-		}
-	}
+  /**
+   * Init Header
+   */
+  private initHeader() {
+    // Fixed header
+    const headerSelfFixedDesktop = objectPath.get(this.config, 'header.self.fixed.desktop');
+    if (headerSelfFixedDesktop) {
+      document.body.classList.add('header-fixed');
+      objectPath.push(this.classes, 'header', 'header-fixed');
+    } else {
+      document.body.classList.add('header-static');
+    }
 
-	/**
-	 * Init Aside
-	 */
-	private initAside() {
-		if (objectPath.get(this.config, 'aside.self.display') !== true) {
-			return;
-		}
+    const headerSelfFixedMobile = objectPath.get(this.config, 'header.self.fixed.mobile');
+    if (headerSelfFixedMobile) {
+      document.body.classList.add('header-mobile-fixed');
+      objectPath.push(this.classes, 'header_mobile', 'header-mobile-fixed');
+    }
 
-		document.body.classList.add('kt-aside--enabled');
+    // Menu
+    const headerMenuSelfDisplay = objectPath.get(this.config, 'header.menu.self.display');
+    const headerMenuSelfLayout = objectPath.get(this.config, 'header.menu.self.layout');
+    if (headerMenuSelfDisplay) {
+      objectPath.push(this.classes, 'header_menu', `header-menu-layout-${headerMenuSelfLayout}`);
 
-		// Fixed Aside
-		if (objectPath.get(this.config, 'aside.self.fixed')) {
-			document.body.classList.add('kt-aside--fixed');
-			objectPath.push(this.classes, 'aside', 'kt-aside--fixed');
-		} else {
-			document.body.classList.add('kt-aside--static');
-		}
+      if (objectPath.get(this.config, 'header.menu.self.rootArrow')) {
+        objectPath.push(this.classes, 'header_menu', 'header-menu-root-arrow');
+      }
+    }
 
-		// Default fixed
-		if (objectPath.get(this.config, 'aside.self.minimize.default')) {
-			document.body.classList.add('kt-aside--minimize');
-		}
+    if (objectPath.get(this.config, 'header.self.width') === 'fluid') {
+      objectPath.push(this.classes, 'header_container', 'container-fluid');
+    } else {
+      objectPath.push(this.classes, 'header_container', 'container');
+    }
+  }
 
-		// Menu
-		// Dropdown Submenu
-		if (objectPath.get(this.config, 'aside.menu.dropdown')) {
-			objectPath.push(this.classes, 'aside_menu', 'kt-aside-menu--dropdown');
-			// enable menu dropdown
-		}
-	}
+  /**
+   * Init Subheader
+   */
+  private initSubheader() {
+    const subheaderDisplay = objectPath.get(this.config, 'subheader.display');
+    if (subheaderDisplay) {
+      document.body.classList.add('subheader-enabled');
+    } else {
+      return;
+    }
 
-	/**
-	 * Init Footer
-	 */
-	private initFooter() {
-		// Fixed header
-		if (objectPath.get(this.config, 'footer.self.fixed')) {
-			document.body.classList.add('kt-footer--fixed');
-		}
-	}
+    // Fixed content head
+    const subheaderFixed = objectPath.get(this.config, 'subheader.fixed');
+    const headerSelfFixedDesktop = objectPath.get(this.config, 'header.self.fixed.desktop');
+    if (subheaderFixed && headerSelfFixedDesktop) {
+      document.body.classList.add('subheader-fixed');
+    }
+    
+    const subheaderStyle = objectPath.get(this.config, 'subheader.style');
+    if (subheaderStyle) {
+      objectPath.push(this.classes, 'subheader', `subheader-${subheaderStyle}`);
+    }
 
-	/**
-	 * Set the body class name based on page skin options
-	 */
-	private initSkins() {
-		if (objectPath.get(this.config, 'header.self.skin')) {
-			document.body.classList.add('kt-header-base-' + objectPath.get(this.config, 'header.self.skin'));
-		}
-		if (objectPath.get(this.config, 'header.menu.desktop.submenu.skin')) {
-			document.body.classList.add('kt-header-menu-' + objectPath.get(this.config, 'header.menu.desktop.submenu.skin'));
-		}
-		if (objectPath.get(this.config, 'brand.self.skin')) {
-			document.body.classList.add('kt-brand-' + objectPath.get(this.config, 'brand.self.skin'));
-		}
-		if (objectPath.get(this.config, 'aside.self.skin')) {
-			document.body.classList.add('kt-aside-' + objectPath.get(this.config, 'aside.self.skin'));
-		}
-	}
+    if (objectPath.get(this.config, 'subheader.width') === 'fluid') {
+      objectPath.push(this.classes, 'subheader_container', 'container-fluid');
+    } else {
+      objectPath.push(this.classes, 'subheader_container', 'container');
+    }
+
+    if (objectPath.get(this.config, 'subheader.clear')) {
+      objectPath.push(this.classes, 'subheader', 'mb-0');
+    }
+  }
+
+  // Init Content
+  private initContent() {
+    if (objectPath.get(this.config, 'content.fit-top')) {
+      objectPath.push(this.classes, 'content', 'pt-0');
+    }
+
+    if (objectPath.get(this.config, 'content.fit-bottom')) {
+      objectPath.push(this.classes, 'content', 'pb-0');
+    }
+
+    if (objectPath.get(this.config, 'content.width') === 'fluid') {
+      objectPath.push(this.classes, 'content_container', 'container-fluid');
+    } else {
+      objectPath.push(this.classes, 'content_container', 'container');
+    }
+  }
+
+  /**
+   * Init Aside
+   */
+  private initAside() {
+    if (objectPath.get(this.config, 'aside.self.display') !== true) {
+      return;
+    }
+
+    // Enable Aside
+    document.body.classList.add('aside-enabled');
+
+    // Fixed Aside
+    if (objectPath.get(this.config, 'aside.self.fixed')) {
+      document.body.classList.add('aside-fixed');
+      objectPath.push(this.classes, 'aside', 'aside-fixed');
+    } else {
+      document.body.classList.add('aside-static');
+    }
+
+    // Check Aside
+    if (objectPath.get(this.config, 'aside.self.display') !== true) {
+      return;
+    }
+
+    // Default fixed
+    if (objectPath.get(this.config, 'aside.self.minimize.default')) {
+      document.body.classList.add('aside-minimize');
+    }
+
+    if (objectPath.get(this.config, 'aside.self.minimize.hoverable')) {
+      document.body.classList.add('aside-minimize-hoverable');
+    }
+
+    // Menu
+    // Dropdown Submenu
+    const asideMenuDropdown = objectPath.get(this.config, 'aside.menu.dropdown');
+    if (asideMenuDropdown) {
+      objectPath.push(this.classes, 'aside_menu', 'aside-menu-dropdown');
+      // tslint:disable-next-line
+      this.attrs['aside_menu']['data-menu-dropdown'] = '1';
+    }
+
+    // Scrollable Menu
+    if (asideMenuDropdown !== true) {
+      // tslint:disable-next-line
+      this.attrs['aside_menu']['data-menu-scroll'] = '1';
+    } else {
+      // tslint:disable-next-line
+      this.attrs['aside_menu']['data-menu-scroll'] = '0';
+    }
+
+    const asideMenuSubmenuDropdownHoverTimout = objectPath.get(this.config, 'aside.menu.submenu.dropdown.hover-timeout');
+    if (asideMenuSubmenuDropdownHoverTimout) {
+      // tslint:disable-next-line
+      this.attrs['aside_menu']['data-menu-dropdown-timeout'] = asideMenuSubmenuDropdownHoverTimout;
+    }
+  }
+
+  /**
+   * Init Footer
+   */
+  private initFooter() {
+    // Fixed header
+    if (objectPath.get(this.config, 'footer.fixed') === true) {
+      document.body.classList.add('footer-fixed');
+    }
+
+    if (objectPath.get(this.config, 'footer.width') === 'fluid') {
+      objectPath.push(this.classes, 'footer_container', 'container-fluid');
+    } else {
+      objectPath.push(this.classes, 'footer_container', 'container');
+    }
+  }
+
+  /**
+   * Set the body class name based on page skin options
+   */
+  private initSkins() {
+    const headerSelfTheme = objectPath.get(this.config, 'header.self.theme') || '';
+    const brandSelfTheme = objectPath.get(this.config, 'brand.self.theme') || '';
+    const asideSelfDisplay = objectPath.get(this.config, 'aside.self.display');
+    if (asideSelfDisplay === false) {
+      document.body.classList.add(`brand-${headerSelfTheme}`);
+    } else {
+      document.body.classList.add(`brand-${brandSelfTheme}`);
+    }
+  }
 }

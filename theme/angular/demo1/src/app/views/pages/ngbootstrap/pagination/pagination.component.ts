@@ -4,35 +4,35 @@ import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 const basicPagination = {
 		beforeCodeTitle: 'Basic pagination',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Default pagination:
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <span>
     No direction links:
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="70" [(page)]="page" [directionLinks]="false"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-  <div class="kt-section">
-    <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+  <div class="example-preview">
+    <span>
       With boundary links:
     </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-   <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+   <div>
      <pre>Current page: {{page}}</pre>
   </div>
 </div>
@@ -55,36 +55,36 @@ export class NgbdPaginationBasic {
 const advancedPagination = {
 		beforeCodeTitle: 'Advanced pagination',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Restricted size, no rotation:
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="120" [(page)]="page2" [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <span>
     Restricted size with rotation:
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="120" [(page)]="page2" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <span>
     Restricted size with rotation and no ellipses:
   </span>
-  <div class="kt-section__content">
+  <div>
 	<ngb-pagination [collectionSize]="120" [(page)]="page2" [maxSize]="5" [rotate]="true" [ellipses]="false"
       [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-  <div class="kt-section">
-    <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+  <div class="example-preview">
+    <div>
       <pre>Current page: {{page2}}</pre>
   </div>
 </div>
@@ -106,8 +106,8 @@ export class NgbdPaginationAdvanced {
 const paginationSize = {
 		beforeCodeTitle: 'Pagination size',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <ngb-pagination [collectionSize]="50" [(page)]="currentPage" size="lg"></ngb-pagination>
     <ngb-pagination [collectionSize]="50" [(page)]="currentPage"></ngb-pagination>
     <ngb-pagination [collectionSize]="50" [(page)]="currentPage" size="sm"></ngb-pagination>
@@ -131,11 +131,11 @@ export class NgbdPaginationSize {
 const paginationAlignment = {
 		beforeCodeTitle: 'Pagination alignment',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Change the alignment of pagination components with flexbox utilities
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination class="d-flex justify-content-start" [collectionSize]="70" [(page)]="page3"></ngb-pagination>
     <ngb-pagination class="d-flex justify-content-center" [collectionSize]="70" [(page)]="page3"></ngb-pagination>
     <ngb-pagination class="d-flex justify-content-end" [collectionSize]="70" [(page)]="page3"></ngb-pagination>
@@ -158,16 +158,16 @@ export class NgbdPaginationJustify {
 const disabledPagination = {
 		beforeCodeTitle: 'Disabled pagination',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Pagination control can be disabled:</span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="70" [(page)]="page4" [disabled]='isDisabled'></ngb-pagination>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <button class="btn btn-sm btn-primary" (click)="toggleDisabled()">
       Toggle disabled
     </button>
@@ -195,12 +195,12 @@ export class NgbdPaginationDisabled {
 const globalConfiguration = {
 		beforeCodeTitle: 'Global configuration',
 		htmlCode: `
-<div class="kt-section">
-  <h3 class="kt-section__heading">Self closing</h3>
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <h3>Self closing</h3>
+  <span>
 	This pagination uses custom default values
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-pagination [collectionSize]="70" [(page)]="page5" [size]="'sm'" [boundaryLinks]="'true'"></ngb-pagination>
   </div>
 </div>

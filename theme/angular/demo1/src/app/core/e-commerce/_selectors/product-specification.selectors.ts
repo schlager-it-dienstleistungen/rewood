@@ -38,13 +38,14 @@ export const selectPSShowInitWaitingMessage = createSelector(
 export const selectProductSpecificationsInStore = createSelector(
     selectProductSpecificationsState,
     productSpecificationsState => {
-        const items: ProductSpecificationModel[] = [];
-        each(productSpecificationsState.entities, element => {
-            items.push(element);
-        });
-        const httpExtension = new HttpExtenstionsModel();
-        const result: ProductSpecificationModel[] = httpExtension.sortArray(items, productSpecificationsState.lastQuery.sortField, productSpecificationsState.lastQuery.sortOrder);
-        return new QueryResultsModel(result, productSpecificationsState.totalCount, '');
+      const items: ProductSpecificationModel[] = [];
+      each(productSpecificationsState.entities, element => {
+        items.push(element);
+      });
+      const httpExtension = new HttpExtenstionsModel();
+      const result: ProductSpecificationModel[] =
+        httpExtension.sortArray(items, productSpecificationsState.lastQuery.sortField, productSpecificationsState.lastQuery.sortOrder);
+      return new QueryResultsModel(result, productSpecificationsState.totalCount, '');
     }
 );
 

@@ -2,7 +2,7 @@
 import { Component, OnInit, Inject, ChangeDetectionStrategy, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // Material
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // RxJS
 import { Subscription, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -14,7 +14,12 @@ import { AppState } from '../../../../../../core/reducers';
 // CRUD
 import { TypesUtilsService } from '../../../../../../core/_base/crud';
 // Services and Models
-import { CustomerModel, CustomerUpdated, CustomerOnServerCreated, selectLastCreatedCustomerId, selectCustomersPageLoading, selectCustomersActionLoading } from '../../../../../../core/e-commerce';
+import { CustomerModel,
+	CustomerUpdated,
+	CustomerOnServerCreated,
+	selectLastCreatedCustomerId,
+	selectCustomersActionLoading
+} from '../../../../../../core/e-commerce';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -42,10 +47,10 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 	 * @param typesUtilsService: TypesUtilsService
 	 */
 	constructor(public dialogRef: MatDialogRef<CustomerEditDialogComponent>,
-		           @Inject(MAT_DIALOG_DATA) public data: any,
-		           private fb: FormBuilder,
-		           private store: Store<AppState>,
-		           private typesUtilsService: TypesUtilsService) {
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		private fb: FormBuilder,
+		private store: Store<AppState>,
+		private typesUtilsService: TypesUtilsService) {
 	}
 
 	/**
@@ -74,7 +79,7 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 		this.customerForm = this.fb.group({
 			firstName: [this.customer.firstName, Validators.required],
 			lastName: [this.customer.lastName, Validators.required],
-			email: [ this.customer.email, Validators.compose([Validators.required, Validators.email]) ],
+			email: [this.customer.email, Validators.compose([Validators.required, Validators.email])],
 			dob: [this.typesUtilsService.getDateFromString(this.customer.dateOfBbirth), Validators.compose([Validators.nullValidator])],
 			userName: [this.customer.userName, Validators.compose([Validators.required])],
 			gender: [this.customer.gender, Validators.compose([Validators.required])],
@@ -90,7 +95,7 @@ export class CustomerEditDialogComponent implements OnInit, OnDestroy {
 		if (this.customer.id > 0) {
 			return `Edit customer '${this.customer.firstName} ${
 				this.customer.lastName
-			}'`;
+				}'`;
 		}
 
 		return 'New customer';

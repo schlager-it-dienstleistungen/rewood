@@ -1,8 +1,8 @@
 // Angular
 import { Component, OnInit, Inject, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // RxJS
-import { Observable, of, Subscription} from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 // Lodash
 import { each, find, some } from 'lodash';
 // NGRX
@@ -17,7 +17,6 @@ import {
 	selectRoleById,
 	RoleUpdated,
 	selectAllPermissions,
-	selectAllRoles,
 	selectLastCreatedRoleId,
 	RoleOnServerCreated
 } from '../../../../../core/auth';
@@ -48,8 +47,8 @@ export class RoleEditDialogComponent implements OnInit, OnDestroy {
 	 * @param store: Store<AppState>
 	 */
 	constructor(public dialogRef: MatDialogRef<RoleEditDialogComponent>,
-		           @Inject(MAT_DIALOG_DATA) public data: any,
-		           private store: Store<AppState>) { }
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		private store: Store<AppState>) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -194,12 +193,12 @@ export class RoleEditDialogComponent implements OnInit, OnDestroy {
 		const updateRole: Update<Role> = {
 			id: this.role.id,
 			changes: _role
-		  };
+		};
 		this.store.dispatch(new RoleUpdated({
 			partialrole: updateRole,
 			role: _role
 		}));
-		of(undefined).pipe(delay(1000)).subscribe(() => { // Remove this line
+		of(undefined).subscribe(() => { // Remove this line
 			this.viewLoading = false;
 			this.dialogRef.close({
 				_role,

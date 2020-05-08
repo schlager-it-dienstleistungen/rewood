@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'kt-my-page',
   templateUrl: './my-page.component.html',

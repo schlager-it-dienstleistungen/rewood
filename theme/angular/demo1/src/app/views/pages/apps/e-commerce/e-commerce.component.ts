@@ -8,9 +8,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class ECommerceComponent implements OnInit {
 	/**
 	 * Component constructor
-	 *
-	 * @param store: Store<AppState>
-	 * @param router: Router
 	 */
 	constructor() {}
 

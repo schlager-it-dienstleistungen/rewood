@@ -1,7 +1,8 @@
 const path = require("path");
 
 module.exports = {
-  // publicPath: '/metronic/preview/vue/demo1/',
+  // publicPath: "/metronic/preview/vue/demo1/",
+  // publicPath: "/keenthemes/themes/metronic/theme/vue/demo1/dist/",
   configureWebpack: {
     resolve: {
       alias: {
@@ -13,14 +14,6 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.module
-      .rule("vue")
-      .use("vue-svg-inline-loader")
-      .loader("vue-svg-inline-loader")
-      .options({
-        /* ... */
-      });
-
     config.module
       .rule("eslint")
       .use("eslint-loader")
@@ -36,11 +29,8 @@ module.exports = {
           path: __dirname
         }
       },
-      sass: {
-        prependData: `@import "@/assets/sass/global/integration/frameworks/vue/vuetify/variables.scss"`
-      },
       scss: {
-        prependData: `@import "@/assets/sass/global/integration/frameworks/vue/vuetify/variables.scss";`
+        prependData: `@import "@/assets/sass/vendors/vue/vuetify/variables.scss";`
       }
     }
   },

@@ -33,6 +33,4 @@ export class UserLoaded implements Action {
     constructor(public payload: { user: User }) { }
 }
 
-
-
 export type AuthActions = Login | Logout | Register | UserRequested | UserLoaded;

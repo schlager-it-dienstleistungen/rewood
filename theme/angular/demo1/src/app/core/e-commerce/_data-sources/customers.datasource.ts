@@ -7,25 +7,29 @@ import { Store, select } from '@ngrx/store';
 import { BaseDataSource, QueryResultsModel } from '../../_base/crud';
 // State
 import { AppState } from '../../reducers';
-import { selectCustomersInStore, selectCustomersPageLoading, selectCustomersShowInitWaitingMessage } from '../_selectors/customer.selectors';
+import {
+  selectCustomersInStore,
+  selectCustomersPageLoading,
+  selectCustomersShowInitWaitingMessage
+} from '../_selectors/customer.selectors';
 
 export class CustomersDataSource extends BaseDataSource {
-	constructor(private store: Store<AppState>) {
-		super();
+  constructor(private store: Store<AppState>) {
+    super();
 
-		this.loading$ = this.store.pipe(
-			select(selectCustomersPageLoading),
-		);
+    this.loading$ = this.store.pipe(
+      select(selectCustomersPageLoading),
+    );
 
-		this.isPreloadTextViewed$ = this.store.pipe(
-			select(selectCustomersShowInitWaitingMessage)
-		);
+    this.isPreloadTextViewed$ = this.store.pipe(
+      select(selectCustomersShowInitWaitingMessage)
+    );
 
-		this.store.pipe(
-			select(selectCustomersInStore),
-		).subscribe((response: QueryResultsModel) => {
-			this.paginatorTotalSubject.next(response.totalCount);
-			this.entitySubject.next(response.items);
-		});
-	}
+    this.store.pipe(
+      select(selectCustomersInStore),
+    ).subscribe((response: QueryResultsModel) => {
+      this.paginatorTotalSubject.next(response.totalCount);
+      this.entitySubject.next(response.items);
+    });
+  }
 }

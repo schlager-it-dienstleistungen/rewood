@@ -1,11 +1,11 @@
-<kt-notice [icon]="'flaticon-warning kt-font-primary'">
+<kt-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
 	For more info please check the components's official demos & documentation
-	<a class="kt-link" href="https://ng-bootstrap.github.io/#/components/carousel/examples" target="_blank">demos & documentation</a>
+	<a class="font-weight-bold" href="https://ng-bootstrap.github.io/#/components/carousel/examples" target="_blank">demos & documentation</a>
 </kt-notice>
 
 <div class="row">
 	<div class="col-xl-12">
-		<kt-material-preview [viewItem]="exampleCarousel">
+		<kt-code-preview [viewItem]="exampleCarousel">
 			<ngb-carousel *ngIf="images">
 				<ng-template ngbSlide>
 					<img [src]="images[0]" alt="Random first slide" style="width: 100%">
@@ -29,10 +29,10 @@
 					</div>
 				</ng-template>
 			</ngb-carousel>
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 	<div class="col-xl-12">
-		<kt-material-preview [viewItem]="exampleNavigationArrowsAndIndicatorsCarousel">
+		<kt-code-preview [viewItem]="exampleNavigationArrowsAndIndicatorsCarousel">
 			<ngb-carousel *ngIf="thirdImages" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
 				<ng-template ngbSlide *ngFor="let image of images">
 					<img [src]="image" alt="Random slide" style="width: 100%">
@@ -47,10 +47,10 @@
 				<button type="button" (click)="showNavigationArrows = !showNavigationArrows" class="btn btn-outline-dark btn-sm">Toggle navigation arrows</button>
 				<button type="button" (click)="showNavigationIndicators = !showNavigationIndicators" class="btn btn-outline-dark btn-sm">Toggle navigation indicators</button>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 	<div class="col-xl-12">
-		<kt-material-preview [viewItem]="exampleGlobalConfigurationOfCarousels">
+		<kt-code-preview [viewItem]="exampleGlobalConfigurationOfCarousels">
 			<ngb-carousel *ngIf="secondImages">
 				<ng-template ngbSlide>
 					<img [src]="secondImages[0]" alt="Random first slide" style="width: 100%">
@@ -74,6 +74,6 @@
 					</div>
 				</ng-template>
 			</ngb-carousel>
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 </div>

@@ -1,11 +1,11 @@
-<div class="kt-mat-snackbar">
-	<div class="kt-mat-snackbar__message">{{data.message}}</div>
-	<div class="kt-mat-snackbar__btn">
+<div class="mat-snackbar">
+	<div class="mat-snackbar-message">{{data.message}}</div>
+	<div class="mat-snackbar-btn">
 		<button *ngIf="data.showUndoButton" type="button" mat-button color="primary" (click)="onDismissWithAction()">
 			Undo
 		</button>
 	</div>
-	<div class="kt-mat-snackbar__close">
+	<div class="mat-snackbar-close">
 		<button *ngIf="data.showCloseButton" 
 			mat-icon-button 
 			(click)="onDismiss()"

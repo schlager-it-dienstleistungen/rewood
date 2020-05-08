@@ -7,7 +7,7 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { NgbAlertConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
-import { MaterialPreviewModule } from '../../partials/content/general/material-preview/material-preview.module';
+import { CodePreviewModule } from '../../partials/content/general/code-preview/code-preview.module';
 
 import { ButtonsComponent } from './buttons/buttons.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -108,7 +108,7 @@ const routes: Routes = [
 		PartialsModule,
 		NgbModule,
 		CoreModule,
-		MaterialPreviewModule,
+		CodePreviewModule,
 		RouterModule.forChild(routes),
 		FormsModule,
 		ReactiveFormsModule,

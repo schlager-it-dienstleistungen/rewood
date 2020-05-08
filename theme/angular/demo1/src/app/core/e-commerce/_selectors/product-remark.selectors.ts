@@ -38,13 +38,15 @@ export const selectPRShowInitWaitingMessage = createSelector(
 export const selectProductRemarksInStore = createSelector(
     selectProductRemarksState,
     productRemarksState => {
-        const items: ProductRemarkModel[] = [];
-        each(productRemarksState.entities, element => {
-            items.push(element);
-        });
-        const httpExtension = new HttpExtenstionsModel();
-        const result: ProductRemarkModel[] = httpExtension.sortArray(items, productRemarksState.lastQuery.sortField, productRemarksState.lastQuery.sortOrder);
+      const items: ProductRemarkModel[] = [];
+      each(productRemarksState.entities, element => {
+        items.push(element);
+      });
+      const httpExtension = new HttpExtenstionsModel();
+      // tslint:disable-next-line
+      const result: ProductRemarkModel[] =
+        httpExtension.sortArray(items, productRemarksState.lastQuery.sortField, productRemarksState.lastQuery.sortOrder);
 
-        return new QueryResultsModel(items, productRemarksState.totalCount, '');
+      return new QueryResultsModel(items, productRemarksState.totalCount, '');
     }
 );

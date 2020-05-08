@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material/icon';
 
 const basic = {
 	beforeCodeTitle: 'Basic icons',
@@ -69,7 +69,7 @@ export class IconComponent implements OnInit {
 	}
 	constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 		iconRegistry.addSvgIcon(
-			'exchange',
-			sanitizer.bypassSecurityTrustResourceUrl('./assets/media/icons/exchange.svg'));
+			'boy',
+			sanitizer.bypassSecurityTrustResourceUrl('./assets/media/svg/avatars/001-boy.svg'));
 	}
 }

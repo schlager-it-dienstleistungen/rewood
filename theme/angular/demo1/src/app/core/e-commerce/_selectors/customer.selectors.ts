@@ -38,12 +38,13 @@ export const selectCustomersShowInitWaitingMessage = createSelector(
 export const selectCustomersInStore = createSelector(
     selectCustomersState,
     customersState => {
-        const items: CustomerModel[] = [];
-        each(customersState.entities, element => {
-            items.push(element);
-        });
-        const httpExtension = new HttpExtenstionsModel();
-        const result: CustomerModel[] = httpExtension.sortArray(items, customersState.lastQuery.sortField, customersState.lastQuery.sortOrder);
-        return new QueryResultsModel(result, customersState.totalCount, '');
+      const items: CustomerModel[] = [];
+      each(customersState.entities, element => {
+        items.push(element);
+      });
+      const httpExtension = new HttpExtenstionsModel();
+      const result: CustomerModel[] =
+        httpExtension.sortArray(items, customersState.lastQuery.sortField, customersState.lastQuery.sortOrder);
+      return new QueryResultsModel(result, customersState.totalCount, '');
     }
 );

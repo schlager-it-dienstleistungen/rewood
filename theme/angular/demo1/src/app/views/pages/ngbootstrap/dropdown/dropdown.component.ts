@@ -4,8 +4,8 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 const dropdown = {
 	beforeCodeTitle: 'Dropdown',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <div class="row">
       <div class="col">
         <div ngbDropdown class="d-inline-block">
@@ -45,11 +45,11 @@ export class NgbdDropdownBasic { }
 const manualTriggers = {
 	beforeCodeTitle: 'Manual triggers',
 	htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     You can easily control dropdowns programmatically using the exported dropdown instance.
   </span>
-  <div class="kt-section__content">
+  <div>
     <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
       <button class="btn btn-primary" id="dropdownManual" ngbDropdownToggle>Toggle dropdown</button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
@@ -79,11 +79,11 @@ export class NgbdDropdownManual { }
 const buttonGroupsAndSplitButtons = {
 	beforeCodeTitle: 'Button groups and split buttons',
 	htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Bootstrap split buttons and dropdowns on button groups are supported with the existing dropdown directives.
   </span>
-  <div class="kt-section__content">
+  <div>
     <div class="btn-group">
       <button type="button" class="btn btn-success">Plain ol' button</button>
       <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
@@ -143,9 +143,9 @@ export class NgbdDropdownSplit {
 const globalConfigurationOfDropdowns = {
 	beforeCodeTitle: 'Global configuration of dropdowns',
 	htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">This dropdown uses customized default values.</span>
-  <div class="kt-section__content">
+<div class="example-preview">
+  <span>This dropdown uses customized default values.</span>
+  <div>
     <div ngbDropdown>
       <button class="btn btn-primary" id="dropdownConfig" ngbDropdownToggle>Toggle</button>
       <div ngbDropdownMenu aria-labelledby="dropdownConfig">

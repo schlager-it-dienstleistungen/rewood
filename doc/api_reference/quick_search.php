@@ -1,190 +1,198 @@
 <?php header('Access-Control-Allow-Origin: *');
-$dir = str_replace('/tools/preview/api', '/preview', dirname($_SERVER['PHP_SELF'])); ?>
-<div class="kt-quick-search__result">
-	<div class="kt-quick-search__message kt-hidden">
-		No record found
-	</div>
+$dir = str_replace('/tools/preview/api', '/themes/metronic/theme/html/demo1/dist/assets/media/', dirname($_SERVER['PHP_SELF'])); ?>
 
-    <div class="kt-quick-search__category">
+<div class="quick-search-result">
+    <!--begin::Message-->
+    <div class="text-muted d-none">
+        No record found
+    </div>
+    <!--end::Message-->
+
+    <!--begin::Section-->
+    <div class="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
         Documents
     </div>
-    <div class="kt-quick-search__section">
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/files/doc.svg" alt="" />
+    <div class="mb-10">
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30 bg-transparent flex-shrink-0">
+                <img src="<?php echo $dir . "svg/files/doc.svg"?>" alt=""/>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-					AirPlus Requirements
-				</a>
-                <div class="kt-quick-search__item-desc">
-                    by Grog John
-                </div>
-            </div>
-        </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/files/pdf.svg" alt="" />
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-				    TechNav Documentation
-				</a>
-                <div class="kt-quick-search__item-desc">
-                    by Mary Broun
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                AirPlus Requirements
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                by Grog John
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/files/zip.svg" alt="" />
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30 bg-transparent flex-shrink-0">
+                <img src="<?php echo $dir . "svg/files/pdf.svg"?>" alt=""/>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-					All Framework Docs
-				</a>
-                <div class="kt-quick-search__item-desc">
-                    by Nick Stone
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                TechNav Documentation
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                by Mary Broun
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img kt-quick-search__item-img--file">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/files/xml.svg" alt="" />
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30 bg-transparent flex-shrink-0">
+                <img src="<?php echo $dir . "svg/files/xml.svg"?>" alt=""/>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-					AirPlus Requirements
-				</a>
-                <div class="kt-quick-search__item-desc">
-                    by Tim Hardy
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                All Framework Docs
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                by Nick Stone
+                </span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30 bg-transparent flex-shrink-0">
+                <img src="<?php echo $dir . "svg/files/pdf.svg"?>" alt=""/>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                Finance & Accounting Reports
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                by Jhon Larson
+                </span>
             </div>
         </div>
     </div>
-
-    <div class="kt-quick-search__category">
+    <!--end::Section-->
+    
+    <!--begin::Section-->
+    <div class="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
         Members
     </div>
-    <div class="kt-quick-search__section">
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/users/300_14.jpg" alt="" />
+    <div class="mb-10">
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label" style="background-image:url('<?php echo $dir . "users/300_20.jpg"?>')"></div>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									Jimmy Curry
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Software Developer
-                </div>
-            </div>
-        </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/users/300_20.jpg" alt="" />
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									Milena Gibson
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    UI Designer
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                Milena Gibson
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                UI Designer
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/users/300_21.jpg" alt="" />
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label" style="background-image:url('<?php echo $dir . "users/300_15.jpg"?>')"></div>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									Stefan JohnStefan
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Marketing Manager
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                Stefan JohnStefan
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Marketing Manager
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-img">
-                <img src="https://<?php echo $_SERVER['SERVER_NAME'] . $dir ?>/assets/media/users/300_2.jpg" alt="" />
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0" >
+                <div class="symbol-label" style="background-image:url('<?php echo $dir . "users/300_12.jpg"?>')"></div>
             </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									Anna Strong
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Software Developer
-                </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                Anna Strong
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Software Developer
+                </span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0" >
+                <div class="symbol-label" style="background-image:url('<?php echo $dir . "users/300_16.jpg"?>')"></div>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                Nick Bold
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Project Coordinator
+                </span>
             </div>
         </div>
     </div>
+    <!--end::Section-->
 
-    <div class="kt-quick-search__category">
+    <!--begin::Section-->
+    <div class="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
         Files
     </div>
-    <div class="kt-quick-search__section">
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-icon">
-                <i class="flaticon2-box kt-font-danger"></i>
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									2 New items submitted
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Marketing Manager
+    <div class="mb-10">
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label">
+                    <i class="flaticon-psd text-primary"></i>
                 </div>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                79 PSD files generated
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                by Grog John
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-icon">
-                <i class="flaticon-psd kt-font-brand"></i>
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									79 PSD files generated
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    by Grog John
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label">
+                    <i class="flaticon2-supermarket text-warning"></i>
                 </div>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                $2900 worth products sold
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Total 234 items
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-icon">
-                <i class="flaticon2-supermarket kt-font-warning"></i>
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									$2900 worth products sold
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Total 234 items
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label">
+                    <i class="flaticon-safe-shield-protection text-info"></i>
                 </div>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                4 New items submitted
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Marketing Manager
+                </span>
             </div>
         </div>
-
-        <div class="kt-quick-search__item">
-            <div class="kt-quick-search__item-icon">
-                <i class="flaticon-safe-shield-protection kt-font-info"></i>
-            </div>
-            <div class="kt-quick-search__item-wrapper">
-                <a href="#" class="kt-quick-search__item-title">
-									4 New items submitted
-								</a>
-                <div class="kt-quick-search__item-desc">
-                    Marketing Manager
+        <div class="d-flex align-items-center flex-grow-1 mb-2">
+            <div class="symbol symbol-30  flex-shrink-0">
+                <div class="symbol-label">
+                    <i class="flaticon-safe-shield-protection text-warning"></i>
                 </div>
+            </div>
+            <div class="d-flex flex-column ml-3 mt-2 mb-2">
+                <a href="#" class="font-weight-bold text-dark text-hover-primary">
+                4 New items submitted
+                </a>
+                <span class="font-size-sm font-weight-bold text-muted">
+                Marketing Manager
+                </span>
             </div>
         </div>
     </div>
+    <!--end::Section-->
 </div>

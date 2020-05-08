@@ -107,7 +107,7 @@ const labelPosition = {
   <mat-radio-button  value="Illinois">Illinois</mat-radio-button>
   <mat-radio-button  value="Kansas">Kansas</mat-radio-button>
 </mat-radio-group>
-<div class="kt-separator kt-separator--dashed"></div>
+<div class="separator separator-dashed my-6"></div>
 <mat-slide-toggle (change)="changeLablesPositions()">Slide labels position</mat-slide-toggle>`,
 	tsCode: `
 import {Component} from '@angular/core';\n
@@ -140,7 +140,7 @@ const changeEvent = {
   <mat-radio-button  value="Illinois">Illinois</mat-radio-button>
   <mat-radio-button  value="Kansas">Kansas</mat-radio-button>
 </mat-radio-group>
-<div class="kt-separator kt-separator--dashed" *ngIf="state"></div>
+<div class="separator separator-dashed my-6" *ngIf="state"></div>
 <span *ngIf="state">Welcome to <mark>{{ state }}</mark>!</span>`,
 	tsCode: `
 import {Component} from '@angular/core';\n

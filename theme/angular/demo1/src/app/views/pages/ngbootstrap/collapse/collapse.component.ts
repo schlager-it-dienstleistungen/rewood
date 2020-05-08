@@ -3,8 +3,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 const demo = {
 	beforeCodeTitle: 'Demo',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <button type="button"
       class="btn btn-primary"
       (click)="isCollapsed = !isCollapsed"

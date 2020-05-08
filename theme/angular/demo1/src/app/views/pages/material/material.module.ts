@@ -1,3 +1,4 @@
+import { MatRadioModule } from '@angular/material/radio';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,54 +8,17 @@ import { CheckboxComponent } from './formcontrols/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
-import { MaterialPreviewModule } from '../../partials/content/general/material-preview/material-preview.module';
+import { CodePreviewModule } from '../../partials/content/general/code-preview/code-preview.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatRippleModule } from '@angular/material/core';
+import { MatRippleModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconRegistry } from '@angular/material/icon';
-import {
-	MatAutocompleteModule,
-	MatNativeDateModule,
-	MatFormFieldModule,
-	MatInputModule,
-	MatRadioModule,
-	MatButtonModule,
-	MatCardModule,
-	MatChipsModule,
-	MatSelectModule,
-	MatProgressBarModule,
-	MatProgressSpinnerModule,
-	MatIconModule,
-	MatSliderModule,
-	MatPaginatorModule,
-	MatSortModule,
-	MatSidenavModule,
-	MatSnackBarModule,
-	MatStepperModule,
-	MatToolbarModule,
-	MatDividerModule,
-	MatTabsModule,
-	MatTableModule,
-	MatTooltipModule,
-	MatListModule,
-	MatGridListModule,
-	MatButtonToggleModule,
-	MatBottomSheetModule,
-	MatExpansionModule,
-	MatMenuModule,
-	MatTreeModule,
-	MAT_BOTTOM_SHEET_DATA,
-	MatBottomSheetRef,
-	MAT_DATE_LOCALE,
-	MAT_DATE_FORMATS,
-
-} from '@angular/material';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatDatepickerModule, MatDatepickerIntl } from '@angular/material/datepicker';
 
 // Form controls
 import { DatepickerComponent } from './formcontrols/datepicker/datepicker.component';
-import { MatDatepickerModule, MatDatepickerIntl } from '@angular/material/datepicker';
+
 import { FormfieldComponent } from './formcontrols/formfield/formfield.component';
 import { InputComponent } from './formcontrols/input/input.component';
 import { RadiobuttonComponent } from './formcontrols/radiobutton/radiobutton.component';
@@ -74,7 +38,6 @@ import { ListComponent } from './layout/list/list.component';
 import { MaterialTabsComponent } from './layout/material-tabs/material-tabs.component';
 import { StepperComponent } from './layout/stepper/stepper.component';
 import { TreeComponent } from './layout/tree/tree.component';
-import { DefaultFormsComponent } from './layout/default-forms/default-forms.component';
 // Buttons & indicators
 import { ButtonComponent } from './buttons-and-indicators/button/button.component';
 import { ButtonToggleComponent } from './buttons-and-indicators/button-toggle/button-toggle.component';
@@ -95,6 +58,33 @@ import { PaginatorComponent } from './data-table/paginator/paginator.component';
 import { SortHeaderComponent } from './data-table/sort-header/sort-header.component';
 import { MaterialTableComponent } from './data-table/material-table/material-table.component';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
 
 const routes: Routes = [
 	{
@@ -178,10 +168,6 @@ const routes: Routes = [
 				component: StepperComponent
 			},
 			{
-				path: 'layout/default-forms',
-				component: DefaultFormsComponent
-			},
-			{
 				path: 'layout/tree',
 				component: TreeComponent
 			},
@@ -250,6 +236,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
+		CommonModule,
 		// material modules
 		MatInputModule,
 		MatFormFieldModule,
@@ -284,12 +271,11 @@ const routes: Routes = [
 		MatDialogModule,
 		MatRippleModule,
 		CoreModule,
-		CommonModule,
 		MatRadioModule,
 		MatTreeModule,
 		MatButtonToggleModule,
 		PartialsModule,
-		MaterialPreviewModule,
+		CodePreviewModule,
 		FormsModule,
 		ReactiveFormsModule,
 		RouterModule.forChild(routes)
@@ -350,7 +336,6 @@ const routes: Routes = [
 		PaginatorComponent,
 		SortHeaderComponent,
 		MaterialTableComponent,
-		DefaultFormsComponent,
 		TreeComponent,
 		BottomSheetComponent,
 		BottomSheetExampleComponent,

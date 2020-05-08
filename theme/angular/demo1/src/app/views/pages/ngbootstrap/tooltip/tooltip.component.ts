@@ -6,8 +6,8 @@ import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 const quickAndEasyTooltips = {
 	beforeCodeTitle: 'Quick and easy tooltips',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <button type="button" class="btn btn-primary" placement="top" ngbTooltip="Tooltip on top" ngbTooltipClass="kt-tooltip">
       Tooltip on top
 	</button>
@@ -40,12 +40,12 @@ export class NgbdTooltipBasic {}
 const HTMLAndBindingsInTooltips = {
 	beforeCodeTitle: 'Progress bars with current value labels',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     Tooltips can contain any arbitrary HTML, Angular bindings and even directives! Simply enclose desired content in a
     <code>&lt;ng-template&gt;</code> element.
   </div>
-  <div class="kt-section__content">
+  <div>
     <ng-template #tipContentS>Hello,
       <b>{{name}}</b>!</ng-template>
     <button type="button" class="btn btn-primary" [ngbTooltip]="tipContentS">
@@ -73,24 +73,24 @@ export class NgbdTooltipTplcontent {
 const customAndManualTriggers = {
 	beforeCodeTitle: 'Custom and manual triggers',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     You can easily override open and close triggers by specifying event names (separated by
     <code>:</code>) in the
     <code>triggers</code> property.
   </div>
-  <div class="kt-section__content">
+  <div>
     <button type="button" class="btn btn-primary" ngbTooltip="You see, I show up on click!" triggers="click:blur">
       Click me!
     </button>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     Alternatively you can take full manual control over tooltip opening / closing events.
   </div>
-  <div class="kt-section__content">
+  <div>
     <button type="button" class="btn btn-primary" ngbTooltip="What a great tip!" triggers="manual" #t="ngbTooltip" (click)="t.open()">
       Click me to open a tooltip
     </button>
@@ -120,14 +120,14 @@ const contextAndManualTriggers = {
 <ng-template #tipContent let-greeting="greeting">{{greeting}},
   <b>{{name2}}</b>!
 </ng-template>
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     You can optionally pass in a context when manually triggering a popover.
-    <div class="kt-separator kt-separator--dashed"></div>
+    <div class="separator separator-dashed my-6"></div>
     How would you like to greet
    <strong [ngbTooltip]="tipContent" #t2="ngbTooltip" triggers="manual">me</strong>?
   </div>
-  <div class="kt-section__content">
+  <div>
     <button type="button" class="btn btn-primary" (click)="changeGreeting({ greeting: 'Bonjour' })">
       French
     </button>
@@ -168,14 +168,14 @@ export class NgbdTooltipTplwithcontext {
 const appendTooltipInTheBody = {
 	beforeCodeTitle: 'Append tooltip in the body',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     Set the
 	<code>container</code> property to "body" to have the tooltip be appended to the body instead of the triggering element's parent.
       This option is useful if the element triggering the tooltip is inside an element that clips its contents (i.e.
     <code>overflow: hidden</code>).
   </div>
-  <div class="kt-section__content">
+  <div>
     <div class='row'>
       <div class='card'>
         <button type="button" class="btn btn-outline-primary" ngbTooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
@@ -210,8 +210,8 @@ export class NgbdTooltipContainer {
 const globalConfigurationOfTooltips = {
 	beforeCodeTitle: 'Global configuration of progress tooltips',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
 	<button type="button" class="btn btn-primary"
       ngbTooltip="This tooltip gets its inputs from the customized configuration" placement="right" triggers="click">
       Customized tooltip

@@ -1,6 +1,6 @@
 import { CollectionViewer, SelectionChange, SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material';
+import {MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { Component, Injectable, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import {BehaviorSubject, merge, Observable,  of as observableOf} from 'rxjs';
 import {map} from 'rxjs/operators';

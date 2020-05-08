@@ -16,20 +16,20 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 const basicDatepicker = {
 	beforeCodeTitle: 'Basic datepicker',
 	htmlCode: `
-<div class="kt-section">
-  <h3 class="kt-section__heading">Simple datepicker</h3>
-  <div class="kt-section__content">
+<div class="example-preview">
+  <h3>Simple datepicker</h3>
+  <div>
     <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__heading">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <button class="btn btn-sm btn-primary" (click)="selectToday()">Select Today</button>
     <button class="btn btn-sm btn-info" (click)="dp.navigateTo()">To current month</button>
     <button class="btn btn-sm btn-danger" (click)="dp.navigateTo({year: 2013, month: 2})">To Feb 2013</button>
   </div>
-  <div class="kt-section__content">
+  <div>
     <pre>Month: {{ date.month }}.{{ date.year }}</pre>
     <pre>Model: {{ model | json }}</pre>
   </div>
@@ -58,11 +58,11 @@ export class NgbdDatepickerBasic {\n
 const datepickerInAPopup = {
 	beforeCodeTitle: 'Datepicker in a popup',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__heading">
+<div class="example-preview">
+  <div>
     <pre>Model: {{ model | json }}</pre>
   </div>
-  <div class="kt-section__content">
+  <div>
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
@@ -96,14 +96,14 @@ export class NgbdCollapseBasic {
 const multipleMonths = {
 	beforeCodeTitle: 'Multiple months',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <ngb-datepicker [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"></ngb-datepicker>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <form class="form-inline">
       <div class="form-group kt-form__group">
         <div class="input-group">
@@ -119,9 +119,9 @@ const multipleMonths = {
     </form>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <select class="custom-select kt-input" [(ngModel)]="displayMonths">
       <option [ngValue]="1">One month</option>
       <option [ngValue]="2">Two months</option>
@@ -164,9 +164,9 @@ export class NgbdDatepickerMultiple {
 const rangeSelection = {
 	beforeCodeTitle: 'Range selection',
 	htmlCode: `
-<div class="kt-section">
-  <h3 class="kt-section__heading">Example of the range selection</h3>
-  <div class="kt-section__content">
+<div class="example-preview">
+  <h3>Example of the range selection</h3>
+  <div>
     <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t"></ngb-datepicker>
     <ng-template #t let-date="date" let-focused="focused">
 	  <span class="custom-day" [class.focused]="focused"
@@ -177,9 +177,9 @@ const rangeSelection = {
     </ng-template>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <pre>From: {{ fromDate | json }} </pre>
     <pre>To: {{ toDate | json }} </pre>
   </div>
@@ -250,14 +250,14 @@ export class NgbdDatepickerRange {
 const disabledDatepicker = {
 	beforeCodeTitle: 'Disabled datepicker',
 	htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <ngb-datepicker [(ngModel)]="model" [disabled]="disabled"></ngb-datepicker>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     <button class="btn btn-sm btn-{{disabled ? 'danger' : 'success'}}" (click)="disabled = !disabled">
       {{ disabled ? "disabled" : "enabled"}}
     </button>
@@ -285,28 +285,28 @@ const customDateAdapter = {
 	beforeCodeTitle: 'Custom date adapter',
 	htmlCode: `
 
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
 	These datepickers use custom Date adapter that lets you use your own model implementation.
     In this example we are converting from and to a JS native Date object
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-datepicker #d1 [(ngModel)]="model1" #c1="ngModel"></ngb-datepicker>
-    <div class="kt-separator kt-separator--dashed"></div>
+    <div class="separator separator-dashed my-6"></div>
     <button class="btn btn-sm btn-primary" (click)="model1 = today">Select Today</button>
-    <div class="kt-separator kt-separator--dashed"></div>
+    <div class="separator separator-dashed my-6"></div>
     <pre>Model: {{ model1 | json }}</pre>
     <pre>State: {{ c1.status }}</pre>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <span>
 	These datepickers use custom Date adapter that lets you use your own model implementation. In this example we are
     converting from and to a JS native Date object
   </span>
 
-  <div class="kt-section__content">
+  <div>
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
@@ -320,9 +320,9 @@ const customDateAdapter = {
         </div>
       </div>
     </form>
-    <div class="kt-separator kt-separator--dashed"></div>
+    <div class="separator separator-dashed my-6"></div>
     <button class="btn btn-sm btn-info" (click)="model2 = today">Select Today</button>
-	<div class="kt-separator kt-separator--dashed"></div>
+	<div class="separator separator-dashed my-6"></div>
     <pre>Model: {{ model2 | json }}</pre>
     <pre>State: {{ c2.status }}</pre>
   </div>
@@ -365,11 +365,11 @@ export class NgbdDatepickerAdapter {
 const iternationalizationOfDatepickers = {
 		beforeCodeTitle: 'Internationalization of datepicker',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     Datepicker in French
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-datepicker [(ngModel)]="fourthModel"></ngb-datepicker>
   </div>
 </div>
@@ -422,11 +422,11 @@ export class NgbdDatepickerI18n {
 const customDayView = {
 		beforeCodeTitle: 'Custom day view',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     This datepicker uses a custom template to display days. All week-ends are displayed with an orange background.
   </span>
-  <div class="kt-section__content">
+  <div>
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
@@ -523,11 +523,11 @@ export class NgbdCollapseBasic {
 const globalConfigurationOfDatepickers = {
 		beforeCodeTitle: 'Global configuration of datepickers',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     This datepicker uses customized default values.
   </span>
-  <div class="kt-section__content">
+  <div>
     <ngb-datepicker [(ngModel)]="model"></ngb-datepicker>
   </div>
 </div>

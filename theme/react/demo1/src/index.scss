@@ -5,84 +5,98 @@
 // Theme Styles
 @import "./_metronic/_assets/sass/style.react.scss";
 
-// Default Layout Skins
-@import "./_metronic/_assets/sass/global/layout/header/skins/base/light.scss";
-@import "./_metronic/_assets/sass/global/layout/header/skins/menu/light.scss";
-@import "./_metronic/_assets/sass/global/layout/brand/skins/dark.scss";
-@import "./_metronic/_assets/sass/global/layout/aside/skins/dark.scss";
+// Default Layout themes
+@import "./_metronic/_assets/sass/themes/layout/header/base/light.scss";
+@import "./_metronic/_assets/sass/themes/layout/header/menu/light.scss";
+@import "./_metronic/_assets/sass/themes/layout/brand/dark.scss";
+@import "./_metronic/_assets/sass/themes/layout/aside/dark.scss";
 
-// Header Skins
-.kt-header-base-light {
-    @import "./_metronic/_assets/sass/global/layout/header/skins/base/light.scss";
+// Header themes
+// Light
+//@import "./_metronic/_assets/sass/themes/layout/header/base/light.scss";
+// Dark
+// @import "./_metronic/_assets/sass/themes/layout/header/base/dark.scss";
+
+// Header Menu themes
+// Light
+//@import "./_metronic/_assets/sass/themes/layout/header/menu/light.scss";
+// Dark
+// @import "./_metronic/_assets/sass/themes/layout/header/menu/dark.scss";
+
+// Brand themes
+.brand-dark {
+  @import "./_metronic/_assets/sass/themes/layout/brand/dark.scss";
+}
+// Light
+.brand-light {
+  @import "./_metronic/_assets/sass/themes/layout/brand/light.scss";
 }
 
-.kt-header-base-dark {
-    @import "./_metronic/_assets/sass/global/layout/header/skins/base/dark.scss";
-}
+// Aside themes
+// Dark
+//@import "./_metronic/_assets/sass/themes/layout/aside/dark.scss";
+// Light
+// @import "./_metronic/_assets/sass/themes/layout/aside/light.scss";
 
-// Header Menu Skins
-.kt-header-menu-light {
-    @import "./_metronic/_assets/sass/global/layout/header/skins/menu/light.scss";
-}
-.kt-header-menu-dark {
-    @import "./_metronic/_assets/sass/global/layout/header/skins/menu/dark.scss";
-}
+// .example-highlight {
+//   padding: 0rem 1.5rem 1.75rem !important;
+// }
 
-// Brand Skins
-.kt-brand-dark {
-  @import "./_metronic/_assets/sass/global/layout/brand/skins/dark.scss";
-}
+.example-highlight > pre {
+  background: none transparent !important;
+  margin: 0 !important;
+  padding-top: 0.5rem; 
+  code { 
+      overflow-y: auto;
+      display: block;
 
-.kt-brand-light {
-  @import "./_metronic/_assets/sass/global/layout/brand/skins/light.scss";
-}
-
-// Aside skins
-.kt-aside-dark {
-  @import "./_metronic/_assets/sass/global/layout/aside/skins/dark.scss";
-}
-
-.kt-aside-light {
-  @import "./_metronic/_assets/sass/global/layout/aside/skins/light.scss";
-}
-
-// Web Icon fonts
-// @import "~socicon/css/socicon.css";
-// @import "~@fortawesome/fontawesome-free/css/all.min.css";
-// @import "./_metronic/_assets/plugins/line-awesome/css/line-awesome.css";
-// @import "./_metronic/_assets/plugins/flaticon/flaticon.css";
-// @import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
-
-
-@-webkit-keyframes fadeInUpContent {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -5%, 0);
-    transform: translate3d(0, -5%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+      span {
+        background: none transparent !important;
+      }
   }
 }
 
-@keyframes fadeInUpContent {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -5%, 0);
-    transform: translate3d(0, -5%, 0);
-  }
+.json > pre {
+  background: none #fff !important;
 
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
 }
 
-.fadeInUpContent {
-  -webkit-animation-name: fadeInUpContent;
-  animation-name: fadeInUpContent;
+.example-code > .json {
+  background: none #fff !important;
+}
+
+.symbol.symbol-45 > svg {
+  width: 100%;
+  max-width: 45px;
+  height: 45px;
+}
+
+.react-bootstrap-table {
+  overflow-x: auto;
+}
+
+.react-bootstrap-table {
+  th {
+    outline: none;
+   
+    &.sortable {  
+      .svg-icon-sort {
+        opacity: 0;
+      }
+  
+      &:hover {
+        cursor: pointer;
+
+        .svg-icon-sort {
+          opacity: 1;
+        }
+      }
+    }    
+  }
+
+  .table.table-head-custom thead tr {
+    .sortable-active {
+        color: $primary !important;
+    }
+  }
 }

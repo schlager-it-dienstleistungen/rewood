@@ -115,7 +115,7 @@ const changeEvent = {
 	beforeCodeTitle: 'Change event binding',
 	htmlCode: `
 <mat-checkbox [(ngModel)]="myValue" (change)="changeValueEvent()">Check me!</mat-checkbox>\n
-<div class="kt-separator kt-separator--dashed"></div>\n
+<div class="separator separator-dashed my-6"></div>\n
 <span>Checked: <mark>{{ myValue }}</mark></span>`,
 	tsCode: `
 import {Component} from '@angular/core';\n

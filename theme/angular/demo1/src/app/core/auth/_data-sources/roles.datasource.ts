@@ -7,27 +7,27 @@ import { Store, select } from '@ngrx/store';
 import { BaseDataSource, QueryResultsModel } from '../../_base/crud';
 // State
 import { AppState } from '../../../core/reducers';
-// Selectirs
+// Selectors
 import { selectQueryResult, selectRolesPageLoading, selectRolesShowInitWaitingMessage } from '../_selectors/role.selectors';
 
 export class RolesDataSource extends BaseDataSource {
-	constructor(private store: Store<AppState>) {
-		super();
+  constructor(private store: Store<AppState>) {
+    super();
 
-		this.loading$ = this.store.pipe(
-			select(selectRolesPageLoading)
-		);
+    this.loading$ = this.store.pipe(
+      select(selectRolesPageLoading)
+    );
 
-		this.isPreloadTextViewed$ = this.store.pipe(
-			select(selectRolesShowInitWaitingMessage)
-		);
+    this.isPreloadTextViewed$ = this.store.pipe(
+      select(selectRolesShowInitWaitingMessage)
+    );
 
-		this.store.pipe(
-			select(selectQueryResult)
-		).subscribe((response: QueryResultsModel) => {
-			this.paginatorTotalSubject.next(response.totalCount);
-			this.entitySubject.next(response.items);
-		});
+    this.store.pipe(
+      select(selectQueryResult)
+    ).subscribe((response: QueryResultsModel) => {
+      this.paginatorTotalSubject.next(response.totalCount);
+      this.entitySubject.next(response.items);
+    });
 
-	}
+  }
 }

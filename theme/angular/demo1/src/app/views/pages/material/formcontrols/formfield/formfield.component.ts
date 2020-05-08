@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {MatFormFieldControl} from '@angular/material';
 
 const simpleFormField = {
 		beforeCodeTitle: 'Simple form field',

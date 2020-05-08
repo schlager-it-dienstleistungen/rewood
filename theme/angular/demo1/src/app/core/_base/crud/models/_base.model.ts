@@ -1,8 +1,12 @@
 export class BaseModel {
-	// Edit
-	_isEditMode = false;
-	// Log
-	_userId = 0; // Admin
-	_createdDate: string;
-	_updatedDate: string;
+  // Edit
+  // tslint:disable-next-line:variable-name
+  _isEditMode = false;
+  // Log
+  // tslint:disable-next-line:variable-name
+  _userId = 0; // Admin
+  // tslint:disable-next-line:variable-name
+  _createdDate: string;
+  // tslint:disable-next-line:variable-name
+  _updatedDate: string;
 }

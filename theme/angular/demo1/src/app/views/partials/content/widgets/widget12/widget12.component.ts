@@ -18,10 +18,6 @@ export class Widget12Component implements OnInit {
 	@Input() type = 'line';
 	@ViewChild('chart', {static: true}) chart: ElementRef;
 
-	/**
-	 * Component constructor
-	 * @param layoutConfigService
-	 */
 	constructor(private layoutConfigService: LayoutConfigService) {
 	}
 

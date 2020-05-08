@@ -1,10 +1,9 @@
-# Welcome to Metronic - Responsive Bootstrap 4 and Angular 8 Admin Dashboard Template
+# Metronic - The World’s #1 Bootstrap 4 HTML, Angular 9, React, VueJS & Laravel Admin Dashboard Theme
 
 - To get started please open the [Documentation page](//keenthemes.com/metronic/?page=docs).
 
-- amChart discount code for Metronic users.
-  Metronic users can exclusively use "keenthemes" promo code(without quotes, case insensitive) for 15% DISCOUNT for commercial license of amChart.
-  For more info please check [Product Home](//www.amcharts.com/demos/).
+- To customize theme's styles and scripts you can install the build tools
+  and compile the theme(precompiled assets are provided by default) by referring to the documentation.
 
 - For any theme related questions please contact our [Theme Support](//keenthemes.com/theme-support/).
 

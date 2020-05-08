@@ -1,7 +1,7 @@
 <kt-portlet>
 	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
 	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
-	<kt-portlet-header [title]="'Users list'" [class]="'kt-portlet__head--lg'" [viewLoading$]="dataSource.loading$">
+	<kt-portlet-header [title]="'Users list'" [class]="'card-head-lg'" [viewLoading$]="dataSource.loading$">
 		<ng-container ktPortletTools>
 			<button [routerLink]="['../users/add']" mat-raised-button color="primary" matTooltip="Create new User">New user</button>
 			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->
@@ -13,9 +13,9 @@
 	<!-- start::Body (attribute: ktPortletBody) -->
 	<kt-portlet-body>
 		<!-- start::FILTERS & GROUP ACTIONS -->
-		<div class="kt-form kt-margin-b-30">
+		<div class="form kt-margin-b-30">
 			<!-- start::FILTERS -->
-			<div class="kt-form__filtration">
+			<div class="form-filtration">
 				<div class="row align-items-center">
 					<div class="col-md-2 kt-margin-bottom-10-mobile">
 						<mat-form-field class="mat-form-field-fluid">
@@ -32,19 +32,19 @@
 			<!-- start::GROUP ACTIONS -->
 			<!-- Group actions list: 'Delete selected' | 'Fetch selected' | 'Update status for selected' -->
 			<!-- Group actions are shared for all LISTS -->
-			<div class="row align-items-center collapse kt-form__group-actions kt-margin-top-20 kt-margin-bottom-20"
+			<div class="row align-items-center collapse form-group-actions kt-margin-top-20 kt-margin-bottom-20"
 				[ngClass]="{'show' : selection.selected.length > 0}"><!-- We show 'Group Actions' div if smth are selected -->
 				<div class="col-xl-12">
-					<div class="kt-form__group kt-form__group--inline">
-						<div class="kt-form__label kt-form__label-no-wrap">
-							<label class="kt--font-bold kt-font-danger-">
+					<div class="form-group form-group-inline">
+						<div class="form-label form-label-no-wrap">
+							<label class="font-bold font-danger-">
 								<span translate="ECOMMERCE.COMMON.SELECTED_RECORDS_COUNT"></span> {{ selection.selected.length }}
 							</label>
 							<!-- selectedCountsTitle => function from codeBehind (users-list.component.ts file) -->
 							<!-- selectedCountsTitle => just returns title of selected items count -->
 							<!-- for example: Selected records count: 4 -->
 						</div>
-						<div class="kt-form__control kt-form__group--inline">
+						<div>
 							<button (click)="fetchUsers()" mat-raised-button matTooltip="Fetch selected users"  class="mat-button-mt-4">
 								<mat-icon>clear_all</mat-icon>
 								Fetch Selected
@@ -99,7 +99,7 @@
 				<ng-container matColumnDef="email">
 					<mat-header-cell *matHeaderCellDef mat-sort-header class="email-cell">Email</mat-header-cell>
 					<mat-cell *matCellDef="let user" class="email-cell">
-						<a href="user-management/users#" class="kt-link">{{user.email}}</a>
+						<a href="user-management/users#" class="font-weight-bold">{{user.email}}</a>
 					</mat-cell>
 				</ng-container>
 

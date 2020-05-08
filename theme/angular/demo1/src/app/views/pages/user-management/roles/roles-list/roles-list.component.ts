@@ -2,17 +2,19 @@
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 // Material
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator, MatSort, MatSnackBar, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 // RXJS
 import { debounceTime, distinctUntilChanged, tap, skip, take, delay } from 'rxjs/operators';
-import { fromEvent, merge, Observable, of, Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { fromEvent, merge, of, Subscription } from 'rxjs';
 // NGRX
 import { Store } from '@ngrx/store';
 // Services
 import { LayoutUtilsService, MessageType } from '../../../../../core/_base/crud';
 // Models
-import { Role, RolesDataSource, RoleDeleted, RolesPageRequested  } from '../../../../../core/auth';
+import { Role, RolesDataSource, RoleDeleted, RolesPageRequested } from '../../../../../core/auth';
 import { AppState } from '../../../../../core/reducers';
 import { QueryParamsModel } from '../../../../../core/_base/crud';
 
@@ -35,10 +37,10 @@ export class RolesListComponent implements OnInit, OnDestroy {
 	// Table fields
 	dataSource: RolesDataSource;
 	displayedColumns = ['select', 'id', 'title', 'actions'];
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	@ViewChild('sort1', {static: true}) sort: MatSort;
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild('sort1', { static: true }) sort: MatSort;
 	// Filter fields
-	@ViewChild('searchInput', {static: true}) searchInput: ElementRef;
+	@ViewChild('searchInput', { static: true }) searchInput: ElementRef;
 	// Selection
 	selection = new SelectionModel<Role>(true, []);
 	rolesResult: Role[] = [];
@@ -58,7 +60,7 @@ export class RolesListComponent implements OnInit, OnDestroy {
 		private store: Store<AppState>,
 		public dialog: MatDialog,
 		public snackBar: MatSnackBar,
-		private layoutUtilsService: LayoutUtilsService) {}
+		private layoutUtilsService: LayoutUtilsService) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -81,7 +83,7 @@ export class RolesListComponent implements OnInit, OnDestroy {
 				this.loadRolesList();
 			})
 		)
-		.subscribe();
+			.subscribe();
 		this.subscriptions.push(paginatorSubscriptions);
 
 		// Filtration, bind to searchInput
@@ -94,7 +96,7 @@ export class RolesListComponent implements OnInit, OnDestroy {
 				this.loadRolesList();
 			})
 		)
-		.subscribe();
+			.subscribe();
 		this.subscriptions.push(searchSubscription);
 
 		// Init DataSource
@@ -165,7 +167,7 @@ export class RolesListComponent implements OnInit, OnDestroy {
 				return;
 			}
 
-			this.store.dispatch(new RoleDeleted({ id: _item.id}));
+			this.store.dispatch(new RoleDeleted({ id: _item.id }));
 			this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Delete);
 			this.loadRolesList();
 		});

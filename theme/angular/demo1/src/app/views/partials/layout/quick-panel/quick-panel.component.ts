@@ -12,8 +12,9 @@ export class QuickPanelComponent {
 	// Public properties
 	offcanvasOptions: OffcanvasOptions = {
 		overlay: true,
-		baseClass: 'kt-quick-panel',
-		closeBy: 'kt_quick_panel_close_btn',
-		toggleBy: 'kt_quick_panel_toggler_btn'
+		baseClass: 'offcanvas',
+		placement: 'right',
+		closeBy: 'kt_quick_panel_close',
+		toggleBy: 'kt_quick_panel_toggle'
 	};
 }

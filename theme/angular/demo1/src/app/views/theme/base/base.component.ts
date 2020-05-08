@@ -17,106 +17,108 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../core/reducers';
 
 @Component({
-	selector: 'kt-base',
-	templateUrl: './base.component.html',
-	styleUrls: ['./base.component.scss'],
-	encapsulation: ViewEncapsulation.None
+  selector: 'kt-base',
+  templateUrl: './base.component.html',
+  styleUrls: ['./base.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BaseComponent implements OnInit, OnDestroy {
-	// Public variables
-	selfLayout: string;
-	asideDisplay: boolean;
-	asideSecondary: boolean;
-	subheaderDisplay: boolean;
-	desktopHeaderDisplay: boolean;
-	fitTop: boolean;
-	fluid: boolean;
+  // Public variables
+  selfLayout = 'default';
+  asideSelfDisplay: true;
+  contentClasses = '';
+  contentContainerClasses = '';
+  subheaderDisplay = true;
+  contentExtended: false;
 
-	// Private properties
-	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-	private currentUserPermissions$: Observable<Permission[]>;
+  // Private properties
+  private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+  private currentUserPermissions$: Observable<Permission[]>;
 
 
-	/**
-	 * Component constructor
-	 *
-	 * @param layoutConfigService: LayoutConfigService
-	 * @param menuConfigService: MenuConfifService
-	 * @param pageConfigService: PageConfigService
-	 * @param htmlClassService: HtmlClassService
-	 * @param store
-	 * @param permissionsService
-	 */
-	constructor(
-		private layoutConfigService: LayoutConfigService,
-		private menuConfigService: MenuConfigService,
-		private pageConfigService: PageConfigService,
-		private htmlClassService: HtmlClassService,
-		private store: Store<AppState>,
-		private permissionsService: NgxPermissionsService) {
-		this.loadRolesWithPermissions();
+  /**
+   * Component constructor
+   *
+   * param layoutConfigService: LayoutConfigService
+   * param menuConfigService: MenuConfigService
+   * param pageConfigService: PageConfigService
+   * param htmlClassService: HtmlClassService
+   * param store
+   * param permissionsService
+   */
+  constructor(
+    private layoutConfigService: LayoutConfigService,
+    private menuConfigService: MenuConfigService,
+    private pageConfigService: PageConfigService,
+    private htmlClassService: HtmlClassService,
+    private store: Store<AppState>,
+    private permissionsService: NgxPermissionsService) {
+    this.loadRolesWithPermissions();
 
-		// register configs by demos
-		this.layoutConfigService.loadConfigs(new LayoutConfig().configs);
-		this.menuConfigService.loadConfigs(new MenuConfig().configs);
-		this.pageConfigService.loadConfigs(new PageConfig().configs);
+    // register configs by demos
+    this.layoutConfigService.loadConfigs(new LayoutConfig().configs);
+    this.menuConfigService.loadConfigs(new MenuConfig().configs);
+    this.pageConfigService.loadConfigs(new PageConfig().configs);
 
-		// setup element classes
-		this.htmlClassService.setConfig(this.layoutConfigService.getConfig());
+    // setup element classes
+    this.htmlClassService.setConfig(this.layoutConfigService.getConfig());
 
-		const subscr = this.layoutConfigService.onConfigUpdated$.subscribe(layoutConfig => {
-			// reset body class based on global and page level layout config, refer to html-class.service.ts
-			document.body.className = '';
-			this.htmlClassService.setConfig(layoutConfig);
-		});
-		this.unsubscribe.push(subscr);
-	}
+    const subscription = this.layoutConfigService.onConfigUpdated$.subscribe(layoutConfig => {
+      // reset body class based on global and page level layout config, refer to html-class.service.ts
+      document.body.className = '';
+      this.htmlClassService.setConfig(layoutConfig);
+    });
+    this.unsubscribe.push(subscription);
+  }
 
-	/**
-	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
-	 */
+  /**
+   * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
+   */
 
-	/**
-	 * On init
-	 */
-	ngOnInit(): void {
-		const config = this.layoutConfigService.getConfig();
-		this.selfLayout = objectPath.get(config, 'self.layout');
-		this.asideDisplay = objectPath.get(config, 'aside.self.display');
-		this.subheaderDisplay = objectPath.get(config, 'subheader.display');
-		this.desktopHeaderDisplay = objectPath.get(config, 'header.self.fixed.desktop');
-		this.fitTop = objectPath.get(config, 'content.fit-top');
-		this.fluid = objectPath.get(config, 'content.width') === 'fluid';
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+    const config = this.layoutConfigService.getConfig();
+    // Load UI from Layout settings
+    this.selfLayout = objectPath.get(config, 'self.layout');
+    this.asideSelfDisplay = objectPath.get(config, 'aside.self.display');
+    this.subheaderDisplay = objectPath.get(config, 'subheader.display');
+    this.contentClasses = this.htmlClassService.getClasses('content', true).toString();
+    this.contentContainerClasses = this.htmlClassService.getClasses('content_container', true).toString();
+    this.contentExtended = objectPath.get(config, 'content.extended');
 
-		// let the layout type change
-		const subscr = this.layoutConfigService.onConfigUpdated$.subscribe(cfg => {
-			setTimeout(() => {
-				this.selfLayout = objectPath.get(cfg, 'self.layout');
-			});
-		});
-		this.unsubscribe.push(subscr);
-	}
+    // let the layout type change
+    const subscription = this.layoutConfigService.onConfigUpdated$.subscribe(cfg => {
+      setTimeout(() => {
+        this.selfLayout = objectPath.get(cfg, 'self.layout');
+      });
+    });
+    this.unsubscribe.push(subscription);
+  }
 
-	/**
-	 * On destroy
-	 */
-	ngOnDestroy(): void {
-		this.unsubscribe.forEach(sb => sb.unsubscribe());
-	}
+  /**
+   * On destroy
+   */
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach(sb => sb.unsubscribe());
+    // https://www.npmjs.com/package/ngx-permissions
+    this.permissionsService.flushPermissions();
+  }
 
-	/**
-	 * NGX Permissions, init roles
-	 */
-	loadRolesWithPermissions() {
-		this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
-		const subscr = this.currentUserPermissions$.subscribe(res => {
-			if (!res || res.length === 0) {
-				return;
-			}
+  /**
+   * NGX Permissions, init roles
+   */
+  loadRolesWithPermissions() {
+    this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
+    const subscription = this.currentUserPermissions$.subscribe(res => {
+      if (!res || res.length === 0) {
+        return;
+      }
 
-			this.permissionsService.flushPermissions();
-			res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
-		});
-		this.unsubscribe.push(subscr);
-	}
+      this.permissionsService.flushPermissions();
+      res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
+    });
+    this.unsubscribe.push(subscription);
+  }
 }

@@ -2,7 +2,10 @@
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 // Material
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator, MatSort, MatSnackBar, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 // RXJS
 import { debounceTime, distinctUntilChanged, tap, skip, delay, take } from 'rxjs/operators';
 import { fromEvent, merge, Subscription, of } from 'rxjs';
@@ -354,13 +357,13 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 	getItemCssClassByType(status: number = 0): string {
 		switch (status) {
 			case 0:
-				return 'accent';
-			case 1:
 				return 'primary';
+			case 1:
+				return 'danger';
 			case 2:
-				return '';
+				return 'success';
 		}
-		return '';
+		return 'success';
 	}
 
 	/**

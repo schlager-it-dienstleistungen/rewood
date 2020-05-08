@@ -1,8 +1,8 @@
 <kt-portlet>
 	<!-- PORTLET LOADING | Binded to TABLE Datasource -->
 	<!-- See prop => '~/core/_crud/models/data-sources/_base.datasource.ts' (loading$) -->
-	<kt-portlet-header [title]="'Roles list'" [class]="'kt-portlet__head--lg'" [viewLoading$]="dataSource.loading$">
-		
+	<kt-portlet-header [title]="'Roles list'" [class]="'card-head-lg'" [viewLoading$]="dataSource.loading$">
+
 		<ng-container ktPortletTools>
 			<button (click)="addRole()" mat-raised-button matTooltip="Create new role" color="primary" type="button">
 				<span>New Role</span>
@@ -15,9 +15,9 @@
 
 	<kt-portlet-body>
 		<!-- start::FILTERS & GROUP ACTIONS -->
-		<div class="kt-form kt-margin-b-30">
+		<div class="form kt-margin-b-30">
 			<!-- start::FILTERS -->
-			<div class="kt-form__filtration">
+			<div class="form-filtration">
 				<div class="row align-items-center">
 					<div class="col-md-2 kt-margin-bottom-10-mobile">
 						<mat-form-field class="mat-form-field-fluid">
@@ -34,20 +34,23 @@
 			<!-- start::GROUP ACTIONS -->
 			<!-- Group actions list: 'Delete selected' | 'Fetch selected' | 'Update status for selected' -->
 			<!-- Group actions are shared for all LISTS -->
-			<div class="row align-items-center collapse kt-form__group-actions kt-margin-top-20 kt-margin-bottom-20"
-				[ngClass]="{'show' : selection.selected.length > 0}"><!-- We show 'Group Actions' div if smth are selected -->
+			<div class="row align-items-center collapse form-group-actions kt-margin-top-20 kt-margin-bottom-20"
+				[ngClass]="{'show' : selection.selected.length > 0}">
+				<!-- We show 'Group Actions' div if smth are selected -->
 				<div class="col-xl-12">
-					<div class="kt-form__group kt-form__group--inline">
-						<div class="kt-form__label kt-form__label-no-wrap">
-							<label class="kt--font-bold kt-font-danger-">
-								<span translate="ECOMMERCE.COMMON.SELECTED_RECORDS_COUNT"></span> {{ selection.selected.length }}
+					<div class="form-group form-group-inline">
+						<div class="form-label form-label-no-wrap">
+							<label class="font-bold font-danger">
+								<span translate="ECOMMERCE.COMMON.SELECTED_RECORDS_COUNT"></span>
+								{{ selection.selected.length }}
 							</label>
 							<!-- selectedCountsTitle => function from codeBehind (roles-list.component.ts file) -->
 							<!-- selectedCountsTitle => just returns title of selected items count -->
 							<!-- for example: Selected records count: 4 -->
 						</div>
-						<div class="kt-form__control kt-form__group--inline">
-							<button (click)="fetchRoles()" mat-raised-button matTooltip="Fetch selected roles"  class="mat-button-mt-4">
+						<div>
+							<button (click)="fetchRoles()" mat-raised-button matTooltip="Fetch selected roles"
+								class="mat-button-mt-4">
 								<mat-icon>clear_all</mat-icon>
 								Fetch Selected
 							</button>
@@ -62,14 +65,8 @@
 		<!-- MATERIAL TABLE | Binded to datasources -->
 		<!-- See off.documentations 'https://material.angular.io/components/table/overview' -->
 		<div class="mat-table__wrapper">
-			<mat-table class="lmat-elevation-z8"
-				#table
-				[dataSource]="dataSource"
-				matSort
-				#sort1="matSort"
-				matSortActive="id"
-				matSortDirection="asc"
-				matSortDisableClear>
+			<mat-table class="lmat-elevation-z8" #table [dataSource]="dataSource" matSort #sort1="matSort"
+				matSortActive="id" matSortDirection="asc" matSortDisableClear>
 				<!-- Checkbox Column -->
 
 				<!-- Table with selection -->
@@ -82,7 +79,8 @@
 						</mat-checkbox>
 					</mat-header-cell>
 					<mat-cell *matCellDef="let row" class="mat-column-checkbox">
-						<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+						<mat-checkbox (click)="$event.stopPropagation()"
+							(change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
 						</mat-checkbox>
 					</mat-cell>
 				</ng-container>
@@ -101,18 +99,14 @@
 				<ng-container matColumnDef="actions">
 					<mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
 					<mat-cell *matCellDef="let role">
-						<button mat-icon-button color="primary"
-							matTooltip="{{ role.isCoreRole ? 'View' : 'Edit'}} role"
+						<button mat-icon-button color="primary" matTooltip="{{ role.isCoreRole ? 'View' : 'Edit'}} role"
 							(click)="editRole(role)">
 							<mat-icon>
 								{{ role.isCoreRole ? 'visibility' : 'create' }}
 							</mat-icon>
 						</button>&nbsp;
-						<button mat-icon-button color="warn"
-							matTooltip="Delete role"
-							type="button"
-							[disabled]="role.isCoreRole"
-							(click)="deleteRole(role)">
+						<button mat-icon-button color="warn" matTooltip="Delete role" type="button"
+							[disabled]="role.isCoreRole" (click)="deleteRole(role)">
 							<mat-icon>delete</mat-icon>
 						</button>
 					</mat-cell>
@@ -122,8 +116,9 @@
 
 				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 			</mat-table>
-			
-			<div class="mat-table__message" *ngIf="!dataSource.hasItems">No records found</div><!-- Message for empty data  -->
+
+			<div class="mat-table__message" *ngIf="!dataSource.hasItems">No records found</div>
+			<!-- Message for empty data  -->
 			<div class="mat-table__message" *ngIf="dataSource.isPreloadTextViewed$ | async">Please wait....</div>
 		</div>
 
@@ -133,7 +128,8 @@
 			<mat-spinner [diameter]="20" *ngIf="dataSource.loading$ | async"></mat-spinner>
 			<!-- MATERIAL PAGINATOR | Binded to dasources -->
 			<!-- See off.documentations 'https://material.angular.io/components/paginator/overview' -->
-			<mat-paginator [pageSize]="10" [pageSizeOptions]="[3, 5, 10]" [length]="dataSource.paginatorTotal$ | async" [showFirstLastButtons]="true"></mat-paginator>
+			<mat-paginator [pageSize]="10" [pageSizeOptions]="[3, 5, 10]" [length]="dataSource.paginatorTotal$ | async"
+				[showFirstLastButtons]="true"></mat-paginator>
 		</div>
 		<!-- end: BOTTOM -->
 	</kt-portlet-body>

@@ -14,3 +14,5 @@ declare var KTPortlet: any;
 declare var KTDialog: any;
 declare var KTWizard: any;
 declare var Chart: any;
+declare var KTLayoutExamples: any;
+declare var ClipboardJS: any;

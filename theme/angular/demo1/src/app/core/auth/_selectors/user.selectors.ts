@@ -7,7 +7,6 @@ import { UsersState } from '../_reducers/user.reducers';
 import { each } from 'lodash';
 import { User } from '../_models/user.model';
 
-
 export const selectUsersState = createFeatureSelector<UsersState>('users');
 
 export const selectUserById = (userId: number) => createSelector(

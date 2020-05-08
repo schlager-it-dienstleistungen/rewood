@@ -2,151 +2,150 @@
 	<kt-portlet-body>
 
 		<!--begin: Wizard -->
-		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2" data-ktwizard-state="step-first">
-			<div class="kt-grid__item kt-wizard-v2__aside">
+		<div #wizard class="wizard wizard-2" id="kt_wizard_v2" data-wizard-state="step-first">
+			<div class="wizard-nav border-right py-8 px-8 py-lg-20 px-lg-10">
 				<!--begin: Form Wizard Nav -->
-				<div class="kt-wizard-v2__nav">
-					<div class="kt-wizard-v2__nav-items">
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-globe"></i>
+				<div class="wizard-steps">
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step" data-wizard-state="current">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/General/User.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Account Settings
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Account Settings
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Setup Your Account Details
-									</div>
+								<div class="wizard-desc">
+									Setup Your Account Details
 								</div>
 							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-bus-stop"></i>
+						</div>
+					</a>
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/Map/Compass.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Setup Locations
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Setup Locations
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Choose Your Location Map
-									</div>
+								<div class="wizard-desc">
+									Choose Your Location Map
 								</div>
 							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-responsive"></i>
+						</div>
+					</a>
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/General/Thunder-move.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Support Channels
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Support Channels
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Add Your Support Agents
-									</div>
+								<div class="wizard-desc">
+									Add Your Support Agents
 								</div>
 							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-trophy"></i>
+						</div>
+					</a>
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/Map/Position.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Set Your Delivery Address
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Set Your Delivery Address
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Address, Street, City, State
-									</div>
+								<div class="wizard-desc">
+									Address, Street, City, State
 								</div>
 							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-truck"></i>
+						</div>
+					</a>
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/Shopping/Credit-card.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Make Payment
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Make Payment
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Use Credit or Debit Cards
-									</div>
+								<div class="wizard-desc">
+									Use Credit or Debit Cards
 								</div>
 							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-confetti"></i>
+						</div>
+					</a>
+					<a class="wizard-step" href="javascript:;" data-wizard-type="step">
+						<div class="wizard-wrapper">
+							<div class="wizard-icon">
+								<span class="svg-icon svg-icon-3x" [inlineSVG]="'assets/media/svg/icons/General/Like.svg'"></span>
+							</div>
+							<div class="wizard-label">
+								<div class="wizard-title">
+									Completed!
 								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Completed!
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Review and Submit
-									</div>
+								<div class="wizard-desc">
+									Review and Submit
 								</div>
 							</div>
-						</a>
-					</div>
+						</div>
+					</a>
 				</div>
 				<!--end: Form Wizard Nav -->
 
 			</div>
-			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
-				<!--begin: Form Wizard Form-->
-				<form class="kt-form" id="kt_form">
-					<!--begin: Form Wizard Step 1-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-						<div class="kt-heading kt-heading--md">Enter your Account Details</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__form">
-								<div class="form-group">
-									<label>First Name</label>
-									<input type="text" class="form-control" name="fname" [(ngModel)]="model.fname" placeholder="First Name" value="John">
-									<span class="form-text text-muted">Please enter your first name.</span>
-								</div>
-								<div class="form-group">
-									<label>Last Name</label>
-									<input type="text" class="form-control" name="lname" [(ngModel)]="model.lname" placeholder="Last Name" value="Wick">
-									<span class="form-text text-muted">Please enter your last name.</span>
-								</div>
-								<div class="row">
-									<div class="col-xl-6">
+			<div class="wizard-body py-8 px-8 py-lg-20 px-lg-10">
+				<!--begin: Wizard Form-->
+				<div class="row">
+					<div class="offset-xxl-2 col-xxl-8">
+						<!--begin: Form Wizard Form-->
+						<form class="form" id="kt_form">
+							<!--begin: Form Wizard Step 1-->
+							<div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+								<h4 class="mb-10 font-weight-bold text-dark">Enter your Account Details</h4>
+								<div class="kt-form__section kt-form__section--first">
+									<div class="kt-wizard-v2__form">
 										<div class="form-group">
-											<label>Phone</label>
-											<input type="tel" class="form-control" name="phone" [(ngModel)]="model.phone" placeholder="phone" value="+61412345678">
-											<span class="form-text text-muted">Please enter your phone number.</span>
+											<label>First Name</label>
+											<input type="text" class="form-control" name="fname" [(ngModel)]="model.fname" placeholder="First Name" value="John">
+											<span class="form-text text-muted">Please enter your first name.</span>
 										</div>
-									</div>
-									<div class="col-xl-6">
 										<div class="form-group">
-											<label>Email</label>
-											<input type="email" class="form-control" name="email" [(ngModel)]="model.email" placeholder="Email" value="john.wick@reeves.com">
-											<span class="form-text text-muted">Please enter your email address.</span>
+											<label>Last Name</label>
+											<input type="text" class="form-control" name="lname" [(ngModel)]="model.lname" placeholder="Last Name" value="Wick">
+											<span class="form-text text-muted">Please enter your last name.</span>
 										</div>
-									</div>
-								</div>
+										<div class="row">
+											<div class="col-xl-6">
+												<div class="form-group">
+													<label>Phone</label>
+													<input type="tel" class="form-control" name="phone" [(ngModel)]="model.phone" placeholder="phone" value="+61412345678">
+													<span class="form-text text-muted">Please enter your phone number.</span>
+												</div>
+											</div>
+											<div class="col-xl-6">
+												<div class="form-group">
+													<label>Email</label>
+													<input type="email" class="form-control" name="email" [(ngModel)]="model.email" placeholder="Email" value="john.wick@reeves.com">
+													<span class="form-text text-muted">Please enter your email address.</span>
+												</div>
+											</div>
+										</div>
 
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 1-->
+							<!--end: Form Wizard Step 1-->
 
-					<!--begin: Form Wizard Step 2-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Setup Your Current Location</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__form">
+							<!--begin: Form Wizard Step 2-->
+							<div class="pb-5" data-wizard-type="step-content">
+								<h4 class="mb-10 font-weight-bold text-dark">Setup Your Current Location</h4>
 								<div class="row">
 									<div class="col-xl-6">
 										<div class="form-group">
@@ -446,15 +445,11 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 2-->
+							<!--end: Form Wizard Step 2-->
 
-					<!--begin: Form Wizard Step 3-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Select your Services</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__form">
+							<!--begin: Form Wizard Step 3-->
+							<div class="pb-5" data-wizard-type="step-content">
+								<h4 class="mb-10 font-weight-bold text-dark">Select your Services</h4>
 								<div class="form-group">
 									<label>Delivery Type</label>
 									<select name="delivery" [(ngModel)]="model.delivery" class="form-control">
@@ -484,15 +479,11 @@
 									</select>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 3-->
+							<!--end: Form Wizard Step 3-->
 
-					<!--begin: Form Wizard Step 4-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Setup Your Delivery Location</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__form">
+							<!--begin: Form Wizard Step 4-->
+							<div class="pb-5" data-wizard-type="step-content">
+								<h4 class="mb-10 font-weight-bold text-dark">Setup Your Delivery Location</h4>
 								<div class="row">
 									<div class="col-xl-6">
 										<div class="form-group">
@@ -792,15 +783,11 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 4-->
+							<!--end: Form Wizard Step 4-->
 
-					<!--begin: Form Wizard Step 5-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Enter your Payment Details</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__form">
+							<!--begin: Form Wizard Step 5-->
+							<div class="pb-5" data-wizard-type="step-content">
+								<h4 class="mb-10 font-weight-bold text-dark">Enter your Payment Details</h4>
 								<div class="row">
 									<div class="col-xl-6">
 										<div class="form-group">
@@ -841,84 +828,84 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 5-->
+							<!--end: Form Wizard Step 5-->
 
-					<!--begin: Form Wizard Step 6-->
-					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Review your Details and Submit</div>
-						<div class="kt-form__section kt-form__section--first">
-							<div class="kt-wizard-v2__review">
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Account Details
+							<!--begin: Form Wizard Step 6-->
+							<div class="pb-5" data-wizard-type="step-content">
+								<h4 class="mb-10 font-weight-bold text-dark">Review your Details and Submit</h4>
+								<div class="border-bottom mb-5 pb-5">
+									<div class="font-weight-bolder mb-3">
+										Account Details:
 									</div>
-									<div class="kt-wizard-v2__review-content">
-										John Wick<br/>
-										Phone: +61412345678<br/>
-										Email: johnwick@reeves.com
+									<div class="line-height-xl">
+										John Wick
+										<br /> Phone: +61412345678
+										<br /> Email: johnwick@reeves.com
 									</div>
 								</div>
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Support Location Address
+								<div class="border-bottom mb-5 pb-5">
+									<div class="font-weight-bolder mb-3">
+										Support Location Address:
 									</div>
-									<div class="kt-wizard-v2__review-content">
-										Address Line 1<br/>
-										Address Line 2<br/>
-										Melbourne 3000, VIC, Australia
-									</div>
-								</div>
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Support Channels
-									</div>
-									<div class="kt-wizard-v2__review-content">
-										Overnight Delivery with Regular Packaging<br/>
-										Preferred Morning (8:00AM - 11:00AM) Delivery
+									<div class="line-height-xl">
+										Address Line 1
+										<br /> Address Line 2
+										<br /> Melbourne 3000, VIC, Australia
 									</div>
 								</div>
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Delivery Address
+								<div class="border-bottom mb-5 pb-5">
+									<div class="font-weight-bolder mb-3">
+										Support Channels:
 									</div>
-									<div class="kt-wizard-v2__review-content">
-										Address Line 1<br/>
-										Address Line 2<br/>
-										Preston 3072, VIC, Australia
+									<div class="line-height-xl">
+										Overnight Delivery with Regular Packaging
+										<br /> Preferred Morning (8:00AM - 11:00AM) Delivery
 									</div>
 								</div>
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Payment Details
+								<div class="border-bottom mb-5 pb-5">
+									<div class="font-weight-bolder mb-3">
+										Delivery Address:
 									</div>
-									<div class="kt-wizard-v2__review-content">
-										Card Number: xxxx xxxx xxxx 1111<br/>
-										Card Name: John Wick<br/>
-										Card Expiry: 01/21
+									<div class="line-height-xl">
+										Address Line 1:
+										<br /> Address Line 2
+										<br /> Preston 3072, VIC, Australia
+									</div>
+								</div>
+								<div class="mb-5">
+									<div class="font-weight-bolder mb-3">
+										Payment Details:
+									</div>
+									<div class="line-height-xl">
+										Card Number: xxxx xxxx xxxx 1111
+										<br /> Card Name: John Wick
+										<br /> Card Expiry: 01/21
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!--end: Form Wizard Step 6-->
+							<!--end: Form Wizard Step 6-->
 
-					<!--begin: Form Actions -->
-					<div class="kt-form__actions">
-						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-							Previous
-						</div>
-						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Submit
-						</div>
-						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-							Next Step
-						</div>
+							<!--begin: Form Actions -->
+							<div class="d-flex justify-content-between border-top pt-10">
+								<div class="mr-2">
+									<div class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-prev">
+										Previous
+									</div>
+								</div>
+								<div>
+									<div (click)="onSubmit()" class="btn btn-success font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-submit">
+										Submit
+									</div>
+									<div class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-next">
+										Next Step
+									</div>
+								</div>
+							</div>
+							<!--end: Form Actions -->
+						</form>
+						<!--end: Form Wizard Form-->
 					</div>
-					<!--end: Form Actions -->
-				</form>
-				<!--end: Form Wizard Form-->
+				</div>
 			</div>
 		</div>
 		<!--end: Wizard -->

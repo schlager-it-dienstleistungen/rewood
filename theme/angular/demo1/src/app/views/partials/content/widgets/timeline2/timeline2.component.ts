@@ -46,12 +46,12 @@ export class Timeline2Component implements OnInit {
 				{
 					time: '14:00',
 					icon: 'fa fa-genderless kt-font-brand',
-					text: 'Make Deposit <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">USD 700</a> To ESL.',
+					text: 'Make Deposit <a href="$event.preventDefault();" class="font-weight-bold font-weight-bold--brand kt-font-bolder">USD 700</a> To ESL.',
 				},
 				{
 					time: '17:00',
 					icon: 'fa fa-genderless kt-font-info',
-					text: 'Placed a new order in <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">SIGNATURE MOBILE</a> marketplace.',
+					text: 'Placed a new order in <a href="$event.preventDefault();" class="font-weight-bold font-weight-bold--brand kt-font-bolder">SIGNATURE MOBILE</a> marketplace.',
 				},
 				{
 					time: '16:00',
@@ -63,7 +63,7 @@ export class Timeline2Component implements OnInit {
 				{
 					time: '17:00',
 					icon: 'fa fa-genderless kt-font-danger',
-					text: 'Received a new feedback on <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">FinancePro App</a> product.',
+					text: 'Received a new feedback on <a href="$event.preventDefault();" class="font-weight-bold font-weight-bold--brand kt-font-bolder">FinancePro App</a> product.',
 				},
 			];
 		}

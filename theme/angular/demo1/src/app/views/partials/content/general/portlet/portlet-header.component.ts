@@ -20,15 +20,15 @@ import { Observable, Subscription } from 'rxjs';
 	selector: 'kt-portlet-header',
 	styleUrls: ['portlet-header.component.scss'],
 	template: `
-		<div class="kt-portlet__head-label" [hidden]="noTitle">
-			<span class="kt-portlet__head-icon" #refIcon [hidden]="hideIcon || !icon">
+		<div class="card-title" [hidden]="noTitle">
+			<span class="card-icon" #refIcon [hidden]="hideIcon || !icon">
 				<ng-content *ngIf="!icon" select="[ktPortletIcon]"></ng-content>
 				<i *ngIf="icon" [ngClass]="icon"></i>
 			</span>
 			<ng-content *ngIf="!title" select="[ktPortletTitle]"></ng-content>
-			<h3 *ngIf="title" class="kt-portlet__head-title" [innerHTML]="title"></h3>
+			<h3 *ngIf="title" class="card-label" [innerHTML]="title"></h3>
 		</div>
-		<div class="kt-portlet__head-toolbar" #refTools [hidden]="hideTools">
+		<div class="card-toolbar" #refTools [hidden]="hideTools">
 			<ng-content select="[ktPortletTools]"></ng-content>
 		</div>`
 })
@@ -48,7 +48,7 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 	@Input() viewLoading$: Observable<boolean>;
 	viewLoading = false;
 
-	@HostBinding('class') classes = 'kt-portlet__head';
+	@HostBinding('class') classes = 'card-header';
 	@HostBinding('attr.ktSticky') stickyDirective: StickyDirective;
 
 	@ViewChild('refIcon', {static: true}) refIcon: ElementRef;
@@ -82,9 +82,9 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 		if (this.sticky) {
 			Promise.resolve(null).then(() => {
 				// get boundary top margin for sticky header
-				const headerElement = document.querySelector('.kt-header') as HTMLElement;
-				const subheaderElement = document.querySelector('.kt-subheader') as HTMLElement;
-				const headerMobileElement = document.querySelector('.kt-header-mobile') as HTMLElement;
+				const headerElement = document.querySelector('.header') as HTMLElement;
+				const subheaderElement = document.querySelector('.subheader') as HTMLElement;
+				const headerMobileElement = document.querySelector('.header-mobile') as HTMLElement;
 
 				let height = 0;
 
@@ -94,15 +94,15 @@ export class PortletHeaderComponent implements OnInit, AfterViewInit, OnDestroy 
 						height += headerMobileElement.offsetHeight;
 					} else {
 						// desktop header
-						if (document.body.classList.contains('kt-header--minimize-topbar')) {
+						if (document.body.classList.contains('header-minimize-topbar')) {
 							// hardcoded minimized header height
 							height = 60;
 						} else {
 							// normal fixed header
-							if (document.body.classList.contains('kt-header--fixed')) {
+							if (document.body.classList.contains('header-fixed')) {
 								height += headerElement.offsetHeight;
 							}
-							if (document.body.classList.contains('kt-subheader--fixed')) {
+							if (document.body.classList.contains('subheader-fixed')) {
 								height += subheaderElement.offsetHeight;
 							}
 						}

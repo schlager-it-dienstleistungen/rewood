@@ -8,9 +8,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
 // the `default as` syntax.
 import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
-import { default as _rollupMoment} from 'moment';
-
 
 const basicDatepicker = {
 	beforeCodeTitle: 'Basic datepicker',
@@ -464,7 +461,7 @@ export class DatepickerMomentExample {
 
 
 
-const moment = _rollupMoment || _moment;
+const moment = _moment;
 
 
 @Component({

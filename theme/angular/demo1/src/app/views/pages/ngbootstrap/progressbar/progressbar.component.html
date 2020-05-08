@@ -1,13 +1,13 @@
-<kt-notice [icon]="'flaticon-warning kt-font-primary'">
-	For more info please check the components's official demos & documentation 
-	<a class="kt-link" href="https://ng-bootstrap.github.io/#/components/progressbar/examples" target="_blank">demos & documentation</a>
+<kt-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+	For more info please check the components's official demos & documentation
+	<a class="font-weight-bold" href="https://ng-bootstrap.github.io/#/components/progressbar/examples" target="_blank">demos & documentation</a>
 </kt-notice>
 
 <div class="row">
 	<div class="col-xl-6">
-		<kt-material-preview [viewItem]="exampleContextualProgressBars">
-			<div class="kt-section">
-				<div class="kt-section__content">
+		<kt-code-preview [viewItem]="exampleContextualProgressBars">
+			<div class="example-preview">
+				<div>
 					<p>
 						<ngb-progressbar type="success" [value]="25"></ngb-progressbar>
 					</p>
@@ -22,11 +22,11 @@
 					</p>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleProgressBarsWithCurrentValueLabels">
-			<div class="kt-section">
-				<div class="kt-section__content">
+		<kt-code-preview [viewItem]="exampleProgressBarsWithCurrentValueLabels">
+			<div class="example-preview">
+				<div>
 					<p>
 						<ngb-progressbar showValue="true" type="success" [value]="25" [max]="100"></ngb-progressbar>
 					</p>
@@ -41,11 +41,11 @@
 					</p>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleStripedProgressBars">
-			<div class="kt-section">
-				<div class="kt-section__content">
+		<kt-code-preview [viewItem]="exampleStripedProgressBars">
+			<div class="example-preview">
+				<div>
 					<p>
 						<ngb-progressbar type="success" [value]="25" [striped]="true"></ngb-progressbar>
 					</p>
@@ -60,18 +60,19 @@
 					</p>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 	<div class="col-xl-6">
-		<kt-material-preview [viewItem]="exampleProgressBarsWithCustomLabels">
-			<div class="kt-section">
-				<div class="kt-section__content">
+		<kt-code-preview [viewItem]="exampleProgressBarsWithCustomLabels">
+			<div class="example-preview">
+				<div>
 					<p>
 						<ngb-progressbar type="success" [value]="25">25</ngb-progressbar>
 					</p>
 					<p>
 						<ngb-progressbar type="info" [value]="50">Copying file
-							<b>2 of 4</b>...</ngb-progressbar>
+							<b>2 of 4</b>...
+						</ngb-progressbar>
 					</p>
 					<p>
 						<ngb-progressbar type="warning" [value]="75" [striped]="true" [animated]="true">
@@ -83,11 +84,11 @@
 					</p>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleProgressBarsWithHeight">
-			<div class="kt-section">
-				<div class="kt-section__content">
+		<kt-code-preview [viewItem]="exampleProgressBarsWithHeight">
+			<div class="example-preview">
+				<div>
 					<p>
 						<ngb-progressbar type="success" [value]="25">default</ngb-progressbar>
 					</p>
@@ -102,22 +103,22 @@
 					</p>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleGlobalConfigurationOfProgressBars">
-			<div class="kt-section">
-				<div class="kt-section__content">
-					<p>This progress bar uses the customized default values.</p>
-					<p>
-						<ngb-progressbar value="250" max="1000" striped="true" animated="true" height="20px" type="success"></ngb-progressbar>
-					</p>
-					<p>This progress bar uses the customized default values, but changes the type using an input.</p>
-					<p>
-						<ngb-progressbar value="500" max="1000" striped="true" animated="true" height="20px" type="info"></ngb-progressbar>
-					</p>
-					
-				</div>
+		<kt-code-preview [viewItem]="exampleGlobalConfigurationOfProgressBars">
+			<p>This progress bar uses the customized default values.</p>
+			<div class="example-preview">
+				<p>
+					<ngb-progressbar value="250" max="1000" striped="true" animated="true" height="20px" type="success"></ngb-progressbar>
+				</p>
 			</div>
-		</kt-material-preview>
+
+			<p class="mt-6">This progress bar uses the customized default values, but changes the type using an input.</p>
+			<div class="example-preview">
+				<p>
+					<ngb-progressbar value="500" max="1000" striped="true" animated="true" height="20px" type="info"></ngb-progressbar>
+				</p>
+			</div>
+		</kt-code-preview>
 	</div>
 </div>

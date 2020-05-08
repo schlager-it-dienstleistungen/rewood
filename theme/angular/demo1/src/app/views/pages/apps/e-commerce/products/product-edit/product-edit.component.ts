@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRe
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // Material
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 // RxJS
 import { Observable, BehaviorSubject, Subscription, of } from 'rxjs';
 import { map, startWith, delay, first } from 'rxjs/operators';

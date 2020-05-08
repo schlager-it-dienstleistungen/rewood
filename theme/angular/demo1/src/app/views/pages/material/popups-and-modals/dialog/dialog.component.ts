@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 	template: `
 		<div class="col-xl-12">
 			<div class="col-xl-12">
-				<div class="kt-modal3__container">
+				<div class="modal3-container">
 					<h1 mat-dialog-title>Favorite Animal</h1>
 					<h2 mat-dialog-title>Install Angular</h2>
 					<mat-dialog-content>
@@ -43,7 +43,7 @@ export class Modal3Component {
 	template: `
 		<div class="col-xl-12">
 			<div class="col-xl-12">
-				<div class="kt-modal2__container">
+				<div class="modal2-container">
 					<h1 mat-dialog-title>Favorite Animal</h1>
 					<div mat-dialog-content>
 						My favorite animal is:

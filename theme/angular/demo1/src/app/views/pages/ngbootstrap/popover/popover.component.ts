@@ -5,8 +5,8 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 const quickAndEasyPopovers = {
 		beforeCodeTitle: 'Quick and easy popovers',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
     <button type="button" class="btn btn-primary kt-btn--wide" placement="top"
       ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
       Popover on top
@@ -43,12 +43,12 @@ export class NgbdPopoverBasic {
 const HTMLAndBindingsInPopovers = {
 		beforeCodeTitle: 'HTML and bindings in popovers',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     Popovers can contain any arbitrary HTML, Angular bindings and even directives! Simply enclose desired content in a
     <code>&lt;ng-template&gt;</code> element.
   </div>
-  <div class="kt-section__content">
+  <div>
     <ng-template #popContent>
       <span>Hello</span>,
       <b>{{name}}</b>!
@@ -75,25 +75,25 @@ export class NgbdPopoverTplcontent {
 const customAndManualTriggers = {
 		beforeCodeTitle: 'Custom and manual triggers',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     You can easily override open and close triggers by specifying event names (separated by
     <code>:</code>) in the
     <code>triggers</code> property.
   </div>
-  <div class="kt-section__content">
+  <div>
 	<button type="button" class="btn btn-primary" ngbPopover="You see, I show up on hover!" triggers="mouseenter:mouseleave"
       popoverTitle="Pop title">
       Hover over me!
     </button>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <span>
     Alternatively you can take full manual control over popover opening / closing events.
   </span>
-  <div class="kt-section__content">
+  <div>
 	<button type="button" class="btn btn-success" ngbPopover="What a great tip!" triggers="manual" #p="ngbPopover"
       (click)="p.open()" popoverTitle="Pop title">
       Click me to open a popover
@@ -120,11 +120,11 @@ export class NgbdPopoverTriggers {
 const contextAndManualTriggers = {
 		beforeCodeTitle: 'Context and manual triggers',
 		htmlCode: `
-<div class="kt-section">
-  <span class="kt-section__sub">
+<div class="example-preview">
+  <span>
     You can optionally pass in a context when manually triggering a popover.
   </span>
-  <div class="kt-section__content">
+  <div>
     <ng-template #popContent let-greeting="greeting">{{greeting}},
 	  <b>{{name1}}</b>!
 	</ng-template>
@@ -172,17 +172,17 @@ export class NgbdPopoverTplwithcontext {
 const popoverVisibilityEvents = {
 		beforeCodeTitle: 'Popover visibility events',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__content">
+<div class="example-preview">
+  <div>
 	<button type="button" class="btn btn-primary" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum
       faucibus." popoverTitle="Popover on top" #popover="ngbPopover">
       Open Popover
     </button>
   </div>
 </div>
-<div class="kt-separator kt-separator--dashed"></div>
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="separator separator-dashed my-6"></div>
+<div class="example-preview">
+  <div>
     Popover is currently:
     <code>{{ popover.isOpen() ? 'open' : 'closed' }}</code>
   </div>
@@ -203,14 +203,14 @@ export class NgbdPopoverVisibility {}
 const appendPopoverInTheBody = {
 		beforeCodeTitle: 'Append popover in the body',
 		htmlCode: `
-<div class="kt-section">
-  <div class="kt-section__sub">
+<div class="example-preview">
+  <div>
     Set the
 	<code>container</code> property to "body" to have the popover be appended to the body instead of the triggering element's
       parent. This option is useful if the element triggering the popover is inside an element that clips its contents (i.e.
     <code>overflow: hidden</code>).
   </div>
-  <div class="kt-section__content">
+  <div>
     <div class='row'>
       <div class='card'>
         <button type="button" class="btn btn-outline-info" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">

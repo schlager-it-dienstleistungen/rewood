@@ -140,7 +140,7 @@ const changeEvent = {
 	beforeCodeTitle: 'Change event binding',
 	htmlCode: `
 <mat-slider (change)="changeSlider()" [(ngModel)]="myValue" min="0" max="100" step="1"></mat-slider>
-<div class="kt-separator kt-separator--dashed" *ngIf="myValue"></div>
+<div class="separator separator-dashed my-6" *ngIf="myValue"></div>
 <span *ngIf="myValue">Selected: <mark>{{ myValue }}</mark>%</span>
 `,
 	tsCode: `

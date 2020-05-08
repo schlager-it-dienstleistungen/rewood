@@ -7,16 +7,25 @@ import "react-app-polyfill/stable";
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import { mockAxios, setupAxios } from "./_metronic";
-import store, { persistor } from "./app/store/store";
-import App from "./App";
+import * as _redux from "./redux";
+import store, { persistor } from "./redux/store";
+import App from "./app/App";
 import "./index.scss"; // Standard version
 // import "./sass/style.react.rtl.css"; // RTL version
+import "./_metronic/_assets/plugins/keenthemes-icons/font/ki.css";
 import "socicon/css/socicon.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "./_metronic/_assets/plugins/line-awesome/css/line-awesome.css";
 import "./_metronic/_assets/plugins/flaticon/flaticon.css";
 import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
+// Datepicker
+import "react-datepicker/dist/react-datepicker.css";
+import {
+  MetronicLayoutProvider,
+  MetronicSplashScreenProvider,
+  MetronicSubheaderProvider
+} from "./_metronic/layout";
+import {MetronicI18nProvider} from "./_metronic/i18n";
+
 /**
  * Base URL of the website.
  *
@@ -30,20 +39,24 @@ const { PUBLIC_URL } = process.env;
  *
  * @see https://github.com/ctimmerm/axios-mock-adapter
  */
-/* const mock = */ mockAxios(axios);
+/* const mock = */ _redux.mockAxios(axios);
 
 /**
  * Inject metronic interceptors for axios.
  *
  * @see https://github.com/axios/axios#interceptors
  */
-setupAxios(axios, store);
+_redux.setupAxios(axios, store);
 
 ReactDOM.render(
-  <App
-    store={store}
-    persistor={persistor}
-    basename={PUBLIC_URL}
-  />,
+  <MetronicI18nProvider>
+    <MetronicLayoutProvider>
+      <MetronicSubheaderProvider>
+        <MetronicSplashScreenProvider>
+          <App store={store} persistor={persistor} basename={PUBLIC_URL} />
+        </MetronicSplashScreenProvider>
+      </MetronicSubheaderProvider>
+    </MetronicLayoutProvider>
+  </MetronicI18nProvider>,
   document.getElementById("root")
 );

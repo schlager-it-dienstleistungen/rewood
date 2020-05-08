@@ -1,6 +1,3 @@
-// RxJS
-import { of } from 'rxjs';
-import { catchError, finalize, tap, debounceTime, delay, distinctUntilChanged } from 'rxjs/operators';
 // NGRX
 import { Store, select } from '@ngrx/store';
 // CRUD
@@ -11,22 +8,22 @@ import { selectUsersInStore, selectUsersPageLoading, selectUsersShowInitWaitingM
 
 
 export class UsersDataSource extends BaseDataSource {
-	constructor(private store: Store<AppState>) {
-		super();
+  constructor(private store: Store<AppState>) {
+    super();
 
-		this.loading$ = this.store.pipe(
-			select(selectUsersPageLoading)
-		);
+    this.loading$ = this.store.pipe(
+      select(selectUsersPageLoading)
+    );
 
-		this.isPreloadTextViewed$ = this.store.pipe(
-			select(selectUsersShowInitWaitingMessage)
-		);
+    this.isPreloadTextViewed$ = this.store.pipe(
+      select(selectUsersShowInitWaitingMessage)
+    );
 
-		this.store.pipe(
-			select(selectUsersInStore)
-		).subscribe((response: QueryResultsModel) => {
-			this.paginatorTotalSubject.next(response.totalCount);
-			this.entitySubject.next(response.items);
-		});
-	}
+    this.store.pipe(
+      select(selectUsersInStore)
+    ).subscribe((response: QueryResultsModel) => {
+      this.paginatorTotalSubject.next(response.totalCount);
+      this.entitySubject.next(response.items);
+    });
+  }
 }

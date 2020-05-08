@@ -99,7 +99,7 @@ const labelPositions = {
 		beforeCodeTitle: 'Label positions and \'Change\' event binding examples',
 		htmlCode: `
 <mat-slide-toggle [labelPosition]="labelPosition">Slide me!</mat-slide-toggle>
-<div class="kt-separator kt-separator--dashed"></div>
+<div class="separator separator-dashed my-6"></div>
 <mat-slide-toggle (change)="changeLablesPositions()">Slide labels position</mat-slide-toggle>`,
 		tsCode: `
 import {Component} from '@angular/core';\n

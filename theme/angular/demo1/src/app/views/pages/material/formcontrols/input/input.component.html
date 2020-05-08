@@ -1,35 +1,35 @@
-<kt-notice [icon]="'flaticon-warning kt-font-primary'">
-	For more info please check the components's official demos & documentation 
-	<a class="kt-link" href="https://material.angular.io/components/input/overview" target="_blank">demos & documentation</a>
+<kt-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+	For more info please check the components's official demos & documentation
+	<a class="font-weight-bold" href="https://material.angular.io/components/input/overview" target="_blank">demos & documentation</a>
 </kt-notice>
 
 <div class="row">
 	<div class="col-xl-6">
-		<kt-material-preview [viewItem]="exampleBasicInputs">
-			<div class="kt-section">
-				<span class="kt-section__sub">
+		<kt-code-preview [viewItem]="exampleBasicInputs">
+			<div class="example-preview">
+				<span>
 					matInput is a directive that allows native
 					<mark>input</mark> and
 					<mark>textarea</mark> elements to work with
 					<code>mat-form-field</code>.
 				</span>
-				<div class="kt-separator kt-separator--dashed"></div>
+				<div class="separator separator-dashed my-6"></div>
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
 							<input matInput placeholder="Favorite food" value="Sushi">
 						</mat-form-field>
-						<div class="kt-separator kt-separator--dashed"></div>
+						<div class="separator separator-dashed my-6"></div>
 						<mat-form-field class="example-full-width">
 							<textarea matInput placeholder="Leave a comment"></textarea>
 						</mat-form-field>
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleInputWithACustomErrorStateMatcher">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputWithACustomErrorStateMatcher">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
@@ -46,10 +46,10 @@
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleAutoResizingTextarea">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleAutoResizingTextarea">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field>
@@ -58,10 +58,10 @@
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleInputWithAClearButton">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputWithAClearButton">
+			<div class="example-preview">
 				<div class="example-container">
 					<mat-form-field class="example-form-field">
 						<input matInput type="text" placeholder="Clearable input" [(ngModel)]="value" />
@@ -72,11 +72,11 @@
 				</div>
 			</div>
 
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 	<div class="col-xl-6">
-		<kt-material-preview [viewItem]="exampleInputWithErrorMessages">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputWithErrorMessages">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
@@ -92,16 +92,16 @@
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleInputsInAForm">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputsInAForm">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
 							<input matInput placeholder="Company (disabled)" disabled value="Google">
 						</mat-form-field>
-						<div class="kt-separator kt-separator--dashed"></div>
+						<div class="separator separator-dashed my-6"></div>
 						<table class="example-full-width" cellspacing="0">
 							<tr>
 								<td>
@@ -117,14 +117,14 @@
 							</tr>
 						</table>
 
-						<div class="kt-separator kt-separator--dashed"></div>
+						<div class="separator separator-dashed my-6"></div>
 						<mat-form-field class="example-full-width">
 							<textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
 						</mat-form-field>
 						<mat-form-field class="example-full-width">
 							<textarea matInput placeholder="Address 2"></textarea>
 						</mat-form-field>
-						<div class="kt-separator kt-separator--dashed"></div>
+						<div class="separator separator-dashed my-6"></div>
 						<table class="example-full-width" cellspacing="0">
 							<tr>
 								<td>
@@ -148,10 +148,10 @@
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 
-		<kt-material-preview [viewItem]="exampleInputWithHints">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputWithHints">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
@@ -165,11 +165,11 @@
 				</div>
 			</div>
 
-		</kt-material-preview>
+		</kt-code-preview>
 
 
-		<kt-material-preview [viewItem]="exampleInputsWithPrefixesAndSuffixes">
-			<div class="kt-section">
+		<kt-code-preview [viewItem]="exampleInputsWithPrefixesAndSuffixes">
+			<div class="example-preview">
 				<div class="example-container">
 					<form class="example-container">
 						<mat-form-field class="example-full-width">
@@ -180,6 +180,6 @@
 					</form>
 				</div>
 			</div>
-		</kt-material-preview>
+		</kt-code-preview>
 	</div>
 </div>

@@ -26,9 +26,11 @@ $(document).ready(function() {
     windowsize = $(window).width();
     if (windowsize < 1200 && windowsize > 768) {
       $('.contents__sidebar').css('padding-top', '70px');
-    } else if (windowsize < 768) {
+    }
+    else if (windowsize < 768) {
       $('.contents__sidebar').removeClass('fixedsticky').css('padding-top', '0');
-    } else {
+    }
+    else {
       $('.contents__sidebar').addClass('fixedsticky');
     }
   }
@@ -45,4 +47,40 @@ $(document).ready(function() {
   // init tooltips
   $('[data-toggle="tooltip"]').tooltip();
 
+  if ($('.testimonials-slider').length) {
+    // Init Testimonilas Slider
+    var slider = tns({
+      // for all breakpoints
+      container: '.testimonials-slider',
+      items: 1,
+      center: true,
+      loop: true,
+      swipeAngle: false,
+      speed: 2000,
+      autoplayTimeout: 7000,
+      dots: true,
+      controls: false,
+      autoplayButtonOutput: false,
+      autoplay: true,
+      navPosition: 'bottom',
+      responsive: {
+        // for media min-width:600px breakpoints
+        '600': {
+          items: 1,
+          fixedWidth: 550,
+          edgePadding: 100,
+        },
+      },
+    });
+  }
+
+   $('.toggle-link').on('click', function () {
+       if ($(this).hasClass('toggle-on')) {
+           $(this).text('Read more');
+           $(this).removeClass('toggle-on');
+       } else {
+           $(this).text('Read less');
+           $(this).addClass('toggle-on');
+       }
+   });
 });

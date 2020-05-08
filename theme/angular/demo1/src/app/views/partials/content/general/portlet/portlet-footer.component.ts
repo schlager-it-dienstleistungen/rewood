@@ -8,7 +8,7 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 })
 export class PortletFooterComponent implements OnInit {
 	// Public properties
-	@HostBinding('class') classList = 'kt-portlet__foot';
+	@HostBinding('class') classList = 'card-footer';
 	@Input() class: string;
 
 	/**
