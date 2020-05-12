@@ -18,21 +18,9 @@ var KTCard = function(elementId, options) {
 
     // Default options
     var defaultOptions = {
-        bodyToggleSpeed: 400,
-        tooltips: true,
-        tools: {
-            toggle: {
-                collapse: 'Collapse',
-                expand: 'Expand'
-            },
-            reload: 'Reload',
-            remove: 'Remove',
-            fullscreen: {
-                on: 'Fullscreen',
-                off: 'Exit Fullscreen'
-            }
-        },
+        toggleSpeed: 400,
         sticky: {
+            releseOnReverse: false,
             offset: 300,
             zIndex: 101
         }
@@ -112,17 +100,6 @@ var KTCard = function(elementId, options) {
                     Plugin.toggle();
                 });
             }
-
-            //== Fullscreen
-            var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-            if (fullscreen) {
-                KTUtil.addEvent(fullscreen, 'click', function(e) {
-                    e.preventDefault();
-                    Plugin.fullscreen();
-                });
-            }
-
-            Plugin.setupTooltips();
         },
 
         /**
@@ -222,12 +199,6 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            if (KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen')) {
-                Plugin.fullscreen('off');
-            }
-
-            Plugin.removeTooltips();
-
             KTUtil.remove(element);
 
             Plugin.eventTrigger('afterRemove');
@@ -257,119 +228,6 @@ var KTCard = function(elementId, options) {
         },
 
         /**
-         * Setup tooltips
-         */
-        setupTooltips: function() {
-            if (the.options.tooltips) {
-                var collapsed = KTUtil.hasClass(element, 'card-collapse') || KTUtil.hasClass(element, 'card-collapsed');
-                var fullscreenOn = KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen');
-
-                //== Remove
-                var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-                if (remove) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(remove, {
-                        title: the.options.tools.remove,
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(remove).set('tooltip', tip);
-                }
-
-                //== Reload
-                var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-                if (reload) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(reload, {
-                        title: the.options.tools.reload,
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(reload).set('tooltip', tip);
-                }
-
-                //== Toggle
-                var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-                if (toggle) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(toggle, {
-                        title: (collapsed ? the.options.tools.toggle.expand : the.options.tools.toggle.collapse),
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(toggle).set('tooltip', tip);
-                }
-
-                //== Fullscreen
-                var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-                if (fullscreen) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(fullscreen, {
-                        title: (fullscreenOn ? the.options.tools.fullscreen.off : the.options.tools.fullscreen.on),
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(fullscreen).set('tooltip', tip);
-                }
-            }
-        },
-
-        /**
-         * Setup tooltips
-         */
-        removeTooltips: function() {
-            if (the.options.tooltips) {
-                //== Remove
-                var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-                if (remove && KTUtil.data(remove).has('tooltip')) {
-                    KTUtil.data(remove).get('tooltip').dispose();
-                }
-
-                //== Reload
-                var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-                if (reload && KTUtil.data(reload).has('tooltip')) {
-                    KTUtil.data(reload).get('tooltip').dispose();
-                }
-
-                //== Toggle
-                var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-                if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                    KTUtil.data(toggle).get('tooltip').dispose();
-                }
-
-                //== Fullscreen
-                var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-                if (fullscreen && KTUtil.data(fullscreen).has('tooltip')) {
-                    KTUtil.data(fullscreen).get('tooltip').dispose();
-                }
-            }
-        },
-
-        /**
          * Reload
          */
         reload: function() {
@@ -395,16 +253,11 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            KTUtil.slideUp(the.body, the.options.bodyToggleSpeed, function() {
+            KTUtil.slideUp(the.body, the.options.toggleSpeed, function() {
                 Plugin.eventTrigger('afterCollapse');
             });
 
             KTUtil.addClass(element, 'card-collapse');
-
-            var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-            if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.expand);
-            }
         },
 
         /**
@@ -415,60 +268,12 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            KTUtil.slideDown(the.body, the.options.bodyToggleSpeed, function() {
+            KTUtil.slideDown(the.body, the.options.toggleSpeed, function() {
                 Plugin.eventTrigger('afterExpand');
             });
 
             KTUtil.removeClass(element, 'card-collapse');
             KTUtil.removeClass(element, 'card-collapsed');
-
-            var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-            if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.collapse);
-            }
-        },
-
-        /**
-         * fullscreen
-         */
-        fullscreen: function(mode) {
-            var d = {};
-            var speed = 300;
-
-            if (mode === 'off' || (KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen'))) {
-                Plugin.eventTrigger('beforeFullscreenOff');
-
-                KTUtil.removeClass(body, 'card-fullscreen');
-                KTUtil.removeClass(element, 'card-fullscreen');
-
-                Plugin.removeTooltips();
-                Plugin.setupTooltips();
-
-                if (the.footer) {
-                    KTUtil.css(the.body, 'margin-bottom', '');
-                    KTUtil.css(the.footer, 'margin-top', '');
-                }
-
-                Plugin.eventTrigger('afterFullscreenOff');
-            } else {
-                Plugin.eventTrigger('beforeFullscreenOn');
-
-                KTUtil.addClass(element, 'card-fullscreen');
-                KTUtil.addClass(body, 'card-fullscreen');
-
-                Plugin.removeTooltips();
-                Plugin.setupTooltips();
-
-
-                if (the.footer) {
-                    var height1 = parseInt(KTUtil.css(the.footer, 'height'));
-                    var height2 = parseInt(KTUtil.css(the.footer, 'height')) + parseInt(KTUtil.css(the.header, 'height'));
-                    KTUtil.css(the.body, 'margin-bottom', height1 + 'px');
-                    KTUtil.css(the.footer, 'margin-top', '-' + height2 + 'px');
-                }
-
-                Plugin.eventTrigger('afterFullscreenOn');
-            }
         },
 
         /**
@@ -517,31 +322,27 @@ var KTCard = function(elementId, options) {
 
     /**
      * Remove card
-     * @returns {KTCard}
      */
     the.remove = function() {
         return Plugin.remove(html);
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Init sticky card
      */
     the.initSticky = function() {
         return Plugin.initSticky();
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Rerender sticky layout
      */
     the.updateSticky = function() {
         return Plugin.updateSticky();
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Reset the sticky
      */
     the.resetSticky = function() {
         return Plugin.resetSticky();
@@ -557,7 +358,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Reload card
-     * @returns {KTCard}
      */
     the.reload = function() {
         return Plugin.reload();
@@ -565,7 +365,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Set card content
-     * @returns {KTCard}
      */
     the.setContent = function(html) {
         return Plugin.setContent(html);
@@ -573,7 +372,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Toggle card
-     * @returns {KTCard}
      */
     the.toggle = function() {
         return Plugin.toggle();
@@ -581,7 +379,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Collapse card
-     * @returns {KTCard}
      */
     the.collapse = function() {
         return Plugin.collapse();
@@ -589,26 +386,9 @@ var KTCard = function(elementId, options) {
 
     /**
      * Expand card
-     * @returns {KTCard}
      */
     the.expand = function() {
         return Plugin.expand();
-    };
-
-    /**
-     * Fullscreen card
-     * @returns {Mcard}
-     */
-    the.fullscreen = function() {
-        return Plugin.fullscreen('on');
-    };
-
-    /**
-     * Fullscreen card
-     * @returns {Mcard}
-     */
-    the.unFullscreen = function() {
-        return Plugin.fullscreen('off');
     };
 
     /**

@@ -25,8 +25,8 @@ export class HttpUtilsService {
    * get standard content-type
    */
   getHTTPHeaders(): HttpHeaders {
-    const result = new HttpHeaders();
-    result.set('Content-Type', 'application/json');
+    let result = new HttpHeaders();
+    result = result.set('Content-Type', 'application/json');
     return result;
   }
 

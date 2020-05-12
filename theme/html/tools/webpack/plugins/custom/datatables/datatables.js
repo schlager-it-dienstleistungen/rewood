@@ -1,3 +1,6 @@
+
+// Datatable.net - DataTables is a plug-in for the jQuery Javascript library: https://datatables.net/
+
 // jquery
 window.jQuery = window.$ = require('jquery');
 

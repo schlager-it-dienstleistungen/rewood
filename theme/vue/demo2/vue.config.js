@@ -2,7 +2,6 @@ const path = require("path");
 
 module.exports = {
   // publicPath: "/metronic/preview/vue/demo2/",
-  // publicPath: "/keenthemes/themes/metronic/theme/vue/demo2/dist/",
   configureWebpack: {
     resolve: {
       alias: {

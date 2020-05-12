@@ -93,9 +93,10 @@ var KTApp = function() {
         // init card tools
         $('[data-card="true"]').each(function() {
             var el = $(this);
+            var options = {};
 
             if (el.data('data-card-initialized') !== true) {
-                initCard(el, {});
+                initCard(el, options);
                 el.data('data-card-initialized', true);
             }
         });

@@ -11,8 +11,8 @@ import KTLayoutContent from "../../_assets/js/layout/base/content";
 import KTLayoutFooter from "../../_assets/js/layout/base/footer";
 import KTLayoutSubheader from "../../_assets/js/layout/base/subheader";
 import KTLayoutScrolltop from "../../_assets/js/layout/extended/scrolltop";
-import KTLayoutStickyCard from "../../_assets/js/layout/extended/sticky-card";
-import KTLayoutStretchedCard from "../../_assets/js/layout/extended/stretched-card";
+import KTLayoutStickyCard from "../../_assets/js/layout/base/sticky-card";
+import KTLayoutStretchedCard from "../../_assets/js/layout/base/stretched-card";
 import KTLayoutQuickPanel from "../../_assets/js/layout/extended/quick-panel";
 import KTLayoutQuickUser from "../../_assets/js/layout/extended/quick-user";
 

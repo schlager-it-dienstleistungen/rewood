@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 600);
+/******/ 	return __webpack_require__(__webpack_require__.s = 602);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,26 +113,27 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 600:
+/***/ 602:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(601);
+module.exports = __webpack_require__(603);
 
 
 /***/ }),
 
-/***/ 601:
+/***/ 603:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(602);
-
-__webpack_require__(603);
-
+// TinyMCE: The rich text editor built to scale, designed to innovate, and developed in open source: https://www.tiny.cloud/
 __webpack_require__(604);
 
+__webpack_require__(605);
+
+__webpack_require__(606);
+
 /***/ }),
 
-/***/ 602:
+/***/ 604:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -148,7 +149,7 @@ __webpack_require__(604);
 
 /***/ }),
 
-/***/ 603:
+/***/ 605:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -31565,7 +31566,7 @@ __webpack_require__(604);
 
 /***/ }),
 
-/***/ 604:
+/***/ 606:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**

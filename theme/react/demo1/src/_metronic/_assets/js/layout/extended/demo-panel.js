@@ -80,7 +80,9 @@ var KTLayoutDemoPanel = function() {
             if (!KTCookie.getCookie('kt_demo_panel_shown')) {
                 var expires = new Date(new Date().getTime() + 15 * 60 * 1000); // expire in 15 minutes from now
                 KTCookie.setCookie('kt_demo_panel_shown', 1, { expires: expires });
-                offcanvas.show();
+                if (typeof _offcanvasObject !== 'undefined') {
+                    _offcanvasObject.show();
+                }
             }
         }, 4000);
     }

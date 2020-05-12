@@ -77,11 +77,18 @@ $dt-page-color-active: $white;
                 }
             }
 
-            &.sorting_asc,
+            &.sorting_asc {
+                color: $primary !important;
+
+                &:before {
+                    opacity: 1;
+                    color: $primary !important;
+                }
+            }
+
             &.sorting_desc {
                 color: $primary !important;
 
-                &:before,
                 &:after {
                     opacity: 1;
                     color: $primary !important;

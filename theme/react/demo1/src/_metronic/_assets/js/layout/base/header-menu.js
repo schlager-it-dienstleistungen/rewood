@@ -23,7 +23,7 @@ var KTLayoutHeaderMenu = function() {
 				state: 'mobile-toggle-active'
 			}
 		});
-
+		
 		_menuObject = new KTMenu(_menuElement, {
 			submenu: {
 				desktop: 'dropdown',
@@ -35,6 +35,13 @@ var KTLayoutHeaderMenu = function() {
 				expandAll: false // allow having multiple expanded accordions in the menu
 			}
 		});
+
+		// Close aside offcanvas panel before page reload On tablet and mobile
+        _menuObject.on('linkClick', function(menu) {
+            if (KTUtil.isBreakpointDown('lg')) { // Tablet and mobile mode
+                _offcanvasObject.hide(); // Hide offcanvas after general link click
+            }
+        });
 	}
 
     // Public methods

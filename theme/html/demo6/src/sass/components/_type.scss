@@ -29,3 +29,9 @@
 .display-4 {
   @include font-size($display4-size, true);
 }
+
+// Reset global outline
+a,
+button {
+    outline: 0 !important;
+}

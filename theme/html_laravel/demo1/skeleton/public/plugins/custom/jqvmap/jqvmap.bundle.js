@@ -81,26 +81,23 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 550);
+/******/ 	return __webpack_require__(__webpack_require__.s = 552);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 550:
+/***/ 552:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(551);
+module.exports = __webpack_require__(553);
 
 
 /***/ }),
 
-/***/ 551:
+/***/ 553:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(552);
-
-__webpack_require__(553);
-
+// JQVMap - JQVMap is a jQuery plugin that renders Interactive, Clickable Vector Maps: https://github.com/10bestdesign/jqvmap/
 __webpack_require__(554);
 
 __webpack_require__(555);
@@ -109,9 +106,13 @@ __webpack_require__(556);
 
 __webpack_require__(557);
 
+__webpack_require__(558);
+
+__webpack_require__(559);
+
 /***/ }),
 
-/***/ 552:
+/***/ 554:
 /***/ (function(module, exports) {
 
 /*!
@@ -1399,7 +1400,7 @@ VectorCanvas.prototype.setSize = function (width, height) {
 
 /***/ }),
 
-/***/ 553:
+/***/ 555:
 /***/ (function(module, exports) {
 
 /** Add World Map Data Points */
@@ -1408,7 +1409,7 @@ jQuery.fn.vectorMap('addMap', 'world_en', {"width":950,"height":550,"paths":{"id
 
 /***/ }),
 
-/***/ 554:
+/***/ 556:
 /***/ (function(module, exports) {
 
 /** Add Russia Map Data Points */
@@ -1417,7 +1418,7 @@ jQuery.fn.vectorMap('addMap','russia_en',{"width":959,"height":593,"paths":{"da"
 
 /***/ }),
 
-/***/ 555:
+/***/ 557:
 /***/ (function(module, exports) {
 
 /** Add USA Map Data Points */
@@ -1426,7 +1427,7 @@ jQuery.fn.vectorMap('addMap', 'usa_en', {"width":959,"height":593,"paths":{"hi":
 
 /***/ }),
 
-/***/ 556:
+/***/ 558:
 /***/ (function(module, exports) {
 
 /** Add Germany Map Data Points */
@@ -1435,7 +1436,7 @@ jQuery.fn.vectorMap('addMap', 'germany_en', {"width":592,"height":801,"paths":{"
 
 /***/ }),
 
-/***/ 557:
+/***/ 559:
 /***/ (function(module, exports) {
 
 /** Add Europe Map Data Points */

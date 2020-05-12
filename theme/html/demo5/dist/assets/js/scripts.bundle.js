@@ -93,9 +93,10 @@ var KTApp = function() {
         // init card tools
         $('[data-card="true"]').each(function() {
             var el = $(this);
+            var options = {};
 
             if (el.data('data-card-initialized') !== true) {
-                initCard(el, {});
+                initCard(el, options);
                 el.data('data-card-initialized', true);
             }
         });
@@ -364,21 +365,9 @@ var KTCard = function(elementId, options) {
 
     // Default options
     var defaultOptions = {
-        bodyToggleSpeed: 400,
-        tooltips: true,
-        tools: {
-            toggle: {
-                collapse: 'Collapse',
-                expand: 'Expand'
-            },
-            reload: 'Reload',
-            remove: 'Remove',
-            fullscreen: {
-                on: 'Fullscreen',
-                off: 'Exit Fullscreen'
-            }
-        },
+        toggleSpeed: 400,
         sticky: {
+            releseOnReverse: false,
             offset: 300,
             zIndex: 101
         }
@@ -458,17 +447,6 @@ var KTCard = function(elementId, options) {
                     Plugin.toggle();
                 });
             }
-
-            //== Fullscreen
-            var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-            if (fullscreen) {
-                KTUtil.addEvent(fullscreen, 'click', function(e) {
-                    e.preventDefault();
-                    Plugin.fullscreen();
-                });
-            }
-
-            Plugin.setupTooltips();
         },
 
         /**
@@ -568,12 +546,6 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            if (KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen')) {
-                Plugin.fullscreen('off');
-            }
-
-            Plugin.removeTooltips();
-
             KTUtil.remove(element);
 
             Plugin.eventTrigger('afterRemove');
@@ -603,119 +575,6 @@ var KTCard = function(elementId, options) {
         },
 
         /**
-         * Setup tooltips
-         */
-        setupTooltips: function() {
-            if (the.options.tooltips) {
-                var collapsed = KTUtil.hasClass(element, 'card-collapse') || KTUtil.hasClass(element, 'card-collapsed');
-                var fullscreenOn = KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen');
-
-                //== Remove
-                var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-                if (remove) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(remove, {
-                        title: the.options.tools.remove,
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(remove).set('tooltip', tip);
-                }
-
-                //== Reload
-                var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-                if (reload) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(reload, {
-                        title: the.options.tools.reload,
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(reload).set('tooltip', tip);
-                }
-
-                //== Toggle
-                var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-                if (toggle) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(toggle, {
-                        title: (collapsed ? the.options.tools.toggle.expand : the.options.tools.toggle.collapse),
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(toggle).set('tooltip', tip);
-                }
-
-                //== Fullscreen
-                var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-                if (fullscreen) {
-                    var placement = (fullscreenOn ? 'bottom' : 'top');
-                    var tip = new Tooltip(fullscreen, {
-                        title: (fullscreenOn ? the.options.tools.fullscreen.off : the.options.tools.fullscreen.on),
-                        placement: placement,
-                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
-                        trigger: 'hover',
-                        template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-                    });
-
-                    KTUtil.data(fullscreen).set('tooltip', tip);
-                }
-            }
-        },
-
-        /**
-         * Setup tooltips
-         */
-        removeTooltips: function() {
-            if (the.options.tooltips) {
-                //== Remove
-                var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-                if (remove && KTUtil.data(remove).has('tooltip')) {
-                    KTUtil.data(remove).get('tooltip').dispose();
-                }
-
-                //== Reload
-                var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-                if (reload && KTUtil.data(reload).has('tooltip')) {
-                    KTUtil.data(reload).get('tooltip').dispose();
-                }
-
-                //== Toggle
-                var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-                if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                    KTUtil.data(toggle).get('tooltip').dispose();
-                }
-
-                //== Fullscreen
-                var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-                if (fullscreen && KTUtil.data(fullscreen).has('tooltip')) {
-                    KTUtil.data(fullscreen).get('tooltip').dispose();
-                }
-            }
-        },
-
-        /**
          * Reload
          */
         reload: function() {
@@ -741,16 +600,11 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            KTUtil.slideUp(the.body, the.options.bodyToggleSpeed, function() {
+            KTUtil.slideUp(the.body, the.options.toggleSpeed, function() {
                 Plugin.eventTrigger('afterCollapse');
             });
 
             KTUtil.addClass(element, 'card-collapse');
-
-            var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-            if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.expand);
-            }
         },
 
         /**
@@ -761,60 +615,12 @@ var KTCard = function(elementId, options) {
                 return;
             }
 
-            KTUtil.slideDown(the.body, the.options.bodyToggleSpeed, function() {
+            KTUtil.slideDown(the.body, the.options.toggleSpeed, function() {
                 Plugin.eventTrigger('afterExpand');
             });
 
             KTUtil.removeClass(element, 'card-collapse');
             KTUtil.removeClass(element, 'card-collapsed');
-
-            var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-            if (toggle && KTUtil.data(toggle).has('tooltip')) {
-                KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.collapse);
-            }
-        },
-
-        /**
-         * fullscreen
-         */
-        fullscreen: function(mode) {
-            var d = {};
-            var speed = 300;
-
-            if (mode === 'off' || (KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen'))) {
-                Plugin.eventTrigger('beforeFullscreenOff');
-
-                KTUtil.removeClass(body, 'card-fullscreen');
-                KTUtil.removeClass(element, 'card-fullscreen');
-
-                Plugin.removeTooltips();
-                Plugin.setupTooltips();
-
-                if (the.footer) {
-                    KTUtil.css(the.body, 'margin-bottom', '');
-                    KTUtil.css(the.footer, 'margin-top', '');
-                }
-
-                Plugin.eventTrigger('afterFullscreenOff');
-            } else {
-                Plugin.eventTrigger('beforeFullscreenOn');
-
-                KTUtil.addClass(element, 'card-fullscreen');
-                KTUtil.addClass(body, 'card-fullscreen');
-
-                Plugin.removeTooltips();
-                Plugin.setupTooltips();
-
-
-                if (the.footer) {
-                    var height1 = parseInt(KTUtil.css(the.footer, 'height'));
-                    var height2 = parseInt(KTUtil.css(the.footer, 'height')) + parseInt(KTUtil.css(the.header, 'height'));
-                    KTUtil.css(the.body, 'margin-bottom', height1 + 'px');
-                    KTUtil.css(the.footer, 'margin-top', '-' + height2 + 'px');
-                }
-
-                Plugin.eventTrigger('afterFullscreenOn');
-            }
         },
 
         /**
@@ -863,31 +669,27 @@ var KTCard = function(elementId, options) {
 
     /**
      * Remove card
-     * @returns {KTCard}
      */
     the.remove = function() {
         return Plugin.remove(html);
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Init sticky card
      */
     the.initSticky = function() {
         return Plugin.initSticky();
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Rerender sticky layout
      */
     the.updateSticky = function() {
         return Plugin.updateSticky();
     };
 
     /**
-     * Remove card
-     * @returns {KTCard}
+     * Reset the sticky
      */
     the.resetSticky = function() {
         return Plugin.resetSticky();
@@ -903,7 +705,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Reload card
-     * @returns {KTCard}
      */
     the.reload = function() {
         return Plugin.reload();
@@ -911,7 +712,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Set card content
-     * @returns {KTCard}
      */
     the.setContent = function(html) {
         return Plugin.setContent(html);
@@ -919,7 +719,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Toggle card
-     * @returns {KTCard}
      */
     the.toggle = function() {
         return Plugin.toggle();
@@ -927,7 +726,6 @@ var KTCard = function(elementId, options) {
 
     /**
      * Collapse card
-     * @returns {KTCard}
      */
     the.collapse = function() {
         return Plugin.collapse();
@@ -935,26 +733,9 @@ var KTCard = function(elementId, options) {
 
     /**
      * Expand card
-     * @returns {KTCard}
      */
     the.expand = function() {
         return Plugin.expand();
-    };
-
-    /**
-     * Fullscreen card
-     * @returns {Mcard}
-     */
-    the.fullscreen = function() {
-        return Plugin.fullscreen('on');
-    };
-
-    /**
-     * Fullscreen card
-     * @returns {Mcard}
-     */
-    the.unFullscreen = function() {
-        return Plugin.fullscreen('off');
     };
 
     /**
@@ -1773,7 +1554,7 @@ var KTMenu = function(elementId, options) {
                 the.eventHandlers['event_5'] = KTUtil.on( element, '[data-menu-toggle="tab"] > .menu-toggle, [data-menu-toggle="tab"] > .menu-link .menu-toggle', 'click', Plugin.handleSubmenuDropdownTabClick);
             }
 
-            // handle link click
+            // Handle general link click
             the.eventHandlers['event_6'] = KTUtil.on(element, '.menu-item > .menu-link:not(.menu-toggle):not(.menu-link-toggle-skip)', 'click', Plugin.handleLinkClick);
 
             // Init scrollable menu
@@ -2002,7 +1783,7 @@ var KTMenu = function(elementId, options) {
          * @returns {KTMenu}
          */
         handleLinkClick: function(e) {
-            var submenu = this.closest('.menu-item.menu-item-submenu'); //
+            var submenu = this.closest('.menu-item.menu-item-submenu');
 
             // Trigger click event handlers
             var result = Plugin.eventTrigger('linkClick', this, e);
@@ -9184,6 +8965,531 @@ KTUtil.ready(function() {
 
 "use strict";
 
+var KTLayoutAsideMenu = function() {
+    // Private properties
+    var _element;
+    var _menuObject;
+
+	// Initialize
+	var _init = function() {
+        
+		_menuObject = new KTMenu(_element, {
+			// Submenu setup
+			submenu: {
+				desktop: 'accordion',
+				tablet: 'accordion', // menu set to accordion in tablet mode
+				mobile: 'accordion' // menu set to accordion in mobile mode
+			},
+
+			// Accordion setup
+			accordion: {
+				expandAll: false // allow having multiple expanded accordions in the menu
+			}
+		});
+	}
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+
+            if (!_element) {
+                return;
+            }
+
+            // Initialize menu
+            _init();
+		},
+
+		getElement: function() {
+			return _element;
+		},
+
+        getMenu: function() {
+			return _menuObject;
+		},
+
+        pauseDropdownHover: function(time) {
+			if (_menuObject) {
+				_menuObject.pauseDropdownHover(time);
+			}
+		},
+
+		closeMobileOffcanvas: function() {
+			if (_menuObject && KTUtil.isMobileDevice()) {
+				_menuObject.hide();
+			}
+		}
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutAsideMenu;
+}
+
+"use strict";
+
+var KTLayoutAside = function() {
+    // Private properties
+    var _body;
+    var _element;
+    var _asideMenuWrapperElement;
+    var _offcanvasObject;
+
+    // Private functions
+	// Initialize
+	var _init = function() {
+		var offcanvasClass = KTUtil.hasClass(_element, 'aside-offcanvas-default') ? 'aside-offcanvas-default' : 'aside';
+
+        // Initialize mobile aside offcanvas
+		_offcanvasObject = new KTOffcanvas(_element, {
+			baseClass: offcanvasClass,
+			overlay: true,
+			closeBy: 'kt_aside_close_btn',
+			toggleBy: ['kt_aside_desktop_toggle', 'kt_aside_tablet_and_mobile_toggle']
+		});
+	}
+
+    var _initScroll = function() {
+        KTUtil.scrollInit(_asideMenuWrapperElement, {
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
+            height: function() {
+                var height = parseInt(KTUtil.getViewPort().height);
+
+                height = height - (parseInt(KTUtil.css(_asideMenuWrapperElement , 'marginBottom')) + parseInt(KTUtil.css(_asideMenuWrapperElement, 'marginTop')));
+
+                return height;
+            }
+        });
+    }
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+            _asideMenuWrapperElement =  KTUtil.getById('kt_aside_menu_wrapper');
+            _body = KTUtil.getBody();
+
+            if (!_element) {
+                return;
+            }
+
+            // Initialize
+            _init();
+            _initScroll();
+        },
+
+        getElement: function() {
+            return _element;
+        },
+
+        getOffcanvas: function() {
+            return _offcanvasObject;
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutAside;
+}
+
+"use strict";
+
+var KTLayoutContent = function() {
+    // Private properties
+    var _element;
+
+	// Private functions
+	var _getHeight = function() {
+		var height;
+
+		height = KTUtil.getViewPort().height;
+
+        if (_element) {
+            height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
+        }        
+
+        height = height - KTLayoutHeader.getHeight();
+        height = height - KTLayoutSubheader.getHeight();
+        height = height - KTLayoutFooter.getHeight();
+
+		return height;
+	}
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+		},
+
+		getHeight: function() {
+			return _getHeight();
+		},
+
+        getElement: function() {
+            return _element;
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutContent;
+}
+
+"use strict";
+
+var KTLayoutFooter = function() {
+    // Private properties
+    var _element;
+
+	// Private functions
+	var _getHeight = function() {
+		var height = 0;
+
+        if (_element) {
+            height = KTUtil.actualHeight(_element);
+        }
+
+		return height;
+	}
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+		},
+
+		getHeight: function() {
+			return _getHeight();
+		},
+
+        getElement: function() {
+            return _element;
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutFooter;
+}
+
+"use strict";
+
+var KTLayoutHeaderTopbar = function() {
+    // Private properties
+	var _toggleElement;
+    var _toggleObject;
+
+    // Private functions
+    var _init = function() {
+		_toggleObject = new KTToggle(_toggleElement, {
+			target: KTUtil.getBody(),
+			targetState: 'topbar-mobile-on',
+			toggleState: 'active'
+		});
+    }
+
+    // Public methods
+	return {
+		init: function(id) {
+            _toggleElement = KTUtil.getById(id);
+
+			if (!_toggleElement) {
+                return;
+            }
+
+            // Initialize
+            _init();
+		},
+
+        getToggleElement: function() {
+            return _toggleElement;
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutHeaderTopbar;
+}
+
+"use strict";
+
+var KTLayoutHeader = function() {
+    // Private properties
+    var _element;
+    var _elementForMobile;
+    var _object;
+
+	// Private functions
+
+    // Get height
+    var _getHeight = function() {
+        var height = 0;
+
+        if (_element) {
+            height = KTUtil.actualHeight(_element) + 1;
+        }
+
+        return height;
+    }
+
+    // Get height
+    var _getHeightForMobile = function() {
+        var height;
+
+        height = KTUtil.actualHeight(_elementForMobile);
+
+        return height;
+    }
+
+    // Public methods
+	return {
+		init: function(id, idForMobile) {
+            _element = KTUtil.getById(id);
+            _elementForMobile = KTUtil.getById(idForMobile);
+
+            if (!_element) {
+                return;
+            }
+		},
+
+        isFixed: function() {
+            return KTUtil.hasClass(KTUtil.getBody(), 'header-fixed')
+        },
+
+        isFixedForMobile: function() {
+            return KTUtil.hasClass(KTUtil.getBody(), 'header-mobile-fixed')
+        },
+
+        getElement: function() {
+            return _element;
+        },
+
+        getElementForMobile: function() {
+            return _elementForMobile;
+        },
+
+        getHeader: function() {
+            return _object;
+        },
+
+        getHeight: function() {
+            return _getHeight();
+        },
+
+        getHeightForMobile: function() {
+            return _getHeightForMobile();
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutHeader;
+}
+
+"use strict";
+
+var KTLayoutStickyCard = function() {
+    // Private properties
+	var _element;
+    var _object;
+
+	// Private functions
+	var _init = function() {
+		var offset = 300;
+
+		if (typeof KTLayoutHeader !== 'undefined') {
+			offset = KTLayoutHeader.getHeight();
+		}
+
+        _object = new KTCard(_element, {
+			sticky: {
+				offset: offset,
+				zIndex: 90,
+				position: {
+					top: function() {
+						var pos = 0;
+                        var body = KTUtil.getBody();
+
+						if (KTUtil.isBreakpointUp('lg')) {
+							if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixed()) {
+								pos = pos + KTLayoutHeader.getHeight();
+							}
+
+							if (typeof KTLayoutSubheader !== 'undefined' && KTLayoutSubheader.isFixed()) {
+								pos = pos + KTLayoutSubheader.getHeight();
+							}
+						} else {
+							if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixedForMobile()) {
+								pos = pos + KTLayoutHeader.getHeightForMobile();
+							}
+						}
+
+						pos = pos - 1; // remove header border width
+
+						return pos;
+					},
+					left: function(card) {
+						return KTUtil.offset(_element).left;
+					},
+					right: function(card) {
+						var body = KTUtil.getBody();
+
+						var cardWidth = parseInt(KTUtil.css(_element, 'width'));
+						var bodyWidth = parseInt(KTUtil.css(body, 'width'));
+						var cardOffsetLeft = KTUtil.offset(_element).left;
+
+						return bodyWidth - cardWidth - cardOffsetLeft;
+					}
+				}
+			}
+		});
+
+		_object.initSticky();
+
+		KTUtil.addResizeHandler(function() {
+			_object.updateSticky();
+		});
+	}
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+
+            if (!_element) {
+                return;
+            }
+
+            // Initialize
+			_init();
+		},
+
+		update: function() {
+			if (_object) {
+				_object.updateSticky();
+			}
+		}
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutStickyCard;
+}
+
+"use strict";
+
+var KTLayoutStretchedCard = function() {
+    // Private properties
+	var _element;
+
+	// Private functions
+	var _init = function() {
+		var scroll = KTUtil.find(_element, '.card-scroll');
+		var cardBody = KTUtil.find(_element, '.card-body');
+		var cardHeader = KTUtil.find(_element, '.card-header');
+
+		var height = KTLayoutContent.getHeight();
+
+		height = height - parseInt(KTUtil.actualHeight(cardHeader));
+
+		height = height - parseInt(KTUtil.css(_element, 'marginTop')) - parseInt(KTUtil.css(_element, 'marginBottom'));
+		height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
+
+		height = height - parseInt(KTUtil.css(cardBody, 'paddingTop')) - parseInt(KTUtil.css(cardBody, 'paddingBottom'));
+		height = height - parseInt(KTUtil.css(cardBody, 'marginTop')) - parseInt(KTUtil.css(cardBody, 'marginBottom'));
+
+		height = height - 3;
+
+		KTUtil.css(scroll, 'height', height + 'px');
+	}
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+
+            if (!_element) {
+                return;
+            }
+
+            // Initialize
+			_init();
+
+            // Re-calculate on window resize
+            KTUtil.addResizeHandler(function() {
+				_init();
+			});
+		},
+
+		update: function() {
+			_init();
+		}
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutStretchedCard;
+}
+
+"use strict";
+
+var KTLayoutSubheader = function() {
+    // Private properties
+    var _element;
+
+    // Private functions
+    var _getHeight = function() {
+        var height = 0;
+
+        if (_element) {
+            height = KTUtil.actualHeight(_element);
+        }
+
+        return height;
+    }
+
+    // Public methods
+	return {
+		init: function(id) {
+            _element = KTUtil.getById(id);
+
+            if (!_element) {
+                return;
+            }
+		},
+
+        isFixed: function() {
+            return KTUtil.hasClass(KTUtil.getBody(), 'subheader-fixed');
+        },
+
+        getElement: function() {
+            return _element;
+        },
+
+        getHeight: function() {
+            return _getHeight();
+        }
+	};
+}();
+
+// Webpack support
+if (typeof module !== 'undefined') {
+	module.exports = KTLayoutSubheader;
+}
+
+"use strict";
+
 // Class definition
 var KTLayoutChat = function () {
 	// Private functions
@@ -9430,7 +9736,9 @@ var KTLayoutDemoPanel = function() {
             if (!KTCookie.getCookie('kt_demo_panel_shown')) {
                 var expires = new Date(new Date().getTime() + 15 * 60 * 1000); // expire in 15 minutes from now
                 KTCookie.setCookie('kt_demo_panel_shown', 1, { expires: expires });
-                offcanvas.show();
+                if (typeof _offcanvasObject !== 'undefined') {
+                    _offcanvasObject.show();
+                }
             }
         }, 4000);
     }
@@ -10275,528 +10583,3 @@ if (typeof module !== 'undefined') {
 
 var KTLayoutSearchInline = KTLayoutSearch;
 var KTLayoutSearchOffcanvas = KTLayoutSearch;
-
-"use strict";
-
-var KTLayoutStickyCard = function() {
-    // Private properties
-	var _element;
-    var _object;
-
-	// Private functions
-	var _init = function() {
-		var offset = 300;
-
-		if (typeof KTLayoutHeader !== 'undefined') {
-			offset = KTLayoutHeader.getHeight();
-		}
-
-        _object = new KTCard(_element, {
-			sticky: {
-				offset: offset,
-				zIndex: 90,
-				position: {
-					top: function() {
-						var pos = 0;
-                        var body = KTUtil.getBody();
-
-						if (KTUtil.isBreakpointUp('lg')) {
-							if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixed()) {
-								pos = pos + KTLayoutHeader.getHeight();
-							}
-
-							if (typeof KTLayoutSubheader !== 'undefined' && KTLayoutSubheader.isFixed()) {
-								pos = pos + KTLayoutSubheader.getHeight();
-							}
-						} else {
-							if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixedForMobile()) {
-								pos = pos + KTLayoutHeader.getHeightForMobile();
-							}
-						}
-
-						pos = pos - 1; // remove header border width
-
-						return pos;
-					},
-					left: function(card) {
-						return KTUtil.offset(_element).left;
-					},
-					right: function(card) {
-						var body = KTUtil.getBody();
-
-						var cardWidth = parseInt(KTUtil.css(_element, 'width'));
-						var bodyWidth = parseInt(KTUtil.css(body, 'width'));
-						var cardOffsetLeft = KTUtil.offset(_element).left;
-
-						return bodyWidth - cardWidth - cardOffsetLeft;
-					}
-				}
-			}
-		});
-
-		_object.initSticky();
-
-		KTUtil.addResizeHandler(function() {
-			_object.updateSticky();
-		});
-	}
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-
-            if (!_element) {
-                return;
-            }
-
-            // Initialize
-			_init();
-		},
-
-		update: function() {
-			if (_object) {
-				_object.updateSticky();
-			}
-		}
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutStickyCard;
-}
-
-"use strict";
-
-var KTLayoutStretchedCard = function() {
-    // Private properties
-	var _element;
-
-	// Private functions
-	var _init = function() {
-		var scroll = KTUtil.find(_element, '.card-scroll');
-		var cardBody = KTUtil.find(_element, '.card-body');
-		var cardHeader = KTUtil.find(_element, '.card-header');
-
-		var height = KTLayoutContent.getHeight();
-
-		height = height - parseInt(KTUtil.actualHeight(cardHeader));
-
-		height = height - parseInt(KTUtil.css(_element, 'marginTop')) - parseInt(KTUtil.css(_element, 'marginBottom'));
-		height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
-
-		height = height - parseInt(KTUtil.css(cardBody, 'paddingTop')) - parseInt(KTUtil.css(cardBody, 'paddingBottom'));
-		height = height - parseInt(KTUtil.css(cardBody, 'marginTop')) - parseInt(KTUtil.css(cardBody, 'marginBottom'));
-
-		height = height - 3;
-
-		KTUtil.css(scroll, 'height', height + 'px');
-	}
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-
-            if (!_element) {
-                return;
-            }
-
-            // Initialize
-			_init();
-
-            // Re-calculate on window resize
-            KTUtil.addResizeHandler(function() {
-				_init();
-			});
-		},
-
-		update: function() {
-			_init();
-		}
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutStretchedCard;
-}
-
-"use strict";
-
-var KTLayoutAsideMenu = function() {
-    // Private properties
-    var _element;
-    var _menuObject;
-
-	// Initialize
-	var _init = function() {
-        
-		_menuObject = new KTMenu(_element, {
-			// Submenu setup
-			submenu: {
-				desktop: 'accordion',
-				tablet: 'accordion', // menu set to accordion in tablet mode
-				mobile: 'accordion' // menu set to accordion in mobile mode
-			},
-
-			// Accordion setup
-			accordion: {
-				expandAll: false // allow having multiple expanded accordions in the menu
-			}
-		});
-	}
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-
-            if (!_element) {
-                return;
-            }
-
-            // Initialize menu
-            _init();
-		},
-
-		getElement: function() {
-			return _element;
-		},
-
-        getMenu: function() {
-			return _menuObject;
-		},
-
-        pauseDropdownHover: function(time) {
-			if (_menuObject) {
-				_menuObject.pauseDropdownHover(time);
-			}
-		},
-
-		closeMobileOffcanvas: function() {
-			if (_menuObject && KTUtil.isMobileDevice()) {
-				_menuObject.hide();
-			}
-		}
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutAsideMenu;
-}
-
-"use strict";
-
-var KTLayoutAside = function() {
-    // Private properties
-    var _body;
-    var _element;
-    var _asideMenuWrapperElement;
-    var _offcanvasObject;
-
-    // Private functions
-	// Initialize
-	var _init = function() {
-		var offcanvasClass = KTUtil.hasClass(_element, 'aside-offcanvas-default') ? 'aside-offcanvas-default' : 'aside';
-
-        // Initialize mobile aside offcanvas
-		_offcanvasObject = new KTOffcanvas(_element, {
-			baseClass: offcanvasClass,
-			overlay: true,
-			closeBy: 'kt_aside_close_btn',
-			toggleBy: ['kt_aside_desktop_toggle', 'kt_aside_tablet_and_mobile_toggle']
-		});
-	}
-
-    var _initScroll = function() {
-        KTUtil.scrollInit(_asideMenuWrapperElement, {
-            disableForMobile: true,
-            resetHeightOnDestroy: true,
-            handleWindowResize: true,
-            height: function() {
-                var height = parseInt(KTUtil.getViewPort().height);
-
-                height = height - (parseInt(KTUtil.css(_asideMenuWrapperElement , 'marginBottom')) + parseInt(KTUtil.css(_asideMenuWrapperElement, 'marginTop')));
-
-                return height;
-            }
-        });
-    }
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-            _asideMenuWrapperElement =  KTUtil.getById('kt_aside_menu_wrapper');
-            _body = KTUtil.getBody();
-
-            if (!_element) {
-                return;
-            }
-
-            // Initialize
-            _init();
-            _initScroll();
-        },
-
-        getElement: function() {
-            return _element;
-        },
-
-        getOffcanvas: function() {
-            return _offcanvasObject;
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutAside;
-}
-
-"use strict";
-
-var KTLayoutContent = function() {
-    // Private properties
-    var _element;
-
-	// Private functions
-	var _getHeight = function() {
-		var height;
-
-		height = KTUtil.getViewPort().height;
-
-        if (_element) {
-            height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
-        }        
-
-        height = height - KTLayoutHeader.getHeight();
-        height = height - KTLayoutSubheader.getHeight();
-        height = height - KTLayoutFooter.getHeight();
-
-		return height;
-	}
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-		},
-
-		getHeight: function() {
-			return _getHeight();
-		},
-
-        getElement: function() {
-            return _element;
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutContent;
-}
-
-"use strict";
-
-var KTLayoutFooter = function() {
-    // Private properties
-    var _element;
-
-	// Private functions
-	var _getHeight = function() {
-		var height = 0;
-
-        if (_element) {
-            height = KTUtil.actualHeight(_element);
-        }
-
-		return height;
-	}
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-		},
-
-		getHeight: function() {
-			return _getHeight();
-		},
-
-        getElement: function() {
-            return _element;
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutFooter;
-}
-
-"use strict";
-
-var KTLayoutHeaderTopbar = function() {
-    // Private properties
-	var _toggleElement;
-    var _toggleObject;
-
-    // Private functions
-    var _init = function() {
-		_toggleObject = new KTToggle(_toggleElement, {
-			target: KTUtil.getBody(),
-			targetState: 'topbar-mobile-on',
-			toggleState: 'active'
-		});
-    }
-
-    // Public methods
-	return {
-		init: function(id) {
-            _toggleElement = KTUtil.getById(id);
-
-			if (!_toggleElement) {
-                return;
-            }
-
-            // Initialize
-            _init();
-		},
-
-        getToggleElement: function() {
-            return _toggleElement;
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutHeaderTopbar;
-}
-
-"use strict";
-
-var KTLayoutHeader = function() {
-    // Private properties
-    var _element;
-    var _elementForMobile;
-    var _object;
-
-	// Private functions
-
-    // Get height
-    var _getHeight = function() {
-        var height = 0;
-
-        if (_element) {
-            height = KTUtil.actualHeight(_element) + 1;
-        }
-
-        return height;
-    }
-
-    // Get height
-    var _getHeightForMobile = function() {
-        var height;
-
-        height = KTUtil.actualHeight(_elementForMobile);
-
-        return height;
-    }
-
-    // Public methods
-	return {
-		init: function(id, idForMobile) {
-            _element = KTUtil.getById(id);
-            _elementForMobile = KTUtil.getById(idForMobile);
-
-            if (!_element) {
-                return;
-            }
-		},
-
-        isFixed: function() {
-            return KTUtil.hasClass(KTUtil.getBody(), 'header-fixed')
-        },
-
-        isFixedForMobile: function() {
-            return KTUtil.hasClass(KTUtil.getBody(), 'header-mobile-fixed')
-        },
-
-        getElement: function() {
-            return _element;
-        },
-
-        getElementForMobile: function() {
-            return _elementForMobile;
-        },
-
-        getHeader: function() {
-            return _object;
-        },
-
-        getHeight: function() {
-            return _getHeight();
-        },
-
-        getHeightForMobile: function() {
-            return _getHeightForMobile();
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutHeader;
-}
-
-"use strict";
-
-var KTLayoutSubheader = function() {
-    // Private properties
-    var _element;
-
-    // Private functions
-    var _getHeight = function() {
-        var height = 0;
-
-        if (_element) {
-            height = KTUtil.actualHeight(_element);
-        }
-
-        return height;
-    }
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-
-            if (!_element) {
-                return;
-            }
-		},
-
-        isFixed: function() {
-            return KTUtil.hasClass(KTUtil.getBody(), 'subheader-fixed');
-        },
-
-        getElement: function() {
-            return _element;
-        },
-
-        getHeight: function() {
-            return _getHeight();
-        }
-	};
-}();
-
-// Webpack support
-if (typeof module !== 'undefined') {
-	module.exports = KTLayoutSubheader;
-}

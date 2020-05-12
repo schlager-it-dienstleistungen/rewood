@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 792);
+/******/ 	return __webpack_require__(__webpack_require__.s = 794);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 792:
+/***/ 794:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(793);
+module.exports = __webpack_require__(795);
 
 
 /***/ }),
 
-/***/ 793:
+/***/ 795:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -149,6 +149,7 @@ var KTWizard2 = function () {
   };
 
   var initValidation = function initValidation() {
+    // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     // Step 1
     _validations.push(FormValidation.formValidation(_formEl, {
       fields: {

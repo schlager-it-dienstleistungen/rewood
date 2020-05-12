@@ -82,6 +82,9 @@
                 </span>
               </a>
             </div>
+            <button class="btn btn-light-primary btn-bold" @click="onLogout">
+              Sign out
+            </button>
           </div>
         </div>
         <!--end::Header-->
@@ -89,7 +92,7 @@
         <!--begin::Nav-->
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
-          <a href="#" class="navi-item" @click="onLogout">
+          <a href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">

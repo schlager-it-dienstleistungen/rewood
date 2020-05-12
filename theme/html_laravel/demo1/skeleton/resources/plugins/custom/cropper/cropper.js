@@ -1,3 +1,3 @@
-window.Cropper = require('cropperjs/dist/cropper.js');
+// Cropper -  A simple jQuery image cropping plugin: https://fengyuanchen.github.io/cropper/
 
-require('./cropper.scss');
+window.Cropper = require('cropperjs/dist/cropper.js');

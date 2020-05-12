@@ -140,6 +140,10 @@
     }
 }
 
+.tagify[readonly] .tagify__tag__removeBtn {
+    display: none;
+}
+
 .tagify__input {
     color: $input-plaintext-color;
 
@@ -147,6 +151,7 @@
         top: auto;
         bottom: auto;
         height: auto;
+        position: relative;
     }
 }
 

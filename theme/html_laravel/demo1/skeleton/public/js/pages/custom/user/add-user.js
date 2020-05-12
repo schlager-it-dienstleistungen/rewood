@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 784);
+/******/ 	return __webpack_require__(__webpack_require__.s = 786);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 784:
+/***/ 786:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(785);
+module.exports = __webpack_require__(787);
 
 
 /***/ }),
 
-/***/ 785:
+/***/ 787:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -151,6 +151,7 @@ var KTAddUser = function () {
   };
 
   var _initValidations = function _initValidations() {
+    // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     // Validation Rules For Step 1
     _validations.push(FormValidation.formValidation(_formEl, {
       fields: {

@@ -1,6 +1,5 @@
 // Class definition
 var KTTagifyDemos = function() {
-
     // Private functions
     var demo1 = function() {
         var input = document.getElementById('kt_tagify_1'),
@@ -12,7 +11,7 @@ var KTTagifyDemos = function() {
 
 
         // "remove all tags" button event listener
-        document.getElementById('kt_tagify_1_remove').addEventListener('click', tagify.removeAllTags.bind(tagify))
+        document.getElementById('kt_tagify_1_remove').addEventListener('click', tagify.removeAllTags.bind(tagify));
 
         // Chainable event listeners
         tagify.on('add', onAddTag)
@@ -65,6 +64,12 @@ var KTTagifyDemos = function() {
         function onDropdownHide(e) {
             console.log("onDropdownHide: ", e.detail)
         }
+    }
+
+    var demo1Readonly = function() {
+        // Readonly Mode
+        var input = document.getElementById('kt_tagify_1_1'),
+        tagify = new Tagify(input);
     }
 
     var demo2 = function() {
@@ -231,6 +236,8 @@ var KTTagifyDemos = function() {
         // public functions
         init: function() {
             demo1();
+            demo1Readonly();
+
             demo2();
             demo3();
             demo4();

@@ -58,8 +58,8 @@ export class AuthService {
     user.refreshToken = 'access-token-' + Math.random();
     user.pic = './assets/media/users/default.jpg';
 
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<User>(API_USERS_URL, user, {headers: httpHeaders})
       .pipe(
         map((res: User) => {
@@ -123,9 +123,9 @@ export class AuthService {
 
   // CREATE =>  POST: add a new user to the server
   createUser(user: User): Observable<User> {
-    const httpHeaders = new HttpHeaders();
+    let httpHeaders = new HttpHeaders();
     // Note: Add headers if needed (tokens/bearer)
-    httpHeaders.set('Content-Type', 'application/json');
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<User>(API_USERS_URL, user, {headers: httpHeaders});
   }
 
@@ -151,8 +151,8 @@ export class AuthService {
   // UPDATE => PUT: update the user on the server
   // tslint:disable-next-line
   updateUser(_user: User): Observable<any> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.put(API_USERS_URL, _user, {headers: httpHeaders}).pipe(
       catchError(err => {
         return of(null);
@@ -236,15 +236,15 @@ export class AuthService {
   // CREATE =>  POST: add a new role to the server
   createRole(role: Role): Observable<Role> {
     // Note: Add headers if needed (tokens/bearer)
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<Role>(API_ROLES_URL, role, {headers: httpHeaders});
   }
 
   // UPDATE => PUT: update the role on the server
   updateRole(role: Role): Observable<any> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.put(API_ROLES_URL, role, {headers: httpHeaders});
   }
 

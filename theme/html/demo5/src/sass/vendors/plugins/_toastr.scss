@@ -42,11 +42,24 @@
 		font-size: 1rem;
 	}
 
-    // Theme colors
-	@each $name, $color in $theme-colors {
-        &.toast-#{$name} {
-            background-color: $color;
-    	    color: theme-inverse-color($name);
-        }
+    // States
+    &.toast-success {
+        background-color: $success;
+        color: $success-inverse;
+    }
+
+    &.toast-info {
+        background-color: $info;
+        color: $info-inverse;
+    }
+
+    &.toast-warning {
+        background-color: $warning;
+        color: $warning-inverse;
+    }
+
+    &.toast-error {
+        background-color: $danger;
+        color: $danger-inverse;
     }
 }

@@ -31,7 +31,7 @@
       <!--end::Header Menu Mobile Toggle-->
       <!--begin::Topbar Mobile Toggle-->
       <button
-        class="btn btn-hover-text-primary p-0 ml-2"
+        class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
         id="kt_header_mobile_topbar_toggle"
         ref="kt_header_mobile_topbar_toggle"
       >

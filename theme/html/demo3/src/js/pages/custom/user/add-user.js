@@ -24,12 +24,14 @@ var KTAddUser = function () {
 					_wizard.goNext();
 					KTUtil.scrollTop();
 				} else {
-					swal.fire({
+					Swal.fire({
 		                text: "Sorry, looks like there are some errors detected, please try again.",
 		                icon: "error",
 		                buttonsStyling: false,
 		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light"
+						customClass: {
+							confirmButton: "btn font-weight-bold btn-light"
+						}
 		            }).then(function() {
 						KTUtil.scrollTop();
 					});
@@ -46,6 +48,8 @@ var KTAddUser = function () {
 	}
 
 	var _initValidations = function () {
+		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+
 		// Validation Rules For Step 1
 		_validations.push(FormValidation.formValidation(
 			_formEl,

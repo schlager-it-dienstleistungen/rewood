@@ -20,6 +20,12 @@
   <!-- end:: Aside -->
 </template>
 
+<style lang="scss" scoped>
+.aside-toggle {
+  outline: none;
+}
+</style>
+
 <script>
 import { mapGetters } from "vuex";
 import objectPath from "object-path";

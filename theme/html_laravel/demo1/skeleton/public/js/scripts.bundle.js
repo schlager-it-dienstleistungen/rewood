@@ -81,73 +81,73 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 428);
+/******/ 	return __webpack_require__(__webpack_require__.s = 430);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 428:
+/***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(429);
+module.exports = __webpack_require__(431);
 
 
 /***/ }),
 
-/***/ 429:
+/***/ 431:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Keenthemes' plugins
-window.KTUtil = __webpack_require__(430);
-window.KTApp = __webpack_require__(431);
-window.KTCard = __webpack_require__(432);
-window.KTCookie = __webpack_require__(433);
-window.KTDialog = __webpack_require__(434);
-window.KTHeader = __webpack_require__(435);
-window.KTImageInput = __webpack_require__(436);
-window.KTMenu = __webpack_require__(437);
-window.KTOffcanvas = __webpack_require__(438);
-window.KTScrolltop = __webpack_require__(439);
-window.KTToggle = __webpack_require__(440);
-window.KTWizard = __webpack_require__(441);
+window.KTUtil = __webpack_require__(432);
+window.KTApp = __webpack_require__(433);
+window.KTCard = __webpack_require__(434);
+window.KTCookie = __webpack_require__(435);
+window.KTDialog = __webpack_require__(436);
+window.KTHeader = __webpack_require__(437);
+window.KTImageInput = __webpack_require__(438);
+window.KTMenu = __webpack_require__(439);
+window.KTOffcanvas = __webpack_require__(440);
+window.KTScrolltop = __webpack_require__(441);
+window.KTToggle = __webpack_require__(442);
+window.KTWizard = __webpack_require__(443);
 
-__webpack_require__(442);
+__webpack_require__(444);
 
-__webpack_require__(443);
+__webpack_require__(445);
 
-__webpack_require__(444); // Metronic layout base js
+__webpack_require__(446); // Metronic layout base js
 
 
-window.KTLayoutAside = __webpack_require__(445);
-window.KTLayoutAsideMenu = __webpack_require__(446);
-window.KTLayoutAsideToggle = __webpack_require__(447);
-window.KTLayoutBrand = __webpack_require__(448);
-window.KTLayoutContent = __webpack_require__(449);
-window.KTLayoutFooter = __webpack_require__(450);
-window.KTLayoutHeader = __webpack_require__(451);
-window.KTLayoutHeaderMenu = __webpack_require__(452);
-window.KTLayoutHeaderTopbar = __webpack_require__(453);
-window.KTLayoutSubheader = __webpack_require__(454); // Metronic layout extended js
+window.KTLayoutAside = __webpack_require__(447);
+window.KTLayoutAsideMenu = __webpack_require__(448);
+window.KTLayoutAsideToggle = __webpack_require__(449);
+window.KTLayoutBrand = __webpack_require__(450);
+window.KTLayoutContent = __webpack_require__(451);
+window.KTLayoutFooter = __webpack_require__(452);
+window.KTLayoutHeader = __webpack_require__(453);
+window.KTLayoutHeaderMenu = __webpack_require__(454);
+window.KTLayoutHeaderTopbar = __webpack_require__(455);
+window.KTLayoutStickyCard = __webpack_require__(456);
+window.KTLayoutStretchedCard = __webpack_require__(457);
+window.KTLayoutSubheader = __webpack_require__(458); // Metronic layout extended js
 
-window.KTLayoutChat = __webpack_require__(455);
-window.KTLayoutDemoPanel = __webpack_require__(456);
-window.KTLayoutExamples = __webpack_require__(457);
-window.KTLayoutQuickActions = __webpack_require__(458);
-window.KTLayoutQuickCartPanel = __webpack_require__(459);
-window.KTLayoutQuickNotifications = __webpack_require__(460);
-window.KTLayoutQuickPanel = __webpack_require__(461);
-window.KTLayoutQuickSearch = __webpack_require__(462);
-window.KTLayoutQuickUser = __webpack_require__(463);
-window.KTLayoutScrolltop = __webpack_require__(464);
-window.KTLayoutSearch = window.KTLayoutSearchOffcanvas = __webpack_require__(465);
-window.KTLayoutStickyCard = __webpack_require__(466);
-window.KTLayoutStretchedCard = __webpack_require__(467);
+window.KTLayoutChat = __webpack_require__(459);
+window.KTLayoutDemoPanel = __webpack_require__(460);
+window.KTLayoutExamples = __webpack_require__(461);
+window.KTLayoutQuickActions = __webpack_require__(462);
+window.KTLayoutQuickCartPanel = __webpack_require__(463);
+window.KTLayoutQuickNotifications = __webpack_require__(464);
+window.KTLayoutQuickPanel = __webpack_require__(465);
+window.KTLayoutQuickSearch = __webpack_require__(466);
+window.KTLayoutQuickUser = __webpack_require__(467);
+window.KTLayoutScrolltop = __webpack_require__(468);
+window.KTLayoutSearch = window.KTLayoutSearchOffcanvas = __webpack_require__(469);
 
-__webpack_require__(468);
+__webpack_require__(470);
 
 /***/ }),
 
-/***/ 430:
+/***/ 432:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1704,7 +1704,7 @@ window.onload = function () {
 
 /***/ }),
 
-/***/ 431:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1799,9 +1799,10 @@ var KTApp = function () {
     // init card tools
     $('[data-card="true"]').each(function () {
       var el = $(this);
+      var options = {};
 
       if (el.data('data-card-initialized') !== true) {
-        _initCard(el, {});
+        _initCard(el, options);
 
         el.data('data-card-initialized', true);
       }
@@ -2049,7 +2050,7 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ 432:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2069,21 +2070,9 @@ var KTCard = function KTCard(elementId, options) {
 
 
   var defaultOptions = {
-    bodyToggleSpeed: 400,
-    tooltips: true,
-    tools: {
-      toggle: {
-        collapse: 'Collapse',
-        expand: 'Expand'
-      },
-      reload: 'Reload',
-      remove: 'Remove',
-      fullscreen: {
-        on: 'Fullscreen',
-        off: 'Exit Fullscreen'
-      }
-    },
+    toggleSpeed: 400,
     sticky: {
+      releseOnReverse: false,
       offset: 300,
       zIndex: 101
     }
@@ -2159,19 +2148,7 @@ var KTCard = function KTCard(elementId, options) {
           e.preventDefault();
           Plugin.toggle();
         });
-      } //== Fullscreen
-
-
-      var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-
-      if (fullscreen) {
-        KTUtil.addEvent(fullscreen, 'click', function (e) {
-          e.preventDefault();
-          Plugin.fullscreen();
-        });
       }
-
-      Plugin.setupTooltips();
     },
 
     /**
@@ -2264,11 +2241,6 @@ var KTCard = function KTCard(elementId, options) {
         return;
       }
 
-      if (KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen')) {
-        Plugin.fullscreen('off');
-      }
-
-      Plugin.removeTooltips();
       KTUtil.remove(element);
       Plugin.eventTrigger('afterRemove');
     },
@@ -2297,122 +2269,6 @@ var KTCard = function KTCard(elementId, options) {
     },
 
     /**
-     * Setup tooltips
-     */
-    setupTooltips: function setupTooltips() {
-      if (the.options.tooltips) {
-        var collapsed = KTUtil.hasClass(element, 'card-collapse') || KTUtil.hasClass(element, 'card-collapsed');
-        var fullscreenOn = KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen'); //== Remove
-
-        var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-
-        if (remove) {
-          var placement = fullscreenOn ? 'bottom' : 'top';
-          var tip = new Tooltip(remove, {
-            title: the.options.tools.remove,
-            placement: placement,
-            offset: fullscreenOn ? '0,10px,0,0' : '0,5px',
-            trigger: 'hover',
-            template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-          });
-          KTUtil.data(remove).set('tooltip', tip);
-        } //== Reload
-
-
-        var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-
-        if (reload) {
-          var placement = fullscreenOn ? 'bottom' : 'top';
-          var tip = new Tooltip(reload, {
-            title: the.options.tools.reload,
-            placement: placement,
-            offset: fullscreenOn ? '0,10px,0,0' : '0,5px',
-            trigger: 'hover',
-            template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-          });
-          KTUtil.data(reload).set('tooltip', tip);
-        } //== Toggle
-
-
-        var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-
-        if (toggle) {
-          var placement = fullscreenOn ? 'bottom' : 'top';
-          var tip = new Tooltip(toggle, {
-            title: collapsed ? the.options.tools.toggle.expand : the.options.tools.toggle.collapse,
-            placement: placement,
-            offset: fullscreenOn ? '0,10px,0,0' : '0,5px',
-            trigger: 'hover',
-            template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-          });
-          KTUtil.data(toggle).set('tooltip', tip);
-        } //== Fullscreen
-
-
-        var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-
-        if (fullscreen) {
-          var placement = fullscreenOn ? 'bottom' : 'top';
-          var tip = new Tooltip(fullscreen, {
-            title: fullscreenOn ? the.options.tools.fullscreen.off : the.options.tools.fullscreen.on,
-            placement: placement,
-            offset: fullscreenOn ? '0,10px,0,0' : '0,5px',
-            trigger: 'hover',
-            template: '<div class="tooltip tooltip-card tooltip bs-tooltip-' + placement + '" role="tooltip">\
-                            <div class="tooltip-arrow arrow"></div>\
-                            <div class="tooltip-inner"></div>\
-                        </div>'
-          });
-          KTUtil.data(fullscreen).set('tooltip', tip);
-        }
-      }
-    },
-
-    /**
-     * Setup tooltips
-     */
-    removeTooltips: function removeTooltips() {
-      if (the.options.tooltips) {
-        //== Remove
-        var remove = KTUtil.find(the.header, '[data-card-tool=remove]');
-
-        if (remove && KTUtil.data(remove).has('tooltip')) {
-          KTUtil.data(remove).get('tooltip').dispose();
-        } //== Reload
-
-
-        var reload = KTUtil.find(the.header, '[data-card-tool=reload]');
-
-        if (reload && KTUtil.data(reload).has('tooltip')) {
-          KTUtil.data(reload).get('tooltip').dispose();
-        } //== Toggle
-
-
-        var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-
-        if (toggle && KTUtil.data(toggle).has('tooltip')) {
-          KTUtil.data(toggle).get('tooltip').dispose();
-        } //== Fullscreen
-
-
-        var fullscreen = KTUtil.find(the.header, '[data-card-tool=fullscreen]');
-
-        if (fullscreen && KTUtil.data(fullscreen).has('tooltip')) {
-          KTUtil.data(fullscreen).get('tooltip').dispose();
-        }
-      }
-    },
-
-    /**
      * Reload
      */
     reload: function reload() {
@@ -2438,15 +2294,10 @@ var KTCard = function KTCard(elementId, options) {
         return;
       }
 
-      KTUtil.slideUp(the.body, the.options.bodyToggleSpeed, function () {
+      KTUtil.slideUp(the.body, the.options.toggleSpeed, function () {
         Plugin.eventTrigger('afterCollapse');
       });
       KTUtil.addClass(element, 'card-collapse');
-      var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-
-      if (toggle && KTUtil.data(toggle).has('tooltip')) {
-        KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.expand);
-      }
     },
 
     /**
@@ -2457,54 +2308,11 @@ var KTCard = function KTCard(elementId, options) {
         return;
       }
 
-      KTUtil.slideDown(the.body, the.options.bodyToggleSpeed, function () {
+      KTUtil.slideDown(the.body, the.options.toggleSpeed, function () {
         Plugin.eventTrigger('afterExpand');
       });
       KTUtil.removeClass(element, 'card-collapse');
       KTUtil.removeClass(element, 'card-collapsed');
-      var toggle = KTUtil.find(the.header, '[data-card-tool=toggle]');
-
-      if (toggle && KTUtil.data(toggle).has('tooltip')) {
-        KTUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.collapse);
-      }
-    },
-
-    /**
-     * fullscreen
-     */
-    fullscreen: function fullscreen(mode) {
-      var d = {};
-      var speed = 300;
-
-      if (mode === 'off' || KTUtil.hasClass(body, 'card-fullscreen') && KTUtil.hasClass(element, 'card-fullscreen')) {
-        Plugin.eventTrigger('beforeFullscreenOff');
-        KTUtil.removeClass(body, 'card-fullscreen');
-        KTUtil.removeClass(element, 'card-fullscreen');
-        Plugin.removeTooltips();
-        Plugin.setupTooltips();
-
-        if (the.footer) {
-          KTUtil.css(the.body, 'margin-bottom', '');
-          KTUtil.css(the.footer, 'margin-top', '');
-        }
-
-        Plugin.eventTrigger('afterFullscreenOff');
-      } else {
-        Plugin.eventTrigger('beforeFullscreenOn');
-        KTUtil.addClass(element, 'card-fullscreen');
-        KTUtil.addClass(body, 'card-fullscreen');
-        Plugin.removeTooltips();
-        Plugin.setupTooltips();
-
-        if (the.footer) {
-          var height1 = parseInt(KTUtil.css(the.footer, 'height'));
-          var height2 = parseInt(KTUtil.css(the.footer, 'height')) + parseInt(KTUtil.css(the.header, 'height'));
-          KTUtil.css(the.body, 'margin-bottom', height1 + 'px');
-          KTUtil.css(the.footer, 'margin-top', '-' + height2 + 'px');
-        }
-
-        Plugin.eventTrigger('afterFullscreenOn');
-      }
     },
 
     /**
@@ -2638,24 +2446,6 @@ var KTCard = function KTCard(elementId, options) {
     return Plugin.expand();
   };
   /**
-   * Fullscreen card
-   * @returns {Mcard}
-   */
-
-
-  the.fullscreen = function () {
-    return Plugin.fullscreen('on');
-  };
-  /**
-   * Fullscreen card
-   * @returns {Mcard}
-   */
-
-
-  the.unFullscreen = function () {
-    return Plugin.fullscreen('off');
-  };
-  /**
    * Get cardbody
    * @returns {jQuery}
    */
@@ -2702,7 +2492,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 433:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2765,7 +2555,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 434:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2944,7 +2734,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 435:
+/***/ 437:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3150,7 +2940,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 436:
+/***/ 438:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3330,7 +3120,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 437:
+/***/ 439:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3443,7 +3233,7 @@ var KTMenu = function KTMenu(elementId, options) {
 
         the.eventHandlers['event_4'] = KTUtil.on(element, '[data-menu-toggle="click"] > .menu-toggle, [data-menu-toggle="click"] > .menu-link .menu-toggle', 'click', Plugin.handleSubmenuDropdownClick);
         the.eventHandlers['event_5'] = KTUtil.on(element, '[data-menu-toggle="tab"] > .menu-toggle, [data-menu-toggle="tab"] > .menu-link .menu-toggle', 'click', Plugin.handleSubmenuDropdownTabClick);
-      } // handle link click
+      } // Handle general link click
 
 
       the.eventHandlers['event_6'] = KTUtil.on(element, '.menu-item > .menu-link:not(.menu-toggle):not(.menu-link-toggle-skip)', 'click', Plugin.handleLinkClick); // Init scrollable menu
@@ -3676,8 +3466,7 @@ var KTMenu = function KTMenu(elementId, options) {
      * @returns {KTMenu}
      */
     handleLinkClick: function handleLinkClick(e) {
-      var submenu = this.closest('.menu-item.menu-item-submenu'); //
-      // Trigger click event handlers
+      var submenu = this.closest('.menu-item.menu-item-submenu'); // Trigger click event handlers
 
       var result = Plugin.eventTrigger('linkClick', this, e);
 
@@ -4185,7 +3974,7 @@ document.addEventListener("click", function (e) {
 
 /***/ }),
 
-/***/ 438:
+/***/ 440:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4473,7 +4262,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 439:
+/***/ 441:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4637,7 +4426,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 440:
+/***/ 442:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4852,7 +4641,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 441:
+/***/ 443:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5289,7 +5078,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 442:
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8644,7 +8433,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 /***/ }),
 
-/***/ 443:
+/***/ 445:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8883,7 +8672,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 /***/ }),
 
-/***/ 444:
+/***/ 446:
 /***/ (function(module, exports) {
 
 var defaults = {
@@ -8927,7 +8716,7 @@ $.extend(true, $.fn.KTDatatable.defaults, defaults);
 
 /***/ }),
 
-/***/ 445:
+/***/ 447:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9045,7 +8834,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 446:
+/***/ 448:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9102,6 +8891,14 @@ var KTLayoutAsideMenu = function () {
       if (KTLayoutAside.isMinimized() === true && KTLayoutAside.isHoverable() === false) {
         return false;
       }
+    }); // Close aside offcanvas panel before page reload On tablet and mobile
+
+
+    _menuObject.on('linkClick', function (menu) {
+      if (KTUtil.isBreakpointDown('lg')) {
+        // Tablet and mobile mode
+        KTLayoutAside.getOffcanvas().hide(); // Hide offcanvas after general link click
+      }
     });
   }; // Public methods
 
@@ -9143,7 +8940,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 447:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9223,7 +9020,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 448:
+/***/ 450:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9269,7 +9066,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 449:
+/***/ 451:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9315,7 +9112,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 450:
+/***/ 452:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9357,7 +9154,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 451:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9431,7 +9228,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 452:
+/***/ 454:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9468,6 +9265,14 @@ var KTLayoutHeaderMenu = function () {
         slideSpeed: 200,
         // accordion toggle slide speed in milliseconds
         expandAll: false // allow having multiple expanded accordions in the menu
+
+      }
+    }); // Close aside offcanvas panel before page reload On tablet and mobile
+
+    _menuObject.on('linkClick', function (menu) {
+      if (KTUtil.isBreakpointDown('lg')) {
+        // Tablet and mobile mode
+        _offcanvasObject.hide(); // Hide offcanvas after general link click
 
       }
     });
@@ -9518,7 +9323,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 453:
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9564,7 +9369,157 @@ if (true) {
 
 /***/ }),
 
-/***/ 454:
+/***/ 456:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var KTLayoutStickyCard = function () {
+  // Private properties
+  var _element;
+
+  var _object; // Private functions
+
+
+  var _init = function _init() {
+    var offset = 300;
+
+    if (typeof KTLayoutHeader !== 'undefined') {
+      offset = KTLayoutHeader.getHeight();
+    }
+
+    _object = new KTCard(_element, {
+      sticky: {
+        offset: offset,
+        zIndex: 90,
+        position: {
+          top: function top() {
+            var pos = 0;
+            var body = KTUtil.getBody();
+
+            if (KTUtil.isBreakpointUp('lg')) {
+              if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixed()) {
+                pos = pos + KTLayoutHeader.getHeight();
+              }
+
+              if (typeof KTLayoutSubheader !== 'undefined' && KTLayoutSubheader.isFixed()) {
+                pos = pos + KTLayoutSubheader.getHeight();
+              }
+            } else {
+              if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixedForMobile()) {
+                pos = pos + KTLayoutHeader.getHeightForMobile();
+              }
+            }
+
+            pos = pos - 1; // remove header border width
+
+            return pos;
+          },
+          left: function left(card) {
+            return KTUtil.offset(_element).left;
+          },
+          right: function right(card) {
+            var body = KTUtil.getBody();
+            var cardWidth = parseInt(KTUtil.css(_element, 'width'));
+            var bodyWidth = parseInt(KTUtil.css(body, 'width'));
+            var cardOffsetLeft = KTUtil.offset(_element).left;
+            return bodyWidth - cardWidth - cardOffsetLeft;
+          }
+        }
+      }
+    });
+
+    _object.initSticky();
+
+    KTUtil.addResizeHandler(function () {
+      _object.updateSticky();
+    });
+  }; // Public methods
+
+
+  return {
+    init: function init(id) {
+      _element = KTUtil.getById(id);
+
+      if (!_element) {
+        return;
+      } // Initialize
+
+
+      _init();
+    },
+    update: function update() {
+      if (_object) {
+        _object.updateSticky();
+      }
+    }
+  };
+}(); // Webpack support
+
+
+if (true) {
+  module.exports = KTLayoutStickyCard;
+}
+
+/***/ }),
+
+/***/ 457:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var KTLayoutStretchedCard = function () {
+  // Private properties
+  var _element; // Private functions
+
+
+  var _init = function _init() {
+    var scroll = KTUtil.find(_element, '.card-scroll');
+    var cardBody = KTUtil.find(_element, '.card-body');
+    var cardHeader = KTUtil.find(_element, '.card-header');
+    var height = KTLayoutContent.getHeight();
+    height = height - parseInt(KTUtil.actualHeight(cardHeader));
+    height = height - parseInt(KTUtil.css(_element, 'marginTop')) - parseInt(KTUtil.css(_element, 'marginBottom'));
+    height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
+    height = height - parseInt(KTUtil.css(cardBody, 'paddingTop')) - parseInt(KTUtil.css(cardBody, 'paddingBottom'));
+    height = height - parseInt(KTUtil.css(cardBody, 'marginTop')) - parseInt(KTUtil.css(cardBody, 'marginBottom'));
+    height = height - 3;
+    KTUtil.css(scroll, 'height', height + 'px');
+  }; // Public methods
+
+
+  return {
+    init: function init(id) {
+      _element = KTUtil.getById(id);
+
+      if (!_element) {
+        return;
+      } // Initialize
+
+
+      _init(); // Re-calculate on window resize
+
+
+      KTUtil.addResizeHandler(function () {
+        _init();
+      });
+    },
+    update: function update() {
+      _init();
+    }
+  };
+}(); // Webpack support
+
+
+if (true) {
+  module.exports = KTLayoutStretchedCard;
+}
+
+/***/ }),
+
+/***/ 458:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9613,7 +9568,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 455:
+/***/ 459:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9792,7 +9747,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 456:
+/***/ 460:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9876,7 +9831,10 @@ var KTLayoutDemoPanel = function () {
         KTCookie.setCookie('kt_demo_panel_shown', 1, {
           expires: expires
         });
-        offcanvas.show();
+
+        if (typeof _offcanvasObject !== 'undefined') {
+          _offcanvasObject.show();
+        }
       }
     }, 4000);
   }; // Public methods
@@ -9906,7 +9864,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 457:
+/***/ 461:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10015,7 +9973,7 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ 458:
+/***/ 462:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10089,7 +10047,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 459:
+/***/ 463:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10173,7 +10131,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 460:
+/***/ 464:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10247,7 +10205,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 461:
+/***/ 465:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10368,7 +10326,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 462:
+/***/ 466:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10452,7 +10410,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 467:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10526,7 +10484,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 464:
+/***/ 468:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10571,7 +10529,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 465:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10774,157 +10732,7 @@ var KTLayoutSearchOffcanvas = KTLayoutSearch;
 
 /***/ }),
 
-/***/ 466:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var KTLayoutStickyCard = function () {
-  // Private properties
-  var _element;
-
-  var _object; // Private functions
-
-
-  var _init = function _init() {
-    var offset = 300;
-
-    if (typeof KTLayoutHeader !== 'undefined') {
-      offset = KTLayoutHeader.getHeight();
-    }
-
-    _object = new KTCard(_element, {
-      sticky: {
-        offset: offset,
-        zIndex: 90,
-        position: {
-          top: function top() {
-            var pos = 0;
-            var body = KTUtil.getBody();
-
-            if (KTUtil.isBreakpointUp('lg')) {
-              if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixed()) {
-                pos = pos + KTLayoutHeader.getHeight();
-              }
-
-              if (typeof KTLayoutSubheader !== 'undefined' && KTLayoutSubheader.isFixed()) {
-                pos = pos + KTLayoutSubheader.getHeight();
-              }
-            } else {
-              if (typeof KTLayoutHeader !== 'undefined' && KTLayoutHeader.isFixedForMobile()) {
-                pos = pos + KTLayoutHeader.getHeightForMobile();
-              }
-            }
-
-            pos = pos - 1; // remove header border width
-
-            return pos;
-          },
-          left: function left(card) {
-            return KTUtil.offset(_element).left;
-          },
-          right: function right(card) {
-            var body = KTUtil.getBody();
-            var cardWidth = parseInt(KTUtil.css(_element, 'width'));
-            var bodyWidth = parseInt(KTUtil.css(body, 'width'));
-            var cardOffsetLeft = KTUtil.offset(_element).left;
-            return bodyWidth - cardWidth - cardOffsetLeft;
-          }
-        }
-      }
-    });
-
-    _object.initSticky();
-
-    KTUtil.addResizeHandler(function () {
-      _object.updateSticky();
-    });
-  }; // Public methods
-
-
-  return {
-    init: function init(id) {
-      _element = KTUtil.getById(id);
-
-      if (!_element) {
-        return;
-      } // Initialize
-
-
-      _init();
-    },
-    update: function update() {
-      if (_object) {
-        _object.updateSticky();
-      }
-    }
-  };
-}(); // Webpack support
-
-
-if (true) {
-  module.exports = KTLayoutStickyCard;
-}
-
-/***/ }),
-
-/***/ 467:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var KTLayoutStretchedCard = function () {
-  // Private properties
-  var _element; // Private functions
-
-
-  var _init = function _init() {
-    var scroll = KTUtil.find(_element, '.card-scroll');
-    var cardBody = KTUtil.find(_element, '.card-body');
-    var cardHeader = KTUtil.find(_element, '.card-header');
-    var height = KTLayoutContent.getHeight();
-    height = height - parseInt(KTUtil.actualHeight(cardHeader));
-    height = height - parseInt(KTUtil.css(_element, 'marginTop')) - parseInt(KTUtil.css(_element, 'marginBottom'));
-    height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
-    height = height - parseInt(KTUtil.css(cardBody, 'paddingTop')) - parseInt(KTUtil.css(cardBody, 'paddingBottom'));
-    height = height - parseInt(KTUtil.css(cardBody, 'marginTop')) - parseInt(KTUtil.css(cardBody, 'marginBottom'));
-    height = height - 3;
-    KTUtil.css(scroll, 'height', height + 'px');
-  }; // Public methods
-
-
-  return {
-    init: function init(id) {
-      _element = KTUtil.getById(id);
-
-      if (!_element) {
-        return;
-      } // Initialize
-
-
-      _init(); // Re-calculate on window resize
-
-
-      KTUtil.addResizeHandler(function () {
-        _init();
-      });
-    },
-    update: function update() {
-      _init();
-    }
-  };
-}(); // Webpack support
-
-
-if (true) {
-  module.exports = KTLayoutStretchedCard;
-}
-
-/***/ }),
-
-/***/ 468:
+/***/ 470:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

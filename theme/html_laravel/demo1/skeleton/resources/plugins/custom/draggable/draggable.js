@@ -1,3 +1,5 @@
+// Draggable - a lightweight, responsive, modern drag & drop library: https://shopify.github.io/draggable/
+
 require('@shopify/draggable/lib/draggable.bundle.js');
 require('@shopify/draggable/lib/draggable.bundle.legacy.js');
 require('@shopify/draggable/lib/draggable.js');

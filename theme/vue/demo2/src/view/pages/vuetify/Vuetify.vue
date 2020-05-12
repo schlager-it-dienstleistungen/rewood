@@ -7,7 +7,7 @@
 </template>
 
 <style lang="scss">
-@import "~vuetify/src/styles/styles.sass";
+@import "~vuetify/dist/vuetify.css";
 
 .theme--light.v-application {
   background: transparent !important;
@@ -19,6 +19,9 @@
 
 <script>
 import Vue from "vue";
+
+// vuetify conflict style issue
+// https://github.com/vuetifyjs/vuetify/issues/8530
 
 // workaround
 // https://github.com/vuetifyjs/vuetify/issues/9999

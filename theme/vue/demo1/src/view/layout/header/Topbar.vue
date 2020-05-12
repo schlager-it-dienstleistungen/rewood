@@ -150,6 +150,7 @@
   .dropdown-menu {
     margin: 0;
     padding: 0;
+    outline: none;
     .b-dropdown-text {
       padding: 0;
     }

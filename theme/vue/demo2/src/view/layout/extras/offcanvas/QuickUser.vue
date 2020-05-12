@@ -1,8 +1,8 @@
 <template>
   <div class="topbar-item">
     <div
-      class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
       id="kt_quick_user_toggle"
+      class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"
     >
       <span
         class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1"
@@ -14,9 +14,10 @@
       >
         Sean
       </span>
-      <span class="symbol symbol-35 symbol-light-success">
-        <img v-if="false" alt="Pic" :src="picture" />
-        <span v-if="true" class="symbol-label font-size-h5 font-weight-bold">
+      <span class="symbol symbol-35">
+        <span
+          class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30"
+        >
           S
         </span>
       </span>
@@ -82,6 +83,9 @@
                 </span>
               </a>
             </div>
+            <button class="btn btn-light-primary btn-bold" @click="onLogout">
+              Sign out
+            </button>
           </div>
         </div>
         <!--end::Header-->
@@ -89,7 +93,7 @@
         <!--begin::Nav-->
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
-          <a href="#" class="navi-item" @click="onLogout">
+          <a href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">

@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.0",
+    "version": "7.0.1",
     "config": {
         "debug": false,
         "compile": {
@@ -78,11 +78,6 @@
                         "moment": {
                             "scripts": [
                                 "{$config.path.node_modules}/moment/min/moment.min.js"
-                            ]
-                        },
-                        "tooltip.js": {
-                            "scripts": [
-                                "{$config.path.node_modules}/tooltip.js/dist/umd/tooltip.min.js"
                             ]
                         },
                         "perfect-scrollbar": {

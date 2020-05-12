@@ -70,6 +70,12 @@
   </b-dropdown>
 </template>
 
+<style lang="scss">
+.dropdown-menu {
+  outline: none;
+}
+</style>
+
 <script>
 export default {
   name: "dropdown-1",

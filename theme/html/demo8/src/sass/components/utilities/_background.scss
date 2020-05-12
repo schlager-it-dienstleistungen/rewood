@@ -144,28 +144,40 @@
 }
 
 // Background positions
-.bgi-position-top {
-	background-position: 0 top;
+.bgi-position-y-top {
+	background-position-y: top;
 }
 
-.bgi-position-top-right {
-	background-position: right top;
+.bgi-position-y-bottom {
+	background-position-y: bottom;
+}
+
+.bgi-position-y-center {
+	background-position-y: center;
+}
+
+.bgi-position-x-left {
+	background-position-x: left;
+}
+
+.bgi-position-x-right {
+	background-position-x: right;
+}
+
+.bgi-position-x-center {
+	background-position-x: center;
+}
+
+.bgi-position-top {
+	background-position: 0 top;
 }
 
 .bgi-position-bottom {
 	background-position: 0 bottom;
 }
 
-.bgi-position-bottom-right {
-	background-position: right bottom;
-}
-
 .bgi-position-center {
 	background-position: center;
-}
-
-.bgi-position-center-center {
-	background-position: center center;
 }
 
 // Transparent Background

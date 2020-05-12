@@ -22,7 +22,9 @@ import { HtmlClassService } from '../html-class.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AsideLeftComponent implements OnInit, AfterViewInit {
+  private offcanvas: any;
 
+  @ViewChild('asideMenuOffcanvas', {static: true}) asideMenuOffcanvas: ElementRef;
   @ViewChild('asideMenu', {static: true}) asideMenu: ElementRef;
 
   asideLogo = '';
@@ -78,7 +80,7 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
   ) {
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit(): void {    
   }
 
   ngOnInit() {
@@ -88,8 +90,11 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         this.currentRouteUrl = this.router.url.split(/[?#]/)[0];
+        this.mobileMenuClose();
         this.cdr.markForCheck();
       });
+
+
 
     const config = this.layoutConfigService.getConfig();
 
@@ -100,7 +105,10 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
     }
 
     this.asideClasses = this.htmlClassService.getClasses('aside', true).toString();
-    this.asideLogo = this.getAsideLogo();
+    this.asideLogo = this.getAsideLogo();    
+    setTimeout(() => {
+      this.offcanvas = new KTOffcanvas(this.asideMenuOffcanvas.nativeElement, this.menuCanvasOptions);
+    });
   }
 
   getAsideLogo() {
@@ -233,5 +241,12 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
     }
 
     return toggle;
+  }
+
+
+  mobileMenuClose() {
+    if (KTUtil.isBreakpointDown('lg') && this.offcanvas) { // Tablet and mobile mode
+      this.offcanvas.hide(); // Hide offcanvas after general link click
+    }
   }
 }

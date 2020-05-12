@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@
 				<a href="https://keenthemes.com/home/" class="header__references_home">Home</a>
 				<a href="https://keenthemes.com/metronic/" class="header__references_metronic" target="_blank">Metronic</a>
 				<a href="https://keenthemes.com/hireus/" class="header__references_hire" target="_blank">Hire Us</a>
-				<a href="https://1.envato.market/EA4JP" class="header__references_purchase" target="_blank">Purchase</a>
+				<a href="https://1.envato.market/EA4JP" class="header__references_purchase" target="_blank">Buy Now</a>
 			</div>
 		</div>
 	</header>
@@ -106,13 +107,70 @@
 
 			<div class="contents__box contents__box--left"><!-- contents__box -->
                 <ul id="changelog" class="accordion">			<li class="card accordion__item">
+				<a class="collapsed" data-toggle="collapse" data-parent="#changelog" href="#metronic1105665890" aria-expanded="false">
+					<div class="accordion__item_top">
+						<h5>Metronic v7.0.1 - 12 May, 2020</h5>
+						<i class="accordion__item_top_icon"></i>
+					</div>
+				</a>
+				<div id="metronic1105665890" class="collapse show" role="tabpanel">
+					<p>New</p>
+<ul>
+	<li>New Login Page 1 template. <a href="https://keenthemes.com/metronic/preview/demo1/custom/pages/login/login-1" target="_blank">See preview</a>.</li>
+	<li>New Login Page 2 template. <a href="https://keenthemes.com/metronic/preview/demo2/custom/pages/login/login-2" target="_blank">See preview</a>.</li>
+    <li>New Pulse Component. <a href="https://keenthemes.com/metronic/preview/demo2/features/custom/pulse" target="_blank">See preview</a>.</li>
+</ul>
+<div class="space"></div>
+
+<p>Updates &amp; Improvements</p>
+				  <ul>
+					<li>SASS primary color changes from <code>#6993FF</code> to <code>#3699FF</code> for all versions of Demo1.</li>
+					<li>
+					  The SASS global components variable file <code>_variables.scss</code> devided into the Bootstrap variables <code>_variables.bootstrap.sass</code> and the Custom variables <code>_variables.custom.sass</code>.
+					  The demo <code>_variables.demo.sass</code> is used to safely override the global Bootstrap and Custom variables in an isolated scope.
+					  <a href="?page=docs&amp;section=html/sass" target="_blank">Learn more</a>.
+					</li>
+					<li>Added code comments in <code>Webpack</code> configuration files.</li>
+					<li>Added Logout Button in User Offcanvas Panel.</li>
+					<li>Added Vue logout button and logout function.</li>
+					<li>Vue config override at the page level using <code>store</code> service. Eg. <code>this.$store.dispatch(OVERRIDE_PAGE_LAYOUT_CONFIG, {/*page layout config*/});</code></li>
+					<li>Added <code>&lt;!DOCTYPE html&gt;</code> to the HTML tag.</li>
+					<li>Added tooltips for topbar components in React</li>
+				  </ul>
+
+<div class="space"></div>
+
+<p>Fixes</p>
+				  <ul>
+					<li>Fixed Missing <code>&lt;!DOCTYPE html&gt;</code> tag in HTML files.</li>
+					<li>Fixed HTML <code>Layout Builder</code> bugs.</li>
+					<li>Fixed HTML Link click outline issue.</li>
+					<li>Fixed HTML <code>Form validation</code> bugs.</li>
+					<li>Fixed HTML <code>Tagify</code> plugin readonly mode bug.</li>
+					<li>Fixed HTML <code>Toast</code> plugin state colors bug.</li>
+					<li>Fixed HTML <code>Subheader</code> layout issue in <code>Demo 6</code>.</li>
+					<li>Fixed HTML <code>Header Menu</code> dropdown issue in <code>Demo 8</code>.</li>
+					<li>Fixed HTML <code>Datatables.net</code> column sort direction icon colors issue.</li>
+					<li>Fixed HTML <code>Sweetalert2</code> plugins options syntax issues.</li>
+					<li>Fixed Vue highlight menu item on active.</li>
+					<li>Fixed Vue user profile button hover transparency color.</li>
+					<li>Fixed Vue topbar dropdown outline.</li>
+					<li>Fixed offcanvas demo panel error on first time load.</li>
+					<li>Fixed HTML,React,Angular &amp; Vue Menu closing after router changes.</li>
+					<li>Fixed <code>npm run localhost</code> from deleting existing assets folder.</li>
+					<li>Fixed <code>Laravel</code> dropdown in subheader partials.</li>
+				  </ul>
+
+					<div class="space"></div>
+				</div>
+			</li>			<li class="card accordion__item">
 				<a class="collapsed" data-toggle="collapse" data-parent="#changelog" href="#metronic920662004" aria-expanded="false">
 					<div class="accordion__item_top">
 						<h5>Metronic v7.0.0 - 7 May, 2020</h5>
 						<i class="accordion__item_top_icon"></i>
 					</div>
 				</a>
-				<div id="metronic920662004" class="collapse show" role="tabpanel">
+				<div id="metronic920662004" class="collapse " role="tabpanel">
 					<p>New</p>
 <ul>
     <li>New codebase and improved core framework.</li>
@@ -137,6 +195,8 @@
 <p>Updates &amp; Improvements</p>
 <ul>
 	<li>Removed custom Metronic classes <code>kt-*</code> and replace with the Bootstrap standard classes and new Metronic classes compatible with Bootstrap framework.</li>
+    <li>Removed custom <code>KTPortlet</code> plugin and implemented new <code>KTCard</code> class on top of <code>Bootstrap Card component</code>.</li>
+    <li>Dropped <code>IE11</code> support due to many 3rd-party plugins incompatiblity issues.<li>
     <li>Source code preview for the components and plugins examples.</li>
     <li>Core Javascript code and performance optimization.</li>
     <li>File structure optimization.</li>
@@ -290,7 +350,7 @@
                 </div>
                 <div class="d-flex align-items-center footer-references">
                     <a href="?page=faq" class="mr-4">FAQ</a>
-                    <a href="https://1.envato.market/EA4JP" target="_blank">Purchase</a>
+                    <a href="https://1.envato.market/EA4JP" target="_blank">Buy Now</a>
                 </div>
             </div>
         </div>

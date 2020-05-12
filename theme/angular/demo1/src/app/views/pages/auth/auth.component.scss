@@ -1,5 +1,5 @@
 // import login css
-@import "../../../../assets/sass/pages/users/login-1.scss";
+@import "../../../../assets/sass/pages/login/login-1.scss";
 
 kt-auth, #kt_login_wrapper {
 	height: 100%;
@@ -10,23 +10,23 @@ kt-auth, #kt_login_wrapper {
 
 		.mat-form-field {
 			width: 100%;
-		}  
+		}
 	 }
 }
 
 
 kt-auth, .login {
 	 height: 100%;
-	 
+
 	 .login-form {
 		width: 100%;
 		max-width: 450px;
 
 		.mat-form-field {
 			width: 100%;
-		}  
+		}
 	 }
-  	
+
 	// add extra right padding when displaying spinner in button
  	.spinner {
  		padding-right: 3rem !important;
@@ -41,7 +41,7 @@ kt-login, kt-register, kt-forgot-password {
     -ms-flex-align: center;
     align-items: center;
 	flex: 1 0 auto;
-	height: 100%;	
+	height: 100%;
 	display: flex !important;
 }
 

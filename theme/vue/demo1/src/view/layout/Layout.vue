@@ -87,7 +87,7 @@ export default {
     this.$store.dispatch(ADD_BODY_CLASSNAME, "page-loading");
 
     // initialize html element classes
-    HtmlClass.init();
+    HtmlClass.init(this.layoutConfig());
   },
   mounted() {
     // check if current user is authenticated

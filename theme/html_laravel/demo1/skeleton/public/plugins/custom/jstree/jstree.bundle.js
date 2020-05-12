@@ -81,12 +81,12 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 558);
+/******/ 	return __webpack_require__(__webpack_require__.s = 560);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 159:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10692,7 +10692,7 @@ return jQuery;
 
 /***/ }),
 
-/***/ 160:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -10701,7 +10701,7 @@ return jQuery;
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(159), __webpack_require__(161)) :
+   true ? factory(exports, __webpack_require__(163), __webpack_require__(165)) :
   undefined;
 }(this, (function (exports, $, Popper) { 'use strict';
 
@@ -15219,7 +15219,7 @@ return jQuery;
 
 /***/ }),
 
-/***/ 161:
+/***/ 165:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17872,34 +17872,35 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 558:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(559);
-
-
-/***/ }),
-
-/***/ 559:
-/***/ (function(module, exports, __webpack_require__) {
-
-// jquery
-window.jQuery = window.$ = __webpack_require__(159); // bootstrap
-
-__webpack_require__(160);
-
-__webpack_require__(560);
-
-/***/ }),
-
 /***/ 560:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(561);
+
+
+/***/ }),
+
+/***/ 561:
+/***/ (function(module, exports, __webpack_require__) {
+
+// jsTree - is jquery plugin, that provides interactive trees: https://www.jstree.com/
+// jquery
+window.jQuery = window.$ = __webpack_require__(163); // bootstrap
+
+__webpack_require__(164);
+
+__webpack_require__(562);
+
+/***/ }),
+
+/***/ 562:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*globals jQuery, define, module, exports, require, window, document, postMessage */
 (function (factory) {
 	"use strict";
 	if (true) {
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(159)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(163)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));

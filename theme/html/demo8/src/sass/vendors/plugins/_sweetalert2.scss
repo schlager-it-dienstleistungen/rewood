@@ -68,3 +68,48 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 body.swal2-height-auto {
 	height: 100% !important;
 }
+
+// State Colors
+.swal2-icon {
+	// Warning
+	&.swal2-warning {
+    	border-color: $warning;
+    	color: $warning;
+	}
+
+	// Error
+	&.swal2-error {
+    	border-color: $danger;
+    	color: $danger;
+
+		[class^=swal2-x-mark-line] {
+			background-color: rgba($danger, 0.75);
+		}
+	}
+
+	// Success
+	&.swal2-success {
+    	border-color: $success;
+    	color: $success;
+
+		[class^=swal2-success-line] {
+			background-color: $success;
+		}
+
+		.swal2-success-ring {
+			border-color: rgba($success, 0.3);
+		}
+	}
+
+	// Info
+	&.swal2-info {
+    	border-color: $info;
+    	color: $info;
+	}
+
+	// Question
+	&.swal2-question {
+    	border-color: $primary;
+    	color: $primary;
+	}
+}

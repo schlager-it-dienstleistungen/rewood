@@ -54,6 +54,12 @@ window.KTLayoutHeaderMenu = KTLayoutHeaderMenu;
 import KTLayoutHeaderTopbar from "@/assets/js/layout/base/header-topbar.js";
 window.KTLayoutHeaderTopbar = KTLayoutHeaderTopbar;
 
+import KTLayoutStickyCard from "@/assets/js/layout/base/sticky-card.js";
+window.KTLayoutStickyCard = KTLayoutStickyCard;
+
+import KTLayoutStretchedCard from "@/assets/js/layout/base/stretched-card.js";
+window.KTLayoutStretchedCard = KTLayoutStretchedCard;
+
 import KTLayoutSubheader from "@/assets/js/layout/base/subheader.js";
 window.KTLayoutSubheader = KTLayoutSubheader;
 
@@ -87,9 +93,3 @@ window.KTLayoutScrolltop = KTLayoutScrolltop;
 
 import KTLayoutSearch from "@/assets/js/layout/extended/search.js";
 window.KTLayoutSearch = KTLayoutSearch;
-
-import KTLayoutStickyCard from "@/assets/js/layout/extended/sticky-card.js";
-window.KTLayoutStickyCard = KTLayoutStickyCard;
-
-import KTLayoutStretchedCard from "@/assets/js/layout/extended/stretched-card.js";
-window.KTLayoutStretchedCard = KTLayoutStretchedCard;

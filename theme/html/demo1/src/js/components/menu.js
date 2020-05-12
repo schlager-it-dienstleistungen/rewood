@@ -129,7 +129,7 @@ var KTMenu = function(elementId, options) {
                 the.eventHandlers['event_5'] = KTUtil.on( element, '[data-menu-toggle="tab"] > .menu-toggle, [data-menu-toggle="tab"] > .menu-link .menu-toggle', 'click', Plugin.handleSubmenuDropdownTabClick);
             }
 
-            // handle link click
+            // Handle general link click
             the.eventHandlers['event_6'] = KTUtil.on(element, '.menu-item > .menu-link:not(.menu-toggle):not(.menu-link-toggle-skip)', 'click', Plugin.handleLinkClick);
 
             // Init scrollable menu
@@ -358,7 +358,7 @@ var KTMenu = function(elementId, options) {
          * @returns {KTMenu}
          */
         handleLinkClick: function(e) {
-            var submenu = this.closest('.menu-item.menu-item-submenu'); //
+            var submenu = this.closest('.menu-item.menu-item-submenu');
 
             // Trigger click event handlers
             var result = Plugin.eventTrigger('linkClick', this, e);

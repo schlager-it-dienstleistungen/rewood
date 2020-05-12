@@ -81,29 +81,28 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 483);
+/******/ 	return __webpack_require__(__webpack_require__.s = 485);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 483:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(484);
-
-
-/***/ }),
-
-/***/ 484:
-/***/ (function(module, exports, __webpack_require__) {
-
-window.Cropper = __webpack_require__(485);
-
-__webpack_require__(71);
-
-/***/ }),
-
 /***/ 485:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(486);
+
+
+/***/ }),
+
+/***/ 486:
+/***/ (function(module, exports, __webpack_require__) {
+
+// Cropper -  A simple jQuery image cropping plugin: https://fengyuanchen.github.io/cropper/
+window.Cropper = __webpack_require__(487);
+
+/***/ }),
+
+/***/ 487:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3722,13 +3721,6 @@ __webpack_require__(71);
 
 }));
 
-
-/***/ }),
-
-/***/ 71:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 

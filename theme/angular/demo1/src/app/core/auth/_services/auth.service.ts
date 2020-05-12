@@ -24,14 +24,14 @@ export class AuthService {
 
   getUserByToken(): Observable<User> {
     const userToken = localStorage.getItem(environment.authTokenKey);
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Authorization', 'Bearer ' + userToken);
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Authorization', 'Bearer ' + userToken);
     return this.http.get<User>(API_USERS_URL, {headers: httpHeaders});
   }
 
   register(user: User): Observable<any> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<User>(API_USERS_URL, user, {headers: httpHeaders})
       .pipe(
         map((res: User) => {
@@ -74,23 +74,23 @@ export class AuthService {
   // UPDATE => PUT: update the user on the server
   // tslint:disable-next-line
   updateUser(_user: User): Observable<any> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.put(API_USERS_URL, _user, {headers: httpHeaders});
   }
 
   // CREATE =>  POST: add a new user to the server
   createUser(user: User): Observable<User> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<User>(API_USERS_URL, user, {headers: httpHeaders});
   }
 
   // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
   // items => filtered/sorted result
   findUsers(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<QueryResultsModel>(API_USERS_URL + '/findUsers', queryParams, {headers: httpHeaders});
   }
 
@@ -115,15 +115,15 @@ export class AuthService {
   // CREATE =>  POST: add a new role to the server
   createRole(role: Role): Observable<Role> {
     // Note: Add headers if needed (tokens/bearer)
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<Role>(API_ROLES_URL, role, {headers: httpHeaders});
   }
 
   // UPDATE => PUT: update the role on the server
   updateRole(role: Role): Observable<any> {
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.put(API_ROLES_URL, role, {headers: httpHeaders});
   }
 
@@ -140,8 +140,8 @@ export class AuthService {
 
   findRoles(queryParams: QueryParamsModel): Observable<QueryResultsModel> {
     // This code imitates server calls
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.set('Content-Type', 'application/json');
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
     return this.http.post<QueryResultsModel>(API_ROLES_URL + '/findRoles', queryParams, {headers: httpHeaders});
   }
 

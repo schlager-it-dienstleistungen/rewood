@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import clsx from "clsx";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SVG from "react-inlinesvg";
 import objectPath from "object-path";
 import { useHtmlClassService } from "../../../../_core/MetronicLayout";
@@ -171,13 +171,18 @@ export function SearchDropdown() {
           id="kt_quick_search_toggle"
         >
           <Dropdown.Toggle as={DropdownTopbarItemToggler}>
-            <div className="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
-              <span className="svg-icon svg-icon-xl svg-icon-primary">
-                <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")}
-                />
-              </span>
-            </div>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="search-panel-tooltip">Quick search</Tooltip>}
+            >
+              <div className="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
+                <span className="svg-icon svg-icon-xl svg-icon-primary">
+                  <SVG
+                    src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")}
+                  />
+                </span>
+              </div>
+            </OverlayTrigger>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
             <div
@@ -228,7 +233,7 @@ export function SearchDropdown() {
                   </div>
                 </div>
               </form>
-                <SearchResult data={data} />
+              <SearchResult data={data} />
             </div>
           </Dropdown.Menu>
         </Dropdown>

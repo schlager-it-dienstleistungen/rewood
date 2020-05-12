@@ -81,213 +81,244 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 774);
+/******/ 	return __webpack_require__(__webpack_require__.s = 776);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 774:
+/***/ 776:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(775);
+module.exports = __webpack_require__(777);
 
 
 /***/ }),
 
-/***/ 775:
+/***/ 777:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
  // Class Definition
 
 var KTLoginGeneral = function () {
-  var login = $('#kt_login');
+  var _login;
 
-  var showErrorMsg = function showErrorMsg(form, type, msg) {
-    var alert = $('<div class="mb-10 alert alert-custom alert-light-' + type + ' alert-dismissible" role="alert">\
-			<div class="alert-text font-weight-bold ">' + msg + '</div>\
-			<div class="alert-close">\
-                <i class="ki ki-remove" data-dismiss="alert"></i>\
-            </div>\
-		</div>');
-    form.find('.alert').remove();
-    alert.prependTo(form); //alert.animateClass('fadeIn animated');
+  var _showForm = function _showForm(form) {
+    var cls = 'login-' + form + '-on';
+    var form = 'kt_login_' + form + '_form';
 
-    KTUtil.animateClass(alert[0], 'fadeIn animated');
-    alert.find('span').html(msg);
-  }; // Private Functions
+    _login.removeClass('login-forgot-on');
 
+    _login.removeClass('login-signin-on');
 
-  var displaySignUpForm = function displaySignUpForm() {
-    login.removeClass('login-forgot-on');
-    login.removeClass('login-signin-on');
-    login.addClass('login-signup-on');
-    KTUtil.animateClass(login.find('.login-signup')[0], 'flipInX animated');
+    _login.removeClass('login-signup-on');
+
+    _login.addClass(cls);
+
+    KTUtil.animateClass(KTUtil.getById(form), 'flipInX animated');
   };
 
-  var displaySignInForm = function displaySignInForm() {
-    login.removeClass('login-forgot-on');
-    login.removeClass('login-signup-on');
-    login.addClass('login-signin-on');
-    KTUtil.animateClass(login.find('.login-signin')[0], 'flipInX animated'); //login.find('.login-signin').animateClass('flipInX animated');
-  };
+  var _handleSignInForm = function _handleSignInForm() {
+    var validation; // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 
-  var displayForgotForm = function displayForgotForm() {
-    login.removeClass('login-signin-on');
-    login.removeClass('login-signup-on');
-    login.addClass('login-forgot-on'); //login.find('.login-forgot-on').animateClass('flipInX animated');
-
-    KTUtil.animateClass(login.find('.login-forgot')[0], 'flipInX animated');
-  };
-
-  var handleFormSwitch = function handleFormSwitch() {
-    $('#kt_login_forgot').click(function (e) {
-      e.preventDefault();
-      displayForgotForm();
-    });
-    $('#kt_login_forgot_cancel').click(function (e) {
-      e.preventDefault();
-      displaySignInForm();
-    });
-    $('#kt_login_signup').click(function (e) {
-      e.preventDefault();
-      displaySignUpForm();
-    });
-    $('#kt_login_signup_cancel').click(function (e) {
-      e.preventDefault();
-      displaySignInForm();
-    });
-  };
-
-  var handleSignInFormSubmit = function handleSignInFormSubmit() {
-    $('#kt_login_signin_submit').click(function (e) {
-      e.preventDefault();
-      var btn = $(this);
-      var form = $(this).closest('form');
-      form.validate({
-        rules: {
-          username: {
-            required: true,
-            email: true
-          },
-          password: {
-            required: true
+    validation = FormValidation.formValidation(KTUtil.getById('kt_login_signin_form'), {
+      fields: {
+        username: {
+          validators: {
+            notEmpty: {
+              message: 'Username is required'
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: 'Password is required'
+            }
           }
         }
-      });
-
-      if (!form.valid()) {
-        return;
+      },
+      plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap: new FormValidation.plugins.Bootstrap()
       }
-
-      btn.addClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', true);
-      form.ajaxSubmit({
-        url: '',
-        success: function success(response, status, xhr, $form) {
-          // similate 2s delay
-          setTimeout(function () {
-            btn.removeClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', false);
-            showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
-          }, 2000);
+    });
+    $('#kt_login_signin_submit').on('click', function (e) {
+      e.preventDefault();
+      validation.validate().then(function (status) {
+        if (status == 'Valid') {
+          swal.fire({
+            text: "All is cool! Now you submit this form",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            confirmButtonClass: "btn font-weight-bold btn-light-primary"
+          }).then(function () {
+            KTUtil.scrollTop();
+          });
+        } else {
+          swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            confirmButtonClass: "btn font-weight-bold btn-light"
+          }).then(function () {
+            KTUtil.scrollTop();
+          });
         }
       });
+    }); // Handle forgot button
+
+    $('#kt_login_forgot').on('click', function (e) {
+      e.preventDefault();
+
+      _showForm('forgot');
+    }); // Handle signup
+
+    $('#kt_login_signup').on('click', function (e) {
+      e.preventDefault();
+
+      _showForm('signup');
     });
   };
 
-  var handleSignUpFormSubmit = function handleSignUpFormSubmit() {
-    $('#kt_login_signup_submit').click(function (e) {
-      e.preventDefault();
-      var btn = $(this);
-      var form = $(this).closest('form');
-      form.validate({
-        rules: {
-          fullname: {
-            required: true
-          },
-          email: {
-            required: true,
-            email: true
-          },
-          password: {
-            required: true
-          },
-          rpassword: {
-            required: true
-          },
-          agree: {
-            required: true
+  var _handleSignUpForm = function _handleSignUpForm(e) {
+    var validation;
+    var form = KTUtil.getById('kt_login_signup_form'); // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+
+    validation = FormValidation.formValidation(form, {
+      fields: {
+        fullname: {
+          validators: {
+            notEmpty: {
+              message: 'Username is required'
+            }
+          }
+        },
+        email: {
+          validators: {
+            notEmpty: {
+              message: 'Email address is required'
+            },
+            emailAddress: {
+              message: 'The value is not a valid email address'
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: 'The password is required'
+            }
+          }
+        },
+        cpassword: {
+          validators: {
+            notEmpty: {
+              message: 'The password confirmation is required'
+            },
+            identical: {
+              compare: function compare() {
+                return form.querySelector('[name="password"]').value;
+              },
+              message: 'The password and its confirm are not the same'
+            }
+          }
+        },
+        agree: {
+          validators: {
+            notEmpty: {
+              message: 'You must accept the terms and conditions'
+            }
           }
         }
-      });
-
-      if (!form.valid()) {
-        return;
+      },
+      plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap: new FormValidation.plugins.Bootstrap()
       }
-
-      btn.addClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', true);
-      form.ajaxSubmit({
-        url: '',
-        success: function success(response, status, xhr, $form) {
-          // similate 2s delay
-          setTimeout(function () {
-            btn.removeClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', false);
-            form.clearForm();
-            form.validate().resetForm(); // display signup form
-
-            displaySignInForm();
-            var signInForm = login.find('.login-signin form');
-            signInForm.clearForm();
-            signInForm.validate().resetForm();
-            showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
-          }, 2000);
+    });
+    $('#kt_login_signup_submit').on('click', function (e) {
+      e.preventDefault();
+      validation.validate().then(function (status) {
+        if (status == 'Valid') {
+          swal.fire({
+            text: "All is cool! Now you submit this form",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            confirmButtonClass: "btn font-weight-bold btn-light-primary"
+          }).then(function () {
+            KTUtil.scrollTop();
+          });
+        } else {
+          swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            confirmButtonClass: "btn font-weight-bold btn-light"
+          }).then(function () {
+            KTUtil.scrollTop();
+          });
         }
       });
+    }); // Handle cancel button
+
+    $('#kt_login_signup_cancel').on('click', function (e) {
+      e.preventDefault();
+
+      _showForm('signin');
     });
   };
 
-  var handleForgotFormSubmit = function handleForgotFormSubmit() {
-    $('#kt_login_forgot_submit').click(function (e) {
-      e.preventDefault();
-      var btn = $(this);
-      var form = $(this).closest('form');
-      form.validate({
-        rules: {
-          email: {
-            required: true,
-            email: true
-          },
-          username: {
-            required: true,
-            email: true
+  var _handleForgotForm = function _handleForgotForm(e) {
+    var validation; // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+
+    validation = FormValidation.formValidation(KTUtil.getById('kt_login_forgot_form'), {
+      fields: {
+        email: {
+          validators: {
+            notEmpty: {
+              message: 'Email address is required'
+            },
+            emailAddress: {
+              message: 'The value is not a valid email address'
+            }
           }
         }
-      });
-
-      if (!form.valid()) {
-        return;
+      },
+      plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap: new FormValidation.plugins.Bootstrap()
       }
+    }); // Handle submit button
 
-      btn.addClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', true);
-      form.ajaxSubmit({
-        url: '',
-        success: function success(response, status, xhr, $form) {
-          // similate 2s delay
-          setTimeout(function () {
-            btn.removeClass('spinner spinner-right pr-12 spinner-sm spinner-white').attr('disabled', false); // remove
-
-            form.clearForm(); // clear form
-
-            form.validate().resetForm(); // reset validation states
-            // display signup form
-
-            displaySignInForm();
-            var signInForm = login.find('.login-signin form');
-            signInForm.clearForm();
-            signInForm.validate().resetForm();
-            showErrorMsg(signInForm, 'success', 'Cool! Password recovery instruction has been sent to your email.');
-          }, 2000);
+    $('#kt_login_forgot_submit').on('click', function (e) {
+      e.preventDefault();
+      validation.validate().then(function (status) {
+        if (status == 'Valid') {
+          // Submit form
+          KTUtil.scrollTop();
+        } else {
+          swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            confirmButtonClass: "btn font-weight-bold btn-light"
+          }).then(function () {
+            KTUtil.scrollTop();
+          });
         }
       });
+    }); // Handle cancel button
+
+    $('#kt_login_forgot_cancel').on('click', function (e) {
+      e.preventDefault();
+
+      _showForm('signin');
     });
   }; // Public Functions
 
@@ -295,10 +326,13 @@ var KTLoginGeneral = function () {
   return {
     // public functions
     init: function init() {
-      handleFormSwitch();
-      handleSignInFormSubmit();
-      handleSignUpFormSubmit();
-      handleForgotFormSubmit();
+      _login = $('#kt_login');
+
+      _handleSignInForm();
+
+      _handleSignUpForm();
+
+      _handleForgotForm();
     }
   };
 }(); // Class Initialization

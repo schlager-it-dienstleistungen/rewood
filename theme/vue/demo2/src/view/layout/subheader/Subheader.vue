@@ -12,9 +12,9 @@
         <!--begin::Heading-->
         <div class="d-flex flex-column">
           <!--begin::Title-->
-          <h5 class="text-white font-weight-bold my-2 mr-5">
+          <h2 class="text-white font-weight-bold my-2 mr-5">
             {{ title }}
-          </h5>
+          </h2>
           <ul class="d-flex align-items-center font-weight-bold my-2">
             <router-link :to="'/'" class="opacity-75 hover-opacity-100">
               <i class="flaticon2-shelter text-white icon-1x"></i>

@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 764);
+/******/ 	return __webpack_require__(__webpack_require__.s = 766);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 764:
+/***/ 766:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(765);
+module.exports = __webpack_require__(767);
 
 
 /***/ }),
 
-/***/ 765:
+/***/ 767:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -151,6 +151,7 @@ var KTContactsAdd = function () {
   };
 
   var initValidation = function initValidation() {
+    // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     // Step 1
     _validations.push(FormValidation.formValidation(_formEl, {
       fields: {

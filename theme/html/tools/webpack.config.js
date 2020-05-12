@@ -37,11 +37,6 @@ const css = args.indexOf('css') !== -1 || args.indexOf('scss') !== -1;
 addtionalSettings();
 
 function addtionalSettings() {
-  // remove older folders and files
-  (async () => {
-    await del.sync(assetDistPath, {force: true});
-  })();
-
   if (args.indexOf('rtl') !== -1) {
     // enable rtl for css
     extraPlugins.push(new WebpackRTLPlugin({
@@ -87,11 +82,6 @@ function getEntryFiles() {
     }
     entries[loc] = file;
   });
-  // (glob.sync('./webpack/plugins/custom/**/*.+(scss)') || []).forEach(file => {
-  //   let loc = file.replace('webpack/', '').replace('./', '');
-  //   loc = loc.replace('.scss', '.bundle');
-  //   entries[loc] = file;
-  // });
 
   // Metronic css pages (single page use)
   (glob.sync(path.relative('./', srcPath) + '/sass/pages/**/!(_)*.scss') || []).forEach(file => {

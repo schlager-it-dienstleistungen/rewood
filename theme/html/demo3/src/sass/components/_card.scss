@@ -193,7 +193,7 @@
     	}
     }
 
-    .card-sticky-on & {
+    .card-sticky-on &.card-sticky {
         > .card-header {
             transition: left 0.3s, right 0.3s, height 0.3s;
 			position: fixed;

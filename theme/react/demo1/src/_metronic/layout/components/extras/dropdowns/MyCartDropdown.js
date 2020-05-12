@@ -3,14 +3,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SVG from "react-inlinesvg";
-import {toAbsoluteUrl} from "../../../../_helpers";
-import {DropdownTopbarItemToggler} from "../../../../_partials/dropdowns";
+import { toAbsoluteUrl } from "../../../../_helpers";
+import { DropdownTopbarItemToggler } from "../../../../_partials/dropdowns";
 
 const perfectScrollbarOptions = {
   wheelSpeed: 2,
-  wheelPropagation: false
+  wheelPropagation: false,
 };
 
 export function MyCartDropdown() {
@@ -21,14 +21,16 @@ export function MyCartDropdown() {
         as={DropdownTopbarItemToggler}
         id="dropdown-toggle-my-cart-toggle"
       >
-        <div
-          className="btn btn-icon btn-clean btn-lg mr-1"
+        <OverlayTrigger
+          placement="left"
+          overlay={<Tooltip id="mycart-panel-tooltip">User Cart</Tooltip>}
         >
-          <span className="svg-icon svg-icon-xl svg-icon-primary">
-            <SVG src={toAbsoluteUrl("/media/svg/icons/Shopping/Cart3.svg")} />
-          </span>
-          
-        </div>
+          <div className="btn btn-icon btn-clean btn-lg mr-1">
+            <span className="svg-icon svg-icon-xl svg-icon-primary">
+              <SVG src={toAbsoluteUrl("/media/svg/icons/Shopping/Cart3.svg")} />
+            </span>
+          </div>
+        </OverlayTrigger>
       </Dropdown.Toggle>
       <Dropdown.Menu className="p-0 m-0 dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-lg">
         <form>

@@ -25,6 +25,8 @@ window.KTLayoutFooter = require('@/src/js/layout/base/footer.js');
 window.KTLayoutHeader = require('@/src/js/layout/base/header.js');
 window.KTLayoutHeaderMenu = require('@/src/js/layout/base/header-menu.js');
 window.KTLayoutHeaderTopbar = require('@/src/js/layout/base/header-topbar.js');
+window.KTLayoutStickyCard = require('@/src/js/layout/base/sticky-card.js');
+window.KTLayoutStretchedCard = require('@/src/js/layout/base/stretched-card.js');
 window.KTLayoutSubheader = require('@/src/js/layout/base/subheader.js');
 
 // Metronic layout extended js
@@ -39,7 +41,5 @@ window.KTLayoutQuickSearch = require('@/src/js/layout/extended/quick-search.js')
 window.KTLayoutQuickUser = require('@/src/js/layout/extended/quick-user.js');
 window.KTLayoutScrolltop = require('@/src/js/layout/extended/scrolltop.js');
 window.KTLayoutSearch = window.KTLayoutSearchOffcanvas = require('@/src/js/layout/extended/search.js');
-window.KTLayoutStickyCard = require('@/src/js/layout/extended/sticky-card.js');
-window.KTLayoutStretchedCard = require('@/src/js/layout/extended/stretched-card.js');
 
 require('@/src/js/layout/initialize.js');

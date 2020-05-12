@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 778);
+/******/ 	return __webpack_require__(__webpack_require__.s = 780);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 778:
+/***/ 780:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(779);
+module.exports = __webpack_require__(781);
 
 
 /***/ }),
 
-/***/ 779:
+/***/ 781:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,6 +152,7 @@ var KTProjectsAdd = function () {
 
 
   var initValidation = function initValidation() {
+    // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     // Step 1
     _validations.push(FormValidation.formValidation(_formEl, {
       fields: {

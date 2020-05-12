@@ -81,27 +81,28 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 547);
+/******/ 	return __webpack_require__(__webpack_require__.s = 549);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 547:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(548);
-
-
-/***/ }),
-
-/***/ 548:
-/***/ (function(module, exports, __webpack_require__) {
-
-window.GMaps = __webpack_require__(549);
-
-/***/ }),
-
 /***/ 549:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(550);
+
+
+/***/ }),
+
+/***/ 550:
+/***/ (function(module, exports, __webpack_require__) {
+
+// Gmaps.js - allows you to use the potential of Google Maps in a simple way. No more extensive documentation or large amount of code: https://hpneo.dev/gmaps/
+window.GMaps = __webpack_require__(551);
+
+/***/ }),
+
+/***/ 551:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

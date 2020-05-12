@@ -37,8 +37,9 @@
 @import "~bootstrap/scss/mixins";
 
 // Global variables
-
-@import "components/variables";
+@import "components/variables.demo";
+@import "components/variables.bootstrap";
+@import "components/variables.custom";
 
 // 3rd-Party plugins variables
 @import "vendors/plugins/variables";

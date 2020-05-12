@@ -7,7 +7,8 @@ import {
   ElementRef,
   OnInit,
   Renderer2,
-  Input
+  Input,
+  ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 // RxJS
@@ -32,6 +33,9 @@ import { HtmlClassService } from '../../html-class.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuHorizontalComponent implements OnInit, AfterViewInit {
+  private offcanvas: any;
+  @ViewChild('headerMenuOffcanvas', { static: true }) headerMenuOffcanvas: ElementRef;
+
   @Input() headerLogo: string;
   @Input() headerMenuSelfDisplay: boolean;
   @Input() headerMenuClasses: string;
@@ -105,10 +109,14 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.rootArrowEnabled = this.layoutConfigService.getConfig('header.menu.self.rootArrow');
     this.currentRouteUrl = this.router.url;
+    setTimeout(() => {
+      this.offcanvas = new KTOffcanvas(this.headerMenuOffcanvas.nativeElement, this.offcanvasOptions);
+    });
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         this.currentRouteUrl = this.router.url;
+        this.mobileMenuClose();
         this.cdr.markForCheck();
       });
   }
@@ -251,5 +259,11 @@ export class MenuHorizontalComponent implements OnInit, AfterViewInit {
     }
 
     return false;
+  }
+
+  mobileMenuClose() {
+    if (KTUtil.isBreakpointDown('lg') && this.offcanvas) { // Tablet and mobile mode
+      this.offcanvas.hide(); // Hide offcanvas after general link click
+    }
   }
 }

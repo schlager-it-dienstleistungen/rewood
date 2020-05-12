@@ -81,33 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 515);
+/******/ 	return __webpack_require__(__webpack_require__.s = 517);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 515:
+/***/ 517:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(516);
+module.exports = __webpack_require__(518);
 
 
 /***/ }),
 
-/***/ 516:
+/***/ 518:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(517);
-
-__webpack_require__(518);
-
+// Draggable - a lightweight, responsive, modern drag & drop library: https://shopify.github.io/draggable/
 __webpack_require__(519);
 
-window.Sortable = __webpack_require__(520);
+__webpack_require__(520);
 
 __webpack_require__(521);
 
-__webpack_require__(522);
+window.Sortable = __webpack_require__(522);
 
 __webpack_require__(523);
 
@@ -119,9 +116,13 @@ __webpack_require__(526);
 
 __webpack_require__(527);
 
+__webpack_require__(528);
+
+__webpack_require__(529);
+
 /***/ }),
 
-/***/ 517:
+/***/ 519:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -7141,7 +7142,7 @@ exports.Plugins = Plugins;
 
 /***/ }),
 
-/***/ 518:
+/***/ 520:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -16389,7 +16390,7 @@ exports.Plugins = Plugins;
 
 /***/ }),
 
-/***/ 519:
+/***/ 521:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -20872,7 +20873,7 @@ exports.default = _Draggable2.default;
 
 /***/ }),
 
-/***/ 520:
+/***/ 522:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -25934,7 +25935,7 @@ exports.default = _Sortable2.default;
 
 /***/ }),
 
-/***/ 521:
+/***/ 523:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -30905,7 +30906,7 @@ exports.default = _Droppable2.default;
 
 /***/ }),
 
-/***/ 522:
+/***/ 524:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -35735,7 +35736,7 @@ exports.default = _Swappable2.default;
 
 /***/ }),
 
-/***/ 523:
+/***/ 525:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -37227,7 +37228,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ 524:
+/***/ 526:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -37979,7 +37980,7 @@ exports.default = _Collidable2.default;
 
 /***/ }),
 
-/***/ 525:
+/***/ 527:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -38487,7 +38488,7 @@ exports.defaultOptions = _ResizeMirror.defaultOptions;
 
 /***/ }),
 
-/***/ 526:
+/***/ 528:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -39088,7 +39089,7 @@ exports.default = _Snappable2.default;
 
 /***/ }),
 
-/***/ 527:
+/***/ 529:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {

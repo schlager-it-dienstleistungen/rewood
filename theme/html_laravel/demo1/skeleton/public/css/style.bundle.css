@@ -46320,6 +46320,10 @@ i {
   font-size: 0.75rem !important;
 }
 
+.icon-nm {
+  font-size: 0.85rem !important;
+}
+
 .icon-md {
   font-size: 1.25rem !important;
 }
@@ -46387,6 +46391,10 @@ i {
 
   .icon-sm-sm {
     font-size: 0.75rem !important;
+  }
+
+  .icon-sm-nm {
+    font-size: 0.85rem !important;
   }
 
   .icon-sm-md {
@@ -46458,6 +46466,10 @@ i {
     font-size: 0.75rem !important;
   }
 
+  .icon-md-nm {
+    font-size: 0.85rem !important;
+  }
+
   .icon-md-md {
     font-size: 1.25rem !important;
   }
@@ -46525,6 +46537,10 @@ i {
 
   .icon-lg-sm {
     font-size: 0.75rem !important;
+  }
+
+  .icon-lg-nm {
+    font-size: 0.85rem !important;
   }
 
   .icon-lg-md {
@@ -46596,6 +46612,10 @@ i {
     font-size: 0.75rem !important;
   }
 
+  .icon-xl-nm {
+    font-size: 0.85rem !important;
+  }
+
   .icon-xl-md {
     font-size: 1.25rem !important;
   }
@@ -46663,6 +46683,10 @@ i {
 
   .icon-xxl-sm {
     font-size: 0.75rem !important;
+  }
+
+  .icon-xxl-nm {
+    font-size: 0.85rem !important;
   }
 
   .icon-xxl-md {
@@ -74091,14 +74115,6 @@ body.swal2-height-auto {
 .toast .toast-message {
   font-size: 1rem;
 }
-.toast.toast-primary {
-  background-color: #6993FF;
-  color: #FFFFFF;
-}
-.toast.toast-secondary {
-  background-color: #E5EAEE;
-  color: #464E5F;
-}
 .toast.toast-success {
   background-color: #1BC5BD;
   color: #ffffff;
@@ -74111,24 +74127,8 @@ body.swal2-height-auto {
   background-color: #FFA800;
   color: #ffffff;
 }
-.toast.toast-danger {
+.toast.toast-error {
   background-color: #F64E60;
-  color: #ffffff;
-}
-.toast.toast-light {
-  background-color: #F3F6F9;
-  color: #80808F;
-}
-.toast.toast-dark {
-  background-color: #212121;
-  color: #ffffff;
-}
-.toast.toast-white {
-  background-color: #ffffff;
-  color: #464E5F;
-}
-.toast.toast-dark-75 {
-  background-color: #464E5F;
   color: #ffffff;
 }
 

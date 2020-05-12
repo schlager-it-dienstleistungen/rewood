@@ -3,7 +3,7 @@
 
 import KTToggle from "./../../components/toggle.js";
 import { KTUtil } from "./../../components/util.js";
-import KTLayoutStickyCard from "./../extended/sticky-card.js";
+import KTLayoutStickyCard from "./sticky-card.js";
 import KTLayoutHeaderMenu from "./header-menu.js";
 import KTLayoutAsideMenu from "./aside-menu.js";
 import { KTCookie } from "./../../components/cookie.js";

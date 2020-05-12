@@ -7,10 +7,13 @@ import store from "@/core/services/store";
 import { ADD_CLASSNAME } from "@/core/services/store/htmlclass.module";
 
 const HtmlClass = {
-  // get layout configs store getters
-  config: store.getters.layoutConfig(),
+  config: null,
 
-  init() {
+  init(config) {
+    if (typeof config !== "undefined") {
+      this.config = config;
+    }
+
     // init base layout
     this.initLayout();
 
@@ -100,7 +103,7 @@ const HtmlClass = {
   },
 
   /**
-   * Inin Subheader
+   * Init Subheader
    */
   initSubheader() {
     // Fixed content head
@@ -127,10 +130,17 @@ const HtmlClass = {
    * Init Aside
    */
   initAside() {
+    // Reset aside class in body
+    store.dispatch(REMOVE_BODY_CLASSNAME, "aside-enabled");
+    store.dispatch(REMOVE_BODY_CLASSNAME, "aside-fixed");
+    store.dispatch(REMOVE_BODY_CLASSNAME, "aside-static");
+    store.dispatch(REMOVE_BODY_CLASSNAME, "aside-minimize");
+
     if (objectPath.get(this.config, "aside.self.display") !== true) {
       return;
     }
 
+    // Add aside class enabled in body
     store.dispatch(ADD_BODY_CLASSNAME, "aside-enabled");
 
     // Fixed Aside
