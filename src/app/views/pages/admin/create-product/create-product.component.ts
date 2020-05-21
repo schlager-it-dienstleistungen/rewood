@@ -5,6 +5,8 @@ import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { Product } from '../../shared/product';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProductStoreService } from '../../shared/product-store.service';
+import { LocationService } from '../../shared/location.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'rw-create-product',
@@ -20,6 +22,8 @@ export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit 
 
 	// Categories
 	categories = CategoryFactoryService.getCategories();
+	// Countries
+	countries = LocationService.getCountries();
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
@@ -74,8 +78,15 @@ export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit 
 			category: '',
 			subcategory: '',
 			price: 0.00,
-			description: 'Beschreibung',
-			status: 0
+			description: '',
+			status: 0,
+			measure: '',
+			amount: 0,
+			address1: '',
+			address2: '',
+			postcode: '',
+			city: '',
+			country: 'AT'
 		});
 	}
 

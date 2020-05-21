@@ -1,4 +1,5 @@
 import { PackingUnit } from './packing-unit';
+import { Location } from './location';
 
 export interface Product {
 	id: string;

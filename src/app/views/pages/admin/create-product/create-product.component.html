@@ -44,25 +44,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Support Channels
+										Maße
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Add Your Support Agents
-									</div>
-								</div>
-							</div>
-						</a>
-						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
-							<div class="kt-wizard-v2__nav-body">
-								<div class="kt-wizard-v2__nav-icon">
-									<i class="flaticon-trophy"></i>
-								</div>
-								<div class="kt-wizard-v2__nav-label">
-									<div class="kt-wizard-v2__nav-label-title">
-										Set Your Delivery Address
-									</div>
-									<div class="kt-wizard-v2__nav-label-desc">
-										Address, Street, City, State
+										Geben Sie die Maße an
 									</div>
 								</div>
 							</div>
@@ -74,10 +59,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Make Payment
+										Produktstandort
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Use Credit or Debit Cards
+										Adresse
 									</div>
 								</div>
 							</div>
@@ -89,10 +74,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Completed!
+										Abschluss
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Review and Submit
+										Zusammenfassung und Bestellung
 									</div>
 								</div>
 							</div>
@@ -141,19 +126,86 @@
 									<input type="text" class="form-control" formControlName="description">
 									<span class="form-text text-muted">Bitte geben Sie eine Beschreibung an.</span>
 								</div>
-								<!--<div class="form-group">
+								<div class="form-group">
 									<label>Bilder</label>
-									<input type="text" class="form-control" name="picture" [(ngModel)]="product.picture">
-									<span class="form-text text-muted">Bitte fügen Sie Produktbilder ein.</span>
-								</div>-->
+									<!--<input type="text" class="form-control" name="picture" [(ngModel)]="product.picture">
+									<span class="form-text text-muted">Bitte fügen Sie Produktbilder ein.</span>-->
+								</div>
 							</div>
 						</div>
 					</div>
 					<!--end: Form Wizard Step 2-->
 
-					<!--begin: Form Wizard Step 6-->
+					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Review your Details and Submit</div>
+						<div class="kt-heading kt-heading--md">Geben Sie die Maße an</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Maße (m)</label>
+									<input type="text" class="form-control" formControlName="measure">
+									<span class="form-text text-muted">Bitte geben Sie die Maße (LxBxH) in Meter an.</span>
+								</div>
+								<div class="form-group">
+									<label>Menge</label>
+									<input type="text" class="form-control" formControlName="amount">
+									<span class="form-text text-muted">Bitte geben Sie die Menge an.</span>
+								</div>
+								<div class="form-group">
+									<label>Preis</label>
+									<input type="text" class="form-control" formControlName="price">
+									<span class="form-text text-muted">Bitte geben Sie den Preis an.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 3-->
+
+					<!--begin: Form Wizard Step 4-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Adresse des Produkts</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Adresszeile 1</label>
+									<input type="text" class="form-control" formControlName="address1">
+									<span class="form-text text-muted">Bitte geben Sie die Adresszeile 1 an.</span>
+								</div>
+								<div class="form-group">
+									<label>Adresszeile 2</label>
+									<input type="text" class="form-control" formControlName="address2">
+									<span class="form-text text-muted">Bitte geben Sie die Adresszeile 2 an.</span>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>PLZ</label>
+											<input type="text" class="form-control" formControlName="postcode">
+											<span class="form-text text-muted">PLZ</span>
+										</div>
+									</div>
+									<div class="col-xl-9">
+										<div class="form-group">
+											<label>Ort</label>
+											<input type="text" class="form-control" formControlName="city">
+											<span class="form-text text-muted">Bitte geben Sie den Ort.</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Land</label>
+										<select class="form-control" formControlName="country">
+											<option *ngFor="let country of countries" value="{{country.code}}">{{country.country}}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 4-->
+
+					<!--begin: Form Wizard Step 5-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Zusammenfassung und Bestellung</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__review">
 								<div class="kt-wizard-v2__review-item">
@@ -161,65 +213,56 @@
 										Produktinformationen
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										John Wick<br/>
-										Phone: +61412345678<br/>
-										Email: johnwick@reeves.com
+										Titel: {{ productForm.get('title').value }}<br/>
+										Kategorie: {{ productForm.get('category').value }}<br/>
+										{{ productForm.get('subcategory').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Support Location Address
+										Beschreibung
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Address Line 1<br/>
-										Address Line 2<br/>
-										Melbourne 3000, VIC, Australia
+										Beschreibung: {{ productForm.get('description').value }}<br/>
+										Bilder
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Support Channels
+										Maße
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Overnight Delivery with Regular Packaging<br/>
-										Preferred Morning (8:00AM - 11:00AM) Delivery
+										Maße: {{ productForm.get('measure').value }}<br/>
+										Menge: {{ productForm.get('amount').value }}<br/>
+										Preis: {{ productForm.get('price').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Delivery Address
+										Adresse
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Address Line 1<br/>
-										Address Line 2<br/>
-										Preston 3072, VIC, Australia
-									</div>
-								</div>
-								<div class="kt-wizard-v2__review-item">
-									<div class="kt-wizard-v2__review-title">
-										Payment Details
-									</div>
-									<div class="kt-wizard-v2__review-content">
-										Card Number: xxxx xxxx xxxx 1111<br/>
-										Card Name: John Wick<br/>
-										Card Expiry: 01/21
+										{{ productForm.get('address1').value }}<br/>
+										{{ productForm.get('address2').value }}<br/>
+										{{ productForm.get('postcode').value }}, {{ productForm.get('city').value }}<br/>
+										{{ productForm.get('country').value }}
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!--end: Form Wizard Step 6-->
+					<!--end: Form Wizard Step 5-->
 
 					<!--begin: Form Actions -->
 					<div class="kt-form__actions">
 						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-							Previous
+							Zurück
 						</div>
 						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Submit
+							Bestellung
 						</div>
 						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-							Next Step
+							Nächster Schritt
 						</div>
 					</div>
 					<!--end: Form Actions -->
