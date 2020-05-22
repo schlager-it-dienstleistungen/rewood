@@ -962,6 +962,33 @@ export function HeaderMenu({ layoutProps }) {
                                         </NavLink>
                                     </li>
                                     {/*end::3 Level*/}
+
+                                    {/*begin::3 Level*/}
+                                    <li className={`menu-item ${getMenuItemActive('/error/error-v4')}`}>
+                                        <NavLink className="menu-link" to="/error/error-v4">
+                                            <i className="menu-bullet menu-bullet-dot"><span /></i>
+                                            <span className="menu-text">Error 4</span>
+                                        </NavLink>
+                                    </li>
+                                    {/*end::3 Level*/}
+
+                                    {/*begin::3 Level*/}
+                                    <li className={`menu-item ${getMenuItemActive('/error/error-v5')}`}>
+                                        <NavLink className="menu-link" to="/error/error-v5">
+                                            <i className="menu-bullet menu-bullet-dot"><span /></i>
+                                            <span className="menu-text">Error 5</span>
+                                        </NavLink>
+                                    </li>
+                                    {/*end::3 Level*/}
+
+                                    {/*begin::3 Level*/}
+                                    <li className={`menu-item ${getMenuItemActive('/error/error-v6')}`}>
+                                        <NavLink className="menu-link" to="/error/error-v6">
+                                            <i className="menu-bullet menu-bullet-dot"><span /></i>
+                                            <span className="menu-text">Error 6</span>
+                                        </NavLink>
+                                    </li>
+                                    {/*end::3 Level*/}
                                 </ul>
                             </div>
                         </li>

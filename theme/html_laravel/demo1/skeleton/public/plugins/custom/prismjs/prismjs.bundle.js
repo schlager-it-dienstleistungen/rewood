@@ -81,59 +81,217 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 597);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 4:
-/***/ (function(module, exports) {
+/***/ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-var g;
+(function() {
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
+var assign = Object.assign || function (obj1, obj2) {
+	for (var name in obj2) {
+		if (obj2.hasOwnProperty(name))
+			obj1[name] = obj2[name];
+	}
+	return obj1;
 }
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+function NormalizeWhitespace(defaults) {
+	this.defaults = assign({}, defaults);
+}
 
-module.exports = g;
+function toCamelCase(value) {
+	return value.replace(/-(\w)/g, function(match, firstChar) {
+		return firstChar.toUpperCase();
+	});
+}
+
+function tabLen(str) {
+	var res = 0;
+	for (var i = 0; i < str.length; ++i) {
+		if (str.charCodeAt(i) == '\t'.charCodeAt(0))
+			res += 3;
+	}
+	return str.length + res;
+}
+
+NormalizeWhitespace.prototype = {
+	setDefaults: function (defaults) {
+		this.defaults = assign(this.defaults, defaults);
+	},
+	normalize: function (input, settings) {
+		settings = assign(this.defaults, settings);
+
+		for (var name in settings) {
+			var methodName = toCamelCase(name);
+			if (name !== "normalize" && methodName !== 'setDefaults' &&
+					settings[name] && this[methodName]) {
+				input = this[methodName].call(this, input, settings[name]);
+			}
+		}
+
+		return input;
+	},
+
+	/*
+	 * Normalization methods
+	 */
+	leftTrim: function (input) {
+		return input.replace(/^\s+/, '');
+	},
+	rightTrim: function (input) {
+		return input.replace(/\s+$/, '');
+	},
+	tabsToSpaces: function (input, spaces) {
+		spaces = spaces|0 || 4;
+		return input.replace(/\t/g, new Array(++spaces).join(' '));
+	},
+	spacesToTabs: function (input, spaces) {
+		spaces = spaces|0 || 4;
+		return input.replace(RegExp(' {' + spaces + '}', 'g'), '\t');
+	},
+	removeTrailing: function (input) {
+		return input.replace(/\s*?$/gm, '');
+	},
+	// Support for deprecated plugin remove-initial-line-feed
+	removeInitialLineFeed: function (input) {
+		return input.replace(/^(?:\r?\n|\r)/, '');
+	},
+	removeIndent: function (input) {
+		var indents = input.match(/^[^\S\n\r]*(?=\S)/gm);
+
+		if (!indents || !indents[0].length)
+			return input;
+
+		indents.sort(function(a, b){return a.length - b.length; });
+
+		if (!indents[0].length)
+			return input;
+
+		return input.replace(RegExp('^' + indents[0], 'gm'), '');
+	},
+	indent: function (input, tabs) {
+		return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
+	},
+	breakLines: function (input, characters) {
+		characters = (characters === true) ? 80 : characters|0 || 80;
+
+		var lines = input.split('\n');
+		for (var i = 0; i < lines.length; ++i) {
+			if (tabLen(lines[i]) <= characters)
+				continue;
+
+			var line = lines[i].split(/(\s+)/g),
+			    len = 0;
+
+			for (var j = 0; j < line.length; ++j) {
+				var tl = tabLen(line[j]);
+				len += tl;
+				if (len > characters) {
+					line[j] = '\n' + line[j];
+					len = tl;
+				}
+			}
+			lines[i] = line.join('');
+		}
+		return lines.join('\n');
+	}
+};
+
+// Support node modules
+if ( true && module.exports) {
+	module.exports = NormalizeWhitespace;
+}
+
+// Exit if prism is not loaded
+if (typeof Prism === 'undefined') {
+	return;
+}
+
+Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
+	'remove-trailing': true,
+	'remove-indent': true,
+	'left-trim': true,
+	'right-trim': true,
+	/*'break-lines': 80,
+	'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+
+Prism.hooks.add('before-sanity-check', function (env) {
+	var Normalizer = Prism.plugins.NormalizeWhitespace;
+
+	// Check settings
+	if (env.settings && env.settings['whitespace-normalization'] === false) {
+		return;
+	}
+
+	// Simple mode if there is no env.element
+	if ((!env.element || !env.element.parentNode) && env.code) {
+		env.code = Normalizer.normalize(env.code, env.settings);
+		return;
+	}
+
+	// Normal mode
+	var pre = env.element.parentNode;
+	var clsReg = /(?:^|\s)no-whitespace-normalization(?:\s|$)/;
+	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||
+			clsReg.test(pre.className) || clsReg.test(env.element.className))
+		return;
+
+	var children = pre.childNodes,
+	    before = '',
+	    after = '',
+	    codeFound = false;
+
+	// Move surrounding whitespace from the <pre> tag into the <code> tag
+	for (var i = 0; i < children.length; ++i) {
+		var node = children[i];
+
+		if (node == env.element) {
+			codeFound = true;
+		} else if (node.nodeName === "#text") {
+			if (codeFound) {
+				after += node.nodeValue;
+			} else {
+				before += node.nodeValue;
+			}
+
+			pre.removeChild(node);
+			--i;
+		}
+	}
+
+	if (!env.element.children.length || !Prism.plugins.KeepMarkup) {
+		env.code = before + env.code + after;
+		env.code = Normalizer.normalize(env.code, env.settings);
+	} else {
+		// Preserve markup for keep-markup plugin
+		var html = before + env.element.innerHTML + after;
+		env.element.innerHTML = Normalizer.normalize(html, env.settings);
+		env.code = env.element.textContent;
+	}
+});
+
+}());
 
 
 /***/ }),
 
-/***/ 597:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(598);
-
-
-/***/ }),
-
-/***/ 598:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Prism - is a lightweight, extensible syntax highlighter, built with modern web standards in mind: https://prismjs.com/
-__webpack_require__(599);
-
-__webpack_require__(600);
-
-__webpack_require__(601);
-
-/***/ }),
-
-/***/ 599:
+/***/ "./node_modules/prismjs/prism.js":
+/*!***************************************!*\
+  !*** ./node_modules/prismjs/prism.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -1273,208 +1431,46 @@ Prism.languages.js = Prism.languages.javascript;
 
 })();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ 600:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-(function() {
+var g;
 
-var assign = Object.assign || function (obj1, obj2) {
-	for (var name in obj2) {
-		if (obj2.hasOwnProperty(name))
-			obj1[name] = obj2[name];
-	}
-	return obj1;
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
 }
 
-function NormalizeWhitespace(defaults) {
-	this.defaults = assign({}, defaults);
-}
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
 
-function toCamelCase(value) {
-	return value.replace(/-(\w)/g, function(match, firstChar) {
-		return firstChar.toUpperCase();
-	});
-}
-
-function tabLen(str) {
-	var res = 0;
-	for (var i = 0; i < str.length; ++i) {
-		if (str.charCodeAt(i) == '\t'.charCodeAt(0))
-			res += 3;
-	}
-	return str.length + res;
-}
-
-NormalizeWhitespace.prototype = {
-	setDefaults: function (defaults) {
-		this.defaults = assign(this.defaults, defaults);
-	},
-	normalize: function (input, settings) {
-		settings = assign(this.defaults, settings);
-
-		for (var name in settings) {
-			var methodName = toCamelCase(name);
-			if (name !== "normalize" && methodName !== 'setDefaults' &&
-					settings[name] && this[methodName]) {
-				input = this[methodName].call(this, input, settings[name]);
-			}
-		}
-
-		return input;
-	},
-
-	/*
-	 * Normalization methods
-	 */
-	leftTrim: function (input) {
-		return input.replace(/^\s+/, '');
-	},
-	rightTrim: function (input) {
-		return input.replace(/\s+$/, '');
-	},
-	tabsToSpaces: function (input, spaces) {
-		spaces = spaces|0 || 4;
-		return input.replace(/\t/g, new Array(++spaces).join(' '));
-	},
-	spacesToTabs: function (input, spaces) {
-		spaces = spaces|0 || 4;
-		return input.replace(RegExp(' {' + spaces + '}', 'g'), '\t');
-	},
-	removeTrailing: function (input) {
-		return input.replace(/\s*?$/gm, '');
-	},
-	// Support for deprecated plugin remove-initial-line-feed
-	removeInitialLineFeed: function (input) {
-		return input.replace(/^(?:\r?\n|\r)/, '');
-	},
-	removeIndent: function (input) {
-		var indents = input.match(/^[^\S\n\r]*(?=\S)/gm);
-
-		if (!indents || !indents[0].length)
-			return input;
-
-		indents.sort(function(a, b){return a.length - b.length; });
-
-		if (!indents[0].length)
-			return input;
-
-		return input.replace(RegExp('^' + indents[0], 'gm'), '');
-	},
-	indent: function (input, tabs) {
-		return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
-	},
-	breakLines: function (input, characters) {
-		characters = (characters === true) ? 80 : characters|0 || 80;
-
-		var lines = input.split('\n');
-		for (var i = 0; i < lines.length; ++i) {
-			if (tabLen(lines[i]) <= characters)
-				continue;
-
-			var line = lines[i].split(/(\s+)/g),
-			    len = 0;
-
-			for (var j = 0; j < line.length; ++j) {
-				var tl = tabLen(line[j]);
-				len += tl;
-				if (len > characters) {
-					line[j] = '\n' + line[j];
-					len = tl;
-				}
-			}
-			lines[i] = line.join('');
-		}
-		return lines.join('\n');
-	}
-};
-
-// Support node modules
-if ( true && module.exports) {
-	module.exports = NormalizeWhitespace;
-}
-
-// Exit if prism is not loaded
-if (typeof Prism === 'undefined') {
-	return;
-}
-
-Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
-	'remove-trailing': true,
-	'remove-indent': true,
-	'left-trim': true,
-	'right-trim': true,
-	/*'break-lines': 80,
-	'indent': 2,
-	'remove-initial-line-feed': false,
-	'tabs-to-spaces': 4,
-	'spaces-to-tabs': 4*/
-});
-
-Prism.hooks.add('before-sanity-check', function (env) {
-	var Normalizer = Prism.plugins.NormalizeWhitespace;
-
-	// Check settings
-	if (env.settings && env.settings['whitespace-normalization'] === false) {
-		return;
-	}
-
-	// Simple mode if there is no env.element
-	if ((!env.element || !env.element.parentNode) && env.code) {
-		env.code = Normalizer.normalize(env.code, env.settings);
-		return;
-	}
-
-	// Normal mode
-	var pre = env.element.parentNode;
-	var clsReg = /(?:^|\s)no-whitespace-normalization(?:\s|$)/;
-	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||
-			clsReg.test(pre.className) || clsReg.test(env.element.className))
-		return;
-
-	var children = pre.childNodes,
-	    before = '',
-	    after = '',
-	    codeFound = false;
-
-	// Move surrounding whitespace from the <pre> tag into the <code> tag
-	for (var i = 0; i < children.length; ++i) {
-		var node = children[i];
-
-		if (node == env.element) {
-			codeFound = true;
-		} else if (node.nodeName === "#text") {
-			if (codeFound) {
-				after += node.nodeValue;
-			} else {
-				before += node.nodeValue;
-			}
-
-			pre.removeChild(node);
-			--i;
-		}
-	}
-
-	if (!env.element.children.length || !Prism.plugins.KeepMarkup) {
-		env.code = before + env.code + after;
-		env.code = Normalizer.normalize(env.code, env.settings);
-	} else {
-		// Preserve markup for keep-markup plugin
-		var html = before + env.element.innerHTML + after;
-		env.element.innerHTML = Normalizer.normalize(html, env.settings);
-		env.code = env.element.textContent;
-	}
-});
-
-}());
+module.exports = g;
 
 
 /***/ }),
 
-/***/ 601:
+/***/ "./resources/metronic/js/vendors/plugins/prism.init.js":
+/*!*************************************************************!*\
+  !*** ./resources/metronic/js/vendors/plugins/prism.init.js ***!
+  \*************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 Prism.plugins.NormalizeWhitespace.setDefaults({
@@ -1483,6 +1479,34 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
   'left-trim': true,
   'right-trim': true
 });
+
+/***/ }),
+
+/***/ "./resources/plugins/custom/prismjs/prismjs.js":
+/*!*****************************************************!*\
+  !*** ./resources/plugins/custom/prismjs/prismjs.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Prism - is a lightweight, extensible syntax highlighter, built with modern web standards in mind: https://prismjs.com/
+__webpack_require__(/*! prismjs/prism.js */ "./node_modules/prismjs/prism.js");
+
+__webpack_require__(/*! prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js */ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js");
+
+__webpack_require__(/*! ../../../metronic/js/vendors/plugins/prism.init.js */ "./resources/metronic/js/vendors/plugins/prism.init.js");
+
+/***/ }),
+
+/***/ 17:
+/*!***********************************************************!*\
+  !*** multi ./resources/plugins/custom/prismjs/prismjs.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\plugins\custom\prismjs\prismjs.js */"./resources/plugins/custom/prismjs/prismjs.js");
+
 
 /***/ })
 

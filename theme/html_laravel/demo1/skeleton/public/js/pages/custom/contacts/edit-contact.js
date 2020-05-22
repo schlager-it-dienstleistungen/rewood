@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 768);
+/******/ 	return __webpack_require__(__webpack_require__.s = 99);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 768:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(769);
-
-
-/***/ }),
-
-/***/ 769:
+/***/ "./resources/metronic/js/pages/custom/contacts/edit-contact.js":
+/*!*********************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/contacts/edit-contact.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,6 +115,18 @@ var KTContactsEdit = function () {
 jQuery(document).ready(function () {
   KTContactsEdit.init();
 });
+
+/***/ }),
+
+/***/ 99:
+/*!***************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/contacts/edit-contact.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\contacts\edit-contact.js */"./resources/metronic/js/pages/custom/contacts/edit-contact.js");
+
 
 /***/ })
 

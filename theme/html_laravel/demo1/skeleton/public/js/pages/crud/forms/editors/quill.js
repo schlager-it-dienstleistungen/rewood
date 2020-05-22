@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 682);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 682:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(683);
-
-
-/***/ }),
-
-/***/ 683:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/quill.js":
+/*!*****************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/quill.js ***!
+  \*****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -165,6 +161,18 @@ var KTQuilDemos = function () {
 jQuery(document).ready(function () {
   KTQuilDemos.init();
 });
+
+/***/ }),
+
+/***/ 56:
+/*!***********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/quill.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\quill.js */"./resources/metronic/js/pages/crud/forms/editors/quill.js");
+
 
 /***/ })
 

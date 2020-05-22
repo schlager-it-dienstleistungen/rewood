@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 858);
+/******/ 	return __webpack_require__(__webpack_require__.s = 146);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 858:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(859);
-
-
-/***/ }),
-
-/***/ 859:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/treeview.js":
+/*!************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/treeview.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -402,6 +398,18 @@ var KTTreeview = function () {
 jQuery(document).ready(function () {
   KTTreeview.init();
 });
+
+/***/ }),
+
+/***/ 146:
+/*!******************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/treeview.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\treeview.js */"./resources/metronic/js/pages/features/miscellaneous/treeview.js");
+
 
 /***/ })
 

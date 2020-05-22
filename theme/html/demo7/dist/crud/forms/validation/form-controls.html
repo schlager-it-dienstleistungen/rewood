@@ -1514,7 +1514,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		</ul>
 																	</div>
 																</li>
-																<li class="menu-item menu-item-submenu menu-item-dropup" data-menu-toggle="hover" aria-haspopup="true">
+																<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link menu-toggle">
 																		<span class="svg-icon menu-icon">
 																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Active-call.svg-->
@@ -1530,7 +1530,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<span class="menu-text">Miscellaneous</span>
 																		<i class="menu-arrow"></i>
 																	</a>
-																	<div class="menu-submenu menu-submenu-classic menu-submenu-right">
+																	<div class="menu-submenu menu-submenu-classic menu-submenu-right" style="top: -150px">
 																		<ul class="menu-subnav">
 																			<li class="menu-item" aria-haspopup="true">
 																				<a href="features/miscellaneous/kanban-board.html" class="menu-link">
@@ -3129,7 +3129,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<span class="menu-desc"></span>
 															<i class="menu-arrow"></i>
 														</a>
-														<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1100px">
+														<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1150px">
 															<div class="menu-subnav">
 																<ul class="menu-content">
 																	<li class="menu-item">
@@ -3278,6 +3278,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																						<span></span>
 																					</i>
 																					<span class="menu-text">Login 4</span>
+																				</a>
+																			</li>
+																			<li class="menu-item" aria-haspopup="true">
+																				<a href="custom/pages/login/login-5/signup.html" class="menu-link">
+																					<i class="menu-bullet menu-bullet-line">
+																						<span></span>
+																					</i>
+																					<span class="menu-text">Login 5</span>
+																					<span class="menu-label">
+																						<span class="label label-inline label-info">Wizard</span>
+																					</span>
 																				</a>
 																			</li>
 																		</ul>
@@ -3882,8 +3893,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
           plugins: {
            trigger: new FormValidation.plugins.Trigger(),
+           // Bootstrap Framework Integration
            bootstrap: new FormValidation.plugins.Bootstrap(),
-           submitButton: new FormValidation.plugins.SubmitButton()
+           // Validate fields when clicking the Submit button
+           submitButton: new FormValidation.plugins.SubmitButton(),
+                    // Submit the form when all fields are valid
+           defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
           }
          }
         );
@@ -4010,7 +4025,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="form-group row">
 														<label class="col-form-label text-right col-lg-3 col-sm-12">Checkbox *</label>
 														<div class="col-lg-9 col-md-9 col-sm-12">
-															<div class="form-check checkbox-inline">
+															<div class="form-check pl-0 checkbox-inline">
 																<label class="checkbox checkbox-outline">Tick me
 																<input type="checkbox" name="checkbox" />
 																<span></span></label>
@@ -4021,7 +4036,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="form-group row">
 														<label class="col-form-label text-right col-lg-3 col-sm-12">Checkboxes *</label>
 														<div class="col-lg-9 col-md-9 col-sm-12">
-															<div class="form-check checkbox-list">
+															<div class="form-check pl-0 checkbox-list">
 																<label class="checkbox checkbox-outline">
 																<input type="checkbox" name="checkboxes" />Option 1
 																<span></span></label>
@@ -4038,7 +4053,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="form-group row">
 														<label class="col-form-label text-right col-lg-3 col-sm-12">Radios *</label>
 														<div class="col-lg-9 col-md-9 col-sm-12">
-															<div class="form-check radio-inline">
+															<div class="form-check pl-0 radio-inline">
 																<label class="radio radio-outline">
 																<input type="checkbox" name="radios" />Option 1
 																<span></span></label>
@@ -4056,7 +4071,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="card-footer">
 													<div class="row">
 														<div class="col-lg-9 ml-lg-auto">
-															<button type="submit" class="btn btn-primary font-weight-bold mr-2">Validate</button>
+															<button type="submit" class="btn btn-primary font-weight-bold mr-2" name="submitButton">Validate</button>
 															<button type="reset" class="btn btn-light-primary font-weight-bold">Cancel</button>
 														</div>
 													</div>
@@ -4442,7 +4457,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
           plugins: {
            trigger: new FormValidation.plugins.Trigger(),
+           // Validate fields when clicking the Submit button
            submitButton: new FormValidation.plugins.SubmitButton(),
+           // Submit the form when all fields are valid
+           defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+           // Bootstrap Framework Integration
            bootstrap: new FormValidation.plugins.Bootstrap({
             eleInvalidClass: '',
             eleValidClass: '',
@@ -4469,7 +4488,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<div class="form-group row">
 																<div class="col-lg-12">
 																	<label>* Card Number:</label>
-																	<input type="text" name="billing_card_number" class="form-control" placeholder="" value="" />
+																	<input type="text" name="billing_card_number" class="form-control" placeholder="" value="4111 1111 1111 1111" />
 																</div>
 															</div>
 															<div class="form-group row">

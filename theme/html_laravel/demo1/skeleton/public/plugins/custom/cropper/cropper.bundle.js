@@ -81,28 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 485);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 485:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(486);
-
-
-/***/ }),
-
-/***/ 486:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Cropper -  A simple jQuery image cropping plugin: https://fengyuanchen.github.io/cropper/
-window.Cropper = __webpack_require__(487);
-
-/***/ }),
-
-/***/ 487:
+/***/ "./node_modules/cropperjs/dist/cropper.js":
+/*!************************************************!*\
+  !*** ./node_modules/cropperjs/dist/cropper.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -3720,6 +3708,30 @@ window.Cropper = __webpack_require__(487);
   return Cropper;
 
 }));
+
+
+/***/ }),
+
+/***/ "./resources/plugins/custom/cropper/cropper.js":
+/*!*****************************************************!*\
+  !*** ./resources/plugins/custom/cropper/cropper.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Cropper -  A simple jQuery image cropping plugin: https://fengyuanchen.github.io/cropper/
+window.Cropper = __webpack_require__(/*! cropperjs/dist/cropper.js */ "./node_modules/cropperjs/dist/cropper.js");
+
+/***/ }),
+
+/***/ 8:
+/*!***********************************************************!*\
+  !*** multi ./resources/plugins/custom/cropper/cropper.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\plugins\custom\cropper\cropper.js */"./resources/plugins/custom/cropper/cropper.js");
 
 
 /***/ })

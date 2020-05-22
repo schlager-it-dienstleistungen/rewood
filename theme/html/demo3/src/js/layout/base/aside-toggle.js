@@ -15,30 +15,25 @@ var KTLayoutAsideToggle = function() {
 		});
 
 		_toggleObject.on('toggle', function(toggle) {
-			//KTUtil.addClass(_body, 'aside-minimizing');
-            //KTUtil.transitionEnd(_body, function() {
-                //KTUtil.removeClass(_body, 'aside-minimizing');
-			//});
-
             // Update sticky card
-            KTLayoutStickyCard.update();
+            if (typeof KTLayoutStickyCard !== 'undefined') {
+                setTimeout(function() {
+                    KTLayoutStickyCard.update();
+                }, 500);
+            }
 
             // Pause header menu dropdowns
-            KTLayoutHeaderMenu.pauseDropdownHover(800);
+            if (typeof KTLayoutHeaderMenu !== 'undefined') {
+                KTLayoutHeaderMenu.pauseDropdownHover(800);
+            }
 
             // Pause aside menu dropdowns
-			KTLayoutAsideMenu.pauseDropdownHover(800);
+            if (typeof KTLayoutAsideMenu !== 'undefined') {
+                KTLayoutAsideMenu.pauseDropdownHover(800);
+            }
 
-            // Reload datatable
-			var datatables = $('.kt-datatable');
-			if (datatables) {
-				datatables.each(function() {
-					$(this).KTDatatable('redraw');
-				});
-			}
-
-			// Remember state in cookie
-			Cookies.set('kt_aside_toggle_state', toggle.getState());
+            // Remember state in cookie
+			KTCookie.setCookie('kt_aside_toggle_state', toggle.getState());
 			// to set default minimized left aside use this cookie value in your
 			// server side code and add "kt-primary--minimize aside-minimize" classes to
 			// the body tag in order to initialize the minimized left aside mode during page loading.

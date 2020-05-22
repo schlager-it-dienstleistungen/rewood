@@ -465,7 +465,7 @@ export function Builder() {
                                         <div className={`tab-pane ${key === 4 ? "active" : ""}`}>
                                             <div className="form-group row">
                                                 <label className="col-lg-3 col-form-label text-lg-right">
-                                                    Fixed Footer:
+                                                    Fixed Desktop Footer:
                                                 </label>
                                                 <div className="col-lg-9 col-xl-4">
                                                     <Switch
@@ -475,7 +475,7 @@ export function Builder() {
                                                         checked={!!get(values, "footer.fixed")}
                                                     />
 
-                                                    <FormHelperText>Set fixed footer</FormHelperText>
+                                                    <FormHelperText>Set fixed desktop footer</FormHelperText>
                                                 </div>
                                             </div>
 

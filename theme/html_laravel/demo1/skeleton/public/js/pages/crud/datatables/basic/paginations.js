@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 628);
+/******/ 	return __webpack_require__(__webpack_require__.s = 29);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 628:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(629);
-
-
-/***/ }),
-
-/***/ 629:
+/***/ "./resources/metronic/js/pages/crud/datatables/basic/paginations.js":
+/*!**************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/basic/paginations.js ***!
+  \**************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -268,6 +264,18 @@ var KTDatatablesBasicPaginations = function () {
 jQuery(document).ready(function () {
   KTDatatablesBasicPaginations.init();
 });
+
+/***/ }),
+
+/***/ 29:
+/*!********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/basic/paginations.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\basic\paginations.js */"./resources/metronic/js/pages/crud/datatables/basic/paginations.js");
+
 
 /***/ })
 

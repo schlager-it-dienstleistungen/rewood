@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 790);
+/******/ 	return __webpack_require__(__webpack_require__.s = 112);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 790:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(791);
-
-
-/***/ }),
-
-/***/ 791:
+/***/ "./resources/metronic/js/pages/custom/user/list-datatable.js":
+/*!*******************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/user/list-datatable.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -371,6 +367,18 @@ var KTAppsUsersListDatatable = function () {
 jQuery(document).ready(function () {
   KTAppsUsersListDatatable.init();
 });
+
+/***/ }),
+
+/***/ 112:
+/*!*************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/user/list-datatable.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\user\list-datatable.js */"./resources/metronic/js/pages/custom/user/list-datatable.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 696);
+/******/ 	return __webpack_require__(__webpack_require__.s = 63);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 696:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(697);
-
-
-/***/ }),
-
-/***/ 697:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -224,6 +220,18 @@ var KTBootstrapDaterangepicker = function () {
 jQuery(document).ready(function () {
   KTBootstrapDaterangepicker.init();
 });
+
+/***/ }),
+
+/***/ 63:
+/*!*******************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\bootstrap-daterangepicker.js */"./resources/metronic/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js");
+
 
 /***/ })
 

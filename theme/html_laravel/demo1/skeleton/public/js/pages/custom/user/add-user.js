@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 786);
+/******/ 	return __webpack_require__(__webpack_require__.s = 110);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 786:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(787);
-
-
-/***/ }),
-
-/***/ 787:
+/***/ "./resources/metronic/js/pages/custom/user/add-user.js":
+/*!*************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/user/add-user.js ***!
+  \*************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -128,12 +124,14 @@ var KTAddUser = function () {
 
           KTUtil.scrollTop();
         } else {
-          swal.fire({
+          Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",
             icon: "error",
             buttonsStyling: false,
             confirmButtonText: "Ok, got it!",
-            confirmButtonClass: "btn font-weight-bold btn-light"
+            customClass: {
+              confirmButton: "btn font-weight-bold btn-light"
+            }
           }).then(function () {
             KTUtil.scrollTop();
           });
@@ -310,6 +308,18 @@ var KTAddUser = function () {
 jQuery(document).ready(function () {
   KTAddUser.init();
 });
+
+/***/ }),
+
+/***/ 110:
+/*!*******************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/user/add-user.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\user\add-user.js */"./resources/metronic/js/pages/custom/user/add-user.js");
+
 
 /***/ })
 

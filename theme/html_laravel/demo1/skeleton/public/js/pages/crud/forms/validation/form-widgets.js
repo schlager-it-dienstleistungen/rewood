@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 690);
+/******/ 	return __webpack_require__(__webpack_require__.s = 60);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 690:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(691);
-
-
-/***/ }),
-
-/***/ 691:
+/***/ "./resources/metronic/js/pages/crud/forms/validation/form-widgets.js":
+/*!***************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/validation/form-widgets.js ***!
+  \***************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -253,7 +249,11 @@ var KTFormWidgetsValidation = function () {
       },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
+        // Validate fields when clicking the Submit button
         submitButton: new FormValidation.plugins.SubmitButton(),
+        // Submit the form when all fields are valid
+        defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+        // Bootstrap Framework Integration
         bootstrap: new FormValidation.plugins.Bootstrap({
           eleInvalidClass: '',
           eleValidClass: ''
@@ -275,6 +275,18 @@ var KTFormWidgetsValidation = function () {
 jQuery(document).ready(function () {
   KTFormWidgetsValidation.init();
 });
+
+/***/ }),
+
+/***/ 60:
+/*!*********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/validation/form-widgets.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\validation\form-widgets.js */"./resources/metronic/js/pages/crud/forms/validation/form-widgets.js");
+
 
 /***/ })
 

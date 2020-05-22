@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 820);
+/******/ 	return __webpack_require__(__webpack_require__.s = 127);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 820:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(821);
-
-
-/***/ }),
-
-/***/ 821:
+/***/ "./resources/metronic/js/pages/features/charts/amcharts/stock-charts.js":
+/*!******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/charts/amcharts/stock-charts.js ***!
+  \******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -824,6 +820,18 @@ var KTamChartsStockChartsDemo = function () {
 jQuery(document).ready(function () {
   KTamChartsStockChartsDemo.init();
 });
+
+/***/ }),
+
+/***/ 127:
+/*!************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/charts/amcharts/stock-charts.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\charts\amcharts\stock-charts.js */"./resources/metronic/js/pages/features/charts/amcharts/stock-charts.js");
+
 
 /***/ })
 

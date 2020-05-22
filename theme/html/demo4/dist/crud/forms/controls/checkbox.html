@@ -87,7 +87,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 					<!--end::Brand-->
 					<!--begin::Nav Wrapper-->
-					<div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pt-10 pb-10">
+					<div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pt-7">
 						<!--begin::Nav-->
 						<ul class="nav flex-column">
 							<!--begin::Item-->
@@ -879,7 +879,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																</ul>
 															</div>
 														</li>
-														<li class="menu-item menu-item-submenu menu-item-dropup" data-menu-toggle="hover" aria-haspopup="true">
+														<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 															<a href="javascript:;" class="menu-link menu-toggle">
 																<span class="svg-icon menu-icon">
 																	<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Active-call.svg-->
@@ -895,7 +895,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<span class="menu-text">Miscellaneous</span>
 																<i class="menu-arrow"></i>
 															</a>
-															<div class="menu-submenu menu-submenu-classic menu-submenu-right">
+															<div class="menu-submenu menu-submenu-classic menu-submenu-right" style="top: -150px">
 																<ul class="menu-subnav">
 																	<li class="menu-item" aria-haspopup="true">
 																		<a href="features/miscellaneous/kanban-board.html" class="menu-link">
@@ -2494,7 +2494,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<span class="menu-desc"></span>
 													<i class="menu-arrow"></i>
 												</a>
-												<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1100px">
+												<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1150px">
 													<div class="menu-subnav">
 														<ul class="menu-content">
 															<li class="menu-item">
@@ -2643,6 +2643,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																				<span></span>
 																			</i>
 																			<span class="menu-text">Login 4</span>
+																		</a>
+																	</li>
+																	<li class="menu-item" aria-haspopup="true">
+																		<a href="custom/pages/login/login-5/signup.html" class="menu-link">
+																			<i class="menu-bullet menu-bullet-line">
+																				<span></span>
+																			</i>
+																			<span class="menu-text">Login 5</span>
+																			<span class="menu-label">
+																				<span class="label label-inline label-info">Wizard</span>
+																			</span>
 																		</a>
 																	</li>
 																</ul>
@@ -3553,6 +3564,15 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 														<span class="form-text text-muted">Some help text goes here</span>
 													</div>
+													<div class="form-group">
+														<label>Single Checkbox</label>
+														<div class="checkbox-single">
+															<label class="checkbox">
+															<input type="checkbox" checked="checked" />Option
+															<span></span></label>
+														</div>
+														<span class="form-text text-muted">Some help text goes here</span>
+													</div>
 												</form>
 												<!--end::Form-->
 												<!--begin::Code example-->
@@ -3614,6 +3634,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                 &lt;/div&gt;
                                 &lt;span class="form-text text-muted"&gt;Some help text goes here&lt;/span&gt;
                             &lt;/div&gt;
+                            &lt;div class="form-group"&gt;
+                                &lt;label&gt;Single Checkbox&lt;/label&gt;
+                                &lt;div class="checkbox-single"&gt;
+                                    &lt;label class="checkbox"&gt;
+                                        &lt;input type="checkbox" checked="checked"/&gt; Option
+                                        &lt;span&gt;&lt;/span&gt;
+                                    &lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;span class="form-text text-muted"&gt;Some help text goes here&lt;/span&gt;
+                            &lt;/div&gt;
                         &lt;/form&gt;
                     </code>
 </pre>
@@ -3639,7 +3669,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<form class="form">
 													<div class="form-group row">
 														<label class="col-3 col-form-label">Checkboxes</label>
-														<div class="col-9">
+														<div class="col-9 col-form-label">
 															<div class="checkbox-list">
 																<label class="checkbox">
 																<input type="checkbox" />Default
@@ -3655,7 +3685,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 													<div class="form-group row">
 														<label class="col-3 col-form-label">Inline Checkboxes</label>
-														<div class="col-9">
+														<div class="col-9 col-form-label">
 															<div class="checkbox-inline">
 																<label class="checkbox">
 																<input type="checkbox" />Option 1
@@ -3672,7 +3702,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 													<div class="form-group row">
 														<label class="col-3 col-form-label">Inline Checkboxes</label>
-														<div class="col-9">
+														<div class="col-9 col-form-label">
 															<div class="checkbox-inline">
 																<label class="checkbox">
 																<input type="checkbox" />Option 1
@@ -3682,6 +3712,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																<span></span></label>
 																<label class="checkbox">
 																<input type="checkbox" />Option 3
+																<span></span></label>
+															</div>
+															<span class="form-text text-muted">Some help text goes here</span>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-3 col-form-label">Single Checkbox</label>
+														<div class="col-9">
+															<div class="col-form-label">
+																<label class="checkbox">
+																<input type="checkbox" />Option
 																<span></span></label>
 															</div>
 															<span class="form-text text-muted">Some help text goes here</span>
@@ -3697,7 +3738,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     &lt;form class="form"&gt;
                         &lt;div class="form-group row"&gt;
                             &lt;label class="col-3 col-form-label"&gt;Checkboxes&lt;/label&gt;
-                            &lt;div class="col-9"&gt;
+                            &lt;div class="col-9 col-form-label"&gt;
                                 &lt;div class="checkbox-list"&gt;
                                     &lt;label class="checkbox"&gt;
                                         &lt;input type="checkbox"/&gt; Default
@@ -3716,7 +3757,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         &lt;/div&gt;
                         &lt;div class="form-group row"&gt;
                             &lt;label class="col-3 col-form-label"&gt;Inline Checkboxes&lt;/label&gt;
-                            &lt;div class="col-9"&gt;
+                            &lt;div class="col-9 col-form-label"&gt;
                                 &lt;div class="checkbox-inline"&gt;
                                     &lt;label class="checkbox"&gt;
                                         &lt;input type="checkbox"/&gt; Option 1
@@ -3736,7 +3777,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         &lt;/div&gt;
                         &lt;div class="form-group row"&gt;
                             &lt;label class="col-3 col-form-label"&gt;Inline Checkboxes&lt;/label&gt;
-                            &lt;div class="col-9"&gt;
+                            &lt;div class="col-9 col-form-label"&gt;
                                 &lt;div class="checkbox-inline"&gt;
                                     &lt;label class="checkbox" cheched&gt;
                                         &lt;input type="checkbox"/&gt; Option 1

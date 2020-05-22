@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 614);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 614:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(615);
-
-
-/***/ }),
-
-/***/ 615:
+/***/ "./resources/metronic/js/pages/crud/datatables/advanced/column-visibility.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/advanced/column-visibility.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,6 +211,18 @@ var KTDatatablesAdvancedColumnVisibility = function () {
 jQuery(document).ready(function () {
   KTDatatablesAdvancedColumnVisibility.init();
 });
+
+/***/ }),
+
+/***/ 22:
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/advanced/column-visibility.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\advanced\column-visibility.js */"./resources/metronic/js/pages/crud/datatables/advanced/column-visibility.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 762);
+/******/ 	return __webpack_require__(__webpack_require__.s = 96);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 762:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(763);
-
-
-/***/ }),
-
-/***/ 763:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/child/data-local.js":
+/*!**************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/child/data-local.js ***!
+  \**************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -186,6 +182,18 @@ template:function template(row){var status={1:{'title':'Online','state':'danger'
 	                    ';}}]});$('#kt_datatable_search_status').on('change',function(){datatable.search($(this).val().toLowerCase(),'Status');});$('#kt_datatable_search_type').on('change',function(){datatable.search($(this).val().toLowerCase(),'Type');});$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();};return{// Public functions
 init:function init(){// init dmeo
 mainTableInit();}};}();jQuery(document).ready(function(){KTDatatableChildDataLocalDemo.init();});
+
+/***/ }),
+
+/***/ 96:
+/*!********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/child/data-local.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\child\data-local.js */"./resources/metronic/js/pages/crud/ktdatatable/child/data-local.js");
+
 
 /***/ })
 

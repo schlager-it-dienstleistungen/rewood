@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 818);
+/******/ 	return __webpack_require__(__webpack_require__.s = 126);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 818:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(819);
-
-
-/***/ }),
-
-/***/ 819:
+/***/ "./resources/metronic/js/pages/features/charts/amcharts/maps.js":
+/*!**********************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/charts/amcharts/maps.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1082,6 +1078,18 @@ var KTamChartsMapsDemo = function () {
 jQuery(document).ready(function () {
   KTamChartsMapsDemo.init();
 });
+
+/***/ }),
+
+/***/ 126:
+/*!****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/charts/amcharts/maps.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\charts\amcharts\maps.js */"./resources/metronic/js/pages/features/charts/amcharts/maps.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 706);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 706:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(707);
-
-
-/***/ }),
-
-/***/ 707:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/bootstrap-switch.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-switch.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -116,6 +112,18 @@ var KTBootstrapSwitch = function () {
 jQuery(document).ready(function () {
   KTBootstrapSwitch.init();
 });
+
+/***/ }),
+
+/***/ 68:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-switch.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\bootstrap-switch.js */"./resources/metronic/js/pages/crud/forms/widgets/bootstrap-switch.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 748);
+/******/ 	return __webpack_require__(__webpack_require__.s = 89);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 748:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(749);
-
-
-/***/ }),
-
-/***/ 749:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/base/data-ajax.js":
+/*!************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/base/data-ajax.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -331,6 +327,18 @@ var KTDatatableRemoteAjaxDemo = function () {
 jQuery(document).ready(function () {
   KTDatatableRemoteAjaxDemo.init();
 });
+
+/***/ }),
+
+/***/ 89:
+/*!******************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/base/data-ajax.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\base\data-ajax.js */"./resources/metronic/js/pages/crud/ktdatatable/base/data-ajax.js");
+
 
 /***/ })
 

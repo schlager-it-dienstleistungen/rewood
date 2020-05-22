@@ -383,11 +383,11 @@ $headings-font-weight:                              500 !default;
 $headings-line-height:                              1.2 !default;
 $headings-color:                                    null !default;
 
-$display1-size:                                     5.5rem !default;
-$display2-size:                                     4.5rem !default;
-$display3-size:                                     3.5rem !default;
-$display4-size:                                     2.5rem !default;
-$display5-size:                                     2.25rem !default;
+$display1-size:                                     5.5rem !default;  // 71.5px
+$display2-size:                                     4.5rem !default;  // 58.5px
+$display3-size:                                     3.5rem !default;  // 45.5px
+$display4-size:                                     2.5rem !default;  // 32.5px
+$display5-size:                                     2.25rem !default; // 29.5px
 
 // Font Sizes
 $font-sizes: (
@@ -589,6 +589,8 @@ $modal-content-border-color:        				rgba($black, .2) !default;
 $modal-content-border-width:        				0 !default;
 $modal-content-border-radius:       				$border-radius !default;
 $modal-content-inner-border-radius: 				$border-radius !default;
+
+$modal-content-box-shadow:       				    0 .25rem .5rem rgba($black, .05) !default;
 $modal-content-box-shadow-xs:       				0 .25rem .5rem rgba($black, .1) !default;
 $modal-content-box-shadow-sm-up:   					0 .5rem 1rem rgba($black, .1) !default;
 

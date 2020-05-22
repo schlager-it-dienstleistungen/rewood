@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 814);
+/******/ 	return __webpack_require__(__webpack_require__.s = 124);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 814:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(815);
-
-
-/***/ }),
-
-/***/ 815:
+/***/ "./resources/metronic/js/pages/features/cards/tools.js":
+/*!*************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/cards/tools.js ***!
+  \*************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,6 +364,18 @@ var KTCardTools = function () {
 jQuery(document).ready(function () {
   KTCardTools.init();
 });
+
+/***/ }),
+
+/***/ 124:
+/*!*******************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/cards/tools.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\cards\tools.js */"./resources/metronic/js/pages/features/cards/tools.js");
+
 
 /***/ })
 

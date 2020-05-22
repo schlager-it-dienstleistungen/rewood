@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 808);
+/******/ 	return __webpack_require__(__webpack_require__.s = 121);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 808:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(809);
-
-
-/***/ }),
-
-/***/ 809:
+/***/ "./resources/metronic/js/pages/features/calendar/google.js":
+/*!*****************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/calendar/google.js ***!
+  \*****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,6 +176,18 @@ var KTCalendarGoogle = function () {
 jQuery(document).ready(function () {
   KTCalendarGoogle.init();
 });
+
+/***/ }),
+
+/***/ 121:
+/*!***********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/calendar/google.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\calendar\google.js */"./resources/metronic/js/pages/features/calendar/google.js");
+
 
 /***/ })
 

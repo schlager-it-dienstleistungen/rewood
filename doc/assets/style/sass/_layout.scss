@@ -1,8 +1,56 @@
+[id="changelog"] {
+    li {
+        ul {
+            li {
+                margin-bottom: 0.5rem;
+                font-size: 14px;
+                color: #7d8099;
+
+                .badge {
+                    padding: .25rem .5rem;
+                }
+            }
+        }
+    }
+}
+
 .toggle-link {
     text-decoration: none;
 
     &:hover {
         text-decoration: none;
+    }
+}
+
+.badge {
+    &.badge-global {
+        color: #A020F0;
+        background-color: rgba(#A020F0, 0.12);
+    }
+
+    &.badge-html {
+        color: #007bff;
+        background-color: rgba(#007bff, 0.12);
+    }
+
+    &.badge-react {
+        color: #ffc107;
+        background-color: rgba(#ffc107, 0.12);
+    }
+
+    &.badge-vue {
+        color: #f3722c;
+        background-color: rgba(#f3722c, 0.12);
+    }
+
+    &.badge-angular {
+        color: #dc3545;
+        background-color: rgba(#dc3545, 0.12);
+    }
+
+    &.badge-laravel {
+        color: #28a745;
+        background-color: rgba(#28a745, 0.12);
     }
 }
 

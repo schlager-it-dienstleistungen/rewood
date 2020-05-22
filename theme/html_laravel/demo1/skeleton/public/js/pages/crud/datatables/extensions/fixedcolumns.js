@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 644);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 644:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(645);
-
-
-/***/ }),
-
-/***/ 645:
+/***/ "./resources/metronic/js/pages/crud/datatables/extensions/fixedcolumns.js":
+/*!********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/extensions/fixedcolumns.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -221,6 +217,18 @@ var KTDatatablesExtensionsFixedcolumns = function () {
 jQuery(document).ready(function () {
   KTDatatablesExtensionsFixedcolumns.init();
 });
+
+/***/ }),
+
+/***/ 37:
+/*!**************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/extensions/fixedcolumns.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\extensions\fixedcolumns.js */"./resources/metronic/js/pages/crud/datatables/extensions/fixedcolumns.js");
+
 
 /***/ })
 

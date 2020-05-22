@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 662);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 662:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(663);
-
-
-/***/ }),
-
-/***/ 663:
+/***/ "./resources/metronic/js/pages/crud/datatables/search-options/column-search.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/search-options/column-search.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -396,6 +392,18 @@ var KTDatatablesSearchOptionsColumnSearch = function () {
 jQuery(document).ready(function () {
   KTDatatablesSearchOptionsColumnSearch.init();
 });
+
+/***/ }),
+
+/***/ 46:
+/*!*******************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/search-options/column-search.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\search-options\column-search.js */"./resources/metronic/js/pages/crud/datatables/search-options/column-search.js");
+
 
 /***/ })
 

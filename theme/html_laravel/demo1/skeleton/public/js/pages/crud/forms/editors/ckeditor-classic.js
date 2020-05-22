@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 676);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 676:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(677);
-
-
-/***/ }),
-
-/***/ 677:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/ckeditor-classic.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/ckeditor-classic.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142,6 +138,18 @@ var KTCkeditor = function () {
 jQuery(document).ready(function () {
   KTCkeditor.init();
 });
+
+/***/ }),
+
+/***/ 53:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/ckeditor-classic.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\ckeditor-classic.js */"./resources/metronic/js/pages/crud/forms/editors/ckeditor-classic.js");
+
 
 /***/ })
 

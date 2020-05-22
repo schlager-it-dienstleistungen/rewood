@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 844);
+/******/ 	return __webpack_require__(__webpack_require__.s = 139);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 844:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(845);
-
-
-/***/ }),
-
-/***/ 845:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/idle-timer.js":
+/*!**************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/idle-timer.js ***!
+  \**************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -281,6 +277,18 @@ var KTIdleTimerDemo = function () {
 jQuery(document).ready(function () {
   KTIdleTimerDemo.init();
 });
+
+/***/ }),
+
+/***/ 139:
+/*!********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/idle-timer.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\idle-timer.js */"./resources/metronic/js/pages/features/miscellaneous/idle-timer.js");
+
 
 /***/ })
 

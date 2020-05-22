@@ -25,5 +25,4 @@ if (KTUtil.isRTL()) {
 
 $.extend(true, $.fn.dataTable.defaults, defaults);
 
-// fix dropdown overflow inside datatable
-KTApp.initAbsoluteDropdown('.dataTables_wrapper');
+

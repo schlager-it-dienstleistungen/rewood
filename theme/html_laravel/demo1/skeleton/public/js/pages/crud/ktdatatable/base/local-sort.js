@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 756);
+/******/ 	return __webpack_require__(__webpack_require__.s = 93);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 756:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(757);
-
-
-/***/ }),
-
-/***/ 757:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/base/local-sort.js":
+/*!*************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/base/local-sort.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -351,6 +347,18 @@ var KTDatatableLocalSortDemo = function () {
 jQuery(document).ready(function () {
   KTDatatableLocalSortDemo.init();
 });
+
+/***/ }),
+
+/***/ 93:
+/*!*******************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/base/local-sort.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\base\local-sort.js */"./resources/metronic/js/pages/crud/ktdatatable/base/local-sort.js");
+
 
 /***/ })
 

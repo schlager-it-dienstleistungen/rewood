@@ -10,11 +10,11 @@ var KTLayoutHeader = function() {
 	var _init = function() {
         var options = {
             offset: {
-                desktop: 200,
+                desktop: 300,
                 tabletAndMobile: 300
             },
             releseOnReverse: {
-                desktop: true,
+                desktop: false,
                 tabletAndMobile: false
             }
 		};

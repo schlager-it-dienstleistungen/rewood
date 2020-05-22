@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 848);
+/******/ 	return __webpack_require__(__webpack_require__.s = 141);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 848:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(849);
-
-
-/***/ }),
-
-/***/ 849:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/perfect-scrollbar.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/perfect-scrollbar.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116,6 +112,18 @@ var KTScrollable = function () {
 jQuery(document).ready(function () {
   KTScrollable.init();
 });
+
+/***/ }),
+
+/***/ 141:
+/*!***************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/perfect-scrollbar.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\perfect-scrollbar.js */"./resources/metronic/js/pages/features/miscellaneous/perfect-scrollbar.js");
+
 
 /***/ })
 

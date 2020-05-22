@@ -47,9 +47,6 @@ window.ApexCharts = require('apexcharts/dist/apexcharts.min.js');
 window.FormValidation = require("@/src/plugins/formvalidation/dist/amd/index.js");
 window.FormValidation.plugins.Bootstrap = require("@/src/plugins/formvalidation/dist/amd/plugins/Bootstrap.js").default;
 
-// jQuery Form - The jQuery Form Plugin allows you to easily and unobtrusively upgrade HTML forms to use AJAX: http://jquery.malsup.com/form/
-require('jquery-form/dist/jquery.form.min.js');
-
 // jQuery BlockUI - The jQuery BlockUI Plugin lets you simulate synchronous behavior when using AJAX: http://malsup.com/jquery/block/
 require('block-ui/jquery.blockUI.js');
 
@@ -161,6 +158,4 @@ window.swal = require('sweetalert2/dist/sweetalert2.min.js');
 require('@/src/js/vendors/plugins/sweetalert2.init.js');
 
 // JQuery Repeater - Create a repeatable group of input elements: https://github.com/DubFriend/jquery.repeater
-require('jquery.repeater/src/lib.js');
-require('jquery.repeater/src/jquery.input.js');
-require('jquery.repeater/src/repeater.js');
+require('jquery.repeater');

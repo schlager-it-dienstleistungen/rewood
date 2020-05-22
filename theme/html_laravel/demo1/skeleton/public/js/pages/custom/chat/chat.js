@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 764);
+/******/ 	return __webpack_require__(__webpack_require__.s = 97);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 764:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(765);
-
-
-/***/ }),
-
-/***/ 765:
+/***/ "./resources/metronic/js/pages/custom/chat/chat.js":
+/*!*********************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/chat/chat.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -194,6 +190,18 @@ var KTAppChat = function () {
 jQuery(document).ready(function () {
   KTAppChat.init();
 });
+
+/***/ }),
+
+/***/ 97:
+/*!***************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/chat/chat.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\chat\chat.js */"./resources/metronic/js/pages/custom/chat/chat.js");
+
 
 /***/ })
 

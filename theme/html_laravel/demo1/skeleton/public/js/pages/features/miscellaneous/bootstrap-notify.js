@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 838);
+/******/ 	return __webpack_require__(__webpack_require__.s = 136);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 838:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(839);
-
-
-/***/ }),
-
-/***/ 839:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/bootstrap-notify.js":
+/*!********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/bootstrap-notify.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143,8 +139,8 @@ var KTBootstrapNotifyDemo = function () {
         delay: $('#kt_notify_delay').val(),
         z_index: $('#kt_notify_zindex').val(),
         animate: {
-          enter: 'animated ' + $('#kt_notify_animate_enter').val(),
-          exit: 'animated ' + $('#kt_notify_animate_exit').val()
+          enter: 'animate__animated animate__' + $('#kt_notify_animate_enter').val(),
+          exit: 'animate__animated animate__' + $('#kt_notify_animate_exit').val()
         }
       });
 
@@ -184,6 +180,18 @@ var KTBootstrapNotifyDemo = function () {
 jQuery(document).ready(function () {
   KTBootstrapNotifyDemo.init();
 });
+
+/***/ }),
+
+/***/ 136:
+/*!**************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/bootstrap-notify.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\bootstrap-notify.js */"./resources/metronic/js/pages/features/miscellaneous/bootstrap-notify.js");
+
 
 /***/ })
 

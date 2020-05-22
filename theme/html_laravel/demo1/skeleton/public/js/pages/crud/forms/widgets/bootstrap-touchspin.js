@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 710);
+/******/ 	return __webpack_require__(__webpack_require__.s = 70);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 710:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(711);
-
-
-/***/ }),
-
-/***/ 711:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/bootstrap-touchspin.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-touchspin.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -195,6 +191,18 @@ var KTKBootstrapTouchspin = function () {
 jQuery(document).ready(function () {
   KTKBootstrapTouchspin.init();
 });
+
+/***/ }),
+
+/***/ 70:
+/*!*************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-touchspin.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\bootstrap-touchspin.js */"./resources/metronic/js/pages/crud/forms/widgets/bootstrap-touchspin.js");
+
 
 /***/ })
 

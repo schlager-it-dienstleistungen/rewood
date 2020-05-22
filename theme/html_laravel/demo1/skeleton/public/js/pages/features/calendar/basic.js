@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 804);
+/******/ 	return __webpack_require__(__webpack_require__.s = 119);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 804:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(805);
-
-
-/***/ }),
-
-/***/ 805:
+/***/ "./resources/metronic/js/pages/features/calendar/basic.js":
+/*!****************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/calendar/basic.js ***!
+  \****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -249,6 +245,18 @@ var KTCalendarBasic = function () {
 jQuery(document).ready(function () {
   KTCalendarBasic.init();
 });
+
+/***/ }),
+
+/***/ 119:
+/*!**********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/calendar/basic.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\calendar\basic.js */"./resources/metronic/js/pages/features/calendar/basic.js");
+
 
 /***/ })
 

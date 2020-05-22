@@ -81,40 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 530);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 530:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(531);
-
-
-/***/ }),
-
-/***/ 531:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Flot- Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks and interactive features: https://www.flotcharts.org/
-__webpack_require__(532);
-
-__webpack_require__(533);
-
-__webpack_require__(534);
-
-__webpack_require__(535);
-
-__webpack_require__(536);
-
-__webpack_require__(537);
-
-__webpack_require__(538);
-
-/***/ }),
-
-/***/ 532:
+/***/ "./node_modules/flot/dist/es5/jquery.flot.js":
+/*!***************************************************!*\
+  !*** ./node_modules/flot/dist/es5/jquery.flot.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -124,74 +100,234 @@ function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof S
 
 /***/ }),
 
-/***/ 533:
+/***/ "./node_modules/flot/source/jquery.flot.axislabels.js":
+/*!************************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.axislabels.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-/* eslint-disable */
-/* Flot plugin for automatically redrawing plots as the placeholder resizes.
+/*
+Axis label plugin for flot
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
-Licensed under the MIT license.
+Derived from:
+Axis Labels Plugin for flot.
+http://github.com/markrcote/flot-axislabels
 
-It works by listening for changes on the placeholder div (through the jQuery
-resize event plugin) - if the size changes, it will redraw the plot.
+Original code is Copyright (c) 2010 Xuan Luo.
+Original code was released under the GPLv3 license by Xuan Luo, September 2010.
+Original code was rereleased under the MIT license by Xuan Luo, April 2012.
 
-There are no options. If you need to disable the plugin for some plots, you
-can just fix the size of their placeholders.
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/* Inline dependency:
- * jQuery resize event - v1.1 - 3/14/2010
- * http://benalman.com/projects/jquery-resize-plugin/
- *
- * Copyright (c) 2010 "Cowboy" Ben Alman
- * Dual licensed under the MIT and GPL licenses.
- * http://benalman.com/about/license/
- */
-(function($,e,t){"$:nomunge";var i=[],n=$.resize=$.extend($.resize,{}),a,r=false,s="setTimeout",u="resize",m=u+"-special-event",o="pendingDelay",l="activeDelay",f="throttleWindow";n[o]=200;n[l]=20;n[f]=true;$.event.special[u]={setup:function(){if(!n[f]&&this[s]){return false}var e=$(this);i.push(this);e.data(m,{w:e.width(),h:e.height()});if(i.length===1){a=t;h()}},teardown:function(){if(!n[f]&&this[s]){return false}var e=$(this);for(var t=i.length-1;t>=0;t--){if(i[t]==this){i.splice(t,1);break}}e.removeData(m);if(!i.length){if(r){cancelAnimationFrame(a)}else{clearTimeout(a)}a=null}},add:function(e){if(!n[f]&&this[s]){return false}var i;function a(e,n,a){var r=$(this),s=r.data(m)||{};s.w=n!==t?n:r.width();s.h=a!==t?a:r.height();i.apply(this,arguments)}if($.isFunction(e)){i=e;return a}else{i=e.handler;e.handler=a}}};function h(t){if(r===true){r=t||1}for(var s=i.length-1;s>=0;s--){var l=$(i[s]);if(l[0]==e||l.is(":visible")){var f=l.width(),c=l.height(),d=l.data(m);if(d&&(f!==d.w||c!==d.h)){l.trigger(u,[d.w=f,d.h=c]);r=t||true}}else{d=l.data(m);d.w=0;d.h=0}}if(a!==null){if(r&&(t==null||t-r<1e3)){a=e.requestAnimationFrame(h)}else{a=setTimeout(h,n[o]);r=false}}}if(!e.requestAnimationFrame){e.requestAnimationFrame=function(){return e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t,i){return e.setTimeout(function(){t((new Date).getTime())},n[l])}}()}if(!e.cancelAnimationFrame){e.cancelAnimationFrame=function(){return e.webkitCancelRequestAnimationFrame||e.mozCancelRequestAnimationFrame||e.oCancelRequestAnimationFrame||e.msCancelRequestAnimationFrame||clearTimeout}()}})(jQuery,this);
+(function($) {
+    "use strict";
 
-/* eslint-enable */
-(function ($) {
-    var options = { }; // no options
+    var options = {
+        axisLabels: {
+            show: true
+        }
+    };
+
+    function AxisLabel(axisName, position, padding, placeholder, axisLabel, surface) {
+        this.axisName = axisName;
+        this.position = position;
+        this.padding = padding;
+        this.placeholder = placeholder;
+        this.axisLabel = axisLabel;
+        this.surface = surface;
+        this.width = 0;
+        this.height = 0;
+        this.elem = null;
+    }
+
+    AxisLabel.prototype.calculateSize = function() {
+        var axisId = this.axisName + 'Label',
+            layerId = axisId + 'Layer',
+            className = axisId + ' axisLabels';
+
+        var info = this.surface.getTextInfo(layerId, this.axisLabel, className);
+        this.labelWidth = info.width;
+        this.labelHeight = info.height;
+
+        if (this.position === 'left' || this.position === 'right') {
+            this.width = this.labelHeight + this.padding;
+            this.height = 0;
+        } else {
+            this.width = 0;
+            this.height = this.labelHeight + this.padding;
+        }
+    };
+
+    AxisLabel.prototype.transforms = function(degrees, x, y, svgLayer) {
+        var transforms = [], translate, rotate;
+        if (x !== 0 || y !== 0) {
+            translate = svgLayer.createSVGTransform();
+            translate.setTranslate(x, y);
+            transforms.push(translate);
+        }
+        if (degrees !== 0) {
+            rotate = svgLayer.createSVGTransform();
+            var centerX = Math.round(this.labelWidth / 2),
+                centerY = 0;
+            rotate.setRotate(degrees, centerX, centerY);
+            transforms.push(rotate);
+        }
+
+        return transforms;
+    };
+
+    AxisLabel.prototype.calculateOffsets = function(box) {
+        var offsets = {
+            x: 0,
+            y: 0,
+            degrees: 0
+        };
+        if (this.position === 'bottom') {
+            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
+            offsets.y = box.top + box.height - this.labelHeight;
+        } else if (this.position === 'top') {
+            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
+            offsets.y = box.top;
+        } else if (this.position === 'left') {
+            offsets.degrees = -90;
+            offsets.x = box.left - this.labelWidth / 2;
+            offsets.y = box.height / 2 + box.top;
+        } else if (this.position === 'right') {
+            offsets.degrees = 90;
+            offsets.x = box.left + box.width - this.labelWidth / 2;
+            offsets.y = box.height / 2 + box.top;
+        }
+        offsets.x = Math.round(offsets.x);
+        offsets.y = Math.round(offsets.y);
+
+        return offsets;
+    };
+
+    AxisLabel.prototype.cleanup = function() {
+        var axisId = this.axisName + 'Label',
+            layerId = axisId + 'Layer',
+            className = axisId + ' axisLabels';
+        this.surface.removeText(layerId, 0, 0, this.axisLabel, className);
+    };
+
+    AxisLabel.prototype.draw = function(box) {
+        var axisId = this.axisName + 'Label',
+            layerId = axisId + 'Layer',
+            className = axisId + ' axisLabels',
+            offsets = this.calculateOffsets(box),
+            style = {
+                position: 'absolute',
+                bottom: '',
+                right: '',
+                display: 'inline-block',
+                'white-space': 'nowrap'
+            };
+
+        var layer = this.surface.getSVGLayer(layerId);
+        var transforms = this.transforms(offsets.degrees, offsets.x, offsets.y, layer.parentNode);
+
+        this.surface.addText(layerId, 0, 0, this.axisLabel, className, undefined, undefined, undefined, undefined, transforms);
+        this.surface.render();
+        Object.keys(style).forEach(function(key) {
+            layer.style[key] = style[key];
+        });
+    };
 
     function init(plot) {
-        function onResize() {
-            var placeholder = plot.getPlaceholder();
+        plot.hooks.processOptions.push(function(plot, options) {
+            if (!options.axisLabels.show) {
+                return;
+            }
 
-            // somebody might have hidden us and we can't plot
-            // when we don't have the dimensions
-            if (placeholder.width() === 0 || placeholder.height() === 0) return;
+            var axisLabels = {};
+            var defaultPadding = 2; // padding between axis and tick labels
 
-            plot.resize();
-            plot.setupGrid();
-            plot.draw();
-        }
+            plot.hooks.axisReserveSpace.push(function(plot, axis) {
+                var opts = axis.options;
+                var axisName = axis.direction + axis.n;
 
-        function bindEvents(plot, eventHolder) {
-            plot.getPlaceholder().resize(onResize);
-        }
+                axis.labelHeight += axis.boxPosition.centerY;
+                axis.labelWidth += axis.boxPosition.centerX;
 
-        function shutdown(plot, eventHolder) {
-            plot.getPlaceholder().unbind("resize", onResize);
-        }
+                if (!opts || !opts.axisLabel || !axis.show) {
+                    return;
+                }
 
-        plot.hooks.bindEvents.push(bindEvents);
-        plot.hooks.shutdown.push(shutdown);
-    }
+                var padding = opts.axisLabelPadding === undefined
+                    ? defaultPadding
+                    : opts.axisLabelPadding;
+
+                var axisLabel = axisLabels[axisName];
+                if (!axisLabel) {
+                    axisLabel = new AxisLabel(axisName,
+                        opts.position, padding,
+                        plot.getPlaceholder()[0], opts.axisLabel, plot.getSurface());
+                    axisLabels[axisName] = axisLabel;
+                }
+
+                axisLabel.calculateSize();
+
+                // Incrementing the sizes of the tick labels.
+                axis.labelHeight += axisLabel.height;
+                axis.labelWidth += axisLabel.width;
+            });
+
+            // TODO - use the drawAxis hook
+            plot.hooks.draw.push(function(plot, ctx) {
+                $.each(plot.getAxes(), function(flotAxisName, axis) {
+                    var opts = axis.options;
+                    if (!opts || !opts.axisLabel || !axis.show) {
+                        return;
+                    }
+
+                    var axisName = axis.direction + axis.n;
+                    axisLabels[axisName].draw(axis.box);
+                });
+            });
+
+            plot.hooks.shutdown.push(function(plot, eventHolder) {
+                for (var axisName in axisLabels) {
+                    axisLabels[axisName].cleanup();
+                }
+            });
+        });
+    };
 
     $.plot.plugins.push({
         init: init,
         options: options,
-        name: 'resize',
-        version: '1.0'
+        name: 'axisLabels',
+        version: '3.0'
     });
 })(jQuery);
 
 
 /***/ }),
 
-/***/ 534:
+/***/ "./node_modules/flot/source/jquery.flot.categories.js":
+/*!************************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.categories.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /* Flot plugin for plotting textual data or categories.
@@ -400,7 +536,224 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
 
 /***/ }),
 
-/***/ 535:
+/***/ "./node_modules/flot/source/jquery.flot.crosshair.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.crosshair.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* Flot plugin for showing crosshairs when the mouse hovers over the plot.
+
+Copyright (c) 2007-2014 IOLA and Ole Laursen.
+Licensed under the MIT license.
+
+The plugin supports these options:
+
+    crosshair: {
+        mode: null or "x" or "y" or "xy"
+        color: color
+        lineWidth: number
+    }
+
+Set the mode to one of "x", "y" or "xy". The "x" mode enables a vertical
+crosshair that lets you trace the values on the x axis, "y" enables a
+horizontal crosshair and "xy" enables them both. "color" is the color of the
+crosshair (default is "rgba(170, 0, 0, 0.80)"), "lineWidth" is the width of
+the drawn lines (default is 1).
+
+The plugin also adds four public methods:
+
+  - setCrosshair( pos )
+
+    Set the position of the crosshair. Note that this is cleared if the user
+    moves the mouse. "pos" is in coordinates of the plot and should be on the
+    form { x: xpos, y: ypos } (you can use x2/x3/... if you're using multiple
+    axes), which is coincidentally the same format as what you get from a
+    "plothover" event. If "pos" is null, the crosshair is cleared.
+
+  - clearCrosshair()
+
+    Clear the crosshair.
+
+  - lockCrosshair(pos)
+
+    Cause the crosshair to lock to the current location, no longer updating if
+    the user moves the mouse. Optionally supply a position (passed on to
+    setCrosshair()) to move it to.
+
+    Example usage:
+
+    var myFlot = $.plot( $("#graph"), ..., { crosshair: { mode: "x" } } };
+    $("#graph").bind( "plothover", function ( evt, position, item ) {
+        if ( item ) {
+            // Lock the crosshair to the data point being hovered
+            myFlot.lockCrosshair({
+                x: item.datapoint[ 0 ],
+                y: item.datapoint[ 1 ]
+            });
+        } else {
+            // Return normal crosshair operation
+            myFlot.unlockCrosshair();
+        }
+    });
+
+  - unlockCrosshair()
+
+    Free the crosshair to move again after locking it.
+*/
+
+(function ($) {
+    var options = {
+        crosshair: {
+            mode: null, // one of null, "x", "y" or "xy",
+            color: "rgba(170, 0, 0, 0.80)",
+            lineWidth: 1
+        }
+    };
+
+    function init(plot) {
+        // position of crosshair in pixels
+        var crosshair = {x: -1, y: -1, locked: false, highlighted: false};
+
+        plot.setCrosshair = function setCrosshair(pos) {
+            if (!pos) {
+                crosshair.x = -1;
+            } else {
+                var o = plot.p2c(pos);
+                crosshair.x = Math.max(0, Math.min(o.left, plot.width()));
+                crosshair.y = Math.max(0, Math.min(o.top, plot.height()));
+            }
+
+            plot.triggerRedrawOverlay();
+        };
+
+        plot.clearCrosshair = plot.setCrosshair; // passes null for pos
+
+        plot.lockCrosshair = function lockCrosshair(pos) {
+            if (pos) {
+                plot.setCrosshair(pos);
+            }
+
+            crosshair.locked = true;
+        };
+
+        plot.unlockCrosshair = function unlockCrosshair() {
+            crosshair.locked = false;
+            crosshair.rect = null;
+        };
+
+        function onMouseOut(e) {
+            if (crosshair.locked) {
+                return;
+            }
+
+            if (crosshair.x !== -1) {
+                crosshair.x = -1;
+                plot.triggerRedrawOverlay();
+            }
+        }
+
+        function onMouseMove(e) {
+            var offset = plot.offset();
+            if (crosshair.locked) {
+                var mouseX = Math.max(0, Math.min(e.pageX - offset.left, plot.width()));
+                var mouseY = Math.max(0, Math.min(e.pageY - offset.top, plot.height()));
+
+                if ((mouseX > crosshair.x - 4) && (mouseX < crosshair.x + 4) && (mouseY > crosshair.y - 4) && (mouseY < crosshair.y + 4)) {
+                    if (!crosshair.highlighted) {
+                        crosshair.highlighted = true;
+                        plot.triggerRedrawOverlay();
+                    }
+                } else {
+                    if (crosshair.highlighted) {
+                        crosshair.highlighted = false;
+                        plot.triggerRedrawOverlay();
+                    }
+                }
+                return;
+            }
+
+            if (plot.getSelection && plot.getSelection()) {
+                crosshair.x = -1; // hide the crosshair while selecting
+                return;
+            }
+
+            crosshair.x = Math.max(0, Math.min(e.pageX - offset.left, plot.width()));
+            crosshair.y = Math.max(0, Math.min(e.pageY - offset.top, plot.height()));
+            plot.triggerRedrawOverlay();
+        }
+
+        plot.hooks.bindEvents.push(function (plot, eventHolder) {
+            if (!plot.getOptions().crosshair.mode) {
+                return;
+            }
+
+            eventHolder.mouseout(onMouseOut);
+            eventHolder.mousemove(onMouseMove);
+        });
+
+        plot.hooks.drawOverlay.push(function (plot, ctx) {
+            var c = plot.getOptions().crosshair;
+            if (!c.mode) {
+                return;
+            }
+
+            var plotOffset = plot.getPlotOffset();
+
+            ctx.save();
+            ctx.translate(plotOffset.left, plotOffset.top);
+
+            if (crosshair.x !== -1) {
+                var adj = plot.getOptions().crosshair.lineWidth % 2 ? 0.5 : 0;
+
+                ctx.strokeStyle = c.color;
+                ctx.lineWidth = c.lineWidth;
+                ctx.lineJoin = "round";
+
+                ctx.beginPath();
+                if (c.mode.indexOf("x") !== -1) {
+                    var drawX = Math.floor(crosshair.x) + adj;
+                    ctx.moveTo(drawX, 0);
+                    ctx.lineTo(drawX, plot.height());
+                }
+                if (c.mode.indexOf("y") !== -1) {
+                    var drawY = Math.floor(crosshair.y) + adj;
+                    ctx.moveTo(0, drawY);
+                    ctx.lineTo(plot.width(), drawY);
+                }
+                if (crosshair.locked) {
+                    if (crosshair.highlighted) ctx.fillStyle = 'orange';
+                    else ctx.fillStyle = c.color;
+                    ctx.fillRect(Math.floor(crosshair.x) + adj - 4, Math.floor(crosshair.y) + adj - 4, 8, 8);
+                }
+                ctx.stroke();
+            }
+            ctx.restore();
+        });
+
+        plot.hooks.shutdown.push(function (plot, eventHolder) {
+            eventHolder.unbind("mouseout", onMouseOut);
+            eventHolder.unbind("mousemove", onMouseMove);
+        });
+    }
+
+    $.plot.plugins.push({
+        init: init,
+        options: options,
+        name: 'crosshair',
+        version: '1.0'
+    });
+})(jQuery);
+
+
+/***/ }),
+
+/***/ "./node_modules/flot/source/jquery.flot.pie.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.pie.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /* Flot plugin for rendering pie charts.
@@ -1193,7 +1546,82 @@ More detail and specific examples can be found in the included HTML file.
 
 /***/ }),
 
-/***/ 536:
+/***/ "./node_modules/flot/source/jquery.flot.resize.js":
+/*!********************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.resize.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* eslint-disable */
+/* Flot plugin for automatically redrawing plots as the placeholder resizes.
+
+Copyright (c) 2007-2014 IOLA and Ole Laursen.
+Licensed under the MIT license.
+
+It works by listening for changes on the placeholder div (through the jQuery
+resize event plugin) - if the size changes, it will redraw the plot.
+
+There are no options. If you need to disable the plugin for some plots, you
+can just fix the size of their placeholders.
+
+*/
+
+/* Inline dependency:
+ * jQuery resize event - v1.1 - 3/14/2010
+ * http://benalman.com/projects/jquery-resize-plugin/
+ *
+ * Copyright (c) 2010 "Cowboy" Ben Alman
+ * Dual licensed under the MIT and GPL licenses.
+ * http://benalman.com/about/license/
+ */
+(function($,e,t){"$:nomunge";var i=[],n=$.resize=$.extend($.resize,{}),a,r=false,s="setTimeout",u="resize",m=u+"-special-event",o="pendingDelay",l="activeDelay",f="throttleWindow";n[o]=200;n[l]=20;n[f]=true;$.event.special[u]={setup:function(){if(!n[f]&&this[s]){return false}var e=$(this);i.push(this);e.data(m,{w:e.width(),h:e.height()});if(i.length===1){a=t;h()}},teardown:function(){if(!n[f]&&this[s]){return false}var e=$(this);for(var t=i.length-1;t>=0;t--){if(i[t]==this){i.splice(t,1);break}}e.removeData(m);if(!i.length){if(r){cancelAnimationFrame(a)}else{clearTimeout(a)}a=null}},add:function(e){if(!n[f]&&this[s]){return false}var i;function a(e,n,a){var r=$(this),s=r.data(m)||{};s.w=n!==t?n:r.width();s.h=a!==t?a:r.height();i.apply(this,arguments)}if($.isFunction(e)){i=e;return a}else{i=e.handler;e.handler=a}}};function h(t){if(r===true){r=t||1}for(var s=i.length-1;s>=0;s--){var l=$(i[s]);if(l[0]==e||l.is(":visible")){var f=l.width(),c=l.height(),d=l.data(m);if(d&&(f!==d.w||c!==d.h)){l.trigger(u,[d.w=f,d.h=c]);r=t||true}}else{d=l.data(m);d.w=0;d.h=0}}if(a!==null){if(r&&(t==null||t-r<1e3)){a=e.requestAnimationFrame(h)}else{a=setTimeout(h,n[o]);r=false}}}if(!e.requestAnimationFrame){e.requestAnimationFrame=function(){return e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t,i){return e.setTimeout(function(){t((new Date).getTime())},n[l])}}()}if(!e.cancelAnimationFrame){e.cancelAnimationFrame=function(){return e.webkitCancelRequestAnimationFrame||e.mozCancelRequestAnimationFrame||e.oCancelRequestAnimationFrame||e.msCancelRequestAnimationFrame||clearTimeout}()}})(jQuery,this);
+
+/* eslint-enable */
+(function ($) {
+    var options = { }; // no options
+
+    function init(plot) {
+        function onResize() {
+            var placeholder = plot.getPlaceholder();
+
+            // somebody might have hidden us and we can't plot
+            // when we don't have the dimensions
+            if (placeholder.width() === 0 || placeholder.height() === 0) return;
+
+            plot.resize();
+            plot.setupGrid();
+            plot.draw();
+        }
+
+        function bindEvents(plot, eventHolder) {
+            plot.getPlaceholder().resize(onResize);
+        }
+
+        function shutdown(plot, eventHolder) {
+            plot.getPlaceholder().unbind("resize", onResize);
+        }
+
+        plot.hooks.bindEvents.push(bindEvents);
+        plot.hooks.shutdown.push(shutdown);
+    }
+
+    $.plot.plugins.push({
+        init: init,
+        options: options,
+        name: 'resize',
+        version: '1.0'
+    });
+})(jQuery);
+
+
+/***/ }),
+
+/***/ "./node_modules/flot/source/jquery.flot.stack.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/flot/source/jquery.flot.stack.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /* Flot plugin for stacking data sets rather than overlaying them.
@@ -1420,430 +1848,38 @@ charts or filled areas).
 
 /***/ }),
 
-/***/ 537:
-/***/ (function(module, exports) {
+/***/ "./resources/plugins/custom/flot/flot.js":
+/*!***********************************************!*\
+  !*** ./resources/plugins/custom/flot/flot.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-/* Flot plugin for showing crosshairs when the mouse hovers over the plot.
+// Flot- Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks and interactive features: https://www.flotcharts.org/
+__webpack_require__(/*! flot/dist/es5/jquery.flot.js */ "./node_modules/flot/dist/es5/jquery.flot.js");
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
-Licensed under the MIT license.
+__webpack_require__(/*! flot/source/jquery.flot.resize.js */ "./node_modules/flot/source/jquery.flot.resize.js");
 
-The plugin supports these options:
+__webpack_require__(/*! flot/source/jquery.flot.categories.js */ "./node_modules/flot/source/jquery.flot.categories.js");
 
-    crosshair: {
-        mode: null or "x" or "y" or "xy"
-        color: color
-        lineWidth: number
-    }
+__webpack_require__(/*! flot/source/jquery.flot.pie.js */ "./node_modules/flot/source/jquery.flot.pie.js");
 
-Set the mode to one of "x", "y" or "xy". The "x" mode enables a vertical
-crosshair that lets you trace the values on the x axis, "y" enables a
-horizontal crosshair and "xy" enables them both. "color" is the color of the
-crosshair (default is "rgba(170, 0, 0, 0.80)"), "lineWidth" is the width of
-the drawn lines (default is 1).
+__webpack_require__(/*! flot/source/jquery.flot.stack.js */ "./node_modules/flot/source/jquery.flot.stack.js");
 
-The plugin also adds four public methods:
+__webpack_require__(/*! flot/source/jquery.flot.crosshair.js */ "./node_modules/flot/source/jquery.flot.crosshair.js");
 
-  - setCrosshair( pos )
-
-    Set the position of the crosshair. Note that this is cleared if the user
-    moves the mouse. "pos" is in coordinates of the plot and should be on the
-    form { x: xpos, y: ypos } (you can use x2/x3/... if you're using multiple
-    axes), which is coincidentally the same format as what you get from a
-    "plothover" event. If "pos" is null, the crosshair is cleared.
-
-  - clearCrosshair()
-
-    Clear the crosshair.
-
-  - lockCrosshair(pos)
-
-    Cause the crosshair to lock to the current location, no longer updating if
-    the user moves the mouse. Optionally supply a position (passed on to
-    setCrosshair()) to move it to.
-
-    Example usage:
-
-    var myFlot = $.plot( $("#graph"), ..., { crosshair: { mode: "x" } } };
-    $("#graph").bind( "plothover", function ( evt, position, item ) {
-        if ( item ) {
-            // Lock the crosshair to the data point being hovered
-            myFlot.lockCrosshair({
-                x: item.datapoint[ 0 ],
-                y: item.datapoint[ 1 ]
-            });
-        } else {
-            // Return normal crosshair operation
-            myFlot.unlockCrosshair();
-        }
-    });
-
-  - unlockCrosshair()
-
-    Free the crosshair to move again after locking it.
-*/
-
-(function ($) {
-    var options = {
-        crosshair: {
-            mode: null, // one of null, "x", "y" or "xy",
-            color: "rgba(170, 0, 0, 0.80)",
-            lineWidth: 1
-        }
-    };
-
-    function init(plot) {
-        // position of crosshair in pixels
-        var crosshair = {x: -1, y: -1, locked: false, highlighted: false};
-
-        plot.setCrosshair = function setCrosshair(pos) {
-            if (!pos) {
-                crosshair.x = -1;
-            } else {
-                var o = plot.p2c(pos);
-                crosshair.x = Math.max(0, Math.min(o.left, plot.width()));
-                crosshair.y = Math.max(0, Math.min(o.top, plot.height()));
-            }
-
-            plot.triggerRedrawOverlay();
-        };
-
-        plot.clearCrosshair = plot.setCrosshair; // passes null for pos
-
-        plot.lockCrosshair = function lockCrosshair(pos) {
-            if (pos) {
-                plot.setCrosshair(pos);
-            }
-
-            crosshair.locked = true;
-        };
-
-        plot.unlockCrosshair = function unlockCrosshair() {
-            crosshair.locked = false;
-            crosshair.rect = null;
-        };
-
-        function onMouseOut(e) {
-            if (crosshair.locked) {
-                return;
-            }
-
-            if (crosshair.x !== -1) {
-                crosshair.x = -1;
-                plot.triggerRedrawOverlay();
-            }
-        }
-
-        function onMouseMove(e) {
-            var offset = plot.offset();
-            if (crosshair.locked) {
-                var mouseX = Math.max(0, Math.min(e.pageX - offset.left, plot.width()));
-                var mouseY = Math.max(0, Math.min(e.pageY - offset.top, plot.height()));
-
-                if ((mouseX > crosshair.x - 4) && (mouseX < crosshair.x + 4) && (mouseY > crosshair.y - 4) && (mouseY < crosshair.y + 4)) {
-                    if (!crosshair.highlighted) {
-                        crosshair.highlighted = true;
-                        plot.triggerRedrawOverlay();
-                    }
-                } else {
-                    if (crosshair.highlighted) {
-                        crosshair.highlighted = false;
-                        plot.triggerRedrawOverlay();
-                    }
-                }
-                return;
-            }
-
-            if (plot.getSelection && plot.getSelection()) {
-                crosshair.x = -1; // hide the crosshair while selecting
-                return;
-            }
-
-            crosshair.x = Math.max(0, Math.min(e.pageX - offset.left, plot.width()));
-            crosshair.y = Math.max(0, Math.min(e.pageY - offset.top, plot.height()));
-            plot.triggerRedrawOverlay();
-        }
-
-        plot.hooks.bindEvents.push(function (plot, eventHolder) {
-            if (!plot.getOptions().crosshair.mode) {
-                return;
-            }
-
-            eventHolder.mouseout(onMouseOut);
-            eventHolder.mousemove(onMouseMove);
-        });
-
-        plot.hooks.drawOverlay.push(function (plot, ctx) {
-            var c = plot.getOptions().crosshair;
-            if (!c.mode) {
-                return;
-            }
-
-            var plotOffset = plot.getPlotOffset();
-
-            ctx.save();
-            ctx.translate(plotOffset.left, plotOffset.top);
-
-            if (crosshair.x !== -1) {
-                var adj = plot.getOptions().crosshair.lineWidth % 2 ? 0.5 : 0;
-
-                ctx.strokeStyle = c.color;
-                ctx.lineWidth = c.lineWidth;
-                ctx.lineJoin = "round";
-
-                ctx.beginPath();
-                if (c.mode.indexOf("x") !== -1) {
-                    var drawX = Math.floor(crosshair.x) + adj;
-                    ctx.moveTo(drawX, 0);
-                    ctx.lineTo(drawX, plot.height());
-                }
-                if (c.mode.indexOf("y") !== -1) {
-                    var drawY = Math.floor(crosshair.y) + adj;
-                    ctx.moveTo(0, drawY);
-                    ctx.lineTo(plot.width(), drawY);
-                }
-                if (crosshair.locked) {
-                    if (crosshair.highlighted) ctx.fillStyle = 'orange';
-                    else ctx.fillStyle = c.color;
-                    ctx.fillRect(Math.floor(crosshair.x) + adj - 4, Math.floor(crosshair.y) + adj - 4, 8, 8);
-                }
-                ctx.stroke();
-            }
-            ctx.restore();
-        });
-
-        plot.hooks.shutdown.push(function (plot, eventHolder) {
-            eventHolder.unbind("mouseout", onMouseOut);
-            eventHolder.unbind("mousemove", onMouseMove);
-        });
-    }
-
-    $.plot.plugins.push({
-        init: init,
-        options: options,
-        name: 'crosshair',
-        version: '1.0'
-    });
-})(jQuery);
-
+__webpack_require__(/*! flot/source/jquery.flot.axislabels.js */ "./node_modules/flot/source/jquery.flot.axislabels.js");
 
 /***/ }),
 
-/***/ 538:
-/***/ (function(module, exports) {
+/***/ 10:
+/*!*****************************************************!*\
+  !*** multi ./resources/plugins/custom/flot/flot.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-/*
-Axis label plugin for flot
-
-Derived from:
-Axis Labels Plugin for flot.
-http://github.com/markrcote/flot-axislabels
-
-Original code is Copyright (c) 2010 Xuan Luo.
-Original code was released under the GPLv3 license by Xuan Luo, September 2010.
-Original code was rereleased under the MIT license by Xuan Luo, April 2012.
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-
-(function($) {
-    "use strict";
-
-    var options = {
-        axisLabels: {
-            show: true
-        }
-    };
-
-    function AxisLabel(axisName, position, padding, placeholder, axisLabel, surface) {
-        this.axisName = axisName;
-        this.position = position;
-        this.padding = padding;
-        this.placeholder = placeholder;
-        this.axisLabel = axisLabel;
-        this.surface = surface;
-        this.width = 0;
-        this.height = 0;
-        this.elem = null;
-    }
-
-    AxisLabel.prototype.calculateSize = function() {
-        var axisId = this.axisName + 'Label',
-            layerId = axisId + 'Layer',
-            className = axisId + ' axisLabels';
-
-        var info = this.surface.getTextInfo(layerId, this.axisLabel, className);
-        this.labelWidth = info.width;
-        this.labelHeight = info.height;
-
-        if (this.position === 'left' || this.position === 'right') {
-            this.width = this.labelHeight + this.padding;
-            this.height = 0;
-        } else {
-            this.width = 0;
-            this.height = this.labelHeight + this.padding;
-        }
-    };
-
-    AxisLabel.prototype.transforms = function(degrees, x, y, svgLayer) {
-        var transforms = [], translate, rotate;
-        if (x !== 0 || y !== 0) {
-            translate = svgLayer.createSVGTransform();
-            translate.setTranslate(x, y);
-            transforms.push(translate);
-        }
-        if (degrees !== 0) {
-            rotate = svgLayer.createSVGTransform();
-            var centerX = Math.round(this.labelWidth / 2),
-                centerY = 0;
-            rotate.setRotate(degrees, centerX, centerY);
-            transforms.push(rotate);
-        }
-
-        return transforms;
-    };
-
-    AxisLabel.prototype.calculateOffsets = function(box) {
-        var offsets = {
-            x: 0,
-            y: 0,
-            degrees: 0
-        };
-        if (this.position === 'bottom') {
-            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
-            offsets.y = box.top + box.height - this.labelHeight;
-        } else if (this.position === 'top') {
-            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
-            offsets.y = box.top;
-        } else if (this.position === 'left') {
-            offsets.degrees = -90;
-            offsets.x = box.left - this.labelWidth / 2;
-            offsets.y = box.height / 2 + box.top;
-        } else if (this.position === 'right') {
-            offsets.degrees = 90;
-            offsets.x = box.left + box.width - this.labelWidth / 2;
-            offsets.y = box.height / 2 + box.top;
-        }
-        offsets.x = Math.round(offsets.x);
-        offsets.y = Math.round(offsets.y);
-
-        return offsets;
-    };
-
-    AxisLabel.prototype.cleanup = function() {
-        var axisId = this.axisName + 'Label',
-            layerId = axisId + 'Layer',
-            className = axisId + ' axisLabels';
-        this.surface.removeText(layerId, 0, 0, this.axisLabel, className);
-    };
-
-    AxisLabel.prototype.draw = function(box) {
-        var axisId = this.axisName + 'Label',
-            layerId = axisId + 'Layer',
-            className = axisId + ' axisLabels',
-            offsets = this.calculateOffsets(box),
-            style = {
-                position: 'absolute',
-                bottom: '',
-                right: '',
-                display: 'inline-block',
-                'white-space': 'nowrap'
-            };
-
-        var layer = this.surface.getSVGLayer(layerId);
-        var transforms = this.transforms(offsets.degrees, offsets.x, offsets.y, layer.parentNode);
-
-        this.surface.addText(layerId, 0, 0, this.axisLabel, className, undefined, undefined, undefined, undefined, transforms);
-        this.surface.render();
-        Object.keys(style).forEach(function(key) {
-            layer.style[key] = style[key];
-        });
-    };
-
-    function init(plot) {
-        plot.hooks.processOptions.push(function(plot, options) {
-            if (!options.axisLabels.show) {
-                return;
-            }
-
-            var axisLabels = {};
-            var defaultPadding = 2; // padding between axis and tick labels
-
-            plot.hooks.axisReserveSpace.push(function(plot, axis) {
-                var opts = axis.options;
-                var axisName = axis.direction + axis.n;
-
-                axis.labelHeight += axis.boxPosition.centerY;
-                axis.labelWidth += axis.boxPosition.centerX;
-
-                if (!opts || !opts.axisLabel || !axis.show) {
-                    return;
-                }
-
-                var padding = opts.axisLabelPadding === undefined
-                    ? defaultPadding
-                    : opts.axisLabelPadding;
-
-                var axisLabel = axisLabels[axisName];
-                if (!axisLabel) {
-                    axisLabel = new AxisLabel(axisName,
-                        opts.position, padding,
-                        plot.getPlaceholder()[0], opts.axisLabel, plot.getSurface());
-                    axisLabels[axisName] = axisLabel;
-                }
-
-                axisLabel.calculateSize();
-
-                // Incrementing the sizes of the tick labels.
-                axis.labelHeight += axisLabel.height;
-                axis.labelWidth += axisLabel.width;
-            });
-
-            // TODO - use the drawAxis hook
-            plot.hooks.draw.push(function(plot, ctx) {
-                $.each(plot.getAxes(), function(flotAxisName, axis) {
-                    var opts = axis.options;
-                    if (!opts || !opts.axisLabel || !axis.show) {
-                        return;
-                    }
-
-                    var axisName = axis.direction + axis.n;
-                    axisLabels[axisName].draw(axis.box);
-                });
-            });
-
-            plot.hooks.shutdown.push(function(plot, eventHolder) {
-                for (var axisName in axisLabels) {
-                    axisLabels[axisName].cleanup();
-                }
-            });
-        });
-    };
-
-    $.plot.plugins.push({
-        init: init,
-        options: options,
-        name: 'axisLabels',
-        version: '3.0'
-    });
-})(jQuery);
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\plugins\custom\flot\flot.js */"./resources/plugins/custom/flot/flot.js");
 
 
 /***/ })

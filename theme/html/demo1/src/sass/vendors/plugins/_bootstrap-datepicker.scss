@@ -162,4 +162,10 @@
     input {
         text-align: left;
     }
+
+    .input-group-append {
+        .input-group-text {
+            border-right: 0;
+        }
+    }
 }

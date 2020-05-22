@@ -2,11 +2,11 @@
 import React from "react";
 import SVG from "react-inlinesvg";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import {toAbsoluteUrl} from "../../../../../_helpers";
+import { toAbsoluteUrl } from "../../../../../_helpers";
 
 const perfectScrollbarOptions = {
   wheelSpeed: 2,
-  wheelPropagation: false
+  wheelPropagation: false,
 };
 
 export function SearchResult({ data }) {
@@ -16,32 +16,32 @@ export function SearchResult({ data }) {
 
   if (data.length === 0) {
     return (
-        <div
-            style={{maxHeight: "325px", overflow: "hidden"}}
-            className="quick-search-wrapper scroll ps ps--active-y"
-        >
-          <div className="quick-search-result">
-            <div className="text-muted d-none">No record found</div>
-          </div>
+      <div
+        style={{ maxHeight: "325px", overflow: "hidden" }}
+        className="quick-search-wrapper scroll ps ps--active-y"
+      >
+        <div className="quick-search-result">
+          <div className="text-muted d-none">No record found</div>
         </div>
+      </div>
     );
   }
 
   return (
-      <div
-          style={{maxHeight: "325px", overflow: "hidden"}}
-          className="quick-search-wrapper scroll ps ps--active-y"
+    <div
+      style={{ maxHeight: "325px", overflow: "hidden" }}
+      className="quick-search-wrapper scroll ps ps--active-y"
+    >
+      <PerfectScrollbar
+        options={perfectScrollbarOptions}
+        className="scroll"
+        style={{ maxHeight: "325px", position: "relative" }}
       >
-        <PerfectScrollbar
-            options={perfectScrollbarOptions}
-            className="scroll"
-            style={{ maxHeight: "325px", position: "relative" }}
-        >
-          <div className="quick-search-result">
+        <div className="quick-search-result">
+          {/* begin: Section */}
           <div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
             Documents
           </div>
-
           <div className="mb-10">
             <div className="d-flex align-items-center flex-grow-1 mb-2">
               <div className="symbol symbol-45 bg-transparent flex-shrink-0">
@@ -49,14 +49,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   AirPlus Requirements
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              by Grog John
-            </span>
+                  by Grog John
+                </span>
               </div>
             </div>
 
@@ -66,14 +66,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   TechNav Documentation
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              by Mary Broun
-            </span>
+                  by Mary Broun
+                </span>
               </div>
             </div>
 
@@ -83,14 +83,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   All Framework Docs
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              by Nick Stone
-            </span>
+                  by Nick Stone
+                </span>
               </div>
             </div>
 
@@ -100,115 +100,120 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   Finance & Accounting Reports
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              by Jhon Larson
-            </span>
+                  by Jhon Larson
+                </span>
               </div>
             </div>
           </div>
+          {/* end: Section */}
 
+          {/* begin: Section */}
           <div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
             Members
           </div>
           <div className="mb-10">
             <div className="d-flex align-items-center flex-grow-1 mb-2">
-              <div
-                  className="symbol symbol-45 symbol-circle flex-shrink-0"
+              <div className="symbol symbol-30  flex-shrink-0">
+                <div
+                  className="symbol-label"
                   style={{
                     backgroundImage: `url(${toAbsoluteUrl(
-                        "/media/users/300_20.jpg"
-                    )})`
+                      "/media/users/300_20.jpg"
+                    )})`,
                   }}
-              >
-                <div className="symbol-label"/>
+                />
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   Milena Gibson
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              UI Designer
-            </span>
+                  UI Designer
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
-              <div
-                  className="symbol symbol-45 symbol-circle flex-shrink-0"
+              <div className="symbol symbol-30  flex-shrink-0">
+                <div
+                  className="symbol-label"
                   style={{
-                    backgroundImage: `url(${toAbsoluteUrl("/media/users/300_15.jpg")}`
+                    backgroundImage: `url(${toAbsoluteUrl(
+                      "/media/users/300_15.jpg"
+                    )}`,
                   }}
-              >
-                <div className="symbol-label"/>
+                />
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   Stefan JohnStefan
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Marketing Manager
-            </span>
+                  Marketing Manager
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
-              <div
-                  className="symbol symbol-45 symbol-circle flex-shrink-0"
+              <div className="symbol symbol-30  flex-shrink-0">
+                <div
+                  className="symbol-label"
                   style={{
                     backgroundImage: `url(${toAbsoluteUrl(
-                        "/media/users/300_12.jpg"
-                    )})`
+                      "/media/users/300_12.jpg"
+                    )})`,
                   }}
-              >
-                <div className="symbol-label"/>
+                />
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   Anna Strong
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Software Developer
-            </span>
+                  Software Developer
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
-              <div
-                  className="symbol symbol-45 symbol-circle flex-shrink-0"
+              <div className="symbol symbol-30  flex-shrink-0">
+                <div
+                  className="symbol-label"
                   style={{
                     backgroundImage: `url(${toAbsoluteUrl(
-                        "/media/users/300_16.jpg"
-                    )})`
+                      "/media/users/300_16.jpg"
+                    )})`,
                   }}
-              >
-                >
-                <div className="symbol-label"/>
+                />
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   Nick Bold
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Project Coordinator
-            </span>
+                  Project Coordinator
+                </span>
               </div>
             </div>
           </div>
+          {/* end: Section */}
 
+          {/* begin: Section */}
           <div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
             Files
           </div>
@@ -221,14 +226,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   79 PSD files generated
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              by Grog John
-            </span>
+                  by Grog John
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
@@ -239,14 +244,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   $2900 worth products sold
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Total 234 items
-            </span>
+                  Total 234 items
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
@@ -257,14 +262,14 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   4 New items submitted
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Marketing Manager
-            </span>
+                  Marketing Manager
+                </span>
               </div>
             </div>
             <div className="d-flex align-items-center flex-grow-1 mb-2">
@@ -275,19 +280,20 @@ export function SearchResult({ data }) {
               </div>
               <div className="d-flex flex-column ml-3 mt-2 mb-2">
                 <a
-                    href="#"
-                    className="font-weight-bold text-dark text-hover-primary"
+                  href="#"
+                  className="font-weight-bold text-dark text-hover-primary"
                 >
                   4 New items submitted
                 </a>
                 <span className="font-size-sm font-weight-bold text-muted">
-              Marketing Manager
-            </span>
+                  Marketing Manager
+                </span>
               </div>
             </div>
           </div>
+          {/* end: Section */}
         </div>
-        </PerfectScrollbar>
-      </div>
+      </PerfectScrollbar>
+    </div>
   );
 }

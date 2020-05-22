@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 722);
+/******/ 	return __webpack_require__(__webpack_require__.s = 76);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 722:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(723);
-
-
-/***/ }),
-
-/***/ 723:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/nouislider.js":
+/*!**********************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/nouislider.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -364,6 +360,18 @@ var KTnoUiSliderDemos = function () {
 jQuery(document).ready(function () {
   KTnoUiSliderDemos.init();
 });
+
+/***/ }),
+
+/***/ 76:
+/*!****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/nouislider.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\nouislider.js */"./resources/metronic/js/pages/crud/forms/widgets/nouislider.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 718);
+/******/ 	return __webpack_require__(__webpack_require__.s = 74);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 718:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(719);
-
-
-/***/ }),
-
-/***/ 719:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/input-mask.js":
+/*!**********************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/input-mask.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -169,6 +165,18 @@ var KTInputmask = function () {
 jQuery(document).ready(function () {
   KTInputmask.init();
 });
+
+/***/ }),
+
+/***/ 74:
+/*!****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/input-mask.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\input-mask.js */"./resources/metronic/js/pages/crud/forms/widgets/input-mask.js");
+
 
 /***/ })
 

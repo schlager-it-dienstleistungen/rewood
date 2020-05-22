@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 728);
+/******/ 	return __webpack_require__(__webpack_require__.s = 79);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 728:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(729);
-
-
-/***/ }),
-
-/***/ 729:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/typeahead.js":
+/*!*********************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/typeahead.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -226,6 +222,18 @@ var KTTypeahead = function () {
 jQuery(document).ready(function () {
   KTTypeahead.init();
 });
+
+/***/ }),
+
+/***/ 79:
+/*!***************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/typeahead.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\typeahead.js */"./resources/metronic/js/pages/crud/forms/widgets/typeahead.js");
+
 
 /***/ })
 

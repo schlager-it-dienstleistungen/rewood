@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 686);
+/******/ 	return __webpack_require__(__webpack_require__.s = 58);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 686:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(687);
-
-
-/***/ }),
-
-/***/ 687:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/tinymce.js":
+/*!*******************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/tinymce.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -136,6 +132,18 @@ var KTTinymce = function () {
 jQuery(document).ready(function () {
   KTTinymce.init();
 });
+
+/***/ }),
+
+/***/ 58:
+/*!*************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/tinymce.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\tinymce.js */"./resources/metronic/js/pages/crud/forms/editors/tinymce.js");
+
 
 /***/ })
 

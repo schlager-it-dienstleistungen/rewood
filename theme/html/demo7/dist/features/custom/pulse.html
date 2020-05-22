@@ -1514,7 +1514,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		</ul>
 																	</div>
 																</li>
-																<li class="menu-item menu-item-submenu menu-item-dropup" data-menu-toggle="hover" aria-haspopup="true">
+																<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 																	<a href="javascript:;" class="menu-link menu-toggle">
 																		<span class="svg-icon menu-icon">
 																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Active-call.svg-->
@@ -1530,7 +1530,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<span class="menu-text">Miscellaneous</span>
 																		<i class="menu-arrow"></i>
 																	</a>
-																	<div class="menu-submenu menu-submenu-classic menu-submenu-right">
+																	<div class="menu-submenu menu-submenu-classic menu-submenu-right" style="top: -150px">
 																		<ul class="menu-subnav">
 																			<li class="menu-item" aria-haspopup="true">
 																				<a href="features/miscellaneous/kanban-board.html" class="menu-link">
@@ -3129,7 +3129,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<span class="menu-desc"></span>
 															<i class="menu-arrow"></i>
 														</a>
-														<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1100px">
+														<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1150px">
 															<div class="menu-subnav">
 																<ul class="menu-content">
 																	<li class="menu-item">
@@ -3278,6 +3278,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																						<span></span>
 																					</i>
 																					<span class="menu-text">Login 4</span>
+																				</a>
+																			</li>
+																			<li class="menu-item" aria-haspopup="true">
+																				<a href="custom/pages/login/login-5/signup.html" class="menu-link">
+																					<i class="menu-bullet menu-bullet-line">
+																						<span></span>
+																					</i>
+																					<span class="menu-text">Login 5</span>
+																					<span class="menu-label">
+																						<span class="label label-inline label-info">Wizard</span>
+																					</span>
 																				</a>
 																			</li>
 																		</ul>
@@ -3563,27 +3574,52 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="example mb-10">
 													<p>Default label examples.</p>
 													<div class="example-preview">
-														<span class="label pulse mr-10">1
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse mr-10">2
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse mr-10">5
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse mr-10">9
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse">10
-														<span class="pulse-ring"></span></span>
+														<span class="label pulse mr-10">
+															<span class="position-relative">1</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse mr-10">
+															<span class="position-relative">2</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse mr-10">
+															<span class="position-relative">5</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse mr-10">
+															<span class="position-relative">9</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse">
+															<span class="position-relative">10</span>
+															<span class="pulse-ring"></span>
+														</span>
 													</div>
 													<div class="example-code">
 														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
 														<div class="example-highlight">
-															<pre>
+															<pre style="height:400px">
 <code class="language-html">
-                        &lt;span class="label pulse"&gt;1 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse"&gt;2 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse"&gt;5 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse"&gt;9 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse"&gt;10 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
+                        &lt;span class="label pulse mr-10"&gt;
+                            &lt;span class="position-relative"&gt;1&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse mr-10"&gt;
+                            &lt;span class="position-relative"&gt;2&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse mr-10"&gt;
+                            &lt;span class="position-relative"&gt;5&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse mr-10"&gt;
+                            &lt;span class="position-relative"&gt;9&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse"&gt;
+                            &lt;span class="position-relative"&gt;10&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
                         </code>
 </pre>
 														</div>
@@ -3595,27 +3631,52 @@ License: You must have a valid license purchased only from themeforest(the above
 													<p>Use
 													<code>.pulse-{success|primary|danger|warning|info|dark|white|success}</code>class to have color pulse options.</p>
 													<div class="example-preview">
-														<span class="label pulse pulse-success mr-10">1
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse pulse-danger mr-10">2
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse pulse-warning mr-10">5
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse pulse-primary mr-10">9
-														<span class="pulse-ring"></span></span>
-														<span class="label pulse pulse-info">10
-														<span class="pulse-ring"></span></span>
+														<span class="label pulse pulse-success mr-10">
+															<span class="position-relative">1</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse pulse-danger mr-10">
+															<span class="position-relative">2</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse pulse-warning mr-10">
+															<span class="position-relative">5</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse pulse-primary mr-10">
+															<span class="position-relative">9</span>
+															<span class="pulse-ring"></span>
+														</span>
+														<span class="label pulse pulse-info">
+															<span class="position-relative">10</span>
+															<span class="pulse-ring"></span>
+														</span>
 													</div>
 													<div class="example-code">
 														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
 														<div class="example-highlight">
-															<pre>
+															<pre style="height:400px">
 <code class="language-html">
-                        &lt;span class="label pulse pulse-success"&gt;1 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse pulse-danger"&gt;2 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse pulse-warning"&gt;5 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse pulse-primary"&gt;9 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
-                        &lt;span class="label pulse pulse-info"&gt;10 &lt;span class="pulse-ring"&gt;&lt;/span&gt;&lt;/span&gt;
+                        &lt;span class="label pulse pulse-success mr-10"&gt;
+                            &lt;span class="position-relative"&gt;1&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse pulse-danger mr-10"&gt;
+                            &lt;span class="position-relative"&gt;2&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse pulse-warning mr-10"&gt;
+                            &lt;span class="position-relative"&gt;5&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse pulse-primary mr-10"&gt;
+                            &lt;span class="position-relative"&gt;9&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
+                        &lt;span class="label pulse pulse-info"&gt;
+                            &lt;span class="position-relative"&gt;10&lt;/span&gt;
+                            &lt;span class="pulse-ring"&gt;&lt;/span&gt;
+                        &lt;/span&gt;
                         </code>
 </pre>
 														</div>

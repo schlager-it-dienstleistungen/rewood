@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 724);
+/******/ 	return __webpack_require__(__webpack_require__.s = 77);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 724:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(725);
-
-
-/***/ }),
-
-/***/ 725:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/select2.js":
+/*!*******************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/select2.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -264,6 +260,18 @@ var KTSelect2 = function () {
 jQuery(document).ready(function () {
   KTSelect2.init();
 });
+
+/***/ }),
+
+/***/ 77:
+/*!*************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/select2.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\select2.js */"./resources/metronic/js/pages/crud/forms/widgets/select2.js");
+
 
 /***/ })
 

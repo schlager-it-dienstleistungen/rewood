@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 782);
+/******/ 	return __webpack_require__(__webpack_require__.s = 108);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 782:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(783);
-
-
-/***/ }),
-
-/***/ 783:
+/***/ "./resources/metronic/js/pages/custom/projects/list-datatable.js":
+/*!***********************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/projects/list-datatable.js ***!
+  \***********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -365,6 +361,18 @@ var KTAppsProjectsListDatatable = function () {
 jQuery(document).ready(function () {
   KTAppsProjectsListDatatable.init();
 });
+
+/***/ }),
+
+/***/ 108:
+/*!*****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/projects/list-datatable.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\projects\list-datatable.js */"./resources/metronic/js/pages/custom/projects/list-datatable.js");
+
 
 /***/ })
 

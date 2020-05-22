@@ -1531,7 +1531,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</ul>
 													</div>
 												</li>
-												<li class="menu-item menu-item-submenu menu-item-dropup" data-menu-toggle="hover" aria-haspopup="true">
+												<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 													<a href="javascript:;" class="menu-link menu-toggle">
 														<span class="svg-icon menu-icon">
 															<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Active-call.svg-->
@@ -1547,7 +1547,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span class="menu-text">Miscellaneous</span>
 														<i class="menu-arrow"></i>
 													</a>
-													<div class="menu-submenu menu-submenu-classic menu-submenu-right">
+													<div class="menu-submenu menu-submenu-classic menu-submenu-right" style="top: -150px">
 														<ul class="menu-subnav">
 															<li class="menu-item" aria-haspopup="true">
 																<a href="features/miscellaneous/kanban-board.html" class="menu-link">
@@ -3146,7 +3146,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="menu-desc"></span>
 											<i class="menu-arrow"></i>
 										</a>
-										<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1100px">
+										<div class="menu-submenu menu-submenu-fixed menu-submenu-center" style="width:1150px">
 											<div class="menu-subnav">
 												<ul class="menu-content">
 													<li class="menu-item">
@@ -3295,6 +3295,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																		<span></span>
 																	</i>
 																	<span class="menu-text">Login 4</span>
+																</a>
+															</li>
+															<li class="menu-item" aria-haspopup="true">
+																<a href="custom/pages/login/login-5/signup.html" class="menu-link">
+																	<i class="menu-bullet menu-bullet-line">
+																		<span></span>
+																	</i>
+																	<span class="menu-text">Login 5</span>
+																	<span class="menu-label">
+																		<span class="label label-inline label-info">Wizard</span>
+																	</span>
 																</a>
 															</li>
 														</ul>
@@ -3562,7 +3573,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<p>Initialize all popovers on a page by adding the
 													<code>data-toggle</code>attribute.</p>
 													<div class="example-preview">
-														<button type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+														<button type="button" class="btn btn-primary" data-toggle="popover" data-trigger="click" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 													</div>
 													<div class="example-code">
 														<ul class="example-nav nav nav-tabs nav-tabs-line nav-tabs-line-2x nav-tabs-primary" id="myTab" role="tablist">
@@ -3579,7 +3590,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<div class="example-highlight">
 																	<pre>
 <code class="language-html">
-                                &lt;button type="button" class="btn btn-primary" data-toggle="popover" title="Example content"&gt;
+                                &lt;button type="button" class="btn btn-primary" data-toggle="popover" data-trigger="click" title="Example content"&gt;
                                     Click to toggle popover
                                 &lt;/button&gt;</code>
 </pre>
@@ -3729,14 +3740,14 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="example">
 													<p>Insert any HTML into the popover.</p>
 													<div class="example-preview">
-														<button type="button" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="Popover title" data-html="true" data-content="And here's some amazing &lt;span class='label label-inline font-weight-bold label-light-primary'&gt;HTML&lt;/span&gt; content. It's very &lt;code&gt;engaging&lt;/code&gt;. Right?">Click me</button>
+														<button type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" data-html="true" data-content="And here's some amazing &lt;span class='label label-inline font-weight-bold label-light-primary'&gt;HTML&lt;/span&gt; content. It's very &lt;code&gt;engaging&lt;/code&gt;. Right?">Click me</button>
 													</div>
 													<div class="example-code">
 														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
 														<div class="example-highlight">
 															<pre>
 <code class="language-html">
-                        &lt;button type="button" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="Popover title" data-html="true" data-content="And here's some amazing &lt;span class='label label-inline font-weight-bold label-light-primary'&gt;HTML&lt;/span&gt; content. It's very &lt;code&gt;engaging&lt;/code&gt;. Right?"&gt;
+                        &lt;button type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" data-html="true" data-content="And here's some amazing &lt;span class='label label-inline font-weight-bold label-light-primary'&gt;HTML&lt;/span&gt; content. It's very &lt;code&gt;engaging&lt;/code&gt;. Right?"&gt;
                             Click me
                         &lt;/button&gt;</code>
 </pre>
@@ -3760,22 +3771,22 @@ License: You must have a valid license purchased only from themeforest(the above
 													<p>Offset of the popover relative to its target. For more information refer to
 													<a class="kt-link" href="http://tether.io/#offset" target="_blank">Tether's offset docs.</a></p>
 													<div class="example-preview">
-														<button type="button" class="btn btn-primary mr-2" data-container="body" data-trigger="focus" data-offset="20px 20px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 1</button>
-														<button type="button" class="btn btn-success mr-2" data-container="body" data-trigger="focus" data-offset="-20px -20px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 2</button>
-														<button type="button" class="btn btn-danger" data-container="body" data-trigger="focus" data-offset="60px 0px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 3</button>
+														<button type="button" class="btn btn-primary mr-2" data-container="body" data-offset="20px 20px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 1</button>
+														<button type="button" class="btn btn-success mr-2" data-container="body" data-offset="-20px -20px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 2</button>
+														<button type="button" class="btn btn-danger" data-container="body" data-offset="60px 0px" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Example 3</button>
 													</div>
 													<div class="example-code">
 														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
 														<div class="example-highlight">
 															<pre>
 <code class="language-html">
-                        &lt;button type="button" class="btn btn-primary mr-2" data-container="body" data-trigger="focus" data-offset="20px 20px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
+                        &lt;button type="button" class="btn btn-primary mr-2" data-container="body" data-offset="20px 20px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
                             Example 1
                         &lt;/button&gt;
-                        &lt;button type="button" class="btn btn-success mr-2" data-container="body" data-trigger="focus" data-offset="-20px -20px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
+                        &lt;button type="button" class="btn btn-success mr-2" data-container="body" data-offset="-20px -20px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
                             Example 2
                         &lt;/button&gt;
-                        &lt;button type="button" class="btn btn-danger" data-container="body" data-trigger="focus" data-offset="60px 0px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
+                        &lt;button type="button" class="btn btn-danger" data-container="body" data-offset="60px 0px" data-toggle="popover" data-placement="top" data-content="Example content"&gt;
                             Example 3
                         &lt;/button&gt;</code>
 </pre>

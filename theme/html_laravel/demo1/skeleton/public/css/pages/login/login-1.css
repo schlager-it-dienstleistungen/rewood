@@ -1,19 +1,10 @@
-.login.login-1 .login-aside {
-  background: #F2C98A;
-}
-.login.login-1 .login-aside h3 {
-  color: #986923;
-  font-size: 30px;
+.login.login-1 .login-aside .aside-img {
+  min-height: 450px;
 }
 .login.login-1 .login-signin,
 .login.login-1 .login-signup,
 .login.login-1 .login-forgot {
   display: none;
-}
-.login.login-1 .login-signin div h3,
-.login.login-1 .login-signup div h3,
-.login.login-1 .login-forgot div h3 {
-  font-size: 30px;
 }
 .login.login-1.login-signin-on .login-signup {
   display: none;
@@ -48,7 +39,11 @@
     width: 100%;
     max-width: 600px;
   }
-  .login.login-1 .login-form {
+  .login.login-1 .login-content {
+    width: 100%;
+    max-width: 500px;
+  }
+  .login.login-1 .login-content .login-form {
     width: 100%;
     max-width: 450px;
   }
@@ -60,13 +55,17 @@
   }
 }
 @media (max-width: 991.98px) {
-  .login.login-1 .login-form {
+  .login.login-1 .login-content .login-form {
     width: 100%;
     max-width: 400px;
   }
 }
 @media (max-width: 575.98px) {
-  .login.login-1 .login-form {
+  .login.login-1 .aside-img {
+    min-height: 300px !important;
+    background-size: 400px;
+  }
+  .login.login-1 .login-content .login-form {
     width: 100%;
     max-width: 100%;
   }

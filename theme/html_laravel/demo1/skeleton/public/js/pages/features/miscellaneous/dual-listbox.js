@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 842);
+/******/ 	return __webpack_require__(__webpack_require__.s = 138);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 842:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(843);
-
-
-/***/ }),
-
-/***/ 843:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -161,6 +157,18 @@ var KTDualListbox = function () {
 jQuery(document).ready(function () {
   KTDualListbox.init();
 });
+
+/***/ }),
+
+/***/ 138:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\dual-listbox.js */"./resources/metronic/js/pages/features/miscellaneous/dual-listbox.js");
+
 
 /***/ })
 

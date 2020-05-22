@@ -27,9 +27,9 @@ export function QuickActionsDropdown() {
           placement="left"
           overlay={<Tooltip id="quick-actions-tooltip">Quick actions</Tooltip>}
         >
-          <div class="topbar-item">
+          <div className="topbar-item">
             <div
-              class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1"
+              className="btn btn-icon btn-clean btn-dropdown btn-lg mr-1"
               id="kt_quick_actions_toggle"
             >
               <span className="svg-icon svg-icon-xl svg-icon-primary">

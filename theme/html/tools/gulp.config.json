@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.1",
+    "version": "7.0.2",
     "config": {
         "debug": false,
         "compile": {
@@ -110,12 +110,8 @@
                             "scripts": [
                                 "{$config.path.node_modules}/es6-shim/es6-shim.min.js",
                                 "{$config.path.src}/plugins/formvalidation/dist/js/FormValidation.full.min.js",
+                                "{$config.path.src}/plugins/formvalidation/dist/js/plugins/Bootstrap.min.js",
                                 "{$config.path.src}/plugins/formvalidation/dist/js/plugins/Bootstrap.min.js"
-                            ]
-                        },
-                        "jquery-form": {
-                            "scripts": [
-                                "{$config.path.node_modules}/jquery-form/dist/jquery.form.min.js"
                             ]
                         },
                         "block-ui": {
@@ -270,10 +266,10 @@
                         },
                         "summernote": {
                             "styles": [
-                                "{$config.path.node_modules}/summernote/dist/summernote.css"
+                                "{$config.path.node_modules}/summernote/dist/summernote-bs4.css"
                             ],
                             "scripts": [
-                                "{$config.path.node_modules}/summernote/dist/summernote.js"
+                                "{$config.path.node_modules}/summernote/dist/summernote-bs4.js"
                             ],
                             "fonts": [
                                 "{$config.path.node_modules}/summernote/dist/font/**"

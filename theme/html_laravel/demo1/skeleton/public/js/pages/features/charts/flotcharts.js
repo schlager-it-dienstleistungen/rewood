@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 824);
+/******/ 	return __webpack_require__(__webpack_require__.s = 129);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 824:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(825);
-
-
-/***/ }),
-
-/***/ 825:
+/***/ "./resources/metronic/js/pages/features/charts/flotcharts.js":
+/*!*******************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/charts/flotcharts.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -789,6 +785,18 @@ var KTFlotchartsDemo = function () {
 jQuery(document).ready(function () {
   KTFlotchartsDemo.init();
 });
+
+/***/ }),
+
+/***/ 129:
+/*!*************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/charts/flotcharts.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\charts\flotcharts.js */"./resources/metronic/js/pages/features/charts/flotcharts.js");
+
 
 /***/ })
 

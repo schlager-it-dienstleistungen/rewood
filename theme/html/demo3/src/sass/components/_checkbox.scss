@@ -8,11 +8,11 @@
     display: inline-block;
     position: relative;
     padding-left: 25px;
-    margin-bottom: 10px;
     text-align: left;
     cursor: pointer;
     font-size: 1rem;
     transition: get($checkbox-config, transition);
+    margin: 0;
 
 	&:hover > input:not([disabled]) ~ span,
 	> input:focus ~ span {
@@ -96,11 +96,6 @@
         > span {
             top: 0px;
         }
-
-        th > &,
-        td > & {
-            //right: -5px;
-        }
     }
 
     // Input group
@@ -113,50 +108,6 @@
     .form-inline & {
         margin-left: 15px;
         margin-right: 15px;
-    }
-}
-
-// List checkbox
-.checkbox-list {
-    padding: 0 0;
-
-    .form-horizontal .form-group & {
-        padding-top: 0;
-    }
-
-    .checkbox {
-        text-align: left;
-        display: block;
-
-        &:last-child {
-            margin-bottom: 5px;
-        }
-    }
-}
-
-// Inline checkbox
-.checkbox-inline {
-    padding: 0 0;
-
-    .checkbox {
-        display: inline-block;
-        margin-right: 15px;
-        margin-bottom: 5px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-
-// Form integration
-.form-group.row {
-    .checkbox-inline {
-        margin-top: 0.75rem;
-    }
-
-    .checkbox-list {
-        margin-top: 2px;
     }
 }
 
@@ -191,6 +142,33 @@
 		// Outline style
 		&.checkbox-outline.checkbox-#{$name} {
             @include checkbox-outline-theme(get($checkbox-config, outlineColor), $color, theme-inverse-color($name));
+        }
+    }
+}
+
+// List checkbox
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+
+    .checkbox {
+        margin-bottom: 0.75rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Inline checkbox
+.checkbox-inline {
+    display: flex;
+
+    .checkbox {
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
         }
     }
 }

@@ -8,11 +8,11 @@
     display: inline-block;
     position: relative;
     padding-left: 25px;
-    margin-bottom: 10px;
     text-align: left;
     cursor: pointer;
     font-size: 1rem;
     transition: get($radio-config, transition);
+    margin: 0;
 
 	&:hover > input:not([disabled]) ~ span,
 	> input:focus ~ span {
@@ -114,45 +114,15 @@
 
 // List radio
 .radio-list {
-    padding: 0 0;
-
-    .form-horizontal .form-group & {
-        padding-top: 0;
-    }
+    display: flex;
+    flex-direction: column;
 
     .radio {
-        text-align: left;
-        display: block;
+        margin-bottom: 0.75rem;
 
         &:last-child {
-            margin-bottom: 5px;
+            margin-bottom: 0;
         }
-    }
-}
-
-// Inline radio
-.radio-inline {
-    padding: 0 0;
-
-    .radio {
-        display: inline-block;
-        margin-right: 15px;
-        margin-bottom: 5px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-
-// Form integration
-.form-group.row {
-    .radio-inline {
-        margin-top: 0.75rem;
-    }
-
-    .radio-list {
-        margin-top: 2px;
     }
 }
 
@@ -187,6 +157,19 @@
 		// Outline style
 		&.radio-outline.radio-#{$name} {
             @include radio-outline-theme(get($radio-config, outlineColor), $color, $color);
+        }
+    }
+}
+
+// Inline radio
+.radio-inline {
+    display: flex;
+
+    .radio {
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
         }
     }
 }

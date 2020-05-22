@@ -72,7 +72,6 @@ mix.copyDirectory('resources/metronic/media', 'public/media');
 });
 
 mix.webpackConfig({
-    mode: "none",
     plugins: [
         new ReplaceInFileWebpackPlugin([
             {
@@ -82,23 +81,28 @@ mix.webpackConfig({
                 rules: [
                     {
                         // fontawesome
-                        search: /\.\.\/webfonts\/(fa-)/ig,
-                        replace: './fonts/@fortawesome/$1'
+                        search: /url\(.*?webfonts\/(fa-)/ig,
+                        replace: 'url\(./fonts/@fortawesome/$1'
                     },
                     {
                         // flaticon
-                        search: /\.\/font\/(Flaticon\.)/ig,
-                        replace: './fonts/flaticon/$1',
+                        search: /url\(.*?font\/(Flaticon\.)/ig,
+                        replace: 'url\("./fonts/flaticon/$1',
                     },
                     {
                         // flaticon2
-                        search: /\.\/font\/(Flaticon2\.)/ig,
-                        replace: './fonts/flaticon2/$1',
+                        search: /url\(.*?font\/(Flaticon2\.)/ig,
+                        replace: 'url\("./fonts/flaticon2/$1',
                     },
                     {
                         // keenthemes fonts
-                        search: /\.\/(Ki\.)/ig,
-                        replace: './fonts/keenthemes-icons/$1'
+                        search: /url\(.*?(Ki\.)/ig,
+                        replace: 'url\("./fonts/keenthemes-icons/$1'
+                    },
+                    {
+                        // lineawesome fonts
+                        search: /url\(.*?fonts\/(la-)/ig,
+                        replace: 'url("./fonts/line-awesome/$1'
                     },
                 ],
             },
@@ -115,3 +119,44 @@ mix.webpackConfig({
     var folder = file.match(/node_modules\/(.*?)\//)[1];
     mix.copy(file, `public/plugins/global/fonts/${folder}/${path.basename(file)}`);
 });
+
+// Optional: Import datatables.net
+mix.scripts([
+    'node_modules/datatables.net/js/jquery.dataTables.js',
+    'node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js',
+    'node_modules/datatables.net-autofill/js/dataTables.autoFill.min.js',
+    'node_modules/datatables.net-autofill-bs4/js/autoFill.bootstrap4.min.js',
+    'node_modules/jszip/dist/jszip.min.js',
+    'node_modules/pdfmake/build/pdfmake.min.js',
+    'node_modules/pdfmake/build/vfs_fonts.js',
+    'node_modules/datatables.net-buttons/js/dataTables.buttons.min.js',
+    'node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
+    'node_modules/datatables.net-buttons/js/buttons.colVis.js',
+    'node_modules/datatables.net-buttons/js/buttons.flash.js',
+    'node_modules/datatables.net-buttons/js/buttons.html5.js',
+    'node_modules/datatables.net-buttons/js/buttons.print.js',
+    'node_modules/datatables.net-colreorder/js/dataTables.colReorder.min.js',
+    'node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js',
+    'node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js',
+    'node_modules/datatables.net-keytable/js/dataTables.keyTable.min.js',
+    'node_modules/datatables.net-responsive/js/dataTables.responsive.min.js',
+    'node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js',
+    'node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js',
+    'node_modules/datatables.net-rowreorder/js/dataTables.rowReorder.min.js',
+    'node_modules/datatables.net-scroller/js/dataTables.scroller.min.js',
+    'node_modules/datatables.net-select/js/dataTables.select.min.js',
+], 'public/plugins/custom/datatables/datatables.bundle.js');
+mix.styles([
+    'node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css',
+    'node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
+    'node_modules/datatables.net-autofill-bs4/css/autoFill.bootstrap4.min.css',
+    'node_modules/datatables.net-colreorder-bs4/css/colReorder.bootstrap4.min.css',
+    'node_modules/datatables.net-fixedcolumns-bs4/css/fixedColumns.bootstrap4.min.css',
+    'node_modules/datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.min.css',
+    'node_modules/datatables.net-keytable-bs4/css/keyTable.bootstrap4.min.css',
+    'node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css',
+    'node_modules/datatables.net-rowgroup-bs4/css/rowGroup.bootstrap4.min.css',
+    'node_modules/datatables.net-rowreorder-bs4/css/rowReorder.bootstrap4.min.css',
+    'node_modules/datatables.net-scroller-bs4/css/scroller.bootstrap4.min.css',
+    'node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css',
+], 'public/plugins/custom/datatables/datatables.bundle.css');

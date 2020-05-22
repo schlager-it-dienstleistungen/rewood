@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 850);
+/******/ 	return __webpack_require__(__webpack_require__.s = 142);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 850:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(851);
-
-
-/***/ }),
-
-/***/ 851:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/session-timeout.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/session-timeout.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,6 +125,18 @@ var KTSessionTimeoutDemo = function () {
 jQuery(document).ready(function () {
   KTSessionTimeoutDemo.init();
 });
+
+/***/ }),
+
+/***/ 142:
+/*!*************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/session-timeout.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\session-timeout.js */"./resources/metronic/js/pages/features/miscellaneous/session-timeout.js");
+
 
 /***/ })
 

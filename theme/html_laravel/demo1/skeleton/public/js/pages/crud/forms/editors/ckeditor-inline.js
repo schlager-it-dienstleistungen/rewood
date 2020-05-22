@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 680);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 680:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(681);
-
-
-/***/ }),
-
-/***/ 681:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/ckeditor-inline.js":
+/*!***************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/ckeditor-inline.js ***!
+  \***************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142,6 +138,18 @@ var KTCkeditorInline = function () {
 jQuery(document).ready(function () {
   KTCkeditorInline.init();
 });
+
+/***/ }),
+
+/***/ 55:
+/*!*********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/ckeditor-inline.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\ckeditor-inline.js */"./resources/metronic/js/pages/crud/forms/editors/ckeditor-inline.js");
+
 
 /***/ })
 

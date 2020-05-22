@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 730);
+/******/ 	return __webpack_require__(__webpack_require__.s = 80);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 730:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(731);
-
-
-/***/ }),
-
-/***/ 731:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/advanced/column-rendering.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/advanced/column-rendering.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,6 +352,18 @@ var KTDatatableColumnRenderingDemo = function () {
 jQuery(document).ready(function () {
   KTDatatableColumnRenderingDemo.init();
 });
+
+/***/ }),
+
+/***/ 80:
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/advanced/column-rendering.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\advanced\column-rendering.js */"./resources/metronic/js/pages/crud/ktdatatable/advanced/column-rendering.js");
+
 
 /***/ })
 

@@ -6,7 +6,7 @@ import {ContentRoute} from "../../../../_metronic/layout"
 import Login from "./Login";
 import Registration from "./Registration";
 import ForgotPassword from "./ForgotPassword";
-import "../../../../_metronic/_assets/sass/pages/login/login-1.scss";
+import "../../../../_metronic/_assets/sass/pages/login/login-3.scss";
 
 export function AuthPage() {
   return (
@@ -14,7 +14,7 @@ export function AuthPage() {
         <div className="d-flex flex-column flex-root">
           {/*begin::Login*/}
           <div
-              className="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white"
+              className="login login-3 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white"
               id="kt_login"
           >
             {/*begin::Aside*/}
@@ -25,7 +25,7 @@ export function AuthPage() {
                 }}
             >
               {/*begin: Aside Container*/}
-              <div className="d-flex flex-row-fluid flex-column justify-content-between ">
+              <div className="d-flex flex-row-fluid flex-column justify-content-between">
                 {/* start:: Aside header */}
                 <Link to="/" className="flex-column-auto mt-5">
                   <img

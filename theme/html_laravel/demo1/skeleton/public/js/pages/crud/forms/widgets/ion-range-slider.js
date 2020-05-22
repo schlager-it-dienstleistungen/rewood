@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 720);
+/******/ 	return __webpack_require__(__webpack_require__.s = 75);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 720:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(721);
-
-
-/***/ }),
-
-/***/ 721:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/ion-range-slider.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/ion-range-slider.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -171,6 +167,18 @@ var KTIONRangeSlider = function () {
 jQuery(document).ready(function () {
   KTIONRangeSlider.init();
 });
+
+/***/ }),
+
+/***/ 75:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/ion-range-slider.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\ion-range-slider.js */"./resources/metronic/js/pages/crud/forms/widgets/ion-range-slider.js");
+
 
 /***/ })
 

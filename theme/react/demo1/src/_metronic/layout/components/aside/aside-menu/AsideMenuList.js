@@ -1539,6 +1539,48 @@ export function AsideMenuList({ layoutProps }) {
                   </NavLink>
                 </li>
                 {/*end::2 Level*/}
+
+                 {/*begin::2 Level*/}
+                 <li
+                    className={`menu-item ${getMenuItemActive("/error/error-v4")}`}
+                    aria-haspopup="true"
+                >
+                  <NavLink className="menu-link" to="/error/error-v4">
+                    <i className="menu-bullet menu-bullet-dot">
+                      <span/>
+                    </i>
+                    <span className="menu-text">Error Page - 4</span>
+                  </NavLink>
+                </li>
+                {/*end::2 Level*/}
+
+                 {/*begin::2 Level*/}
+                 <li
+                    className={`menu-item ${getMenuItemActive("/error/error-v5")}`}
+                    aria-haspopup="true"
+                >
+                  <NavLink className="menu-link" to="/error/error-v5">
+                    <i className="menu-bullet menu-bullet-dot">
+                      <span/>
+                    </i>
+                    <span className="menu-text">Error Page - 5</span>
+                  </NavLink>
+                </li>
+                {/*end::2 Level*/}
+
+                 {/*begin::2 Level*/}
+                 <li
+                    className={`menu-item ${getMenuItemActive("/error/error-v6")}`}
+                    aria-haspopup="true"
+                >
+                  <NavLink className="menu-link" to="/error/error-v6">
+                    <i className="menu-bullet menu-bullet-dot">
+                      <span/>
+                    </i>
+                    <span className="menu-text">Error Page - 6</span>
+                  </NavLink>
+                </li>
+                {/*end::2 Level*/}
               </ul>
             </div>
           </li>

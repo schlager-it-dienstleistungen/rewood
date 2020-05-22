@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 684);
+/******/ 	return __webpack_require__(__webpack_require__.s = 57);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 684:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(685);
-
-
-/***/ }),
-
-/***/ 685:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/summernote.js":
+/*!**********************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/summernote.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,7 +100,9 @@ var KTSummernoteDemo = function () {
   // Private functions
   var demos = function demos() {
     $('.summernote').summernote({
-      height: 150
+      height: 400,
+      tabsize: 2,
+      followingToolbar: true
     });
   };
 
@@ -120,6 +118,18 @@ var KTSummernoteDemo = function () {
 jQuery(document).ready(function () {
   KTSummernoteDemo.init();
 });
+
+/***/ }),
+
+/***/ 57:
+/*!****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/summernote.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\summernote.js */"./resources/metronic/js/pages/crud/forms/editors/summernote.js");
+
 
 /***/ })
 

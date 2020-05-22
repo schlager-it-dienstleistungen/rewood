@@ -81,28 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 549);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 549:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(550);
-
-
-/***/ }),
-
-/***/ 550:
-/***/ (function(module, exports, __webpack_require__) {
-
-// Gmaps.js - allows you to use the potential of Google Maps in a simple way. No more extensive documentation or large amount of code: https://hpneo.dev/gmaps/
-window.GMaps = __webpack_require__(551);
-
-/***/ }),
-
-/***/ 551:
+/***/ "./node_modules/gmaps/gmaps.js":
+/*!*************************************!*\
+  !*** ./node_modules/gmaps/gmaps.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2518,6 +2506,30 @@ if (!Array.prototype.indexOf) {
 
 return GMaps;
 }));
+
+
+/***/ }),
+
+/***/ "./resources/plugins/custom/gmaps/gmaps.js":
+/*!*************************************************!*\
+  !*** ./resources/plugins/custom/gmaps/gmaps.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Gmaps.js - allows you to use the potential of Google Maps in a simple way. No more extensive documentation or large amount of code: https://hpneo.dev/gmaps/
+window.GMaps = __webpack_require__(/*! gmaps/gmaps.js */ "./node_modules/gmaps/gmaps.js");
+
+/***/ }),
+
+/***/ 12:
+/*!*******************************************************!*\
+  !*** multi ./resources/plugins/custom/gmaps/gmaps.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\plugins\custom\gmaps\gmaps.js */"./resources/plugins/custom/gmaps/gmaps.js");
 
 
 /***/ })

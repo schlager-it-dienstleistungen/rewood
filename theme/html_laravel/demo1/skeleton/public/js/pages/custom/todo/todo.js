@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 784);
+/******/ 	return __webpack_require__(__webpack_require__.s = 109);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 784:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(785);
-
-
-/***/ }),
-
-/***/ 785:
+/***/ "./resources/metronic/js/pages/custom/todo/todo.js":
+/*!*********************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/todo/todo.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -316,6 +312,18 @@ var KTAppTodo = function () {
 jQuery(document).ready(function () {
   KTAppTodo.init();
 });
+
+/***/ }),
+
+/***/ 109:
+/*!***************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/todo/todo.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\todo\todo.js */"./resources/metronic/js/pages/custom/todo/todo.js");
+
 
 /***/ })
 

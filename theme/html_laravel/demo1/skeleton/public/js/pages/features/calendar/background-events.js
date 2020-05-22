@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 802);
+/******/ 	return __webpack_require__(__webpack_require__.s = 118);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 802:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(803);
-
-
-/***/ }),
-
-/***/ 803:
+/***/ "./resources/metronic/js/pages/features/calendar/background-events.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/calendar/background-events.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,6 +260,18 @@ var KTCalendarBackgroundEvents = function () {
 jQuery(document).ready(function () {
   KTCalendarBackgroundEvents.init();
 });
+
+/***/ }),
+
+/***/ 118:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/calendar/background-events.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\calendar\background-events.js */"./resources/metronic/js/pages/features/calendar/background-events.js");
+
 
 /***/ })
 

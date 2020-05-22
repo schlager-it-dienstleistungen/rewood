@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 792);
+/******/ 	return __webpack_require__(__webpack_require__.s = 113);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 792:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(793);
-
-
-/***/ }),
-
-/***/ 793:
+/***/ "./resources/metronic/js/pages/custom/wizard/wizard-1.js":
+/*!***************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/wizard/wizard-1.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,12 +122,14 @@ var KTWizard1 = function () {
 
           KTUtil.scrollTop();
         } else {
-          swal.fire({
+          Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",
             icon: "error",
             buttonsStyling: false,
             confirmButtonText: "Ok, got it!",
-            confirmButtonClass: "btn font-weight-bold btn-light"
+            customClass: {
+              confirmButton: "btn font-weight-bold btn-light"
+            }
           }).then(function () {
             KTUtil.scrollTop();
           });
@@ -343,6 +341,18 @@ var KTWizard1 = function () {
 jQuery(document).ready(function () {
   KTWizard1.init();
 });
+
+/***/ }),
+
+/***/ 113:
+/*!*********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/wizard/wizard-1.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\wizard\wizard-1.js */"./resources/metronic/js/pages/custom/wizard/wizard-1.js");
+
 
 /***/ })
 

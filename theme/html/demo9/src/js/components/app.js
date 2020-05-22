@@ -6,14 +6,13 @@ var KTApp = function() {
     var settings = {};
 
     var initTooltip = function(el) {
-        var skin = el.data('skin') ? 'tooltip-' + el.data('skin') : '';
+        var theme = el.data('theme') ? 'tooltip-' + el.data('theme') : '';
         var width = el.data('width') == 'auto' ? 'tooltop-auto-width' : '';
-        var triggerValue = el.data('trigger') ? el.data('trigger') : 'hover';
-        var placement = el.data('placement') ? el.data('placement') : 'left';
+        var trigger = el.data('trigger') ? el.data('trigger') : 'hover';
 
         $(el).tooltip({
-            trigger: triggerValue,
-            template: '<div class="tooltip ' + skin + ' ' + width + '" role="tooltip">\
+            trigger: trigger,
+            template: '<div class="tooltip ' + theme + ' ' + width + '" role="tooltip">\
                 <div class="arrow"></div>\
                 <div class="tooltip-inner"></div>\
             </div>'

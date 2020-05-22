@@ -2,11 +2,11 @@
 "use strict";
 
 import KTToggle from "./../../components/toggle.js";
-import { KTUtil } from "./../../components/util.js";
 import KTLayoutStickyCard from "./sticky-card.js";
 import KTLayoutHeaderMenu from "./header-menu.js";
 import KTLayoutAsideMenu from "./aside-menu.js";
 import { KTCookie } from "./../../components/cookie.js";
+import { KTUtil } from "./../../components/util.js";
 
 var KTLayoutAsideToggle = function() {
     // Private properties
@@ -23,19 +23,20 @@ var KTLayoutAsideToggle = function() {
 		});
 
 		_toggleObject.on('toggle', function(toggle) {
-			KTUtil.addClass(_body, 'aside-minimizing');
-            KTUtil.transitionEnd(_body, function() {
-                KTUtil.removeClass(_body, 'aside-minimizing');
-			});
-
             // Update sticky card
-            KTLayoutStickyCard.update();
+            if (typeof KTLayoutStickyCard !== 'undefined') {
+                KTLayoutStickyCard.update();
+            }
 
             // Pause header menu dropdowns
-            KTLayoutHeaderMenu.pauseDropdownHover(800);
+            if (typeof KTLayoutHeaderMenu !== 'undefined') {
+                KTLayoutHeaderMenu.pauseDropdownHover(800);
+            }
 
             // Pause aside menu dropdowns
-			KTLayoutAsideMenu.pauseDropdownHover(800);
+            if (typeof KTLayoutAsideMenu !== 'undefined') {
+                KTLayoutAsideMenu.pauseDropdownHover(800);
+            }
 
             // Remember state in cookie
 			KTCookie.setCookie('kt_aside_toggle_state', toggle.getState());

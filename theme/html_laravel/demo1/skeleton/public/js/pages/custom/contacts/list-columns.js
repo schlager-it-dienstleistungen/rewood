@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 770);
+/******/ 	return __webpack_require__(__webpack_require__.s = 100);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 770:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(771);
-
-
-/***/ }),
-
-/***/ 771:
+/***/ "./resources/metronic/js/pages/custom/contacts/list-columns.js":
+/*!*********************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/contacts/list-columns.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -123,6 +119,18 @@ var KTContactsListColumns = function () {
 KTUtil.ready(function () {
   KTContactsListColumns.init();
 });
+
+/***/ }),
+
+/***/ 100:
+/*!***************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/contacts/list-columns.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\contacts\list-columns.js */"./resources/metronic/js/pages/custom/contacts/list-columns.js");
+
 
 /***/ })
 

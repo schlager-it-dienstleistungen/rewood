@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 630);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 630:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(631);
-
-
-/***/ }),
-
-/***/ 631:
+/***/ "./resources/metronic/js/pages/crud/datatables/basic/scrollable.js":
+/*!*************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/basic/scrollable.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -477,6 +473,18 @@ var KTDatatablesBasicScrollable = function () {
 jQuery(document).ready(function () {
   KTDatatablesBasicScrollable.init();
 });
+
+/***/ }),
+
+/***/ 30:
+/*!*******************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/basic/scrollable.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\basic\scrollable.js */"./resources/metronic/js/pages/crud/datatables/basic/scrollable.js");
+
 
 /***/ })
 

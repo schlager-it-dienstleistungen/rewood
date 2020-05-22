@@ -17,7 +17,7 @@
 				</div>
 			</form>
 			<div ngbDropdownMenu *ngIf="data?.length" class="dropdown-menu p-0 m-0 dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
-				<div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '40vh', 'position': 'relative'}" class="quick-search-wrapper">
+				<div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '30vh'}" class="quick-search-wrapper scroll">
 					<kt-search-result [data]="data"></kt-search-result>
 				</div>
 			</div>

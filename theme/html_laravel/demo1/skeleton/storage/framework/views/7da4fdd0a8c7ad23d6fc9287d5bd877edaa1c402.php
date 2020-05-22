@@ -1,7 +1,3 @@
-
-
-
-
 <?php $__env->startSection('content'); ?>
 
                                 <div class="card card-custom">

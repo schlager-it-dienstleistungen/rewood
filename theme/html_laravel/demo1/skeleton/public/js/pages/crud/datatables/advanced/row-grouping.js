@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 622);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 622:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(623);
-
-
-/***/ }),
-
-/***/ 623:
+/***/ "./resources/metronic/js/pages/crud/datatables/advanced/row-grouping.js":
+/*!******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/advanced/row-grouping.js ***!
+  \******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,6 +228,18 @@ var KTDatatablesAdvancedRowGrouping = function () {
 jQuery(document).ready(function () {
   KTDatatablesAdvancedRowGrouping.init();
 });
+
+/***/ }),
+
+/***/ 26:
+/*!************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/advanced/row-grouping.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\advanced\row-grouping.js */"./resources/metronic/js/pages/crud/datatables/advanced/row-grouping.js");
+
 
 /***/ })
 

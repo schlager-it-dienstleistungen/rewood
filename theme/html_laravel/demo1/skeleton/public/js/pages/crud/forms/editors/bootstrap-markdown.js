@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 670);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 670:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(671);
-
-
-/***/ }),
-
-/***/ 671:
+/***/ "./resources/metronic/js/pages/crud/forms/editors/bootstrap-markdown.js":
+/*!******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/editors/bootstrap-markdown.js ***!
+  \******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116,6 +112,18 @@ var KTBootstrapMarkdown = function () {
 jQuery(document).ready(function () {
   KTBootstrapMarkdown.init();
 });
+
+/***/ }),
+
+/***/ 50:
+/*!************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/editors/bootstrap-markdown.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\editors\bootstrap-markdown.js */"./resources/metronic/js/pages/crud/forms/editors/bootstrap-markdown.js");
+
 
 /***/ })
 

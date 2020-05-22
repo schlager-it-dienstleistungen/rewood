@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 642);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 642:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(643);
-
-
-/***/ }),
-
-/***/ 643:
+/***/ "./resources/metronic/js/pages/crud/datatables/extensions/colreorder.js":
+/*!******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/extensions/colreorder.js ***!
+  \******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -214,6 +210,18 @@ var KTDatatablesExtensionsColreorder = function () {
 jQuery(document).ready(function () {
   KTDatatablesExtensionsColreorder.init();
 });
+
+/***/ }),
+
+/***/ 36:
+/*!************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/extensions/colreorder.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\extensions\colreorder.js */"./resources/metronic/js/pages/crud/datatables/extensions/colreorder.js");
+
 
 /***/ })
 

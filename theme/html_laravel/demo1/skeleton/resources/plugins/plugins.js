@@ -161,6 +161,4 @@ window.swal = require('sweetalert2/dist/sweetalert2.min.js');
 require('../metronic/js/vendors/plugins/sweetalert2.init.js');
 
 // JQuery Repeater - Create a repeatable group of input elements: https://github.com/DubFriend/jquery.repeater
-require('jquery.repeater/src/lib.js');
-require('jquery.repeater/src/jquery.input.js');
-require('jquery.repeater/src/repeater.js');
+require('jquery.repeater');

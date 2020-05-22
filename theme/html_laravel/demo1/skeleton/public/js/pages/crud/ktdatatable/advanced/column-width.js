@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 732);
+/******/ 	return __webpack_require__(__webpack_require__.s = 81);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 732:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(733);
-
-
-/***/ }),
-
-/***/ 733:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/advanced/column-width.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/advanced/column-width.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -330,6 +326,18 @@ var KTDatatableColumnWidthDemo = function () {
 jQuery(document).ready(function () {
   KTDatatableColumnWidthDemo.init();
 });
+
+/***/ }),
+
+/***/ 81:
+/*!*************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/advanced/column-width.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\advanced\column-width.js */"./resources/metronic/js/pages/crud/ktdatatable/advanced/column-width.js");
+
 
 /***/ })
 

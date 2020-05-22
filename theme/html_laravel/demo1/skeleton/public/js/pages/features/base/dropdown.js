@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 800);
+/******/ 	return __webpack_require__(__webpack_require__.s = 117);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 800:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(801);
-
-
-/***/ }),
-
-/***/ 801:
+/***/ "./resources/metronic/js/pages/features/base/dropdown.js":
+/*!***************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/base/dropdown.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -144,6 +140,18 @@ var KTDropdownDemo = function () {
 jQuery(document).ready(function () {
   KTDropdownDemo.init();
 });
+
+/***/ }),
+
+/***/ 117:
+/*!*********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/base/dropdown.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\base\dropdown.js */"./resources/metronic/js/pages/features/base/dropdown.js");
+
 
 /***/ })
 

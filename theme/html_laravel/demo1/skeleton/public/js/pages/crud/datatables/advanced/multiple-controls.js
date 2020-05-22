@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 618);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 618:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(619);
-
-
-/***/ }),
-
-/***/ 619:
+/***/ "./resources/metronic/js/pages/crud/datatables/advanced/multiple-controls.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/advanced/multiple-controls.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,6 +211,18 @@ var KTDatatablesAdvancedMultipleControls = function () {
 jQuery(document).ready(function () {
   KTDatatablesAdvancedMultipleControls.init();
 });
+
+/***/ }),
+
+/***/ 24:
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/advanced/multiple-controls.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\advanced\multiple-controls.js */"./resources/metronic/js/pages/crud/datatables/advanced/multiple-controls.js");
+
 
 /***/ })
 

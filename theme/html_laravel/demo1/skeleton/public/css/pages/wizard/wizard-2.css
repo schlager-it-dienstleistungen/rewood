@@ -64,11 +64,11 @@
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .wizard.wizard-2 .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon i {
-  color: #6993FF !important;
+  color: #3699FF !important;
 }
 .wizard.wizard-2 .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon .svg-icon svg g [fill] {
   transition: fill 0.3s ease;
-  fill: #6993FF !important;
+  fill: #3699FF !important;
 }
 .wizard.wizard-2 .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon .svg-icon svg:hover g [fill] {
   transition: fill 0.3s ease;
@@ -87,57 +87,6 @@
 }
 .wizard.wizard-2 .wizard-body {
   width: 100%;
-}
-.wizard.wizard-2 [data-wizard-type=step-info] {
-  display: none;
-}
-.wizard.wizard-2 [data-wizard-type=step-info][data-wizard-state=current] {
-  display: block;
-}
-.wizard.wizard-2 [data-wizard-type=step-content] {
-  display: none;
-}
-.wizard.wizard-2 [data-wizard-type=step-content][data-wizard-state=current] {
-  display: block;
-}
-.wizard.wizard-2 [data-wizard-type=action-prev] {
-  display: none;
-}
-.wizard.wizard-2 [data-wizard-type=action-next] {
-  display: inline-block;
-}
-.wizard.wizard-2 [data-wizard-type=action-submit] {
-  display: none;
-}
-.wizard.wizard-2[data-wizard-state=first] [data-wizard-type=action-prev] {
-  display: none;
-}
-.wizard.wizard-2[data-wizard-state=first] [data-wizard-type=action-next] {
-  display: inline-block;
-}
-.wizard.wizard-2[data-wizard-state=first] [data-wizard-type=action-submit] {
-  display: none;
-}
-.wizard.wizard-2[data-wizard-state=between] [data-wizard-type=action-prev] {
-  display: inline-block;
-}
-.wizard.wizard-2[data-wizard-state=between] [data-wizard-type=action-next] {
-  display: inline-block;
-}
-.wizard.wizard-2[data-wizard-state=between] [data-wizard-type=action-submit] {
-  display: none;
-}
-.wizard.wizard-2[data-wizard-state=last] [data-wizard-type=action-prev] {
-  display: inline-block;
-}
-.wizard.wizard-2[data-wizard-state=last] [data-wizard-type=action-next] {
-  display: none;
-}
-.wizard.wizard-2[data-wizard-state=last] [data-wizard-type=action-submit] {
-  display: inline-block;
-}
-.wizard.wizard-2[data-wizard-clickable=true] .wizard-step {
-  cursor: pointer;
 }
 
 @media (min-width: 992px) and (max-width: 1399.98px) {

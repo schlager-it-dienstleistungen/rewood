@@ -169,7 +169,7 @@ export default function PickersExamplesPage() {
               />
             </form>
           </KTCodeExample>
-
+{/* 
           <KTCodeExample
             jsCode={jsCode4}
             beforeCodeTitle="@material-ui/pickers"
@@ -209,6 +209,7 @@ export default function PickersExamplesPage() {
               </Grid>
             </MuiPickersUtilsProvider>
           </KTCodeExample>
+        */}
         </div>
       </div>
     </>

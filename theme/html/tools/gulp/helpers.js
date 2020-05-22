@@ -234,12 +234,6 @@ module.exports = {
                     if (isCss[0] === '.css') {
 
                         if (/plugins\.bundle/.test(bundle['styles'])) {
-                            var filePcs = ctx.targetFile.split(/\\|\//);
-                            if (filePcs.length > 2) {
-                                filePcs.shift();
-                                filePcs.shift();
-                            }
-
                             var pieces = ctx.sourceDir.split(/\\|\//);
                             // only vendors/base pass this
                             var vendor = pieces[pieces.indexOf('node_modules') + 1];
@@ -251,7 +245,7 @@ module.exports = {
                                 extension = 'images/';
                             }
 
-                            return path.join(extension, vendor, filePcs.join('/'));
+                            return path.join(extension, vendor, path.basename(ctx.targetFile));
                         }
 
                         return ctx.targetFile.replace(/\.?\.\//, '');

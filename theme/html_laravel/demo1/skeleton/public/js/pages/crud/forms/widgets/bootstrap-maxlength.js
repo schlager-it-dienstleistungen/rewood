@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 700);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 700:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(701);
-
-
-/***/ }),
-
-/***/ 701:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/bootstrap-maxlength.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-maxlength.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -210,6 +206,18 @@ var KTBootstrapMaxlength = function () {
 jQuery(document).ready(function () {
   KTBootstrapMaxlength.init();
 });
+
+/***/ }),
+
+/***/ 65:
+/*!*************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/bootstrap-maxlength.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\bootstrap-maxlength.js */"./resources/metronic/js/pages/crud/forms/widgets/bootstrap-maxlength.js");
+
 
 /***/ })
 

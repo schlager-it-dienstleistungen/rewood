@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 736);
+/******/ 	return __webpack_require__(__webpack_require__.s = 83);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 736:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(737);
-
-
-/***/ }),
-
-/***/ 737:
+/***/ "./resources/metronic/js/pages/crud/ktdatatable/advanced/modal.js":
+/*!************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/ktdatatable/advanced/modal.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -882,6 +878,18 @@ var KTDatatableModal = function () {
 jQuery(document).ready(function () {
   KTDatatableModal.init();
 });
+
+/***/ }),
+
+/***/ 83:
+/*!******************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/ktdatatable/advanced/modal.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\ktdatatable\advanced\modal.js */"./resources/metronic/js/pages/crud/ktdatatable/advanced/modal.js");
+
 
 /***/ })
 

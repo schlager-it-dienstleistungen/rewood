@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 812);
+/******/ 	return __webpack_require__(__webpack_require__.s = 123);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 812:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(813);
-
-
-/***/ }),
-
-/***/ 813:
+/***/ "./resources/metronic/js/pages/features/cards/draggable.js":
+/*!*****************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/cards/draggable.js ***!
+  \*****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,6 +122,18 @@ var KTCardDraggable = function () {
 jQuery(document).ready(function () {
   KTCardDraggable.init();
 });
+
+/***/ }),
+
+/***/ 123:
+/*!***********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/cards/draggable.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\cards\draggable.js */"./resources/metronic/js/pages/features/cards/draggable.js");
+
 
 /***/ })
 

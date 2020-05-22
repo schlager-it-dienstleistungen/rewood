@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 788);
+/******/ 	return __webpack_require__(__webpack_require__.s = 111);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 788:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(789);
-
-
-/***/ }),
-
-/***/ 789:
+/***/ "./resources/metronic/js/pages/custom/user/edit-user.js":
+/*!**************************************************************!*\
+  !*** ./resources/metronic/js/pages/custom/user/edit-user.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,6 +115,18 @@ var KTUserEdit = function () {
 jQuery(document).ready(function () {
   KTUserEdit.init();
 });
+
+/***/ }),
+
+/***/ 111:
+/*!********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/custom/user/edit-user.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\custom\user\edit-user.js */"./resources/metronic/js/pages/custom/user/edit-user.js");
+
 
 /***/ })
 

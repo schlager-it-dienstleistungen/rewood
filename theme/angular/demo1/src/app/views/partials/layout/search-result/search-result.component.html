@@ -1,6 +1,8 @@
 <ng-container *ngIf="data !== null">
   <!--begin::Wrapper-->
   <div class="quick-search-wrapper pt-5">
+	<div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '30vh', 'position': 'relative'}" class="scroll">
+
     <div class="quick-search-result">
       <!-- Has Result -->
       <ng-container *ngIf="data.length > 0">
@@ -20,7 +22,8 @@
         </div>
       </ng-container>
     </div>
-  </div>
+	</div>
+</div>
     <!--end::Wrapper-->
 </ng-container>
 

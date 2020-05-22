@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 668);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 668:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(669);
-
-
-/***/ }),
-
-/***/ 669:
+/***/ "./resources/metronic/js/pages/crud/file-upload/uppy.js":
+/*!**************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/file-upload/uppy.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -476,6 +472,18 @@ var KTUppy = function () {
 KTUtil.ready(function () {
   KTUppy.init();
 });
+
+/***/ }),
+
+/***/ 49:
+/*!********************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/file-upload/uppy.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\file-upload\uppy.js */"./resources/metronic/js/pages/crud/file-upload/uppy.js");
+
 
 /***/ })
 

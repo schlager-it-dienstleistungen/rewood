@@ -10,6 +10,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackMessages = require('webpack-messages');
 const ExcludeAssetsPlugin = require('webpack-exclude-assets-plugin');
+const ConcatPlugin = require('webpack-concat-plugin');
 
 // paths
 const rootPath = path.resolve(__dirname, '..');
@@ -35,6 +36,61 @@ const js = args.indexOf('js') !== -1;
 const css = args.indexOf('css') !== -1 || args.indexOf('scss') !== -1;
 
 addtionalSettings();
+importDatatables();
+
+function importDatatables() {
+  // Optional: Import datatables.net
+  extraPlugins.push(new ConcatPlugin({
+    name: 'datatables',
+    outputPath: 'plugins/custom/datatables/',
+    fileName: '[name].bundle.js',
+    filesToConcat: [
+      'datatables.net/js/jquery.dataTables.js',
+      'datatables.net-bs4/js/dataTables.bootstrap4.js',
+      '@/src/js/vendors/plugins/datatables.init.js',
+      'datatables.net-autofill/js/dataTables.autoFill.min.js',
+      'datatables.net-autofill-bs4/js/autoFill.bootstrap4.min.js',
+      'jszip/dist/jszip.min.js',
+      'pdfmake/build/pdfmake.min.js',
+      'pdfmake/build/vfs_fonts.js',
+      'datatables.net-buttons/js/dataTables.buttons.min.js',
+      'datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
+      'datatables.net-buttons/js/buttons.colVis.js',
+      'datatables.net-buttons/js/buttons.flash.js',
+      'datatables.net-buttons/js/buttons.html5.js',
+      'datatables.net-buttons/js/buttons.print.js',
+      'datatables.net-colreorder/js/dataTables.colReorder.min.js',
+      'datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js',
+      'datatables.net-fixedheader/js/dataTables.fixedHeader.min.js',
+      'datatables.net-keytable/js/dataTables.keyTable.min.js',
+      'datatables.net-responsive/js/dataTables.responsive.min.js',
+      'datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js',
+      'datatables.net-rowgroup/js/dataTables.rowGroup.min.js',
+      'datatables.net-rowreorder/js/dataTables.rowReorder.min.js',
+      'datatables.net-scroller/js/dataTables.scroller.min.js',
+      'datatables.net-select/js/dataTables.select.min.js',
+    ],
+  }));
+  extraPlugins.push(new ConcatPlugin({
+    name: 'datatables',
+    outputPath: 'plugins/custom/datatables/',
+    fileName: '[name].bundle.css',
+    filesToConcat: [
+      'datatables.net-bs4/css/dataTables.bootstrap4.css',
+      'datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
+      'datatables.net-autofill-bs4/css/autoFill.bootstrap4.min.css',
+      'datatables.net-colreorder-bs4/css/colReorder.bootstrap4.min.css',
+      'datatables.net-fixedcolumns-bs4/css/fixedColumns.bootstrap4.min.css',
+      'datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.min.css',
+      'datatables.net-keytable-bs4/css/keyTable.bootstrap4.min.css',
+      'datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css',
+      'datatables.net-rowgroup-bs4/css/rowGroup.bootstrap4.min.css',
+      'datatables.net-rowreorder-bs4/css/rowReorder.bootstrap4.min.css',
+      'datatables.net-scroller-bs4/css/scroller.bootstrap4.min.css',
+      'datatables.net-select-bs4/css/select.bootstrap4.min.css',
+    ],
+  }));
+}
 
 function addtionalSettings() {
   if (args.indexOf('rtl') !== -1) {

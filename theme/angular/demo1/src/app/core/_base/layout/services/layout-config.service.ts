@@ -9,6 +9,8 @@ import { merge } from 'lodash';
 // Models
 import { LayoutConfigModel } from '../models/layout-config.model';
 
+const localStorageKey = 'layoutConfigV702';
+
 @Injectable()
 export class LayoutConfigService {
   // Public properties
@@ -29,7 +31,7 @@ export class LayoutConfigService {
    */
   saveConfig(layoutConfig: LayoutConfigModel): void {
     if (layoutConfig) {
-      localStorage.setItem('layoutConfig', JSON.stringify(layoutConfig));
+      localStorage.setItem(localStorageKey, JSON.stringify(layoutConfig));
     }
   }
 
@@ -37,7 +39,7 @@ export class LayoutConfigService {
    * Get layout config from local storage
    */
   getSavedConfig(): LayoutConfigModel {
-    const config = localStorage.getItem('layoutConfig');
+    const config = localStorage.getItem(localStorageKey);
     try {
       return JSON.parse(config);
     } catch (e) {

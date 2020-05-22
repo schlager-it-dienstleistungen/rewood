@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 726);
+/******/ 	return __webpack_require__(__webpack_require__.s = 78);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 726:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(727);
-
-
-/***/ }),
-
-/***/ 727:
+/***/ "./resources/metronic/js/pages/crud/forms/widgets/tagify.js":
+/*!******************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/widgets/tagify.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -153,6 +149,17 @@ var KTTagifyDemos = function () {
     function onDropdownHide(e) {
       console.log("onDropdownHide: ", e.detail);
     }
+  };
+
+  var demo1Readonly = function demo1Readonly() {
+    // Readonly Mode
+    var input = document.getElementById('kt_tagify_1_1'),
+        tagify = new Tagify(input);
+    tagify.addTags([{
+      value: "laravel",
+      color: "yellow",
+      readonly: true
+    }]);
   };
 
   var demo2 = function demo2() {
@@ -310,6 +317,7 @@ var KTTagifyDemos = function () {
     // public functions
     init: function init() {
       demo1();
+      demo1Readonly();
       demo2();
       demo3();
       demo4();
@@ -321,6 +329,18 @@ var KTTagifyDemos = function () {
 jQuery(document).ready(function () {
   KTTagifyDemos.init();
 });
+
+/***/ }),
+
+/***/ 78:
+/*!************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/widgets/tagify.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\widgets\tagify.js */"./resources/metronic/js/pages/crud/forms/widgets/tagify.js");
+
 
 /***/ })
 

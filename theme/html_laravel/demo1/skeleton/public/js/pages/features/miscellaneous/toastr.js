@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 856);
+/******/ 	return __webpack_require__(__webpack_require__.s = 145);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 856:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(857);
-
-
-/***/ }),
-
-/***/ 857:
+/***/ "./resources/metronic/js/pages/features/miscellaneous/toastr.js":
+/*!**********************************************************************!*\
+  !*** ./resources/metronic/js/pages/features/miscellaneous/toastr.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -250,6 +246,18 @@ var KTToastrDemo = function () {
 jQuery(document).ready(function () {
   KTToastrDemo.init();
 });
+
+/***/ }),
+
+/***/ 145:
+/*!****************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/features/miscellaneous/toastr.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\features\miscellaneous\toastr.js */"./resources/metronic/js/pages/features/miscellaneous/toastr.js");
+
 
 /***/ })
 

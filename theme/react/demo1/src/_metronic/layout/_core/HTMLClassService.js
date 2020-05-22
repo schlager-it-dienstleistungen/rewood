@@ -196,7 +196,7 @@ export class HtmlClassService {
       // Page::setOption('layout', 'subheader/fixed', false); => See preInit()
     }
 
-    const subheaderStyle = objectPath.has(this.config, "subheader.style");
+    const subheaderStyle = objectPath.get(this.config, "subheader.style");
     if (subheaderStyle) {
       const subheaderClass = `subheader-${subheaderStyle}`;
       objectPath.push(this.classes, "subheader", subheaderClass);

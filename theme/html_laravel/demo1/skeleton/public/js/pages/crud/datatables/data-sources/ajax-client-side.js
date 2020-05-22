@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 632);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 632:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(633);
-
-
-/***/ }),
-
-/***/ 633:
+/***/ "./resources/metronic/js/pages/crud/datatables/data-sources/ajax-client-side.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/datatables/data-sources/ajax-client-side.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -240,6 +236,18 @@ var KTDatatablesDataSourceAjaxClient = function () {
 jQuery(document).ready(function () {
   KTDatatablesDataSourceAjaxClient.init();
 });
+
+/***/ }),
+
+/***/ 31:
+/*!********************************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/datatables/data-sources/ajax-client-side.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\datatables\data-sources\ajax-client-side.js */"./resources/metronic/js/pages/crud/datatables/data-sources/ajax-client-side.js");
+
 
 /***/ })
 

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 862);
+/******/ 	return __webpack_require__(__webpack_require__.s = 148);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 862:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(863);
-
-
-/***/ }),
-
-/***/ 863:
+/***/ "./resources/metronic/js/pages/widgets.js":
+/*!************************************************!*\
+  !*** ./resources/metronic/js/pages/widgets.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4458,6 +4454,18 @@ if (true) {
 jQuery(document).ready(function () {
   KTWidgets.init();
 });
+
+/***/ }),
+
+/***/ 148:
+/*!******************************************************!*\
+  !*** multi ./resources/metronic/js/pages/widgets.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\widgets.js */"./resources/metronic/js/pages/widgets.js");
+
 
 /***/ })
 

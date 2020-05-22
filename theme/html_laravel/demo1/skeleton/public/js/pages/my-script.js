@@ -81,22 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 860);
+/******/ 	return __webpack_require__(__webpack_require__.s = 147);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 860:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./resources/metronic/js/pages/my-script.js":
+/*!**************************************************!*\
+  !*** ./resources/metronic/js/pages/my-script.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(861);
 
 
 /***/ }),
 
-/***/ 861:
-/***/ (function(module, exports) {
+/***/ 147:
+/*!********************************************************!*\
+  !*** multi ./resources/metronic/js/pages/my-script.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\my-script.js */"./resources/metronic/js/pages/my-script.js");
 
 
 /***/ })

@@ -81,20 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 688);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 688:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(689);
-
-
-/***/ }),
-
-/***/ 689:
+/***/ "./resources/metronic/js/pages/crud/forms/validation/form-controls.js":
+/*!****************************************************************************!*\
+  !*** ./resources/metronic/js/pages/crud/forms/validation/form-controls.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // Class definition
@@ -209,9 +205,14 @@ var KTFormControls = function () {
         }
       },
       plugins: {
+        //Learn more: https://formvalidation.io/guide/plugins
         trigger: new FormValidation.plugins.Trigger(),
+        // Bootstrap Framework Integration
         bootstrap: new FormValidation.plugins.Bootstrap(),
-        submitButton: new FormValidation.plugins.SubmitButton()
+        // Validate fields when clicking the Submit button
+        submitButton: new FormValidation.plugins.SubmitButton(),
+        // Submit the form when all fields are valid
+        defaultSubmit: new FormValidation.plugins.DefaultSubmit()
       }
     });
   };
@@ -311,7 +312,11 @@ var KTFormControls = function () {
       },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
+        // Validate fields when clicking the Submit button
         submitButton: new FormValidation.plugins.SubmitButton(),
+        // Submit the form when all fields are valid
+        defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+        // Bootstrap Framework Integration
         bootstrap: new FormValidation.plugins.Bootstrap({
           eleInvalidClass: '',
           eleValidClass: ''
@@ -333,6 +338,18 @@ var KTFormControls = function () {
 jQuery(document).ready(function () {
   KTFormControls.init();
 });
+
+/***/ }),
+
+/***/ 59:
+/*!**********************************************************************************!*\
+  !*** multi ./resources/metronic/js/pages/crud/forms/validation/form-controls.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\metronic\js\pages\crud\forms\validation\form-controls.js */"./resources/metronic/js/pages/crud/forms/validation/form-controls.js");
+
 
 /***/ })
 
