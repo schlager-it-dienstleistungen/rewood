@@ -5,7 +5,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 	templateUrl: './create-supplier.component.html',
 	styleUrls: ['./create-supplier.component.scss']
 })
-export class CreateSupplierComponent implements OnInit, AfterViewInit {
+export class CreateSupplierComponent implements OnInit {
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
@@ -41,35 +41,4 @@ export class CreateSupplierComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 	}
 
-	ngAfterViewInit(): void {
-		// Initialize form wizard
-		const wizard = new KTWizard(this.el.nativeElement, {
-			startStep: 1
-		});
-
-		// Validation before going to next page
-		wizard.on('beforeNext', wizardObj => {
-			// https://angular.io/guide/forms
-			// https://angular.io/guide/form-validation
-
-			// validate the form and use below function to stop the wizard's step
-			// wizardObj.stop();
-
-			const validationOK = true;
-			if (!validationOK) {
-				wizardObj.stop();
-			}
-		});
-
-		// Change event
-		/*wizard.on('change', function (wizard) {
-			setTimeout(function () {
-				KTUtil.scrollTop();
-			}, 500);
-		});*/
-	}
-
-	onSubmit() {
-		this.submitted = true;
-	}
 }

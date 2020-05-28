@@ -1,9 +1,7 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Output, Input, EventEmitter, OnChanges } from '@angular/core';
-import { ProductFactoryService } from '../../shared/product-factory.service';
-import { Category } from '../../shared/category';
+import { Component, OnInit, ElementRef, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { Product } from '../../shared/product';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ProductStoreService } from '../../shared/product-store.service';
 import { LocationService } from '../../shared/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 	templateUrl: './create-product.component.html',
 	styleUrls: ['./create-product.component.scss']
 })
-export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit {
+export class CreateProductComponent implements OnInit {
 
 	productForm: FormGroup;
 	@Output() submitProduct = new EventEmitter<Product>();
@@ -29,88 +27,20 @@ export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit 
 	submitted = false;
 
 	constructor(
-		private fb: FormBuilder,
-		private productStoreService: ProductStoreService
+		private productStoreService: ProductStoreService,
+		private route: ActivatedRoute,
+		private router: Router
 	) { }
 
 	ngOnInit() {
-		this.initForm();
 	}
 
-	ngAfterViewInit(): void {
-		// Initialize form wizard
-		const wizard = new KTWizard(this.el.nativeElement, {
-			startStep: 1
-		});
-
-		// Validation before going to next page
-		wizard.on('beforeNext', wizardObj => {
-			// https://angular.io/guide/forms
-			// https://angular.io/guide/form-validation
-
-			// validate the form and use below function to stop the wizard's step
-			// wizardObj.stop();
-
-			const validationOK = true;
-			if (!validationOK) {
-				wizardObj.stop();
-			}
-		});
-
-		// Change event
-		/*wizard.on('change', function (wizard) {
-			setTimeout(function () {
-				KTUtil.scrollTop();
-			}, 500);
+	createProduct(product: Product) {
+		/*this.productStoreService.createProduct(product).subscribe(() => {
+			this.router.navigate(['../..', 'books'],
+				{relativeTo: this.route });
 		});*/
-	}
-
-	ngOnChanges(): void {
-		this.initForm();
-		this.setFormValues(this.product);
-	}
-
-	private initForm() {
-		if (this.productForm) { return; }
-		this.productForm = this.fb.group({
-			id: this.productStoreService.createProductId(),
-			title: ['', Validators.required],
-			category: '',
-			subcategory: '',
-			price: 0.00,
-			description: '',
-			status: 0,
-			measure: '',
-			amount: 0,
-			address1: '',
-			address2: '',
-			postcode: '',
-			city: '',
-			country: 'AT'
-		});
-	}
-
-	private setFormValues(product: Product) {
-		this.productForm.patchValue(product);
-
-		/*this.productForm.setControl(
-			'thumbnails',
-			this.buildThumbnailsArray(product.thumbnails)
-		);*/
-	}
-
-	onSubmit() {
-		this.submitted = true;
-
-		const formValue = this.productForm.value;
-
-		// const thumbnails = formValue.thumbnails.filter(thumbnail => thumbnail.url);
-		const newProduct: Product = {
-			...formValue
-		};
-
-		// this.submitProduct.emit(newProduct);
-		this.productStoreService.createProduct(newProduct);
-		this.productForm.reset();
+		this.productStoreService.createProduct(product);
+		this.router.navigate(['../..', 'books'], {relativeTo: this.route });
 	}
 }
