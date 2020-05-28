@@ -158,13 +158,12 @@ var KTApp = function () {
   var settings = {};
 
   var _initTooltip = function initTooltip(el) {
-    var skin = el.data('skin') ? 'tooltip-' + el.data('skin') : '';
+    var theme = el.data('theme') ? 'tooltip-' + el.data('theme') : '';
     var width = el.data('width') == 'auto' ? 'tooltop-auto-width' : '';
-    var triggerValue = el.data('trigger') ? el.data('trigger') : 'hover';
-    var placement = el.data('placement') ? el.data('placement') : 'left';
+    var trigger = el.data('trigger') ? el.data('trigger') : 'hover';
     $(el).tooltip({
-      trigger: triggerValue,
-      template: '<div class="tooltip ' + skin + ' ' + width + '" role="tooltip">\
+      trigger: trigger,
+      template: '<div class="tooltip ' + theme + ' ' + width + '" role="tooltip">\
                 <div class="arrow"></div>\
                 <div class="tooltip-inner"></div>\
             </div>'
@@ -5759,7 +5758,7 @@ var KTMenu = function KTMenu(elementId, options) {
 
       var submenu = KTUtil.find(item, '.menu-submenu');
 
-      if (submenu.hasAttribute('data-hor-direction') === false) {
+      if (submenu && submenu.hasAttribute('data-hor-direction') === false) {
         if (KTUtil.hasClass(submenu, 'menu-submenu-left')) {
           submenu.setAttribute('data-hor-direction', 'menu-submenu-left');
         } else if (KTUtil.hasClass(submenu, 'menu-submenu-right')) {
@@ -6135,7 +6134,7 @@ var KTOffcanvas = function KTOffcanvas(elementId, options) {
 
 
   var defaultOptions = {
-    customClass: ''
+    attrCustom: ''
   }; ////////////////////////////
   // ** Private Methods  ** //
   ////////////////////////////
@@ -6159,7 +6158,7 @@ var KTOffcanvas = function KTOffcanvas(elementId, options) {
 
       the.options = KTUtil.deepExtend({}, defaultOptions, options);
       the.classBase = the.options.baseClass;
-      the.classCustom = the.options.customClass;
+      the.attrCustom = the.options.attrCustom;
       the.classShown = the.classBase + '-on';
       the.classOverlay = the.classBase + '-overlay';
       the.target;
@@ -6233,11 +6232,11 @@ var KTOffcanvas = function KTOffcanvas(elementId, options) {
       Plugin.eventTrigger('beforeShow');
       Plugin.toggleClass('show'); // Offcanvas panel
 
-      KTUtil.addClass(body, the.classShown);
+      KTUtil.attr(body, 'data-offcanvas-' + the.classBase, 'on');
       KTUtil.addClass(element, the.classShown);
 
-      if (the.classCustom.length > 0) {
-        KTUtil.addClass(body, the.classCustom);
+      if (the.attrCustom.length > 0) {
+        KTUtil.attr(body, 'data-offcanvas-' + the.classCustom, 'on'); //KTUtil.addClass(body, the.classCustom);
       }
 
       the.state = 'shown';
@@ -6246,7 +6245,7 @@ var KTOffcanvas = function KTOffcanvas(elementId, options) {
         the.overlay = KTUtil.insertAfter(document.createElement('DIV'), element);
         KTUtil.addClass(the.overlay, the.classOverlay);
         KTUtil.addEvent(the.overlay, 'click', function (e) {
-          e.stopPropagation();
+          //e.stopPropagation();
           e.preventDefault();
           Plugin.hide(the.target);
         });
@@ -6261,12 +6260,11 @@ var KTOffcanvas = function KTOffcanvas(elementId, options) {
 
       Plugin.eventTrigger('beforeHide');
       Plugin.toggleClass('hide');
-      KTUtil.removeClass(body, the.classShown);
-      KTUtil.addClass(body, the.classPush);
+      KTUtil.removeAttr(body, 'data-offcanvas-' + the.classBase);
       KTUtil.removeClass(element, the.classShown);
 
-      if (the.classCustom.length > 0) {
-        KTUtil.removeClass(body, the.classCustom);
+      if (the.attrCustom.length > 0) {
+        KTUtil.removeAttr(body, 'data-offcanvas-' + the.attrCustom);
       }
 
       the.state = 'hidden';
@@ -6579,7 +6577,7 @@ if ( true && typeof module.exports !== 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // Component Definition 
+ // Component Definition
 
 var KTToggle = function KTToggle(elementId, options) {
   // Main object
@@ -6593,7 +6591,10 @@ var KTToggle = function KTToggle(elementId, options) {
   } // Default options
 
 
-  var defaultOptions = {}; ////////////////////////////
+  var defaultOptions = {
+    targetToggleMode: 'class' // class|attribute
+
+  }; ////////////////////////////
   // ** Private Methods  ** //
   ////////////////////////////
 
@@ -6620,14 +6621,19 @@ var KTToggle = function KTToggle(elementId, options) {
      */
     init: function init(options) {
       the.element = element;
-      the.events = []; // options
+      the.events = []; // Merge default and user defined options
 
-      the.options = options; //alert(the.options.target.tagName);
+      the.options = KTUtil.deepExtend({}, defaultOptions, options); //alert(the.options.target.tagName);
 
-      the.target = KTUtil.getById(the.options.target);
+      the.target = KTUtil.getById(options.target);
       the.targetState = the.options.targetState;
       the.toggleState = the.options.toggleState;
-      the.state = KTUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
+
+      if (the.options.targetToggleMode == 'class') {
+        the.state = KTUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
+      } else {
+        the.state = KTUtil.hasAttr(the.target, 'data-' + the.targetState) ? KTUtil.attr(the.target, 'data-' + the.targetState) : 'off';
+      }
     },
 
     /**
@@ -6659,7 +6665,12 @@ var KTToggle = function KTToggle(elementId, options) {
      */
     toggleOn: function toggleOn() {
       Plugin.eventTrigger('beforeOn');
-      KTUtil.addClass(the.target, the.targetState);
+
+      if (the.options.targetToggleMode == 'class') {
+        KTUtil.addClass(the.target, the.targetState);
+      } else {
+        KTUtil.attr(the.target, 'data-' + the.targetState, 'on');
+      }
 
       if (the.toggleState) {
         KTUtil.addClass(element, the.toggleState);
@@ -6676,7 +6687,12 @@ var KTToggle = function KTToggle(elementId, options) {
      */
     toggleOff: function toggleOff() {
       Plugin.eventTrigger('beforeOff');
-      KTUtil.removeClass(the.target, the.targetState);
+
+      if (the.options.targetToggleMode == 'class') {
+        KTUtil.removeClass(the.target, the.targetState);
+      } else {
+        KTUtil.removeAttr(the.target, 'data-' + the.targetState);
+      }
 
       if (the.toggleState) {
         KTUtil.removeClass(element, the.toggleState);
@@ -8146,16 +8162,49 @@ var KTUtil = function () {
     },
     // Scroller
     scrollInit: function scrollInit(element, options) {
-      if (!element) return; // Define init function
+      if (!element) {
+        return;
+      } // Learn more: https://github.com/mdbootstrap/perfect-scrollbar#options
+
+
+      var pluginDefOptions = {
+        wheelSpeed: 0.5,
+        swipeEasing: true,
+        wheelPropagation: false,
+        minScrollbarLength: 40,
+        maxScrollbarLength: 300,
+        suppressScrollX: true
+      };
+      options = KTUtil.deepExtend({}, pluginDefOptions, options); // Define init function
 
       function init() {
         var ps;
-        var height;
+        var height; // Get extra options via data attributes
+
+        var attrs = element.getAttributeNames();
+
+        if (attrs.length > 0) {
+          attrs.forEach(function (attrName) {
+            // more options; https://github.com/ganlanyuan/tiny-slider#options
+            if (/^data-.*/g.test(attrName)) {
+              if (['scroll', 'height', 'mobile-height'].includes(optionName) == false) {
+                var optionName = attrName.replace('data-', '').toLowerCase().replace(/(?:[\s-])\w/g, function (match) {
+                  return match.replace('-', '').toUpperCase();
+                });
+                options[optionName] = KTUtil.filterBoolean(element.getAttribute(attrName));
+              }
+            }
+          });
+        }
 
         if (options.height instanceof Function) {
           height = options.height.call();
         } else {
-          height = options.height;
+          if (options.mobileHeight) {
+            height = parseInt(options.mobileHeight);
+          } else {
+            height = parseInt(options.height);
+          }
         }
 
         if (height === false) {
@@ -8211,14 +8260,7 @@ var KTUtil = function () {
         } else {
           KTUtil.css(element, 'overflow', 'hidden');
           KTUtil.addClass(element, 'scroll');
-          ps = new PerfectScrollbar(element, {
-            wheelSpeed: 0.5,
-            swipeEasing: true,
-            wheelPropagation: options.windowScroll === false ? false : true,
-            minScrollbarLength: 40,
-            maxScrollbarLength: 300,
-            suppressScrollX: KTUtil.attr(element, 'data-scroll-x') != 'true' ? true : false
-          });
+          ps = new PerfectScrollbar(element, options);
           KTUtil.data(element).set('ps', ps);
         } // Remember scroll position in cookie
 
@@ -8274,6 +8316,18 @@ var KTUtil = function () {
         element.style.setProperty('overflow', '');
         element.style.setProperty('height', '');
       }
+    },
+    filterBoolean: function filterBoolean(val) {
+      // Convert string boolean
+      if (val === true || val === 'true') {
+        return true;
+      }
+
+      if (val === false || val === 'false') {
+        return false;
+      }
+
+      return val;
     },
     setHTML: function setHTML(el, html) {
       el.innerHTML = html;
@@ -8396,27 +8450,22 @@ var KTUtil = function () {
 
       if (direction == 'bottom') {
         if (windowHeight < top + height) {
-          console.log('bottom 1');
           return true;
         } else if (windowHeight > top + height * 1.5) {
-          console.log('bottom 2');
           return true;
         }
       }
 
       if (direction == 'top') {
         if (top < 0) {
-          console.log('top 1');
           return true;
         } else if (top > height) {
-          console.log('top 2');
           return true;
         }
       }
 
       if (direction == 'left') {
         if (left < 0) {
-          console.log('left 1');
           return true;
         } else if (left * 2 > width) {//console.log('left 2');
           //return true;
@@ -8425,7 +8474,6 @@ var KTUtil = function () {
 
       if (direction == 'right') {
         if (windowWidth < left + width) {
-          console.log('right 1');
           return true;
         } else {//console.log('right 2');
           //return true;

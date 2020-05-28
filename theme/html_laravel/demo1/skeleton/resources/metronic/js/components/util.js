@@ -1462,7 +1462,11 @@ var KTUtil = function() {
                 if (options.height instanceof Function) {
                     height = options.height.call();
                 } else {
-                    height = options.height;
+                    if (options.mobileHeight) {
+                        height = parseInt(options.mobileHeight);
+                    } else {
+                        height = parseInt(options.height);
+                    }
                 }
 
                 if (height === false) {

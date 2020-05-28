@@ -545,7 +545,7 @@ var KTMenu = function(elementId, options) {
             // Change the alignment of submenu is offscreen.
             var submenu = KTUtil.find(item, '.menu-submenu');
 
-            if (submenu.hasAttribute('data-hor-direction') === false) {
+            if (submenu && submenu.hasAttribute('data-hor-direction') === false) {
                 if (KTUtil.hasClass(submenu, 'menu-submenu-left')) {
                     submenu.setAttribute('data-hor-direction', 'menu-submenu-left');
                 } else if (KTUtil.hasClass(submenu, 'menu-submenu-right')) {

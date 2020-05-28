@@ -56,7 +56,7 @@
         <span class="menu-text">Vue Bootstrap</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="menu-submenu" kt-hidden-height="920">
+      <div class="menu-submenu">
         <span class="menu-arrow"></span>
         <ul class="menu-subnav">
           <li aria-haspopup="true" class="menu-item menu-item-parent">
@@ -1051,7 +1051,6 @@
       </a>
       <div
         class="menu-submenu"
-        kt-hidden-height="560"
         style="display: none; overflow: hidden;"
       >
         <span class="menu-arrow"></span>

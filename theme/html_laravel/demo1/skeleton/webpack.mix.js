@@ -16,14 +16,12 @@ const rimraf = require('rimraf');
  */
 
 // Default
-mix.js('resources/js/app.js', 'public/js')
-    .scripts('resources/js/config.js', 'public/js/config.js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js').scripts('resources/js/config.js', 'public/js/config.js').sass('resources/sass/app.scss', 'public/css');
 
 // Global jquery
 // mix.autoload({
-    // 'jquery': ['$', 'jQuery'],
-    // Popper: ['popper.js', 'default'],
+// 'jquery': ['$', 'jQuery'],
+// Popper: ['popper.js', 'default'],
 // });
 
 // 3rd party plugins css/js
@@ -33,8 +31,7 @@ mix.sass('resources/plugins/plugins.scss', 'public/plugins/global/plugins.bundle
     rimraf(path.resolve('public/images'), () => {});
 })
     // .setResourceRoot('./')
-    .options({processCssUrls: false})
-    .js(['resources/plugins/plugins.js'], 'public/plugins/global/plugins.bundle.js');
+    .options({processCssUrls: false}).js(['resources/plugins/plugins.js'], 'public/plugins/global/plugins.bundle.js');
 
 // Metronic css/js
 mix.sass('resources/metronic/sass/style.scss', 'public/css/style.bundle.css', {
@@ -48,7 +45,7 @@ mix.sass('resources/metronic/sass/style.scss', 'public/css/style.bundle.css', {
     mix.js(file, `public/${file.replace('resources/', '').replace('.js', '.bundle.js')}`);
 });
 (glob.sync('resources/plugins/custom/**/*.scss') || []).forEach(file => {
-    mix.sass(file, `public/${file.replace('resources/', '').replace('.scss', '.bundle.css')}`)
+    mix.sass(file, `public/${file.replace('resources/', '').replace('.scss', '.bundle.css')}`);
 });
 
 // Metronic css pages (single page use)
@@ -81,28 +78,33 @@ mix.webpackConfig({
                 rules: [
                     {
                         // fontawesome
-                        search: /url\(.*?webfonts\/(fa-)/ig,
-                        replace: 'url\(./fonts/@fortawesome/$1'
+                        search: /url\((\.\.\/)?webfonts\/(fa-.*?)"?\)/g,
+                        replace: 'url(./fonts/@fortawesome/$2)',
                     },
                     {
                         // flaticon
-                        search: /url\(.*?font\/(Flaticon\.)/ig,
-                        replace: 'url\("./fonts/flaticon/$1',
+                        search: /url\(("?\.\/)?font\/(Flaticon\..*?)"?\)/g,
+                        replace: 'url(./fonts/flaticon/$2)',
                     },
                     {
                         // flaticon2
-                        search: /url\(.*?font\/(Flaticon2\.)/ig,
-                        replace: 'url\("./fonts/flaticon2/$1',
+                        search: /url\(("?\.\/)?font\/(Flaticon2\..*?)"?\)/g,
+                        replace: 'url(./fonts/flaticon2/$2)',
                     },
                     {
                         // keenthemes fonts
-                        search: /url\(.*?(Ki\.)/ig,
-                        replace: 'url\("./fonts/keenthemes-icons/$1'
+                        search: /url\(("?\.\/)?(Ki\..*?)"?\)/g,
+                        replace: 'url(./fonts/keenthemes-icons/$2)',
                     },
                     {
                         // lineawesome fonts
-                        search: /url\(.*?fonts\/(la-)/ig,
-                        replace: 'url("./fonts/line-awesome/$1'
+                        search: /url\(("?\.\.\/)?fonts\/(la-.*?)"?\)/g,
+                        replace: 'url(./fonts/line-awesome/$2)',
+                    },
+                    {
+                        // socicons
+                        search: /url\(("?\.\.\/)?font\/(socicon\..*?)"?\)/g,
+                        replace: 'url(./fonts/socicon/$2)',
                     },
                 ],
             },

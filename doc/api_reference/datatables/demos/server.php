@@ -157,7 +157,6 @@ $result = [
 	'iTotalRecords'        => $totalRecords,
 	'iTotalDisplayRecords' => $totalDisplay,
 	'sEcho'                => $secho,
-	'sColumns'             => '',
 	'aaData'               => $data,
 ];
 
@@ -166,4 +165,4 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
 
-echo json_encode( $result, JSON_PRETTY_PRINT );
+echo json_encode( $result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

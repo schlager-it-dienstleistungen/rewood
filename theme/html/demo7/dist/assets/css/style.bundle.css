@@ -18953,7 +18953,7 @@ a.text-dark-75:hover, a.text-dark-75:focus {
   .bg-hover-state-secondary:hover {
     -webkit-transition: all 0.15s ease;
     transition: all 0.15s ease;
-    background-color: #D6D6E0 !important; }
+    background-color: #d9e0e6 !important; }
 
 .bg-diagonal-secondary:before {
   background-color: #E5EAEE !important; }
@@ -33221,24 +33221,24 @@ i {
   .burger-icon span {
     display: block;
     position: absolute;
-    border-radius: 2px;
+    border-radius: 3px;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
-    top: 11px;
-    height: 2px;
-    min-height: 2px;
+    top: 10px;
+    height: 3px;
+    min-height: 3px;
     width: 100%; }
     .burger-icon span::before, .burger-icon span::after {
       position: absolute;
       display: block;
       left: 0;
       width: 100%;
-      height: 2px;
-      min-height: 2px;
+      height: 3px;
+      min-height: 3px;
       content: "";
       -webkit-transition: all 0.3s;
       transition: all 0.3s;
-      border-radius: 2px; }
+      border-radius: 3px; }
     .burger-icon span::before {
       top: -8px; }
     .burger-icon span::after {
@@ -35381,7 +35381,7 @@ button {
     .alert.alert-custom.alert-light-secondary .alert-close i {
       color: #E5EAEE; }
     .alert.alert-custom.alert-light-secondary .alert-close:focus, .alert.alert-custom.alert-light-secondary .alert-close:hover {
-      color: #D6D6E0; }
+      color: #d9e0e6; }
     .alert.alert-custom.alert-light-secondary.alert-notice {
       border: 0;
       border-left: 4px solid #E5EAEE;
@@ -36758,8 +36758,8 @@ button {
     color: #464E5F; }
   .btn.btn-secondary:hover:not(.btn-text):not(:disabled):not(.disabled), .btn.btn-secondary:focus:not(.btn-text), .btn.btn-secondary.focus:not(.btn-text) {
     color: #464E5F;
-    background-color: #D6D6E0;
-    border-color: #D6D6E0; }
+    background-color: #d9e0e6;
+    border-color: #d9e0e6; }
     .btn.btn-secondary:hover:not(.btn-text):not(:disabled):not(.disabled) i, .btn.btn-secondary:focus:not(.btn-text) i, .btn.btn-secondary.focus:not(.btn-text) i {
       color: #464E5F; }
     .btn.btn-secondary:hover:not(.btn-text):not(:disabled):not(.disabled) .svg-icon svg g [fill], .btn.btn-secondary:focus:not(.btn-text) .svg-icon svg g [fill], .btn.btn-secondary.focus:not(.btn-text) .svg-icon svg g [fill] {
@@ -36790,8 +36790,8 @@ button {
   .show > .btn.btn-secondary.dropdown-toggle,
   .show .btn.btn-secondary.btn-dropdown {
     color: #464E5F;
-    background-color: #D6D6E0;
-    border-color: #D6D6E0; }
+    background-color: #d9e0e6;
+    border-color: #d9e0e6; }
     .btn.btn-secondary:not(:disabled):not(.disabled):active:not(.btn-text) i, .btn.btn-secondary:not(:disabled):not(.disabled).active i,
     .show > .btn.btn-secondary.dropdown-toggle i,
     .show .btn.btn-secondary.btn-dropdown i {
@@ -37160,20 +37160,20 @@ button {
   .btn.btn-link-secondary.dropdown-toggle:after {
     color: #E5EAEE; }
   .btn.btn-link-secondary:hover:not(.btn-text):not(:disabled):not(.disabled), .btn.btn-link-secondary:focus:not(.btn-text), .btn.btn-link-secondary.focus:not(.btn-text) {
-    color: #D6D6E0;
+    color: #d9e0e6;
     background-color: transparent !important;
     border-color: transparent !important; }
     .btn.btn-link-secondary:hover:not(.btn-text):not(:disabled):not(.disabled) i, .btn.btn-link-secondary:focus:not(.btn-text) i, .btn.btn-link-secondary.focus:not(.btn-text) i {
-      color: #D6D6E0; }
+      color: #d9e0e6; }
     .btn.btn-link-secondary:hover:not(.btn-text):not(:disabled):not(.disabled) .svg-icon svg g [fill], .btn.btn-link-secondary:focus:not(.btn-text) .svg-icon svg g [fill], .btn.btn-link-secondary.focus:not(.btn-text) .svg-icon svg g [fill] {
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease;
-      fill: #D6D6E0; }
+      fill: #d9e0e6; }
     .btn.btn-link-secondary:hover:not(.btn-text):not(:disabled):not(.disabled) .svg-icon svg:hover g [fill], .btn.btn-link-secondary:focus:not(.btn-text) .svg-icon svg:hover g [fill], .btn.btn-link-secondary.focus:not(.btn-text) .svg-icon svg:hover g [fill] {
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease; }
     .btn.btn-link-secondary:hover:not(.btn-text):not(:disabled):not(.disabled).dropdown-toggle:after, .btn.btn-link-secondary:focus:not(.btn-text).dropdown-toggle:after, .btn.btn-link-secondary.focus:not(.btn-text).dropdown-toggle:after {
-      color: #D6D6E0; }
+      color: #d9e0e6; }
   .btn.btn-link-secondary.disabled, .btn.btn-link-secondary:disabled {
     color: #E5EAEE;
     background-color: transparent !important;
@@ -37192,19 +37192,19 @@ button {
   .btn.btn-link-secondary:not(:disabled):not(.disabled):active:not(.btn-text), .btn.btn-link-secondary:not(:disabled):not(.disabled).active,
   .show > .btn.btn-link-secondary.dropdown-toggle,
   .show .btn.btn-link-secondary.btn-dropdown {
-    color: #D6D6E0;
+    color: #d9e0e6;
     background-color: transparent !important;
     border-color: transparent !important; }
     .btn.btn-link-secondary:not(:disabled):not(.disabled):active:not(.btn-text) i, .btn.btn-link-secondary:not(:disabled):not(.disabled).active i,
     .show > .btn.btn-link-secondary.dropdown-toggle i,
     .show .btn.btn-link-secondary.btn-dropdown i {
-      color: #D6D6E0; }
+      color: #d9e0e6; }
     .btn.btn-link-secondary:not(:disabled):not(.disabled):active:not(.btn-text) .svg-icon svg g [fill], .btn.btn-link-secondary:not(:disabled):not(.disabled).active .svg-icon svg g [fill],
     .show > .btn.btn-link-secondary.dropdown-toggle .svg-icon svg g [fill],
     .show .btn.btn-link-secondary.btn-dropdown .svg-icon svg g [fill] {
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease;
-      fill: #D6D6E0; }
+      fill: #d9e0e6; }
     .btn.btn-link-secondary:not(:disabled):not(.disabled):active:not(.btn-text) .svg-icon svg:hover g [fill], .btn.btn-link-secondary:not(:disabled):not(.disabled).active .svg-icon svg:hover g [fill],
     .show > .btn.btn-link-secondary.dropdown-toggle .svg-icon svg:hover g [fill],
     .show .btn.btn-link-secondary.btn-dropdown .svg-icon svg:hover g [fill] {
@@ -37213,7 +37213,7 @@ button {
     .btn.btn-link-secondary:not(:disabled):not(.disabled):active:not(.btn-text).dropdown-toggle:after, .btn.btn-link-secondary:not(:disabled):not(.disabled).active.dropdown-toggle:after,
     .show > .btn.btn-link-secondary.dropdown-toggle.dropdown-toggle:after,
     .show .btn.btn-link-secondary.btn-dropdown.dropdown-toggle:after {
-      color: #D6D6E0; }
+      color: #d9e0e6; }
 
 .btn.btn-hover-secondary:hover:not(.btn-text):not(:disabled):not(.disabled), .btn.btn-hover-secondary:focus:not(.btn-text), .btn.btn-hover-secondary.focus:not(.btn-text) {
   color: #464E5F !important;
@@ -45006,7 +45006,7 @@ code {
   .bar-chart.bar-chart-primary [class*="bar-chart-value-"] {
     background-color: #3699FF; }
   .bar-chart.bar-chart-secondary .bar-chart-value {
-    background-color: #D6D6E0; }
+    background-color: #d9e0e6; }
   .bar-chart.bar-chart-secondary [class*="bar-chart-value-"] {
     background-color: #E5EAEE; }
   .bar-chart.bar-chart-success .bar-chart-value {
@@ -60032,14 +60032,13 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    overflow-y: auto;
-    width: 275px;
-    -webkit-transition: left 0.3s ease, right 0.3s ease;
-    transition: left 0.3s ease, right 0.3s ease;
-    left: -295px; }
+    -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    left: -295px;
+    width: 275px; }
     .header-navs.header-navs-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       left: 0; } }
   @media screen and (max-width: 991.98px) and (-ms-high-contrast: active), (max-width: 991.98px) and (-ms-high-contrast: none) {
     .header-navs {
@@ -60051,8 +60050,8 @@ body {
     right: -295px;
     left: auto; }
     .header-navs.header-navs-right.header-navs-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       right: 0;
       left: auto; }
   .header-navs-overlay {
@@ -61533,14 +61532,13 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    overflow-y: auto;
-    width: 275px;
-    -webkit-transition: left 0.3s ease, right 0.3s ease;
-    transition: left 0.3s ease, right 0.3s ease;
-    left: -295px; }
+    -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    left: -295px;
+    width: 275px; }
     .aside.aside-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       left: 0; } }
   @media screen and (max-width: 991.98px) and (-ms-high-contrast: active), (max-width: 991.98px) and (-ms-high-contrast: none) {
     .aside {
@@ -61552,8 +61550,8 @@ body {
     right: -295px;
     left: auto; }
     .aside.aside-right.aside-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       right: 0;
       left: auto; }
   .aside-overlay {
@@ -61686,14 +61684,13 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
-  width: 375px;
-  -webkit-transition: left 0.3s ease, right 0.3s ease;
-  transition: left 0.3s ease, right 0.3s ease;
-  left: -395px; }
+  -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+  transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+  left: -395px;
+  width: 375px; }
   .offcanvas.offcanvas-on {
-    -webkit-transition: left 0.3s ease, right 0.3s ease;
-    transition: left 0.3s ease, right 0.3s ease;
+    -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     left: 0; }
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .offcanvas {
@@ -61704,8 +61701,8 @@ body {
   right: -395px;
   left: auto; }
   .offcanvas.offcanvas-right.offcanvas-on {
-    -webkit-transition: left 0.3s ease, right 0.3s ease;
-    transition: left 0.3s ease, right 0.3s ease;
+    -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
     right: 0;
     left: auto; }
 
@@ -61750,14 +61747,13 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    overflow-y: auto;
-    width: 375px;
-    -webkit-transition: left 0.3s ease, right 0.3s ease;
-    transition: left 0.3s ease, right 0.3s ease;
-    left: -395px; }
+    -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+    left: -395px;
+    width: 375px; }
     .offcanvas-mobile.offcanvas-mobile-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       left: 0; } }
   @media screen and (max-width: 991.98px) and (-ms-high-contrast: active), (max-width: 991.98px) and (-ms-high-contrast: none) {
     .offcanvas-mobile {
@@ -61769,8 +61765,8 @@ body {
     right: -395px;
     left: auto; }
     .offcanvas-mobile.offcanvas-mobile-right.offcanvas-mobile-on {
-      -webkit-transition: left 0.3s ease, right 0.3s ease;
-      transition: left 0.3s ease, right 0.3s ease;
+      -webkit-transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
+      transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
       right: 0;
       left: auto; }
   .offcanvas-mobile-overlay {

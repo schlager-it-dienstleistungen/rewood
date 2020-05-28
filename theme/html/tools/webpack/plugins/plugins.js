@@ -154,7 +154,7 @@ require('counterup/jquery.counterup.js');
 require('es6-promise-polyfill/promise.min.js');
 
 // Sweetalert2 - a beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes: https://sweetalert2.github.io/
-window.swal = require('sweetalert2/dist/sweetalert2.min.js');
+window.Swal = window.swal = require('sweetalert2/dist/sweetalert2.min.js');
 require('@/src/js/vendors/plugins/sweetalert2.init.js');
 
 // JQuery Repeater - Create a repeatable group of input elements: https://github.com/DubFriend/jquery.repeater

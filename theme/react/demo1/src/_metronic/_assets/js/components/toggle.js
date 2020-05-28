@@ -3,7 +3,7 @@
 
 import { KTUtil } from "./util";
 
-// Component Definition 
+// Component Definition
 var KTToggle = function(elementId, options) {
     // Main object
     var the = this;
@@ -18,6 +18,7 @@ var KTToggle = function(elementId, options) {
 
     // Default options
     var defaultOptions = {
+        targetToggleMode: 'class' // class|attribute
     };
 
     ////////////////////////////
@@ -52,16 +53,20 @@ var KTToggle = function(elementId, options) {
             the.element = element;
             the.events = [];
 
-            // options
-            the.options = options;
+            // Merge default and user defined options
+            the.options = KTUtil.deepExtend({}, defaultOptions, options);
 
             //alert(the.options.target.tagName);
-            the.target = KTUtil.getById(the.options.target);
+            the.target = KTUtil.getById(options.target);
 
             the.targetState = the.options.targetState;
             the.toggleState = the.options.toggleState;
 
-            the.state = KTUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
+            if (the.options.targetToggleMode == 'class') {
+                the.state = KTUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
+            } else {
+                the.state = KTUtil.hasAttr(the.target, 'data-' + the.targetState) ? KTUtil.attr(the.target, 'data-' + the.targetState) : 'off';
+            }
         },
 
         /**
@@ -96,7 +101,11 @@ var KTToggle = function(elementId, options) {
         toggleOn: function() {
             Plugin.eventTrigger('beforeOn');
 
-            KTUtil.addClass(the.target, the.targetState);
+            if (the.options.targetToggleMode == 'class') {
+                KTUtil.addClass(the.target, the.targetState);
+            } else {
+                KTUtil.attr(the.target, 'data-' + the.targetState, 'on');
+            }
 
             if (the.toggleState) {
                 KTUtil.addClass(element, the.toggleState);
@@ -117,7 +126,11 @@ var KTToggle = function(elementId, options) {
         toggleOff: function() {
             Plugin.eventTrigger('beforeOff');
 
-            KTUtil.removeClass(the.target, the.targetState);
+            if (the.options.targetToggleMode == 'class') {
+                KTUtil.removeClass(the.target, the.targetState);
+            } else {
+                KTUtil.removeAttr(the.target, 'data-' + the.targetState);
+            }
 
             if (the.toggleState) {
                 KTUtil.removeClass(element, the.toggleState);

@@ -18,7 +18,7 @@ var KTOffcanvas = function(elementId, options) {
 
     // Default options
     var defaultOptions = {
-        customClass: ''
+        attrCustom: ''
     };
 
     ////////////////////////////
@@ -49,7 +49,7 @@ var KTOffcanvas = function(elementId, options) {
             the.options = KTUtil.deepExtend({}, defaultOptions, options);
 
             the.classBase = the.options.baseClass;
-            the.classCustom = the.options.customClass;
+            the.attrCustom = the.options.attrCustom;
             the.classShown = the.classBase + '-on';
             the.classOverlay = the.classBase + '-overlay';
             the.target;
@@ -129,11 +129,12 @@ var KTOffcanvas = function(elementId, options) {
             Plugin.toggleClass('show');
 
             // Offcanvas panel
-            KTUtil.addClass(body, the.classShown);
+            KTUtil.attr(body, 'data-offcanvas-' + the.classBase, 'on');
             KTUtil.addClass(element, the.classShown);
 
-            if (the.classCustom.length > 0) {
-                KTUtil.addClass(body, the.classCustom);
+            if (the.attrCustom.length > 0) {
+                KTUtil.attr(body, 'data-offcanvas-' + the.classCustom, 'on');
+                //KTUtil.addClass(body, the.classCustom);
             }
 
             the.state = 'shown';
@@ -143,7 +144,7 @@ var KTOffcanvas = function(elementId, options) {
                 KTUtil.addClass(the.overlay, the.classOverlay);
 
                 KTUtil.addEvent(the.overlay, 'click', function(e) {
-                    e.stopPropagation();
+                    //e.stopPropagation();
                     e.preventDefault();
                     Plugin.hide(the.target);
                 });
@@ -161,12 +162,11 @@ var KTOffcanvas = function(elementId, options) {
 
             Plugin.toggleClass('hide');
 
-            KTUtil.removeClass(body, the.classShown);
-            KTUtil.addClass(body, the.classPush);
+            KTUtil.removeAttr(body, 'data-offcanvas-' + the.classBase);
             KTUtil.removeClass(element, the.classShown);
 
-            if (the.classCustom.length > 0) {
-                KTUtil.removeClass(body, the.classCustom);
+            if (the.attrCustom.length > 0) {
+                KTUtil.removeAttr(body, 'data-offcanvas-' + the.attrCustom);
             }
 
             the.state = 'hidden';

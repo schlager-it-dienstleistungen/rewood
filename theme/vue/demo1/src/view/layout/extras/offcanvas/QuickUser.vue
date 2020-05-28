@@ -92,7 +92,7 @@
         <!--begin::Nav-->
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
-          <a href="#" class="navi-item">
+          <router-link to="/builder" @click.native="closeOffcanvas" href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
@@ -117,10 +117,10 @@
                 </div>
               </div>
             </div>
-          </a>
+          </router-link>
           <!--end:Item-->
           <!--begin::Item-->
-          <a href="#" class="navi-item">
+          <router-link to="/builder" @click.native="closeOffcanvas" href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
@@ -136,10 +136,10 @@
                 <div class="text-muted">Inbox and tasks</div>
               </div>
             </div>
-          </a>
+          </router-link>
           <!--end:Item-->
           <!--begin::Item-->
-          <a href="#" class="navi-item">
+          <router-link to="/builder" @click.native="closeOffcanvas" href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
@@ -155,10 +155,10 @@
                 <div class="text-muted">Logs and notifications</div>
               </div>
             </div>
-          </a>
+          </router-link>
           <!--end:Item-->
           <!--begin::Item-->
-          <a href="#" class="navi-item">
+          <router-link to="/builder" @click.native="closeOffcanvas" href="#" class="navi-item">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
@@ -176,7 +176,7 @@
                 <div class="text-muted">latest tasks and projects</div>
               </div>
             </div>
-          </a>
+          </router-link>
           <!--end:Item-->
         </div>
         <!--end::Nav-->
@@ -240,6 +240,7 @@
 <script>
 import { LOGOUT } from "@/core/services/store/auth.module";
 import KTLayoutQuickUser from "@/assets/js/layout/extended/quick-user.js";
+import KTOffcanvas from "@/assets/js/components/offcanvas.js";
 
 export default {
   name: "KTQuickUser",
@@ -286,6 +287,9 @@ export default {
       this.$store
         .dispatch(LOGOUT)
         .then(() => this.$router.push({ name: "login" }));
+    },
+    closeOffcanvas() {
+      new KTOffcanvas(KTLayoutQuickUser.getElement()).hide();
     }
   },
   computed: {

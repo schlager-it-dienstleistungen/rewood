@@ -109,7 +109,9 @@
   color: #eaeaea; }
 
 [data-uppy-theme=dark] .uppy-c-textInput:focus {
-  border-color: #cfcfcf; }
+  border-color: #525252;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
 
 .uppy-c-btn {
   display: inline-block;
@@ -157,8 +159,14 @@
   color: #eaeaea; }
 
 [data-uppy-theme=dark] .uppy-c-btn-primary:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.6);
-  box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.6); }
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-c-btn-primary::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-c-btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
 
 .uppy-c-btn-link {
   font-size: 14px;
@@ -181,6 +189,16 @@
 
 [data-uppy-theme=dark] .uppy-c-btn-link {
   color: #eaeaea; }
+
+[data-uppy-theme=dark] .uppy-c-btn-link:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-c-btn-link::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-c-btn-link:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
 
 [data-uppy-theme=dark] .uppy-c-btn-link:hover {
   color: #939393; }
@@ -597,7 +615,7 @@
   white-space: nowrap; }
 
 [data-uppy-theme=dark] .uppy-StatusBar-statusSecondary {
-  color: #cfcfcf; }
+  color: #bbb; }
 
 .uppy-StatusBar-statusSecondaryHint {
   display: inline-block;
@@ -655,6 +673,16 @@
   -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5);
   box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5); }
 
+[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
+
 .uppy-StatusBar-actionCircleBtn:hover {
   opacity: 1; }
 
@@ -694,6 +722,16 @@
   -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5);
   box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5); }
 
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
+
 .uppy-StatusBar-actionBtn--retry:hover {
   background-color: #f92d00; }
 
@@ -711,7 +749,13 @@
   line-height: 1; }
 
 .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover {
-  background-color: #148630; }
+  background-color: #189c38; }
+
+[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload {
+  background-color: #1c8b37; }
+
+[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover {
+  background-color: #18762f; }
 
 .uppy-size--md .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload {
   padding: 13px 22px;
@@ -736,6 +780,16 @@
 .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5);
   box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5); }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
 
 .uppy-StatusBar-details {
   line-height: 12px;
@@ -863,6 +917,10 @@
   -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.9);
   box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.9); }
 
+[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid button.uppy-ProviderBrowserItem-inner {
+  -webkit-box-shadow: 0 0 0 3px rgba(170, 225, 255, 0.7);
+  box-shadow: 0 0 0 3px rgba(170, 225, 255, 0.7); }
+
 .uppy-ProviderBrowser-viewType--grid button.uppy-ProviderBrowserItem-inner img {
   width: 100%;
   height: 100%;
@@ -930,6 +988,11 @@
   left: 3px;
   top: 4px; }
 
+[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-fakeCheckbox:focus {
+  border-color: rgba(2, 186, 242, 0.7);
+  -webkit-box-shadow: 0 0 0 3px rgba(2, 186, 242, 0.2);
+  box-shadow: 0 0 0 3px rgba(2, 186, 242, 0.2); }
+
 .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-fakeCheckbox--is-checked {
   background-color: #2275d7;
   border-color: #2275d7; }
@@ -974,7 +1037,11 @@
   transform: rotate(-45deg); }
 
 [data-uppy-theme=dark] .uppy-ProviderBrowserItem-fakeCheckbox {
-  background-color: #525252; }
+  background-color: #1f1f1f;
+  border-color: #939393; }
+
+[data-uppy-theme=dark] .uppy-ProviderBrowserItem-fakeCheckbox--is-checked {
+  background-color: #333; }
 
 .uppy-DashboardContent-panelBody {
   display: -ms-flexbox;
@@ -1087,6 +1154,9 @@
 .uppy-Provider-breadcrumbs button:hover {
   text-decoration: underline;
   cursor: pointer; }
+
+[data-uppy-theme=dark] .uppy-Provider-breadcrumbs button {
+  color: #eaeaea; }
 
 .uppy-ProviderBrowser {
   display: -ms-flexbox;
@@ -1378,6 +1448,10 @@
   -webkit-box-shadow: inset 0 0 0 3px #76abe9;
   box-shadow: inset 0 0 0 3px #76abe9; }
 
+[data-uppy-theme=dark] .uppy-DashboardItem-previewLink:focus {
+  -webkit-box-shadow: inset 0 0 0 3px #016c8d;
+  box-shadow: inset 0 0 0 3px #016c8d; }
+
 .uppy-DashboardItem-preview img.uppy-DashboardItem-previewImg {
   width: 100%;
   height: 100%;
@@ -1542,7 +1616,7 @@ svg.UppyIcon.retry {
   color: #757575; }
 
 [data-uppy-theme=dark] .uppy-DashboardItem-status {
-  color: #cfcfcf; }
+  color: #bbb; }
 
 .uppy-DashboardItem-statusSize {
   display: inline-block;
@@ -1588,6 +1662,16 @@ svg.UppyIcon.retry {
 
 [data-uppy-theme=dark] .uppy-DashboardItem-action {
   color: #cfcfcf; }
+
+[data-uppy-theme=dark] .uppy-DashboardItem-action:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-DashboardItem-action::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-DashboardItem-action:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
 
 [data-uppy-theme=dark] .uppy-DashboardItem-action:hover {
   color: #eaeaea; }
@@ -1739,6 +1823,27 @@ svg.UppyIcon.retry {
 
 .uppy-DashboardItem.is-inprogress:not(.is-resumable) .uppy-DashboardItem-action--remove {
   display: none; }
+
+.uppy-DashboardItem-errorDetails {
+  line-height: 12px;
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #939393;
+  border-radius: 50%;
+  position: relative;
+  top: 0;
+  left: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  cursor: help; }
+
+.uppy-DashboardItem-errorDetails:after {
+  line-height: 1.3;
+  word-wrap: break-word; }
 
 .uppy-Dashboard-FileCard {
   width: 100%;
@@ -2172,6 +2277,9 @@ svg.UppyIcon.retry {
 .uppy-Dashboard--modal .uppy-Dashboard-AddFiles {
   border-color: #cfcfcf; }
 
+[data-uppy-theme=dark] .uppy-Dashboard-AddFiles {
+  border-color: #757575; }
+
 .uppy-Dashboard-AddFiles-info {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -2206,10 +2314,10 @@ svg.UppyIcon.retry {
   border-bottom: 1px solid #2275d7; }
 
 [data-uppy-theme=dark] .uppy-Dashboard-browse {
-  color: rgba(13, 180, 206, 0.9); }
+  color: rgba(2, 186, 242, 0.9); }
 
 [data-uppy-theme=dark] .uppy-Dashboard-browse:focus, [data-uppy-theme=dark] .uppy-Dashboard-browse:hover {
-  border-bottom: 1px solid #0db4ce; }
+  border-bottom: 1px solid #02baf2; }
 
 .uppy-Dashboard-browseBtn {
   display: block;
@@ -2321,13 +2429,13 @@ svg.UppyIcon.retry {
   background-color: #f1f3f6; }
 
 [data-uppy-theme=dark] .uppy-DashboardTab-btn:hover {
-  background-color: #525252; }
+  background-color: #333; }
 
 .uppy-DashboardTab-btn:active, .uppy-DashboardTab-btn:focus {
   background-color: #eceef2; }
 
 [data-uppy-theme=dark] .uppy-DashboardTab-btn:active, [data-uppy-theme=dark] .uppy-DashboardTab-btn:focus {
-  background-color: #333; }
+  background-color: #525252; }
 
 .uppy-DashboardTab-btn svg {
   max-width: 100%;
@@ -2458,7 +2566,7 @@ svg.UppyIcon.retry {
   font-size: 14px; }
 
 [data-uppy-theme=dark] .uppy-DashboardContent-back {
-  color: #0db4ce; }
+  color: #02baf2; }
 
 .uppy-DashboardContent-addMore {
   background: none;
@@ -2499,7 +2607,7 @@ svg.UppyIcon.retry {
   margin-right: -8px; }
 
 [data-uppy-theme=dark] .uppy-DashboardContent-addMore {
-  color: #0db4ce; }
+  color: #02baf2; }
 
 .uppy-DashboardContent-addMore svg {
   vertical-align: baseline;
@@ -2622,8 +2730,13 @@ svg.UppyIcon.retry {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2V1zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0v1zm7.707 19.293a.999.999 0 11-1.414 1.414L25 16.414V34a1 1 0 11-2 0V16.414l-5.293 5.293a.999.999 0 11-1.414-1.414l7-7a.999.999 0 011.414 0l7 7z' fill='%232275D7'/%3E%3C/svg%3E");
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  color: #707070;
+  color: #757575;
   font-size: 16px; }
+
+[data-uppy-theme=dark] .uppy-Dashboard-dropFilesHereHint {
+  color: #bbb;
+  border-color: #02baf2;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2V1zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0v1zm7.707 19.293a.999.999 0 11-1.414 1.414L25 16.414V34a1 1 0 11-2 0V16.414l-5.293 5.293a.999.999 0 11-1.414-1.414l7-7a.999.999 0 011.414 0l7 7z' fill='%2302BAF2'/%3E%3C/svg%3E"); }
 
 .uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-dropFilesHereHint {
   visibility: visible; }
@@ -2823,16 +2936,16 @@ a.uppy-Dashboard-poweredBy {
 
 .uppy-DragDrop-label {
   display: block;
-  cursor: pointer;
   font-size: 1.15em;
   margin-bottom: 5px; }
+
+.uppy-DragDrop-browse {
+  color: #2275d7;
+  cursor: pointer; }
 
 .uppy-DragDrop-note {
   font-size: 1em;
   color: #adadad; }
-
-.uppy-DragDrop-browse {
-  color: #2275d7; }
 
 .uppy-FileInput-container {
   margin-bottom: 15px; }
@@ -2994,6 +3107,26 @@ a.uppy-Dashboard-poweredBy {
   -webkit-transition: all .3s;
   transition: all .3s; }
 
+.uppy-Webcam-button:focus {
+  outline: none; }
+
+.uppy-Webcam-button::-moz-focus-inner {
+  border: 0; }
+
+.uppy-Webcam-button:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5);
+  box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5); }
+
+[data-uppy-theme=dark] .uppy-Webcam-button:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-Webcam-button::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-Webcam-button:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
+
 .uppy-Webcam-button svg {
   width: 30px;
   height: 30px;
@@ -3010,11 +3143,6 @@ a.uppy-Dashboard-poweredBy {
 
 .uppy-Webcam-button:hover {
   background-color: #d31b2d; }
-
-.uppy-Webcam-button:focus {
-  outline: none;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(34, 117, 215, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(34, 117, 215, 0.5); }
 
 .uppy-Webcam-button--picture {
   margin-right: 12px; }
@@ -3131,6 +3259,10 @@ a.uppy-Dashboard-poweredBy {
   padding: 0 20px;
   background-color: #fff; }
 
+[data-uppy-theme=dark] .uppy-ScreenCapture-buttonContainer {
+  background-color: #1f1f1f;
+  border-top: 1px solid #333; }
+
 .uppy-ScreenCapture-button {
   width: 45px;
   height: 45px;
@@ -3140,17 +3272,32 @@ a.uppy-Dashboard-poweredBy {
   -webkit-transition: all .3s;
   transition: all .3s; }
 
+.uppy-ScreenCapture-button:focus {
+  outline: none; }
+
+.uppy-ScreenCapture-button::-moz-focus-inner {
+  border: 0; }
+
+.uppy-ScreenCapture-button:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5);
+  box-shadow: 0 0 0 3px rgba(34, 117, 215, 0.5); }
+
+[data-uppy-theme=dark] .uppy-ScreenCapture-button:focus {
+  outline: none; }
+
+[data-uppy-theme=dark] .uppy-ScreenCapture-button::-moz-focus-inner {
+  border: 0; }
+
+[data-uppy-theme=dark] .uppy-ScreenCapture-button:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85);
+  box-shadow: 0 0 0 2px rgba(170, 225, 255, 0.85); }
+
 .uppy-size--md .uppy-ScreenCapture-button {
   width: 60px;
   height: 60px; }
 
 .uppy-ScreenCapture-button:hover {
   background-color: #d31b2d; }
-
-.uppy-ScreenCapture-button:focus {
-  outline: none;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(34, 117, 215, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(34, 117, 215, 0.5); }
 
 .uppy-ScreenCapture-button svg {
   width: 30px;

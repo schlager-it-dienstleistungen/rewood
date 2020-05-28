@@ -10,6 +10,7 @@
     // Aside
     .login-aside {
         background-color: $white;
+        box-shadow: 0px 0px 40px rgba(177, 187, 208, 0.15);
 
         // Wizard Nav
 	    .wizard-nav {
@@ -44,7 +45,7 @@
                         height: 50px;
                         border-radius: 50px;
                         background-color: $gray-100;
-                        margin-right: 1rem;
+                        margin-right: 1.4rem;
 
                         .wizard-check {
                             display: none;
@@ -66,21 +67,19 @@
     					.wizard-title {
     						color: $dark;
     						font-weight: 500;
-    						font-size: 1.2rem;
+    						font-size: 1.4rem;
     					}
 
     					.wizard-desc {
     						color: $text-muted;
-                            font-size: $font-size-sm;
+                            font-size: $font-size-lg;
+                            font-weight: 500;
     					}
     				}
 
-                    // Current & Done States
-                    &[data-wizard-state="done"],
-    				&[data-wizard-state="current"] {
-    					transition: $transition-link;
-
-    					.wizard-icon {
+                    // Done States
+                    &[data-wizard-state="done"] {
+                        .wizard-icon {
     						transition: $transition-link;
                             background-color: $success-light;
 
@@ -100,7 +99,36 @@
         					}
 
         					.wizard-desc {
-        						color: $text-muted;
+                                color: $gray-400;
+        					}
+        				}
+                    }
+
+                    // Current States
+    				&[data-wizard-state="current"] {
+    					transition: $transition-link;
+
+    					.wizard-icon {
+    						transition: $transition-link;
+                            background-color: $success-light;
+
+                            .wizard-check {
+                                color: $success;
+                                display: none;
+                            }
+
+                            .wizard-number {
+                                color: $success;
+                            }
+    					}
+
+                        .wizard-label {
+        					.wizard-title {
+        						color: $dark;
+        					}
+
+        					.wizard-desc {
+                                color: $gray-500;
         					}
         				}
     				}
@@ -116,7 +144,14 @@
 
     // Content
     .login-content {
-        background-color: $gray-100;
+        background-color: #F3F5F9;
+
+        .form-group {
+            .fv-help-block {
+                font-size: 1.1rem !important;
+                padding-top: 3px;
+            }
+        }
     }
 }
 
@@ -126,14 +161,36 @@
         .login-aside {
             width: 100%;
             max-width: 600px;
+
+            .aside-img {
+                min-height: 550px !important;
+                background-size: 630px;
+            }
         }
 
-        .login-form {
-            width: 100%;
-            max-width: 450px;
+        .login-content {
+            .top-signup {
+                max-width:650px;
+                width: 100%;
+            }
 
-            &.login-form-signup {
-                max-width: 650px;
+            .top-signin {
+                max-width:450px;
+                width: 100%;
+            }
+
+            .top-forgot {
+                max-width:450px;
+                width: 100%;
+            }
+
+            .login-form {
+                width: 100%;
+                max-width: 450px;
+
+                &.login-form-signup {
+                    max-width: 650px;
+                }
             }
         }
     }
@@ -145,7 +202,6 @@
         .login-aside {
             width: 100%;
             max-width: 400px;
-
         }
     }
 }
@@ -183,10 +239,38 @@
             }
         }
 
-        .login-form {
-            width: 100%;
-            max-width: 400px;
-            background-size: 500px;
+        .login-content {
+            .top-signup {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .top-signin {
+                max-width:400px;
+                width: 100%;
+            }
+
+            .top-forgot {
+                max-width:400px;
+                width: 100%;
+            }
+
+            .login-form {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    }
+}
+
+// Mobile mode
+@include media-breakpoint-down(xs) {
+    .login.login-5 {
+        .login-aside {
+            .aside-img {
+                min-height: 300px !important;
+                background-size: 350px;
+            }
         }
     }
 }

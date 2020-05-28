@@ -4,6 +4,7 @@
 
 <style lang="scss">
 // 3rd party plugins css
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
 @import "~socicon/css/socicon.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";

@@ -59,7 +59,7 @@ $primary-inverse:  									$white !default;  // Custom variable
 
 // Secondary colors
 $secondary:     									$gray-300 !default;
-$secondary-hover:  									$gray-400 !default; // Custom variable
+$secondary-hover:  									darken($gray-300, 4%) !default; // Custom variable
 $secondary-light:  									$gray-200 !default; // Custom variable
 $secondary-inverse:									$dark-75 !default; // Custom variable
 
