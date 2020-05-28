@@ -36,6 +36,7 @@ import { PartialsModule } from './views/partials/partials.module';
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 // Layout Services
 import {
 	DataTableService,
@@ -115,7 +116,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		InlineSVGModule.forRoot(),
 		ThemeModule,
 		AngularFireModule.initializeApp(environment.firebase),
-		AngularFirestoreModule
+		AngularFirestoreModule,
+		AngularFireStorageModule
 	],
 	exports: [],
 	providers: [

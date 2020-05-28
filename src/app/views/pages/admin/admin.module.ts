@@ -8,10 +8,14 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { UploaderComponent } from './uploader/uploader.component';
+import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { DropzoneDirective } from './uploader/dropzone.directive';
 
 
 @NgModule({
-	declarations: [AdminComponent, CreateSupplierComponent, CreateProductComponent],
+	declarations: [AdminComponent, CreateSupplierComponent, CreateProductComponent,
+		UploaderComponent, UploadTaskComponent, DropzoneDirective],
 	imports: [
 		CommonModule,
 		FormsModule,
