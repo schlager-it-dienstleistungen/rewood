@@ -127,7 +127,23 @@
 									<span class="form-text text-muted">Bitte geben Sie eine Beschreibung an.</span>
 								</div>
 								<div class="form-group">
-									<label>Bilder</label>
+									<label>Bilder</label><br>
+									<button class="flaticon-plus" (click)="addPictureControl()"></button><br>
+									<a (click)="addPictureControl()"><i class="flaticon-plus"></i></a>
+									<div formArrayName="pictures">
+										<div class="fields"
+											*ngFor="let p of pictures.controls; index as i"
+											[formGroupName]="i">
+											<div>
+												<input placeholder="URL"
+													formControlName="url">
+											</div>
+											<div>
+												<input placeholder="Titel"
+													formControlName="title">
+											</div>
+										</div>
+									</div>
 									<!--<input type="text" class="form-control" name="picture" [(ngModel)]="product.picture">
 									<span class="form-text text-muted">Bitte fügen Sie Produktbilder ein.</span>-->
 								</div>
@@ -259,7 +275,7 @@
 							Zurück
 						</div>
 						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Bestellung
+							Speichern
 						</div>
 						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
 							Nächster Schritt

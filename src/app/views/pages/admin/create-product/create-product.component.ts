@@ -3,10 +3,11 @@ import { ProductFactoryService } from '../../shared/product-factory.service';
 import { Category } from '../../shared/category';
 import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { Product } from '../../shared/product';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { ProductStoreService } from '../../shared/product-store.service';
 import { LocationService } from '../../shared/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'rw-create-product',
@@ -86,8 +87,23 @@ export class CreateProductComponent implements OnInit, OnChanges, AfterViewInit 
 			address2: '',
 			postcode: '',
 			city: '',
-			country: 'AT'
+			country: 'AT',
+			pictures: this.buildPicturesArray([
+				{ title: '', url: ''}
+			])
 		});
+	}
+
+	private buildPicturesArray(values: Picture[]): FormArray {
+		return this.fb.array(values.map(t => this.fb.group(t)));
+	}
+
+	get pictures(): FormArray {
+		return this.productForm.get('pictures') as FormArray;
+	}
+
+	addPictureControl() {
+		this.pictures.push(this.fb.group({ url: '', title: '' }));
 	}
 
 	private setFormValues(product: Product) {

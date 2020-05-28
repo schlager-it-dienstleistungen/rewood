@@ -1,5 +1,6 @@
 import { PackingUnit } from './packing-unit';
 import { Location } from './location';
+import { Picture } from './picture';
 
 export interface Product {
 	id: string;
@@ -14,6 +15,6 @@ export interface Product {
 	home_country?: string;
 	storage_location?: Location;
 	speciality?: string;
-	picture?: string;
+	pictures?: Picture[];
 	status: number;
 }
