@@ -1,9 +1,10 @@
 import { Component, OnInit, OnChanges, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Product } from '../../shared/product';
 import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { LocationService } from '../../shared/location.service';
 import { ProductStoreService } from '../../shared/product-store.service';
+import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'rw-product-form',
@@ -82,8 +83,23 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			address2: '',
 			postcode: '',
 			city: '',
-			country: 'AT'
+			country: 'AT',
+			pictures: this.buildPicturesArray([
+				{ title: '', url: ''}
+			])
 		});
+	}
+
+	private buildPicturesArray(values: Picture[]): FormArray {
+		return this.fb.array(values.map(t => this.fb.group(t)));
+	}
+
+	get pictures(): FormArray {
+		return this.productForm.get('pictures') as FormArray;
+	}
+
+	addPictureControl() {
+		this.pictures.push(this.fb.group({ url: '', title: '' }));
 	}
 
 	private setFormValues(product: Product) {

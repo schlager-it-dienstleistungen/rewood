@@ -10,10 +10,15 @@ import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { SupplierFormComponent } from './supplier-form/supplier-form.component';
+import { UploaderComponent } from './uploader/uploader.component';
+import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { DropzoneDirective } from './uploader/dropzone.directive';
 
 
 @NgModule({
-	declarations: [AdminComponent, CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent],
+	declarations: [AdminComponent,
+		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
+		UploaderComponent, UploadTaskComponent, DropzoneDirective],
 	imports: [
 		CommonModule,
 		FormsModule,
