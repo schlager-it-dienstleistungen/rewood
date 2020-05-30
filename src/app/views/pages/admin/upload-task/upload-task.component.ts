@@ -3,6 +3,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
+import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'rw-upload-task',
@@ -11,13 +12,13 @@ import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage'
 })
 export class UploadTaskComponent implements OnInit {
 
-	@Input() file: File;
+	@Input() picture: Picture;
 
 	task: AngularFireUploadTask;
 
 	percentage: Observable<number>;
-	snapshot: Observable<any>;
-	downloadURL: string;
+	// snapshot: Observable<any>;
+	downloadURL: Observable<string>;
 
 	constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
 
@@ -27,32 +28,47 @@ export class UploadTaskComponent implements OnInit {
 
 	startUpload() {
 
-		// The storage path
-		const path = `products/${Date.now()}_${this.file.name}`;
-
 		// Reference to storage bucket
-		const ref = this.storage.ref(path);
+		const ref = this.storage.ref(this.picture.path);
 
 		// The main task
-		this.task = this.storage.upload(path, this.file);
+		this.task = this.storage.upload(this.picture.path, this.picture.file);
 
 		// Progress monitoring
 		this.percentage = this.task.percentageChanges();
 
-		this.snapshot   = this.task.snapshotChanges().pipe(
+		this.task.snapshotChanges()
+			.pipe(
+				finalize(() => {
+					this.downloadURL = ref.getDownloadURL();
+					this.downloadURL.subscribe(url => {
+						if (url) {
+							this.picture.url = url;
+						}
+						console.log('this.picture.url: ' + this.picture.url);
+					});
+				})
+			)
+			.subscribe(url => {
+				if (url) {
+					console.log('url: ' + url);
+				}
+			});
+
+		/*this.snapshot = this.task.snapshotChanges().pipe(
 			tap(console.log),
 			// The file's download URL
 			finalize(async () =>  {
 				this.downloadURL = await ref.getDownloadURL().toPromise();
 
-				this.db.collection('files').add( { downloadURL: this.downloadURL, path });
+				this.picture.url = this.downloadURL;
 			}),
-		);
+		);*/
 	}
 
-	isActive(snapshot) {
+	/*isActive(snapshot) {
 		return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
-	}
+	}*/
 
 /**
  * format bytes
@@ -71,7 +87,7 @@ export class UploadTaskComponent implements OnInit {
 	}
 
 	deleteFile() {
-		console.log(this.downloadURL);
+		console.log('deleteFile: ' + this.picture);
 	}
 
 }

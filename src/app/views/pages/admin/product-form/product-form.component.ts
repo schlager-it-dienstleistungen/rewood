@@ -5,6 +5,7 @@ import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { LocationService } from '../../shared/location.service';
 import { ProductStoreService } from '../../shared/product-store.service';
 import { Picture } from '../../shared/picture';
+import { ProductFactoryService } from '../../shared/product-factory.service';
 
 @Component({
 	selector: 'rw-product-form',
@@ -32,6 +33,9 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 	ngOnInit() {
 		this.initForm();
+		if (!this.product) {
+			this.product = ProductFactoryService.empty();
+		}
 	}
 
 	ngAfterViewInit(): void {
@@ -83,13 +87,14 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			address2: '',
 			postcode: '',
 			city: '',
-			country: 'AT',
+			country: 'AT'/*,
 			pictures: this.buildPicturesArray([
-				{ title: '', url: ''}
-			])
+				{ title: '', path: '', url: '' }
+			])*/
 		});
 	}
 
+	/*
 	private buildPicturesArray(values: Picture[]): FormArray {
 		return this.fb.array(values.map(t => this.fb.group(t)));
 	}
@@ -99,8 +104,9 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	}
 
 	addPictureControl() {
-		this.pictures.push(this.fb.group({ url: '', title: '' }));
+		this.pictures.push(this.fb.group({ title: '', path: '', url: '' }));
 	}
+	*/
 
 	private setFormValues(product: Product) {
 		this.productForm.patchValue(product);
@@ -117,11 +123,25 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 		const formValue = this.productForm.value;
 
 		// const thumbnails = formValue.thumbnails.filter(thumbnail => thumbnail.url);
+		const pictures = this.product.pictures.map(picture => {
+			return this.pictureWithOutFile(picture);
+		});
 		const newProduct: Product = {
-			...formValue
+			...formValue,
+			pictures
 		};
+
+		debugger;
 
 		this.submitProduct.emit(newProduct);
 		this.productForm.reset();
+	}
+
+	pictureWithOutFile(picture: Picture): Picture {
+		return {
+			title: picture.title,
+			path: picture.path,
+			url: picture.url
+		};
 	}
 }

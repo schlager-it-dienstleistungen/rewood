@@ -11,10 +11,10 @@
 	<!--<img src="./assets/rewood/uploader/ic-file.svg" width="45px" alt="file">-->
 	<div class="info">
 		<h4 class="name">
-			{{ file?.name }}
+			{{ picture.title }}
 		</h4>
 		<p class="size">
-			{{ formatBytes(file?.size) }}
+			{{ formatBytes(picture.file?.size) }}
 		</p>
 	</div>
 	<img src="./assets/rewood/uploader/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile()">

@@ -22,7 +22,8 @@ export class ProductFactoryService {
 			description: '',
 			category: '',
 			price: 0.00,
-			status: 0
+			status: 0,
+			pictures: []
 		};
-}
+	}
 }

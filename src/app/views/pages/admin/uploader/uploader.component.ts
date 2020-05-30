@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'rw-uploader',
@@ -9,15 +11,24 @@ export class UploaderComponent {
 
 	isHovering: boolean;
 
-	files: File[] = [];
+	@Input() pictures: Picture[];
 
 	toggleHover(event: boolean) {
 		this.isHovering = event;
 	}
 
-	onDrop(files: FileList) {
-		for (let i = 0; i < files.length; i++) {
-			this.files.push(files.item(i));
+	onDrop(uploadFiles: FileList) {
+		for (let i = 0; i < uploadFiles.length; i++) {
+			this.pictures.push(this.fromFile(uploadFiles.item(i)));
 		}
+	}
+
+	fromFile(file: File): Picture {
+		return {
+			title: file.name,
+			path: `products/${Date.now()}_${file.name}`, // The storage path
+			url: '',
+			file
+		};
 	}
 }

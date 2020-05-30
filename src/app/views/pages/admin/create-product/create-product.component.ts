@@ -43,6 +43,7 @@ export class CreateProductComponent implements OnInit {
 			this.router.navigate(['../..', 'books'],
 				{relativeTo: this.route });
 		});*/
+		debugger;
 		this.productStoreService.createProduct(product);
 		this.router.navigate(['../..', 'books'], {relativeTo: this.route });
 	}
