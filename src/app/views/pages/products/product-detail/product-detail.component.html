@@ -20,13 +20,12 @@
 				</div>
 				<div class="kt-section__content">
 					<h4 mat-line>Bilder</h4>
-					<div class="ui small images" *ngIf="product.picture">
-						<img [src]="product.picture">
+					<div *ngIf="product.pictures">
+						<a *ngFor="let picture of product.pictures" target="_blank" [href]="picture.url">
+							<img class="thumbnail" [src]="picture.url" alt="picture.title" width="100px">
+						</a>
 					</div>
 				</div>
-				<!--<div class="ui small images">
-					<img *ngFor="let thumbnail of book.thumbnails" [src]="thumbnail.url">
-				</div>-->
 				<!--<div class="kt-section__sub">
 					<p>{{ product.title }}</p>
 				</div>-->

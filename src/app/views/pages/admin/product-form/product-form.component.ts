@@ -131,8 +131,6 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			pictures
 		};
 
-		debugger;
-
 		this.submitProduct.emit(newProduct);
 		this.productForm.reset();
 	}
