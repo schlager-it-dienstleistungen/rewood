@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 135);
+/******/ 	return __webpack_require__(__webpack_require__.s = 136);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -333,7 +333,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 135:
+/***/ 136:
 /*!*****************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/blockui.js ***!
   \*****************************************************************************/

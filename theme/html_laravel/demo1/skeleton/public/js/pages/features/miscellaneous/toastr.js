@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 146);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -249,7 +249,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /*!****************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/toastr.js ***!
   \****************************************************************************/

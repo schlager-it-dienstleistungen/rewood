@@ -1,6 +1,6 @@
 {
     "name": "metronic",
-    "version": "7.0.3",
+    "version": "7.0.4",
     "description": "Packages used by yarn, npm, gulp and webpack",
     "main": "gulpfile.js",
     "dependencies": {

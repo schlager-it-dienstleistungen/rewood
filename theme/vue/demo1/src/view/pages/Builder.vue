@@ -473,7 +473,7 @@
               &nbsp;
               <button
                 v-on:click="reset($event)"
-                class="btn btn-success font-weight-bold"
+                class="btn btn-clean font-weight-bold"
               >
                 <i class="la la-recycle"></i>
                 Reset

@@ -7,149 +7,164 @@
 @import "../../init";
 
 .login.login-6 {
-    // Container
-    .login-container {
-        .login-content {
-            width: 450px;
+    // Content
+    .login-content {
+        // Wizard Nav
+	    .wizard-nav {
+    		padding: 0;
 
-            // Wizard Nav
-            .wizard-nav {
-                padding: 0;
+    		// Steps
+    		.wizard-steps {
+    			display: flex;
+    		    align-items: center;
 
-                // Steps
-                .wizard-steps {
-                    display: flex;
-                    align-items: center;
+    			// Step
+    			.wizard-step {
+    				padding: 0.75rem 0;
+    				transition: $transition-link;
+                    margin-bottom: 1.5rem;
 
-                    // Step
-                    .wizard-step {
-                        padding: 0.75rem 0;
-                        transition: $transition-link;
-                        margin-bottom: 1.5rem;
+    				.wizard-wrapper {
+    					display: flex;
+                        align-items: center;
+    				}
 
-                        .wizard-wrapper {
-                            display: flex;
-                            align-items: center;
+    				.wizard-icon {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+    					transition: $transition-link;
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 12px;
+                        background-color: $gray-100;
+                        margin-right: 1rem;
+
+                        .wizard-check {
+                            display: none;
+                            font-size: 1.4rem;
                         }
 
+                        .wizard-number {
+                            font-weight: 600;
+                            color: $dark-75;
+                            font-size: 1.35rem;
+                        }
+    				}
+
+    				.wizard-label {
+    					display: flex;
+    					flex-direction: column;
+    					justify-content: center;
+
+    					.wizard-title {
+    						color: $dark;
+    						font-weight: 600;
+    						font-size: 1.24rem;
+    					}
+
+    					.wizard-desc {
+    						color: $text-muted;
+                            font-size: $font-size-sm;
+    					}
+    				}
+
+                    // Done States
+                    &[data-wizard-state="done"] {
                         .wizard-icon {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            transition: $transition-link;
-                            width: 46px;
-                            height: 46px;
-                            border-radius: 12px;
-                            background-color: $gray-100;
-                            margin-right: 1rem;
+    						transition: $transition-link;
+                            background-color: $success-light;
 
                             .wizard-check {
-                                display: none;
-                                font-size: 1.4rem;
+                                color: $success;
+                                display: inline-block;
                             }
 
                             .wizard-number {
-                                font-weight: 600;
-                                color: $dark-75;
-                                font-size: 1.35rem;
+                                display: none;
                             }
-                        }
+    					}
 
                         .wizard-label {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
+        					.wizard-title {
+        						color: $text-muted;
+        					}
 
-                            .wizard-title {
-                                color: $dark;
-                                font-weight: 600;
-                                font-size: 1.24rem;
-                            }
-
-                            .wizard-desc {
-                                color: $text-muted;
-                                font-size: $font-size-sm;
-                            }
-                        }
-
-                        // Done States
-                        &[data-wizard-state="done"] {
-                            .wizard-icon {
-                                transition: $transition-link;
-                                background-color: $success-light;
-
-                                .wizard-check {
-                                    color: $success;
-                                    display: inline-block;
-                                }
-
-                                .wizard-number {
-                                    display: none;
-                                }
-                            }
-
-                            .wizard-label {
-                                .wizard-title {
-                                    color: $text-muted;
-                                }
-
-                                .wizard-desc {
-                                    color: $gray-400;
-                                }
-                            }
-                        }
-
-                        // Current States
-                        &[data-wizard-state="current"] {
-                            transition: $transition-link;
-
-                            .wizard-icon {
-                                transition: $transition-link;
-                                background-color: $success-light;
-
-                                .wizard-check {
-                                    color: $success;
-                                    display: none;
-                                }
-
-                                .wizard-number {
-                                    color: $success;
-                                }
-                            }
-
-                            .wizard-label {
-                                .wizard-title {
-                                    color: $dark;
-                                }
-
-                                .wizard-desc {
-                                    color: $gray-500;
-                                }
-                            }
-                        }
+        					.wizard-desc {
+                                color: $gray-400;
+        					}
+        				}
                     }
+
+                    // Current States
+    				&[data-wizard-state="current"] {
+    					transition: $transition-link;
+
+    					.wizard-icon {
+    						transition: $transition-link;
+                            background-color: $success-light;
+
+                            .wizard-check {
+                                color: $success;
+                                display: none;
+                            }
+
+                            .wizard-number {
+                                color: $success;
+                            }
+    					}
+
+                        .wizard-label {
+        					.wizard-title {
+        						color: $dark;
+        					}
+
+        					.wizard-desc {
+                                color: $gray-500;
+        					}
+        				}
+    				}
                 }
             }
-
-            &.login-content-signup {
-                width: 700px;
-            }
-        }
+	    }
     }
 
     // Aside
     .login-aside {
-         width: 800px;
+
     }
 }
 
 // Desktop view
 @include media-breakpoint-up(lg) {
     .login.login-6 {
-        // Aside
+        .login-content {
+            .login-wrapper {
+                width: 100%;
+                max-width: 450px;
+            }
+
+            .login-container {
+                width: 100%;
+                max-width: 700px;
+            }
+        }
+
         .login-aside {
-            min-height: 590px !important;
-            background-size: 560px;
+            &.login-aside-w {
+                width: 100%;
+                max-width: 750px;
+            }
+
+            .login-img {
+                min-height: 590px !important;
+                background-size: 560px;
+            }
+
+            .signup-img {
+                min-height: 700px !important;
+                background-size: 700px;
+            }
         }
     }
 }
@@ -157,10 +172,24 @@
 // Tablet and Mobile mode
 @include media-breakpoint-between(lg, xl) {
     .login.login-6 {
-        // Aside
         .login-aside {
-            min-height: 420px !important;
-            background-size: 400px;
+            width: 100%;
+            max-width: 500px;
+
+            &.login-aside-w {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .login-img {
+                min-height: 420px !important;
+                background-size: 400px;
+            }
+
+            .signup-img {
+                min-height: 500px !important;
+                background-size: 500px;
+            }
         }
     }
 }
@@ -168,8 +197,11 @@
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
     .login.login-6 {
-        // Container
-        .login-container {
+        .login-content {
+            .login-wrapper {
+                width: 70%;
+            }
+
             // Wizard Nav
     	    .wizard-nav {
         		padding: 0;
@@ -179,17 +211,29 @@
         		.wizard-steps {
     			    // Step
     			    .wizard-step {
-                        margin-bottom: .5rem;
+                       margin-bottom: .5rem;
+
+                       &:last-child {
+                           margin-bottom: 0;
+                       }
                     }
                 }
             }
         }
 
-        // Aside
         .login-aside {
-            width: 100% !important;
-            min-height: 210px !important;
-            background-size: 200px;
+            width: 100%;
+            max-width: 100%;
+
+            .login-img {
+                min-height: 500px !important;
+                background-size: 450px;
+            }
+
+            .signup-img {
+                min-height: 400px !important;
+                background-size: 380px;
+            }
         }
     }
 }
@@ -197,51 +241,43 @@
 // Mobile mode
 @include media-breakpoint-down(xs) {
     .login.login-6 {
-        // Container
-        .login-container {
+        .login-content {
             width: 100%;
-            // Wizard
-            .wizard-nav {
-               // Steps
-               .wizard-steps {
-                   display: flex;
-                   flex-direction: column;
 
-                   .wizard-step {
-                        width: 100%;
-
-                        .wizard-wrapper {
-                            .svg-icon {
-                                display:none;
-                            }
-                        }
-                    }
-                }
+            .login-wrapper {
+                width: 100%;
             }
 
-            .login-content{
+            .login-container {
                 width: 100%;
+                max-width: 100%;
+            }
 
-                &.login-content-signup {
-                    width: 100%;
-                }
-            }            
+            .login-form {
+                width: 100%;
+                max-width: 100% !important;
+            }
         }
 
-        // Aside
         .login-aside {
-            background-position-y: top;
-            min-height: 140px !important;
-            background-size: 140px;
-        }
-    }
-}
+            &.login-aside-w {
+                width: 100%;
+                max-width: 100%;
+            }
 
-@media (max-width: 1800px) {
-    .login.login-6 {
-        // Aside
-        .login-aside {
-             width: 600px;
+            h3 {
+                font-size: 35px !important;
+            }
+
+            .login-img {
+                min-height: 350px !important;
+                background-size: 300px;
+            }
+
+            .signup-img {
+                min-height: 320px !important;
+                background-size: 300px;
+            }
         }
     }
 }

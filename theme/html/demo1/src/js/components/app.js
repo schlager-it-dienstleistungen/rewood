@@ -312,24 +312,6 @@ var KTApp = function() {
             return KTApp.unblock('body');
         },
 
-        progress: function(target, options) {
-            var color = (options && options.color) ? options.color : 'light';
-            var alignment = (options && options.alignment) ? options.alignment : 'right';
-            var size = (options && options.size) ? ' spinner-' + options.size : '';
-            var classes = 'spinner ' + 'spinner-' + skin + ' spinner-' + alignment + size;
-
-            KTApp.unprogress(target);
-            KTUtil.attr(target, 'disabled', true);
-
-            $(target).addClass(classes);
-            $(target).data('progress-classes', classes);
-        },
-
-        unprogress: function(target) {
-            $(target).removeClass($(target).data('progress-classes'));
-            KTUtil.removeAttr(target, 'disabled');
-        },
-
         getSettings: function() {
             return settings;
         }

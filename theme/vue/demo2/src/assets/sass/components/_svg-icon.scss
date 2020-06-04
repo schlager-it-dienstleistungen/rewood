@@ -7,7 +7,7 @@
     @include svg-icon-color($text-muted);
 
     // Theme colors
-    @each $name, $color in $theme-colors  {
+    @each $name, $color in $theme-text-colors  {
         &.svg-icon-#{$name} {
             @include svg-icon-color($color, true);
         }

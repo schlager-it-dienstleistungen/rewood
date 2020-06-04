@@ -23,6 +23,11 @@
 }
 
 .badge {
+    &.badge-design {
+        color: #ED1C24;
+        background-color: rgba(#ED1C24, 0.12);
+    }
+
     &.badge-global {
         color: #A020F0;
         background-color: rgba(#A020F0, 0.12);

@@ -139,7 +139,12 @@
 
     // Aside
     .login-aside {
-         width: 800px;
+        background: linear-gradient(147.04deg, #CA7B70 0.74%, #5A2119 99.61%);
+         width: 700px;
+
+         .login-conteiner {
+             height: 100%;
+         }
     }
 }
 
@@ -148,8 +153,10 @@
     .login.login-4 {
         // Aside
         .login-aside {
-            min-height: 590px !important;
-            background-size: 560px;
+            .login-conteiner {
+                min-height: 610px !important;
+                background-size: 580px;
+            }
         }
     }
 }
@@ -159,8 +166,10 @@
     .login.login-4 {
         // Aside
         .login-aside {
-            min-height: 420px !important;
-            background-size: 400px;
+            .login-conteiner {
+                min-height: 420px !important;
+                background-size: 400px;
+            }
         }
     }
 }
@@ -188,8 +197,11 @@
         // Aside
         .login-aside {
             width: 100% !important;
-            min-height: 210px !important;
-            background-size: 200px;
+
+            .login-conteiner {
+                min-height: 210px !important;
+                background-size: 200px;
+            }
         }
     }
 }
@@ -230,9 +242,7 @@
 
         // Aside
         .login-aside {
-            background-position-y: top;
-            min-height: 140px !important;
-            background-size: 140px;
+            width: 100% !important;
         }
     }
 }

@@ -460,20 +460,6 @@ var KTApp = function () {
     unblockPage: function unblockPage() {
       return KTApp.unblock('body');
     },
-    progress: function progress(target, options) {
-      var color = options && options.color ? options.color : 'light';
-      var alignment = options && options.alignment ? options.alignment : 'right';
-      var size = options && options.size ? ' spinner-' + options.size : '';
-      var classes = 'spinner ' + 'spinner-' + skin + ' spinner-' + alignment + size;
-      KTApp.unprogress(target);
-      KTUtil.attr(target, 'disabled', true);
-      $(target).addClass(classes);
-      $(target).data('progress-classes', classes);
-    },
-    unprogress: function unprogress(target) {
-      $(target).removeClass($(target).data('progress-classes'));
-      KTUtil.removeAttr(target, 'disabled');
-    },
     getSettings: function getSettings() {
       return settings;
     }
@@ -4904,8 +4890,6 @@ var KTHeader = function KTHeader(elementId, options) {
      */
     build: function build() {
       var eventTriggerState = true;
-      var viewportHeight = KTUtil.getViewPort().height;
-      var documentHeight = KTUtil.getDocumentHeight();
       var lastScrollTop = 0;
       window.addEventListener('scroll', function () {
         var offset = 0,
@@ -7050,7 +7034,14 @@ var KTUtil = function () {
      * @returns {boolean}
      */
     isMobileDevice: function isMobileDevice() {
-      return this.getViewPort().width < this.getBreakpoint('lg') ? true : false;
+      var test = this.getViewPort().width < this.getBreakpoint('lg') ? true : false;
+
+      if (test === false) {
+        // For use within normal web clients
+        test = navigator.userAgent.match(/iPad/i) != null;
+      }
+
+      return test;
     },
 
     /**
@@ -8214,7 +8205,7 @@ var KTUtil = function () {
 
         height = parseInt(height); // Destroy scroll on table and mobile modes
 
-        if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isBreakpointDown('lg')) {
+        if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isMobileDevice() === true) {
           ps = KTUtil.data(element).get('ps');
 
           if (ps) {
@@ -8627,7 +8618,8 @@ var KTWizard = function KTWizard(elementId, options) {
      * Handles wizard click wizard
      */
     goTo: function goTo(number, eventHandle) {
-      // Skip if this step is already shown
+      console.log('go to:' + number); // Skip if this step is already shown
+
       if (number === the.currentStep || number > the.totalSteps || number < 0) {
         return;
       } // Validate step number

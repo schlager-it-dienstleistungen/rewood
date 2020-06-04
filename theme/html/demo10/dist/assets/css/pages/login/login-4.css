@@ -106,15 +106,18 @@
     width: 700px; }
 
 .login.login-4 .login-aside {
-  width: 800px; }
+  background: linear-gradient(147.04deg, #CA7B70 0.74%, #5A2119 99.61%);
+  width: 700px; }
+  .login.login-4 .login-aside .login-conteiner {
+    height: 100%; }
 
 @media (min-width: 992px) {
-  .login.login-4 .login-aside {
-    min-height: 590px !important;
-    background-size: 560px; } }
+  .login.login-4 .login-aside .login-conteiner {
+    min-height: 610px !important;
+    background-size: 580px; } }
 
 @media (min-width: 992px) and (max-width: 1399.98px) {
-  .login.login-4 .login-aside {
+  .login.login-4 .login-aside .login-conteiner {
     min-height: 420px !important;
     background-size: 400px; } }
 
@@ -126,9 +129,10 @@
     .login.login-4 .login-container .wizard-nav .wizard-steps .wizard-step {
       margin-bottom: .5rem; }
   .login.login-4 .login-aside {
-    width: 100% !important;
-    min-height: 210px !important;
-    background-size: 200px; } }
+    width: 100% !important; }
+    .login.login-4 .login-aside .login-conteiner {
+      min-height: 210px !important;
+      background-size: 200px; } }
 
 @media (max-width: 575.98px) {
   .login.login-4 .login-container {
@@ -150,9 +154,7 @@
       .login.login-4 .login-container .login-content.login-content-signup {
         width: 100%; }
   .login.login-4 .login-aside {
-    background-position-y: top;
-    min-height: 140px !important;
-    background-size: 140px; } }
+    width: 100% !important; } }
 
 @media (max-width: 1800px) {
   .login.login-4 .login-aside {

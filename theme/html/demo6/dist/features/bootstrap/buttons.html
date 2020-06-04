@@ -22,9 +22,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css?v=7.0.3" rel="stylesheet" type="text/css" />
-		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.3" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css?v=7.0.3" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/global/plugins.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css?v=7.0.4" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
@@ -2805,6 +2805,17 @@ License: You must have a valid license purchased only from themeforest(the above
 																			</span>
 																		</a>
 																	</li>
+																	<li class="menu-item" aria-haspopup="true">
+																		<a href="custom/pages/login/login-4/signup.html" class="menu-link">
+																			<i class="menu-bullet menu-bullet-line">
+																				<span></span>
+																			</i>
+																			<span class="menu-text">Login 4</span>
+																			<span class="menu-label">
+																				<span class="label label-inline label-info">Wizard</span>
+																			</span>
+																		</a>
+																	</li>
 																</ul>
 															</li>
 															<li class="menu-item">
@@ -3147,6 +3158,10 @@ License: You must have a valid license purchased only from themeforest(the above
 												<!--begin::Example-->
 												<div class="example">
 													<p>Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.</p>
+													<p>Use
+													<code>btn-{color}</code>class to set custom color for buttons where
+													<code>{color}</code>can be
+													<code>white|primary|secondary|success|info|warning|danger|light|dark</code>.</p>
 													<div class="example-preview">
 														<p>
 															<button type="button" class="btn btn-primary mr-2">Primary</button>
@@ -3817,6 +3832,44 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="card card-custom gutter-b">
 											<div class="card-header">
 												<div class="card-title">
+													<h3 class="card-label">Hover Background Buttons</h3>
+												</div>
+											</div>
+											<div class="card-body">
+												<!--begin::Example-->
+												<div class="example">
+													<p>Use
+													<code>btn-light-{color}</code>class to have a custom button style with a lighter background color and dark font color.</p>
+													<div class="example-preview">
+														<a href="#" class="btn btn-hover-bg-success btn-text-success btn-hover-text-white border-0 font-weight-bold mr-2">Success</a>
+														<a href="#" class="btn btn-hover-bg-primary btn-text-primary btn-hover-text-white border-0 font-weight-bold mr-2">Primary</a>
+														<a href="#" class="btn btn-hover-bg-danger btn-text-danger btn-hover-text-white border-0 font-weight-bold mr-2">Danger</a>
+														<a href="#" class="btn btn-hover-bg-warning btn-text-warning btn-hover-text-white border-0 font-weight-bold mr-2">Warning</a>
+														<a href="#" class="btn btn-hover-bg-dark btn-text-dark btn-hover-text-white border-0 font-weight-bold mr-2">Dark</a>
+													</div>
+													<div class="example-code">
+														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+														<div class="example-highlight">
+															<pre>
+<code class="language-html">
+                        &lt;a href="#" class="btn btn-hover-bg-success btn-text-success btn-hover-text-white border-0 font-weight-bold mr-2"&gt;Success&lt;/a&gt;
+                        &lt;a href="#" class="btn btn-hover-bg-primary btn-text-primary btn-hover-text-white border-0 font-weight-bold mr-2"&gt;Primary&lt;/a&gt;
+                        &lt;a href="#" class="btn btn-hover-bg-danger btn-text-danger btn-hover-text-white border-0 font-weight-bold mr-2"&gt;Danger&lt;/a&gt;
+                        &lt;a href="#" class="btn btn-hover-bg-warning btn-text-warning btn-hover-text-white border-0 font-weight-bold mr-2"&gt;Warning&lt;/a&gt;
+                        &lt;a href="#" class="btn btn-hover-bg-dark btn-text-dark btn-hover-text-white border-0 font-weight-bold mr-2"&gt;Dark&lt;/a&gt;
+                        </code>
+</pre>
+														</div>
+													</div>
+												</div>
+												<!--end::Example-->
+											</div>
+										</div>
+										<!--end::Card-->
+										<!--begin::Card-->
+										<div class="card card-custom gutter-b">
+											<div class="card-header">
+												<div class="card-title">
 													<h3 class="card-label">Transparent Buttons</h3>
 												</div>
 											</div>
@@ -3945,12 +3998,14 @@ License: You must have a valid license purchased only from themeforest(the above
 												<!--begin::Example-->
 												<div class="example">
 													<p>Use
-													<code>btn-text-{color}</code>class to set custom color for button texts.</p>
+													<code>btn-text-{font-color}</code>class to set custom color for button texts where
+													<code>{font-color}</code>can be
+													<code>white|primary|secondary|success|info|warning|danger|light|dark|dark-75|dark-50|dark-25|muted</code>.</p>
 													<div class="example-preview">
 														<a href="#" class="btn btn-light btn-text-success btn-hover-text-success font-weight-bold mr-2">Success</a>
 														<a href="#" class="btn btn-light btn-text-primary btn-hover-text-primary font-weight-bold mr-2">Primary</a>
 														<a href="#" class="btn btn-light btn-text-danger btn-hover-text-danger font-weight-bold mr-2">Danger</a>
-														<a href="#" class="btn btn-light btn-text-warning btn-hover-text-warning font-weight-bold mr-2">Warning</a>
+														<a href="#" class="btn btn-light btn-text-warning btn-hover-text-dark-50 font-weight-bold mr-2">Warning</a>
 														<a href="#" class="btn btn-light btn-text-dark btn-hover-text-dark font-weight-bold mr-2">Dark</a>
 													</div>
 													<div class="example-code">
@@ -3961,7 +4016,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         &lt;a href="#" class="btn btn-light btn-text-success btn-hover-text-success font-weight-bold"&gt;Success&lt;/a&gt;
                         &lt;a href="#" class="btn btn-light btn-text-primary btn-hover-text-primary font-weight-bold"&gt;Primary&lt;/a&gt;
                         &lt;a href="#" class="btn btn-light btn-text-danger btn-hover-text-danger font-weight-bold"&gt;Danger&lt;/a&gt;
-                        &lt;a href="#" class="btn btn-light btn-text-warning btn-hover-text-warning font-weight-bold"&gt;Warning&lt;/a&gt;
+                        &lt;a href="#" class="btn btn-light btn-text-warning btn-hover-text-dark-50 font-weight-bold"&gt;Warning&lt;/a&gt;
                         &lt;a href="#" class="btn btn-light btn-text-dark btn-hover-text-dark font-weight-bold"&gt;Dark&lt;/a&gt;</code>
 </pre>
 														</div>
@@ -4085,6 +4140,11 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="example mb-15">
 													<p>Use buttons with a wide range of Metronic's awesome
 													<a href="" target="_blank">Icon Collection</a>.</p>
+													<p>Use
+													<code>btn-text-{font-color}</code>and
+													<code>btn-icon-{font-color}</code>classes to set custom color for button texts and icons where
+													<code>{font-color}</code>can be
+													<code>white|primary|secondary|success|info|warning|danger|light|dark|dark-75|dark-50|dark-25|muted</code>.</p>
 													<div class="example-preview">
 														<p>
 															<a href="#" class="btn btn-success btn-sm mr-3">
@@ -4096,7 +4156,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</p>
 														<p>
 															<a href="#" class="btn btn-outline-success btn-sm mr-3">
-															<i class="flaticon-multisymbol-2"></i>Success</a>
+															<i class="flaticon2-poll-symbol"></i>Success</a>
 															<a href="#" class="btn btn-outline-primary mr-3">
 															<i class="flaticon-file"></i>Primary</a>
 															<a href="#" class="btn btn-outline-danger btn-lg">
@@ -4147,6 +4207,24 @@ License: You must have a valid license purchased only from themeforest(the above
 																<!--end::Svg Icon-->
 															</span>Danger</a>
 														</p>
+														<p>
+															<a href="#" class="btn btn-text-dark-50 btn-icon-primary font-weight-bold btn-hover-bg-light mr-3">
+															<i class="flaticon2-pie-chart"></i>Button</a>
+															<a href="#" class="btn btn-text-dark-50 btn-icon-primary font-weight-bold btn-hover-bg-light mr-3">
+															<i class="flaticon2-graph-1"></i>Button</a>
+															<a href="#" class="btn btn-text-dark-50 btn-icon-primary font-weight-bold btn-hover-bg-light">
+															<span class="svg-icon">
+																<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+																<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																	<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																		<rect x="0" y="0" width="24" height="24" />
+																		<circle fill="#000000" cx="9" cy="15" r="6" />
+																		<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+																	</g>
+																</svg>
+																<!--end::Svg Icon-->
+															</span>Button</a>
+														</p>
 													</div>
 													<div class="example-code">
 														<span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
@@ -4157,14 +4235,18 @@ License: You must have a valid license purchased only from themeforest(the above
                             &lt;i class="flaticon2-pie-chart"&gt;&lt;/i&gt; Success
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-outline-success"&gt;
-                            &lt;i class="flaticon-multisymbol-2"&gt;&lt;/i&gt; Success
+                            &lt;i class="flaticon2-poll-symbol"&gt;&lt;/i&gt; Success
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-light-success"&gt;
                             &lt;i class="flaticon2-chat-1"&gt;&lt;/i&gt; Success
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-success"&gt;
                             &lt;span class="svg-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/span&gt; Success
-                        &lt;/a&gt;</code>
+                        &lt;/a&gt;
+                        &lt;a href="#" class="btn btn-text-dark-50 btn-icon-primary font-weight-bold btn-hover-bg-light mr-3"&gt;
+                            &lt;i class="flaticon2-pie-chart"&gt;&lt;/i&gt; Button
+                        &lt;/a&gt;
+                        </code>
 </pre>
 														</div>
 													</div>
@@ -4186,7 +4268,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<i class="flaticon2-sms"></i>
 															</a>
 															<a href="#" class="btn btn-icon btn-outline-success btn-sm mr-2">
-																<i class="flaticon-multisymbol-2"></i>
+																<i class="flaticon2-poll-symbol"></i>
 															</a>
 															<a href="#" class="btn btn-icon btn-outline-primary mr-2">
 																<i class="flaticon-file"></i>
@@ -4255,7 +4337,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																<i class="flaticon2-sms"></i>
 															</a>
 															<a href="#" class="btn btn-icon btn-outline-success btn-circle btn-sm mr-2">
-																<i class="flaticon-multisymbol-2"></i>
+																<i class="flaticon2-poll-symbol"></i>
 															</a>
 															<a href="#" class="btn btn-icon btn-outline-primary btn-circle mr-2">
 																<i class="flaticon-file"></i>
@@ -4323,7 +4405,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             &lt;i class="flaticon2-pie-chart"&gt;&lt;/i&gt;
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-icon btn-outline-success"&gt;
-                            &lt;i class="flaticon-multisymbol-2"&gt;&lt;/i&gt;
+                            &lt;i class="flaticon2-poll-symbol"&gt;&lt;/i&gt;
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-icon btn-light-success"&gt;
                             &lt;i class="flaticon2-chat-1"&gt;&lt;/i&gt;
@@ -4349,8 +4431,9 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="card-body">
 												<!--begin::Example-->
 												<div class="example mb-15">
-													<p>Use buttons with social icons listed in our
-													<a href="" target="_blank">Social Icons Collection</a>.</p>
+													<p>Use buttons with social icons predefined with
+													<code>$social-colors</code>variable in
+													<code>src\sass\components\_variables.bootstrap.scss</code>.</p>
 													<div class="example-preview">
 														<p>
 															<a href="#" class="btn btn-icon btn-facebook mr-2">
@@ -4403,7 +4486,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         &lt;/a&gt;
                         &lt;a href="#" class="btn btn-icon btn-circle btn-facebook"&gt;
                             &lt;i class="socicon-facebook"&gt;&lt;/i&gt;
-                        &lt;/a&gt;</code>
+                        &lt;/a&gt;
+                        </code>
 </pre>
 														</div>
 													</div>
@@ -6685,21 +6769,21 @@ License: You must have a valid license purchased only from themeforest(the above
 		<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 			<!--begin::Item-->
 			<li class="nav-item mb-2" id="kt_demo_panel_toggle" data-toggle="tooltip" title="Check out more demos" data-placement="right">
-				<a class="btn btn-sm btn-icon btn-bg-light btn-text-success btn-hover-success" href="#">
+				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-success btn-hover-success" href="#">
 					<i class="flaticon2-drop"></i>
 				</a>
 			</li>
 			<!--end::Item-->
 			<!--begin::Item-->
 			<li class="nav-item mb-2" data-toggle="tooltip" title="Layout Builder" data-placement="left">
-				<a class="btn btn-sm btn-icon btn-bg-light btn-text-primary btn-hover-primary" href="https://keenthemes.com/metronic/preview/demo6/builder.html" target="_blank">
+				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://keenthemes.com/metronic/preview/demo6/builder.html" target="_blank">
 					<i class="flaticon2-gear"></i>
 				</a>
 			</li>
 			<!--end::Item-->
 			<!--begin::Item-->
 			<li class="nav-item mb-2" data-toggle="tooltip" title="Documentation" data-placement="left">
-				<a class="btn btn-sm btn-icon btn-bg-light btn-text-warning btn-hover-warning" href="https://keenthemes.com/metronic/?page=docs" target="_blank">
+				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="https://keenthemes.com/metronic/?page=docs" target="_blank">
 					<i class="flaticon2-telegram-logo"></i>
 				</a>
 			</li>
@@ -6826,7 +6910,8 @@ License: You must have a valid license purchased only from themeforest(the above
 							<img src="assets//../../../../../../doc/assets/img/demos/demo11.png" alt="" class="w-100" />
 						</div>
 						<div class="overlay-layer">
-							<a href="#" class="btn font-weight-bold btn-primary btn-shadow disabled">Coming soon</a>
+							<a href="https://keenthemes.com/metronic/preview/demo11/index.html" class="btn font-weight-bold btn-primary btn-shadow" target="_blank">Default</a>
+							<a href="https://keenthemes.com/metronic/preview/demo11/rtl/index.html" class="btn btn-light btn-shadow" target="_blank">RTL Version</a>
 						</div>
 					</div>
 					<h5 class="font-weight-bold mb-4 text-center">Demo 12</h5>
@@ -7016,9 +7101,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#8950FC", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
 		<!--end::Global Config-->
 		<!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js?v=7.0.3"></script>
-		<script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.3"></script>
-		<script src="assets/js/scripts.bundle.js?v=7.0.3"></script>
+		<script src="assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
+		<script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
+		<script src="assets/js/scripts.bundle.js?v=7.0.4"></script>
 		<!--end::Global Theme Bundle-->
 	</body>
 	<!--end::Body-->

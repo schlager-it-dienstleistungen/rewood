@@ -4,7 +4,12 @@
 
 
 // Theme Colors
-@each $name, $color in $theme-colors {
+@each $name, $color in $theme-text-colors {
+    // Base color
+    .text-#{$name} {
+        color: $color !important;
+    }
+
     // Inverse color
     .text-inverse-#{$name} {
         color: theme-inverse-color($name) !important;
@@ -52,15 +57,6 @@
             }
         }
     }
-}
-
-// Text colors
-.text-dark-50 {
-    color: $dark-50 !important;
-}
-
-.text-dark-75 {
-    color: $dark-75 !important;
 }
 
 // Font sizes

@@ -24,6 +24,15 @@ $gray-700: 											#464E5F !default;
 $gray-800: 											#1B283F !default;
 $gray-900: 											#212121 !default;
 
+// Dark colors
+$dark:          									$gray-900 !default;
+$dark-75:          									$gray-700 !default; // Custom variable
+$dark-50:          									$gray-600 !default; // Custom variable
+$dark-25:          									$gray-400 !default; // Custom variable
+
+// Text muted
+$text-muted:                  						$gray-500 !default; // Custom variable
+
 // Gray colors list
 $grays: (
     "100": $gray-100,
@@ -39,17 +48,10 @@ $grays: (
 
 // Bootstrap standard & extended colors
 // Dark colors
-$dark:          									$gray-900 !default;
+$dark:          									$dark !default;
 $dark-hover:          								#111111 !default; // Custom variable
 $dark-light:          							    $gray-400 !default; // Custom variable
 $dark-inverse:         								$white !default; // Custom variable
-
-$dark-75:          									$gray-700 !default;
-$dark-75-hover:          							$dark !default; // Custom variable
-$dark-75-light:          							$gray-300 !default; // Custom variable
-$dark-75-inverse:         							$white !default; // Custom variable
-
-$dark-50:          									$gray-600 !default;
 
 // Primary colors
 $primary:       									#3699FF !default;
@@ -109,8 +111,7 @@ $theme-colors: (
     "warning":    $warning,
     "danger":     $danger,
     "light":      $light,
-    "dark":       $dark,
-    "dark-75":    $dark-75
+    "dark":       $dark
 ) !default;
 
 // Extended hover colors for Bootstrap theme colors
@@ -123,8 +124,7 @@ $theme-hover-colors: (
     "warning":    $warning-hover,
     "danger":     $danger-hover,
     "light":      $light-hover,
-    "dark":       $dark-hover,
-    "dark-75":    $dark-75-hover
+    "dark":       $dark-hover
 ) !default;  // Custom variable
 
 // Extended inverse colors for Bootstrap theme colors
@@ -137,8 +137,7 @@ $theme-inverse-colors: (
     "warning":    $warning-inverse,
     "danger":     $danger-inverse,
     "light":      $light-inverse,
-    "dark":       $dark-inverse,
-    "dark-75":    $dark-75-inverse
+    "dark":       $dark-inverse
 ) !default;  // Custom variable
 
 // Extended outline colors for Bootstrap theme colors
@@ -151,8 +150,7 @@ $theme-outline-inverse-colors: (
     "warning":    $warning,
     "danger":     $danger,
     "light":      $dark-75,
-    "dark":       $dark,
-    "dark-75":    $dark-75
+    "dark":       $dark
 ) !default;  // Custom variable
 
 // Extended light colors for Bootstrap theme colors
@@ -165,8 +163,7 @@ $theme-light-colors: (
     "warning":    $warning-light,
     "danger":     $danger-light,
     "light":      $light-light,
-    "dark":       $dark-light,
-    "dark-75":    $dark-75-light
+    "dark":       $dark-light
 ) !default;  // Custom variable
 
 // Extended shadow colors for Bootstrap theme colors
@@ -179,8 +176,24 @@ $theme-shadow-colors: (
     "warning":    $warning,
     "danger":     $danger,
     "light":      $dark,
+    "dark":       $dark
+) !default;  // Custom variable
+
+// Extended theme text colors
+$theme-text-colors: (
+    "white":      $white,
+	"primary":    $primary,
+    "secondary":  $dark,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      light,
     "dark":       $dark,
-    "dark-75":    $dark-75
+    "dark-75":    $dark-75,
+    "dark-50":    $dark-50,
+    "dark-25":    $dark-25,
+    "muted":      $text-muted
 ) !default;  // Custom variable
 
 // Social Network Colors Used With Boostrap Buttons(see: https://primarycolors.net/)
@@ -423,9 +436,6 @@ $font-weight-bolder:          						600 !default;
 $font-weight-boldest:          						700 !default;
 
 $line-height-base:                                  1.5 !default;
-
-// Text muted
-$text-muted:                  						$gray-500 !default; // Custom variable
 
 
 // Transition

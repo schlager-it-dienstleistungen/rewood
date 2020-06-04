@@ -225,7 +225,14 @@ var KTUtil = function() {
          * @returns {boolean}
          */
         isMobileDevice: function() {
-            return (this.getViewPort().width < this.getBreakpoint('lg') ? true : false);
+            var test = (this.getViewPort().width < this.getBreakpoint('lg') ? true : false);
+
+            if (test === false) {
+                // For use within normal web clients
+                test = navigator.userAgent.match(/iPad/i) != null;
+            }
+
+            return test;
         },
 
         /**
@@ -1478,7 +1485,7 @@ var KTUtil = function() {
                 height = parseInt(height);
 
                 // Destroy scroll on table and mobile modes
-                if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isBreakpointDown('lg')) {
+                if ((options.mobileNativeScroll || options.disableForMobile) && KTUtil.isMobileDevice() === true) {
                     ps = KTUtil.data(element).get('ps');
                     if (ps) {
                         if (options.resetHeightOnDestroy) {

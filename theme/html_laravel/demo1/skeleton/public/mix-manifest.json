@@ -148,6 +148,7 @@
     "/js/pages/features/charts/apexcharts.js": "/js/pages/features/charts/apexcharts.js",
     "/js/pages/features/charts/flotcharts.js": "/js/pages/features/charts/flotcharts.js",
     "/js/pages/features/charts/google-charts.js": "/js/pages/features/charts/google-charts.js",
+    "/js/pages/features/custom/spinners.js": "/js/pages/features/custom/spinners.js",
     "/js/pages/features/maps/google-maps.js": "/js/pages/features/maps/google-maps.js",
     "/js/pages/features/maps/jqvmap.js": "/js/pages/features/maps/jqvmap.js",
     "/js/pages/features/maps/jvectormap.js": "/js/pages/features/maps/jvectormap.js",

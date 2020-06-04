@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 141);
+/******/ 	return __webpack_require__(__webpack_require__.s = 142);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -115,7 +115,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 141:
+/***/ 142:
 /*!***************************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/perfect-scrollbar.js ***!
   \***************************************************************************************/
