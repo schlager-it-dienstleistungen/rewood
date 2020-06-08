@@ -43,8 +43,8 @@ export class ProductStoreService {
 		return this.db.createId();
 	}
 
-	createProduct(product: Product) {
-		this.db.collection('products').doc(product.id).set(product);
+	createProduct(product: Product): Promise<void> {
+		return this.db.collection('products').doc(product.id).set(product);
 	}
 
 	getCategory(title: string): Category {

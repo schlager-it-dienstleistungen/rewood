@@ -36,11 +36,10 @@ export class CreateProductComponent implements OnInit {
 	}
 
 	createProduct(product: Product) {
-		/*this.productStoreService.createProduct(product).subscribe(() => {
-			this.router.navigate(['../..', 'books'],
-				{relativeTo: this.route });
-		});*/
-		this.productStoreService.createProduct(product);
-		this.router.navigate(['../..', 'books'], {relativeTo: this.route });
+		this.productStoreService.createProduct(product).then(
+			() => {
+				this.router.navigate(['../../products', 'product', product.id], { relativeTo: this.route, queryParams: {newProduct: 'true'}});
+			}
+		);
 	}
 }
