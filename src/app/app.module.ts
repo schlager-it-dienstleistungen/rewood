@@ -4,7 +4,8 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
+import { GestureConfig } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverlayModule } from '@angular/cdk/overlay';
 // Angular in memory
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -21,7 +22,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 // NGRX
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, DefaultRouterStateSerializer, RouterState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // State
 import { metaReducers, reducers } from './core/reducers';
@@ -106,9 +107,22 @@ export function hljsLanguages(): HighlightLanguage[] {
 		PartialsModule,
 		CoreModule,
 		OverlayModule,
-		StoreModule.forRoot(reducers, {metaReducers}),
+		StoreModule.forRoot(
+			reducers,
+			{metaReducers,
+				runtimeChecks: {
+					strictStateImmutability: false,
+					strictActionImmutability: false,
+					// disabled until https://github.com/ngrx/platform/issues/2109 is resolved
+					// strictActionImmutability: true,
+				}
+			}
+		),
 		EffectsModule.forRoot([]),
-		StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+		//StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer,stateKey: 'router'}),
+		StoreRouterConnectingModule.forRoot({
+			routerState: RouterState.Minimal,
+		}),
 		StoreDevtoolsModule.instrument(),
 		AuthModule.forRoot(),
 		TranslateModule.forRoot(),
