@@ -97,19 +97,34 @@
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Titel</label><br/>
-									<input type="text" class="form-control" formControlName="title">
-									<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>
+									<input type="text" class="form-control" formControlName="title" required minlength="3">
+									<div *ngIf="title.invalid && (title.dirty || title.touched)"
+											class="alert alert-danger">
+										<div *ngIf="title.errors.required">
+											Es muss ein Titel eingegeben werden.
+										</div>
+										<div *ngIf="title.errors.minlength">
+											Titel muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
 									<label>Kategorie</label>
-									<select class="form-control" formControlName="category">
+									<select class="form-control" formControlName="category" required>
 										<option *ngFor="let category of categories" value="{{category.title}}">{{category.title}}</option>
 									</select>
+									<div *ngIf="category.invalid && (category.dirty || category.touched)"
+											class="alert alert-danger">
+										<div *ngIf="category.errors.required">
+											Es muss eine Kategorie ausgewählt werden.
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<label>Untergruppe</label>
 									<input type="text" class="form-control" formControlName="subcategory">
-									<span class="form-text text-muted">Bitte geben Sie die Untergruppe an.</span>
+									<!--<span class="form-text text-muted">Bitte geben Sie die Untergruppe an.</span>-->
 								</div>
 							</div>
 						</div>
@@ -123,8 +138,17 @@
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Beschreibung</label>
-									<input type="text" class="form-control" formControlName="description">
-									<span class="form-text text-muted">Bitte geben Sie eine Beschreibung an.</span>
+									<input type="text" class="form-control" formControlName="description" required minlength="3">
+									<div *ngIf="description.invalid && (description.dirty || description.touched)"
+											class="alert alert-danger">
+										<div *ngIf="description.errors.required">
+											Es muss eine Beschreibung eingegeben werden.
+										</div>
+										<div *ngIf="description.errors.minlength">
+											Beschreibung muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie eine Beschreibung an.</span>-->
 								</div>
 								<div class="form-group">
 									<label>Bilder</label>
@@ -144,17 +168,35 @@
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Maße (m)</label>
-									<input type="text" class="form-control" formControlName="measure">
+									<input type="text" class="form-control" formControlName="measure" required>
+									<div *ngIf="measure.invalid && (measure.dirty || measure.touched)"
+											class="alert alert-danger">
+										<div *ngIf="measure.errors.required">
+											Es müssen die Maße eingegeben werden.
+										</div>
+									</div>
 									<span class="form-text text-muted">Bitte geben Sie die Maße (LxBxH) in Meter an.</span>
 								</div>
 								<div class="form-group">
 									<label>Menge</label>
-									<input type="text" class="form-control" formControlName="amount">
+									<input type="text" class="form-control" formControlName="amount" required>
+									<div *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+											class="alert alert-danger">
+										<div *ngIf="amount.errors.required">
+											Es muss eine Menge eingegeben werden.
+										</div>
+									</div>
 									<span class="form-text text-muted">Bitte geben Sie die Menge an.</span>
 								</div>
 								<div class="form-group">
 									<label>Preis</label>
-									<input type="text" class="form-control" formControlName="price">
+									<input type="text" class="form-control" formControlName="price" required>
+									<div *ngIf="price.invalid && (price.dirty || price.touched)"
+											class="alert alert-danger">
+										<div *ngIf="price.errors.required">
+											Es muss ein Preis eingegeben werden.
+										</div>
+									</div>
 									<span class="form-text text-muted">Bitte geben Sie den Preis an.</span>
 								</div>
 							</div>
@@ -169,34 +211,58 @@
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Adresszeile 1</label>
-									<input type="text" class="form-control" formControlName="address1">
-									<span class="form-text text-muted">Bitte geben Sie die Adresszeile 1 an.</span>
+									<input type="text" class="form-control" formControlName="address1" required>
+									<div *ngIf="address1.invalid && (address1.dirty || address1.touched)"
+											class="alert alert-danger">
+										<div *ngIf="address1.errors.required">
+											Es muss eine Adresse eingegeben werden.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 1 an.</span>-->
 								</div>
 								<div class="form-group">
 									<label>Adresszeile 2</label>
 									<input type="text" class="form-control" formControlName="address2">
-									<span class="form-text text-muted">Bitte geben Sie die Adresszeile 2 an.</span>
+									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 2 an.</span>-->
 								</div>
 								<div class="row">
 									<div class="col-xl-3">
 										<div class="form-group">
 											<label>PLZ</label>
-											<input type="text" class="form-control" formControlName="postcode">
-											<span class="form-text text-muted">PLZ</span>
+											<input type="text" class="form-control" formControlName="postcode" required>
+											<div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)"
+													class="alert alert-danger">
+												<div *ngIf="postcode.errors">
+													PLZ
+												</div>
+											</div>
+											<!--<span class="form-text text-muted">PLZ</span>-->
 										</div>
 									</div>
 									<div class="col-xl-9">
 										<div class="form-group">
 											<label>Ort</label>
-											<input type="text" class="form-control" formControlName="city">
-											<span class="form-text text-muted">Bitte geben Sie den Ort.</span>
+											<input type="text" class="form-control" formControlName="city" required>
+											<div *ngIf="city.invalid && (city.dirty || city.touched)"
+													class="alert alert-danger">
+												<div *ngIf="city.errors.required">
+													Es muss ein Ort eingegeben werden.
+												</div>
+											</div>
+											<!--<span class="form-text text-muted">Bitte geben Sie den Ort.</span>-->
 										</div>
 									</div>
 									<div class="form-group">
 										<label>Land</label>
-										<select class="form-control" formControlName="country">
+										<select class="form-control" formControlName="country" required>
 											<option *ngFor="let country of countries" value="{{country.code}}">{{country.country}}</option>
 										</select>
+										<div *ngIf="country.invalid && (country.dirty || country.touched)"
+												class="alert alert-danger">
+											<div *ngIf="country.errors.required">
+												Es muss ein Land eingegeben werden.
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -209,6 +275,10 @@
 						<div class="kt-heading kt-heading--md">Zusammenfassung und Bestellung</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__review">
+								<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
+									Fehlerhafte Eingabe - Bitte füllen Sie alle Daten korrekt aus!
+								</kt-alert>
+
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
 										Produktinformationen
@@ -260,7 +330,7 @@
 							Zurück
 						</div>
 						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Bestellung
+							Speichern
 						</div>
 						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
 							Nächster Schritt

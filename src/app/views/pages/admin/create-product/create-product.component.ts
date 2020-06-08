@@ -1,13 +1,10 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Output, Input, EventEmitter, OnChanges } from '@angular/core';
-import { ProductFactoryService } from '../../shared/product-factory.service';
-import { Category } from '../../shared/category';
+import { Component, OnInit, ElementRef, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { Product } from '../../shared/product';
-import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ProductStoreService } from '../../shared/product-store.service';
 import { LocationService } from '../../shared/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'rw-create-product',

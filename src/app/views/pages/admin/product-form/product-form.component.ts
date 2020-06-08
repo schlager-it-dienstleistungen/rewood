@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../../shared/product';
 import { CategoryFactoryService } from '../../shared/category-factory.service';
 import { LocationService } from '../../shared/location.service';
@@ -25,6 +25,7 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
+	hasFormErrors = false;
 
 	constructor(
 		private fb: FormBuilder,
@@ -75,24 +76,41 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 		if (this.productForm) { return; }
 		this.productForm = this.fb.group({
 			id: this.productStoreService.createProductId(),
-			title: ['', Validators.required],
-			category: '',
-			subcategory: '',
-			price: 0.00,
-			description: '',
-			status: 0,
-			measure: '',
-			amount: 0,
-			address1: '',
-			address2: '',
-			postcode: '',
-			city: '',
-			country: 'AT'/*,
+			title: ['', [
+				Validators.required,
+				Validators.minLength(3)]],
+			category: ['', Validators.required],
+			subcategory: [''],
+			price: [0.00, Validators.required],
+			description: ['', Validators.required],
+			status: [0, Validators.required],
+			measure: ['', Validators.required],
+			amount: [0, Validators.required],
+			address1: ['', Validators.required],
+			address2: [''],
+			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
+			city: ['', Validators.required],
+			country: ['AT', Validators.required]/*,
 			pictures: this.buildPicturesArray([
 				{ title: '', path: '', url: '' }
 			])*/
 		});
 	}
+
+	// Getter
+	get title() { return this.productForm.get('title'); }
+	get category() { return this.productForm.get('category'); }
+	get subcategory() { return this.productForm.get('subcategory'); }
+	get description() { return this.productForm.get('description'); }
+	get status() { return this.productForm.get('status'); }
+	get measure() { return this.productForm.get('measure'); }
+	get price() { return this.productForm.get('price'); }
+	get amount() { return this.productForm.get('amount'); }
+	get address1() { return this.productForm.get('address1'); }
+	get address2() { return this.productForm.get('address2'); }
+	get postcode() { return this.productForm.get('postcode'); }
+	get city() { return this.productForm.get('city'); }
+	get country() { return this.productForm.get('country'); }
 
 	/*
 	private buildPicturesArray(values: Picture[]): FormArray {
@@ -118,6 +136,18 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	}
 
 	onSubmit() {
+		this.hasFormErrors = false;
+		const controls = this.productForm.controls;
+		/** check form */
+		if (this.productForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+
+			this.hasFormErrors = true;
+			return;
+		}
+
 		this.submitted = true;
 
 		const formValue = this.productForm.value;
@@ -141,5 +171,15 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			path: picture.path,
 			url: picture.url
 		};
+	}
+
+
+	/**
+	 * Close Alert
+	 *
+	 * @param $event Event
+	 */
+	onAlertClose($event) {
+		this.hasFormErrors = false;
 	}
 }
