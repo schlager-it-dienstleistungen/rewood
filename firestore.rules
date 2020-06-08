@@ -12,7 +12,7 @@ service cloud.firestore {
     // your app will lose access to your Firestore database
     match /products/{product} {
       allow read;
-      allow write: if false;
+      allow write: if true;
     }
   }
 }
