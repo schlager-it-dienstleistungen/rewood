@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
-import { SearchProducts } from './search-products';
 import { Category } from './category';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
@@ -43,13 +44,46 @@ export class ProductStoreService {
 		return this.db.createId();
 	}
 
+	/**
+	 * Store the given Product and increases the counter for this Category of Product
+	 *
+	 * @param product Product to save
+	 */
 	createProduct(product: Product): Promise<void> {
-		return this.db.collection('products').doc(product.id).set(product);
+		const incrementCounter = firebase.firestore.FieldValue.increment(1);
+
+		// Create Firestore-Batch
+		const batch = this.db.firestore.batch();
+
+		// Store new Product
+		const productRef = this.db.collection('products').doc(product.id).ref;
+		batch.set(productRef, product);
+
+		// Increment Category counter
+		const categoryCountRef = this.db.collection('products').doc('count_' + product.category).ref;
+		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
+
+		// Batch Commit
+		return batch.commit();
 	}
 
+	/**
+	 * Returns description, image and availabe products to the given Category-Title
+	 *
+	 * @param title Category-Title
+	 */
 	getCategory(title: string): Category {
 		const categoriesArray: Category[] = CategoryFactoryService.getCategories();
-		return categoriesArray.find(category => category.title.indexOf(title) !== -1);
+		const category: Category = categoriesArray.find(oneCategory => oneCategory.title.indexOf(title) !== -1);
+
+		// Read the available Product to the Category from Firestore
+		this.db.firestore.collection('products').doc('count_' + category.title).get().then(
+			(doc) => {
+				category.numberofproducts = doc.data().count;
+			}
+		);
+
+		return category;
 	}
 
 		/* UI */

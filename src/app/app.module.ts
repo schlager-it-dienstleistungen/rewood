@@ -119,7 +119,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 			}
 		),
 		EffectsModule.forRoot([]),
-		//StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer,stateKey: 'router'}),
+		// StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer,stateKey: 'router'}),
 		StoreRouterConnectingModule.forRoot({
 			routerState: RouterState.Minimal,
 		}),
