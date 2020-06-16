@@ -1,0 +1,60 @@
+// Style for Details Information
+
+// Global config
+@import "../config";
+
+// Layout config
+@import "../global/layout/config.scss";
+
+// Variables
+$rw-detail-step-border: #eeeef4;
+
+.rw-detail{
+	//background-color: $kt-wizard-v2-nav-bg;
+	width: 100%;
+
+	@include kt-minimal-desktop-and-below{
+		width: 100%;
+	}
+
+	@include kt-mobile{
+		padding: 2rem 2.5rem 4rem;
+	}
+
+	.rw-detail__heading{
+		font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0;
+    margin: 1.75rem 0;
+    color: kt-get($kt-font-color, text);
+	}
+
+	.rw-detail__section{
+		padding-bottom: 1.3rem;
+		border-bottom: 1px solid #eeeef4;
+		margin-bottom: 2rem;
+
+		.rw-detail__item{
+			padding-bottom: 1rem;
+			margin-bottom: 1rem;
+			border-bottom: 1px solid $rw-detail-step-border;
+
+			.rw-detail__title{
+				font-weight: 600;
+				font-size: 1.1rem;
+				margin-bottom: 0.7rem;
+			}
+
+			.rw-detail__content{
+				line-height: 1.8rem;
+				font-size: 1.0rem;
+			}
+
+			&:last-child{
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+}

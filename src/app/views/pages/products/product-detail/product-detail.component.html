@@ -1,34 +1,44 @@
-<div>
+<kt-portlet>
 	<ng-container *ngIf="product$ | async as product; else loading">
 		<kt-portlet-body>
-			<div class="kt-section">
-				<div class="kt-section__title">
-					{{ product.title }}, Preis: {{ product.price | currency }}
-				</div>
-				<div class="kt-section__content">
-					<h4 mat-line>Kategorie</h4>
-					<p mat-line>{{ product.category }}  {{ product.subcategory }}</p>
-				</div>
-				<div class="kt-section__content">
-					<h4 mat-line>Beschreibung</h4>
-					<p mat-line>{{ product.description }}</p>
-				</div>
-				<div class="kt-section__content">
-					<h4 mat-line>Status</h4>
-					<span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(product.status) }} kt-badge--wide">{{ getItemStatusString(product.status) }}</span>
-					<p mat-line></p>
-				</div>
-				<div class="kt-section__content">
-					<h4 mat-line>Bilder</h4>
-					<div *ngIf="product.pictures">
-						<a *ngFor="let picture of product.pictures" target="_blank" [href]="picture.url">
-							<img class="thumbnail" [src]="picture.url" alt="picture.title" width="100px">
-						</a>
+			<div class="rw-detail">
+				<div class="rw-detail__heading">{{ product.title }}, Preis: {{ product.price | currency }}</div>
+				<div class="rw-detail__section">
+					<div class="rw-detail__item">
+						<div class="rw-detail__title">Produktinformationen</div>
+						<div class="rw-detail__content" *ngIf="product.subcategory else withoutSubcategory">{{ product.category }} - {{ product.subcategory }}</div>
+						<ng-template #withoutSubcategory>
+							<div class="rw-detail__content">{{ product.category }}</div>
+						</ng-template>
+						<div class="rw-detail__content">{{ product.price | currency }}</div>
+						<div class="rw-detail__content">{{ product.description }}</div>
+					</div>
+					<div class="rw-detail__item">
+						<div class="rw-detail__title">Maße</div>
+						<div class="rw-detail__content">Maße: {{ product.measure }}</div>
+						<div class="rw-detail__content">Menge: {{ product.amount }}</div>
+						<div class="rw-detail__content">Preis: {{ product.price | currency }}</div>
+					</div>
+					<div class="rw-detail__item">
+						<div class="rw-detail__title">Adresse</div>
+						<div class="rw-detail__content">{{ product.address1 }}</div>
+						<div class="rw-detail__content" *ngIf="product.address2">{{ product.address2 }}</div>
+						<div class="rw-detail__content">{{ product.postcode }}, {{ product.city }}</div>
+						<div class="rw-detail__content">{{ product.country }}</div>
 					</div>
 				</div>
-				<!--<div class="kt-section__sub">
-					<p>{{ product.title }}</p>
-				</div>-->
+				<div class="kt-section">
+					<div class="kt-section__title">
+						Bilder
+					</div>
+					<div class="kt-section__content">
+						<div *ngIf="product.pictures">
+							<a *ngFor="let picture of product.pictures" target="_blank" [href]="picture.url">
+								<img class="thumbnail" [src]="picture.url" alt="picture.title" width="100px">
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</kt-portlet-body>
 	</ng-container>
@@ -36,4 +46,4 @@
 	<ng-template #loading>
 		<h1>loading</h1>
 	</ng-template>
-</div>
+</kt-portlet>
