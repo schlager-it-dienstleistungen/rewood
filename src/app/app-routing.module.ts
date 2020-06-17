@@ -26,6 +26,10 @@ const routes: Routes = [
 				loadChildren: './views/pages/admin/admin.module#AdminModule'
 			},
 			{
+				path: 'general',
+				loadChildren: './views/pages/general/general.module#GeneralModule'
+			},
+			{
 				path: 'builder',
 				loadChildren: './views/theme/content/builder/builder.module#BuilderModule'
 			},
