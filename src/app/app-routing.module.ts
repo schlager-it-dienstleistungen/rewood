@@ -7,6 +7,7 @@ import { ErrorPageComponent } from './views/theme/content/error-page/error-page.
 // Auth
 import { AuthGuard } from './core/auth';
 import { AboutComponent } from './views/pages/general/about/about.component';
+import { TeamComponent } from './views/pages/general/team/team.component';
 
 const routes: Routes = [
 	{
@@ -33,6 +34,10 @@ const routes: Routes = [
 			{
 				path: 'general/about',
 				component: AboutComponent
+			},
+			{
+				path: 'general/team',
+				component: TeamComponent
 			},
 			{
 				path: 'error/403',

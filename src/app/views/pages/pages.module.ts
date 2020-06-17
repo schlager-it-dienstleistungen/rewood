@@ -8,9 +8,10 @@ import { CoreModule } from '../../core/core.module';
 import { ProductsModule } from './products/products.module';
 import { HomeModule } from './home/home.module';
 import { AboutComponent } from './general/about/about.component';
+import { TeamComponent } from './general/team/team.component';
 
 @NgModule({
-	declarations: [AboutComponent],
+	declarations: [AboutComponent, TeamComponent],
 	exports: [],
 	imports: [
 		CommonModule,
