@@ -9,9 +9,10 @@ import { ProductsModule } from './products/products.module';
 import { HomeModule } from './home/home.module';
 import { AboutComponent } from './general/about/about.component';
 import { TeamComponent } from './general/team/team.component';
+import { ContactComponent } from './general/contact/contact.component';
 
 @NgModule({
-	declarations: [AboutComponent, TeamComponent],
+	declarations: [AboutComponent, TeamComponent, ContactComponent],
 	exports: [],
 	imports: [
 		CommonModule,
