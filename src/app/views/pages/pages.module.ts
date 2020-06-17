@@ -7,9 +7,10 @@ import { PartialsModule } from '../partials/partials.module';
 import { CoreModule } from '../../core/core.module';
 import { ProductsModule } from './products/products.module';
 import { HomeModule } from './home/home.module';
+import { AboutComponent } from './general/about/about.component';
 
 @NgModule({
-	declarations: [],
+	declarations: [AboutComponent],
 	exports: [],
 	imports: [
 		CommonModule,

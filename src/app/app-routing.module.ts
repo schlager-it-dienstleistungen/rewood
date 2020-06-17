@@ -6,6 +6,7 @@ import { BaseComponent } from './views/theme/base/base.component';
 import { ErrorPageComponent } from './views/theme/content/error-page/error-page.component';
 // Auth
 import { AuthGuard } from './core/auth';
+import { AboutComponent } from './views/pages/general/about/about.component';
 
 const routes: Routes = [
 	{
@@ -26,12 +27,12 @@ const routes: Routes = [
 				loadChildren: './views/pages/admin/admin.module#AdminModule'
 			},
 			{
-				path: 'general',
-				loadChildren: './views/pages/general/general.module#GeneralModule'
-			},
-			{
 				path: 'builder',
 				loadChildren: './views/theme/content/builder/builder.module#BuilderModule'
+			},
+			{
+				path: 'general/about',
+				component: AboutComponent
 			},
 			{
 				path: 'error/403',
