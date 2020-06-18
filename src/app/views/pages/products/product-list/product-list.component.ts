@@ -107,4 +107,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	getItemCssClassByStatus(status: number = 0): string {
 		return this.productService.getItemCssClassByStatus(status);
 	}
+
+	firstPicture(product: Product) {
+		return product.pictures[0];
+	}
 }
