@@ -28,9 +28,14 @@
 			<ng-container matColumnDef="picture">
 				<mat-header-cell *matHeaderCellDef></mat-header-cell>
 				<mat-cell *matCellDef="let product">
-					<div class="picture" *ngIf="firstPicture(product) as picture" >
-						<span> <img src="{{ picture.url }}" height="80"> </span>
-			 		</div>
+					<div class="picture" *ngIf="firstPicture(product) as picture; else noImage" >
+						<span> <img src="{{ picture.url }}" height="80px" width="100px"> </span>
+					</div>
+					<ng-template #noImage>
+						<div class="picture" #noImage >
+							<span> <img src="./assets/rewood/image_not_available_small.png" height="80px" width="100px"> </span>
+						</div>
+					</ng-template>
 				</mat-cell>
 			</ng-container>
 
