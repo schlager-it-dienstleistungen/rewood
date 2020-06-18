@@ -7,9 +7,9 @@ import {toAbsoluteUrl, checkIsActive} from "../../../../_helpers";
 
 export function AsideMenuList({ layoutProps }) {
   const location = useLocation();
-  const getMenuItemActive = (url) => {
+  const getMenuItemActive = (url, hasSubmenu = false) => {
     return checkIsActive(location, url)
-        ? " menu-item-active menu-item-open "
+        ? ` ${!hasSubmenu && "menu-item-active"} menu-item-open `
         : "";
   };
 
@@ -19,7 +19,7 @@ export function AsideMenuList({ layoutProps }) {
         <ul className={`menu-nav ${layoutProps.ulClasses}`}>
           {/*begin::1 Level*/}
           <li
-              className={`menu-item ${getMenuItemActive("/dashboard")}`}
+              className={`menu-item ${getMenuItemActive("/dashboard", false)}`}
               aria-haspopup="true"
           >
             <NavLink className="menu-link" to="/dashboard">
@@ -33,7 +33,7 @@ export function AsideMenuList({ layoutProps }) {
 
           {/*begin::1 Level*/}
           <li
-              className={`menu-item ${getMenuItemActive("/builder")}`}
+              className={`menu-item ${getMenuItemActive("/builder", false)}`}
               aria-haspopup="true"
           >
             <NavLink className="menu-link" to="/builder">
@@ -57,7 +57,7 @@ export function AsideMenuList({ layoutProps }) {
           {/*begin::1 Level*/}
           <li
               className={`menu-item menu-item-submenu ${getMenuItemActive(
-                  "/google-material"
+                  "/google-material", true
               )}`}
               aria-haspopup="true"
               data-menu-toggle="hover"
@@ -82,7 +82,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/inputs"
+                        "/google-material/inputs", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -250,7 +250,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu  ${getMenuItemActive(
-                        "/google-material/navigation"
+                        "/google-material/navigation", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -385,7 +385,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/surfaces"
+                        "/google-material/surfaces", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -472,7 +472,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/feedback"
+                        "/google-material/feedback", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -543,7 +543,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/data-displays"
+                        "/google-material/data-displays", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -710,7 +710,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/utils"
+                        "/google-material/utils", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -845,7 +845,7 @@ export function AsideMenuList({ layoutProps }) {
                 {/*begin::2 Level*/}
                 <li
                     className={`menu-item menu-item-submenu ${getMenuItemActive(
-                        "/google-material/layout"
+                        "/google-material/layout", true
                     )}`}
                     aria-haspopup="true"
                     data-menu-toggle="hover"
@@ -952,7 +952,7 @@ export function AsideMenuList({ layoutProps }) {
           {/*begin::1 Level*/}
           <li
               className={`menu-item menu-item-submenu ${getMenuItemActive(
-                  "/react-bootstrap"
+                  "/react-bootstrap", true
               )}`}
               aria-haspopup="true"
               data-menu-toggle="hover"
@@ -1409,7 +1409,7 @@ export function AsideMenuList({ layoutProps }) {
           {/*begin::1 Level*/}
           <li
               className={`menu-item menu-item-submenu ${getMenuItemActive(
-                  "/e-commerce"
+                  "/e-commerce", true
               )}`}
               aria-haspopup="true"
               data-menu-toggle="hover"
@@ -1475,7 +1475,7 @@ export function AsideMenuList({ layoutProps }) {
           {/*begin::1 Level*/}
           <li
               className={`menu-item menu-item-submenu ${getMenuItemActive(
-                  "/error"
+                  "/error", true
               )}`}
               aria-haspopup="true"
               data-menu-toggle="hover"

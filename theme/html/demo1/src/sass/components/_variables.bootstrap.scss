@@ -15,18 +15,19 @@ $white:    											#ffffff !default;
 
 // Gray colors
 $gray-100: 											#F3F6F9 !default;
-$gray-200: 											#ECF0F3 !default;
-$gray-300: 											#E5EAEE !default;
-$gray-400: 											#D6D6E0 !default;
+$gray-200: 											#EBEDF3 !default;
+$gray-300: 											#E4E6EF !default;
+$gray-400: 											#D1D3E0 !default;
 $gray-500: 											#B5B5C3 !default;
-$gray-600: 											#80808F !default;
-$gray-700: 											#464E5F !default;
-$gray-800: 											#1B283F !default;
-$gray-900: 											#212121 !default;
+$gray-600: 											#7E8299 !default;
+$gray-700: 											#5E6278 !default;
+$gray-800: 											#3F4254 !default;
+$gray-900: 											#181C32 !default;
 
 // Dark colors
 $dark:          									$gray-900 !default;
-$dark-75:          									$gray-700 !default; // Custom variable
+$dark-75:          									$gray-800 !default; // Custom variable
+$dark-65:          									$gray-700 !default; // Custom variable
 $dark-50:          									$gray-600 !default; // Custom variable
 $dark-25:          									$gray-400 !default; // Custom variable
 
@@ -48,55 +49,55 @@ $grays: (
 
 // Bootstrap standard & extended colors
 // Dark colors
-$dark:          									$dark !default;
-$dark-hover:          								#111111 !default; // Custom variable
+$dark:          									$dark !default; // Bootstrap variable
+$dark-hover:          								darken($dark, 3%) !default; // Custom variable
 $dark-light:          							    $gray-400 !default; // Custom variable
 $dark-inverse:         								$white !default; // Custom variable
 
 // Primary colors
-$primary:       									#3699FF !default;
+$primary:       									#3699FF !default; // Bootstrap variable
 $primary-hover:    									#187DE4 !default; // Custom variable
 $primary-light:    									#E1F0FF !default; // Custom variable
 $primary-inverse:  									$white !default;  // Custom variable
 
 // Secondary colors
-$secondary:     									$gray-300 !default;
+$secondary:     									$gray-300 !default; // Bootstrap variable
 $secondary-hover:  									darken($gray-300, 4%) !default; // Custom variable
 $secondary-light:  									$gray-200 !default; // Custom variable
 $secondary-inverse:									$dark-75 !default; // Custom variable
 
 // Success colors
-$success:       									#1BC5BD !default;
+$success:       									#1BC5BD !default; // Bootstrap variable
 $success-hover:    									#0BB7AF !default; // Custom variable
 $success-light:    									#C9F7F5 !default; // Custom variable
 $success-inverse:  									$white !default; // Custom variable
 
 // Inco colors
-$info:         		 								#8950FC !default;
+$info:         		 								#8950FC !default; // Bootstrap variable
 $info-hover:   		 								#7337EE !default; // Custom variable
 $info-light:   		 								#EEE5FF !default; // Custom variable
 $info-inverse: 		 								$white !default; // Custom variable
 
 // Warning colors
-$warning:       									#FFA800 !default;
+$warning:       									#FFA800 !default; // Bootstrap variable
 $warning-hover:    									#EE9D01 !default; // Custom variable
 $warning-light:    									#FFF4DE !default; // Custom variable
 $warning-inverse:  									$white !default; // Custom variable
 
 // Danger colors
-$danger:        									#F64E60 !default;
+$danger:        									#F64E60 !default; // Bootstrap variable
 $danger-hover:     									#EE2D41 !default; // Custom variable
 $danger-light:     									#FFE2E5 !default; // Custom variable
 $danger-inverse:   									$white !default; // Custom variable
 
 // Light colors
-$light:         									$gray-100 !default;
+$light:         									$gray-100 !default; // Bootstrap variable
 $light-hover:         								$gray-300 !default; // Custom variable
 $light-light:         								$gray-100 !default; // Custom variable
 $light-inverse:        								$gray-600 !default; // Custom variable
 
 // White colors
-$white:    											$white !default;
+$white:    											$white !default; // Bootstrap variable
 $white-hover:    									$gray-100 !default; // Custom variable
 $white-light:    									$white !default;  // Custom variable
 $white-inverse:    									$dark-75 !default; // Custom variable
@@ -191,6 +192,7 @@ $theme-text-colors: (
     "light":      light,
     "dark":       $dark,
     "dark-75":    $dark-75,
+    "dark-65":    $dark-65,
     "dark-50":    $dark-50,
     "dark-25":    $dark-25,
     "muted":      $text-muted

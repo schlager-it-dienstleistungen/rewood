@@ -1,6 +1,6 @@
 <template>
   <div
-    class="subheader min-h-lg-175px pt-5 pb-7"
+    class="subheader py-2 py-lg-12 subheader-transparent"
     v-bind:class="subheaderClasses"
     id="kt_subheader"
   >
@@ -65,7 +65,7 @@
           v-b-tooltip.hover="'Quick actions'"
         >
           <!--begin::Navigation-->
-          <div class="navi navi-hover" style="width: 250px;">
+          <div class="navi navi-hover min-w-md-250px">
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
                 <span class="navi-icon">

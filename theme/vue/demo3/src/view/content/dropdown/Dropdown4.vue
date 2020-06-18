@@ -10,7 +10,7 @@
     text="Create"
   >
     <!--begin::Navigation-->
-    <div class="navi navi-hover" style="width: 250px;">
+    <div class="navi navi-hover min-w-md-250px">
       <b-dropdown-text tag="div" class="navi-header pb-1">
         <span class="text-primary text-uppercase font-weight-bold"
           >Add new:</span

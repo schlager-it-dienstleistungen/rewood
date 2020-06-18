@@ -98,14 +98,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arcgisToGeoJSON", function() { return arcgisToGeoJSON; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "geojsonToArcGIS", function() { return geojsonToArcGIS; });
 /* @preserve
-* @terraformer/arcgis - v2.0.1 - MIT
+* @terraformer/arcgis - v2.0.6 - MIT
 * Copyright (c) 2012-2020 Environmental Systems Research Institute, Inc.
-* Thu Apr 16 2020 00:19:41 GMT-0700 (Pacific Daylight Time)
+* Mon May 18 2020 14:30:35 GMT-0700 (Pacific Daylight Time)
 */
 /* Copyright (c) 2012-2019 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 
-const edgeIntersectsEdge = (a1, a2, b1, b2) => {
+var edgeIntersectsEdge = function edgeIntersectsEdge(a1, a2, b1, b2) {
   var uaT = (b2[0] - b1[0]) * (a1[1] - b1[1]) - (b2[1] - b1[1]) * (a1[0] - b1[0]);
   var ubT = (a2[0] - a1[0]) * (a1[1] - b1[1]) - (a2[1] - a1[1]) * (a1[0] - b1[0]);
   var uB = (b2[1] - b1[1]) * (a2[0] - a1[0]) - (b2[0] - b1[0]) * (a2[1] - a1[1]);
@@ -121,21 +121,19 @@ const edgeIntersectsEdge = (a1, a2, b1, b2) => {
 
   return false;
 };
+var coordinatesContainPoint = function coordinatesContainPoint(coordinates, point) {
+  var contains = false;
 
-const coordinatesContainPoint = (coordinates, point) => {
-  let contains = false;
-  for (let i = -1, l = coordinates.length, j = l - 1; ++i < l; j = i) {
-    if (((coordinates[i][1] <= point[1] && point[1] < coordinates[j][1]) ||
-         (coordinates[j][1] <= point[1] && point[1] < coordinates[i][1])) &&
-        (point[0] < (coordinates[j][0] - coordinates[i][0]) * (point[1] - coordinates[i][1]) / (coordinates[j][1] - coordinates[i][1]) + coordinates[i][0])) {
+  for (var i = -1, l = coordinates.length, j = l - 1; ++i < l; j = i) {
+    if ((coordinates[i][1] <= point[1] && point[1] < coordinates[j][1] || coordinates[j][1] <= point[1] && point[1] < coordinates[i][1]) && point[0] < (coordinates[j][0] - coordinates[i][0]) * (point[1] - coordinates[i][1]) / (coordinates[j][1] - coordinates[i][1]) + coordinates[i][0]) {
       contains = !contains;
     }
   }
+
   return contains;
 };
-
-const pointsEqual = (a, b) => {
-  for (let i = 0; i < a.length; i++) {
+var pointsEqual = function pointsEqual(a, b) {
+  for (var i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) {
       return false;
     }
@@ -143,130 +141,141 @@ const pointsEqual = (a, b) => {
 
   return true;
 };
-
-const arrayIntersectsArray = (a, b) => {
-  for (let i = 0; i < a.length - 1; i++) {
-    for (let j = 0; j < b.length - 1; j++) {
+var arrayIntersectsArray = function arrayIntersectsArray(a, b) {
+  for (var i = 0; i < a.length - 1; i++) {
+    for (var j = 0; j < b.length - 1; j++) {
       if (edgeIntersectsEdge(a[i], a[i + 1], b[j], b[j + 1])) {
         return true;
       }
     }
   }
+
   return false;
 };
 
 /* Copyright (c) 2012-2019 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 
-// checks if the first and last points of a ring are equal and closes the ring
-const closeRing = (coordinates) => {
+var closeRing = function closeRing(coordinates) {
   if (!pointsEqual(coordinates[0], coordinates[coordinates.length - 1])) {
     coordinates.push(coordinates[0]);
   }
-  return coordinates;
-};
 
-// determine if polygon ring coordinates are clockwise. clockwise signifies outer ring, counter-clockwise an inner ring
+  return coordinates;
+}; // determine if polygon ring coordinates are clockwise. clockwise signifies outer ring, counter-clockwise an inner ring
 // or hole. this logic was found at http://stackoverflow.com/questions/1165647/how-to-determine-if-a-list-of-polygon-
 // points-are-in-clockwise-order
-const ringIsClockwise = (ringToTest) => {
+
+var ringIsClockwise = function ringIsClockwise(ringToTest) {
   var total = 0;
   var i = 0;
   var rLength = ringToTest.length;
   var pt1 = ringToTest[i];
   var pt2;
+
   for (i; i < rLength - 1; i++) {
     pt2 = ringToTest[i + 1];
     total += (pt2[0] - pt1[0]) * (pt2[1] + pt1[1]);
     pt1 = pt2;
   }
-  return (total >= 0);
-};
 
-// shallow object clone for feature properties and attributes
+  return total >= 0;
+}; // This function ensures that rings are oriented in the right directions
 // from http://jsperf.com/cloning-an-object/2
-const shallowClone = (obj) => {
+
+var shallowClone = function shallowClone(obj) {
   var target = {};
+
   for (var i in obj) {
+    // both arcgis attributes and geojson props are just hardcoded keys
     if (obj.hasOwnProperty(i)) {
+      // eslint-disable-line no-prototype-builtins
       target[i] = obj[i];
     }
   }
+
   return target;
 };
 
 /* Copyright (c) 2012-2019 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 
-const coordinatesContainCoordinates = (outer, inner) => {
+var coordinatesContainCoordinates = function coordinatesContainCoordinates(outer, inner) {
   var intersects = arrayIntersectsArray(outer, inner);
   var contains = coordinatesContainPoint(outer, inner[0]);
+
   if (!intersects && contains) {
     return true;
   }
-  return false;
-};
 
-// do any polygons in this array contain any other polygons in this array?
+  return false;
+}; // do any polygons in this array contain any other polygons in this array?
 // used for checking for holes in arcgis rings
-const convertRingsToGeoJSON = (rings) => {
+
+
+var convertRingsToGeoJSON = function convertRingsToGeoJSON(rings) {
   var outerRings = [];
   var holes = [];
   var x; // iterator
-  var outerRing; // current outer ring being evaluated
-  var hole; // current hole being evaluated
 
+  var outerRing; // current outer ring being evaluated
+
+  var hole; // current hole being evaluated
   // for each ring
+
   for (var r = 0; r < rings.length; r++) {
     var ring = closeRing(rings[r].slice(0));
+
     if (ring.length < 4) {
       continue;
-    }
-    // is this ring an outer ring? is it clockwise?
+    } // is this ring an outer ring? is it clockwise?
+
+
     if (ringIsClockwise(ring)) {
-      var polygon = [ ring.slice().reverse() ]; // wind outer rings counterclockwise for RFC 7946 compliance
+      var polygon = [ring.slice().reverse()]; // wind outer rings counterclockwise for RFC 7946 compliance
+
       outerRings.push(polygon); // push to outer rings
     } else {
       holes.push(ring.slice().reverse()); // wind inner rings clockwise for RFC 7946 compliance
     }
   }
 
-  var uncontainedHoles = [];
+  var uncontainedHoles = []; // while there are holes left...
 
-  // while there are holes left...
   while (holes.length) {
     // pop a hole off out stack
-    hole = holes.pop();
+    hole = holes.pop(); // loop over all outer rings and see if they contain our hole.
 
-    // loop over all outer rings and see if they contain our hole.
     var contained = false;
+
     for (x = outerRings.length - 1; x >= 0; x--) {
       outerRing = outerRings[x][0];
+
       if (coordinatesContainCoordinates(outerRing, hole)) {
         // the hole is contained push it into our polygon
         outerRings[x].push(hole);
         contained = true;
         break;
       }
-    }
-
-    // ring is not contained in any outer ring
+    } // ring is not contained in any outer ring
     // sometimes this happens https://github.com/Esri/esri-leaflet/issues/320
+
+
     if (!contained) {
       uncontainedHoles.push(hole);
     }
-  }
+  } // if we couldn't match any holes using contains we can try intersects...
 
-  // if we couldn't match any holes using contains we can try intersects...
+
   while (uncontainedHoles.length) {
     // pop a hole off out stack
-    hole = uncontainedHoles.pop();
+    hole = uncontainedHoles.pop(); // loop over all outer rings and see if any intersect our hole.
 
-    // loop over all outer rings and see if any intersect our hole.
     var intersects = false;
 
     for (x = outerRings.length - 1; x >= 0; x--) {
       outerRing = outerRings[x][0];
+
       if (arrayIntersectsArray(outerRing, hole)) {
         // the hole is contained push it into our polygon
         outerRings[x].push(hole);
@@ -293,27 +302,27 @@ const convertRingsToGeoJSON = (rings) => {
   }
 };
 
-const getId = (attributes, idAttribute) => {
+var getId = function getId(attributes, idAttribute) {
   var keys = idAttribute ? [idAttribute, 'OBJECTID', 'FID'] : ['OBJECTID', 'FID'];
+
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
-    if (
-      key in attributes &&
-      (typeof attributes[key] === 'string' ||
-        typeof attributes[key] === 'number')
-    ) {
+
+    if (key in attributes && (typeof attributes[key] === 'string' || typeof attributes[key] === 'number')) {
       return attributes[key];
     }
   }
+
   throw Error('No valid id attribute found');
 };
 
-const arcgisToGeoJSON = (arcgis, idAttribute) => {
+var arcgisToGeoJSON = function arcgisToGeoJSON(arcgis, idAttribute) {
   var geojson = {};
 
   if (arcgis.features) {
     geojson.type = 'FeatureCollection';
     geojson.features = [];
+
     for (var i = 0; i < arcgis.features.length; i++) {
       geojson.features.push(arcgisToGeoJSON(arcgis.features[i], idAttribute));
     }
@@ -322,6 +331,7 @@ const arcgisToGeoJSON = (arcgis, idAttribute) => {
   if (typeof arcgis.x === 'number' && typeof arcgis.y === 'number') {
     geojson.type = 'Point';
     geojson.coordinates = [arcgis.x, arcgis.y];
+
     if (typeof arcgis.z === 'number') {
       geojson.coordinates.push(arcgis.z);
     }
@@ -346,45 +356,30 @@ const arcgisToGeoJSON = (arcgis, idAttribute) => {
     geojson = convertRingsToGeoJSON(arcgis.rings.slice(0));
   }
 
-  if (
-    typeof arcgis.xmin === 'number' &&
-    typeof arcgis.ymin === 'number' &&
-    typeof arcgis.xmax === 'number' &&
-    typeof arcgis.ymax === 'number'
-  ) {
+  if (typeof arcgis.xmin === 'number' && typeof arcgis.ymin === 'number' && typeof arcgis.xmax === 'number' && typeof arcgis.ymax === 'number') {
     geojson.type = 'Polygon';
-    geojson.coordinates = [[
-      [arcgis.xmax, arcgis.ymax],
-      [arcgis.xmin, arcgis.ymax],
-      [arcgis.xmin, arcgis.ymin],
-      [arcgis.xmax, arcgis.ymin],
-      [arcgis.xmax, arcgis.ymax]
-    ]];
+    geojson.coordinates = [[[arcgis.xmax, arcgis.ymax], [arcgis.xmin, arcgis.ymax], [arcgis.xmin, arcgis.ymin], [arcgis.xmax, arcgis.ymin], [arcgis.xmax, arcgis.ymax]]];
   }
 
   if (arcgis.geometry || arcgis.attributes) {
     geojson.type = 'Feature';
-    geojson.geometry = (arcgis.geometry) ? arcgisToGeoJSON(arcgis.geometry) : null;
-    geojson.properties = (arcgis.attributes) ? shallowClone(arcgis.attributes) : null;
+    geojson.geometry = arcgis.geometry ? arcgisToGeoJSON(arcgis.geometry) : null;
+    geojson.properties = arcgis.attributes ? shallowClone(arcgis.attributes) : null;
+
     if (arcgis.attributes) {
       try {
         geojson.id = getId(arcgis.attributes, idAttribute);
-      } catch (err) {
-        // don't set an id
+      } catch (err) {// don't set an id
       }
     }
-  }
+  } // if no valid geometry was encountered
 
-  // if no valid geometry was encountered
+
   if (JSON.stringify(geojson.geometry) === JSON.stringify({})) {
     geojson.geometry = null;
   }
 
-  if (
-    arcgis.spatialReference &&
-    arcgis.spatialReference.wkid &&
-    arcgis.spatialReference.wkid !== 4326
-  ) {
+  if (arcgis.spatialReference && arcgis.spatialReference.wkid && arcgis.spatialReference.wkid !== 4326) {
     console.warn('Object converted in non-standard crs - ' + JSON.stringify(arcgis.spatialReference));
   }
 
@@ -393,14 +388,14 @@ const arcgisToGeoJSON = (arcgis, idAttribute) => {
 
 /* Copyright (c) 2012-2019 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
-
-// This function ensures that rings are oriented in the right directions
 // outer rings are clockwise, holes are counterclockwise
 // used for converting GeoJSON Polygons to ArcGIS Polygons
-const orientRings = (poly) => {
+
+var orientRings = function orientRings(poly) {
   var output = [];
   var polygon = poly.slice(0);
   var outerRing = closeRing(polygon.shift().slice(0));
+
   if (outerRing.length >= 4) {
     if (!ringIsClockwise(outerRing)) {
       outerRing.reverse();
@@ -410,35 +405,42 @@ const orientRings = (poly) => {
 
     for (var i = 0; i < polygon.length; i++) {
       var hole = closeRing(polygon[i].slice(0));
+
       if (hole.length >= 4) {
         if (ringIsClockwise(hole)) {
           hole.reverse();
         }
+
         output.push(hole);
       }
     }
   }
 
   return output;
-};
-
-// This function flattens holes in multipolygons to one array of polygons
+}; // This function flattens holes in multipolygons to one array of polygons
 // used for converting GeoJSON Polygons to ArcGIS Polygons
-const flattenMultiPolygonRings = (rings) => {
+
+
+var flattenMultiPolygonRings = function flattenMultiPolygonRings(rings) {
   var output = [];
+
   for (var i = 0; i < rings.length; i++) {
     var polygon = orientRings(rings[i]);
+
     for (var x = polygon.length - 1; x >= 0; x--) {
       var ring = polygon[x].slice(0);
       output.push(ring);
     }
   }
+
   return output;
 };
 
-const geojsonToArcGIS = (geojson, idAttribute) => {
+var geojsonToArcGIS = function geojsonToArcGIS(geojson, idAttribute) {
   idAttribute = idAttribute || 'OBJECTID';
-  var spatialReference = { wkid: 4326 };
+  var spatialReference = {
+    wkid: 4326
+  };
   var result = {};
   var i;
 
@@ -448,46 +450,61 @@ const geojsonToArcGIS = (geojson, idAttribute) => {
       result.y = geojson.coordinates[1];
       result.spatialReference = spatialReference;
       break;
+
     case 'MultiPoint':
       result.points = geojson.coordinates.slice(0);
       result.spatialReference = spatialReference;
       break;
+
     case 'LineString':
       result.paths = [geojson.coordinates.slice(0)];
       result.spatialReference = spatialReference;
       break;
+
     case 'MultiLineString':
       result.paths = geojson.coordinates.slice(0);
       result.spatialReference = spatialReference;
       break;
+
     case 'Polygon':
       result.rings = orientRings(geojson.coordinates.slice(0));
       result.spatialReference = spatialReference;
       break;
+
     case 'MultiPolygon':
       result.rings = flattenMultiPolygonRings(geojson.coordinates.slice(0));
       result.spatialReference = spatialReference;
       break;
+
     case 'Feature':
       if (geojson.geometry) {
         result.geometry = geojsonToArcGIS(geojson.geometry, idAttribute);
       }
-      result.attributes = (geojson.properties) ? shallowClone(geojson.properties) : {};
+
+      result.attributes = geojson.properties ? shallowClone(geojson.properties) : {};
+
       if (geojson.id) {
         result.attributes[idAttribute] = geojson.id;
       }
+
       break;
+
     case 'FeatureCollection':
       result = [];
+
       for (i = 0; i < geojson.features.length; i++) {
         result.push(geojsonToArcGIS(geojson.features[i], idAttribute));
       }
+
       break;
+
     case 'GeometryCollection':
       result = [];
+
       for (i = 0; i < geojson.geometries.length; i++) {
         result.push(geojsonToArcGIS(geojson.geometries[i], idAttribute));
       }
+
       break;
   }
 
@@ -509,1206 +526,463 @@ const geojsonToArcGIS = (geojson, idAttribute) => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* esri-leaflet-geocoder - v2.3.2 - Tue Nov 12 2019 12:54:25 GMT-0600 (Central Standard Time)
- * Copyright (c) 2019 Environmental Systems Research Institute, Inc.
+/* esri-leaflet-geocoder - v2.3.3 - Fri May 29 2020 15:01:40 GMT-0500 (Central Daylight Time)
+ * Copyright (c) 2020 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 (function (global, factory) {
-	 true ? factory(exports, __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js"), __webpack_require__(/*! esri-leaflet */ "./node_modules/esri-leaflet/src/EsriLeaflet.js")) :
-	undefined;
-}(this, (function (exports,leaflet,esriLeaflet) { 'use strict';
+   true ? factory(exports, __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js"), __webpack_require__(/*! esri-leaflet */ "./node_modules/esri-leaflet/src/EsriLeaflet.js")) :
+  undefined;
+}(this, (function (exports, leaflet, esriLeaflet) { 'use strict';
 
-var version = "2.3.2";
+  var version = "2.3.3";
 
-var WorldGeocodingServiceUrl = 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/';
+  var WorldGeocodingServiceUrl = 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/';
 
-var Geocode = esriLeaflet.Task.extend({
-  path: 'findAddressCandidates',
+  var Geocode = esriLeaflet.Task.extend({
+    path: 'findAddressCandidates',
 
-  params: {
-    outSr: 4326,
-    forStorage: false,
-    outFields: '*',
-    maxLocations: 20
-  },
+    params: {
+      outSr: 4326,
+      forStorage: false,
+      outFields: '*',
+      maxLocations: 20
+    },
 
-  setters: {
-    'address': 'address',
-    'neighborhood': 'neighborhood',
-    'city': 'city',
-    'subregion': 'subregion',
-    'region': 'region',
-    'postal': 'postal',
-    'country': 'country',
-    'text': 'singleLine',
-    'category': 'category',
-    'token': 'token',
-    'key': 'magicKey',
-    'fields': 'outFields',
-    'forStorage': 'forStorage',
-    'maxLocations': 'maxLocations',
-    // World Geocoding Service (only works with singleLine)
-    'countries': 'sourceCountry'
-  },
+    setters: {
+      'address': 'address',
+      'neighborhood': 'neighborhood',
+      'city': 'city',
+      'subregion': 'subregion',
+      'region': 'region',
+      'postal': 'postal',
+      'country': 'country',
+      'text': 'singleLine',
+      'category': 'category',
+      'token': 'token',
+      'key': 'magicKey',
+      'fields': 'outFields',
+      'forStorage': 'forStorage',
+      'maxLocations': 'maxLocations',
+      // World Geocoding Service (only works with singleLine)
+      'countries': 'sourceCountry'
+    },
 
-  initialize: function (options) {
-    options = options || {};
-    options.url = options.url || WorldGeocodingServiceUrl;
-    esriLeaflet.Task.prototype.initialize.call(this, options);
-  },
+    initialize: function (options) {
+      options = options || {};
+      options.url = options.url || WorldGeocodingServiceUrl;
+      esriLeaflet.Task.prototype.initialize.call(this, options);
+    },
 
-  within: function (bounds) {
-    bounds = leaflet.latLngBounds(bounds);
-    this.params.searchExtent = esriLeaflet.Util.boundsToExtent(bounds);
-    return this;
-  },
+    within: function (bounds) {
+      bounds = leaflet.latLngBounds(bounds);
+      this.params.searchExtent = esriLeaflet.Util.boundsToExtent(bounds);
+      return this;
+    },
 
-  nearby: function (coords, radius) {
-    var centroid = leaflet.latLng(coords);
-    this.params.location = centroid.lng + ',' + centroid.lat;
-    this.params.distance = Math.min(Math.max(radius, 2000), 50000);
-    return this;
-  },
+    nearby: function (coords, radius) {
+      var centroid = leaflet.latLng(coords);
+      this.params.location = centroid.lng + ',' + centroid.lat;
+      this.params.distance = Math.min(Math.max(radius, 2000), 50000);
+      return this;
+    },
 
-  run: function (callback, context) {
-    if (this.options.customParam) {
-      this.params[this.options.customParam] = this.params.singleLine;
-      delete this.params.singleLine;
-    }
-
-    return this.request(function (error, response) {
-      var processor = this._processGeocoderResponse;
-      var results = (!error) ? processor(response) : undefined;
-      callback.call(context, error, { results: results }, response);
-    }, this);
-  },
-
-  _processGeocoderResponse: function (response) {
-    var results = [];
-
-    for (var i = 0; i < response.candidates.length; i++) {
-      var candidate = response.candidates[i];
-      if (candidate.extent) {
-        var bounds = esriLeaflet.Util.extentToBounds(candidate.extent);
+    run: function (callback, context) {
+      if (this.options.customParam) {
+        this.params[this.options.customParam] = this.params.singleLine;
+        delete this.params.singleLine;
       }
 
-      results.push({
-        text: candidate.address,
-        bounds: bounds,
-        score: candidate.score,
-        latlng: leaflet.latLng(candidate.location.y, candidate.location.x),
-        properties: candidate.attributes
-      });
-    }
-    return results;
-  }
-});
-
-function geocode (options) {
-  return new Geocode(options);
-}
-
-var ReverseGeocode = esriLeaflet.Task.extend({
-  path: 'reverseGeocode',
-
-  params: {
-    outSR: 4326,
-    returnIntersection: false
-  },
-
-  setters: {
-    'distance': 'distance',
-    'language': 'langCode',
-    'intersection': 'returnIntersection'
-  },
-
-  initialize: function (options) {
-    options = options || {};
-    options.url = options.url || WorldGeocodingServiceUrl;
-    esriLeaflet.Task.prototype.initialize.call(this, options);
-  },
-
-  latlng: function (coords) {
-    var centroid = leaflet.latLng(coords);
-    this.params.location = centroid.lng + ',' + centroid.lat;
-    return this;
-  },
-
-  run: function (callback, context) {
-    return this.request(function (error, response) {
-      var result;
-
-      if (!error) {
-        result = {
-          latlng: leaflet.latLng(response.location.y, response.location.x),
-          address: response.address
-        };
-      } else {
-        result = undefined;
-      }
-
-      callback.call(context, error, result, response);
-    }, this);
-  }
-});
-
-function reverseGeocode (options) {
-  return new ReverseGeocode(options);
-}
-
-var Suggest = esriLeaflet.Task.extend({
-  path: 'suggest',
-
-  params: {},
-
-  setters: {
-    text: 'text',
-    category: 'category',
-    countries: 'countryCode',
-    maxSuggestions: 'maxSuggestions'
-  },
-
-  initialize: function (options) {
-    options = options || {};
-    if (!options.url) {
-      options.url = WorldGeocodingServiceUrl;
-      options.supportsSuggest = true;
-    }
-    esriLeaflet.Task.prototype.initialize.call(this, options);
-  },
-
-  within: function (bounds) {
-    bounds = leaflet.latLngBounds(bounds);
-    bounds = bounds.pad(0.5);
-    var center = bounds.getCenter();
-    var ne = bounds.getNorthWest();
-    this.params.location = center.lng + ',' + center.lat;
-    this.params.distance = Math.min(Math.max(center.distanceTo(ne), 2000), 50000);
-    this.params.searchExtent = esriLeaflet.Util.boundsToExtent(bounds);
-    return this;
-  },
-
-  nearby: function (coords, radius) {
-    var centroid = leaflet.latLng(coords);
-    this.params.location = centroid.lng + ',' + centroid.lat;
-    this.params.distance = Math.min(Math.max(radius, 2000), 50000);
-    return this;
-  },
-
-  run: function (callback, context) {
-    if (this.options.supportsSuggest) {
       return this.request(function (error, response) {
-        callback.call(context, error, response, response);
+        var processor = this._processGeocoderResponse;
+        var results = (!error) ? processor(response) : undefined;
+        callback.call(context, error, { results: results }, response);
       }, this);
-    } else {
-      console.warn('this geocoding service does not support asking for suggestions');
-    }
-  }
+    },
 
-});
+    _processGeocoderResponse: function (response) {
+      var results = [];
 
-function suggest (options) {
-  return new Suggest(options);
-}
-
-var GeocodeService = esriLeaflet.Service.extend({
-  initialize: function (options) {
-    options = options || {};
-    if (options.url) {
-      esriLeaflet.Service.prototype.initialize.call(this, options);
-      this._confirmSuggestSupport();
-    } else {
-      options.url = WorldGeocodingServiceUrl;
-      options.supportsSuggest = true;
-      esriLeaflet.Service.prototype.initialize.call(this, options);
-    }
-  },
-
-  geocode: function () {
-    return geocode(this);
-  },
-
-  reverse: function () {
-    return reverseGeocode(this);
-  },
-
-  suggest: function () {
-    // requires either the Esri World Geocoding Service or a <10.3 ArcGIS Server Geocoding Service that supports suggest.
-    return suggest(this);
-  },
-
-  _confirmSuggestSupport: function () {
-    this.metadata(function (error, response) {
-      if (error) { return; }
-      // pre 10.3 geocoding services dont list capabilities (and dont support maxLocations)
-      // only SOME individual services have been configured to support asking for suggestions
-      if (!response.capabilities) {
-        this.options.supportsSuggest = false;
-      } else if (response.capabilities.indexOf('Suggest') > -1) {
-        this.options.supportsSuggest = true;
-      } else {
-        this.options.supportsSuggest = false;
-      }
-      // whether the service supports suggest or not, utilize the metadata response to determine the appropriate parameter name for single line geocoding requests
-      this.options.customParam = response.singleLineAddressField.name;
-    }, this);
-  }
-});
-
-function geocodeService (options) {
-  return new GeocodeService(options);
-}
-
-var GeosearchCore = leaflet.Evented.extend({
-
-  options: {
-    zoomToResult: true,
-    useMapBounds: 12,
-    searchBounds: null
-  },
-
-  initialize: function (control, options) {
-    leaflet.Util.setOptions(this, options);
-    this._control = control;
-
-    if (!options || !options.providers || !options.providers.length) {
-      throw new Error('You must specify at least one provider');
-    }
-
-    this._providers = options.providers;
-  },
-
-  _geocode: function (text, key, provider) {
-    var activeRequests = 0;
-    var allResults = [];
-    var bounds;
-
-    var callback = leaflet.Util.bind(function (error, results) {
-      activeRequests--;
-      if (error) {
-        return;
-      }
-
-      if (results) {
-        allResults = allResults.concat(results);
-      }
-
-      if (activeRequests <= 0) {
-        bounds = this._boundsFromResults(allResults);
-
-        this.fire('results', {
-          results: allResults,
-          bounds: bounds,
-          latlng: (bounds) ? bounds.getCenter() : undefined,
-          text: text
-        }, true);
-
-        if (this.options.zoomToResult && bounds) {
-          this._control._map.fitBounds(bounds);
+      for (var i = 0; i < response.candidates.length; i++) {
+        var candidate = response.candidates[i];
+        if (candidate.extent) {
+          var bounds = esriLeaflet.Util.extentToBounds(candidate.extent);
         }
 
-        this.fire('load');
+        results.push({
+          text: candidate.address,
+          bounds: bounds,
+          score: candidate.score,
+          latlng: leaflet.latLng(candidate.location.y, candidate.location.x),
+          properties: candidate.attributes
+        });
       }
-    }, this);
+      return results;
+    }
+  });
 
-    if (key) {
-      activeRequests++;
-      provider.results(text, key, this._searchBounds(), callback);
-    } else {
-      for (var i = 0; i < this._providers.length; i++) {
-        activeRequests++;
-        this._providers[i].results(text, key, this._searchBounds(), callback);
+  function geocode (options) {
+    return new Geocode(options);
+  }
+
+  var ReverseGeocode = esriLeaflet.Task.extend({
+    path: 'reverseGeocode',
+
+    params: {
+      outSR: 4326,
+      returnIntersection: false
+    },
+
+    setters: {
+      'distance': 'distance',
+      'language': 'langCode',
+      'intersection': 'returnIntersection'
+    },
+
+    initialize: function (options) {
+      options = options || {};
+      options.url = options.url || WorldGeocodingServiceUrl;
+      esriLeaflet.Task.prototype.initialize.call(this, options);
+    },
+
+    latlng: function (coords) {
+      var centroid = leaflet.latLng(coords);
+      this.params.location = centroid.lng + ',' + centroid.lat;
+      return this;
+    },
+
+    run: function (callback, context) {
+      return this.request(function (error, response) {
+        var result;
+
+        if (!error) {
+          result = {
+            latlng: leaflet.latLng(response.location.y, response.location.x),
+            address: response.address
+          };
+        } else {
+          result = undefined;
+        }
+
+        callback.call(context, error, result, response);
+      }, this);
+    }
+  });
+
+  function reverseGeocode (options) {
+    return new ReverseGeocode(options);
+  }
+
+  var Suggest = esriLeaflet.Task.extend({
+    path: 'suggest',
+
+    params: {},
+
+    setters: {
+      text: 'text',
+      category: 'category',
+      countries: 'countryCode',
+      maxSuggestions: 'maxSuggestions'
+    },
+
+    initialize: function (options) {
+      options = options || {};
+      if (!options.url) {
+        options.url = WorldGeocodingServiceUrl;
+        options.supportsSuggest = true;
+      }
+      esriLeaflet.Task.prototype.initialize.call(this, options);
+    },
+
+    within: function (bounds) {
+      bounds = leaflet.latLngBounds(bounds);
+      bounds = bounds.pad(0.5);
+      var center = bounds.getCenter();
+      var ne = bounds.getNorthWest();
+      this.params.location = center.lng + ',' + center.lat;
+      this.params.distance = Math.min(Math.max(center.distanceTo(ne), 2000), 50000);
+      this.params.searchExtent = esriLeaflet.Util.boundsToExtent(bounds);
+      return this;
+    },
+
+    nearby: function (coords, radius) {
+      var centroid = leaflet.latLng(coords);
+      this.params.location = centroid.lng + ',' + centroid.lat;
+      this.params.distance = Math.min(Math.max(radius, 2000), 50000);
+      return this;
+    },
+
+    run: function (callback, context) {
+      if (this.options.supportsSuggest) {
+        return this.request(function (error, response) {
+          callback.call(context, error, response, response);
+        }, this);
+      } else {
+        console.warn('this geocoding service does not support asking for suggestions');
       }
     }
-  },
 
-  _suggest: function (text) {
-    var activeRequests = this._providers.length;
-    var suggestionsLength = 0;
+  });
 
-    var createCallback = leaflet.Util.bind(function (text, provider) {
-      return leaflet.Util.bind(function (error, suggestions) {
-        activeRequests = activeRequests - 1;
-        suggestionsLength += suggestions.length;
+  function suggest (options) {
+    return new Suggest(options);
+  }
 
+  var GeocodeService = esriLeaflet.Service.extend({
+    initialize: function (options) {
+      options = options || {};
+      if (options.url) {
+        esriLeaflet.Service.prototype.initialize.call(this, options);
+        this._confirmSuggestSupport();
+      } else {
+        options.url = WorldGeocodingServiceUrl;
+        options.supportsSuggest = true;
+        esriLeaflet.Service.prototype.initialize.call(this, options);
+      }
+    },
+
+    geocode: function () {
+      return geocode(this);
+    },
+
+    reverse: function () {
+      return reverseGeocode(this);
+    },
+
+    suggest: function () {
+      // requires either the Esri World Geocoding Service or a <10.3 ArcGIS Server Geocoding Service that supports suggest.
+      return suggest(this);
+    },
+
+    _confirmSuggestSupport: function () {
+      this.metadata(function (error, response) {
+        if (error) { return; }
+        // pre 10.3 geocoding services dont list capabilities (and dont support maxLocations)
+        // only SOME individual services have been configured to support asking for suggestions
+        if (!response.capabilities) {
+          this.options.supportsSuggest = false;
+        } else if (response.capabilities.indexOf('Suggest') > -1) {
+          this.options.supportsSuggest = true;
+        } else {
+          this.options.supportsSuggest = false;
+        }
+        // whether the service supports suggest or not, utilize the metadata response to determine the appropriate parameter name for single line geocoding requests
+        this.options.customParam = response.singleLineAddressField.name;
+      }, this);
+    }
+  });
+
+  function geocodeService (options) {
+    return new GeocodeService(options);
+  }
+
+  var GeosearchCore = leaflet.Evented.extend({
+
+    options: {
+      zoomToResult: true,
+      useMapBounds: 12,
+      searchBounds: null
+    },
+
+    initialize: function (control, options) {
+      leaflet.Util.setOptions(this, options);
+      this._control = control;
+
+      if (!options || !options.providers || !options.providers.length) {
+        throw new Error('You must specify at least one provider');
+      }
+
+      this._providers = options.providers;
+    },
+
+    _geocode: function (text, key, provider) {
+      var activeRequests = 0;
+      var allResults = [];
+      var bounds;
+
+      var callback = leaflet.Util.bind(function (error, results) {
+        activeRequests--;
         if (error) {
-          // an error occurred for one of the providers' suggest requests
-          this._control._clearProviderSuggestions(provider);
-
-          // perform additional cleanup when all requests are finished
-          this._control._finalizeSuggestions(activeRequests, suggestionsLength);
-
           return;
         }
 
-        if (suggestions.length) {
-          for (var i = 0; i < suggestions.length; i++) {
-            suggestions[i].provider = provider;
-          }
-        } else {
-          // we still need to update the UI
-          this._control._renderSuggestions(suggestions);
+        if (results) {
+          allResults = allResults.concat(results);
         }
 
-        if (provider._lastRender !== text) {
-          this._control._clearProviderSuggestions(provider);
-        }
-
-        if (suggestions.length && this._control._input.value === text) {
-          provider._lastRender = text;
-          this._control._renderSuggestions(suggestions);
-        }
-
-        // perform additional cleanup when all requests are finished
-        this._control._finalizeSuggestions(activeRequests, suggestionsLength);
-      }, this);
-    }, this);
-
-    this._pendingSuggestions = [];
-
-    for (var i = 0; i < this._providers.length; i++) {
-      var provider = this._providers[i];
-      var request = provider.suggestions(text, this._searchBounds(), createCallback(text, provider));
-      this._pendingSuggestions.push(request);
-    }
-  },
-
-  _searchBounds: function () {
-    if (this.options.searchBounds !== null) {
-      return this.options.searchBounds;
-    }
-
-    if (this.options.useMapBounds === false) {
-      return null;
-    }
-
-    if (this.options.useMapBounds === true) {
-      return this._control._map.getBounds();
-    }
-
-    if (this.options.useMapBounds <= this._control._map.getZoom()) {
-      return this._control._map.getBounds();
-    }
-
-    return null;
-  },
-
-  _boundsFromResults: function (results) {
-    if (!results.length) {
-      return;
-    }
-
-    var nullIsland = leaflet.latLngBounds([0, 0], [0, 0]);
-    var resultBounds = [];
-    var resultLatlngs = [];
-
-    // collect the bounds and center of each result
-    for (var i = results.length - 1; i >= 0; i--) {
-      var result = results[i];
-
-      resultLatlngs.push(result.latlng);
-
-      // make sure bounds are valid and not 0,0. sometimes bounds are incorrect or not present
-      if (result.bounds && result.bounds.isValid() && !result.bounds.equals(nullIsland)) {
-        resultBounds.push(result.bounds);
-      }
-    }
-
-    // form a bounds object containing all center points
-    var bounds = leaflet.latLngBounds(resultLatlngs);
-
-    // and extend it to contain all bounds objects
-    for (var j = 0; j < resultBounds.length; j++) {
-      bounds.extend(resultBounds[j]);
-    }
-
-    return bounds;
-  },
-
-  _getAttribution: function () {
-    var attribs = [];
-    var providers = this._providers;
-
-    for (var i = 0; i < providers.length; i++) {
-      if (providers[i].options.attribution) {
-        attribs.push(providers[i].options.attribution);
-      }
-    }
-
-    return attribs.join(', ');
-  }
-
-});
-
-function geosearchCore (control, options) {
-  return new GeosearchCore(control, options);
-}
-
-var ArcgisOnlineProvider = GeocodeService.extend({
-  options: {
-    label: 'Places and Addresses',
-    maxResults: 5
-  },
-
-  suggestions: function (text, bounds, callback) {
-    var request = this.suggest().text(text);
-
-    if (bounds) {
-      request.within(bounds);
-    }
-
-    if (this.options.countries) {
-      request.countries(this.options.countries);
-    }
-
-    if (this.options.categories) {
-      request.category(this.options.categories);
-    }
-
-    // 15 is the maximum number of suggestions that can be returned
-    request.maxSuggestions(this.options.maxResults);
-
-    return request.run(function (error, results, response) {
-      var suggestions = [];
-      if (!error) {
-        while (response.suggestions.length && suggestions.length <= (this.options.maxResults - 1)) {
-          var suggestion = response.suggestions.shift();
-          if (!suggestion.isCollection) {
-            suggestions.push({
-              text: suggestion.text,
-              unformattedText: suggestion.text,
-              magicKey: suggestion.magicKey
-            });
-          }
-        }
-      }
-      callback(error, suggestions);
-    }, this);
-  },
-
-  results: function (text, key, bounds, callback) {
-    var request = this.geocode().text(text);
-
-    if (key) {
-      request.key(key);
-    }
-    // in the future Address/StreetName geocoding requests that include a magicKey will always only return one match
-    request.maxLocations(this.options.maxResults);
-
-    if (bounds) {
-      request.within(bounds);
-    }
-
-    if (this.options.forStorage) {
-      request.forStorage(true);
-    }
-
-    if (this.options.countries) {
-      request.countries(this.options.countries);
-    }
-
-    if (this.options.categories) {
-      request.category(this.options.categories);
-    }
-
-    return request.run(function (error, response) {
-      callback(error, response.results);
-    }, this);
-  }
-});
-
-function arcgisOnlineProvider (options) {
-  return new ArcgisOnlineProvider(options);
-}
-
-var Geosearch = leaflet.Control.extend({
-  includes: leaflet.Evented.prototype,
-
-  options: {
-    position: 'topleft',
-    collapseAfterResult: true,
-    expanded: false,
-    allowMultipleResults: true,
-    placeholder: 'Search for places or addresses',
-    title: 'Location Search'
-  },
-
-  initialize: function (options) {
-    leaflet.Util.setOptions(this, options);
-
-    if (!options || !options.providers || !options.providers.length) {
-      if (!options) {
-        options = {};
-      }
-      options.providers = [ arcgisOnlineProvider() ];
-    }
-
-    // instantiate the underlying class and pass along options
-    this._geosearchCore = geosearchCore(this, options);
-    this._geosearchCore._providers = options.providers;
-
-    // bubble each providers events to the control
-    this._geosearchCore.addEventParent(this);
-    for (var i = 0; i < this._geosearchCore._providers.length; i++) {
-      this._geosearchCore._providers[i].addEventParent(this);
-    }
-
-    this._geosearchCore._pendingSuggestions = [];
-
-    leaflet.Control.prototype.initialize.call(this, options);
-  },
-
-  _renderSuggestions: function (suggestions) {
-    var currentGroup;
-
-    if (suggestions.length > 0) {
-      this._suggestions.style.display = 'block';
-    }
-
-    var list;
-    var header;
-    var suggestionTextArray = [];
-
-    for (var i = 0; i < suggestions.length; i++) {
-      var suggestion = suggestions[i];
-      if (!header && this._geosearchCore._providers.length > 1 && currentGroup !== suggestion.provider.options.label) {
-        header = leaflet.DomUtil.create('div', 'geocoder-control-header', suggestion.provider._contentsElement);
-        header.textContent = suggestion.provider.options.label;
-        header.innerText = suggestion.provider.options.label;
-        currentGroup = suggestion.provider.options.label;
-      }
-
-      if (!list) {
-        list = leaflet.DomUtil.create('ul', 'geocoder-control-list', suggestion.provider._contentsElement);
-      }
-
-      if (suggestionTextArray.indexOf(suggestion.text) === -1) {
-        var suggestionItem = leaflet.DomUtil.create('li', 'geocoder-control-suggestion', list);
-
-        suggestionItem.innerHTML = suggestion.text;
-        suggestionItem.provider = suggestion.provider;
-        suggestionItem['data-magic-key'] = suggestion.magicKey;
-        suggestionItem.unformattedText = suggestion.unformattedText;
-      } else {
-        for (var j = 0; j < list.childNodes.length; j++) {
-          // if the same text already appears in the list of suggestions, append an additional ObjectID to its magicKey instead
-          if (list.childNodes[j].innerHTML === suggestion.text) {
-            list.childNodes[j]['data-magic-key'] += ',' + suggestion.magicKey;
-          }
-        }
-      }
-      suggestionTextArray.push(suggestion.text);
-    }
-
-    // when the geocoder position is either "topleft" or "topright":
-    // set the maxHeight of the suggestions box to:
-    //  map height
-    //  - suggestions offset (distance from top of suggestions to top of control)
-    //  - control offset (distance from top of control to top of map)
-    //  - 10 (extra padding)
-    if (this.getPosition().indexOf('top') > -1) {
-      this._suggestions.style.maxHeight = (this._map.getSize().y - this._suggestions.offsetTop - this._wrapper.offsetTop - 10) + 'px';
-    }
-
-    // when the geocoder position is either "bottomleft" or "bottomright":
-    // 1. set the maxHeight of the suggestions box to:
-    //  map height
-    //  - corner control container offsetHeight (height of container of bottom corner)
-    //  - control offsetHeight (height of geocoder control wrapper, the main expandable button)
-    // 2. to move it up, set the top of the suggestions box to:
-    //  negative offsetHeight of suggestions box (its own negative height now that it has children elements
-    //  - control offsetHeight (height of geocoder control wrapper, the main expandable button)
-    //  + 20 (extra spacing)
-    if (this.getPosition().indexOf('bottom') > -1) {
-      this._setSuggestionsBottomPosition();
-    }
-  },
-
-  _setSuggestionsBottomPosition: function () {
-    this._suggestions.style.maxHeight = (this._map.getSize().y - this._map._controlCorners[this.getPosition()].offsetHeight - this._wrapper.offsetHeight) + 'px';
-    this._suggestions.style.top = (-this._suggestions.offsetHeight - this._wrapper.offsetHeight + 20) + 'px';
-  },
-
-  _boundsFromResults: function (results) {
-    if (!results.length) {
-      return;
-    }
-
-    var nullIsland = leaflet.latLngBounds([0, 0], [0, 0]);
-    var resultBounds = [];
-    var resultLatlngs = [];
-
-    // collect the bounds and center of each result
-    for (var i = results.length - 1; i >= 0; i--) {
-      var result = results[i];
-
-      resultLatlngs.push(result.latlng);
-
-      // make sure bounds are valid and not 0,0. sometimes bounds are incorrect or not present
-      if (result.bounds && result.bounds.isValid() && !result.bounds.equals(nullIsland)) {
-        resultBounds.push(result.bounds);
-      }
-    }
-
-    // form a bounds object containing all center points
-    var bounds = leaflet.latLngBounds(resultLatlngs);
-
-    // and extend it to contain all bounds objects
-    for (var j = 0; j < resultBounds.length; j++) {
-      bounds.extend(resultBounds[j]);
-    }
-
-    return bounds;
-  },
-
-  clear: function () {
-    this._clearAllSuggestions();
-
-    if (this.options.collapseAfterResult) {
-      this._input.value = '';
-      this._lastValue = '';
-      this._input.placeholder = '';
-      leaflet.DomUtil.removeClass(this._wrapper, 'geocoder-control-expanded');
-    }
-
-    if (!this._map.scrollWheelZoom.enabled() && this._map.options.scrollWheelZoom) {
-      this._map.scrollWheelZoom.enable();
-    }
-  },
-
-  _clearAllSuggestions: function () {
-    this._suggestions.style.display = 'none';
-
-    for (var i = 0; i < this.options.providers.length; i++) {
-      this._clearProviderSuggestions(this.options.providers[i]);
-    }
-  },
-
-  _clearProviderSuggestions: function (provider) {
-    provider._contentsElement.innerHTML = '';
-  },
-
-  _finalizeSuggestions: function (activeRequests, suggestionsLength) {
-    // check if all requests are finished to remove the loading indicator
-    if (!activeRequests) {
-      leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
-
-      // when the geocoder position is either "bottomleft" or "bottomright",
-      // it is necessary in some cases to recalculate the maxHeight and top values of the this._suggestions element,
-      // even though this is also being done after each provider returns their own suggestions
-      if (this.getPosition().indexOf('bottom') > -1) {
-        this._setSuggestionsBottomPosition();
-      }
-
-      // also check if there were 0 total suggest results to clear the parent suggestions element
-      // otherwise its display value may be "block" instead of "none"
-      if (!suggestionsLength) {
-        this._clearAllSuggestions();
-      }
-    }
-  },
-
-  _setupClick: function () {
-    leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
-    this._input.focus();
-  },
-
-  disable: function () {
-    this._input.disabled = true;
-    leaflet.DomUtil.addClass(this._input, 'geocoder-control-input-disabled');
-    leaflet.DomEvent.removeListener(this._wrapper, 'click', this._setupClick, this);
-  },
-
-  enable: function () {
-    this._input.disabled = false;
-    leaflet.DomUtil.removeClass(this._input, 'geocoder-control-input-disabled');
-    leaflet.DomEvent.addListener(this._wrapper, 'click', this._setupClick, this);
-  },
-
-  getAttribution: function () {
-    var attribs = [];
-
-    for (var i = 0; i < this._providers.length; i++) {
-      if (this._providers[i].options.attribution) {
-        attribs.push(this._providers[i].options.attribution);
-      }
-    }
-
-    return attribs.join(', ');
-  },
-
-  geocodeSuggestion: function (e) {
-    var suggestionItem = e.target || e.srcElement;
-
-    if (
-      suggestionItem.classList.contains('geocoder-control-suggestions') ||
-      suggestionItem.classList.contains('geocoder-control-header')
-    ) {
-      return;
-    }
-
-    // make sure and point at the actual 'geocoder-control-suggestion'
-    if (suggestionItem.classList.length < 1) {
-      suggestionItem = suggestionItem.parentNode;
-    }
-
-    this._geosearchCore._geocode(suggestionItem.unformattedText, suggestionItem['data-magic-key'], suggestionItem.provider);
-    this.clear();
-  },
-
-  onAdd: function (map) {
-    // include 'Powered by Esri' in map attribution
-    esriLeaflet.Util.setEsriAttribution(map);
-
-    this._map = map;
-    this._wrapper = leaflet.DomUtil.create('div', 'geocoder-control');
-    this._input = leaflet.DomUtil.create('input', 'geocoder-control-input leaflet-bar', this._wrapper);
-    this._input.title = this.options.title;
-
-    if (this.options.expanded) {
-      leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
-      this._input.placeholder = this.options.placeholder;
-    }
-
-    // create the main suggested results container element
-    this._suggestions = leaflet.DomUtil.create('div', 'geocoder-control-suggestions leaflet-bar', this._wrapper);
-
-    // create a child contents container element for each provider inside of this._suggestions
-    // to maintain the configured order of providers for suggested results
-    for (var i = 0; i < this.options.providers.length; i++) {
-      this.options.providers[i]._contentsElement = leaflet.DomUtil.create('div', null, this._suggestions);
-    }
-
-    var credits = this._geosearchCore._getAttribution();
-
-    if (map.attributionControl) {
-      map.attributionControl.addAttribution(credits);
-    }
-
-    leaflet.DomEvent.addListener(this._input, 'focus', function (e) {
-      this._input.placeholder = this.options.placeholder;
-      leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
-    }, this);
-
-    leaflet.DomEvent.addListener(this._wrapper, 'click', this._setupClick, this);
-
-    // make sure both click and touch spawn an address/poi search
-    leaflet.DomEvent.addListener(this._suggestions, 'mousedown', this.geocodeSuggestion, this);
-
-    leaflet.DomEvent.addListener(this._input, 'blur', function (e) {
-      // TODO: this is too greedy and should not "clear"
-      // when trying to use the scrollbar or clicking on a non-suggestion item (such as a provider header)
-      this.clear();
-    }, this);
-
-    leaflet.DomEvent.addListener(this._input, 'keydown', function (e) {
-      var text = (e.target || e.srcElement).value;
-
-      leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
-
-      var list = this._suggestions.querySelectorAll('.' + 'geocoder-control-suggestion');
-      var selected = this._suggestions.querySelectorAll('.' + 'geocoder-control-selected')[0];
-      var selectedPosition;
-
-      for (var i = 0; i < list.length; i++) {
-        if (list[i] === selected) {
-          selectedPosition = i;
-          break;
-        }
-      }
-
-      switch (e.keyCode) {
-        case 13:
-          /*
-            if an item has been selected, geocode it
-            if focus is on the input textbox, geocode only if multiple results are allowed and more than two characters are present, or if a single suggestion is displayed.
-            if less than two characters have been typed, abort the geocode
-          */
-          if (selected) {
-            this._input.value = selected.innerText;
-            this._geosearchCore._geocode(selected.unformattedText, selected['data-magic-key'], selected.provider);
-            this.clear();
-          } else if (this.options.allowMultipleResults && text.length >= 2) {
-            this._geosearchCore._geocode(this._input.value, undefined);
-            this.clear();
-          } else {
-            if (list.length === 1) {
-              leaflet.DomUtil.addClass(list[0], 'geocoder-control-selected');
-              this._geosearchCore._geocode(list[0].innerHTML, list[0]['data-magic-key'], list[0].provider);
-            } else {
-              this.clear();
-              this._input.blur();
-            }
-          }
-          leaflet.DomEvent.preventDefault(e);
-          break;
-        case 38:
-          if (selected) {
-            leaflet.DomUtil.removeClass(selected, 'geocoder-control-selected');
-          }
-
-          var previousItem = list[selectedPosition - 1];
-
-          if (selected && previousItem) {
-            leaflet.DomUtil.addClass(previousItem, 'geocoder-control-selected');
-          } else {
-            leaflet.DomUtil.addClass(list[list.length - 1], 'geocoder-control-selected');
-          }
-          leaflet.DomEvent.preventDefault(e);
-          break;
-        case 40:
-          if (selected) {
-            leaflet.DomUtil.removeClass(selected, 'geocoder-control-selected');
-          }
-
-          var nextItem = list[selectedPosition + 1];
-
-          if (selected && nextItem) {
-            leaflet.DomUtil.addClass(nextItem, 'geocoder-control-selected');
-          } else {
-            leaflet.DomUtil.addClass(list[0], 'geocoder-control-selected');
-          }
-          leaflet.DomEvent.preventDefault(e);
-          break;
-        default:
-          // when the input changes we should cancel all pending suggestion requests if possible to avoid result collisions
-          for (var x = 0; x < this._geosearchCore._pendingSuggestions.length; x++) {
-            var request = this._geosearchCore._pendingSuggestions[x];
-            if (request && request.abort && !request.id) {
-              request.abort();
-            }
-          }
-          break;
-      }
-    }, this);
-
-    leaflet.DomEvent.addListener(this._input, 'keyup', leaflet.Util.throttle(function (e) {
-      var key = e.which || e.keyCode;
-      var text = (e.target || e.srcElement).value;
-
-      // require at least 2 characters for suggestions
-      if (text.length < 2) {
-        this._lastValue = this._input.value;
-        this._clearAllSuggestions();
-        leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
-        return;
-      }
-
-      // if this is the escape key it will clear the input so clear suggestions
-      if (key === 27) {
-        this._clearAllSuggestions();
-        return;
-      }
-
-      // if this is NOT the up/down arrows or enter make a suggestion
-      if (key !== 13 && key !== 38 && key !== 40) {
-        if (this._input.value !== this._lastValue) {
-          this._lastValue = this._input.value;
-          leaflet.DomUtil.addClass(this._input, 'geocoder-control-loading');
-          this._geosearchCore._suggest(text);
-        }
-      }
-    }, 50, this), this);
-
-    leaflet.DomEvent.disableClickPropagation(this._wrapper);
-
-    // when mouse moves over suggestions disable scroll wheel zoom if its enabled
-    leaflet.DomEvent.addListener(this._suggestions, 'mouseover', function (e) {
-      if (map.scrollWheelZoom.enabled() && map.options.scrollWheelZoom) {
-        map.scrollWheelZoom.disable();
-      }
-    });
-
-    // when mouse moves leaves suggestions enable scroll wheel zoom if its disabled
-    leaflet.DomEvent.addListener(this._suggestions, 'mouseout', function (e) {
-      if (!map.scrollWheelZoom.enabled() && map.options.scrollWheelZoom) {
-        map.scrollWheelZoom.enable();
-      }
-    });
-
-    this._geosearchCore.on('load', function (e) {
-      leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
-      this.clear();
-      this._input.blur();
-    }, this);
-
-    return this._wrapper;
-  }
-});
-
-function geosearch (options) {
-  return new Geosearch(options);
-}
-
-var FeatureLayerProvider = esriLeaflet.FeatureLayerService.extend({
-  options: {
-    label: 'Feature Layer',
-    maxResults: 5,
-    bufferRadius: 1000,
-    formatSuggestion: function (feature) {
-      return feature.properties[this.options.searchFields[0]];
-    }
-  },
-
-  initialize: function (options) {
-    esriLeaflet.FeatureLayerService.prototype.initialize.call(this, options);
-    if (typeof this.options.searchFields === 'string') {
-      this.options.searchFields = [this.options.searchFields];
-    }
-    this._suggestionsQuery = this.query();
-    this._resultsQuery = this.query();
-  },
-
-  suggestions: function (text, bounds, callback) {
-    var query = this._suggestionsQuery.where(this._buildQuery(text))
-      .returnGeometry(false);
-
-    if (bounds) {
-      query.intersects(bounds);
-    }
-
-    if (this.options.idField) {
-      query.fields([this.options.idField].concat(this.options.searchFields));
-    }
-
-    var request = query.run(function (error, results, raw) {
-      if (error) {
-        callback(error, []);
-      } else {
-        this.options.idField = raw.objectIdFieldName;
-        var suggestions = [];
-        for (var i = results.features.length - 1; i >= 0; i--) {
-          var feature = results.features[i];
-          suggestions.push({
-            text: this.options.formatSuggestion.call(this, feature),
-            unformattedText: feature.properties[this.options.searchFields[0]],
-            magicKey: feature.id
-          });
-        }
-        callback(error, suggestions.slice(0, this.options.maxResults));
-      }
-    }, this);
-
-    return request;
-  },
-
-  results: function (text, key, bounds, callback) {
-    var query = this._resultsQuery;
-
-    if (key) {
-      delete query.params.where;
-      query.featureIds([key]);
-    } else {
-      query.where(this._buildQuery(text));
-    }
-
-    if (bounds) {
-      query.within(bounds);
-    }
-
-    return query.run(leaflet.Util.bind(function (error, features) {
-      var results = [];
-      for (var i = 0; i < features.features.length; i++) {
-        var feature = features.features[i];
-        if (feature) {
-          var bounds = this._featureBounds(feature);
-
-          var result = {
-            latlng: bounds.getCenter(),
+        if (activeRequests <= 0) {
+          bounds = this._boundsFromResults(allResults);
+
+          this.fire('results', {
+            results: allResults,
             bounds: bounds,
-            text: this.options.formatSuggestion.call(this, feature),
-            properties: feature.properties,
-            geojson: feature
-          };
+            latlng: (bounds) ? bounds.getCenter() : undefined,
+            text: text
+          }, true);
 
-          results.push(result);
-
-          // clear query parameters for the next search
-          delete this._resultsQuery.params['objectIds'];
-        }
-      }
-      callback(error, results);
-    }, this));
-  },
-
-  orderBy: function (fieldName, order) {
-    this._suggestionsQuery.orderBy(fieldName, order);
-  },
-
-  _buildQuery: function (text) {
-    var queryString = [];
-
-    for (var i = this.options.searchFields.length - 1; i >= 0; i--) {
-      var field = 'upper("' + this.options.searchFields[i] + '")';
-
-      queryString.push(field + " LIKE upper('%" + text + "%')");
-    }
-
-    if (this.options.where) {
-      return this.options.where + ' AND (' + queryString.join(' OR ') + ')';
-    } else {
-      return queryString.join(' OR ');
-    }
-  },
-
-  _featureBounds: function (feature) {
-    var geojson = leaflet.geoJson(feature);
-    if (feature.geometry.type === 'Point') {
-      var center = geojson.getBounds().getCenter();
-      var lngRadius = ((this.options.bufferRadius / 40075017) * 360) / Math.cos((180 / Math.PI) * center.lat);
-      var latRadius = (this.options.bufferRadius / 40075017) * 360;
-      return leaflet.latLngBounds([center.lat - latRadius, center.lng - lngRadius], [center.lat + latRadius, center.lng + lngRadius]);
-    } else {
-      return geojson.getBounds();
-    }
-  }
-});
-
-function featureLayerProvider (options) {
-  return new FeatureLayerProvider(options);
-}
-
-var MapServiceProvider = esriLeaflet.MapService.extend({
-  options: {
-    layers: [0],
-    label: 'Map Service',
-    bufferRadius: 1000,
-    maxResults: 5,
-    formatSuggestion: function (feature) {
-      return feature.properties[feature.displayFieldName] + ' <small>' + feature.layerName + '</small>';
-    }
-  },
-
-  initialize: function (options) {
-    esriLeaflet.MapService.prototype.initialize.call(this, options);
-    this._getIdFields();
-  },
-
-  suggestions: function (text, bounds, callback) {
-    var request = this.find().text(text).fields(this.options.searchFields).returnGeometry(false).layers(this.options.layers);
-
-    return request.run(function (error, results, raw) {
-      var suggestions = [];
-      if (!error) {
-        var count = Math.min(this.options.maxResults, results.features.length);
-        raw.results = raw.results.reverse();
-        for (var i = 0; i < count; i++) {
-          var feature = results.features[i];
-          var result = raw.results[i];
-          var layer = result.layerId;
-          var idField = this._idFields[layer];
-          feature.layerId = layer;
-          feature.layerName = this._layerNames[layer];
-          feature.displayFieldName = this._displayFields[layer];
-          if (idField) {
-            suggestions.push({
-              text: this.options.formatSuggestion.call(this, feature),
-              unformattedText: feature.properties[feature.displayFieldName],
-              magicKey: result.attributes[idField] + ':' + layer
-            });
+          if (this.options.zoomToResult && bounds) {
+            this._control._map.fitBounds(bounds);
           }
+
+          this.fire('load');
+        }
+      }, this);
+
+      if (key) {
+        activeRequests++;
+        provider.results(text, key, this._searchBounds(), callback);
+      } else {
+        for (var i = 0; i < this._providers.length; i++) {
+          activeRequests++;
+          this._providers[i].results(text, key, this._searchBounds(), callback);
         }
       }
-      callback(error, suggestions.reverse());
-    }, this);
-  },
+    },
 
-  results: function (text, key, bounds, callback) {
-    var results = [];
-    var request;
+    _suggest: function (text) {
+      var activeRequests = this._providers.length;
+      var suggestionsLength = 0;
 
-    if (key) {
-      var featureId = key.split(':')[0];
-      var layer = key.split(':')[1];
-      request = this.query().layer(layer).featureIds(featureId);
-    } else {
-      request = this.find().text(text).fields(this.options.searchFields).layers(this.options.layers);
-    }
+      var createCallback = leaflet.Util.bind(function (text, provider) {
+        return leaflet.Util.bind(function (error, suggestions) {
+          activeRequests = activeRequests - 1;
+          suggestionsLength += suggestions.length;
 
-    return request.run(function (error, features, response) {
-      if (!error) {
-        if (response.results) {
-          response.results = response.results.reverse();
-        }
-        for (var i = 0; i < features.features.length; i++) {
-          var feature = features.features[i];
-          layer = layer || response.results[i].layerId;
+          if (error) {
+            // an error occurred for one of the providers' suggest requests
+            this._control._clearProviderSuggestions(provider);
 
-          if (feature && layer !== undefined) {
-            var bounds = this._featureBounds(feature);
-            feature.layerId = layer;
-            feature.layerName = this._layerNames[layer];
-            feature.displayFieldName = this._displayFields[layer];
+            // perform additional cleanup when all requests are finished
+            this._control._finalizeSuggestions(activeRequests, suggestionsLength);
 
-            var result = {
-              latlng: bounds.getCenter(),
-              bounds: bounds,
-              text: this.options.formatSuggestion.call(this, feature),
-              properties: feature.properties,
-              geojson: feature
-            };
-
-            results.push(result);
+            return;
           }
+
+          if (suggestions.length) {
+            for (var i = 0; i < suggestions.length; i++) {
+              suggestions[i].provider = provider;
+            }
+          } else {
+            // we still need to update the UI
+            this._control._renderSuggestions(suggestions);
+          }
+
+          if (provider._lastRender !== text) {
+            this._control._clearProviderSuggestions(provider);
+          }
+
+          if (suggestions.length && this._control._input.value === text) {
+            provider._lastRender = text;
+            this._control._renderSuggestions(suggestions);
+          }
+
+          // perform additional cleanup when all requests are finished
+          this._control._finalizeSuggestions(activeRequests, suggestionsLength);
+        }, this);
+      }, this);
+
+      this._pendingSuggestions = [];
+
+      for (var i = 0; i < this._providers.length; i++) {
+        var provider = this._providers[i];
+        var request = provider.suggestions(text, this._searchBounds(), createCallback(text, provider));
+        this._pendingSuggestions.push(request);
+      }
+    },
+
+    _searchBounds: function () {
+      if (this.options.searchBounds !== null) {
+        return this.options.searchBounds;
+      }
+
+      if (this.options.useMapBounds === false) {
+        return null;
+      }
+
+      if (this.options.useMapBounds === true) {
+        return this._control._map.getBounds();
+      }
+
+      if (this.options.useMapBounds <= this._control._map.getZoom()) {
+        return this._control._map.getBounds();
+      }
+
+      return null;
+    },
+
+    _boundsFromResults: function (results) {
+      if (!results.length) {
+        return;
+      }
+
+      var nullIsland = leaflet.latLngBounds([0, 0], [0, 0]);
+      var resultBounds = [];
+      var resultLatlngs = [];
+
+      // collect the bounds and center of each result
+      for (var i = results.length - 1; i >= 0; i--) {
+        var result = results[i];
+
+        resultLatlngs.push(result.latlng);
+
+        // make sure bounds are valid and not 0,0. sometimes bounds are incorrect or not present
+        if (result.bounds && result.bounds.isValid() && !result.bounds.equals(nullIsland)) {
+          resultBounds.push(result.bounds);
         }
       }
-      callback(error, results.reverse());
-    }, this);
-  },
 
-  _featureBounds: function (feature) {
-    var geojson = leaflet.geoJson(feature);
-    if (feature.geometry.type === 'Point') {
-      var center = geojson.getBounds().getCenter();
-      var lngRadius = ((this.options.bufferRadius / 40075017) * 360) / Math.cos((180 / Math.PI) * center.lat);
-      var latRadius = (this.options.bufferRadius / 40075017) * 360;
-      return leaflet.latLngBounds([center.lat - latRadius, center.lng - lngRadius], [center.lat + latRadius, center.lng + lngRadius]);
-    } else {
-      return geojson.getBounds();
-    }
-  },
+      // form a bounds object containing all center points
+      var bounds = leaflet.latLngBounds(resultLatlngs);
 
-  _layerMetadataCallback: function (layerid) {
-    return leaflet.Util.bind(function (error, metadata) {
-      if (error) { return; }
-      this._displayFields[layerid] = metadata.displayField;
-      this._layerNames[layerid] = metadata.name;
-      for (var i = 0; i < metadata.fields.length; i++) {
-        var field = metadata.fields[i];
-        if (field.type === 'esriFieldTypeOID') {
-          this._idFields[layerid] = field.name;
-          break;
+      // and extend it to contain all bounds objects
+      for (var j = 0; j < resultBounds.length; j++) {
+        bounds.extend(resultBounds[j]);
+      }
+
+      return bounds;
+    },
+
+    _getAttribution: function () {
+      var attribs = [];
+      var providers = this._providers;
+
+      for (var i = 0; i < providers.length; i++) {
+        if (providers[i].options.attribution) {
+          attribs.push(providers[i].options.attribution);
         }
       }
-    }, this);
-  },
 
-  _getIdFields: function () {
-    this._idFields = {};
-    this._displayFields = {};
-    this._layerNames = {};
-    for (var i = 0; i < this.options.layers.length; i++) {
-      var layer = this.options.layers[i];
-      this.get(layer, {}, this._layerMetadataCallback(layer));
+      return attribs.join(', ');
     }
+
+  });
+
+  function geosearchCore (control, options) {
+    return new GeosearchCore(control, options);
   }
-});
 
-function mapServiceProvider (options) {
-  return new MapServiceProvider(options);
-}
+  var ArcgisOnlineProvider = GeocodeService.extend({
+    options: {
+      label: 'Places and Addresses',
+      maxResults: 5
+    },
 
-var GeocodeServiceProvider = GeocodeService.extend({
-  options: {
-    label: 'Geocode Server',
-    maxResults: 5
-  },
-
-  suggestions: function (text, bounds, callback) {
-    if (this.options.supportsSuggest) {
+    suggestions: function (text, bounds, callback) {
       var request = this.suggest().text(text);
+
       if (bounds) {
         request.within(bounds);
       }
+
+      if (this.options.countries) {
+        request.countries(this.options.countries);
+      }
+
+      if (this.options.categories) {
+        request.category(this.options.categories);
+      }
+
+      // 15 is the maximum number of suggestions that can be returned
+      request.maxSuggestions(this.options.maxResults);
 
       return request.run(function (error, results, response) {
         var suggestions = [];
@@ -1726,59 +1000,811 @@ var GeocodeServiceProvider = GeocodeService.extend({
         }
         callback(error, suggestions);
       }, this);
-    } else {
-      callback(undefined, []);
-      return false;
+    },
+
+    results: function (text, key, bounds, callback) {
+      var request = this.geocode().text(text);
+
+      if (key) {
+        request.key(key);
+      }
+      // in the future Address/StreetName geocoding requests that include a magicKey will always only return one match
+      request.maxLocations(this.options.maxResults);
+
+      if (bounds) {
+        request.within(bounds);
+      }
+
+      if (this.options.forStorage) {
+        request.forStorage(true);
+      }
+
+      if (this.options.countries) {
+        request.countries(this.options.countries);
+      }
+
+      if (this.options.categories) {
+        request.category(this.options.categories);
+      }
+
+      return request.run(function (error, response) {
+        callback(error, response.results);
+      }, this);
     }
-  },
+  });
 
-  results: function (text, key, bounds, callback) {
-    var request = this.geocode().text(text);
-
-    if (key) {
-      request.key(key);
-    }
-
-    request.maxLocations(this.options.maxResults);
-
-    if (bounds) {
-      request.within(bounds);
-    }
-
-    return request.run(function (error, response) {
-      callback(error, response.results);
-    }, this);
+  function arcgisOnlineProvider (options) {
+    return new ArcgisOnlineProvider(options);
   }
-});
 
-function geocodeServiceProvider (options) {
-  return new GeocodeServiceProvider(options);
-}
+  var Geosearch = leaflet.Control.extend({
+    includes: leaflet.Evented.prototype,
 
-exports.VERSION = version;
-exports.Geocode = Geocode;
-exports.geocode = geocode;
-exports.ReverseGeocode = ReverseGeocode;
-exports.reverseGeocode = reverseGeocode;
-exports.Suggest = Suggest;
-exports.suggest = suggest;
-exports.GeocodeService = GeocodeService;
-exports.geocodeService = geocodeService;
-exports.Geosearch = Geosearch;
-exports.geosearch = geosearch;
-exports.GeosearchCore = GeosearchCore;
-exports.geosearchCore = geosearchCore;
-exports.ArcgisOnlineProvider = ArcgisOnlineProvider;
-exports.arcgisOnlineProvider = arcgisOnlineProvider;
-exports.FeatureLayerProvider = FeatureLayerProvider;
-exports.featureLayerProvider = featureLayerProvider;
-exports.MapServiceProvider = MapServiceProvider;
-exports.mapServiceProvider = mapServiceProvider;
-exports.GeocodeServiceProvider = GeocodeServiceProvider;
-exports.geocodeServiceProvider = geocodeServiceProvider;
-exports.WorldGeocodingServiceUrl = WorldGeocodingServiceUrl;
+    options: {
+      position: 'topleft',
+      collapseAfterResult: true,
+      expanded: false,
+      allowMultipleResults: true,
+      placeholder: 'Search for places or addresses',
+      title: 'Location Search'
+    },
 
-Object.defineProperty(exports, '__esModule', { value: true });
+    initialize: function (options) {
+      leaflet.Util.setOptions(this, options);
+
+      if (!options || !options.providers || !options.providers.length) {
+        if (!options) {
+          options = {};
+        }
+        options.providers = [ arcgisOnlineProvider() ];
+      }
+
+      // instantiate the underlying class and pass along options
+      this._geosearchCore = geosearchCore(this, options);
+      this._geosearchCore._providers = options.providers;
+
+      // bubble each providers events to the control
+      this._geosearchCore.addEventParent(this);
+      for (var i = 0; i < this._geosearchCore._providers.length; i++) {
+        this._geosearchCore._providers[i].addEventParent(this);
+      }
+
+      this._geosearchCore._pendingSuggestions = [];
+
+      leaflet.Control.prototype.initialize.call(this, options);
+    },
+
+    _renderSuggestions: function (suggestions) {
+      var currentGroup;
+
+      if (suggestions.length > 0) {
+        this._suggestions.style.display = 'block';
+      }
+
+      var list;
+      var header;
+      var suggestionTextArray = [];
+
+      for (var i = 0; i < suggestions.length; i++) {
+        var suggestion = suggestions[i];
+        if (!header && this._geosearchCore._providers.length > 1 && currentGroup !== suggestion.provider.options.label) {
+          header = leaflet.DomUtil.create('div', 'geocoder-control-header', suggestion.provider._contentsElement);
+          header.textContent = suggestion.provider.options.label;
+          header.innerText = suggestion.provider.options.label;
+          currentGroup = suggestion.provider.options.label;
+        }
+
+        if (!list) {
+          list = leaflet.DomUtil.create('ul', 'geocoder-control-list', suggestion.provider._contentsElement);
+        }
+
+        if (suggestionTextArray.indexOf(suggestion.text) === -1) {
+          var suggestionItem = leaflet.DomUtil.create('li', 'geocoder-control-suggestion', list);
+
+          suggestionItem.innerHTML = suggestion.text;
+          suggestionItem.provider = suggestion.provider;
+          suggestionItem['data-magic-key'] = suggestion.magicKey;
+          suggestionItem.unformattedText = suggestion.unformattedText;
+        } else {
+          for (var j = 0; j < list.childNodes.length; j++) {
+            // if the same text already appears in the list of suggestions, append an additional ObjectID to its magicKey instead
+            if (list.childNodes[j].innerHTML === suggestion.text) {
+              list.childNodes[j]['data-magic-key'] += ',' + suggestion.magicKey;
+            }
+          }
+        }
+        suggestionTextArray.push(suggestion.text);
+      }
+
+      // when the geocoder position is either "topleft" or "topright":
+      // set the maxHeight of the suggestions box to:
+      //  map height
+      //  - suggestions offset (distance from top of suggestions to top of control)
+      //  - control offset (distance from top of control to top of map)
+      //  - 10 (extra padding)
+      if (this.getPosition().indexOf('top') > -1) {
+        this._suggestions.style.maxHeight = (this._map.getSize().y - this._suggestions.offsetTop - this._wrapper.offsetTop - 10) + 'px';
+      }
+
+      // when the geocoder position is either "bottomleft" or "bottomright":
+      // 1. set the maxHeight of the suggestions box to:
+      //  map height
+      //  - corner control container offsetHeight (height of container of bottom corner)
+      //  - control offsetHeight (height of geocoder control wrapper, the main expandable button)
+      // 2. to move it up, set the top of the suggestions box to:
+      //  negative offsetHeight of suggestions box (its own negative height now that it has children elements
+      //  - control offsetHeight (height of geocoder control wrapper, the main expandable button)
+      //  + 20 (extra spacing)
+      if (this.getPosition().indexOf('bottom') > -1) {
+        this._setSuggestionsBottomPosition();
+      }
+    },
+
+    _setSuggestionsBottomPosition: function () {
+      this._suggestions.style.maxHeight = (this._map.getSize().y - this._map._controlCorners[this.getPosition()].offsetHeight - this._wrapper.offsetHeight) + 'px';
+      this._suggestions.style.top = (-this._suggestions.offsetHeight - this._wrapper.offsetHeight + 20) + 'px';
+    },
+
+    _boundsFromResults: function (results) {
+      if (!results.length) {
+        return;
+      }
+
+      var nullIsland = leaflet.latLngBounds([0, 0], [0, 0]);
+      var resultBounds = [];
+      var resultLatlngs = [];
+
+      // collect the bounds and center of each result
+      for (var i = results.length - 1; i >= 0; i--) {
+        var result = results[i];
+
+        resultLatlngs.push(result.latlng);
+
+        // make sure bounds are valid and not 0,0. sometimes bounds are incorrect or not present
+        if (result.bounds && result.bounds.isValid() && !result.bounds.equals(nullIsland)) {
+          resultBounds.push(result.bounds);
+        }
+      }
+
+      // form a bounds object containing all center points
+      var bounds = leaflet.latLngBounds(resultLatlngs);
+
+      // and extend it to contain all bounds objects
+      for (var j = 0; j < resultBounds.length; j++) {
+        bounds.extend(resultBounds[j]);
+      }
+
+      return bounds;
+    },
+
+    clear: function () {
+      this._clearAllSuggestions();
+
+      if (this.options.collapseAfterResult) {
+        this._input.value = '';
+        this._lastValue = '';
+        this._input.placeholder = '';
+        leaflet.DomUtil.removeClass(this._wrapper, 'geocoder-control-expanded');
+      }
+
+      if (!this._map.scrollWheelZoom.enabled() && this._map.options.scrollWheelZoom) {
+        this._map.scrollWheelZoom.enable();
+      }
+    },
+
+    _clearAllSuggestions: function () {
+      this._suggestions.style.display = 'none';
+
+      for (var i = 0; i < this.options.providers.length; i++) {
+        this._clearProviderSuggestions(this.options.providers[i]);
+      }
+    },
+
+    _clearProviderSuggestions: function (provider) {
+      provider._contentsElement.innerHTML = '';
+    },
+
+    _finalizeSuggestions: function (activeRequests, suggestionsLength) {
+      // check if all requests are finished to remove the loading indicator
+      if (!activeRequests) {
+        leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
+
+        // when the geocoder position is either "bottomleft" or "bottomright",
+        // it is necessary in some cases to recalculate the maxHeight and top values of the this._suggestions element,
+        // even though this is also being done after each provider returns their own suggestions
+        if (this.getPosition().indexOf('bottom') > -1) {
+          this._setSuggestionsBottomPosition();
+        }
+
+        // also check if there were 0 total suggest results to clear the parent suggestions element
+        // otherwise its display value may be "block" instead of "none"
+        if (!suggestionsLength) {
+          this._clearAllSuggestions();
+        }
+      }
+    },
+
+    _setupClick: function () {
+      leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
+      this._input.focus();
+    },
+
+    disable: function () {
+      this._input.disabled = true;
+      leaflet.DomUtil.addClass(this._input, 'geocoder-control-input-disabled');
+      leaflet.DomEvent.removeListener(this._wrapper, 'click', this._setupClick, this);
+    },
+
+    enable: function () {
+      this._input.disabled = false;
+      leaflet.DomUtil.removeClass(this._input, 'geocoder-control-input-disabled');
+      leaflet.DomEvent.addListener(this._wrapper, 'click', this._setupClick, this);
+    },
+
+    getAttribution: function () {
+      var attribs = [];
+
+      for (var i = 0; i < this._providers.length; i++) {
+        if (this._providers[i].options.attribution) {
+          attribs.push(this._providers[i].options.attribution);
+        }
+      }
+
+      return attribs.join(', ');
+    },
+
+    geocodeSuggestion: function (e) {
+      var suggestionItem = e.target || e.srcElement;
+
+      if (
+        suggestionItem.classList.contains('geocoder-control-suggestions') ||
+        suggestionItem.classList.contains('geocoder-control-header')
+      ) {
+        return;
+      }
+
+      // make sure and point at the actual 'geocoder-control-suggestion'
+      if (suggestionItem.classList.length < 1) {
+        suggestionItem = suggestionItem.parentNode;
+      }
+
+      this._geosearchCore._geocode(suggestionItem.unformattedText, suggestionItem['data-magic-key'], suggestionItem.provider);
+      this.clear();
+    },
+
+    onAdd: function (map) {
+      // include 'Powered by Esri' in map attribution
+      esriLeaflet.Util.setEsriAttribution(map);
+
+      this._map = map;
+      this._wrapper = leaflet.DomUtil.create('div', 'geocoder-control');
+      this._input = leaflet.DomUtil.create('input', 'geocoder-control-input leaflet-bar', this._wrapper);
+      this._input.title = this.options.title;
+
+      if (this.options.expanded) {
+        leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
+        this._input.placeholder = this.options.placeholder;
+      }
+
+      // create the main suggested results container element
+      this._suggestions = leaflet.DomUtil.create('div', 'geocoder-control-suggestions leaflet-bar', this._wrapper);
+
+      // create a child contents container element for each provider inside of this._suggestions
+      // to maintain the configured order of providers for suggested results
+      for (var i = 0; i < this.options.providers.length; i++) {
+        this.options.providers[i]._contentsElement = leaflet.DomUtil.create('div', null, this._suggestions);
+      }
+
+      var credits = this._geosearchCore._getAttribution();
+
+      if (map.attributionControl) {
+        map.attributionControl.addAttribution(credits);
+      }
+
+      leaflet.DomEvent.addListener(this._input, 'focus', function (e) {
+        this._input.placeholder = this.options.placeholder;
+        leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
+      }, this);
+
+      leaflet.DomEvent.addListener(this._wrapper, 'click', this._setupClick, this);
+
+      // make sure both click and touch spawn an address/poi search
+      leaflet.DomEvent.addListener(this._suggestions, 'mousedown', this.geocodeSuggestion, this);
+
+      leaflet.DomEvent.addListener(this._input, 'blur', function (e) {
+        // TODO: this is too greedy and should not "clear"
+        // when trying to use the scrollbar or clicking on a non-suggestion item (such as a provider header)
+        this.clear();
+      }, this);
+
+      leaflet.DomEvent.addListener(this._input, 'keydown', function (e) {
+        var text = (e.target || e.srcElement).value;
+
+        leaflet.DomUtil.addClass(this._wrapper, 'geocoder-control-expanded');
+
+        var list = this._suggestions.querySelectorAll('.' + 'geocoder-control-suggestion');
+        var selected = this._suggestions.querySelectorAll('.' + 'geocoder-control-selected')[0];
+        var selectedPosition;
+
+        for (var i = 0; i < list.length; i++) {
+          if (list[i] === selected) {
+            selectedPosition = i;
+            break;
+          }
+        }
+
+        switch (e.keyCode) {
+          case 13:
+            /*
+              if an item has been selected, geocode it
+              if focus is on the input textbox, geocode only if multiple results are allowed and more than two characters are present, or if a single suggestion is displayed.
+              if less than two characters have been typed, abort the geocode
+            */
+            if (selected) {
+              this._input.value = selected.innerText;
+              this._geosearchCore._geocode(selected.unformattedText, selected['data-magic-key'], selected.provider);
+              this.clear();
+            } else if (this.options.allowMultipleResults && text.length >= 2) {
+              this._geosearchCore._geocode(this._input.value, undefined);
+              this.clear();
+            } else {
+              if (list.length === 1) {
+                leaflet.DomUtil.addClass(list[0], 'geocoder-control-selected');
+                this._geosearchCore._geocode(list[0].innerHTML, list[0]['data-magic-key'], list[0].provider);
+              } else {
+                this.clear();
+                this._input.blur();
+              }
+            }
+            leaflet.DomEvent.preventDefault(e);
+            break;
+          case 38:
+            if (selected) {
+              leaflet.DomUtil.removeClass(selected, 'geocoder-control-selected');
+            }
+
+            var previousItem = list[selectedPosition - 1];
+
+            if (selected && previousItem) {
+              leaflet.DomUtil.addClass(previousItem, 'geocoder-control-selected');
+            } else {
+              leaflet.DomUtil.addClass(list[list.length - 1], 'geocoder-control-selected');
+            }
+            leaflet.DomEvent.preventDefault(e);
+            break;
+          case 40:
+            if (selected) {
+              leaflet.DomUtil.removeClass(selected, 'geocoder-control-selected');
+            }
+
+            var nextItem = list[selectedPosition + 1];
+
+            if (selected && nextItem) {
+              leaflet.DomUtil.addClass(nextItem, 'geocoder-control-selected');
+            } else {
+              leaflet.DomUtil.addClass(list[0], 'geocoder-control-selected');
+            }
+            leaflet.DomEvent.preventDefault(e);
+            break;
+          default:
+            // when the input changes we should cancel all pending suggestion requests if possible to avoid result collisions
+            for (var x = 0; x < this._geosearchCore._pendingSuggestions.length; x++) {
+              var request = this._geosearchCore._pendingSuggestions[x];
+              if (request && request.abort && !request.id) {
+                request.abort();
+              }
+            }
+            break;
+        }
+      }, this);
+
+      leaflet.DomEvent.addListener(this._input, 'keyup', leaflet.Util.throttle(function (e) {
+        var key = e.which || e.keyCode;
+        var text = (e.target || e.srcElement).value;
+
+        // require at least 2 characters for suggestions
+        if (text.length < 2) {
+          this._lastValue = this._input.value;
+          this._clearAllSuggestions();
+          leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
+          return;
+        }
+
+        // if this is the escape key it will clear the input so clear suggestions
+        if (key === 27) {
+          this._clearAllSuggestions();
+          return;
+        }
+
+        // if this is NOT the up/down arrows or enter make a suggestion
+        if (key !== 13 && key !== 38 && key !== 40) {
+          if (this._input.value !== this._lastValue) {
+            this._lastValue = this._input.value;
+            leaflet.DomUtil.addClass(this._input, 'geocoder-control-loading');
+            this._geosearchCore._suggest(text);
+          }
+        }
+      }, 50, this), this);
+
+      leaflet.DomEvent.disableClickPropagation(this._wrapper);
+
+      // when mouse moves over suggestions disable scroll wheel zoom if its enabled
+      leaflet.DomEvent.addListener(this._suggestions, 'mouseover', function (e) {
+        if (map.scrollWheelZoom.enabled() && map.options.scrollWheelZoom) {
+          map.scrollWheelZoom.disable();
+        }
+      });
+
+      // when mouse moves leaves suggestions enable scroll wheel zoom if its disabled
+      leaflet.DomEvent.addListener(this._suggestions, 'mouseout', function (e) {
+        if (!map.scrollWheelZoom.enabled() && map.options.scrollWheelZoom) {
+          map.scrollWheelZoom.enable();
+        }
+      });
+
+      this._geosearchCore.on('load', function (e) {
+        leaflet.DomUtil.removeClass(this._input, 'geocoder-control-loading');
+        this.clear();
+        this._input.blur();
+      }, this);
+
+      return this._wrapper;
+    }
+  });
+
+  function geosearch (options) {
+    return new Geosearch(options);
+  }
+
+  var FeatureLayerProvider = esriLeaflet.FeatureLayerService.extend({
+    options: {
+      label: 'Feature Layer',
+      maxResults: 5,
+      bufferRadius: 1000,
+      searchMode: 'contain',
+      formatSuggestion: function (feature) {
+        return feature.properties[this.options.searchFields[0]];
+      }
+    },
+
+    initialize: function (options) {
+      esriLeaflet.FeatureLayerService.prototype.initialize.call(this, options);
+      if (typeof this.options.searchFields === 'string') {
+        this.options.searchFields = [this.options.searchFields];
+      }
+      this._suggestionsQuery = this.query();
+      this._resultsQuery = this.query();
+    },
+
+    suggestions: function (text, bounds, callback) {
+      var query = this._suggestionsQuery.where(this._buildQuery(text))
+        .returnGeometry(false);
+
+      if (bounds) {
+        query.intersects(bounds);
+      }
+
+      if (this.options.idField) {
+        query.fields([this.options.idField].concat(this.options.searchFields));
+      }
+
+      var request = query.run(function (error, results, raw) {
+        if (error) {
+          callback(error, []);
+        } else {
+          this.options.idField = raw.objectIdFieldName;
+          var suggestions = [];
+          for (var i = results.features.length - 1; i >= 0; i--) {
+            var feature = results.features[i];
+            suggestions.push({
+              text: this.options.formatSuggestion.call(this, feature),
+              unformattedText: feature.properties[this.options.searchFields[0]],
+              magicKey: feature.id
+            });
+          }
+          callback(error, suggestions.slice(0, this.options.maxResults));
+        }
+      }, this);
+
+      return request;
+    },
+
+    results: function (text, key, bounds, callback) {
+      var query = this._resultsQuery;
+
+      if (key) {
+        delete query.params.where;
+        query.featureIds([key]);
+      } else {
+        query.where(this._buildQuery(text));
+      }
+
+      if (bounds) {
+        query.within(bounds);
+      }
+
+      return query.run(leaflet.Util.bind(function (error, features) {
+        var results = [];
+        for (var i = 0; i < features.features.length; i++) {
+          var feature = features.features[i];
+          if (feature) {
+            var bounds = this._featureBounds(feature);
+
+            var result = {
+              latlng: bounds.getCenter(),
+              bounds: bounds,
+              text: this.options.formatSuggestion.call(this, feature),
+              properties: feature.properties,
+              geojson: feature
+            };
+
+            results.push(result);
+
+            // clear query parameters for the next search
+            delete this._resultsQuery.params['objectIds'];
+          }
+        }
+        callback(error, results);
+      }, this));
+    },
+
+    orderBy: function (fieldName, order) {
+      this._suggestionsQuery.orderBy(fieldName, order);
+    },
+
+    _buildQuery: function (text) {
+      var queryString = [];
+
+      for (var i = this.options.searchFields.length - 1; i >= 0; i--) {
+        var field = 'upper("' + this.options.searchFields[i] + '")';
+        if (this.options.searchMode === 'contain') {
+          queryString.push(field + " LIKE upper('%" + text + "%')");
+        } else if (this.options.searchMode === 'startWith') {
+          queryString.push(field + " LIKE upper('" + text + "%')");
+        } else if (this.options.searchMode === 'endWith') {
+          queryString.push(field + " LIKE upper('%" + text + "')");
+        } else if (this.options.searchMode === 'strict') {
+          queryString.push(field + " LIKE upper('" + text + "')");
+        } else {
+          throw new Error('L.esri.Geocoding.featureLayerProvider: Invalid parameter for "searchMode". Use one of "contain", "startWith", "endWith", or "strict"');
+        }
+      }
+      if (this.options.where) {
+        return this.options.where + ' AND (' + queryString.join(' OR ') + ')';
+      } else {
+        return queryString.join(' OR ');
+      }
+    },
+
+    _featureBounds: function (feature) {
+      var geojson = leaflet.geoJson(feature);
+      if (feature.geometry.type === 'Point') {
+        var center = geojson.getBounds().getCenter();
+        var lngRadius = ((this.options.bufferRadius / 40075017) * 360) / Math.cos((180 / Math.PI) * center.lat);
+        var latRadius = (this.options.bufferRadius / 40075017) * 360;
+        return leaflet.latLngBounds([center.lat - latRadius, center.lng - lngRadius], [center.lat + latRadius, center.lng + lngRadius]);
+      } else {
+        return geojson.getBounds();
+      }
+    }
+  });
+
+  function featureLayerProvider (options) {
+    return new FeatureLayerProvider(options);
+  }
+
+  var MapServiceProvider = esriLeaflet.MapService.extend({
+    options: {
+      layers: [0],
+      label: 'Map Service',
+      bufferRadius: 1000,
+      maxResults: 5,
+      formatSuggestion: function (feature) {
+        return feature.properties[feature.displayFieldName] + ' <small>' + feature.layerName + '</small>';
+      }
+    },
+
+    initialize: function (options) {
+      esriLeaflet.MapService.prototype.initialize.call(this, options);
+      this._getIdFields();
+    },
+
+    suggestions: function (text, bounds, callback) {
+      var request = this.find().text(text).fields(this.options.searchFields).returnGeometry(false).layers(this.options.layers);
+
+      return request.run(function (error, results, raw) {
+        var suggestions = [];
+        if (!error) {
+          var count = Math.min(this.options.maxResults, results.features.length);
+          raw.results = raw.results.reverse();
+          for (var i = 0; i < count; i++) {
+            var feature = results.features[i];
+            var result = raw.results[i];
+            var layer = result.layerId;
+            var idField = this._idFields[layer];
+            feature.layerId = layer;
+            feature.layerName = this._layerNames[layer];
+            feature.displayFieldName = this._displayFields[layer];
+            if (idField) {
+              suggestions.push({
+                text: this.options.formatSuggestion.call(this, feature),
+                unformattedText: feature.properties[feature.displayFieldName],
+                magicKey: result.attributes[idField] + ':' + layer
+              });
+            }
+          }
+        }
+        callback(error, suggestions.reverse());
+      }, this);
+    },
+
+    results: function (text, key, bounds, callback) {
+      var results = [];
+      var request;
+
+      if (key) {
+        var featureId = key.split(':')[0];
+        var layer = key.split(':')[1];
+        request = this.query().layer(layer).featureIds(featureId);
+      } else {
+        request = this.find().text(text).fields(this.options.searchFields).layers(this.options.layers);
+      }
+
+      return request.run(function (error, features, response) {
+        if (!error) {
+          if (response.results) {
+            response.results = response.results.reverse();
+          }
+          for (var i = 0; i < features.features.length; i++) {
+            var feature = features.features[i];
+            layer = layer || response.results[i].layerId;
+
+            if (feature && layer !== undefined) {
+              var bounds = this._featureBounds(feature);
+              feature.layerId = layer;
+              feature.layerName = this._layerNames[layer];
+              feature.displayFieldName = this._displayFields[layer];
+
+              var result = {
+                latlng: bounds.getCenter(),
+                bounds: bounds,
+                text: this.options.formatSuggestion.call(this, feature),
+                properties: feature.properties,
+                geojson: feature
+              };
+
+              results.push(result);
+            }
+          }
+        }
+        callback(error, results.reverse());
+      }, this);
+    },
+
+    _featureBounds: function (feature) {
+      var geojson = leaflet.geoJson(feature);
+      if (feature.geometry.type === 'Point') {
+        var center = geojson.getBounds().getCenter();
+        var lngRadius = ((this.options.bufferRadius / 40075017) * 360) / Math.cos((180 / Math.PI) * center.lat);
+        var latRadius = (this.options.bufferRadius / 40075017) * 360;
+        return leaflet.latLngBounds([center.lat - latRadius, center.lng - lngRadius], [center.lat + latRadius, center.lng + lngRadius]);
+      } else {
+        return geojson.getBounds();
+      }
+    },
+
+    _layerMetadataCallback: function (layerid) {
+      return leaflet.Util.bind(function (error, metadata) {
+        if (error) { return; }
+        this._displayFields[layerid] = metadata.displayField;
+        this._layerNames[layerid] = metadata.name;
+        for (var i = 0; i < metadata.fields.length; i++) {
+          var field = metadata.fields[i];
+          if (field.type === 'esriFieldTypeOID') {
+            this._idFields[layerid] = field.name;
+            break;
+          }
+        }
+      }, this);
+    },
+
+    _getIdFields: function () {
+      this._idFields = {};
+      this._displayFields = {};
+      this._layerNames = {};
+      for (var i = 0; i < this.options.layers.length; i++) {
+        var layer = this.options.layers[i];
+        this.get(layer, {}, this._layerMetadataCallback(layer));
+      }
+    }
+  });
+
+  function mapServiceProvider (options) {
+    return new MapServiceProvider(options);
+  }
+
+  var GeocodeServiceProvider = GeocodeService.extend({
+    options: {
+      label: 'Geocode Server',
+      maxResults: 5
+    },
+
+    suggestions: function (text, bounds, callback) {
+      if (this.options.supportsSuggest) {
+        var request = this.suggest().text(text);
+        if (bounds) {
+          request.within(bounds);
+        }
+
+        return request.run(function (error, results, response) {
+          var suggestions = [];
+          if (!error) {
+            while (response.suggestions.length && suggestions.length <= (this.options.maxResults - 1)) {
+              var suggestion = response.suggestions.shift();
+              if (!suggestion.isCollection) {
+                suggestions.push({
+                  text: suggestion.text,
+                  unformattedText: suggestion.text,
+                  magicKey: suggestion.magicKey
+                });
+              }
+            }
+          }
+          callback(error, suggestions);
+        }, this);
+      } else {
+        callback(undefined, []);
+        return false;
+      }
+    },
+
+    results: function (text, key, bounds, callback) {
+      var request = this.geocode().text(text);
+
+      if (key) {
+        request.key(key);
+      }
+
+      request.maxLocations(this.options.maxResults);
+
+      if (bounds) {
+        request.within(bounds);
+      }
+
+      return request.run(function (error, response) {
+        callback(error, response.results);
+      }, this);
+    }
+  });
+
+  function geocodeServiceProvider (options) {
+    return new GeocodeServiceProvider(options);
+  }
+
+  exports.ArcgisOnlineProvider = ArcgisOnlineProvider;
+  exports.FeatureLayerProvider = FeatureLayerProvider;
+  exports.Geocode = Geocode;
+  exports.GeocodeService = GeocodeService;
+  exports.GeocodeServiceProvider = GeocodeServiceProvider;
+  exports.Geosearch = Geosearch;
+  exports.GeosearchCore = GeosearchCore;
+  exports.MapServiceProvider = MapServiceProvider;
+  exports.ReverseGeocode = ReverseGeocode;
+  exports.Suggest = Suggest;
+  exports.VERSION = version;
+  exports.WorldGeocodingServiceUrl = WorldGeocodingServiceUrl;
+  exports.arcgisOnlineProvider = arcgisOnlineProvider;
+  exports.featureLayerProvider = featureLayerProvider;
+  exports.geocode = geocode;
+  exports.geocodeService = geocodeService;
+  exports.geocodeServiceProvider = geocodeServiceProvider;
+  exports.geosearch = geosearch;
+  exports.geosearchCore = geosearchCore;
+  exports.mapServiceProvider = mapServiceProvider;
+  exports.reverseGeocode = reverseGeocode;
+  exports.suggest = suggest;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=esri-leaflet-geocoder-debug.js.map
@@ -1793,7 +1819,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, contributors, dependencies, deprecated, description, devDependencies, files, homepage, jsnext:main, jspm, keywords, license, main, module, name, peerDependencies, repository, scripts, semistandard, unpkg, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"esri-leaflet@2.4.0\",\"_id\":\"esri-leaflet@2.4.0\",\"_inBundle\":false,\"_integrity\":\"sha512-uzSvE7odFnDPk09WS/UoXU2tVxmt667ASINdpIf+zvymCZLObASqgw6HBceHWGvPrF/XBDRbw4TcF4lyJx5cbA==\",\"_location\":\"/esri-leaflet\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"esri-leaflet@2.4.0\",\"name\":\"esri-leaflet\",\"escapedName\":\"esri-leaflet\",\"rawSpec\":\"2.4.0\",\"saveSpec\":null,\"fetchSpec\":\"2.4.0\"},\"_requiredBy\":[\"/\",\"/esri-leaflet-geocoder\"],\"_resolved\":\"https://registry.npmjs.org/esri-leaflet/-/esri-leaflet-2.4.0.tgz\",\"_shasum\":\"ccf950fd69e731575f1b951168fea9b7086c5755\",\"_spec\":\"esri-leaflet@2.4.0\",\"_where\":\"C:\\\\wamp64\\\\www\\\\keenthemes\\\\themes\\\\metronic\\\\theme\\\\html_laravel\\\\demo1\\\\skeleton\",\"author\":{\"name\":\"Patrick Arlt\",\"email\":\"parlt@esri.com\",\"url\":\"http://patrickarlt.com\"},\"bugs\":{\"url\":\"https://github.com/esri/esri-leaflet/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Patrick Arlt\",\"email\":\"parlt@esri.com\",\"url\":\"http://patrickarlt.com\"},{\"name\":\"John Gravois\",\"email\":\"jgravois@esri.com\",\"url\":\"http://johngravois.com\"}],\"dependencies\":{\"@terraformer/arcgis\":\"^2.0.1\",\"tiny-binary-search\":\"^1.0.3\"},\"deprecated\":false,\"description\":\"Leaflet plugins for consuming ArcGIS Online and ArcGIS Server services.\",\"devDependencies\":{\"chai\":\"4.2.0\",\"gh-release\":\"^3.3.2\",\"highlight.js\":\"^9.12.0\",\"http-server\":\"^0.10.0\",\"husky\":\"^1.1.1\",\"istanbul\":\"^0.4.5\",\"karma\":\"^4.0.1\",\"karma-chai-sinon\":\"^0.1.5\",\"karma-chrome-launcher\":\"^2.2.0\",\"karma-coverage\":\"^1.1.2\",\"karma-mocha\":\"^1.3.0\",\"karma-mocha-reporter\":\"^2.2.5\",\"karma-sourcemap-loader\":\"^0.3.7\",\"leaflet\":\"^1.0.0\",\"mkdirp\":\"^0.5.1\",\"mocha\":\"^5.2.0\",\"npm-run-all\":\"^4.0.2\",\"rollup\":\"^0.56.5\",\"rollup-plugin-json\":\"^2.3.0\",\"rollup-plugin-node-resolve\":\"^3.0.3\",\"rollup-plugin-uglify\":\"^3.0.0\",\"semistandard\":\"^9.0.0\",\"sinon\":\"^6.3.5\",\"sinon-chai\":\"3.2.0\",\"snazzy\":\"^8.0.0\",\"uglify-js\":\"^2.8.29\",\"watch\":\"^1.0.2\"},\"files\":[\"src/**/*.js\",\"dist/esri-leaflet.js\",\"dist/esri-leaflet.js.map\",\"dist/esri-leaflet-debug.js.map\",\"profiles/*.js\"],\"homepage\":\"http://esri.github.io/esri-leaflet\",\"jsnext:main\":\"src/EsriLeaflet.js\",\"jspm\":{\"registry\":\"npm\",\"format\":\"es6\",\"main\":\"src/EsriLeaflet.js\"},\"keywords\":[\"arcgis\",\"esri\",\"esri leaflet\",\"gis\",\"leaflet plugin\",\"mapping\"],\"license\":\"Apache-2.0\",\"main\":\"dist/esri-leaflet-debug.js\",\"module\":\"src/EsriLeaflet.js\",\"name\":\"esri-leaflet\",\"peerDependencies\":{\"leaflet\":\"^1.0.0\"},\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/Esri/esri-leaflet.git\"},\"scripts\":{\"build\":\"rollup -c profiles/debug.js & rollup -c profiles/production.js\",\"fix\":\"semistandard --fix\",\"lint\":\"semistandard | snazzy\",\"prebuild\":\"mkdirp dist\",\"precommit\":\"npm run lint\",\"prepare\":\"npm run build\",\"pretest\":\"npm run build\",\"release\":\"./scripts/release.sh\",\"serve\":\"http-server -p 5000 -c-1 -o\",\"start\":\"run-p start-watch serve\",\"start-watch\":\"watch \\\"npm run build\\\" src\",\"test\":\"npm run lint && karma start\",\"test:ci\":\"npm run lint && karma start --browsers Chrome_travis_ci\"},\"semistandard\":{\"globals\":[\"expect\",\"L\",\"XMLHttpRequest\",\"sinon\",\"xhr\",\"proj4\"]},\"unpkg\":\"dist/esri-leaflet-debug.js\",\"version\":\"2.4.0\"}");
+module.exports = JSON.parse("{\"_from\":\"esri-leaflet@2.4.1\",\"_id\":\"esri-leaflet@2.4.1\",\"_inBundle\":false,\"_integrity\":\"sha512-0ukZIhA9dVx8yYe/ahp2yZm7GmUYTxPktXXHBVPBZoe9I00fkhLsEk2dIt1xa7XsCk/gH+Breb9L5lNALC+Niw==\",\"_location\":\"/esri-leaflet\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"esri-leaflet@2.4.1\",\"name\":\"esri-leaflet\",\"escapedName\":\"esri-leaflet\",\"rawSpec\":\"2.4.1\",\"saveSpec\":null,\"fetchSpec\":\"2.4.1\"},\"_requiredBy\":[\"#USER\",\"/\",\"/esri-leaflet-geocoder\"],\"_resolved\":\"https://registry.npmjs.org/esri-leaflet/-/esri-leaflet-2.4.1.tgz\",\"_shasum\":\"df9fde64dff259c3c930ce16b8fcf6516dba0832\",\"_spec\":\"esri-leaflet@2.4.1\",\"_where\":\"C:\\\\wamp64\\\\www\\\\keenthemes\\\\themes\\\\metronic\\\\theme\\\\html_laravel\\\\demo1\\\\skeleton\",\"author\":{\"name\":\"Patrick Arlt\",\"email\":\"parlt@esri.com\",\"url\":\"http://patrickarlt.com\"},\"bugs\":{\"url\":\"https://github.com/esri/esri-leaflet/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Patrick Arlt\",\"email\":\"parlt@esri.com\",\"url\":\"http://patrickarlt.com\"},{\"name\":\"John Gravois\",\"email\":\"jgravois@esri.com\",\"url\":\"http://johngravois.com\"}],\"dependencies\":{\"@terraformer/arcgis\":\"^2.0.7\",\"tiny-binary-search\":\"^1.0.3\"},\"deprecated\":false,\"description\":\"Leaflet plugins for consuming ArcGIS Online and ArcGIS Server services.\",\"devDependencies\":{\"@rollup/plugin-json\":\"^4.0.3\",\"@rollup/plugin-node-resolve\":\"^7.1.3\",\"chai\":\"4.2.0\",\"gh-release\":\"^3.3.2\",\"highlight.js\":\"^9.12.0\",\"http-server\":\"^0.10.0\",\"husky\":\"^1.1.1\",\"istanbul\":\"^0.4.5\",\"karma\":\"^4.0.1\",\"karma-chai-sinon\":\"^0.1.5\",\"karma-chrome-launcher\":\"^2.2.0\",\"karma-coverage\":\"^1.1.2\",\"karma-mocha\":\"^1.3.0\",\"karma-mocha-reporter\":\"^2.2.5\",\"karma-sourcemap-loader\":\"^0.3.7\",\"leaflet\":\"^1.6.0\",\"mkdirp\":\"^0.5.1\",\"mocha\":\"^5.2.0\",\"npm-run-all\":\"^4.0.2\",\"rollup\":\"^2.0.0\",\"rollup-plugin-uglify\":\"^6.0.4\",\"semistandard\":\"^9.0.0\",\"sinon\":\"^6.3.5\",\"sinon-chai\":\"3.2.0\",\"snazzy\":\"^8.0.0\",\"uglify-js\":\"^2.8.29\",\"watch\":\"^1.0.2\"},\"files\":[\"src/**/*.js\",\"dist/esri-leaflet.js\",\"dist/esri-leaflet.js.map\",\"dist/esri-leaflet-debug.js.map\",\"profiles/*.js\"],\"homepage\":\"http://esri.github.io/esri-leaflet\",\"jsnext:main\":\"src/EsriLeaflet.js\",\"jspm\":{\"registry\":\"npm\",\"format\":\"es6\",\"main\":\"src/EsriLeaflet.js\"},\"keywords\":[\"arcgis\",\"esri\",\"esri leaflet\",\"gis\",\"leaflet plugin\",\"mapping\"],\"license\":\"Apache-2.0\",\"main\":\"dist/esri-leaflet-debug.js\",\"module\":\"src/EsriLeaflet.js\",\"name\":\"esri-leaflet\",\"peerDependencies\":{\"leaflet\":\"^1.0.0\"},\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/Esri/esri-leaflet.git\"},\"scripts\":{\"build\":\"rollup -c profiles/debug.js & rollup -c profiles/production.js\",\"fix\":\"semistandard --fix\",\"lint\":\"semistandard | snazzy\",\"prebuild\":\"mkdirp dist\",\"precommit\":\"npm run lint\",\"prepare\":\"npm run build\",\"pretest\":\"npm run build\",\"release\":\"./scripts/release.sh\",\"serve\":\"http-server -p 5000 -c-1 -o\",\"start\":\"run-p start-watch serve\",\"start-watch\":\"watch \\\"npm run build\\\" src\",\"test\":\"npm run lint && karma start\",\"test:ci\":\"npm run lint && karma start --browsers Chrome_travis_ci\"},\"semistandard\":{\"globals\":[\"expect\",\"L\",\"XMLHttpRequest\",\"sinon\",\"xhr\",\"proj4\"]},\"unpkg\":\"dist/esri-leaflet-debug.js\",\"version\":\"2.4.1\"}");
 
 /***/ }),
 

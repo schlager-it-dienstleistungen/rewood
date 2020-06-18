@@ -1474,7 +1474,7 @@ export var KTUtil = function() {
                 if (options.height instanceof Function) {
                     height = options.height.call();
                 } else {
-                    if (options.mobileHeight) {
+                    if (KTUtil.isMobileDevice() === true && options.mobileHeight) {
                         height = parseInt(options.mobileHeight);
                     } else {
                         height = parseInt(options.height);

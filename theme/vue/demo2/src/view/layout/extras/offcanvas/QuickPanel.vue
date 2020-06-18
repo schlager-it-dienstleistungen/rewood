@@ -1,5 +1,5 @@
 <template>
-  <div class="topbar-item" v-b-tooltip.hover.bottom="'Quick panel'">
+  <div class="topbar-item">
     <div
       class="btn btn-icon btn-hover-transparent-white btn-lg mr-1"
       id="kt_quick_panel_toggle"

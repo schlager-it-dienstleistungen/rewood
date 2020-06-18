@@ -10387,9 +10387,6 @@ button.toast-close-button {
   outline: none;
   box-shadow: 0 0 3px #c4e6f5;
 }
-.swal2-input::-webkit-input-placeholder, .swal2-file::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder {
-  color: #cccccc;
-}
 .swal2-input::-moz-placeholder, .swal2-file::-moz-placeholder, .swal2-textarea::-moz-placeholder {
   color: #cccccc;
 }
@@ -10397,6 +10394,9 @@ button.toast-close-button {
   color: #cccccc;
 }
 .swal2-input::-ms-input-placeholder, .swal2-file::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
+  color: #cccccc;
+}
+.swal2-input::-webkit-input-placeholder, .swal2-file::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder {
   color: #cccccc;
 }
 .swal2-input::placeholder,

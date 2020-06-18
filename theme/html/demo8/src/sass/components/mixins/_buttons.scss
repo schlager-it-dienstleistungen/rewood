@@ -46,15 +46,15 @@
 
             @if ($hover-icon != null) {
                 i {
-            		color: $hover-color;
+            		color: $hover-icon;
             	}
 
             	.svg-icon {
-            		@include svg-icon-color($hover-color);
+            		@include svg-icon-color($hover-icon);
             	}
 
                 &.dropdown-toggle:after {
-                    color: $hover-color;
+                    color: $hover-icon;
                 }
             }
 
@@ -113,15 +113,15 @@
 
             @if ($active-icon != null) {
                 i {
-            		color: $active-color;
+            		color: $active-icon;
             	}
 
             	.svg-icon {
-            		@include svg-icon-color($active-color);
+            		@include svg-icon-color($active-icon);
             	}
 
                 &.dropdown-toggle:after {
-                    color: $active-color;
+                    color: $active-icon;
                 }
             }
 

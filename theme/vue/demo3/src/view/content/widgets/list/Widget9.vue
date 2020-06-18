@@ -25,7 +25,7 @@
           <div class="timeline-item align-items-start" v-bind:key="i">
             <!--begin::Label-->
             <div
-              class="timeline-label font-weight-bolder text-dark-75 font-size-lg text-right pr-3"
+              class="timeline-label font-weight-bolder text-dark-75 font-size-lg"
             >
               {{ item.time }}
             </div>
@@ -38,7 +38,7 @@
             <!--end::Badge-->
 
             <!--begin::Text-->
-            <div class="timeline-content text-dark-50 d-flex">
+            <div class="font-weight-mormal font-size-sm timeline-content text-muted pl-3">
               <span
                 v-bind:class="{
                   'font-weight-bolder text-dark-75': item.bold,
@@ -98,21 +98,9 @@ export default {
         },
         {
           time: "3 hr",
-          desc: "AEOL meeting with",
+          desc: "AEOL meeting",
           bold: true,
           badge: "fa fa-genderless text-danger",
-          images: [
-            {
-              url: "#",
-              img: process.env.BASE_URL + "media/svg/avatars/004-boy-1.svg",
-              alt: "boy"
-            },
-            {
-              url: "#",
-              img: process.env.BASE_URL + "media/svg/avatars/002-girl.svg",
-              alt: "girl"
-            }
-          ]
         },
         {
           time: "14:37",

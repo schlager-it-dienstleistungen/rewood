@@ -17,6 +17,7 @@
 @import "assets/sass/style.vue";
 
 // Check documentation for RTL css
+// Update HTML with RTL attribute at public/index.html
 /*@import "assets/css/style.vue.rtl";*/
 </style>
 

@@ -52,7 +52,7 @@ export function SubHeader() {
   return (
     <div
       id="kt_subheader"
-      className={`subheader py-2 py-lg-4   ${layoutProps.subheaderCssClasses}`}
+      className={`subheader py-2 py-lg-12   ${layoutProps.subheaderCssClasses}`}
     >
       <div
         className={`${layoutProps.subheaderContainerCssClasses} d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap`}

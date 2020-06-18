@@ -38,7 +38,7 @@
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step .wizard-icon .wizard-number {
   font-weight: 600;
-  color: #464E5F;
+  color: #3F4254;
   font-size: 1.35rem;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step .wizard-label {
@@ -47,7 +47,7 @@
   justify-content: center;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step .wizard-label .wizard-title {
-  color: #212121;
+  color: #181C32;
   font-weight: 500;
   font-size: 1.4rem;
 }
@@ -71,7 +71,7 @@
   color: #B5B5C3;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=done] .wizard-label .wizard-desc {
-  color: #D6D6E0;
+  color: #D1D3E0;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
@@ -88,7 +88,7 @@
   color: #1BC5BD;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-label .wizard-title {
-  color: #212121;
+  color: #181C32;
 }
 .login.login-3 .login-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-label .wizard-desc {
   color: #B5B5C3;

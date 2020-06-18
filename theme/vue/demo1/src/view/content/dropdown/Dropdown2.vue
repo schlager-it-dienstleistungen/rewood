@@ -11,7 +11,7 @@
       <i class="ki ki-bold-more-ver"></i>
     </template>
     <!--begin::Navigation-->
-    <div class="navi navi-hover" style="width: 250px;">
+    <div class="navi navi-hover min-w-md-250px">
       <b-dropdown-text tag="div" class="navi-header font-weight-bold">
         <span class="font-size-lg">
           Choose Label:

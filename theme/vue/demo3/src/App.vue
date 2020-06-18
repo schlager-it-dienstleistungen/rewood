@@ -17,6 +17,7 @@
 @import "assets/sass/style.vue";
 
 // Check documentation for RTL css
+// Update HTML with RTL attribute at public/index.html
 /*@import "assets/css/style.vue.rtl";*/
 </style>
 
@@ -32,10 +33,6 @@ export default {
      * remove this to use config only from static json (@/core/config/layout.config.json)
      */
     this.$store.dispatch(OVERRIDE_LAYOUT_CONFIG);
-
-    // Set background image
-    const bg = this.layoutConfig("self.body.background-image");
-    document.body.style.backgroundImage = `url('${bg}')`;
   },
   computed: {
     ...mapGetters(["layoutConfig"])

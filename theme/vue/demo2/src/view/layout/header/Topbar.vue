@@ -20,7 +20,7 @@
           </span>
         </div>
       </template>
-      <b-dropdown-text tag="div" style="width: 350px;">
+      <b-dropdown-text tag="div" class="min-w-md-350px">
         <KTSearchDefault></KTSearchDefault>
       </b-dropdown-text>
     </b-dropdown>
@@ -45,7 +45,7 @@
           <span class="pulse-ring"></span>
         </div>
       </template>
-      <b-dropdown-text tag="div" style="width: 350px;">
+      <b-dropdown-text tag="div" class="min-w-md-350px">
         <form>
           <KTDropdownNotification></KTDropdownNotification>
         </form>
@@ -71,7 +71,7 @@
           </span>
         </div>
       </template>
-      <b-dropdown-text tag="div" style="width: 350px;">
+      <b-dropdown-text tag="div" class="min-w-md-350px">
         <KTDropdownQuickAction></KTDropdownQuickAction>
       </b-dropdown-text>
     </b-dropdown>
@@ -95,7 +95,7 @@
           </span>
         </div>
       </template>
-      <b-dropdown-text tag="div" style="width: 350px;">
+      <b-dropdown-text tag="div" class="min-w-md-350px">
         <KTDropdownMyCart></KTDropdownMyCart>
       </b-dropdown-text>
     </b-dropdown>
@@ -122,7 +122,7 @@
             alt=""
           />
         </template>
-        <b-dropdown-text tag="div" style="width: 175px;">
+        <b-dropdown-text tag="div" class="min-w-md-175px">
           <KTDropdownLanguage
             v-on:language-changed="onLanguageChanged"
           ></KTDropdownLanguage>

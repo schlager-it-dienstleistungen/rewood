@@ -46,7 +46,7 @@ const HtmlClass = {
 
     const bgImage = objectPath.get(this.config, "self.body.background-image");
     if (typeof bgImage !== "undefined") {
-      // document.body.style.backgroundImage = `url(${bgImage})`;
+      document.body.style.backgroundImage = `url(${bgImage})`;
     }
 
     // Properly close mobile header menu

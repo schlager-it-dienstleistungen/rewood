@@ -44,11 +44,9 @@ const HtmlClass = {
       }
     }
 
-    if (objectPath.has(this.config, "self.body.background-image")) {
-      document.body.style.backgroundImage = `url(${objectPath.get(
-        this.config,
-        "self.body.background-image"
-      )})`;
+    const bgImage = objectPath.get(this.config, "self.body.background-image");
+    if (typeof bgImage !== "undefined") {
+      document.body.style.backgroundImage = `url(${bgImage})`;
     }
 
     // Offcanvas directions

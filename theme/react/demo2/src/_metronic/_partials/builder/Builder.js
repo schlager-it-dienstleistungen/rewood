@@ -40,16 +40,7 @@ export function Builder() {
                     and preview it in real time.
                     The configured layout options will be saved until you change or reset them.
                     To use the layout builder, choose the layout options and click the <code>Preview</code> button to
-                    preview the changes and click the <code>Export</code> button to download the HTML template with its
-                    includable partials of this demo.
-                    In the downloaded folder the partials(header, footer, aside, topbar, etc) will be placed seperated
-                    from the base layout to allow you to integrate base layout into your application
-                </p>{" "}
-                <p>
-                    <span className="label label-inline label-pill label-danger label-rounded mr-2">NOTE:</span>
-                    The downloaded version does not include the assets folder since the layout builder's main purpose is
-                    to
-                    help to generate the final HTML code without hassle.
+                    preview the changes.
                 </p>
             </Notice>
             {/*Formic off site: https://jaredpalmer.com/formik/docs/overview*/}
