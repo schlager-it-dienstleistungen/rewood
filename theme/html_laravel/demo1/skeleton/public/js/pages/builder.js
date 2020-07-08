@@ -97,8 +97,11 @@
  // Class definition
 
 var KTLayoutBuilder = function () {
+  var formAction;
   var exporter = {
-    init: function init() {},
+    init: function init() {
+      formAction = $('.form').attr('action');
+    },
     startLoad: function startLoad(options) {
       $('#builder_export').addClass('spinner spinner-right spinner-primary').find('span').text('Exporting...').closest('.card-footer').find('.btn').attr('disabled', true);
       toastr.info(options.title, options.message);
@@ -111,7 +114,7 @@ var KTLayoutBuilder = function () {
         title: 'Generate HTML Partials',
         message: 'Process started and it may take a while.'
       });
-      $.ajax('index.php', {
+      $.ajax(formAction, {
         method: 'POST',
         data: {
           builder_export: 1,
@@ -128,7 +131,7 @@ var KTLayoutBuilder = function () {
         }
 
         var timer = setInterval(function () {
-          $.ajax('index.php', {
+          $.ajax(formAction, {
             method: 'POST',
             data: {
               builder_export: 1,
@@ -140,7 +143,7 @@ var KTLayoutBuilder = function () {
 
             if (result.export_status !== 1) return;
             $('<iframe/>').attr({
-              src: 'index.php?builder_export&builder_download&id=' + result.id,
+              src: formAction + '?builder_export&builder_download&id=' + result.id,
               style: 'visibility:hidden;display:none'
             }).ready(function () {
               toastr.success('Export HTML Version Layout', 'HTML version exported.');
@@ -176,7 +179,7 @@ var KTLayoutBuilder = function () {
         var tabId = $(this).find('.nav-link.active[data-toggle="tab"]').attr('href');
         $('#' + tab).val(tabId);
       });
-      $.ajax('index.php?demo=' + $(_self).data('demo'), {
+      $.ajax(formAction + '?demo=' + $(_self).data('demo'), {
         method: 'POST',
         data: $('[name]').serialize()
       }).done(function (r) {
@@ -196,7 +199,7 @@ var KTLayoutBuilder = function () {
       var _self = $(this);
 
       $(_self).addClass('spinner spinner-right spinner-primary').closest('.card-footer').find('.btn').attr('disabled', true);
-      $.ajax('index.php?demo=' + $(_self).data('demo'), {
+      $.ajax(formAction + '?demo=' + $(_self).data('demo'), {
         method: 'POST',
         data: {
           builder_reset: 1,

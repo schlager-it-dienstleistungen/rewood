@@ -54,15 +54,15 @@ require('block-ui/jquery.blockUI.js');
 require('bootstrap-datepicker/dist/js/bootstrap-datepicker.js');
 require('@/src/js/vendors/plugins/bootstrap-datepicker.init.js');
 
-// Bootstrap Datetime Picker :https://eonasdan.github.io/bootstrap-datetimepicker/
-require('bootstrap-datetime-picker/js/bootstrap-datetimepicker.js');
-
 // Bootstrap Timepicker - Easily select a time for a text input using your mouse or keyboards arrow keys: https://jdewit.github.io/bootstrap-timepicker/
 require('bootstrap-timepicker/js/bootstrap-timepicker.js');
 require('@/src/js/vendors/plugins/bootstrap-timepicker.init.js');
 
 // Date Range Picker - A JavaScript component for choosing date ranges, dates and times: https://www.daterangepicker.com/
 require('bootstrap-daterangepicker/daterangepicker.js');
+
+// Eonasdan/bootstrap-datetimepicker: Date/time picker - Date/time picker widget based on twitter bootstrap
+require('eonasdan-bootstrap-datetimepicker');
 
 // Bootstrap Touchspin - A mobile and touch friendly input spinner component for Bootstrap 3: https://www.virtuosoft.eu/code/bootstrap-touchspin/
 require('bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js');

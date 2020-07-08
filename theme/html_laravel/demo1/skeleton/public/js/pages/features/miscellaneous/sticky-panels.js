@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 144);
+/******/ 	return __webpack_require__(__webpack_require__.s = 152);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -125,7 +125,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 144:
+/***/ 152:
 /*!***********************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/sticky-panels.js ***!
   \***********************************************************************************/

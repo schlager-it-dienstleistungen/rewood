@@ -852,10 +852,11 @@
 					> .menu-submenu {
 						top: get($layout, dropdown, item, submenu, self, offset, inner, default);
 						position: absolute;
+						left: 0;
 						z-index: get($layout, dropdown, item, self, zindex);
 						display: flex !important;
 						width: get($layout, dropdown, item, submenu, self, width);
-						margin-left: get($layout, dropdown, item, submenu, self, width);
+						margin-left: get($layout, dropdown, item, submenu, self, parent-width);
 						@include border-radius(get($layout, dropdown, item, submenu, self, border-radius));
 
 						&.menu-submenu-up {

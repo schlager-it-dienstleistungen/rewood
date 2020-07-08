@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 133);
+/******/ 	return __webpack_require__(__webpack_require__.s = 141);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -339,7 +339,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 133:
+/***/ 141:
 /*!*******************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/maps/jqvmap.js ***!
   \*******************************************************************/

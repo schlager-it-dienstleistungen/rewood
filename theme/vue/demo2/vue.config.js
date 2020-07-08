@@ -1,7 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  // publicPath: "/metronic/preview/vue/demo2/",
+  publicPath:
+    process.env.NODE_ENV === "production"
+      ? "/metronic/vue/demo2/"
+      : "/",
   configureWebpack: {
     resolve: {
       alias: {

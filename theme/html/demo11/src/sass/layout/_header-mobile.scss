@@ -23,7 +23,7 @@
 		min-height: get($header-config, tablet-and-mobile, height);
 		position: relative;
 		background-color: get($header-config, tablet-and-mobile, bg-color);
-		z-index: 2;
+		z-index: 3;
 		border-bottom: 1px solid transparent;
 
 		// Fixed Header & Scroll Header Modes
@@ -58,8 +58,8 @@
 		.btn.btn-icon {
 			@include button-custom-variant(
 				$gray-300, null, $gray-600, $gray-600, null,
-				$gray-400, null, $gray-600, $gray-600, null,
-				$gray-400, null, $gray-600, $gray-600, null,
+				$gray-400, null, $dark, $dark, null,
+				$gray-400, null, $dark, $dark, null,
 			);
 		}
 	}

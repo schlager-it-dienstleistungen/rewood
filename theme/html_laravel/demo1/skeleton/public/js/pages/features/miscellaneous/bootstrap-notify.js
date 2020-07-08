@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 137);
+/******/ 	return __webpack_require__(__webpack_require__.s = 145);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -183,7 +183,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 137:
+/***/ 145:
 /*!**************************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/bootstrap-notify.js ***!
   \**************************************************************************************/

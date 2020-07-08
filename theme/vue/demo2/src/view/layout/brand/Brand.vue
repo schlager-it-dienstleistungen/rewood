@@ -7,7 +7,11 @@
       </router-link>
     </div>
     <div class="brand-tools" v-if="allowMinimize">
-      <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle" ref="kt_aside_toggle">
+      <button
+        class="brand-toggle btn btn-sm px-0"
+        id="kt_aside_toggle"
+        ref="kt_aside_toggle"
+      >
         <span class="svg-icon svg-icon svg-icon-xl">
           <inline-svg
             class="svg-icon"

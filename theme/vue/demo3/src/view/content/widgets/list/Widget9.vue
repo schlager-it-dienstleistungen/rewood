@@ -38,7 +38,9 @@
             <!--end::Badge-->
 
             <!--begin::Text-->
-            <div class="font-weight-mormal font-size-sm timeline-content text-muted pl-3">
+            <div
+              class="font-weight-mormal font-size-sm timeline-content text-muted pl-3"
+            >
               <span
                 v-bind:class="{
                   'font-weight-bolder text-dark-75': item.bold,
@@ -100,7 +102,7 @@ export default {
           time: "3 hr",
           desc: "AEOL meeting",
           bold: true,
-          badge: "fa fa-genderless text-danger",
+          badge: "fa fa-genderless text-danger"
         },
         {
           time: "14:37",

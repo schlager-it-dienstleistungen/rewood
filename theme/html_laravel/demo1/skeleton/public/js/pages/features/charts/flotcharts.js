@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 129);
+/******/ 	return __webpack_require__(__webpack_require__.s = 137);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -788,7 +788,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 129:
+/***/ 137:
 /*!*************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/charts/flotcharts.js ***!
   \*************************************************************************/

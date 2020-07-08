@@ -116,7 +116,7 @@ var KTTypeahead = function () {
       };
     };
 
-    $('#kt_typeahead_1, #kt_typeahead_1_modal, #kt_typeahead_1_validate, #kt_typeahead_2_validate, #kt_typeahead_3_validate').typeahead({
+    $('#kt_typeahead_1, #kt_typeahead_1_modal').typeahead({
       hint: true,
       highlight: true,
       minLength: 1
@@ -131,7 +131,7 @@ var KTTypeahead = function () {
     var bloodhound = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      // `states` is an array of state names defined in "The Basics"
+      // `states` is an array of state names defined in \"The Basics\"
       local: states
     });
     $('#kt_typeahead_2, #kt_typeahead_2_modal').typeahead({
@@ -171,7 +171,7 @@ var KTTypeahead = function () {
       display: 'value',
       source: bestPictures,
       templates: {
-        empty: ['<div class="empty-message" style="padding: 10px 15px; text-align: center;">', 'unable to find any Best Picture winners that match the current query', '</div>'].join('\n'),
+        empty: ['<div class=\"empty-message\" style=\"padding: 10px 15px; text-align: center;\">', 'unable to find any Best Picture winners that match the current query', '</div>'].join('\n'),
         suggestion: Handlebars.compile('<div><strong>{{value}}</strong> – {{year}}</div>')
       }
     });
@@ -195,14 +195,14 @@ var KTTypeahead = function () {
       display: 'team',
       source: nbaTeams,
       templates: {
-        header: '<h3 class="league-name" style="padding: 5px 15px; font-size: 1.2rem; margin:0;">NBA Teams</h3>'
+        header: '<h3 class=\"league-name\" style=\"padding: 5px 15px; font-size: 1.2rem; margin:0;\">NBA Teams</h3>'
       }
     }, {
       name: 'nhl-teams',
       display: 'team',
       source: nhlTeams,
       templates: {
-        header: '<h3 class="league-name" style="padding: 5px 15px; font-size: 1.2rem; margin:0;">NHL Teams</h3>'
+        header: '<h3 class=\"league-name\" style=\"padding: 5px 15px; font-size: 1.2rem; margin:0;\">NHL Teams</h3>'
       }
     });
   };

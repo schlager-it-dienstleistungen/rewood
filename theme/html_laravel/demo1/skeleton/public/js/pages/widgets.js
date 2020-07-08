@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 149);
+/******/ 	return __webpack_require__(__webpack_require__.s = 157);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3529,6 +3529,7 @@ var KTWidgets = function () {
 
   var _initTilesWidget2 = function _initTilesWidget2() {
     var element = document.getElementById("kt_tiles_widget_2_chart");
+    var height = parseInt(KTUtil.css(element, 'height'));
 
     if (!element) {
       return;
@@ -3543,7 +3544,7 @@ var KTWidgets = function () {
       }],
       chart: {
         type: 'area',
-        height: 75,
+        height: height,
         zoom: {
           enabled: false
         },
@@ -3659,6 +3660,7 @@ var KTWidgets = function () {
 
   var _initTilesWidget5 = function _initTilesWidget5() {
     var element = document.getElementById("kt_tiles_widget_5_chart");
+    var height = parseInt(KTUtil.css(element, 'height'));
 
     if (!element) {
       return;
@@ -3674,7 +3676,7 @@ var KTWidgets = function () {
       }],
       chart: {
         type: 'bar',
-        height: 75,
+        height: height,
         zoom: {
           enabled: false
         },
@@ -4465,6 +4467,37 @@ var KTWidgets = function () {
         checkboxes[i].checked = this.checked;
       }
     });
+  }; // Education Show More Demo
+
+
+  var _initEducationShowMoreBtn = function _initEducationShowMoreBtn() {
+    var el = KTUtil.getById('kt_app_education_more_feeds_btn');
+    KTUtil.addEvent(el, 'click', function (e) {
+      var elements = document.getElementsByClassName('education-more-feeds');
+
+      if (!elements || elements.length <= 0) {
+        return;
+      }
+
+      KTUtil.btnWait(el, 'spinner spinner-right spinner-white pr-15', 'Please wait...', true);
+      setTimeout(function () {
+        KTUtil.btnRelease(el);
+        KTUtil.addClass(el, 'd-none');
+        var item;
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          item = elements[0];
+          KTUtil.removeClass(elements[i], 'd-none');
+          var textarea = KTUtil.find(item, 'textarea');
+
+          if (textarea) {
+            autosize(textarea);
+          }
+        }
+
+        KTUtil.scrollTo(item);
+      }, 1000);
+    });
   }; // Public methods
 
 
@@ -4575,7 +4608,10 @@ var KTWidgets = function () {
 
       _initFormsWidget10();
 
-      _initFormsWidget11();
+      _initFormsWidget11(); // Education App
+
+
+      _initEducationShowMoreBtn();
     }
   };
 }(); // Webpack support
@@ -4591,7 +4627,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 149:
+/***/ 157:
 /*!******************************************************!*\
   !*** multi ./resources/metronic/js/pages/widgets.js ***!
   \******************************************************/

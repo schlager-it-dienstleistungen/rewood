@@ -1433,7 +1433,7 @@ $aside-menu-config: (
 				// Container
 				self: (
 					padding: 15px 0,
-					width: get($aside-config, base, width), // should be equal to the minimized aside width
+					width: get($aside-config, base, minimized-width), // should be equal to the minimized aside width
 				),
 
 				// Item
@@ -1457,7 +1457,7 @@ $aside-menu-config: (
 						// Submenu
 						self: (
 							width: 255px,
-							margin-left: get($aside-config, base, width) + 1px
+							margin-left: get($aside-config, base, minimized-width)
 						),
 
 						// Item

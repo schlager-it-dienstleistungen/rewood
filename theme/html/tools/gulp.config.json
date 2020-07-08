@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.5",
+    "version": "7.0.6",
     "config": {
         "debug": false,
         "compile": {
@@ -19,8 +19,8 @@
                     "owl.carousel",
                     "fullcalendar",
                     "bootstrap-datepicker",
-                    "bootstrap-datetime-picker",
                     "bootstrap-switch",
+                    "tempusdominus-bootstrap-4",
                     "nouislider",
                     "tinymce",
                     "sweetalert2"
@@ -77,7 +77,7 @@
                         },
                         "moment": {
                             "scripts": [
-                                "{$config.path.node_modules}/moment/min/moment.min.js"
+                                "{$config.path.node_modules}/moment/min/moment-with-locales.min.js"
                             ]
                         },
                         "perfect-scrollbar": {
@@ -128,12 +128,13 @@
                                 "{$config.path.src}/js/vendors/plugins/bootstrap-datepicker.init.js"
                             ]
                         },
-                        "bootstrap-datetime-picker": {
+                        "tempusdominus-bootstrap-4": {
                             "styles": [
-                                "{$config.path.node_modules}/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css"
+                                "{$config.path.node_modules}/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.css"
                             ],
                             "scripts": [
-                                "{$config.path.node_modules}/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js"
+                                "{$config.path.node_modules}/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js",
+                                "{$config.path.src}/js/vendors/plugins/tempusdominus-bootstrap-4.init.js"
                             ]
                         },
                         "bootstrap-timepicker": {

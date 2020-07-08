@@ -137,7 +137,7 @@ export function CustomersTable() {
               <BootstrapTable
                 wrapperClasses="table-responsive"
                 bordered={false}
-                classes="table table-head-custom table-vertical-center"
+                classes="table table-head-custom table-vertical-center overflow-hidden"
                 bootstrap4
                 remote
                 keyField="id"

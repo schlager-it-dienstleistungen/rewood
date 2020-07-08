@@ -1920,8 +1920,8 @@ export default {
   methods: {
     setActiveTab(event) {
       let target = event.target;
-      if(!event.target.classList.contains('nav-link')) {
-        target = event.target.closest('.nav-link');
+      if (!event.target.classList.contains("nav-link")) {
+        target = event.target.closest(".nav-link");
       }
 
       const tab = target.closest('[role="tablist"]');

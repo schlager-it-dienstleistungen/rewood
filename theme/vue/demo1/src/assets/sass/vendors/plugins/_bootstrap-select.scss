@@ -16,6 +16,7 @@ $bootstrap-select-title-padding: 10px 15px;
 
         &:focus {
             outline: none !important;
+            border-color: $input-focus-border-color !important;
         }
 
         &:after {
@@ -37,8 +38,7 @@ $bootstrap-select-title-padding: 10px 15px;
             border-color: $input-border-color;
             box-shadow: none;
 
-            &:active,
-            &:focus,
+            &.focus,
             &.active {
                 border-color: $input-focus-border-color !important;
             }
@@ -46,7 +46,7 @@ $bootstrap-select-title-padding: 10px 15px;
             &.disabled,
             &:disabled {
                 background: $input-disabled-bg;
-                border-color: $input-disabled-bg
+                border-color: $input-disabled-bg;
             }
 
             .filter-option {
@@ -211,8 +211,9 @@ $bootstrap-select-title-padding: 10px 15px;
         > .dropdown-toggle {
             &.btn-light,
             &.btn-secondary {
-                border-color: $input-focus-border-color;
-                box-shadow: none;
+                border-color: $input-focus-border-color !important;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
             }
         }
     }
@@ -238,6 +239,11 @@ $bootstrap-select-title-padding: 10px 15px;
     }
 
     .dropdown-menu {
-        margin-top: 1px;
+        margin-top: 0;
+        border-top: none !important;
+        border: 1px solid #E4E6EF;
+        box-shadow: $dropdown-box-shadow;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
     }
 }

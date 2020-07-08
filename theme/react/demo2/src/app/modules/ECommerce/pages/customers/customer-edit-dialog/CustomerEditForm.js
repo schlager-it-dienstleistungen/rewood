@@ -50,7 +50,7 @@ export function CustomerEditForm({
       >
         {({ handleSubmit }) => (
           <>
-            <Modal.Body className="overlay overlay-block">
+            <Modal.Body className="overlay overlay-block cursor-default">
               {actionsLoading && (
                 <div className="overlay-layer bg-transparent">
                   <div className="spinner spinner-lg spinner-success" />

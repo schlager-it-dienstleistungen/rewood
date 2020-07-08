@@ -28,20 +28,21 @@
             <img alt="<?php echo e(config('app.name')); ?>" src="<?php echo e(asset('media/logos/'.$kt_logo_image)); ?>"/>
         </a>
     </div>
-    <div class="mobile-toolbar">
+    <div class="d-flex align-items-center">
 
         <?php if(config('layout.aside.self.display')): ?>
-            <button class="mobile-toggle mobile-toggle-left" id="kt_aside_mobile_toggle"><span></span></button>
+            <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle"><span></span></button>
         <?php endif; ?>
 
         <?php if(config('layout.header.menu.self.display')): ?>
-            <button class="mobile-toggle ml-3" id="kt_header_mobile_toggle"><span></span></button>
+            <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle"><span></span></button>
         <?php endif; ?>
 
-        <button class="topbar-toggle ml-3" id="kt_header_mobile_topbar_toggle">
-            <?php echo e(Metronic::getSVG('media/svg/icons/General/User.svg')); ?>
+        <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+            <?php echo e(Metronic::getSVG('media/svg/icons/General/User.svg', 'svg-icon-xl')); ?>
 
         </button>
+
     </div>
 </div>
 <?php /**PATH C:\wamp64\www\keenthemes\themes\metronic\theme\html_laravel\demo1\skeleton\resources\views/layout/base/_header-mobile.blade.php ENDPATH**/ ?>

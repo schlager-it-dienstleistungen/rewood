@@ -6910,7 +6910,22 @@ if (!Element.prototype.closest) {
       }
     });
   });
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]); // Global variables
+})([Element.prototype, Document.prototype, DocumentFragment.prototype]); // getAttributeNames
+
+
+if (Element.prototype.getAttributeNames == undefined) {
+  Element.prototype.getAttributeNames = function () {
+    var attributes = this.attributes;
+    var length = attributes.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++) {
+      result[i] = attributes[i].name;
+    }
+
+    return result;
+  };
+} // Global variables
 
 
 window.KTUtilElementDataStore = {};

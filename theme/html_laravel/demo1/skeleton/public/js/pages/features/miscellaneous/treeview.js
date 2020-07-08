@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 147);
+/******/ 	return __webpack_require__(__webpack_require__.s = 155);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -401,7 +401,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 155:
 /*!******************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/treeview.js ***!
   \******************************************************************************/

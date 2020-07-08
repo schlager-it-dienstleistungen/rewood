@@ -1,10 +1,9 @@
 {
     "name": "demo2",
-    "version": "7.0.5",
+    "version": "7.0.6",
     "private": true,
-    "homepage": "https://keenthemes.com/metronic/preview/react/demo2",
+    "homepage": "/metronic/react/demo2",
     "scripts": {
-        "serve": "cp-cli build _site/react/preview/react/demo2 && serve",
         "start": "react-scripts start -o",
         "build": "react-scripts build",
         "test": "react-scripts test",

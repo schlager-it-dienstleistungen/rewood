@@ -135,7 +135,7 @@
 		background-color: get($header-topbar-config, tablet-and-mobile, bg-color);
 		transition: margin-top get($header-topbar-config, tablet-and-mobile, transition);
 		margin-top: -(get($header-topbar-config, tablet-and-mobile, height));
-		z-index: 1;
+		z-index: 2;
 		opacity: 0;
 
 		// Topbar On Mode

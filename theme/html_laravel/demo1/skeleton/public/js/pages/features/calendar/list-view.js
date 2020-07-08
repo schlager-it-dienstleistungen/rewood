@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 122);
+/******/ 	return __webpack_require__(__webpack_require__.s = 130);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -250,7 +250,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 122:
+/***/ 130:
 /*!**************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/calendar/list-view.js ***!
   \**************************************************************************/

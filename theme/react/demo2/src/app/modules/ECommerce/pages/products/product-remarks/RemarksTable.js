@@ -101,7 +101,7 @@ export function RemarksTable() {
             >
               <BootstrapTable
                 wrapperClasses="table-responsive"
-                classes="table table-head-custom table-vertical-center"
+                classes="table table-head-custom table-vertical-center overflow-hidden"
                 bordered={false}
                 bootstrap4
                 remote

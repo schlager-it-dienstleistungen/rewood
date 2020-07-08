@@ -33,16 +33,10 @@ export function SubHeader() {
   useLayoutEffect(() => {
     const aside = getBreadcrumbsAndTitle("kt_aside_menu", location.pathname);
     const header = getBreadcrumbsAndTitle("kt_header_menu", location.pathname);
-    let breadcrumbs = [];
-    if (aside && aside.breadcrumbs && aside.breadcrumbs.length > 0) {
-      breadcrumbs = aside.breadcrumbs;
-    } else {
-      breadcrumbs = header.breadcrumbs;
-    }
-
+    const breadcrumbs = (aside && aside.breadcrumbs.length > 0) ? aside.breadcrumbs : header.breadcrumbs;
     subheader.setBreadcrumbs(breadcrumbs);
-    subheader.setTitle(aside.title || header.title);
-    // eslint-disable-next-line
+    subheader.setTitle((aside && aside.title && aside.title.length > 0) ? aside.title : header.title);
+     // eslint-disable-next-line
   }, [location.pathname]);
 
   // Do not remove this useEffect, need from update title/breadcrumbs outside (from the page)

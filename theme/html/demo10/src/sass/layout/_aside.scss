@@ -34,6 +34,8 @@
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
 	.aside {
+		margin: 0;
+		
 		// Buttons
 		.btn.btn-icon.btn-lg {
 			width: 40px;

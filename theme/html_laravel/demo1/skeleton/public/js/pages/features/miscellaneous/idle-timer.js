@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 140);
+/******/ 	return __webpack_require__(__webpack_require__.s = 148);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -280,7 +280,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 140:
+/***/ 148:
 /*!********************************************************************************!*\
   !*** multi ./resources/metronic/js/pages/features/miscellaneous/idle-timer.js ***!
   \********************************************************************************/

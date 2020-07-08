@@ -240,13 +240,12 @@ function Registration(props) {
             <input
               type="checkbox"
               name="acceptTerms"
+              className="m-1"
               {...formik.getFieldProps("acceptTerms")}
             />
-            I agree the{" "}
-            <Link to="/terms" target="_blank" rel="noopener noreferrer">
-              Terms & Conditions
+            <Link to="/terms" target="_blank" className="mr-1" rel="noopener noreferrer">
+            I agree the Terms & Conditions
             </Link>
-            .
             <span />
           </label>
           {formik.touched.acceptTerms && formik.errors.acceptTerms ? (

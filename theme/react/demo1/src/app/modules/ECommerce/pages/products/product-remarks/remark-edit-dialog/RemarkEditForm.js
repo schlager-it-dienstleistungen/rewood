@@ -35,7 +35,7 @@ export function RemarkEditForm({ saveRemark, remark, actionsLoading, onHide }) {
       >
         {({ handleSubmit }) => (
           <>
-            <Modal.Body className="overlay overlay-block">
+            <Modal.Body className="overlay overlay-block cursor-default">
               {actionsLoading && (
                 <div className="overlay-layer bg-transparent">
                   <div className="spinner spinner-lg spinner-success" />

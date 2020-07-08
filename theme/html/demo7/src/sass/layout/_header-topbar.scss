@@ -43,7 +43,7 @@
 
 		// Topbar Shown Mode
 		.topbar-mobile-on & {
-			z-index: 1;
+			z-index: 2;
 			transition: all 0.3s ease;
 			border-top: 1px solid get($header-topbar-config, tablet-and-mobile, border-color);
 			margin-top: get($header-config, tablet-and-mobile, height);

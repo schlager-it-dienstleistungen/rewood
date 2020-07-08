@@ -75,7 +75,7 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
           Status has been updated for selected products
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="overlay overlay-block">
+      <Modal.Body className="overlay overlay-block cursor-default">
         {isLoading && (
           <div className="overlay-layer bg-transparent">
             <div className="spinner spinner-lg spinner-warning" />

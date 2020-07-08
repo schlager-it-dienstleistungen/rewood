@@ -3478,6 +3478,7 @@ var KTWidgets = function() {
 
     var _initTilesWidget2 = function() {
         var element = document.getElementById("kt_tiles_widget_2_chart");
+        var height = parseInt(KTUtil.css(element, 'height'));
 
         if (!element) {
             return;
@@ -3493,7 +3494,7 @@ var KTWidgets = function() {
             }],
             chart: {
                 type: 'area',
-                height: 75,
+                height: height,
                 zoom: {
                     enabled: false
                 },
@@ -3610,6 +3611,7 @@ var KTWidgets = function() {
 
     var _initTilesWidget5 = function() {
         var element = document.getElementById("kt_tiles_widget_5_chart");
+        var height = parseInt(KTUtil.css(element, 'height'));
 
         if (!element) {
             return;
@@ -3625,7 +3627,7 @@ var KTWidgets = function() {
             }],
             chart: {
                 type: 'bar',
-                height: 75,
+                height: height,
                 zoom: {
                     enabled: false
                 },

@@ -137,7 +137,7 @@ export function ProductsTable() {
             >
               <BootstrapTable
                 wrapperClasses="table-responsive"
-                classes="table table-head-custom table-vertical-center"
+                classes="table table-head-custom table-vertical-center overflow-hidden"
                 bootstrap4
                 bordered={false}
                 remote

@@ -78,7 +78,7 @@ export function CustomersUpdateStateDialog({ show, onHide }) {
           Status has been updated for selected customers
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="overlay overlay-block">
+      <Modal.Body className="overlay overlay-block cursor-default">
         {/*begin::Loading*/}
         {isLoading && (
           <div className="overlay-layer">

@@ -20,7 +20,7 @@ export function getBreadcrumbsAndTitle(menuId, pathName) {
     const titleSpans = link.getElementsByClassName("menu-text");
 
     if (titleSpans) {
-      const titleSpan = Array.from(titleSpans).find(t => t.innerHTML);
+      const titleSpan = Array.from(titleSpans).find(t => t.innerHTML && t.innerHTML.trim().length > 0);
       if (titleSpan) {
         result.breadcrumbs.push(
             {
@@ -40,12 +40,12 @@ export function getTitle(breadCrumbs, pathname) {
     return "";
   }
 
-  const item = breadCrumbs.find(b => b.pathname === pathname);
-  if (!item) {
-    return  "";
+  const length = breadCrumbs.length;
+  if (!length) {
+    return "";
   }
 
-  return  item.title;
+  return breadCrumbs[length - 1].title;
 }
 
 const SubheaderContext = createContext();

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 113);
+/******/ 	return __webpack_require__(__webpack_require__.s = 119);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -348,7 +348,7 @@ jQuery(document).ready(function () {
 
 /***/ }),
 
-/***/ 113:
+/***/ 119:
 /*!*********************************************************************!*\
   !*** multi ./resources/metronic/js/pages/custom/wizard/wizard-1.js ***!
   \*********************************************************************/

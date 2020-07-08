@@ -54,17 +54,13 @@ export class Subheader1Component implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.push(this.subheaderService.title$.subscribe(bt => {
       // breadcrumbs title sometimes can be undefined
       if (bt) {
-        Promise.resolve(null).then(() => {
           this.title = bt.title;
           this.desc = bt.desc;
-        });
       }
     }));
 
     this.subscriptions.push(this.subheaderService.breadcrumbs$.subscribe(bc => {
-      Promise.resolve(null).then(() => {
-        this.breadcrumbs = bc;
-      });
+      this.breadcrumbs = bc;
     }));
   }
 

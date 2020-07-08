@@ -19,7 +19,7 @@
 		height: get($header-config, tablet-and-mobile, default, height);
 		min-height: get($header-config, tablet-and-mobile, default, height);
 		position: relative;
-		z-index: 2;
+		z-index: 3;
 
 		// Topbar Shown Mode
 		.topbar-mobile-on & {
@@ -28,7 +28,7 @@
 
 		// Burger Icon
 		.burger-icon {
-			@include burger-icon-theme(rgba($white, 0.7), $white, $white); 
+			@include burger-icon-theme(rgba($white, 0.7), $white, $white);
 		}
 	}
 }

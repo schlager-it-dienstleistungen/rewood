@@ -54,9 +54,6 @@ require('block-ui/jquery.blockUI.js');
 require('bootstrap-datepicker/dist/js/bootstrap-datepicker.js');
 require('../metronic/js/vendors/plugins/bootstrap-datepicker.init.js');
 
-// Bootstrap Datetime Picker :https://eonasdan.github.io/bootstrap-datetimepicker/
-require('bootstrap-datetime-picker/js/bootstrap-datetimepicker.js');
-
 // Bootstrap Timepicker - Easily select a time for a text input using your mouse or keyboards arrow keys: https://jdewit.github.io/bootstrap-timepicker/
 require('bootstrap-timepicker/js/bootstrap-timepicker.js');
 require('../metronic/js/vendors/plugins/bootstrap-timepicker.init.js');

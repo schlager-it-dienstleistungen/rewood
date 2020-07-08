@@ -94,11 +94,11 @@ export class SubheaderService {
    */
   updateBreadcrumbs() {
     // get breadcrumbs from header menu
-    let breadcrumbs = this.getBreadcrumbs(this.headerMenus);
+    let breadcrumbs = this.getBreadcrumbs(this.asideMenus);
     // if breadcrumbs empty from header menu
     if (breadcrumbs.length === 0) {
       // get breadcrumbs from aside menu
-      breadcrumbs = this.getBreadcrumbs(this.asideMenus);
+      breadcrumbs = this.getBreadcrumbs(this.headerMenus);
     }
 
     if (
@@ -138,16 +138,22 @@ export class SubheaderService {
   getBreadcrumbs(menus: any) {
     let url = this.pageConfigService.cleanUrl(this.router.url);
     url = url.replace(new RegExp(/\./, 'g'), '/');
+    const urls = getUrlsFromCurrentUrl(url);
 
     const breadcrumbs = [];
-    const menuPath = this.getPath(menus, url) || [];
-    menuPath.forEach(key => {
-      menus = menus[key];
-      if (typeof menus !== 'undefined' && menus.title) {
-        breadcrumbs.push(menus);
-      }
-    });
-
+    for (let u = 0; u < urls.length; u++) {
+      const menuPath = this.getPath(menus, urls[u]) || [];
+      menuPath.forEach(key => {
+        menus = menus[key];
+        if (typeof menus !== 'undefined' && menus.title) {
+          const item = {
+            title: menus.title,
+            page: urls[u]
+          };
+          breadcrumbs.push(item);
+        }
+      });
+    }
     return breadcrumbs;
   }
 
@@ -194,4 +200,16 @@ export class SubheaderService {
     search(obj);
     return path;
   }
+}
+
+
+function getUrlsFromCurrentUrl(currentUrl: string): string[] {
+  const result: string[] = [];
+  const urlParts = currentUrl.split('/');
+  urlParts.reduce((accum, item) => {
+    const url = `${accum}/${item}`;
+    result.push(url);
+    return url;
+  }, '');
+  return result;
 }
