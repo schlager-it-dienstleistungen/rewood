@@ -12,9 +12,13 @@ import { ContactComponent } from './views/pages/general/contact/contact.componen
 
 const routes: Routes = [
 	{
+		path: 'auth',
+		loadChildren: './views/pages/auth/auth.module#AuthModule'
+	},
+	{
 		path: '',
 		component: BaseComponent,
-// canActivate: [AuthGuard],
+		canActivate: [AuthGuard],
 		children: [
 			{
 				path: 'home',
