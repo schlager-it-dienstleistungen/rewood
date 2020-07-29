@@ -34,6 +34,8 @@ KTUtil.ready(function() {
     //////////////////////////////////////////////
     // Layout Extended Partials(optional to use)//
     //////////////////////////////////////////////
+    // Init Quick User Panel
+    KTLayoutQuickUser.init('kt_quick_user');
 
     // Init Scrolltop
     KTLayoutScrolltop.init('kt_scrolltop');

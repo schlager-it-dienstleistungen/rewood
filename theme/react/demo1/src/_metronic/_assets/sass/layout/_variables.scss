@@ -2357,6 +2357,7 @@ $subheader-config: (
 	// Fixed Subheader Mode
 	fixed: (
 		height: 54px, // Fixed subheader's height
+		height-mobile: 65px, // Fixed mobile subheader's height
 		shadow: 0px 10px 30px 0px rgba(82,63,105,0.08), // Fixed subheader's box shadow
 		zindex: 95 // Fixed subheader's z-index
 	)

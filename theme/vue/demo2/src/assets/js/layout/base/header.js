@@ -12,10 +12,6 @@ var KTLayoutHeader = function() {
             offset: {
                 desktop: 300,
                 tabletAndMobile: false
-            },
-            releseOnReverse: {
-                desktop: true,
-                tabletAndMobile: false
             }
 		};
 

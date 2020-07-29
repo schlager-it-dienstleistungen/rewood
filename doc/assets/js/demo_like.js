@@ -5,7 +5,7 @@ $(document).ready(function() {
   $('.demo_like:not(.demo_like_done)').on('click', '.demo_like_img', function() {
     var click = $(this);
     var demo = click.data('demo');
-    $.ajax('index.php?like=1', {
+    $.ajax('doc/index.php?like=1', {
       method: 'POST',
       data: Object.assign({
         demo: demo,

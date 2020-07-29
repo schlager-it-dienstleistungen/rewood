@@ -68,7 +68,6 @@
 		position: relative;
 		display: flex;
 		justify-content: flex-end;
-		padding: 0 get($page-padding, tablet-and-mobile);
 		height: get($header-topbar-config, tablet-and-mobile, height);
 		box-shadow: get($header-topbar-config, tablet-and-mobile, shadow);
 		background-color: get($header-topbar-config, tablet-and-mobile, bg-color);
@@ -79,6 +78,9 @@
 
 		// Topbar On Mode
 		.topbar-mobile-on & {
+			z-index: 6;
+			padding: 0 0;
+			justify-content: center;
 			margin-top: 0;
 			opacity: 1;
 			transition: margin-top get($header-topbar-config, tablet-and-mobile, transition), opacity get($header-topbar-config, tablet-and-mobile, transition);

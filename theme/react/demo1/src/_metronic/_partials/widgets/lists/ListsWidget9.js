@@ -31,7 +31,7 @@ export function ListsWidget9({ className }) {
         </div>
         {/* Body */}
         <div className="card-body pt-4">
-          <div className="timeline timeline-5 mt-3">
+          <div className="timeline timeline-6 mt-3">
             <div className="timeline-item align-items-start">
               <div className="timeline-label font-weight-bolder text-dark-75 font-size-lg">
                 08:42

@@ -19,7 +19,7 @@
 
     <!--begin::Body-->
     <div class="card-body pt-4">
-      <div class="timeline timeline-5 mt-3">
+      <div class="timeline timeline-6 mt-3">
         <template v-for="(item, i) in list">
           <!--begin::Item-->
           <div class="timeline-item align-items-start" v-bind:key="i">

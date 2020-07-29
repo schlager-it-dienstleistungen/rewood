@@ -4957,8 +4957,6 @@ var KTWizard = function(elementId, options) {
          * Handles wizard click wizard
          */
         goTo: function(number, eventHandle) {
-            console.log('go to:' + number);
-
             // Skip if this step is already shown
             if (number === the.currentStep || number > the.totalSteps || number < 0) {
                 return;
@@ -6667,6 +6665,10 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 						Plugin.dataRender();
 					},
 					populate: function() {
+						datatable.dataSet = datatable.dataSet || [];
+						// no records available
+						if (datatable.dataSet.length === 0) return;
+
 						var icons = Plugin.getOption('layout.icons.pagination');
 						var title = Plugin.getOption('translate.toolbar.pagination.items.default');
 						// pager root element
@@ -8144,7 +8146,28 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 				datatable = initialDatatable;
 				$(datatable).trigger(pfx + 'datatable-on-destroy');
 				Plugin.isInit = false;
+
+				// clean up variables
 				initialDatatable = null;
+				datatable.dataSet = null;
+				datatable.originalDataSet = null;
+				datatable.tableHead = null;
+				datatable.tableBody = null;
+				datatable.table = null;
+				datatable.wrap = null;
+				datatable.API = {
+					record: null,
+					value: null,
+					params: null,
+				};
+
+				Plugin.ajaxParams = {};
+				Plugin.pagingObject = {};
+				Plugin.nodeTr = [];
+				Plugin.nodeTd = [];
+				Plugin.nodeCols = [];
+				Plugin.recentNode = [];
+
 				return initialDatatable;
 			},
 
@@ -10661,22 +10684,6 @@ var KTLayoutHeader = function() {
     var _elementForMobile;
     var _object;
 
-	// Private functions
-	var _init = function() {
-        var options = {
-            offset: {
-                desktop: 300,
-                tabletAndMobile: 300
-            },
-            releseOnReverse: {
-                desktop: false,
-                tabletAndMobile: false
-            }
-		};
-
-		_object = new KTHeader(_element, options);
-	}
-
     // Get height
     var _getHeight = function() {
         var height = 0;
@@ -10706,9 +10713,6 @@ var KTLayoutHeader = function() {
             if (!_element) {
                 return;
             }
-
-            // Initialize
-            _init();
 		},
 
         isFixed: function() {

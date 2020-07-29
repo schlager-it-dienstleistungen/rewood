@@ -48,7 +48,7 @@
         <span class="menu-text"> Vue Bootstrap </span>
       </a>
       <div class="menu-submenu menu-submenu-fixed">
-        <div class="menu-subnav megamenu" style="width: 1000px;">
+        <div class="menu-subnav megamenu" style="max-width: 1000px;">
           <ul class="menu-content">
             <li class="menu-item">
               <h3 class="menu-heading menu-toggle">
@@ -797,7 +797,7 @@
         <span class="menu-text"> Vuetify </span>
       </a>
       <div class="menu-submenu menu-submenu-fixed">
-        <div class="menu-subnav megamenu" style="width: 800px;">
+        <div class="menu-subnav megamenu" style="max-width: 800px;">
           <ul class="menu-content">
             <li class="menu-item">
               <h3 class="menu-heading menu-toggle">

@@ -199,7 +199,7 @@ header {
 }
 
 .header__references_home,
-.header__references_metronic,
+.header__references_theme,
 .header__references_hire,
 {
 	position: relative;
@@ -231,7 +231,7 @@ header {
 	}
 }
 
-.header__references_metronic {
+.header__references_theme {
 	color: $white !important;
 	&::after {
 		position: absolute;
@@ -1502,7 +1502,7 @@ code {
 	header {
 		.header__references {
 			.header__references_home,
-			.header__references_metronic,
+			.header__references_theme,
 			.header__references_hire,
 			{
 				position: relative;
@@ -1531,7 +1531,7 @@ code {
 					}
 				}
 			}
-			.header__references_metronic {
+			.header__references_theme {
 				color: $white !important;
 				&::after {
 					position: absolute;

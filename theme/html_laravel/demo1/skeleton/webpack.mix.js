@@ -29,7 +29,7 @@ mix.sass('resources/plugins/plugins.scss', 'public/plugins/global/plugins.bundle
     // remove unused preprocessed fonts folder
     rimraf(path.resolve('public/fonts'), () => {});
     rimraf(path.resolve('public/images'), () => {});
-})
+}).sourceMaps(!mix.inProduction())
     // .setResourceRoot('./')
     .options({processCssUrls: false}).js(['resources/plugins/plugins.js'], 'public/plugins/global/plugins.bundle.js');
 

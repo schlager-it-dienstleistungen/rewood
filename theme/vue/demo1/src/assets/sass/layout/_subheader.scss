@@ -77,16 +77,32 @@
 
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
-    // Subheder Enabled Mode
-	.subheader-enabled {
-		// Content
-		.content {
+	// Mobile fixed subheader mode
+	.subheader {
+		.header-mobile-fixed.subheader-mobile-fixed & {
+			position: fixed;
+			height: get($subheader-config, fixed, height-mobile);
+			top: get($header-config, tablet-and-mobile, fixed, height);
+			left: 0;
+			right: 0;
+			transition: top 0.3s ease;
+			z-index: get($subheader-config, fixed, zindex);
+			box-shadow: get($subheader-config, fixed, shadow);
+			background-color: get($subheader-config, default, bg-color);
+			border-top: 1px solid get($subheader-config, default, border-color);
+			margin: 0;
+		}
+	}
+
+	// Content
+	.content {
+		.subheader-enabled:not(.subheader-mobile-fixed) & {
 			padding-top: 0;
 		}
+	}
 
-		// Subheder Solid Mode
-		.subheader.subheader-solid {
-			margin-bottom: get($page-padding, tablet-and-mobile);
-		}
+	// Subheder Solid Mode
+	.subheader.subheader-solid {
+		margin-bottom: get($page-padding, tablet-and-mobile);
 	}
 }

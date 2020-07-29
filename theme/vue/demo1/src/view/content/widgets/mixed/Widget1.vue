@@ -164,6 +164,7 @@ export default {
         }
       },
       yaxis: {
+        show: false,
         min: 0,
         max: 80,
         labels: {

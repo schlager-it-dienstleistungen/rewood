@@ -98,6 +98,10 @@ export default {
           this.insideTm = null;
         }
 
+        if (document.querySelector(".aside-menu .scroll")) {
+          document.querySelector(".aside-menu .scroll").scrollTop = 0;
+        }
+
         // if the left aside menu is expand
         if (document.body.classList.contains("aside-minimize-hover")) {
           // hide back the left aside menu

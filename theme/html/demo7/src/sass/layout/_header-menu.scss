@@ -21,9 +21,9 @@
 		align-items: stretch;
 
 		// Fixed Header and Minimized Header Modes
-		.header-fixed[data-header-scroll="on"] & {
-			align-items: center !important;
-			align-self: center !important;
+		.header-fixed & {
+			//align-items: center !important;
+			//align-self: center !important;
 		}
 
 		.nav-item {
@@ -43,7 +43,7 @@
 
 				// Fixed Header and Minimized Header Modes
 				.header-fixed[data-header-scroll="on"] & {
-					border-radius: $border-radius;
+					//border-radius: $border-radius;
 				}
 
 				&:focus,

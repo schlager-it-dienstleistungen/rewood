@@ -33,7 +33,7 @@
 
 		// Fixed Header & Static Aside Modes
 		.header-fixed.aside-static & {
-			padding-top: get($header-config, desktop, default, height);
+			padding-top: get($header-config, desktop, default, height) + get($subheader-config, fixed, height);
 		}
 
 		// Scrollbar Width
@@ -56,6 +56,7 @@
 						height: 80px;
 						width: 80px;
 						@include border-radius($border-radius);
+						position: relative;
 
 						.menu-icon {
 							padding-bottom: 0rem;
@@ -65,6 +66,11 @@
 						.menu-text {
 							font-size: 0.9rem;
 							font-weight: 500;
+						}
+
+						.menu-arrow {
+							position: absolute;
+							right: 7px;
 						}
 					}
 				}

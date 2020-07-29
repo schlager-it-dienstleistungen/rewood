@@ -35,7 +35,7 @@ $(document).ready(function() {
 			$(repo.formRegister).find(':input').prop('disabled', true).addClass('disabled');
 
 			return $.ajax({
-				url: 'tools/preview/docs/repo.php',
+				url: 'theme/html/tools/preview/docs/repo.php',
 				method: 'POST',
 				headers: ['Content-Type', 'application/json'],
 				data: data,

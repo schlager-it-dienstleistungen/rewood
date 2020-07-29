@@ -47,6 +47,11 @@ body {
 		.header-mobile-fixed & {
 			padding-top: get($header-config, tablet-and-mobile, fixed, height);
 		}
+
+		// Fixed Subheader
+		.header-mobile-fixed.subheader-mobile-fixed.subheader-enabled & {
+			padding-top: get($header-config, tablet-and-mobile, fixed, height) + get($subheader-config, fixed, height-mobile);
+		}
 	}
 
 	// Container

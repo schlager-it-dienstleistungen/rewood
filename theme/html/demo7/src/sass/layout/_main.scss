@@ -14,6 +14,14 @@ body {
 	.container-fluid {
 		padding: 0 get($page-padding, desktop);
 	}
+
+	// Wrapper
+	.wrapper {
+		// Fixed Header and Minimized Header Modes
+		.header-fixed & {
+			padding-top: get($header-config, desktop, height);
+		}
+	}
 }
 
 // Tablet & Mobile Modes
@@ -23,5 +31,13 @@ body {
 	.container-fluid {
 		max-width: none;
 		padding: 0 get($page-padding, tablet-and-mobile);
+	}
+
+	// Wrapper
+	.wrapper {
+		// Fixed Header Mode
+		.header-mobile-fixed & {
+			padding-top: get($page-padding, tablet-and-mobile);
+		}
 	}
 }

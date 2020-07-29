@@ -29,7 +29,6 @@
 		right: 0;
 		transition: all 0.3s ease;
 		justify-content: flex-end;
-		padding: 0 get($page-padding, tablet-and-mobile);
 		height: get($header-topbar-config, tablet-and-mobile, height);
 		background-color: get($header-topbar-config, tablet-and-mobile, bg-color);
 		box-shadow: get($header-topbar-config, tablet-and-mobile, shadow);
@@ -43,7 +42,9 @@
 
 		// Topbar Shown Mode
 		.topbar-mobile-on & {
-			z-index: 2;
+			z-index: 98;
+			padding: 0 0;
+			justify-content: center;
 			transition: all 0.3s ease;
 			border-top: 1px solid get($header-topbar-config, tablet-and-mobile, border-color);
 			margin-top: get($header-config, tablet-and-mobile, default, height);

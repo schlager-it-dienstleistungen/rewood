@@ -2,12 +2,12 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.6",
+    "version": "7.0.7",
     "config": {
         "debug": false,
         "compile": {
             "rtl": {
-                "enabled": false,
+                "enabled": true,
                 "skip": [
                     "select2",
                     "socicon",

@@ -837,14 +837,14 @@ $aside-config: (
 	// Aside
 	base: (
 		bg-color: #1F1E2E,
-		width: 140px,
+		width: 150px,
 		zindex: 98,
 		scrollbar-width: 4px
 	),
 
 	// Offcanvas Mobile
 	offcanvas-mobile: (
-		width: 275px,
+		width: 200px,
 		zindex: 1001,
 		overlay-bg-color: rgba(#000000, 0.1)
 	)

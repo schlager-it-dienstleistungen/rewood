@@ -134,6 +134,7 @@ export default {
         }
       },
       yaxis: {
+        show: false,
         min: 0,
         max: 55,
         labels: {

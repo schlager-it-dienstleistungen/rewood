@@ -75,10 +75,6 @@
 @include media-breakpoint-down(md) {
     // Content & fixed subheader mode
 	.subheader-enabled {
-		.content {
-			padding-top: 0;
-		}
-
 		.subheader.subheader-solid {
 			margin-bottom: get($page-padding, tablet-and-mobile);
 		}
