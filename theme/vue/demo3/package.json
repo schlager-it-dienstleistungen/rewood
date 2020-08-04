@@ -1,6 +1,6 @@
 {
     "name": "metronic-vue-demo3",
-    "version": "7.0.7",
+    "version": "7.0.8",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",

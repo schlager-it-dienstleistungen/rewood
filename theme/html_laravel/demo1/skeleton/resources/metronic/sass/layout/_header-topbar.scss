@@ -51,7 +51,8 @@
 
 		// Fixed Mobile Header & Topbar Shown Modes
 		.topbar-mobile-on.header-mobile-fixed & {
-			margin-top: get($header-config, tablet-and-mobile, mobile, height);
+			z-index: get($header-config, tablet-and-mobile, fixed, zindex) - 1;
+			margin-top: get($header-config, tablet-and-mobile, fixed, height);
 		}
 	}
 }

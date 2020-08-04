@@ -1,5 +1,5 @@
 <?php header('Access-Control-Allow-Origin: *');
-$dir = str_replace('/tools/preview/api', '/themes/metronic/theme/html/demo1/dist/assets/media/', dirname($_SERVER['PHP_SELF'])); ?>
+$dir = str_replace('/tools/preview/api', '/demo1/dist/assets/media/', dirname($_SERVER['PHP_SELF'])); ?>
 
 <div class="quick-search-result">
     <!--begin::Message-->
