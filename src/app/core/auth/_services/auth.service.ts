@@ -8,18 +8,42 @@ import { catchError, map } from 'rxjs/operators';
 import { QueryParamsModel, QueryResultsModel } from '../../_base/crud';
 import { environment } from '../../../../environments/environment';
 
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 const API_USERS_URL = 'api/users';
 const API_PERMISSION_URL = 'api/permissions';
 const API_ROLES_URL = 'api/roles';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class AuthService {
-	constructor(private http: HttpClient) {
+	userData: any;		// Save logged in user data
+
+	constructor(
+		private http: HttpClient,
+		private afs: AngularFirestore,		// Inject Firestore Service
+		private afAuth: AngularFireAuth		// Inject Firebase auth Service
+	) {
+		/* Saving user data in localstorage when
+		logged in and setting up null when logged out */
+		// https://www.positronx.io/full-angular-7-firebase-authentication-system/
+		/*this.afAuth.authState.subscribe(user => {
+			if (user) {
+				this.userData = user;
+				localStorage.setItem('user', JSON.stringify(this.userData));
+				JSON.parse(localStorage.getItem('user'));
+			} else {
+				localStorage.setItem('user', null);
+				JSON.parse(localStorage.getItem('user'));
+			}
+		});*/
 	}
 
 	// Authentication/Authorization
-	login(email: string, password: string): Observable<User> {
-		return this.http.post<User>(API_USERS_URL, {email, password});
+	login(email: string, password: string): Promise<any> {
+		return this.afAuth.auth.signInWithEmailAndPassword(email, password);
 	}
 
 	getUserByToken(): Observable<User> {
@@ -29,19 +53,44 @@ export class AuthService {
 		return this.http.get<User>(API_USERS_URL, {headers: httpHeaders});
 	}
 
-	register(user: User): Observable<any> {
-		let httpHeaders = new HttpHeaders();
-		httpHeaders = httpHeaders.set('Content-Type', 'application/json');
-		return this.http.post<User>(API_USERS_URL, user, {headers: httpHeaders})
-			.pipe(
-				map((res: User) => {
+	register(user: User): Promise<any> {
+		return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+// .then((result) => {
+				/* Call the SendVerificaitonMail() function when new user sign
+        up and returns promise */
+				// this.SendVerificationMail();
+				// this.SetUserData(result.user);
+
+// With Task: Authentication: Store additional Userdata
+/*map((res: User) => {
 					return res;
-				}),
-				catchError(err => {
-					return null;
-				})
-			);
+				})*/
+
+/*				return result.user;
+			}).catch((error) => {
+				console.error(error.message);
+				return null;
+			});*/
 	}
+
+	/**
+	 * Setting up user data when sign in with username/password, sign up with username/password and
+	 * sign in with social auth provider in Firestore database using AngularFirestore + AngularFirestoreDocument service
+	 * @param user
+	 */
+	/*SetUserData(user: firebase.User) {
+		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+		const userData: UserTest = {
+			uid: user.uid,
+			email: user.email,
+			displayName: user.displayName,
+			photoURL: user.photoURL,
+			emailVerified: user.emailVerified
+		};
+		return userRef.set(userData, {
+			merge: true
+		});
+	}*/
 
 	/*
    * Submit forgot password request

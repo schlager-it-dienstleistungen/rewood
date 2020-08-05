@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 	 * @param auth: AuthService
 	 * @param store: Store<AppState>
 	 * @param fb: FormBuilder
-	 * @param cdr
+	 * @param cdr: ChangeDetectorRef
 	 */
 	constructor(
 		private authNoticeService: AuthNoticeService,
@@ -129,37 +129,38 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
 		this.loading = true;
 
-		if (!controls['agree'].value) {
+		if (!controls.agree.value) {
 			// you must agree the terms and condition
 			// checkbox cannot work inside mat-form-field https://github.com/angular/material2/issues/7891
 			this.authNoticeService.setNotice('You must agree the terms and condition', 'danger');
 			return;
 		}
 
-		const _user: User = new User();
-		_user.clear();
-		_user.email = controls['email'].value;
-		_user.username = controls['username'].value;
-		_user.fullname = controls['fullname'].value;
-		_user.password = controls['password'].value;
-		_user.roles = [];
-		this.auth.register(_user).pipe(
-			tap(user => {
-				if (user) {
+		const newUser: User = new User();
+		newUser.clear();
+		newUser.email = controls.email.value;
+		newUser.username = controls.username.value;
+		newUser.fullname = controls.fullname.value;
+		newUser.password = controls.password.value;
+		newUser.roles = [];
+		this.auth.register(newUser)
+			.then(
+				user => {
+					// if (user) {
 					this.store.dispatch(new Register({authToken: user.accessToken}));
-					// pass notice message to the login page
+						// pass notice message to the login page
 					this.authNoticeService.setNotice(this.translate.instant('AUTH.REGISTER.SUCCESS'), 'success');
 					this.router.navigateByUrl('/auth/login');
-				} else {
-					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-				}
-			}),
-			takeUntil(this.unsubscribe),
-			finalize(() => {
+					/*} else {
+						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
+					}*/
+			}).catch(error => {
+				this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
+			}).finally (() => {
 				this.loading = false;
 				this.cdr.markForCheck();
-			})
-		).subscribe();
+				}
+			);
 	}
 
 	/**

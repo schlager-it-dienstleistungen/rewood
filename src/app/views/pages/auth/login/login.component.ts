@@ -17,8 +17,8 @@ import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
  * ! Just example => Should be removed in development
  */
 const DEMO_PARAMS = {
-	EMAIL: 'admin@demo.com',
-	PASSWORD: 'demo'
+	EMAIL: 'demo@rewood.com',
+	PASSWORD: 'rewood'
 };
 
 @Component({
@@ -141,22 +141,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 		};
 		this.auth
 			.login(authData.email, authData.password)
-			.pipe(
-				tap(user => {
+			.then(
+				user => {
+					debugger;
 					if (user) {
 						this.store.dispatch(new Login({authToken: user.accessToken}));
 						this.router.navigateByUrl(this.returnUrl); // Main page
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}
-				}),
-				takeUntil(this.unsubscribe),
-				finalize(() => {
-					this.loading = false;
-					this.cdr.markForCheck();
-				})
-			)
-			.subscribe();
+			}).catch((error) => {
+				debugger;
+				this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
+			}).finally(() => {
+				debugger;
+				this.loading = false;
+				this.cdr.markForCheck();
+			});
 	}
 
 	/**

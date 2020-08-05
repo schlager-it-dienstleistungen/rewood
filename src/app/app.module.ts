@@ -38,6 +38,7 @@ import { PartialsModule } from './views/partials/partials.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 // Layout Services
 import {
 	DataTableService,
@@ -92,6 +93,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 	];
 }
 
+import * as firebase from 'firebase';
+firebase.initializeApp(environment.firebase);
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -131,7 +135,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		ThemeModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFirestoreModule,
-		AngularFireStorageModule
+		AngularFireStorageModule,
+		AngularFireAuthModule
 	],
 	exports: [],
 	providers: [
