@@ -1,151 +1,145 @@
 <template>
-  <!--begin::Advance Table Widget 2-->
-  <div class="card card-custom card-stretch gutter-b">
+  <div class="card card-custom gutter-b card-stretch">
     <!--begin::Header-->
-    <div class="card-header border-0 pt-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark">
-          New Arrivals
-        </span>
-        <span class="text-muted mt-3 font-weight-bold font-size-sm">
-          More than 400+ new members
-        </span>
-      </h3>
+    <div class="card-header border-0">
+      <h3 class="card-title font-weight-bolder text-dark">Market Leaders</h3>
       <div class="card-toolbar">
-        <ul class="nav nav-pills nav-pills-sm nav-dark-75">
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4 active"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_1"
-            >
-              Month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_2"
-            >
-              Week
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_3"
-            >
-              Day
-            </a>
-          </li>
-        </ul>
+        <div class="dropdown dropdown-inline">
+          <a
+            href="#"
+            class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="ki ki-bold-more-ver"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+            <!--begin::Navigation-->
+            <ul class="navi navi-hover">
+              <li class="navi-header font-weight-bold py-4">
+                <span class="font-size-lg">Choose Label:</span>
+                <i
+                  class="flaticon2-information icon-md text-muted"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Click to learn more..."
+                ></i>
+              </li>
+              <li class="navi-separator mb-3 opacity-70"></li>
+              <li class="navi-item">
+                <a href="#" class="navi-link">
+                  <span class="navi-text">
+                    <span
+                      class="label label-xl label-inline label-light-success"
+                      >Customer</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li class="navi-item">
+                <a href="#" class="navi-link">
+                  <span class="navi-text">
+                    <span class="label label-xl label-inline label-light-danger"
+                      >Partner</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li class="navi-item">
+                <a href="#" class="navi-link">
+                  <span class="navi-text">
+                    <span
+                      class="label label-xl label-inline label-light-warning"
+                      >Suplier</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li class="navi-item">
+                <a href="#" class="navi-link">
+                  <span class="navi-text">
+                    <span
+                      class="label label-xl label-inline label-light-primary"
+                      >Member</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li class="navi-item">
+                <a href="#" class="navi-link">
+                  <span class="navi-text">
+                    <span class="label label-xl label-inline label-light-dark"
+                      >Staff</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li class="navi-separator mt-3 opacity-70"></li>
+              <li class="navi-footer py-4">
+                <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                  <i class="ki ki-plus icon-sm"></i>Add new</a
+                >
+              </li>
+            </ul>
+            <!--end::Navigation-->
+          </div>
+        </div>
       </div>
     </div>
     <!--end::Header-->
     <!--begin::Body-->
-    <div class="card-body pt-3 pb-0">
-      <!--begin::Table-->
-      <div class="table-responsive">
-        <table class="table table-borderless table-vertical-center">
-          <thead>
-            <tr>
-              <th class="p-0" style="width: 50px"></th>
-              <th class="p-0" style="min-width: 200px"></th>
-              <th class="p-0" style="min-width: 100px"></th>
-              <th class="p-0" style="min-width: 125px"></th>
-              <th class="p-0" style="min-width: 110px"></th>
-              <th class="p-0" style="min-width: 150px"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="(item, i) in list">
-              <tr v-bind:key="i">
-                <td class="pl-0 py-4">
-                  <div class="symbol symbol-50 symbol-light mr-1">
-                    <span class="symbol-label">
-                      <img
-                        :src="item.text0"
-                        class="h-50 align-self-center"
-                        alt=""
-                      />
-                    </span>
-                  </div>
-                </td>
-                <td class="pl-0">
-                  <a
-                    href="#"
-                    class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
-                  >
-                    {{ item.text1 }}
-                  </a>
-                  <div>
-                    <span class="font-weight-bolder">Email:</span>
-                    <a
-                      class="text-muted font-weight-bold text-hover-primary"
-                      href="#"
-                    >
-                      {{ item.text2 }}
-                    </a>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <span
-                    class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                  >
-                    {{ item.text3 }}
-                  </span>
-                  <span class="text-muted font-weight-bold">Paid</span>
-                </td>
-                <td class="text-right">
-                  <span class="text-muted font-weight-500">
-                    {{ item.text4 }}
-                  </span>
-                </td>
-                <td class="text-right">
-                  <span class="label label-lg label-light-primary label-inline">
-                    {{ item.text5 }}
-                  </span>
-                </td>
-                <td class="text-right pr-0">
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
-                    <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
-                      <inline-svg
-                        src="media/svg/icons/General/Settings-1.svg"
-                      ></inline-svg>
-                      <!--end::Svg Icon-->
-                    </span>
-                  </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm mx-3">
-                    <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
-                      <inline-svg
-                        src="media/svg/icons/Communication/Write.svg"
-                      ></inline-svg>
-                      <!--end::Svg Icon-->
-                    </span>
-                  </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
-                    <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
-                      <inline-svg
-                        src="media/svg/icons/General/Trash.svg"
-                      ></inline-svg>
-                      <!--end::Svg Icon-->
-                    </span>
-                  </a>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
-      <!--end::Table-->
+    <div class="card-body pt-2">
+      <template v-for="(item, i) in list">
+        <!--begin::Item-->
+        <div
+          class="d-flex flex-wrap align-items-center"
+          v-bind:key="i"
+          v-bind:class="{ 'mb-9': lastElement(i) }"
+        >
+          <!--begin::Symbol-->
+          <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+            <div
+              class="symbol-label"
+              :style="`background-image:url(${item.text0})`"
+            ></div>
+          </div>
+          <!--end::Symbol-->
+          <!--begin::Title-->
+          <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+            <a
+              href="#"
+              class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg"
+              >{{ item.text1 }}</a
+            >
+            <span class="text-muted font-weight-bold font-size-sm my-1">{{
+              item.text2
+            }}</span>
+            <span class="text-muted font-weight-bold font-size-sm"
+              >Created by:
+              <span class="text-primary font-weight-bold">{{
+                item.text3
+              }}</span></span
+            >
+          </div>
+          <!--end::Title-->
+          <!--begin::Info-->
+          <div class="d-flex align-items-center py-lg-0 py-2">
+            <div class="d-flex flex-column text-right">
+              <span class="text-dark-75 font-weight-bolder font-size-h4">{{
+                item.text4
+              }}</span>
+              <span class="text-muted font-size-sm font-weight-bolder"
+                >votes</span
+              >
+            </div>
+          </div>
+          <!--end::Info-->
+        </div>
+        <!--end::Item-->
+      </template>
     </div>
     <!--end::Body-->
-    <!--end::Advance Table Widget 2-->
   </div>
 </template>
 
@@ -158,49 +152,52 @@ export default {
     return {
       list: [
         {
-          text0: "media/svg/misc/006-plurk.svg",
-          text1: "Sant Outstanding",
-          text2: "bprow@bnc.cc",
-          text3: "$2,000,000",
-          text4: "ReactJs, HTML",
-          text5: "Approved"
+          text0: "media/stock-600x400/img-17.jpg",
+          text1: "Cup & Green",
+          text2: "Local, clean & environmental",
+          text3: "CoreAd",
+          text4: "24,900"
         },
         {
-          text0: "media/svg/misc/015-telegram.svg",
-          text1: "Application Development",
-          text2: "app@dev.com",
-          text3: "$4,600,000",
-          text4: "Python, MySQL",
-          text5: "In Progress"
+          text0: "media/stock-600x400/img-10.jpg",
+          text1: "Yellow Background",
+          text2: "Strong abstract concept",
+          text3: "KeenThemes",
+          text4: "70,380"
         },
         {
-          text0: "media/svg/misc/003-puzzle.svg",
-          text1: "Payrol Application",
-          text2: "company@dev.com",
-          text3: "$560,000",
-          text4: "Laravel, Metronic",
-          text5: "Success"
+          text0: "media/stock-600x400/img-17.jpg",
+          text1: "Nike & Blue",
+          text2: "Footwear overalls",
+          text3: "Invision Inc.",
+          text4: "7,200"
         },
         {
-          text0: "media/svg/misc/005-bebo.svg",
-          text1: "HR Management System",
-          text2: "hr@demo.com",
-          text3: "$57,000",
-          text4: "AngularJS, C#",
-          text5: "Rejected"
+          text0: "media/stock-600x400/img-9.jpg",
+          text1: "Desserts platter",
+          text2: "Food trends & reviews",
+          text3: "Figma Studio",
+          text4: "36,450"
         },
         {
-          text0: "media/svg/misc/014-kickstarter.svg",
-          text1: "KTR Mobile Application",
-          text2: "ktr@demo.com",
-          text3: "$45,200,000",
-          text4: "ReactJS, Ruby",
-          text5: "In Progress"
+          text0: "media/stock-600x400/img-12.jpg",
+          text1: "Cup & Green",
+          text2: "Local, clean & environmental",
+          text3: "CoreAd",
+          text4: "23,900"
         }
       ]
     };
   },
-  components: {},
+  methods: {
+    lastElement(i) {
+      if (i === this.list.length - 1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   computed: {
     ...mapGetters(["layoutConfig"])
   }

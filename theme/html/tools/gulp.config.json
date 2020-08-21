@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.8",
+    "version": "7.0.9",
     "config": {
         "debug": false,
         "compile": {
@@ -23,7 +23,8 @@
                     "tempusdominus-bootstrap-4",
                     "nouislider",
                     "tinymce",
-                    "sweetalert2"
+                    "sweetalert2",
+                    "jquery-mask-plugin"
                 ]
             },
             "jsUglify": false,
@@ -347,6 +348,11 @@
                                 "{$config.path.src}/js/vendors/plugins/sweetalert2.init.js"
                             ]
                         },
+                        "jquery-mask-plugin": {
+                            "scripts": [
+                                "{$config.path.node_modules}/jquery-mask-plugin/dist/jquery.mask.js"
+                            ]
+                        },
                         "sticky-js": {
                             "scripts": [
                                 "{$config.path.node_modules}/sticky-js/dist/sticky.min.js"
@@ -623,6 +629,16 @@
                     },
                     "output": {
                         "scripts": "{$config.dist}/plugins/custom/tinymce/plugins"
+                    }
+                },
+                "tinymce-icons": {
+                    "src": {
+                        "scripts": [
+                            "{$config.path.node_modules}/tinymce/icons/**"
+                        ]
+                    },
+                    "output": {
+                        "scripts": "{$config.dist}/plugins/custom/tinymce/icons"
                     }
                 },
                 "ckeditor-classic": {

@@ -1,5 +1,4 @@
 <template>
-  <!--begin::List Widget 1-->
   <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
     <div class="card-header border-0">
@@ -41,7 +40,6 @@
     </div>
     <!--end::Body-->
   </div>
-  <!--end: List Widget 1-->
 </template>
 
 <script>

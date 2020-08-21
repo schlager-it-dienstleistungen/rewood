@@ -104,7 +104,10 @@
                   </span>
                 </td>
                 <td class="text-right">
-                  <span class="label label-lg label-light-primary label-inline">
+                  <span
+                    class="label label-lg label-inline"
+                    v-bind:class="`label-light-${item.text6}`"
+                  >
                     {{ item.text5 }}
                   </span>
                 </td>
@@ -163,7 +166,8 @@ export default {
           text2: "bprow@bnc.cc",
           text3: "$2,000,000",
           text4: "ReactJs, HTML",
-          text5: "Approved"
+          text5: "Approved",
+          text6: "primary"
         },
         {
           text0: "media/svg/misc/015-telegram.svg",
@@ -171,7 +175,8 @@ export default {
           text2: "app@dev.com",
           text3: "$4,600,000",
           text4: "Python, MySQL",
-          text5: "In Progress"
+          text5: "In Progress",
+          text6: "warning"
         },
         {
           text0: "media/svg/misc/003-puzzle.svg",
@@ -179,7 +184,8 @@ export default {
           text2: "company@dev.com",
           text3: "$560,000",
           text4: "Laravel, Metronic",
-          text5: "Success"
+          text5: "Success",
+          text6: "success"
         },
         {
           text0: "media/svg/misc/005-bebo.svg",
@@ -187,7 +193,8 @@ export default {
           text2: "hr@demo.com",
           text3: "$57,000",
           text4: "AngularJS, C#",
-          text5: "Rejected"
+          text5: "Rejected",
+          text6: "danger"
         },
         {
           text0: "media/svg/misc/014-kickstarter.svg",
@@ -195,7 +202,8 @@ export default {
           text2: "ktr@demo.com",
           text3: "$45,200,000",
           text4: "ReactJS, Ruby",
-          text5: "In Progress"
+          text5: "In Progress",
+          text6: "warning"
         }
       ]
     };

@@ -1,150 +1,167 @@
 <template>
-  <!--begin::List Widget 9-->
-  <div class="card card-custom card-stretch gutter-b">
+  <div class="card card-custom gutter-b">
     <!--begin::Header-->
-    <div class="card-header align-items-center border-0 mt-4">
+    <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="font-weight-bolder text-dark">
-          Recent Activities
-        </span>
-        <span class="text-muted mt-3 font-weight-bold font-size-sm">
-          890,344 Sales
-        </span>
+        <span class="card-label font-weight-bolder text-dark"
+          >Authors Earnings</span
+        >
+        <span class="text-muted mt-3 font-weight-bold font-size-sm"
+          >More than 400+ new members</span
+        >
       </h3>
       <div class="card-toolbar">
-        <Dropdown2></Dropdown2>
+        <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4"
+              data-toggle="tab"
+              href="#kt_tab_pane_3_1"
+              >Month</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4"
+              data-toggle="tab"
+              href="#kt_tab_pane_3_2"
+              >Week</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4 active"
+              data-toggle="tab"
+              href="#kt_tab_pane_3_3"
+              >Day</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
     <!--end::Header-->
-
     <!--begin::Body-->
-    <div class="card-body pt-4">
-      <div class="timeline timeline-6 mt-3">
-        <template v-for="(item, i) in list">
-          <!--begin::Item-->
-          <div class="timeline-item align-items-start" v-bind:key="i">
-            <!--begin::Label-->
-            <div
-              class="timeline-label font-weight-bolder text-dark-75 font-size-lg"
-            >
-              {{ item.time }}
-            </div>
-            <!--end::Label-->
-
-            <!--begin::Badge-->
-            <div class="timeline-badge">
-              <i class="icon-xxl" v-bind:class="item.badge"></i>
-            </div>
-            <!--end::Badge-->
-
-            <!--begin::Text-->
-            <div
-              class="font-weight-mormal font-size-sm timeline-content text-muted pl-3"
-            >
-              <span
-                v-bind:class="{
-                  'font-weight-bolder text-dark-75': item.bold,
-                  'mr-4': item.images
-                }"
-                v-html="item.desc"
-              ></span>
-
-              <!--begin::Section-->
-              <div class="d-flex align-items-start mt-n2">
-                <template v-for="(image, i) in item.images">
-                  <!--begin::Symbol-->
+    <div class="card-body pt-2 pb-0">
+      <!--begin::Table-->
+      <div class="table-responsive">
+        <table class="table table-borderless table-vertical-center">
+          <thead>
+            <tr>
+              <th class="p-0" style="width: 50px"></th>
+              <th class="p-0" style="min-width: 150px"></th>
+              <th class="p-0" style="min-width: 120px"></th>
+              <th class="p-0" style="min-width: 70px"></th>
+              <th class="p-0" style="min-width: 70px"></th>
+              <th class="p-0" style="min-width: 50px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="(item, i) in list">
+              <tr v-bind:key="i">
+                <td class="pl-0">
+                  <div class="symbol symbol-50 symbol-light mr-2 mt-2">
+                    <span class="symbol-label">
+                      <img :src="item.img" class="h-75 align-self-end" alt="" />
+                    </span>
+                  </div>
+                </td>
+                <td class="pl-0">
                   <a
                     href="#"
-                    class="symbol symbol-35 symbol-light-success mr-2"
-                    v-bind:key="i"
+                    class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg"
+                    >{{ item.name }}</a
                   >
-                    <span class="symbol-label">
-                      <img
-                        :src="image.img"
-                        class="h-75 align-self-end"
-                        :alt="image.alt"
+                  <span class="text-muted font-weight-bold d-block">{{
+                    item.desc
+                  }}</span>
+                </td>
+                <td></td>
+                <td class="text-right">
+                  <span class="text-muted font-weight-bold d-block font-size-sm"
+                    >Paid</span
+                  >
+                  <span
+                    class="text-dark-75 font-weight-bolder d-block font-size-lg"
+                    >{{ item.paid }}</span
+                  >
+                </td>
+                <td class="text-right">
+                  <span
+                    class="font-weight-bolder"
+                    v-bind:class="`text-${item.class}`"
+                    >{{ item.percentage }}</span
+                  >
+                </td>
+                <td class="text-right pr-0">
+                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                    <span class="svg-icon svg-icon-md svg-icon-success">
+                      <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+                      <inline-svg
+                        src="media/svg/icons/Navigation/Arrow-right.svg"
                       />
+                      <!--end::Svg Icon-->
                     </span>
                   </a>
-                  <!--end::Symbol-->
-                </template>
-              </div>
-              <!--end::Section-->
-            </div>
-            <!--end::Text-->
-          </div>
-          <!--end::Item-->
-        </template>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
       </div>
-      <!--end: Items-->
+      <!--end::Table-->
     </div>
-    <!--end: Card Body-->
+    <!--end::Body-->
   </div>
-  <!--end: Card-->
-  <!--end: List Widget 9-->
 </template>
 
 <script>
-import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
-import { mapGetters } from "vuex";
-
 export default {
   name: "widget-9",
   data() {
     return {
       list: [
         {
-          time: "08:42",
-          desc: "Outlines of the recent activities that happened last weekend",
-          badge: "fa fa-genderless text-success"
+          img: "media/svg/avatars/001-boy.svg",
+          name: "Brad Simmons",
+          desc: "Successful Fellas",
+          paid: "$2,000,000",
+          percentage: "+28%",
+          class: "primary"
         },
         {
-          time: "3 hr",
-          desc: "AEOL meeting",
-          bold: true,
-          badge: "fa fa-genderless text-danger"
+          img: "media/svg/avatars/018-girl-9.svg",
+          name: "Jessie Clarcson",
+          desc: "HTML, CSS Coding",
+          paid: "$1,200,000",
+          percentage: "+52%",
+          class: "warning"
         },
         {
-          time: "14:37",
-          desc: `Submit initial budget - <a href="#" class="text-primary">USD 700</a>.`,
-          badge: "fa fa-genderless text-info",
-          bold: true
+          img: "media/svg/avatars/047-girl-25.svg",
+          name: "Lebron Wayde",
+          desc: "ReactJS Developer",
+          paid: "$3,400,000",
+          percentage: "-34%",
+          class: "danger"
         },
         {
-          time: "16:50",
-          desc: "Stakeholder meeting scheduling.",
-          badge: "fa fa-genderless text-danger"
+          img: "media/svg/avatars/014-girl-7.svg",
+          name: "Natali Trump",
+          desc: "UI/UX Designer",
+          paid: "$4,500,000",
+          percentage: "+48%",
+          class: "success"
         },
         {
-          time: "17:30",
-          desc: "Project scoping & estimations with stakeholders.",
-          badge: "fa fa-genderless text-success"
-        },
-        {
-          time: "21:03",
-          desc: `New order placed <a href="#" class="text-primary">#XF-2356</a>.`,
-          badge: "fa fa-genderless text-warning",
-          bold: true
-        },
-        {
-          time: "21:07",
-          desc:
-            "Company BBQ to celebrate the last quater achievements and goals.",
-          badge: "fa fa-genderless text-danger"
-        },
-        {
-          time: "20:30",
-          desc: "Marketing campaign planning with customer.",
-          badge: "fa fa-genderless text-info"
+          img: "media/svg/avatars/043-boy-18.svg",
+          name: "Kevin Leonard",
+          desc: "Art Director",
+          paid: "$35,600,000",
+          percentage: "+230%",
+          class: "success"
         }
       ]
     };
-  },
-  components: {
-    Dropdown2
-  },
-  computed: {
-    ...mapGetters(["layoutConfig"])
   }
 };
 </script>

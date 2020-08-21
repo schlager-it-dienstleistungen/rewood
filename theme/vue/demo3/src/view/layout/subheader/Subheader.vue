@@ -48,7 +48,7 @@
           href="#"
           class="btn btn-fh btn-white btn-hover-primary font-weight-bold px-2 px-lg-5 mr-2"
         >
-          <span class="svg-icon svg-icon-success svg-icon-lg">
+          <span class="svg-icon svg-icon-primary svg-icon-lg">
             <!--begin::Svg-->
             <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
             <!--end::Svg Icon-->
@@ -66,7 +66,7 @@
         >
           <template v-slot:button-content>
             <!--begin::Button-->
-            <span class="svg-icon svg-icon-success svg-icon-lg">
+            <span class="svg-icon svg-icon-primary svg-icon-lg">
               <!--begin::Svg-->
               <inline-svg src="media/svg/icons/Files/File.svg" />
               <!--end::Svg Icon-->
@@ -92,7 +92,7 @@
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
                 <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-success">
+                  <span class="label label-xl label-inline label-light-primary">
                     Customer
                   </span>
                 </span>
@@ -147,20 +147,6 @@
           <!--end::Navigation-->
         </b-dropdown>
         <!--end::Dropdown-->
-        <!--begin::Button-->
-        <a
-          href="#"
-          class="btn btn-success btn-icon font-weight-bold"
-          data-toggle="modal"
-          data-target="#kt_chat_modal"
-        >
-          <span class="svg-icon svg-icon-lg">
-            <!--begin::Svg Icon-->
-            <inline-svg src="media/svg/icons/Communication/Group-chat.svg" />
-            <!--end::Svg Icon-->
-          </span>
-        </a>
-        <!--end::Button-->
       </div>
       <!--end::Toolbar-->
     </div>

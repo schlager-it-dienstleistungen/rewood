@@ -1,5 +1,4 @@
 <template>
-  <!--begin::Stats Widget 7-->
   <div class="card card-custom card-stretch card-stretch-half gutter-b">
     <!--begin::Body-->
     <div class="card-body d-flex flex-column p-0">
@@ -34,7 +33,6 @@
     </div>
     <!--end::Body-->
   </div>
-  <!--end::Stats Widget 7-->
 </template>
 
 <script>

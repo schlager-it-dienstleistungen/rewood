@@ -7,7 +7,7 @@ var KTLayoutBuilder = function() {
 
 	var exporter = {
 		init: function() {
-			formAction = $('.form').attr('action');
+			formAction = $('#form-builder').attr('action');
 		},
 		startLoad: function(options) {
 			$('#builder_export').

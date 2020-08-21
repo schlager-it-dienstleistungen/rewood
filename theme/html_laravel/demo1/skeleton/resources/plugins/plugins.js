@@ -159,3 +159,6 @@ require('../metronic/js/vendors/plugins/sweetalert2.init.js');
 
 // JQuery Repeater - Create a repeatable group of input elements: https://github.com/DubFriend/jquery.repeater
 require('jquery.repeater');
+
+// jsTree - is jquery plugin, that provides interactive trees: https://www.jstree.com/
+require('jstree');

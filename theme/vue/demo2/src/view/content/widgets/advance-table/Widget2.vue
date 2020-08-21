@@ -1,73 +1,67 @@
 <template>
-  <!--begin::Advance Table Widget 2-->
   <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
-    <div class="card-header border-0 pt-5">
+    <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark">
-          New Arrivals
+          Agents Stats
         </span>
         <span class="text-muted mt-3 font-weight-bold font-size-sm">
           More than 400+ new members
         </span>
       </h3>
       <div class="card-toolbar">
-        <ul class="nav nav-pills nav-pills-sm nav-dark-75">
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4 active"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_1"
-            >
-              Month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_2"
-            >
-              Week
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link py-2 px-4"
-              data-toggle="tab"
-              href="#kt_tab_pane_1_3"
-            >
-              Day
-            </a>
-          </li>
-        </ul>
+        <a href="#" class="btn btn-success font-weight-bolder font-size-sm">
+          <span class="svg-icon svg-icon-md svg-icon-white">
+            <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
+            <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
+            <!--end::Svg Icon--> </span
+          >Add New Member</a
+        >
       </div>
     </div>
     <!--end::Header-->
     <!--begin::Body-->
-    <div class="card-body pt-3 pb-0">
+    <div class="card-body py-0">
       <!--begin::Table-->
       <div class="table-responsive">
-        <table class="table table-borderless table-vertical-center">
+        <table
+          class="table table-head-custom table-vertical-center"
+          id="kt_advance_table_widget_1"
+        >
           <thead>
-            <tr>
-              <th class="p-0" style="width: 50px"></th>
-              <th class="p-0" style="min-width: 200px"></th>
-              <th class="p-0" style="min-width: 100px"></th>
-              <th class="p-0" style="min-width: 125px"></th>
-              <th class="p-0" style="min-width: 110px"></th>
-              <th class="p-0" style="min-width: 150px"></th>
+            <tr class="text-left">
+              <th class="pl-0" style="width: 20px">
+                <label class="checkbox checkbox-lg checkbox-single">
+                  <input
+                    type="checkbox"
+                    @input="setCheck($event.target.checked)"
+                  />
+                  <span></span>
+                </label>
+              </th>
+              <th class="pr-0" style="width: 50px">authors</th>
+              <th style="min-width: 200px"></th>
+              <th style="min-width: 150px">company</th>
+              <th style="min-width: 150px">progress</th>
+              <th class="pr-0 text-right" style="min-width: 150px">action</th>
             </tr>
           </thead>
           <tbody>
             <template v-for="(item, i) in list">
               <tr v-bind:key="i">
-                <td class="pl-0 py-4">
-                  <div class="symbol symbol-50 symbol-light mr-1">
+                <td class="pl-0">
+                  <label class="checkbox checkbox-lg checkbox-single">
+                    <input type="checkbox" value="1" :checked="checked" />
+                    <span></span>
+                  </label>
+                </td>
+                <td class="pr-0">
+                  <div class="symbol symbol-50 symbol-light mt-1">
                     <span class="symbol-label">
                       <img
                         :src="item.text0"
-                        class="h-50 align-self-center"
+                        class="h-75 align-self-end"
                         alt=""
                       />
                     </span>
@@ -77,62 +71,80 @@
                   <a
                     href="#"
                     class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
+                    >{{ item.text1 }}</a
                   >
-                    {{ item.text1 }}
-                  </a>
-                  <div>
-                    <span class="font-weight-bolder">Email:</span>
-                    <a
-                      class="text-muted font-weight-bold text-hover-primary"
-                      href="#"
-                    >
-                      {{ item.text2 }}
-                    </a>
-                  </div>
+                  <span
+                    class="text-muted font-weight-bold text-muted d-block"
+                    >{{ item.text2 }}</span
+                  >
                 </td>
-                <td class="text-right">
+                <td>
                   <span
                     class="text-dark-75 font-weight-bolder d-block font-size-lg"
+                    >{{ item.text3 }}</span
                   >
-                    {{ item.text3 }}
-                  </span>
-                  <span class="text-muted font-weight-bold">Paid</span>
+                  <span class="text-muted font-weight-bold">{{
+                    item.text4
+                  }}</span>
                 </td>
-                <td class="text-right">
-                  <span class="text-muted font-weight-500">
-                    {{ item.text4 }}
-                  </span>
+                <td>
+                  <div class="d-flex flex-column w-100 mr-2">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-2"
+                    >
+                      <span
+                        class="text-muted mr-2 font-size-sm font-weight-bold"
+                        >{{ item.text5 }}</span
+                      >
+                      <span class="text-muted font-size-sm font-weight-bold"
+                        >Progress</span
+                      >
+                    </div>
+                    <div class="progress progress-xs w-100">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        :style="{ width: item.text5 }"
+                        v-bind:class="`bg-${item.text6}`"
+                        aria-valuenow="50"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
                 </td>
-                <td class="text-right">
-                  <span class="label label-lg label-light-primary label-inline">
-                    {{ item.text5 }}
-                  </span>
-                </td>
-                <td class="text-right pr-0">
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                <td class="pr-0 text-right">
+                  <a
+                    href="#"
+                    class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                  >
                     <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
+                      <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
                       <inline-svg
                         src="media/svg/icons/General/Settings-1.svg"
-                      ></inline-svg>
+                      />
                       <!--end::Svg Icon-->
                     </span>
                   </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm mx-3">
+                  <a
+                    href="#"
+                    class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                  >
                     <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
+                      <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                       <inline-svg
                         src="media/svg/icons/Communication/Write.svg"
-                      ></inline-svg>
+                      />
                       <!--end::Svg Icon-->
                     </span>
                   </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                  <a
+                    href="#"
+                    class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                  >
                     <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon-->
-                      <inline-svg
-                        src="media/svg/icons/General/Trash.svg"
-                      ></inline-svg>
+                      <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
+                      <inline-svg src="media/svg/icons/General/Trash.svg" />
                       <!--end::Svg Icon-->
                     </span>
                   </a>
@@ -150,59 +162,56 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "widget-2",
   data() {
     return {
       list: [
         {
-          text0: "media/svg/misc/006-plurk.svg",
-          text1: "Sant Outstanding",
-          text2: "bprow@bnc.cc",
-          text3: "$2,000,000",
-          text4: "ReactJs, HTML",
-          text5: "Approved"
+          text0: "media/svg/avatars/001-boy.svg",
+          text1: "Brad Simmons",
+          text2: "HTML, JS, ReactJS",
+          text3: "Intertico",
+          text4: "Web, UI/UX Design",
+          text5: "65%",
+          text6: "danger"
         },
         {
-          text0: "media/svg/misc/015-telegram.svg",
-          text1: "Application Development",
-          text2: "app@dev.com",
-          text3: "$4,600,000",
-          text4: "Python, MySQL",
-          text5: "In Progress"
+          text0: "media/svg/avatars/018-girl-9.svg",
+          text1: "Jessie Clarcson",
+          text2: "C#, ASP.NET, MS SQL",
+          text3: "Agoda",
+          text4: "Houses & Hotels",
+          text5: "83%",
+          text6: "success"
         },
         {
-          text0: "media/svg/misc/003-puzzle.svg",
-          text1: "Payrol Application",
-          text2: "company@dev.com",
-          text3: "$560,000",
-          text4: "Laravel, Metronic",
-          text5: "Success"
+          text0: "media/svg/avatars/047-girl-25.svg",
+          text1: "Lebron Wayde",
+          text2: "PHP, Laravel, VueJS",
+          text3: "RoadGee",
+          text4: "Transportation",
+          text5: "47%",
+          text6: "primary"
         },
         {
-          text0: "media/svg/misc/005-bebo.svg",
-          text1: "HR Management System",
-          text2: "hr@demo.com",
-          text3: "$57,000",
-          text4: "AngularJS, C#",
-          text5: "Rejected"
-        },
-        {
-          text0: "media/svg/misc/014-kickstarter.svg",
-          text1: "KTR Mobile Application",
-          text2: "ktr@demo.com",
-          text3: "$45,200,000",
-          text4: "ReactJS, Ruby",
-          text5: "In Progress"
+          text0: "media/svg/avatars/014-girl-7.svg",
+          text1: "Natali Trump",
+          text2: "Python, PostgreSQL, ReactJS",
+          text3: "The Hill",
+          text4: "Insurance",
+          text5: "71%",
+          text6: "danger"
         }
-      ]
+      ],
+      checked: false
     };
   },
   components: {},
-  computed: {
-    ...mapGetters(["layoutConfig"])
+  methods: {
+    setCheck(checked) {
+      this.checked = checked;
+    }
   }
 };
 </script>

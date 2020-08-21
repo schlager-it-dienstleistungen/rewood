@@ -15,8 +15,7 @@ var KTLayoutAsideToggle = function() {
 
 	// Initialize
 	var _init = function() {
-		_toggleObject = new KTToggle(_element, {
-			target: _body,
+		_toggleObject = new KTToggle(_element, _body, {
 			targetState: 'aside-minimize',
 			toggleState: 'aside-toggle-active'
 		});

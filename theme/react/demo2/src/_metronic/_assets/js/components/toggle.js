@@ -4,13 +4,14 @@
 import { KTUtil } from "./util";
 
 // Component Definition
-var KTToggle = function(elementId, options) {
+var KTToggle = function(toggleElement, targetElement, options) {
     // Main object
     var the = this;
     var init = false;
 
     // Get element object
-    var element = KTUtil.getById(elementId);
+    var element = toggleElement;
+    var target = targetElement;
 
     if (!element) {
         return;
@@ -57,7 +58,7 @@ var KTToggle = function(elementId, options) {
             the.options = KTUtil.deepExtend({}, defaultOptions, options);
 
             //alert(the.options.target.tagName);
-            the.target = KTUtil.getById(options.target);
+            the.target = target;
 
             the.targetState = the.options.targetState;
             the.toggleState = the.options.toggleState;

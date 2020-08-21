@@ -51,8 +51,7 @@
           </div>
         </div>
 
-        <KTFooter v-if="footerLayout('compact')"></KTFooter>
-        <FooterExtended v-if="footerLayout('extended')"></FooterExtended>
+        <KTFooter></KTFooter>
       </div>
     </div>
     <KTStickyToolbar v-if="toolbarDisplay"></KTStickyToolbar>
@@ -66,7 +65,6 @@ import KTAside from "@/view/layout/aside/Aside.vue";
 import KTHeader from "@/view/layout/header/Header.vue";
 import KTHeaderMobile from "@/view/layout/header/HeaderMobile.vue";
 import KTFooter from "@/view/layout/footer/Footer.vue";
-import FooterExtended from "@/view/layout/footer/FooterExtended.vue";
 import HtmlClass from "@/core/services/htmlclass.service";
 import KTSubheader from "@/view/layout/subheader/Subheader.vue";
 import KTStickyToolbar from "@/view/layout/extras/StickyToolbar.vue";
@@ -84,7 +82,6 @@ export default {
     KTHeader,
     KTHeaderMobile,
     KTFooter,
-    FooterExtended,
     KTSubheader,
     KTStickyToolbar,
     KTScrollTop,
@@ -108,11 +105,6 @@ export default {
       // Remove page loader after some time
       this.$store.dispatch(REMOVE_BODY_CLASSNAME, "page-loading");
     }, 2000);
-  },
-  methods: {
-    footerLayout(type) {
-      return this.layoutConfig("footer.layout") === type;
-    }
   },
   computed: {
     ...mapGetters([

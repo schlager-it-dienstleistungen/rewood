@@ -2,7 +2,7 @@
 "use strict";
 // DOCS: https://javascript.info/cookie
 
-// Component Definition 
+// Component Definition
 export var KTCookie = function() {
   return {
     // returns the cookie with the given name,
@@ -17,7 +17,7 @@ export var KTCookie = function() {
     // so getCookie uses a built-in decodeURIComponent function to decode it.
     setCookie: function(name, value, options) {
       if (!options) {
-        options = {};
+          options = {};
       }
 
       options = Object.assign({}, {path: '/'}, options);

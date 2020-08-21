@@ -5,7 +5,7 @@
     <div class="card-header align-items-center border-0 mt-4">
       <h3 class="card-title align-items-start flex-column">
         <span class="font-weight-bolder text-dark">
-          Recent Activities
+          My Activity
         </span>
         <span class="text-muted mt-3 font-weight-bold font-size-sm">
           890,344 Sales
@@ -33,13 +33,13 @@
 
             <!--begin::Badge-->
             <div class="timeline-badge">
-              <i class="icon-xxl" v-bind:class="item.badge"></i>
+              <i class="icon-xl" v-bind:class="item.badge"></i>
             </div>
             <!--end::Badge-->
 
             <!--begin::Text-->
             <div
-              class="font-weight-mormal font-size-sm timeline-content text-muted pl-3"
+              class="font-weight-mormal font-size-lg timeline-content text-muted pl-3"
             >
               <span
                 v-bind:class="{
@@ -48,28 +48,6 @@
                 }"
                 v-html="item.desc"
               ></span>
-
-              <!--begin::Section-->
-              <div class="d-flex align-items-start mt-n2">
-                <template v-for="(image, i) in item.images">
-                  <!--begin::Symbol-->
-                  <a
-                    href="#"
-                    class="symbol symbol-35 symbol-light-success mr-2"
-                    v-bind:key="i"
-                  >
-                    <span class="symbol-label">
-                      <img
-                        :src="image.img"
-                        class="h-75 align-self-end"
-                        :alt="image.alt"
-                      />
-                    </span>
-                  </a>
-                  <!--end::Symbol-->
-                </template>
-              </div>
-              <!--end::Section-->
             </div>
             <!--end::Text-->
           </div>
@@ -99,49 +77,58 @@ export default {
           badge: "fa fa-genderless text-success"
         },
         {
-          time: "3 hr",
+          time: "10:00",
           desc: "AEOL meeting",
           bold: true,
           badge: "fa fa-genderless text-danger"
         },
         {
           time: "14:37",
-          desc: `Submit initial budget - <a href="#" class="text-primary">USD 700</a>.`,
+          desc: `Make deposit USD 700. to ESL`,
           badge: "fa fa-genderless text-info",
           bold: true
         },
         {
           time: "16:50",
-          desc: "Stakeholder meeting scheduling.",
+          desc: "Indulging in poorly driving and keep structure keep great",
           badge: "fa fa-genderless text-danger"
         },
         {
           time: "17:30",
-          desc: "Project scoping & estimations with stakeholders.",
-          badge: "fa fa-genderless text-success"
-        },
-        {
-          time: "21:03",
-          desc: `New order placed <a href="#" class="text-primary">#XF-2356</a>.`,
-          badge: "fa fa-genderless text-warning",
+          desc: "New order placed #XF-2356.",
+          badge: "fa fa-genderless text-success",
           bold: true
         },
         {
+          time: "21:03",
+          desc: `Outlines keep and you honest. Indulging in poorly driving`,
+          badge: "fa fa-genderless text-warning"
+        },
+        {
           time: "21:07",
-          desc:
-            "Company BBQ to celebrate the last quater achievements and goals.",
+          desc: "Indulging in poorly driving and keep structure keep great",
           badge: "fa fa-genderless text-danger"
         },
         {
           time: "20:30",
-          desc: "Marketing campaign planning with customer.",
-          badge: "fa fa-genderless text-info"
+          desc: "New order placed #XF-2356.",
+          badge: "fa fa-genderless text-info",
+          bold: true
         }
       ]
     };
   },
   components: {
     Dropdown2
+  },
+  methods: {
+    lastElement(i) {
+      if (i === this.list.length - 1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
   computed: {
     ...mapGetters(["layoutConfig"])

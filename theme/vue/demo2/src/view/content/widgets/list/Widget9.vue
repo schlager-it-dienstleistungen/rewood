@@ -1,91 +1,154 @@
 <template>
-  <!--begin::List Widget 9-->
-  <div class="card card-custom card-stretch gutter-b">
-    <!--begin::Header-->
-    <div class="card-header align-items-center border-0 mt-4">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="font-weight-bolder text-dark">
-          Recent Activities
-        </span>
-        <span class="text-muted mt-3 font-weight-bold font-size-sm">
-          890,344 Sales
-        </span>
-      </h3>
-      <div class="card-toolbar">
-        <Dropdown2></Dropdown2>
-      </div>
-    </div>
-    <!--end::Header-->
-
-    <!--begin::Body-->
-    <div class="card-body pt-4">
-      <div class="timeline timeline-6 mt-3">
-        <template v-for="(item, i) in list">
-          <!--begin::Item-->
-          <div class="timeline-item align-items-start" v-bind:key="i">
-            <!--begin::Label-->
-            <div
-              class="timeline-label font-weight-bolder text-dark-75 font-size-lg"
+  <div>
+    <div class="row">
+      <div class="col-xl-3">
+        <!--begin::Tiles Widget 3-->
+        <div
+          class="card card-custom bgi-no-repeat bgi-no-repeat bgi-size-cover gutter-b"
+          style="height: 150px; background-image: url(/media/bg/bg-9.jpg)"
+        >
+          <!--begin::Body-->
+          <div class="card-body d-flex flex-column">
+            <!--begin::Title-->
+            <a
+              href="#"
+              class="text-dark-75 text-hover-primary font-weight-bolder font-size-h3"
+              >Properties</a
             >
-              {{ item.time }}
-            </div>
-            <!--end::Label-->
-
-            <!--begin::Badge-->
-            <div class="timeline-badge">
-              <i class="icon-xxl" v-bind:class="item.badge"></i>
-            </div>
-            <!--end::Badge-->
-
-            <!--begin::Text-->
-            <div
-              class="font-weight-mormal font-size-sm timeline-content text-muted pl-3"
-            >
-              <span
-                v-bind:class="{
-                  'font-weight-bolder text-dark-75': item.bold,
-                  'mr-4': item.images
-                }"
-                v-html="item.desc"
-              ></span>
-
-              <!--begin::Section-->
-              <div class="d-flex align-items-start mt-n2">
-                <template v-for="(image, i) in item.images">
-                  <!--begin::Symbol-->
-                  <a
-                    href="#"
-                    class="symbol symbol-35 symbol-light-success mr-2"
-                    v-bind:key="i"
-                  >
-                    <span class="symbol-label">
-                      <img
-                        :src="image.img"
-                        class="h-75 align-self-end"
-                        :alt="image.alt"
-                      />
-                    </span>
-                  </a>
-                  <!--end::Symbol-->
-                </template>
-              </div>
-              <!--end::Section-->
-            </div>
-            <!--end::Text-->
+            <!--end::Title-->
           </div>
-          <!--end::Item-->
-        </template>
+          <!--end::Body-->
+        </div>
+        <!--end::Tiles Widget 3-->
       </div>
-      <!--end: Items-->
+      <div class="col-xl-9">
+        <!--begin::Mixed Widget 10-->
+        <div class="card card-custom gutter-b" style="height: 150px">
+          <!--begin::Body-->
+          <div
+            class="card-body d-flex align-items-center justify-content-between flex-wrap"
+          >
+            <div class="mr-2">
+              <h3 class="font-weight-bolder">Create CRM Reports</h3>
+              <div class="text-dark-50 font-size-lg mt-2">
+                Generate the latest CRM Report
+              </div>
+            </div>
+            <a href="#" class="btn btn-primary font-weight-bold py-3 px-6"
+              >Start Now</a
+            >
+          </div>
+          <!--end::Body-->
+        </div>
+        <!--end::Mixed Widget 10-->
+      </div>
     </div>
-    <!--end: Card Body-->
+    <div class="row">
+      <div class="col-xl-6">
+        <!--begin::Tiles Widget 13-->
+        <div
+          class="card card-custom bgi-no-repeat gutter-b"
+          style="height: 175px; background-color: #663259; background-position: calc(100% + 0.5rem) 100%; background-size: 100% auto; background-image: url(/media/svg/patterns/taieri.svg)"
+        >
+          <!--begin::Body-->
+          <div class="card-body d-flex align-items-center">
+            <div>
+              <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+                Create SaaS <br />Based Reports
+              </h3>
+              <a href="#" class="btn btn-success font-weight-bold px-6 py-3"
+                >Create Report</a
+              >
+            </div>
+          </div>
+          <!--end::Body-->
+        </div>
+        <!--end::Tiles Widget 13-->
+        <div class="row">
+          <div class="col-xl-6">
+            <!--begin::Tiles Widget 11-->
+            <div
+              class="card card-custom bg-primary gutter-b"
+              style="height: 150px"
+            >
+              <div class="card-body">
+                <span class="svg-icon svg-icon-3x svg-icon-white ml-n2">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+                  <inline-svg
+                    src="media/svg/icons/Layout/Layout-4-blocks.svg"
+                  />
+                  <!--end::Svg Icon-->
+                </span>
+                <div
+                  class="text-inverse-primary font-weight-bolder font-size-h2 mt-3"
+                >
+                  790
+                </div>
+                <a
+                  href="#"
+                  class="text-inverse-primary font-weight-bold font-size-lg mt-1"
+                  >New Products</a
+                >
+              </div>
+            </div>
+            <!--end::Tiles Widget 11-->
+          </div>
+          <div class="col-xl-6">
+            <!--begin::Tiles Widget 12-->
+            <div class="card card-custom gutter-b" style="height: 150px">
+              <div class="card-body">
+                <span class="svg-icon svg-icon-3x svg-icon-success">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
+                  <inline-svg src="/media/svg/icons/Communication/Group.svg" />
+                  <!--end::Svg Icon-->
+                </span>
+                <div class="text-dark font-weight-bolder font-size-h2 mt-3">
+                  8,600
+                </div>
+                <a
+                  href="#"
+                  class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1"
+                  >New Customers</a
+                >
+              </div>
+            </div>
+            <!--end::Tiles Widget 12-->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <!--begin::Mixed Widget 14-->
+        <div
+          class="card card-custom bgi-no-repeat bgi-size-cover gutter-b card-stretch"
+          style="background-image: url(/media/stock-600x600/img-16.jpg)"
+        >
+          <!--begin::Body-->
+          <div
+            class="card-body d-flex flex-column align-items-start justify-content-start"
+          >
+            <div class="p-1 flex-grow-1">
+              <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+                Create Reports <br />With App
+              </h3>
+            </div>
+            <a href="#" class="btn btn-link btn-link-warning font-weight-bold"
+              >Create Report
+              <span class="svg-icon svg-icon-lg svg-icon-warning">
+                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
+                <inline-svg src="media/svg/icons/Navigation/Arrow-right.svg" />
+                <!--end::Svg Icon-->
+              </span></a
+            >
+          </div>
+          <!--end::Body-->
+        </div>
+        <!--end::Mixed Widget 14-->
+      </div>
+    </div>
   </div>
-  <!--end: Card-->
-  <!--end: List Widget 9-->
 </template>
 
 <script>
-import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -140,9 +203,7 @@ export default {
       ]
     };
   },
-  components: {
-    Dropdown2
-  },
+  components: {},
   computed: {
     ...mapGetters(["layoutConfig"])
   }

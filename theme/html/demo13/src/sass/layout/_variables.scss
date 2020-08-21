@@ -630,7 +630,7 @@ $header-menu-config: (
 								bg-color: (
 									default: null,
 									open: null,
-									here: $gray-100,
+									here: null,
 									active: $gray-100,
 									hover: null
 								)
@@ -718,7 +718,7 @@ $header-menu-config: (
 										bg-color: (
 											default: null,
 											open: null,
-											here: $gray-100,
+											here: null,
 											active: $gray-100,
 											hover: null
 										)
@@ -1201,11 +1201,11 @@ $aside-menu-config: (
 					link: (
 						self: (
 							bg-color: (
-								default: transparent,
-								open: #1b1b28,
-								here: #1b1b28,
+								default: none,
+								open: none,
+								here: none,
 								active: #1b1b28,
-								hover: #1b1b28
+								hover: none
 							)
 						),
 
@@ -1295,11 +1295,11 @@ $aside-menu-config: (
 								// Link
 								self: (
 									bg-color: (
-										default: transparent,
-										open: #1b1b28,
-										here: #1b1b28,
+										default: none,
+										open: none,
+										here: none,
 										active: #1b1b28,
-										hover: #1b1b28
+										hover: none
 									)
 								),
 								// Icon

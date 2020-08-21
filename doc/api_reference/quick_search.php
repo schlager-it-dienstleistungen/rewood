@@ -1,5 +1,6 @@
 <?php header('Access-Control-Allow-Origin: *');
-$dir = str_replace('/tools/preview/api', '/demo1/dist/assets/media/', dirname($_SERVER['PHP_SELF'])); ?>
+// use static url
+$dir = 'https://preview.keenthemes.com/metronic/theme/html/demo1/dist/assets/media/' ?>
 
 <div class="quick-search-result">
     <!--begin::Message-->

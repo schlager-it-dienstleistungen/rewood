@@ -1,27 +1,22 @@
 <template>
-  <!--begin::Stats Widget 7-->
-  <div class="card card-custom card-stretch card-stretch-half gutter-b">
+  <!--begin::Stats Widget 11-->
+  <div class="card card-custom gutter-b">
     <!--begin::Body-->
-    <div class="card-body d-flex flex-column p-0">
+    <div class="card-body p-0">
       <div
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
-        <div class="d-flex flex-column mr-2">
-          <a
-            href="#"
-            class="text-dark-75 text-hover-primary font-weight-bolder font-size-h5"
-          >
-            Weekly Sales
-          </a>
-          <span class="text-muted font-weight-bold mt-2">
-            Your Weekly Sales Chart
-          </span>
-        </div>
-        <span class="symbol symbol-light-success symbol-45">
-          <span class="symbol-label font-weight-bolder font-size-h6">
-            +57
+        <span class="symbol  symbol-50 symbol-light-success mr-2">
+          <span class="symbol-label">
+            <span class="svg-icon svg-icon-xl svg-icon-success">
+              <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
+            </span>
           </span>
         </span>
+        <div class="d-flex flex-column text-right">
+          <span class="text-dark-75 font-weight-bolder font-size-h3">750$</span>
+          <span class="text-muted font-weight-bold mt-2">Weekly Income</span>
+        </div>
       </div>
       <!--begin::Chart-->
       <apexchart
@@ -34,7 +29,7 @@
     </div>
     <!--end::Body-->
   </div>
-  <!--end::Stats Widget 7-->
+  <!--end::Stats Widget 11-->
 </template>
 
 <script>
@@ -48,7 +43,7 @@ export default {
       series: [
         {
           name: "Net Profit",
-          data: [30, 45, 32, 70, 40]
+          data: [40, 40, 30, 30, 35, 35, 50]
         }
       ]
     };
@@ -125,6 +120,8 @@ export default {
         }
       },
       yaxis: {
+        min: 0,
+        max: 50,
         show: false,
         labels: {
           show: false,

@@ -21,7 +21,7 @@
 		align-items: stretch;
 		height: get($header-menu-config, desktop, root, base, height);
 		position: relative;
-		
+
 		// Containers
 		.container,
 		.container-fluid {
@@ -133,6 +133,18 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+// Tablet & Mobile Modes
+@include media-breakpoint-down(md) {
+	// Header Wrapper
+	.header-menu-wrapper {
+		overflow: auto;
+
+		.container {
+			padding: 0;
 		}
 	}
 }

@@ -18,6 +18,8 @@ require('@/src/js/components/datatable/datatable.rtl.js');
 // Metronic layout base js
 window.KTLayoutAside = require('@/src/js/layout/base/aside.js');
 window.KTLayoutAsideMenu = require('@/src/js/layout/base/aside-menu.js');
+window.KTLayoutAsideToggle = require('@/src/js/layout/base/aside-toggle.js');
+window.KTLayoutBrand = require('@/src/js/layout/base/brand.js');
 window.KTLayoutContent = require('@/src/js/layout/base/content.js');
 window.KTLayoutFooter = require('@/src/js/layout/base/footer.js');
 window.KTLayoutHeader = require('@/src/js/layout/base/header.js');

@@ -372,6 +372,18 @@ export default new Router({
               component: () => import("@/view/pages/wizard/Wizard-4.vue")
             }
           ]
+        },
+        {
+          path: "/plugins",
+          name: "plugins",
+          component: () => import("@/view/pages/plugins/Plugins.vue"),
+          children: [
+            {
+              path: "cropper",
+              name: "cropper",
+              component: () => import("@/view/pages/plugins/Cropper.vue")
+            }
+          ]
         }
       ]
     },

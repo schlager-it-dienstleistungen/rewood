@@ -1472,6 +1472,43 @@
               </ul>
             </div>
           </li>
+          <li
+            aria-haspopup="true"
+            data-menu-toggle="hover"
+            class="menu-item menu-item-submenu"
+            v-bind:class="{
+              'menu-item-active': hasActiveChildren('/plugins/plugins')
+            }"
+          >
+            <a href="#" class="menu-link menu-toggle">
+              <i class="menu-icon flaticon2-image-file"></i>
+              <span class="menu-text"> Plugins </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="menu-submenu menu-submenu-classic menu-submenu-right">
+              <ul class="menu-subnav">
+                <router-link
+                  to="/plugins/cropper"
+                  v-slot="{ href, navigate, isActive, isExactActive }"
+                >
+                  <li
+                    aria-haspopup="true"
+                    data-menu-toggle="hover"
+                    class="menu-item"
+                    :class="[
+                      isActive && 'menu-item-active',
+                      isExactActive && 'menu-item-active'
+                    ]"
+                  >
+                    <a :href="href" class="menu-link" @click="navigate">
+                      <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                      <span class="menu-text"> Cropper </span>
+                    </a>
+                  </li>
+                </router-link>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </li>

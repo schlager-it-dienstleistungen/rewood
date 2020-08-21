@@ -5,29 +5,34 @@
       <div class="col-xxl-4">
         <MixedWidget1></MixedWidget1>
       </div>
-      <div class="col-xxl-4">
+      <div class="col-xxl-8">
         <ListWidget9></ListWidget9>
       </div>
+
       <div class="col-xxl-4">
         <StatsWidget7></StatsWidget7>
         <StatsWidget12></StatsWidget12>
       </div>
-
-      <div class="col-xxl-4 order-1 order-xxl-1">
-        <ListWidget1></ListWidget1>
-      </div>
-      <div class="col-xxl-8 order-2 order-xxl-1">
+      <div class="col-xl-8">
         <AdvancedTableWidget2></AdvancedTableWidget2>
       </div>
 
-      <div class="col-xxl-4 order-1 order-xxl-2">
+      <div class="col-lg-12 col-xxl-12">
         <ListWidget3></ListWidget3>
       </div>
-      <div class="col-xxl-4 order-1 order-xxl-2">
-        <ListWidget4></ListWidget4>
+
+      <div class="col-xxl-6">
+        <ListWidget14></ListWidget14>
       </div>
-      <div class="col-lg-12 col-xxl-4 order-1 order-xxl-2">
+      <div class="col-xxl-6">
+        <ListWidget15></ListWidget15>
+      </div>
+
+      <div class="col-xxl-4">
         <ListWidget8></ListWidget8>
+      </div>
+      <div class="col-xxl-8">
+        <ListWidget2></ListWidget2>
       </div>
     </div>
     <!--end::Dashboard-->
@@ -38,11 +43,12 @@
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import AdvancedTableWidget2 from "@/view/content/widgets/advance-table/Widget2.vue";
 import MixedWidget1 from "@/view/content/widgets/mixed/Widget1.vue";
-import ListWidget1 from "@/view/content/widgets/list/Widget1.vue";
+import ListWidget2 from "@/view/content/widgets/list/Widget2.vue";
 import ListWidget3 from "@/view/content/widgets/list/Widget3.vue";
-import ListWidget4 from "@/view/content/widgets/list/Widget4.vue";
 import ListWidget8 from "@/view/content/widgets/list/Widget8.vue";
 import ListWidget9 from "@/view/content/widgets/list/Widget9.vue";
+import ListWidget14 from "@/view/content/widgets/list/Widget14.vue";
+import ListWidget15 from "@/view/content/widgets/list/Widget15.vue";
 import StatsWidget7 from "@/view/content/widgets/stats/Widget7.vue";
 import StatsWidget12 from "@/view/content/widgets/stats/Widget12.vue";
 
@@ -51,11 +57,12 @@ export default {
   components: {
     AdvancedTableWidget2,
     MixedWidget1,
-    ListWidget1,
+    ListWidget2,
     ListWidget3,
-    ListWidget4,
     ListWidget8,
     ListWidget9,
+    ListWidget14,
+    ListWidget15,
     StatsWidget7,
     StatsWidget12
   },

@@ -1,28 +1,22 @@
 <template>
-  <!--begin::Stats Widget 12-->
-  <div class="card card-custom card-stretch card-stretch-half gutter-b">
+  <div class="card card-custom gutter-b">
     <!--begin::Body-->
-    <div class="card-body d-flex flex-column p-0">
+    <div class="card-body p-0">
       <div
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
-        <span class="symbol symbol-circle symbol-50 symbol-light-primary mr-2">
+        <span class="symbol symbol-circle symbol-50 symbol-light-info mr-2">
           <span class="symbol-label">
-            <span class="svg-icon svg-icon-xl svg-icon-primary">
-              <inline-svg
-                src="media/svg/icons/Communication/Group.svg"
-                class="svg-icon-xl svg-icon-primary"
-              ></inline-svg>
+            <span class="svg-icon svg-icon-xl svg-icon-info">
+              <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
+              <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
+              <!--end::Svg Icon-->
             </span>
           </span>
         </span>
         <div class="d-flex flex-column text-right">
-          <span class="text-dark-75 font-weight-bolder font-size-h3">
-            +6,5K
-          </span>
-          <span class="text-muted font-weight-bold mt-2">
-            New Users
-          </span>
+          <span class="text-dark-75 font-weight-bolder font-size-h3">+259</span>
+          <span class="text-muted font-weight-bold mt-2">Sales Change</span>
         </div>
       </div>
       <!--begin::Chart-->
@@ -37,7 +31,6 @@
     </div>
     <!--end::Body-->
   </div>
-  <!--end::Stats Widget 12-->
 </template>
 
 <script>
@@ -62,12 +55,6 @@ export default {
   mounted() {
     // reference; kt_stats_widget_12_chart
     this.chartOptions = {
-      series: [
-        {
-          name: "Net Profit",
-          data: [40, 40, 30, 30, 35, 35, 50]
-        }
-      ],
       chart: {
         type: "area",
         height: 150,
@@ -96,7 +83,7 @@ export default {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [this.layoutConfig("colors.theme.base.primary")]
+        colors: [this.layoutConfig("colors.theme.base.info")]
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep"],
@@ -178,10 +165,10 @@ export default {
           }
         }
       },
-      colors: [this.layoutConfig("colors.theme.light.primary")],
+      colors: [this.layoutConfig("colors.theme.light.info")],
       markers: {
-        colors: [this.layoutConfig("colors.theme.light.primary")],
-        strokeColor: [this.layoutConfig("colors.theme.base.primary")],
+        colors: [this.layoutConfig("colors.theme.light.info")],
+        strokeColor: [this.layoutConfig("colors.theme.base.info")],
         strokeWidth: 3
       },
       grid: {
