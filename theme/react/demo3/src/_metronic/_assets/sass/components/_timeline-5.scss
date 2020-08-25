@@ -33,7 +33,7 @@
                 }
             }
 
-			.timeline-info {
+			.timeline-desc {
 				padding: 9px 0 0 44px;
 
 				&::before{
@@ -41,11 +41,26 @@
 					position: absolute;
 					width: 4px;
 					height: calc(100% - 32px);
-					background-color: #DEEDFF;
+					background-color: $gray-200;
 					border-radius: 6px;
 					top: 40px;
 					left: 16px;
 				}
+
+                // Theme colors
+                @each $name, $color in $theme-colors {
+                    &.timeline-desc-#{$name} {
+                        &::before {
+                            background-color: $color;
+                        }
+                    }
+
+                    &.timeline-desc-light-#{$name} {
+                        &::before {
+                            background-color: theme-light-color($name);
+                        }
+                    }
+                }
 			}
 
             &:last-child {

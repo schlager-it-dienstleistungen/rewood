@@ -37,7 +37,7 @@ body {
 	.wrapper {
 		// Fixed Header Mode
 		.header-mobile-fixed & {
-			padding-top: get($page-padding, tablet-and-mobile);
+			padding-top: get($header-config, tablet-and-mobile, height);
 		}
 	}
 }

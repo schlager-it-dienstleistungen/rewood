@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.0.9",
+    "version": "7.1.0",
     "config": {
         "debug": false,
         "compile": {
@@ -277,7 +277,7 @@
                                 "{$config.path.node_modules}/summernote/dist/font/**"
                             ]
                         },
-                        "bootstrap-makrdown": {
+                        "bootstrap-markdown": {
                             "styles": [
                                 "{$config.path.node_modules}/bootstrap-markdown/css/bootstrap-markdown.min.css"
                             ],

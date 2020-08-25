@@ -420,6 +420,17 @@ $scrolltop-config: (
     )
 ) !default;
 
+// Sticky Toolbar
+$sticky-toolbar-config: (
+	z-index: 95
+) !default;
+
+// Offcanvas Base
+$offcanvas-base-config: (
+	offset: 20px,
+	transition: 0.3s ease
+) !default;
+
 // Datatable
 $datatable-config: (
 	// Base

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { Location } from '@angular/common';
-import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-
+import { filter } from 'rxjs/operators';
+import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/core';
 
 @Component({
   selector: 'app-aside-dynamic',
@@ -17,16 +17,17 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
   headerLogo: string;
   brandSkin: string;
   ulCSSClasses: string;
-  location: Location;
   asideMenuHTMLAttributes: any = {};
   asideMenuCSSClasses: string;
   brandClasses: string;
   asideMenuScroll = 1;
   asideSelfMinimizeToggle = false;
 
+  currentUrl: string;
+
   constructor(
     private layout: LayoutService,
-    private loc: Location,
+    private router: Router,
     private menu: DynamicAsideMenuService,
     private cdr: ChangeDetectorRef) { }
 
@@ -44,14 +45,22 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
       'aside.self.minimize.toggle'
     );
     this.asideMenuScroll = this.layout.getProp('aside.menu.scroll') ? 1 : 0;
-    this.location = this.loc;
+    // router subscription
+    this.currentUrl = this.router.url.split(/[?#]/)[0];
+    const routerSubscr = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.currentUrl = event.url;
+      this.cdr.detectChanges();
+    });
+    this.subscriptions.push(routerSubscr);
 
-    // load menu
-    const subscr = this.menu.menuConfig$.subscribe(res => {
+    // menu load
+    const menuSubscr = this.menu.menuConfig$.subscribe(res => {
       this.menuConfig = res;
       this.cdr.detectChanges();
     });
-    this.subscriptions.push(subscr);
+    this.subscriptions.push(menuSubscr);
   }
 
   private getLogo() {
@@ -60,6 +69,22 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
     } else {
       return './assets/media/logos/logo-light.png';
     }
+  }
+
+  isMenuItemActive(path) {
+    if (!this.currentUrl || !path) {
+      return false;
+    }
+
+    if (this.currentUrl === path) {
+      return true;
+    }
+
+    if (this.currentUrl.indexOf(path) > -1) {
+      return true;
+    }
+
+    return false;
   }
 
   ngOnDestroy() {

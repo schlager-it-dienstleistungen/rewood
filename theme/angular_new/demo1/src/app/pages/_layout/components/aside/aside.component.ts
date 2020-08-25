@@ -2,10 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../../../_metronic/core';
 
-function getCurrentURL(location) {
-  return location.split(/[?#]/)[0];
-}
-
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',

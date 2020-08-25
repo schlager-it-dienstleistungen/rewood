@@ -197,44 +197,44 @@ export default {
         {
           title: "AirPlus Requirements",
           desc: "by Grog John",
-          svg: "/media/svg/files/doc.svg"
+          svg: "media/svg/files/doc.svg"
         },
         {
           title: "TechNav Documentation",
           desc: "by Mary Broun",
-          svg: "/media/svg/files/pdf.svg"
+          svg: "media/svg/files/pdf.svg"
         },
         {
           title: "All Framework Docs",
           desc: "by Nick Stone",
-          svg: "/media/svg/files/xml.svg"
+          svg: "media/svg/files/xml.svg"
         },
         {
           title: "Finance & Accounting Reports",
           desc: "by Jhon Larson",
-          svg: "/media/svg/files/csv.svg"
+          svg: "media/svg/files/csv.svg"
         }
       ],
       list2: [
         {
           title: "Milena Gibson",
           desc: "UI Designer",
-          svg: "/media/users/300_20.jpg"
+          svg: "media/users/300_20.jpg"
         },
         {
           title: "Stefan JohnStefan",
           desc: "Marketing Manager",
-          svg: "/media/users/300_15.jpg"
+          svg: "media/users/300_15.jpg"
         },
         {
           title: "Anna Strong",
           desc: "Software Developer",
-          svg: "/media/users/300_16.jpg"
+          svg: "media/users/300_16.jpg"
         },
         {
           title: "Nick Bold",
           desc: "Active Customer",
-          svg: "/media/users/300_12.jpg"
+          svg: "media/users/300_12.jpg"
         }
       ],
       list3: [

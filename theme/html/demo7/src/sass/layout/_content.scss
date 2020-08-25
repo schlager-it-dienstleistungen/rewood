@@ -7,11 +7,6 @@
 	.content {
 		padding: get($page-padding, desktop) 0;
 
-		// Fixed Footer Modes
-		.footer-fixed & {
-			padding-bottom: get($footer-config, height);
-		}
-
 		// Aside Enabled Mode
 		.aside-enabled & {
 			.content-wrapper {

@@ -11,7 +11,7 @@
 			transition: get($aside-config, base, transition);
 			box-shadow: get($footer-config, fixed, shadow);
 			height: get($footer-config, fixed, height);
-			z-index: get($footer-config, fixed, z-index);
+			z-index: get($footer-config, fixed, zindex);
 			bottom: 0;
 			right: 0;
 			left: get($aside-config, base, primary-width);

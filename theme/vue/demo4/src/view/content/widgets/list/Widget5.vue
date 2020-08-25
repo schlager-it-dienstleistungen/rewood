@@ -95,21 +95,21 @@ export default {
         {
           title: "Top Authors",
           desc: "Ricky Hunt, Sandra Trepp",
-          svg: "/media/svg/icons/Home/Library.svg",
+          svg: process.env.BASE_URL + "media/svg/icons/Home/Library.svg",
           profit: "+90$",
           class: "primary"
         },
         {
           title: "Top Sales",
           desc: "PitStop Emails",
-          svg: "media/svg/icons/Devices/Mic.svg",
+          svg: process.env.BASE_URL + "media/svg/icons/Devices/Mic.svg",
           profit: "+4500$",
           class: "warning"
         },
         {
           title: "Bestsellers",
           desc: "Pitstop Email Marketing",
-          svg: "media/svg/icons/Communication/Group-chat.svg",
+          svg: process.env.BASE_URL + "media/svg/icons/Communication/Group-chat.svg",
           profit: "+75$",
           class: "success"
         }

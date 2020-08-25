@@ -9,7 +9,7 @@
 		.footer-fixed & {
 			position: fixed;
 			height: get($footer-config, fixed, height);
-			z-index: get($footer-config, fixed, z-index);
+			z-index: get($footer-config, fixed, zindex);
 			box-shadow: get($footer-config, fixed, shadow);
 			bottom: 0;
 			right: 0;

@@ -95,7 +95,7 @@ export default {
         {
           title: "Top Authors",
           desc: "Ricky Hunt, Sandra Trepp",
-          svg: "/media/svg/icons/Home/Library.svg",
+          svg: "media/svg/icons/Home/Library.svg",
           profit: "+90$",
           class: "primary"
         },

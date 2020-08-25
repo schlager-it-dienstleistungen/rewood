@@ -5,7 +5,7 @@
         <!--begin::Tiles Widget 3-->
         <div
           class="card card-custom bgi-no-repeat bgi-no-repeat bgi-size-cover gutter-b"
-          style="height: 150px; background-image: url(/media/bg/bg-9.jpg)"
+          style="height: 150px; background-image: url('media/bg/bg-9.jpg')"
         >
           <!--begin::Body-->
           <div class="card-body d-flex flex-column">
@@ -99,7 +99,7 @@
               <div class="card-body">
                 <span class="svg-icon svg-icon-3x svg-icon-success">
                   <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
-                  <inline-svg src="/media/svg/icons/Communication/Group.svg" />
+                  <inline-svg src="media/svg/icons/Communication/Group.svg" />
                   <!--end::Svg Icon-->
                 </span>
                 <div class="text-dark font-weight-bolder font-size-h2 mt-3">

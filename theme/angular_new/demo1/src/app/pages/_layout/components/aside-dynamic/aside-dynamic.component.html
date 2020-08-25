@@ -95,12 +95,14 @@
       class="menu-item menu-item-submenu"
       aria-haspopup="true"
       data-menu-toggle="hover"
+      [ngClass]="{ 'menu-item-open': isMenuItemActive(item.page) }"
       routerLinkActive="menu-item-open"
     >
       <a
         class="menu-link menu-toggle"
         [attr.href]="item.page"
         routerLinkActive="active"
+        [ngClass]="{ 'active ': isMenuItemActive(item.page) }"
       >
         <span
           [inlineSVG]="item.svg"
@@ -163,11 +165,13 @@
       class="menu-item menu-item-submenu"
       aria-haspopup="true"
       data-menu-toggle="hover"
+      [ngClass]="{ 'menu-item-open': isMenuItemActive(item.page) }"
       routerLinkActive="menu-item-open"
     >
       <a
         class="menu-link menu-toggle"
         [attr.href]="item.page"
+        [ngClass]="{ 'active ': isMenuItemActive(item.page) }"
         routerLinkActive="active"
       >
         <i class="menu-bullet menu-bullet-dot">
@@ -212,7 +216,6 @@
     </a>
   </li>
 </ng-template>
-
 <!-- end::3 Level -->
 
 <!-- begin::Separator -->

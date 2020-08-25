@@ -288,6 +288,7 @@ export const DynamicAsideMenuConfig = {
       svg: './assets/media/svg/icons/Shopping/Cart3.svg',
       root: true,
       permission: 'accessToECommerceModule',
+      page: '/ecommerce',
       submenu: [
         {
           title: 'Customers',

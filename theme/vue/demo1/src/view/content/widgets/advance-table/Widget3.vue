@@ -96,7 +96,7 @@
                   </td>
                   <td>
                     <img
-                      src="/media/logos/stars.png"
+                      src="media/logos/stars.png"
                       alt="image"
                       style="width: 5rem"
                     />
@@ -131,7 +131,7 @@ export default {
     return {
       list: [
         {
-          img: "media/svg/avatars/001-boy.svg",
+          img: process.env.BASE_URL + "media/svg/avatars/001-boy.svg",
           name: "Brad Simmons",
           desc: "HTML, JS, ReactJS",
           paid: "$8,000,000",
@@ -143,7 +143,7 @@ export default {
           rate: "Best Rated"
         },
         {
-          img: "media/svg/avatars/018-girl-9.svg",
+          img: process.env.BASE_URL + "media/svg/avatars/018-girl-9.svg",
           name: "Jessie Clarcson",
           desc: "C#, ASP.NET, MS SQL",
           paid: "$23,000,000",
@@ -155,7 +155,7 @@ export default {
           rate: "Above Average"
         },
         {
-          img: "media/svg/avatars/014-girl-7.svg",
+          img: process.env.BASE_URL + "media/svg/avatars/014-girl-7.svg",
           name: "Lebron Wayde",
           desc: "PHP, Laravel, VueJS",
           paid: "$2,600,000",
@@ -167,7 +167,7 @@ export default {
           rate: "Best Rated"
         },
         {
-          img: "media/svg/avatars/047-girl-25.svg",
+          img: process.env.BASE_URL + "media/svg/avatars/047-girl-25.svg",
           name: "Natali Trump",
           desc: "Python, PostgreSQL, ReactJS",
           paid: "$2,600,000",

@@ -11,7 +11,7 @@
           <div class="symbol symbol-50">
             <span class="symbol-label bg-light-light">
               <img
-                src="/media/svg/misc/015-telegram.svg"
+                src="media/svg/misc/015-telegram.svg"
                 class="h-50 align-self-center"
                 alt=""
               />
@@ -38,7 +38,7 @@
         <a href="#" class="symbol symbol-45 symbol-light mr-3">
           <div class="symbol-label">
             <img
-              src="/media/svg/avatars/001-boy.svg"
+              src="media/svg/avatars/001-boy.svg"
               class="h-75 align-self-end"
               alt=""
             />
@@ -49,7 +49,7 @@
         <a href="#" class="symbol symbol-45 symbol-light mr-3">
           <div class="symbol-label">
             <img
-              src="/media/svg/avatars/028-girl-16.svg"
+              src="media/svg/avatars/028-girl-16.svg"
               class="h-75 align-self-end"
               alt=""
             />
@@ -60,7 +60,7 @@
         <a href="#" class="symbol symbol-45 symbol-light mr-3">
           <div class="symbol-label">
             <img
-              src="/media/svg/avatars/024-boy-9.svg"
+              src="media/svg/avatars/024-boy-9.svg"
               class="h-75 align-self-end"
               alt=""
             />
@@ -71,7 +71,7 @@
         <a href="#" class="symbol symbol-45 symbol-light">
           <div class="symbol-label">
             <img
-              src="/media/svg/avatars/005-girl-2.svg"
+              src="media/svg/avatars/005-girl-2.svg"
               class="h-75 align-self-end"
               alt=""
             />

@@ -95,7 +95,7 @@
                   </td>
                   <td>
                     <img
-                      src="/media/logos/stars.png"
+                      src="media/logos/stars.png"
                       alt="image"
                       style="width: 5rem"
                     />

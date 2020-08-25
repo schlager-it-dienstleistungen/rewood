@@ -4,6 +4,7 @@
       class="subheader py-5 py-lg-10 gutter-b subheader-transparent subheader-background"
       id="kt_subheader"
       v-if="headerMenuEnabled"
+      style="background-image: url('media/svg/patterns/taieri.svg');"
     >
       <div
         class="d-flex flex-column"
@@ -126,7 +127,6 @@
   background-position: right bottom;
   background-size: auto 100%;
   background-repeat: no-repeat;
-  background-image: url(/media/svg/patterns/taieri.svg);
 }
 </style>
 

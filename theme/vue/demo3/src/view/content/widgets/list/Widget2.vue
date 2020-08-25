@@ -93,7 +93,7 @@
                     <span class="svg-icon svg-icon-md svg-icon-success">
                       <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
                       <inline-svg
-                        src="/media/svg/icons/Navigation/Arrow-right.svg"
+                        src="media/svg/icons/Navigation/Arrow-right.svg"
                       ></inline-svg>
                       <!--end::Svg Icon-->
                     </span>
@@ -121,35 +121,35 @@ export default {
           desc: "Successful Fellas",
           desc2: "ReactJs, HTML",
           users: "4600 Users",
-          img: "/media/svg/misc/006-plurk.svg"
+          img: "media/svg/misc/006-plurk.svg"
         },
         {
           title: "Popular Authors",
           desc: "Most Successful",
           desc2: "Python, MySQL",
           users: "7200 Users",
-          img: "/media/svg/misc/015-telegram.svg"
+          img: "media/svg/misc/015-telegram.svg"
         },
         {
           title: "New Users",
           desc: "Awesome Users",
           desc2: "Laravel, Metronic",
           users: "890 Users",
-          img: "/media/svg/misc/003-puzzle.svg"
+          img: "media/svg/misc/003-puzzle.svg"
         },
         {
           title: "Active Customers",
           desc: "Best Customers",
           desc2: "AngularJS, C#",
           users: "6370 Users",
-          img: "/media/svg/misc/005-bebo.svg"
+          img: "media/svg/misc/005-bebo.svg"
         },
         {
           title: "Bestseller Theme",
           desc: "Amazing Templates",
           desc2: "ReactJS, Ruby",
           users: "354 Users",
-          img: "/media/svg/misc/014-kickstarter.svg"
+          img: "media/svg/misc/014-kickstarter.svg"
         }
       ]
     };

@@ -124,7 +124,7 @@ export default {
   },
   data() {
     return {
-      imgSrc: "/media/stock-600x400/img-9.jpg",
+      imgSrc: "media/stock-600x400/img-9.jpg",
       cropImg: "",
       fileExtension: "png"
     };

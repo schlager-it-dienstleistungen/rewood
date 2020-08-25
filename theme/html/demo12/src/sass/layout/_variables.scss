@@ -1517,16 +1517,6 @@ $subheader-config: (
 	)
 ) !default;
 
-// Footer
-$footer-config: (
-	// Fixed Footer Mode
-	fixed: (
-		zindex: 97,  // Fixed footer's z-index
-		height: 60px, // Fixed footer's height
-		shadow: 0px 0px 28px 0px rgba(82,63,105,0.13) // Fixed fooer box shadow
-	)
-) !default;
-
 // Offcanvas
 $offcanvas-config: (
 	width: 375px, // Offcanvas panel's width

@@ -15,11 +15,6 @@
 	.content {
 		padding: get($page-padding, desktop);
 
-		// Fixed Footer Modes
-		.footer-fixed & {
-			padding-bottom: get($footer-config, height);
-		}
-
 		// Aside Enabled Mode
 		.aside-enabled & {
 			@include border-bottom-left-radius(0);

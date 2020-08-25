@@ -114,6 +114,12 @@
         background-color: transparent;
     }
 
+    // Scroll
+    .card-scroll {
+        position: relative;
+        overflow: auto;
+    }
+
     // Make full height
     &.card-stretch {
         display: flex;
@@ -213,16 +219,20 @@
         box-shadow: none;
     }
 
+    // Reset Padding X
+    &.card-px-0 {
+        .card-header,
+        .card-body,
+        .card-footer {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
     // Border style
     &.card-border {
         box-shadow: none;
         border: 1px solid $card-border-color;
-    }
-
-    // Scroll
-    .card-scroll {
-        position: relative;
-        overflow: auto;
     }
 
     // Collapsed Mode

@@ -12,11 +12,6 @@
 			padding-top: get($header-config, desktop, height);
 		}
 
-		// Fixed Footer Modes
-		.footer-fixed & {
-			padding-bottom: get($footer-config, height);
-		}
-
 		// Aside Enabled Mode
 		.aside-enabled & {
 			.content-wrapper {

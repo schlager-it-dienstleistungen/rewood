@@ -2,13 +2,6 @@
 // Content
 //
 
-// Desktop Mode
-@include media-breakpoint-up(lg) {
-	.content {
-
-	}
-}
-
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
 	.content {
