@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	category: string;
 
 	// Table Fields
-	displayedColumns = ['picture', 'title', 'description', 'status'];
+	displayedColumns = ['picture', 'title', 'quantity', 'description', 'status'];
 
 	// Filter
 	filterQuantityKeyUp$ = new Subject<number>();
