@@ -1,4 +1,4 @@
-import { PackingUnit } from './packing-unit';
+import { Dimension } from './dimension';
 import { Location } from './location';
 import { Picture } from './picture';
 
@@ -8,10 +8,10 @@ export interface Product {
 	category: string;
 	subcategory?: string;
 	measure?: string; // Maß
-	amount?: number; // Menge
+	amount?: number; //
 	price: number;
 	description: string;
-	storage_unit?: PackingUnit;
+	dimension: Dimension;
 	home_country?: string;
 	storage_location?: Location;
 	speciality?: string;

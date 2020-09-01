@@ -44,7 +44,7 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Maße
+										Abmessungen
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
 										Geben Sie die Maße an
@@ -163,11 +163,55 @@
 
 					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Geben Sie die Maße an</div>
+						<div class="kt-heading kt-heading--md">Geben Sie die Abemssungen an</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Maße (m)</label>
+									<label>Länge (in mm)</label>
+									<input type="text" class="form-control" formControlName="length" required>
+									<div *ngIf="length.invalid && (length.dirty || length.touched)"
+											class="alert alert-danger">
+										<div *ngIf="length.errors.required">
+											Es muss die Länge eingegeben werden.
+										</div>
+									</div>
+									<span class="form-text text-muted">Bitte geben Sie die Länge (in mm) an.</span>
+								</div>
+								<div class="form-group">
+									<label>Breite (in mm)</label>
+									<input type="text" class="form-control" formControlName="width" required>
+									<div *ngIf="width.invalid && (width.dirty || width.touched)"
+											class="alert alert-danger">
+										<div *ngIf="width.errors.required">
+											Es muss die Breite eingegeben werden.
+										</div>
+									</div>
+									<span class="form-text text-muted">Bitte geben Sie die Breite (in mm) an.</span>
+								</div>
+								<div class="form-group">
+									<label>Stärke (in mm)</label>
+									<input type="text" class="form-control" formControlName="height" required>
+									<div *ngIf="height.invalid && (height.dirty || height.touched)"
+											class="alert alert-danger">
+										<div *ngIf="height.errors.required">
+											Es müssen die Stärke eingegeben werden.
+										</div>
+									</div>
+									<span class="form-text text-muted">Bitte geben Sie die Stärke (in mm) an.</span>
+								</div>
+								<div class="form-group">
+									<label>Stückzahl (in m³)</label>
+									<input type="text" class="form-control" formControlName="quantity" required>
+									<div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
+											class="alert alert-danger">
+										<div *ngIf="quantity.errors.required">
+											Es muss die Stückzahl eingegeben werden.
+										</div>
+									</div>
+									<span class="form-text text-muted">Bitte geben Sie die Stückzahl (in m³) an.</span>
+								</div>
+								<div class="form-group">
+									<label>Abemssungen (m)</label>
 									<input type="text" class="form-control" formControlName="measure" required>
 									<div *ngIf="measure.invalid && (measure.dirty || measure.touched)"
 											class="alert alert-danger">

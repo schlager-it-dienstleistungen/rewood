@@ -84,6 +84,10 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			price: [0.00, Validators.required],
 			description: ['', Validators.required],
 			status: [0, Validators.required],
+			length: [0, Validators.required],
+			width: [0, Validators.required],
+			height: [0, Validators.required],
+			quantity: [0, Validators.required],
 			measure: ['', Validators.required],
 			amount: [0, Validators.required],
 			address1: ['', Validators.required],
@@ -103,6 +107,10 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	get subcategory() { return this.productForm.get('subcategory'); }
 	get description() { return this.productForm.get('description'); }
 	get status() { return this.productForm.get('status'); }
+	get length() { return this.productForm.get('length'); }
+	get width() { return this.productForm.get('width'); }
+	get height() { return this.productForm.get('height'); }
+	get quantity() { return this.productForm.get('quantity'); }
 	get measure() { return this.productForm.get('measure'); }
 	get price() { return this.productForm.get('price'); }
 	get amount() { return this.productForm.get('amount'); }
@@ -156,9 +164,16 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 		const pictures = this.product.pictures.map(picture => {
 			return this.pictureWithOutFile(picture);
 		});
+		const dimension = {
+			length: formValue.length,
+			width: formValue.width,
+			height: formValue.height,
+			quantity: formValue.quantity
+		};
 		const newProduct: Product = {
 			...formValue,
-			pictures
+			pictures,
+			dimension
 		};
 
 		this.submitProduct.emit(newProduct);

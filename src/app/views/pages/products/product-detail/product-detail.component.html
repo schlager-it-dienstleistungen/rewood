@@ -14,9 +14,11 @@
 						<div class="rw-detail__content">{{ product.description }}</div>
 					</div>
 					<div class="rw-detail__item">
-						<div class="rw-detail__title">Maße</div>
-						<div class="rw-detail__content">Maße: {{ product.measure }}</div>
-						<div class="rw-detail__content">Menge: {{ product.amount }}</div>
+						<div class="rw-detail__title">Abemssungen</div>
+						<div class="rw-detail__content">Länge (in mm): {{ product.dimension.length }}</div>
+						<div class="rw-detail__content">Breite (in mm): {{ product.dimension.width }}</div>
+						<div class="rw-detail__content">Stärke (in mm): {{ product.dimension.height }}</div>
+						<div class="rw-detail__content">Stückzahl (in m³): {{ product.dimension.quantity }}</div>
 						<div class="rw-detail__content">Preis: {{ product.price | currency }}</div>
 					</div>
 					<div class="rw-detail__item">
