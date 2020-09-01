@@ -88,8 +88,6 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			width: [0, Validators.required],
 			height: [0, Validators.required],
 			quantity: [0, Validators.required],
-			measure: ['', Validators.required],
-			amount: [0, Validators.required],
 			address1: ['', Validators.required],
 			address2: [''],
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
@@ -111,9 +109,7 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	get width() { return this.productForm.get('width'); }
 	get height() { return this.productForm.get('height'); }
 	get quantity() { return this.productForm.get('quantity'); }
-	get measure() { return this.productForm.get('measure'); }
 	get price() { return this.productForm.get('price'); }
-	get amount() { return this.productForm.get('amount'); }
 	get address1() { return this.productForm.get('address1'); }
 	get address2() { return this.productForm.get('address2'); }
 	get postcode() { return this.productForm.get('postcode'); }

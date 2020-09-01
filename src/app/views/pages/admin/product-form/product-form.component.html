@@ -211,28 +211,6 @@
 									<span class="form-text text-muted">Bitte geben Sie die Stückzahl (in m³) an.</span>
 								</div>
 								<div class="form-group">
-									<label>Abemssungen (m)</label>
-									<input type="text" class="form-control" formControlName="measure" required>
-									<div *ngIf="measure.invalid && (measure.dirty || measure.touched)"
-											class="alert alert-danger">
-										<div *ngIf="measure.errors.required">
-											Es müssen die Maße eingegeben werden.
-										</div>
-									</div>
-									<span class="form-text text-muted">Bitte geben Sie die Maße (LxBxH) in Meter an.</span>
-								</div>
-								<div class="form-group">
-									<label>Menge</label>
-									<input type="text" class="form-control" formControlName="amount" required>
-									<div *ngIf="amount.invalid && (amount.dirty || amount.touched)"
-											class="alert alert-danger">
-										<div *ngIf="amount.errors.required">
-											Es muss eine Menge eingegeben werden.
-										</div>
-									</div>
-									<span class="form-text text-muted">Bitte geben Sie die Menge an.</span>
-								</div>
-								<div class="form-group">
 									<label>Preis</label>
 									<input type="text" class="form-control" formControlName="price" required>
 									<div *ngIf="price.invalid && (price.dirty || price.touched)"
@@ -344,12 +322,14 @@
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Maße
+										Abemssungen
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Maße: {{ productForm.get('measure').value }}<br/>
-										Menge: {{ productForm.get('amount').value }}<br/>
-										Preis: {{ productForm.get('price').value }}
+										Länge (in mm): {{ productForm.get('length').value }}<br/>
+										Breite (in mm): {{ productForm.get('width').value }}<br/>
+										Stärke (in mm): {{ productForm.get('height').value }}<br/>
+										Stückzahl (in m³): {{ productForm.get('quantity').value }}<br/>
+										Preis (pro m³): {{ productForm.get('price').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">

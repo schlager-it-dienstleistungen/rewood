@@ -25,11 +25,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	category: string;
 
 	// Table Fields
-	displayedColumns = ['picture', 'title', 'measure', 'amount', 'description', 'status'];
+	displayedColumns = ['picture', 'title', 'description', 'status'];
 
 	// Filter
-	filterMeasureKeyUp$ = new Subject<string>();
-	filterAmountKeyUp$ = new Subject<number>();
+	filterQuantityKeyUp$ = new Subject<number>();
 
 	constructor(
 		private route: ActivatedRoute,
@@ -53,34 +52,19 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 			this.dataSource.sort = this.sort;
 		});
 
-		this.filterMeasureKeyUp$.pipe(
+		this.filterQuantityKeyUp$.pipe(
 			// filter(filterValue => filterValue.length >= 3),
 			debounceTime(500),
 			distinctUntilChanged(),
 			// tap(() => this.isLoading = true),
 			// switchMap(filterValue => this.filterEvent.emit(filterValue))
 			// tap(() => this.isLoading = false)
-		).subscribe(filterValue => this.filterProdutsByMeasure(filterValue));
-
-		this.filterAmountKeyUp$.pipe(
-			// filter(filterValue => filterValue.length >= 3),
-			debounceTime(500),
-			distinctUntilChanged(),
-			// tap(() => this.isLoading = true),
-			// switchMap(filterValue => this.filterEvent.emit(filterValue))
-			// tap(() => this.isLoading = false)
-		).subscribe(filterValue => this.filterProdutsByAmount(filterValue));
+		).subscribe(filterValue => this.filterProdutsByQuantity(filterValue));
 	}
 
-	filterProdutsByMeasure($event) {
-		this.dataSource.filterPredicate =
-			(data: Product, filter: string) => data.measure.indexOf(filter) !== -1;
-		this.dataSource.filter = '' + $event;
-	}
-
-	filterProdutsByAmount($event) {
+	filterProdutsByQuantity($event) {
 		this.dataSource.filterPredicate = (
-			data: Product, filter: string) => (('' + data.amount).indexOf(filter) !== -1
+			data: Product, filter: string) => (('' + data.dimension.quantity).indexOf(filter) !== -1
 		);
 		this.dataSource.filter = '' + $event;
 	}

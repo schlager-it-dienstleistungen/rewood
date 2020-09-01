@@ -8,10 +8,7 @@
 			<span class="kt-section__info">Produkte filtern</span>
 			<div class="kt-form__filtration kt-margin-b-4">
 				<mat-form-field class="col-lg-2">
-					<input matInput (keyup)="filterMeasureKeyUp$.next($event.target.value)" placeholder="Maße">
-				</mat-form-field>
-				<mat-form-field class="col-lg-2">
-					<input matInput (keyup)="filterAmountKeyUp$.next($event.target.value)" placeholder="Menge">
+					<input matInput (keyup)="filterQuantityKeyUp$.next($event.target.value)" placeholder="Stückzahl (in m³)">
 				</mat-form-field>
 			</div>
 		</div>
@@ -47,16 +44,6 @@
 			<ng-container matColumnDef=subcategory>
 				<th mat-header-cell *matHeaderCellDef mat-sort-header>Untergruppe</th>
 				<td mat-cell *matCellDef="let product" class="products_col_subcategory"> {{product.subcategory}} </td>
-			</ng-container>
-
-			<ng-container matColumnDef=measure>
-				<th mat-header-cell *matHeaderCellDef mat-sort-header>Maße</th>
-				<td mat-cell *matCellDef="let product" class="products_col_measure"> {{product.measure}} </td>
-			</ng-container>
-
-			<ng-container matColumnDef=amount>
-				<th mat-header-cell *matHeaderCellDef mat-sort-header>Menge</th>
-				<td mat-cell *matCellDef="let product" class="products_col_amount"> {{product.amount}} </td>
 			</ng-container>
 
 			<ng-container matColumnDef=description>
