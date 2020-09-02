@@ -334,7 +334,7 @@
 										Stärke (in mm): {{ productForm.get('height').value }}<br/>
 										Volumen (in m³): {{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value / 1000000000  | number:'1.2-2'}}<br/>
 										Stückzahl (in m³): {{ productForm.get('quantity').value }}<br/>
-										Preis (pro m³): {{ productForm.get('price').value }}
+										Preis (pro m³): {{ productForm.get('price').value | currency:'EUR' }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">

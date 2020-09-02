@@ -2,7 +2,7 @@
 	<ng-container *ngIf="product$ | async as product; else loading">
 		<kt-portlet-body>
 			<div class="rw-detail">
-				<div class="rw-detail__heading">{{ product.title }}, Preis: {{ product.price | currency }}</div>
+				<div class="rw-detail__heading">{{ product.title }}, Preis: {{ product.price | currency:'EUR' }}</div>
 				<div class="rw-detail__section">
 					<div class="rw-detail__item">
 						<div class="rw-detail__title">Produktinformationen</div>
@@ -10,7 +10,7 @@
 						<ng-template #withoutSubcategory>
 							<div class="rw-detail__content">{{ product.category }}</div>
 						</ng-template>
-						<div class="rw-detail__content">{{ product.price | currency }}</div>
+						<div class="rw-detail__content">{{ product.price | currency:'EUR' }}</div>
 						<div class="rw-detail__content">{{ product.description }}</div>
 					</div>
 					<div class="rw-detail__item">
@@ -20,7 +20,7 @@
 						<div class="rw-detail__content">Stärke (in mm): {{ product.dimension.height }}</div>
 						<div class="rw-detail__content">Volumen (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height / 1000000000  | number:'1.4-4'}}</div>
 						<div class="rw-detail__content">Stückzahl (in m³): {{ product.dimension.quantity }}</div>
-						<div class="rw-detail__content">Preis pro m³: {{ product.price | currency }}</div>
+						<div class="rw-detail__content">Preis pro m³: {{ product.price | currency:'EUR' }}</div>
 					</div>
 					<div class="rw-detail__item">
 						<div class="rw-detail__title">Adresse</div>

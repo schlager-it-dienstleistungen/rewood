@@ -81,7 +81,7 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 				Validators.minLength(3)]],
 			category: ['', Validators.required],
 			subcategory: [''],
-			price: [0.00, Validators.required],
+			price: [0, Validators.required],
 			description: ['', Validators.required],
 			status: [0, Validators.required],
 			length: [0, Validators.required],
