@@ -14,7 +14,7 @@ import { ProductFactoryService } from '../../shared/product-factory.service';
 })
 export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	productForm: FormGroup;
-	@Output() submitProduct = new EventEmitter<Product>();
+	@Output() submitProduct = new EventEmitter<{newProduct: Product, submitAndNewProduct: boolean}>();
 	@Input() product: Product;
 	@Input() editing = false;
 
@@ -140,6 +140,14 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	}
 
 	onSubmit() {
+		this.submitForm(false);
+	}
+
+	onSubmitAndNew() {
+		this.submitForm(true);
+	}
+
+	submitForm(submitAndNewProduct: boolean) {
 		this.hasFormErrors = false;
 		const controls = this.productForm.controls;
 		/** check form */
@@ -172,7 +180,7 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 			dimension
 		};
 
-		this.submitProduct.emit(newProduct);
+		this.submitProduct.emit({newProduct, submitAndNewProduct});
 		this.productForm.reset();
 	}
 

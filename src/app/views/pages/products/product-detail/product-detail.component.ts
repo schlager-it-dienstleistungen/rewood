@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/product';
 import { ProductStoreService } from '../../shared/product-store.service';
@@ -16,7 +16,8 @@ export class ProductDetailComponent implements OnInit {
 	constructor(
 		private productService: ProductStoreService,
 		private route: ActivatedRoute,
-		private layoutUtilsService: LayoutUtilsService
+		private layoutUtilsService: LayoutUtilsService,
+		private router: Router
 	) { }
 
 	ngOnInit() {
@@ -24,6 +25,15 @@ export class ProductDetailComponent implements OnInit {
 		const id = params.get('id');
 		this.product$ = this.productService.getProduct(id);
 
+		// If another Product should be created after New --> go to CreatenWizard
+		this.route.queryParams
+			.subscribe(queryParams => {
+				if (queryParams.submitAndNewProduct === 'true') {
+					this.router.navigate(['../../../admin/createProduct'], { relativeTo: this.route });
+				}
+			});
+
+		// If a New Product was created --> Show Message
 		this.route.queryParams
 			.subscribe(queryParams => {
 				if (queryParams.newProduct === 'true') {
