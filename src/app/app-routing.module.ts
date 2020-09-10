@@ -18,7 +18,6 @@ const routes: Routes = [
 	{
 		path: '',
 		component: BaseComponent,
-		canActivate: [AuthGuard],
 		children: [
 			{
 				path: 'home',
@@ -30,7 +29,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'admin',
-				loadChildren: './views/pages/admin/admin.module#AdminModule'
+				loadChildren: './views/pages/admin/admin.module#AdminModule',
+				canActivate: [AuthGuard]
 			},
 			{
 				path: 'builder',
