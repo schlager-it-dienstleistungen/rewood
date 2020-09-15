@@ -2,7 +2,7 @@
     "name": "metronic",
     "theme": "metronic",
     "desc": "Metronic build config file for Gulp",
-    "version": "7.1.0",
+    "version": "7.1.1",
     "config": {
         "debug": false,
         "compile": {
@@ -27,15 +27,14 @@
                     "jquery-mask-plugin"
                 ]
             },
-            "jsUglify": false,
+            "jsMinify": false,
             "cssMinify": false,
             "jsSourcemaps": false,
             "cssSourcemaps": false
         },
         "path": {
             "src": "./../{demo}/src",
-            "node_modules": "./node_modules",
-            "demo_api_url": "https://keenthemes.com/metronic/tools/preview/"
+            "node_modules": "./node_modules"
         },
         "dist": [
             "./../{demo}/dist/assets"
@@ -111,7 +110,6 @@
                             "scripts": [
                                 "{$config.path.node_modules}/es6-shim/es6-shim.min.js",
                                 "{$config.path.src}/plugins/formvalidation/dist/js/FormValidation.full.min.js",
-                                "{$config.path.src}/plugins/formvalidation/dist/js/plugins/Bootstrap.min.js",
                                 "{$config.path.src}/plugins/formvalidation/dist/js/plugins/Bootstrap.min.js"
                             ]
                         },

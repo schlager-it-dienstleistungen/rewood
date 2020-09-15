@@ -39,6 +39,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'wizards',
+        loadChildren: () =>
+          import('../modules/wizards/wizards.module').then(
+            (m) => m.WizardsModule
+          ),
+      },
+      {
         path: 'material',
         loadChildren: () =>
           import('../modules/material/material.module').then(
@@ -63,4 +70,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }

@@ -895,12 +895,3 @@ $subheader-config: (
 		zindex: 95
 	)
 ) !default;
-
-// Offcanvas
-$offcanvas-config: (
-	width: 375px,
-	zindex: 1001,
-	shadow: 0px 1px 9px -3px rgba(0,0,0, 0.25),
-	bg-color: #ffffff,
-	overlay-bg-color: rgba(#000000, 0.1)
-) !default;

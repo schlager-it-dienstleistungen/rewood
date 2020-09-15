@@ -7,7 +7,7 @@ var rewrite = require('gulp-rewrite-css');
 var concat = require('gulp-concat');
 var lazypipe = require('lazypipe');
 var gulpif = require('gulp-if');
-var uglify = require('gulp-uglify-es').default;
+var terser = require('gulp-terser');
 var sourcemaps = require('gulp-sourcemaps');
 var build = require('./build');
 var path = require('path');
@@ -34,7 +34,7 @@ if (args.sass === false && args.js === false && args.media === false) {
 if (args.prod !== false) {
     // force disable debug for production
     build.config.debug = false;
-    build.config.compile.jsUglify = true;
+    build.config.compile.jsMinify = true;
     build.config.compile.cssMinify = true;
 }
 
@@ -45,7 +45,7 @@ module.exports = {
         demo: '',
         debug: true,
         compile: {
-            jsUglify: false,
+            jsMinify: false,
             cssMinify: false,
             jsSourcemaps: false,
             cssSourcemaps: false,
@@ -99,7 +99,7 @@ module.exports = {
         return lazypipe().pipe(function () {
             return gulpif(config.jsSourcemaps, sourcemaps.init({loadMaps: true, debug: config.debug}));
         }).pipe(function () {
-            return gulpif(config.jsUglify, uglify());
+            return gulpif(config.jsMinify, terser());
         }).pipe(function () {
             return gulpif(config.jsSourcemaps, sourcemaps.write('./'));
         });

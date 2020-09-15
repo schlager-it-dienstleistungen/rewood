@@ -3026,7 +3026,10 @@ var KTWidgets = function () {
                             fontSize: "30px",
                             fontWeight: '700',
                             offsetY: 12,
-                            show: true
+                            show: true,
+                            formatter: function (val) {
+                                return val + '%';
+                            }
                         }
                     },
                     track: {

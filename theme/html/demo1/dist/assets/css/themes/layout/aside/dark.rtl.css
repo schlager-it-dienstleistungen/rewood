@@ -330,21 +330,21 @@
     border-bottom: 1px solid #4c4e6f ; }
 
 @media (min-width: 992px) {
-  .aside-minimize .aside-menu .menu-nav > .menu-item {
+  .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item {
     background: transparent; }
-    .aside-minimize .aside-menu .menu-nav > .menu-item > .menu-link > .menu-icon {
+    .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item > .menu-link > .menu-icon {
       color: #7c87a6; }
-    .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-hover, .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-open {
+    .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-hover, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-open {
       background: transparent !important; }
-      .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-hover > .menu-link > .menu-icon, .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-open > .menu-link > .menu-icon {
+      .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-hover > .menu-link > .menu-icon, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-open > .menu-link > .menu-icon {
         color: #3699FF ; }
-    .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-here, .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-active {
+    .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-here, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-active {
       background: transparent !important; }
-      .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-here > .menu-link > .menu-icon, .aside-minimize .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link > .menu-icon {
+      .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-here > .menu-link > .menu-icon, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link > .menu-icon {
         color: #3699FF ; }
-    .aside-minimize .aside-menu .menu-nav > .menu-item:hover {
+    .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item:hover {
       background: transparent; }
-      .aside-minimize .aside-menu .menu-nav > .menu-item:hover > .menu-link > .menu-icon {
+      .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item:hover > .menu-link > .menu-icon {
         color: #3699FF !important; } }
 
 @media (min-width: 992px) {

@@ -382,6 +382,11 @@ export default new Router({
               path: "cropper",
               name: "cropper",
               component: () => import("@/view/pages/plugins/Cropper.vue")
+            },
+            {
+              path: "treeselect",
+              name: "treeselect",
+              component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
         }

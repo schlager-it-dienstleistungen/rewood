@@ -109,7 +109,9 @@ export default {
         {
           title: "Bestsellers",
           desc: "Pitstop Email Marketing",
-          svg: process.env.BASE_URL + "media/svg/icons/Communication/Group-chat.svg",
+          svg:
+            process.env.BASE_URL +
+            "media/svg/icons/Communication/Group-chat.svg",
           profit: "+75$",
           class: "success"
         }

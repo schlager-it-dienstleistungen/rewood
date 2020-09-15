@@ -1,6 +1,6 @@
 {
     "name": "metronic-angular",
-    "version": "7.1.0",
+    "version": "7.1.1",
     "description": "Packages used by Angular",
     "scripts": {
         "ng": "ng",

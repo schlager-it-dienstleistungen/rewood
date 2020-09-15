@@ -835,7 +835,7 @@
 				}
 			},
 
-            maxWidthList: {},
+			maxWidthList: {},
 
 			/**
 			 * Adjust width to match container size
@@ -845,7 +845,7 @@
 				var containerWidth = $(datatable.tableBody).innerWidth() - Plugin.iconOffset;
 
 				// get total number of columns
-				var columns = $(datatable.tableBody).
+				var columns = $(datatable.tableHead).
 					find('.' + pfx + 'datatable-row:first-child').
 					find('.' + pfx + 'datatable-cell').
 					// exclude expand icon
@@ -2117,8 +2117,10 @@
 						while ($(this)[0].offsetWidth < $(this)[0].scrollWidth && recursive < options.columns.length) {
 							$(datatable.table).find('.' + pfx + 'datatable-row').each(function(i) {
 								var cell = $(this).find('.' + pfx + 'datatable-cell:not(:hidden):not([data-autohide-disabled])').last();
-								$(cell).hide();
-								hiddenExist = true;
+									if (cell.length) {
+										$(cell).hide();
+										hiddenExist = true;
+									}
 							});
 							recursive++;
 						}

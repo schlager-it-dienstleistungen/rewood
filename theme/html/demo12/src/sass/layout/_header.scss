@@ -78,7 +78,7 @@
 
 		// Fixed Header and Minimized Header Modes
 		.header-fixed[data-header-scroll="on"] & {
-			position: fixed; 
+			position: fixed;
 			top: 0;
 			right: 0;
 			left: 0;
@@ -92,6 +92,17 @@
 
 			.header-bottom {
 				display: none;
+			}
+		}
+
+		.header-fixed.header-fixed-bottom[data-header-scroll="on"] & {
+			.header-top {
+				display: none;
+			}
+
+			.header-bottom {
+				display: flex;
+				height: get($header-config, desktop, height-scroll);
 			}
 		}
 

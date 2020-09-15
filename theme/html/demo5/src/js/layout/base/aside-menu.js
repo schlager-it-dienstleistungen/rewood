@@ -21,6 +21,11 @@ var KTLayoutAsideMenu = function() {
 				expandAll: false // allow having multiple expanded accordions in the menu
 			}
 		});
+
+		// Close aside offcanvas panel before page reload On tablet and mobile
+		_menuObject.on('linkClick', function(menu) {
+			KTLayoutAside.getOffcanvas().hide(); // Hide offcanvas after general link click
+		});
 	}
 
     // Public methods

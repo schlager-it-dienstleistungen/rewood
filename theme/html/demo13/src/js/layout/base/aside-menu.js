@@ -49,13 +49,6 @@ var KTLayoutAsideMenu = function() {
             }
 		});
 
-        // Disable menu click if aside is fixed and minimized
-        _menuObject.on('submenuToggle', function(menu) {
-            if (KTLayoutAside.isMinimized() === true  && KTLayoutAside.isHoverable() === false) {
-                return false;
-            }
-        });
-
         // Close aside offcanvas panel before page reload On tablet and mobile
         _menuObject.on('linkClick', function(menu) {
             if (KTUtil.isBreakpointDown('lg')) { // Tablet and mobile mode

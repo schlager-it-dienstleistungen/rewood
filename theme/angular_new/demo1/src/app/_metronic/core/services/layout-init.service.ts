@@ -65,7 +65,7 @@ export class LayoutInitService {
     }
   }
 
-  private initLoader() {}
+  private initLoader() { }
 
   // init header and subheader menu
   private initHeader() {

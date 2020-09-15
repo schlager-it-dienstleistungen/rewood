@@ -1,4 +1,4 @@
-# Metronic - The World’s #1 Bootstrap 4 HTML, Angular 9, React, VueJS & Laravel Admin Dashboard Theme
+# Metronic - The World’s #1 Bootstrap 4 HTML, Angular 10, React, VueJS & Laravel Admin Dashboard Theme
 
 - To get started please open the [Documentation page](//keenthemes.com/metronic/?page=docs).
 

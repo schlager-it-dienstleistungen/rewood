@@ -5,9 +5,9 @@
 @mixin offcanvas-base($class, $config) {
 	$width: get($config, width);
 	$height: get($config, height);
+	$offset: 20px;
 
-	$offset: get($offcanvas-base-config, offset);
-	$transition: left get($offcanvas-base-config, transition), right get($offcanvas-base-config, transition), bottom get($offcanvas-base-config, transition), top get($offcanvas-base-config, transition);
+	$transition: left 0.3s ease, right 0.3s ease, bottom 0.3s ease, top 0.3s ease;
 
 	.#{$class} {
 		z-index: get($config, zindex);
@@ -100,9 +100,11 @@
 }
 
 @mixin offcanvas-width($class, $width) {
+	$offset: 20px;
+
 	.#{$class} {
 		width: $width;
-		left: -($width + get($offcanvas-base-config, offset));
+		left: -($width + $offset);
 
 		&.#{$class}-on {
 			left: 0;
@@ -111,7 +113,7 @@
 
 	// Right Direction
 	.#{$class}.#{$class}-right {
-		right: -($width + get($offcanvas-base-config, offset));
+		right: -($width + $offset);
 		left: auto;
 
 		&.#{$class}-on {
@@ -122,6 +124,8 @@
 }
 
 @mixin offcanvas-height($class, $height) {
+	$offset: 20px;
+	
 	// Top Direction
 	.#{$class}.#{$class}-top {
 		top: -($height + $offset);
@@ -129,7 +133,6 @@
 		right: 0;
 
 		&.#{$class}-on {
-			transition: $transition;
 			top: 0;
 			left: 0;
 			right: 0;
@@ -143,7 +146,6 @@
 		right: 0;
 
 		&.#{$class}-on {
-			transition: $transition;
 			bottom: 0;
 			left: 0;
 			right: 0;

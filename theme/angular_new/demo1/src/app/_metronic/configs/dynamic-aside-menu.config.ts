@@ -320,6 +320,32 @@ export const DynamicAsideMenuConfig = {
     },
     { section: 'Custom' },
     {
+      title: 'Wizards',
+      root: true,
+      bullet: 'dot',
+      icon: 'flaticon2-mail-1',
+      svg: './assets/media/svg/icons/Shopping/Box1.svg',
+      page: '/wizards',
+      submenu: [
+        {
+          title: 'Wizard 1',
+          page: '/wizards/wizard-1'
+        },
+        {
+          title: 'Wizard 2',
+          page: '/wizards/wizard-2'
+        },
+        {
+          title: 'Wizard 3',
+          page: '/wizards/wizard-3'
+        },
+        {
+          title: 'Wizard 4',
+          page: '/wizards/wizard-4'
+        },
+      ]
+    },
+    {
       title: 'Error Pages',
       root: true,
       bullet: 'dot',
@@ -353,30 +379,5 @@ export const DynamicAsideMenuConfig = {
         },
       ]
     },
-    // {
-    //   title: 'Wizard',
-    //   root: true,
-    //   bullet: 'dot',
-    //   icon: 'flaticon2-mail-1',
-    //   page: '/wizard',
-    //   submenu: [
-    //     {
-    //       title: 'Wizard 1',
-    //       page: '/wizard/wizard-1'
-    //     },
-    //     {
-    //       title: 'Wizard 2',
-    //       page: '/wizard/wizard-2'
-    //     },
-    //     {
-    //       title: 'Wizard 3',
-    //       page: '/wizard/wizard-3'
-    //     },
-    //     {
-    //       title: 'Wizard 4',
-    //       page: '/wizard/wizard-4'
-    //     },
-    //   ]
-    // },
   ]
 };

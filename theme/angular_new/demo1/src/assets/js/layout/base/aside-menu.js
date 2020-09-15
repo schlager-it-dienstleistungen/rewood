@@ -8,6 +8,7 @@ import KTLayoutAside from "./aside.js";
 
 var KTLayoutAsideMenu = function() {
     // Private properties
+    var _body;
     var _element;
     var _menuObject;
 
@@ -56,18 +57,77 @@ var KTLayoutAsideMenu = function() {
                 return false;
             }
         });
+	}
 
-        // Close aside offcanvas panel before page reload On tablet and mobile
-        _menuObject.on('linkClick', function(menu) {
-            if (KTUtil.isBreakpointDown('lg')) { // Tablet and mobile mode
-                KTLayoutAside.getOffcanvas().hide(); // Hide offcanvas after general link click
-            }
-        });
+    var _initHover = function() {
+        // Handle Minimized Aside Hover
+		if (KTUtil.hasClass(_body, 'aside-fixed') && KTUtil.hasClass(_body, 'aside-minimize-hoverable')) {
+			var insideTm;
+			var outsideTm;
+
+            // Handle Aside Hover Mode
+			KTUtil.addEvent(_element, 'mouseenter', function(e) {
+				e.preventDefault();
+
+				if (KTUtil.isBreakpointUp('lg') === false) {
+					return;
+				}
+
+				if (outsideTm) {
+					clearTimeout(outsideTm);
+					outsideTm = null;
+				}
+
+                if (insideTm) {
+					clearTimeout(insideTm);
+					insideTm = null;
+				}
+
+				insideTm = setTimeout(function() {
+					if (KTUtil.hasClass(_body, 'aside-minimize') && KTUtil.isBreakpointUp('lg')) {
+						// Hover class
+						KTUtil.addClass(_body, 'aside-minimize-hover');
+
+						KTLayoutAsideMenu.getMenu().scrollUpdate();
+						KTLayoutAsideMenu.getMenu().scrollTop();
+					}
+				}, 50);
+			});
+
+			KTUtil.addEvent(KTLayoutAside.getElement(), 'mouseleave', function(e) {
+				e.preventDefault();
+
+				if (KTUtil.isBreakpointUp('lg') === false) {
+					return;
+				}
+
+				if (insideTm) {
+					clearTimeout(insideTm);
+					insideTm = null;
+				}
+
+                if (outsideTm) {
+					clearTimeout(outsideTm);
+					outsideTm = null;
+				}
+
+				outsideTm = setTimeout(function() {
+				    if (KTUtil.hasClass(_body, 'aside-minimize-hover') && KTUtil.isBreakpointUp('lg')) {
+					    KTUtil.removeClass(_body, 'aside-minimize-hover');
+
+						// Hover class
+                        KTLayoutAsideMenu.getMenu().scrollUpdate();
+						KTLayoutAsideMenu.getMenu().scrollTop();
+					}
+				}, 100);
+			});
+		}
 	}
 
     // Public methods
 	return {
 		init: function(id) {
+            _body = KTUtil.getBody();
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -76,6 +136,7 @@ var KTLayoutAsideMenu = function() {
 
             // Initialize menu
             _init();
+            _initHover();
 		},
 
 		getElement: function() {

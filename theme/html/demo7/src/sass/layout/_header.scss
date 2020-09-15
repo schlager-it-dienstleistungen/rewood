@@ -50,6 +50,11 @@
 			right: 0;
 			left: 0;
 			z-index: get($header-config, desktop, zindex);
+			height: get($header-config, desktop, height) - get($header-config, desktop, height-bottom);
+			box-shadow: none;
+		}
+
+		.header-fixed.header-bottom-enabled & {
 			height: get($header-config, desktop, height);
 			box-shadow: get($header-config, desktop, shadow);
 		}

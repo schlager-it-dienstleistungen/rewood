@@ -45,7 +45,7 @@
 		}
 
 		// Fixed header, minimized header and fixed subheader
-		.header-fixed.header-minimize.subheader-fixed & {
+		.header-fixed.subheader-fixed.header-minimize:not(.aside-minimize-hover) & {
 			top: get($header-config, desktop, fixed, height);
 			transition: top 0.3s ease;
 		}
@@ -56,7 +56,6 @@
 		}
 
 		// Fixed Subheader & Aside Minimize Hover Modes
-		.subheader-fixed.aside-minimize-hover &,
 		.subheader-fixed.aside-minimize & {
 			left: get($aside-config, base, minimized-width);
 		}

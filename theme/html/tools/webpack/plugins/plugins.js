@@ -44,7 +44,7 @@ window.Sticky = require('sticky-js');
 window.ApexCharts = require('apexcharts/dist/apexcharts.min.js');
 
 // FormValidation - Best premium validation library for JavaScript. Zero dependencies. Learn more: https://formvalidation.io/
-window.FormValidation = require("@/src/plugins/formvalidation/dist/amd/index.js");
+window.FormValidation = require("@/src/plugins/formvalidation/dist/js/FormValidation.full.min.js");
 window.FormValidation.plugins.Bootstrap = require("@/src/plugins/formvalidation/dist/amd/plugins/Bootstrap.js").default;
 
 // jQuery BlockUI - The jQuery BlockUI Plugin lets you simulate synchronous behavior when using AJAX: http://malsup.com/jquery/block/

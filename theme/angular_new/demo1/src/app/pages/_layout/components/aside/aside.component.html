@@ -32,11 +32,11 @@
   <!--begin::Menu Container-->
   <div
     id="kt_aside_menu"
-    class="aside-menu scroll my-4 ps ps--active-y"
+    class="aside-menu"
     [ngClass]="asideMenuCSSClasses"
     data-menu-vertical="1"
-    data-menu-scroll="1"
     [attr.data-menu-scroll]="asideMenuScroll"
+    [attr.data-menu-dropdown]="asideMenuDropdown"
     data-menu-dropdown-timeout="500"
   >
     <!-- begin::Menu Nav -->
@@ -1369,6 +1369,117 @@
         <i class="menu-icon flaticon-more-v2"></i>
       </li>
       <!-- end:: section -->
+
+      <!-- Wizards -->
+      <!-- begin::1 Level -->
+      <li
+        class="menu-item menu-item-submenu"
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        routerLinkActive="menu-item-open"
+      >
+        <a
+          class="menu-link menu-toggle"
+          routerLinkActive="active"
+          href="/wizards"
+        >
+          <span
+            [inlineSVG]="'./assets/media/svg/icons/Shopping/Box1.svg'"
+            cacheSVG="true"
+            class="svg-icon menu-icon"
+          ></span>
+          <span class="menu-text">Wizards</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="menu-submenu">
+          <i class="menu-arrow"></i>
+          <ul class="menu-subnav">
+            <li class="menu-item menu-item-parent" aria-haspopup="true">
+              <span class="menu-link">
+                <span class="menu-text">Wizards</span>
+              </span>
+            </li>
+            <!-- begin::2 Level -->
+            <li
+              class="menu-item"
+              routerLinkActive="menu-item-active"
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+            >
+              <a
+                class="menu-link"
+                routerLink="/wizards/wizard-1"
+                routerLinkActive="active"
+              >
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Wizard 1</span>
+              </a>
+            </li>
+            <!-- end::2 Level -->
+            <!-- begin::2 Level -->
+            <li
+              class="menu-item"
+              routerLinkActive="menu-item-active"
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+            >
+              <a
+                class="menu-link"
+                routerLink="/wizards/wizard-2"
+                routerLinkActive="active"
+              >
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Wizard 2</span>
+              </a>
+            </li>
+            <!-- end::2 Level -->
+            <!-- begin::2 Level -->
+            <li
+              class="menu-item"
+              routerLinkActive="menu-item-active"
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+            >
+              <a
+                class="menu-link"
+                routerLink="/wizards/wizard-3"
+                routerLinkActive="active"
+              >
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Wizard 3</span>
+              </a>
+            </li>
+            <!-- end::2 Level -->
+
+            <!-- begin::2 Level -->
+            <li
+              class="menu-item"
+              routerLinkActive="menu-item-active"
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+            >
+              <a
+                class="menu-link"
+                routerLink="/wizards/wizard-4"
+                routerLinkActive="active"
+              >
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Wizard 4</span>
+              </a>
+            </li>
+            <!-- end::2 Level -->
+          </ul>
+        </div>
+      </li>
+      <!-- end::1 Level -->
 
       <!-- Errors -->
       <!-- begin::1 Level -->

@@ -856,7 +856,7 @@
 						z-index: get($layout, dropdown, item, self, zindex);
 						display: flex !important;
 						width: get($layout, dropdown, item, submenu, self, width);
-						margin-left: get($layout, dropdown, item, submenu, self, parent-width);
+						margin-left: get($layout, dropdown, item, submenu, self, width);
 						@include border-radius(get($layout, dropdown, item, submenu, self, border-radius));
 
 						&.menu-submenu-up {
@@ -1210,7 +1210,7 @@
 	@if (has($theme-config, minimize)) {
 		// Desktop Mode
 		@include media-breakpoint-up(lg) {
-			.#{get($config, base, parent-class)}-minimize {
+			.#{get($config, base, parent-class)}-minimize:not(.#{get($config, base, parent-class)}-minimize-hover) {
 				@include menu-ver-minimize-theme((class: get($config, base, class), parent-class: get($config, base, parent-class)), $theme-config);
 			}
 		}
@@ -1274,7 +1274,7 @@
 	@if (has($config, build, layout, minimize)) {
 		// Desktop Mode
 		@include media-breakpoint-up(lg) {
-			.#{get($config, base, parent-class)}-minimize {
+			.#{get($config, base, parent-class)}-minimize:not(.#{get($config, base, parent-class)}-minimize-hover) {
 				@include menu-ver-minimize-base( get($config, base), get($config, build, layout) );
 			}
 		}

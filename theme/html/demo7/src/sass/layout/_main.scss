@@ -19,6 +19,10 @@ body {
 	.wrapper {
 		// Fixed Header and Minimized Header Modes
 		.header-fixed & {
+			padding-top: get($header-config, desktop, height) - get($header-config, desktop, height-bottom);
+		}
+
+		.header-fixed.header-bottom-enabled & {
 			padding-top: get($header-config, desktop, height);
 		}
 	}

@@ -386,6 +386,7 @@
 	.nav-link {
 		color: $text-muted;
 		transition: $transition-link;
+		position: relative;
 
 		.nav-text {
 			transition: $transition-link;

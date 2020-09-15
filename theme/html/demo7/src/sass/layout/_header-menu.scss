@@ -54,10 +54,14 @@
 				}
 
 				&.active {
-					background-color: $white;
+					background-color: $page-bg;
 					opacity: 1;
 					color: $dark;
 					transition: $transition-link;
+
+					.header-bottom-enabled & {
+						background-color: $white;
+					}
 				}
 			}
 		}
