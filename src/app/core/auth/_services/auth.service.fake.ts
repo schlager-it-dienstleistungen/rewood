@@ -198,8 +198,8 @@ export class AuthService {
 		const result: Permission[] = [];
 		const root: Permission[] = filter(allPermission, (item: Permission) => !item.parentId);
 		each(root, (rootItem: Permission) => {
-			rootItem._children = [];
-			rootItem._children = this.collectChildrenPermission(allPermission, rootItem.id, rolePermissionIds);
+			rootItem.children = [];
+			rootItem.children = this.collectChildrenPermission(allPermission, rootItem.id, rolePermissionIds);
 			rootItem.isSelected = (some(rolePermissionIds, (id: number) => id === rootItem.id));
 			result.push(rootItem);
 		});
@@ -216,8 +216,8 @@ export class AuthService {
 		}
 
 		each(_children, (childItem: Permission) => {
-			childItem._children = [];
-			childItem._children = this.collectChildrenPermission(allPermission, childItem.id, rolePermissionIds);
+			childItem.children = [];
+			childItem.children = this.collectChildrenPermission(allPermission, childItem.id, rolePermissionIds);
 			childItem.isSelected = (some(rolePermissionIds, (id: number) => id === childItem.id));
 			result.push(childItem);
 		});

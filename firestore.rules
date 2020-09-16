@@ -14,5 +14,8 @@ service cloud.firestore {
       allow read;
       allow write: if true;
     }
+    match /roles/{role} {
+    	allow read;
+    }
   }
 }
