@@ -154,11 +154,11 @@ export class AuthService {
 
 	// Roles
 	getAllRoles(): Observable<Role[]> {
-		return this.http.get<Role[]>(API_ROLES_URL);
+		return this.afs.collection<Role>('roles').valueChanges();
 	}
 
 	getRoleById(roleId: number): Observable<Role> {
-		return this.http.get<Role>(API_ROLES_URL + `/${roleId}`);
+		return this.afs.collection<Role>('roles').doc<Role>('' + roleId).valueChanges();
 	}
 
 	// CREATE =>  POST: add a new role to the server
