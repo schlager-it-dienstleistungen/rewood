@@ -145,7 +145,7 @@ export class AuthService {
 
 	// Permission
 	getAllPermissions(): Observable<Permission[]> {
-		return this.http.get<Permission[]>(API_PERMISSION_URL);
+		return this.afs.collection<Permission>('permissions').valueChanges();
 	}
 
 	getRolePermissions(roleId: number): Observable<Permission[]> {

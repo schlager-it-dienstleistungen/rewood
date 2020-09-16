@@ -17,5 +17,8 @@ service cloud.firestore {
     match /roles/{role} {
     	allow read;
     }
+		match /permissions/{permissions} {
+    	allow read;
+    }
   }
 }
