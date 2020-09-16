@@ -20,5 +20,8 @@ service cloud.firestore {
 		match /permissions/{permissions} {
     	allow read;
     }
+		match /users/{users} {
+    	allow read;
+    }
   }
 }

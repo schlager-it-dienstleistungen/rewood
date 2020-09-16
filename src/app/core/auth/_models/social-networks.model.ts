@@ -1,13 +1,13 @@
 export class SocialNetworks {
-    linkedIn: string;
+		linkedIn: string;
 	facebook: string;
 	twitter: string;
-    instagram: string;
+		instagram: string;
 
-    clear() {
-        this.linkedIn = '';
-        this.facebook = '';
-        this.twitter = '';
-        this.instagram = '';
-    }
+		clear() {
+				this.linkedIn = '';
+				this.facebook = '';
+				this.twitter = '';
+				this.instagram = '';
+		}
 }
