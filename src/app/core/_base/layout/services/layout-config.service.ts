@@ -9,6 +9,10 @@ import { merge } from 'lodash';
 // Models
 import { LayoutConfigModel } from '../models/layout-config.model';
 
+// LocalStorage
+import { environment } from 'src/environments/environment';
+const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
+
 @Injectable()
 export class LayoutConfigService {
 	// Public properties
@@ -29,7 +33,7 @@ export class LayoutConfigService {
 	 */
 	saveConfig(layoutConfig: LayoutConfigModel): void {
 		if (layoutConfig) {
-			localStorage.setItem('layoutConfig', JSON.stringify(layoutConfig));
+			localStorage.setItem(LAYOUT_CONFIG_LOCAL_STORAGE_KEY, JSON.stringify(layoutConfig));
 		}
 	}
 
@@ -37,7 +41,7 @@ export class LayoutConfigService {
 	 * Get layout config from local storage
 	 */
 	getSavedConfig(): LayoutConfigModel {
-		const config = localStorage.getItem('layoutConfig');
+		const config = localStorage.getItem(LAYOUT_CONFIG_LOCAL_STORAGE_KEY);
 		try {
 			return JSON.parse(config);
 		} catch (e) {
@@ -48,7 +52,7 @@ export class LayoutConfigService {
 	 * Remove saved layout config and revert back to default
 	 */
 	resetConfig(): void {
-		localStorage.removeItem('layoutConfig');
+		localStorage.removeItem(LAYOUT_CONFIG_LOCAL_STORAGE_KEY);
 	}
 
 	/**
