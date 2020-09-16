@@ -1,22 +1,30 @@
+import { Role } from '../_models/role.model';
+
 export class RolesTable {
-	public static roles: any = [
-        {
-            id: 1,
-            title: 'Administrator',
-            isCoreRole: true,
-            permissions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        },
-        {
-            id: 2,
-            title: 'Manager',
-            isCoreRole: false,
-			permissions: [3, 4, 10]
-        },
-        {
-            id: 3,
-            title: 'Guest',
-            isCoreRole: false,
-			permissions: []
-        }
-    ];
+	public static roles: Role[] = [
+				{
+						id: 1,
+						title: 'admin',
+						isCoreRole: true,
+						permissions: [1, 2]
+				},
+				{
+						id: 2,
+						title: 'supplier',
+						isCoreRole: false,
+						permissions: [1]
+				},
+				{
+						id: 3,
+						title: 'customer',
+						isCoreRole: false,
+						permissions: [2]
+				},
+				{
+						id: 4,
+						title: 'guest',
+						isCoreRole: false,
+						permissions: []
+				}
+		];
 }

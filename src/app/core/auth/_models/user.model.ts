@@ -16,6 +16,7 @@ export class User extends BaseModel {
 		occupation: string;
 		companyName: string;
 		phone: string;
+		emailVerified: boolean;
 		address: Address;
 		socialNetworks: SocialNetworks;
 
@@ -35,6 +36,7 @@ export class User extends BaseModel {
 				this.phone = '';
 				this.address = new Address();
 				this.address.clear();
+				this.emailVerified = false;
 				this.socialNetworks = new SocialNetworks();
 				this.socialNetworks.clear();
 		}
