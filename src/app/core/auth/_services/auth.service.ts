@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthDataContext } from '../_server/auth.data-context';
 
 const API_USERS_URL = 'api/users';
 const API_PERMISSION_URL = 'api/permissions';
@@ -145,7 +146,8 @@ export class AuthService {
 
 	// Permission
 	getAllPermissions(): Observable<Permission[]> {
-		return this.afs.collection<Permission>('permissions').valueChanges();
+		// return this.afs.collection<Permission>('permissions').valueChanges();
+		return AuthDataContext.permissions;
 	}
 
 	getRolePermissions(roleId: number): Observable<Permission[]> {
@@ -154,11 +156,13 @@ export class AuthService {
 
 	// Roles
 	getAllRoles(): Observable<Role[]> {
-		return this.afs.collection<Role>('roles').valueChanges();
+		// return this.afs.collection<Role>('roles').valueChanges();
+		return AuthDataContext.roles;
 	}
 
 	getRoleById(roleId: number): Observable<Role> {
-		return this.afs.collection<Role>('roles').doc<Role>('' + roleId).valueChanges();
+		// return this.afs.collection<Role>('roles').doc<Role>('' + roleId).valueChanges();
+		return AuthDataContext.roles;
 	}
 
 	// CREATE =>  POST: add a new role to the server
