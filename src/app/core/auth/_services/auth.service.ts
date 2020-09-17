@@ -90,13 +90,12 @@ export class AuthService {
 			);
 	}
 
-
 	getAllUsers(): Observable<User[]> {
 		return this.afs.collection<User>('users').valueChanges();
 	}
 
 	getUserById(userId: number): Observable<User> {
-		return this.afs.collection<User>('users').doc<User>('' + userId).valueChanges();
+		return this.afs.collection<Role>('users').doc<User>('' + userId).valueChanges();
 	}
 
 	findUserByAuthUid(uid: string): Observable<User> {

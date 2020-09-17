@@ -4,6 +4,7 @@ import { SocialNetworks } from './social-networks.model';
 
 export class User extends BaseModel {
 		id: number;
+		uid: string; // Firebase User-UID
 		username: string;
 		password: string;
 		email: string;
@@ -20,6 +21,7 @@ export class User extends BaseModel {
 
 		clear(): void {
 				this.id = undefined;
+				this.uid = '';
 				this.username = '';
 				this.password = '';
 				this.email = '';
