@@ -7,12 +7,14 @@ import { PartialsModule } from '../../partials/partials.module';
 import { NewsComponent } from './news/news.component';
 import { CredoComponent } from './credo/credo.component';
 import { CategoryLinkComponent } from './category-link/category-link.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		PartialsModule,
 		CoreModule,
+		NgxPermissionsModule.forChild(),
 		RouterModule.forChild([
 			{
 				path: '',

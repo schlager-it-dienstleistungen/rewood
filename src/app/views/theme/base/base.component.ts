@@ -106,7 +106,7 @@ export class BaseComponent implements OnInit, OnDestroy {
 	 */
 	loadRolesWithPermissions() {
 		this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
-		const subscr = this.currentUserPermissions$.subscribe(res => {
+		const permissionsSubscr = this.currentUserPermissions$.subscribe(res => {
 			if (!res || res.length === 0) {
 				return;
 			}
@@ -114,6 +114,6 @@ export class BaseComponent implements OnInit, OnDestroy {
 			this.permissionsService.flushPermissions();
 			res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
 		});
-		this.unsubscribe.push(subscr);
+		this.unsubscribe.push(permissionsSubscr);
 	}
 }
