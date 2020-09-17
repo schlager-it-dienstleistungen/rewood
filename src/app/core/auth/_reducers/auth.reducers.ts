@@ -18,9 +18,22 @@ export const initialAuthState: AuthState = {
 };
 
 export function authReducer(state = initialAuthState, action: AuthActions): AuthState {
+console.log('auth.reducers.action: ' + action.type + '; ');
+
     switch (action.type) {
+			case AuthActionTypes.UserLoaded: {
+				debugger;
+					const _user: User = action.payload.user;
+					return {
+							...state,
+							user: _user,
+							isUserLoaded: true
+					};
+			}
+
         case AuthActionTypes.Login: {
-            const _token: string = action.payload.authToken;
+						const _token: string = action.payload.authToken;
+						debugger;
             return {
                 loggedIn: true,
                 authToken: _token,
@@ -30,7 +43,8 @@ export function authReducer(state = initialAuthState, action: AuthActions): Auth
         }
 
         case AuthActionTypes.Register: {
-            const _token: string = action.payload.authToken;
+						const _token: string = action.payload.authToken;
+						debugger;
             return {
                 loggedIn: true,
                 authToken: _token,
@@ -39,19 +53,14 @@ export function authReducer(state = initialAuthState, action: AuthActions): Auth
             };
         }
 
-        case AuthActionTypes.Logout:
-            return initialAuthState;
+        case AuthActionTypes.Logout: {
+						return initialAuthState;
+				}
 
-        case AuthActionTypes.UserLoaded: {
-            const _user: User = action.payload.user;
-            return {
-                ...state,
-                user: _user,
-                isUserLoaded: true
-            };
-        }
+
 
         default:
+					debugger;
             return state;
     }
 }

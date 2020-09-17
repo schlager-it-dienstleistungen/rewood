@@ -29,7 +29,7 @@ export const currentAuthToken = createSelector(
 
 export const isUserLoaded = createSelector(
     selectAuthState,
-    auth => auth.isUserLoaded
+		auth => auth.isUserLoaded
 );
 
 export const currentUser = createSelector(
@@ -70,7 +70,7 @@ export const currentUserPermissions = createSelector(
     (permissionIds: number[], allPermissions: Permission[]) => {
         const result: Permission[] = [];
         each(permissionIds, id => {
-            const userPermission = find(allPermissions, elem => elem.id === id);
+						const userPermission = find(allPermissions, elem => elem.id === id);
             if (userPermission) {
                 result.push(userPermission);
             }

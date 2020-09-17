@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../core/reducers';
 // Auth
-import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
+import { AuthNoticeService, AuthService, isLoggedIn, Login } from '../../../../core/auth';
 
 /**
  * ! Just example => Should be removed in development
@@ -144,9 +144,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.then(
 				user => {
 					if (user) {
-						this.store.dispatch(new Login({authToken: user.accessToken}));
+						console.log(JSON.parse(JSON.stringify(user)));
+						debugger;
+						const userUid = JSON.parse(JSON.stringify(user)).user.uid;
+						this.store.dispatch(new Login({authToken: userUid}));
 						this.router.navigateByUrl(this.returnUrl); // Main page
-					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}
 			}).catch((error) => {

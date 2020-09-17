@@ -16,64 +16,75 @@ import { isUserLoaded } from '../_selectors/auth.selectors';
 
 @Injectable()
 export class AuthEffects {
-    @Effect({dispatch: false})
-    login$ = this.actions$.pipe(
-        ofType<Login>(AuthActionTypes.Login),
-        tap(action => {
-            localStorage.setItem(environment.authTokenKey, action.payload.authToken);
-            this.store.dispatch(new UserRequested());
-        }),
-    );
+		@Effect({dispatch: false})
+		login$ = this.actions$.pipe(
+				ofType<Login>(AuthActionTypes.Login),
+				tap(action => {
+					debugger;
+						localStorage.setItem(environment.authTokenKey, action.payload.authToken);
+						this.store.dispatch(new UserRequested());
+				}),
+		);
 
-    @Effect({dispatch: false})
-    logout$ = this.actions$.pipe(
-        ofType<Logout>(AuthActionTypes.Logout),
-        tap(() => {
-            localStorage.removeItem(environment.authTokenKey);
-			this.router.navigate(['/auth/login'], {queryParams: {returnUrl: this.returnUrl}});
-        })
-    );
+		@Effect({dispatch: false})
+		logout$ = this.actions$.pipe(
+				ofType<Logout>(AuthActionTypes.Logout),
+				tap(() => {
+						this.auth.logout();
+						localStorage.removeItem(environment.authTokenKey);
+						this.router.navigate(['/'], {queryParams: {returnUrl: this.returnUrl}});
+				})
+		);
 
-    @Effect({dispatch: false})
-    register$ = this.actions$.pipe(
-        ofType<Register>(AuthActionTypes.Register),
-        tap(action => {
-            localStorage.setItem(environment.authTokenKey, action.payload.authToken);
-        })
-    );
+		@Effect({dispatch: false})
+		register$ = this.actions$.pipe(
+				ofType<Register>(AuthActionTypes.Register),
+				tap(action => {
+						localStorage.setItem(environment.authTokenKey, action.payload.authToken);
+				})
+		);
 
-    @Effect({dispatch: false})
-    loadUser$ = this.actions$
-    .pipe(
-        ofType<UserRequested>(AuthActionTypes.UserRequested),
-        withLatestFrom(this.store.pipe(select(isUserLoaded))),
-        filter(([action, _isUserLoaded]) => !_isUserLoaded),
-        mergeMap(([action, _isUserLoaded]) => this.auth.getUserByToken()),
-        tap(_user => {
-            if (_user) {
-                this.store.dispatch(new UserLoaded({ user: _user }));
-            } else {
-                this.store.dispatch(new Logout());
-            }
-        })
-      );
+		@Effect({dispatch: false})
+		loadUser$ = this.actions$
+		.pipe(
+				ofType<UserRequested>(AuthActionTypes.UserRequested),
+				withLatestFrom(this.store.pipe(select(isUserLoaded))),
+				filter(([action, _isUserLoaded]) => !_isUserLoaded),
+				mergeMap(([action, _isUserLoaded]) => this.auth.getUserByToken()),
+				tap(_user => {
+						debugger;
+						if (_user) {
+								this.store.dispatch(new UserLoaded({ user: _user }));
+						} else {
+								this.store.dispatch(new Logout());
+						}
+				})
+			);
 
-    @Effect()
-    init$: Observable<Action> = defer(() => {
-        const userToken = localStorage.getItem(environment.authTokenKey);
-        let observableResult = of({type: 'NO_ACTION'});
-        if (userToken) {
-            observableResult = of(new Login({  authToken: userToken }));
-        }
-        return observableResult;
-    });
+		@Effect({dispatch: false})
+		userloaded$ = this.actions$.pipe(
+			ofType<Logout>(AuthActionTypes.UserLoaded),
+			tap(_user => {
+					debugger;
+			})
+		);
 
-    private returnUrl: string;
+		@Effect()
+		init$: Observable<Action> = defer(() => {
+				const userToken = localStorage.getItem(environment.authTokenKey);
+				let observableResult = of({type: 'NO_ACTION'});
+				if (userToken) {
+						observableResult = of(new Login({  authToken: userToken }));
+				}
+				return observableResult;
+		});
 
-    constructor(private actions$: Actions,
-        private router: Router,
-        private auth: AuthService,
-        private store: Store<AppState>) {
+		private returnUrl: string;
+
+		constructor(private actions$: Actions,
+				private router: Router,
+				private auth: AuthService,
+				private store: Store<AppState>) {
 
 		this.router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {

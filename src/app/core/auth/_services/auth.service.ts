@@ -4,13 +4,16 @@ import { Observable, of } from 'rxjs';
 import { User } from '../_models/user.model';
 import { Permission } from '../_models/permission.model';
 import { Role } from '../_models/role.model';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { QueryParamsModel, QueryResultsModel } from '../../_base/crud';
 import { environment } from '../../../../environments/environment';
 
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthDataContext } from '../_server/auth.data-context';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../reducers';
+import { Login } from '../_actions/auth.actions';
 
 const API_USERS_URL = 'api/users';
 const API_PERMISSION_URL = 'api/permissions';
@@ -20,8 +23,6 @@ const API_ROLES_URL = 'api/roles';
 	providedIn: 'root'
 })
 export class AuthService {
-	userData: any;		// Save logged in user data
-
 	constructor(
 		private http: HttpClient,
 		private afs: AngularFirestore,		// Inject Firestore Service
@@ -30,16 +31,23 @@ export class AuthService {
 		/* Saving user data in localstorage when
 		logged in and setting up null when logged out */
 		// https://www.positronx.io/full-angular-7-firebase-authentication-system/
-		/*this.afAuth.authState.subscribe(user => {
-			if (user) {
-				this.userData = user;
-				localStorage.setItem('user', JSON.stringify(this.userData));
-				JSON.parse(localStorage.getItem('user'));
+		this.afAuth.authState.subscribe(authUser => {
+			if (authUser) {
+				console.log(authUser);
+				console.log(JSON.stringify(authUser));
+				this.findUserByAuthUid(authUser.uid).subscribe({
+					next: (dbUser: User) => {
+						//debugger;
+						console.log(dbUser);
+						localStorage.setItem('user', JSON.stringify(dbUser));
+						JSON.parse(localStorage.getItem('user'));
+					}
+				});
 			} else {
-				localStorage.setItem('user', null);
-				JSON.parse(localStorage.getItem('user'));
+				debugger;
+				localStorage.removeItem('user');
 			}
-		});*/
+		});
 	}
 
 	// Authentication/Authorization
@@ -47,8 +55,15 @@ export class AuthService {
 		return this.afAuth.auth.signInWithEmailAndPassword(email, password);
 	}
 
+	logout(): Promise<any> {
+		return this.afAuth.auth.signOut();
+	}
+
 	getUserByToken(): Observable<User> {
+		//debugger;
+		return this.findUserByAuthUid(localStorage.getItem(environment.authTokenKey));
 		const userToken = localStorage.getItem(environment.authTokenKey);
+		const user = localStorage.getItem('user');
 		let httpHeaders = new HttpHeaders();
 		httpHeaders = httpHeaders.set('Authorization', 'Bearer ' + userToken);
 		return this.http.get<User>(API_USERS_URL, {headers: httpHeaders});
@@ -74,25 +89,6 @@ export class AuthService {
 			});*/
 	}
 
-	/**
-	 * Setting up user data when sign in with username/password, sign up with username/password and
-	 * sign in with social auth provider in Firestore database using AngularFirestore + AngularFirestoreDocument service
-	 * @param user
-	 */
-	/*SetUserData(user: firebase.User) {
-		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-		const userData: UserTest = {
-			uid: user.uid,
-			email: user.email,
-			displayName: user.displayName,
-			photoURL: user.photoURL,
-			emailVerified: user.emailVerified
-		};
-		return userRef.set(userData, {
-			merge: true
-		});
-	}*/
-
 	/*
    * Submit forgot password request
    *
@@ -111,9 +107,17 @@ export class AuthService {
 	}
 
 	getUserById(userId: number): Observable<User> {
-		return this.afs.collection<Role>('users').doc<User>('' + userId).valueChanges();
+		return this.afs.collection<User>('users').doc<User>('' + userId).valueChanges();
 	}
 
+	findUserByAuthUid(uid: string): Observable<User> {
+		return this.afs.collection<User>('users',
+			ref => ref.where('uid', '==', uid).limit(1))
+			.valueChanges()
+			.pipe(
+				map(users => users[0])
+			);
+	}
 
 	// DELETE => delete the user from the server
 	deleteUser(userId: number) {

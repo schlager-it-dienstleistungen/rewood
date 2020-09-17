@@ -6,7 +6,7 @@ export enum AuthActionTypes {
     Logout = '[Logout] Action',
     Register = '[Register] Action',
     UserRequested = '[Request User] Action',
-    UserLoaded = '[Load User] Auth API'
+    UserLoaded = '[Load] Action'
 }
 
 export class Login implements Action {
@@ -30,7 +30,7 @@ export class UserRequested implements Action {
 
 export class UserLoaded implements Action {
     readonly type = AuthActionTypes.UserLoaded;
-    constructor(public payload: { user: User }) { }
+    constructor(public payload: { user: User }) { debugger;}
 }
 
 

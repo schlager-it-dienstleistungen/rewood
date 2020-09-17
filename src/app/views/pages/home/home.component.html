@@ -1,5 +1,15 @@
 <div>
 
+	<a (click)="logout()" class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
+
+	<div *ngIf="user$ | async as _user">
+		_user.fullname
+	</div>
+
+	<div *ngIf="isLoggedIn$ | async as _isLoggedIn">
+		Einloggt {{ _isLoggedIn }}
+	</div>
+
 	<div class="row">
 		<div class="col-xl-4">
 			<rw-news newsIndex=0></rw-news>
@@ -7,7 +17,7 @@
 		<div class="col-xl-4">
 			<rw-news newsIndex=1></rw-news>
 		</div>
-		<div class="col-xl-4">
+		<div class="col-xl-4" *ngxPermissionsOnly="['supplier']">
 			<rw-news newsIndex=2></rw-news>
 		</div>
 	</div>
