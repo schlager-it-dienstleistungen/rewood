@@ -29,16 +29,20 @@ export class AuthService {
 		/* Saving user data in localstorage when
 		logged in and setting up null when logged out */
 		// https://www.positronx.io/full-angular-7-firebase-authentication-system/
-		/*this.afAuth.authState.subscribe(user => {
-			if (user) {
-				this.userData = user;
-				localStorage.setItem('user', JSON.stringify(this.userData));
-				JSON.parse(localStorage.getItem('user'));
+		this.afAuth.authState.subscribe(authUser => {
+			if (authUser) {
+				console.log(authUser);
+				console.log(JSON.stringify(authUser));
+				this.findUserByAuthUid(authUser.uid).subscribe({
+					next: (dbUser: User) => {
+						localStorage.setItem('user', JSON.stringify(dbUser));
+						JSON.parse(localStorage.getItem('user'));
+					}
+				});
 			} else {
-				localStorage.setItem('user', null);
-				JSON.parse(localStorage.getItem('user'));
+				localStorage.removeItem('user');
 			}
-		});*/
+		});
 	}
 
 	// Authentication/Authorization
@@ -46,11 +50,12 @@ export class AuthService {
 		return this.afAuth.auth.signInWithEmailAndPassword(email, password);
 	}
 
+	logout(): Promise<any> {
+		return this.afAuth.auth.signOut();
+	}
+
 	getUserByToken(): Observable<User> {
-		const userToken = localStorage.getItem(environment.authTokenKey);
-		let httpHeaders = new HttpHeaders();
-		httpHeaders = httpHeaders.set('Authorization', 'Bearer ' + userToken);
-		return this.http.get<User>(API_USERS_URL, {headers: httpHeaders});
+		return this.findUserByAuthUid(localStorage.getItem(environment.authTokenKey));
 	}
 
 	register(user: User): Promise<any> {
@@ -73,25 +78,6 @@ export class AuthService {
 			});*/
 	}
 
-	/**
-	 * Setting up user data when sign in with username/password, sign up with username/password and
-	 * sign in with social auth provider in Firestore database using AngularFirestore + AngularFirestoreDocument service
-	 * @param user
-	 */
-	/*SetUserData(user: firebase.User) {
-		const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-		const userData: UserTest = {
-			uid: user.uid,
-			email: user.email,
-			displayName: user.displayName,
-			photoURL: user.photoURL,
-			emailVerified: user.emailVerified
-		};
-		return userRef.set(userData, {
-			merge: true
-		});
-	}*/
-
 	/*
    * Submit forgot password request
    *
@@ -106,11 +92,20 @@ export class AuthService {
 
 
 	getAllUsers(): Observable<User[]> {
-		return this.http.get<User[]>(API_USERS_URL);
+		return this.afs.collection<User>('users').valueChanges();
 	}
 
 	getUserById(userId: number): Observable<User> {
-		return this.http.get<User>(API_USERS_URL + `/${userId}`);
+		return this.afs.collection<User>('users').doc<User>('' + userId).valueChanges();
+	}
+
+	findUserByAuthUid(uid: string): Observable<User> {
+		return this.afs.collection<User>('users',
+			ref => ref.where('uid', '==', uid).limit(1))
+			.valueChanges()
+			.pipe(
+				map(users => users[0])
+			);
 	}
 
 

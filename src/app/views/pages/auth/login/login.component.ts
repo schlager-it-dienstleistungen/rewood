@@ -143,18 +143,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 			.login(authData.email, authData.password)
 			.then(
 				user => {
-					debugger;
 					if (user) {
-						this.store.dispatch(new Login({authToken: user.accessToken}));
+						const userUid = JSON.parse(JSON.stringify(user)).user.uid;
+						this.store.dispatch(new Login({authToken: userUid}));
 						this.router.navigateByUrl(this.returnUrl); // Main page
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}
 			}).catch((error) => {
-				debugger;
 				this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
 			}).finally(() => {
-				debugger;
 				this.loading = false;
 				this.cdr.markForCheck();
 			});
