@@ -13,19 +13,30 @@ import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
+import { UserListComponent } from './user-list/user-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
 	declarations: [AdminComponent,
 		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
-		UploaderComponent, UploadTaskComponent, DropzoneDirective],
+		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
 		PartialsModule,
 		CoreModule,
 		AdminRoutingModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatSortModule,
+		MatFormFieldModule,
+		MatInputModule,
 	]
 })
 export class AdminModule { }

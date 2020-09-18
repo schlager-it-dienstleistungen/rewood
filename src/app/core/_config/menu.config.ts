@@ -29,6 +29,11 @@ export class MenuConfig {
 							title: 'Neues Produkt',
 							page: '/admin/createProduct'
 						}
+						,
+						{
+							title: 'User',
+							page: '/admin/users'
+						}
 					]
 				}
 /*				{
