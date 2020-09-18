@@ -4,25 +4,25 @@ export class RolesTable {
 	public static roles: Role[] = [
 				{
 						id: 1,
-						title: 'admin',
+						title: 'ADMIN',
 						isCoreRole: true,
 						permissions: [1, 2]
 				},
 				{
 						id: 2,
-						title: 'supplier',
+						title: 'SUPPLIER',
 						isCoreRole: false,
 						permissions: [1]
 				},
 				{
 						id: 3,
-						title: 'customer',
+						title: 'CUSTOMER',
 						isCoreRole: false,
 						permissions: [2]
 				},
 				{
 						id: 4,
-						title: 'guest',
+						title: 'GUEST',
 						isCoreRole: false,
 						permissions: []
 				}

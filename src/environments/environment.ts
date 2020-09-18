@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	appVersion: 'v01_20200916_01',
+	appVersion: 'v01_20200917_01',
 	isMockEnabled: false, // You have to switch this, when your real back-end is done
 	authTokenKey: 'authce9d77b308c149d5992a80073637e4d5', // User-UID
 	firebase: {

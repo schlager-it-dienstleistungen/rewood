@@ -14,12 +14,12 @@ service cloud.firestore {
       allow read;
       allow write: if true;
     }
-    match /roles/{role} {
-    	allow read;
-    }
-		match /permissions/{permissions} {
-    	allow read;
-    }
+    //match /roles/{role} {
+    //	allow read;
+    //}
+		//match /permissions/{permissions} {
+    //	allow read;
+    //}
 		match /users/{users} {
     	allow read;
     }

@@ -32,8 +32,6 @@ export class AuthService {
 		// https://www.positronx.io/full-angular-7-firebase-authentication-system/
 		this.afAuth.authState.subscribe(authUser => {
 			if (authUser) {
-				console.log(authUser);
-				console.log(JSON.stringify(authUser));
 				this.findUserByAuthUid(authUser.uid).subscribe({
 					next: (dbUser: User) => {
 						localStorage.setItem('user', JSON.stringify(dbUser));
