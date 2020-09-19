@@ -43,7 +43,7 @@ export function authReducer(state = initialAuthState, action: AuthActions): Auth
             return initialAuthState;
 
         case AuthActionTypes.UserLoaded: {
-            const _user: User = action.payload.user;
+						const _user: User = action.payload.user;
             return {
                 ...state,
                 user: _user,

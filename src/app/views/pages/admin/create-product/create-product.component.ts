@@ -14,7 +14,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateProductComponent implements OnInit {
 
-	productForm: FormGroup;
 	@Output() submitProduct = new EventEmitter<{newProduct: Product, submitAndNewProduct: boolean}>();
 	@Input() product: Product;
 	@Input() editing = false;

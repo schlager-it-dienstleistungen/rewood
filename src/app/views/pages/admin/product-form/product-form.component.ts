@@ -16,7 +16,6 @@ export class ProductFormComponent implements OnInit, OnChanges, AfterViewInit {
 	productForm: FormGroup;
 	@Output() submitProduct = new EventEmitter<{newProduct: Product, submitAndNewProduct: boolean}>();
 	@Input() product: Product;
-	@Input() editing = false;
 
 	// Categories
 	categories = CategoryFactoryService.getCategories();

@@ -22,6 +22,7 @@ service cloud.firestore {
     //}
 		match /users/{users} {
     	allow read;
+			allow write: if true;
     }
   }
 }

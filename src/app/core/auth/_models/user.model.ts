@@ -4,7 +4,7 @@ import { SocialNetworks } from './social-networks.model';
 
 export class User extends BaseModel {
 		id: number;
-		uid: string; // Firebase User-UID
+		authUid: string; // Firebase User-UID
 		username: string;
 		password: string;
 		email: string;
@@ -12,7 +12,8 @@ export class User extends BaseModel {
 		refreshToken: string;
 		roles: number[];
 		pic: string;
-		fullname: string;
+		firstname: string;
+		lastname: string;
 		occupation: string;
 		companyName: string;
 		phone: string;
@@ -22,12 +23,13 @@ export class User extends BaseModel {
 
 		clear(): void {
 				this.id = undefined;
-				this.uid = '';
+				this.authUid = '';
 				this.username = '';
 				this.password = '';
 				this.email = '';
 				this.roles = [];
-				this.fullname = '';
+				this.firstname = '';
+				this.lastname = '';
 				this.accessToken = 'access-token-' + Math.random();
 				this.refreshToken = 'access-token-' + Math.random();
 				this.pic = './assets/media/users/default.jpg';

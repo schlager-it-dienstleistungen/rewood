@@ -20,12 +20,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
 	declarations: [AdminComponent,
 		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
-		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent],
+		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent],
 	imports: [
 		CommonModule,
 		FormsModule,

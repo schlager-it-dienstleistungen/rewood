@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,14 @@ const routes: Routes = [
 			{
 				path: 'users',
 				component: UserListComponent
+			},
+			{
+				path: 'users/edit',
+				component: UserEditComponent
+			},
+			{
+				path: 'users/edit/:id',
+				component: UserEditComponent
 			}
 		]
 	}

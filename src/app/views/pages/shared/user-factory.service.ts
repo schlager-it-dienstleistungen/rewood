@@ -16,4 +16,18 @@ export class UserFactoryService {
 	static fromFirestoreDocument(data: User, id: string): User {
 		return { id, ...data};
 	}
+
+	static empty(): User {
+		return {
+			id: '',
+			authUid: '',
+			username: '',
+			firstname: '',
+			lastname: '',
+			email: '',
+			companyName: '',
+			roles: [],
+			emailVerified: false
+		};
+	}
 }

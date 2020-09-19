@@ -1,0 +1,271 @@
+<kt-portlet>
+	<kt-portlet-body>
+
+		<!--begin: Wizard -->
+		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2" data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-wizard-v2__aside">
+				<!--begin: Form Wizard Nav -->
+				<div class="kt-wizard-v2__nav">
+					<div class="kt-wizard-v2__nav-items">
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-globe"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Benutzerinformationen
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Geben Sie allgemeine Informationen an
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-responsive"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Benachrichtigungen
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Bei welchen Produktkategorien soll eine Benachrichtigung erfolgen
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-bus-stop"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Rollen
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										In welchen Rollen tritt der Benutzer auf
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-confetti"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Abschluss
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Zusammenfassung und Bestellung
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--end: Form Wizard Nav -->
+
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+				<!--begin: Form Wizard Form-->
+				<form class="kt-form" id="kt_form" [formGroup]="userForm">
+					<!--begin: Form Wizard Step 1-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Geben Sie allgemeine Informationen an</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Username</label><br/>
+									<input type="text" class="form-control" formControlName="username" required minlength="6">
+									<div *ngIf="username.invalid && (username.dirty || username.touched)"
+											class="alert alert-danger">
+										<div *ngIf="username.errors.required">
+											Es muss ein Username eingegeben werden.
+										</div>
+										<div *ngIf="username.errors.minlength">
+											Username muss zumindest 6 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>Vorname</label><br/>
+									<input type="text" class="form-control" formControlName="firstname" required minlength="3">
+									<div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+											class="alert alert-danger">
+										<div *ngIf="firstname.errors.required">
+											Es muss ein Vorname eingegeben werden.
+										</div>
+										<div *ngIf="firstname.errors.minlength">
+											Vorname muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>Nachname</label><br/>
+									<input type="text" class="form-control" formControlName="lastname" required minlength="3">
+									<div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+											class="alert alert-danger">
+										<div *ngIf="lastname.errors.required">
+											Es muss ein Nachname eingegeben werden.
+										</div>
+										<div *ngIf="lastname.errors.minlength">
+											Nachname muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>E-Mail</label><br/>
+									<input type="text" class="form-control" formControlName="email" required minlength="6">
+									<div *ngIf="email.invalid && (email.dirty || email.touched)"
+											class="alert alert-danger">
+										<div *ngIf="email.errors.required">
+											Es muss eine E-Mail eingegeben werden.
+										</div>
+										<div *ngIf="email.errors.minlength">
+											E-Mail muss zumindest 6 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>Firma</label><br/>
+									<input type="text" class="form-control" formControlName="company" required minlength="3">
+									<div *ngIf="company.invalid && (company.dirty || company.touched)"
+											class="alert alert-danger">
+										<div *ngIf="company.errors.required">
+											Es muss eine Firma eingegeben werden.
+										</div>
+										<div *ngIf="company.errors.minlength">
+											Firma muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 1-->
+
+					<!--begin: Form Wizard Step 2-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Bei welchen Produktkategorien soll eine Benachrichtigung erfolgen</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Produktgruppe</label><br/>
+									<!--<input type="text" class="form-control" formControlName="username" required minlength="6">
+									<div *ngIf="username.invalid && (username.dirty || username.touched)"
+											class="alert alert-danger">
+										<div *ngIf="username.errors.required">
+											Es muss ein Username eingegeben werden.
+										</div>
+										<div *ngIf="username.errors.minlength">
+											Username muss zumindest 6 Zeichen lang sein.
+										</div>
+									</div>-->
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 2-->
+
+					<!--begin: Form Wizard Step 3-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">In welchen Rollen tritt der Benutzer auf</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Rollen</label>
+									<!--<input type="text" class="form-control" formControlName="length" required>
+									<div *ngIf="length.invalid && (length.dirty || length.touched)"
+											class="alert alert-danger">
+										<div *ngIf="length.errors.required">
+											Es muss die Länge eingegeben werden.
+										</div>
+									</div>
+									<span class="form-text text-muted">Bitte geben Sie die Länge (in mm) an.</span>
+								-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 3-->
+
+					<!--begin: Form Wizard Step 4-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__review">
+								<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
+									Fehlerhafte Eingabe - Bitte füllen Sie alle Daten korrekt aus!
+								</kt-alert>
+
+								<div class="kt-wizard-v2__review-item">
+									<div class="kt-wizard-v2__review-title">
+										Benutzerinformationen
+									</div>
+									<div class="kt-wizard-v2__review-content">
+										Username: {{ userForm.get('username').value }}<br/>
+										Name: {{ userForm.get('firstname').value }} {{ userForm.get('lastname').value }}<br/>
+										E-Mail: {{ userForm.get('email').value }}<br/>
+										Firma: {{ userForm.get('company').value }}
+									</div>
+								</div>
+								<div class="kt-wizard-v2__review-item">
+									<div class="kt-wizard-v2__review-title">
+										Benachrichtigung bei neuem Produkt der Kategorien
+									</div>
+									<div class="kt-wizard-v2__review-content">
+										Kategorien
+									</div>
+								</div>
+								<div class="kt-wizard-v2__review-item">
+									<div class="kt-wizard-v2__review-title">
+										Rollen
+									</div>
+									<div class="kt-wizard-v2__review-content">
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 4-->
+
+					<!--begin: Form Actions -->
+					<div class="kt-form__actions">
+						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+							Speichern
+						</div>
+						<div (click)="onSubmitAndNew()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+							Speichern & Neuer Benutzer
+						</div>
+					</div>
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+							Zurück
+						</div>
+						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+							Nächster Schritt
+						</div>
+					</div>
+					<!--end: Form Actions -->
+				</form>
+				<!--end: Form Wizard Form-->
+			</div>
+
+		</div>
+		<!--end: Wizard -->
+
+	</kt-portlet-body>
+</kt-portlet>

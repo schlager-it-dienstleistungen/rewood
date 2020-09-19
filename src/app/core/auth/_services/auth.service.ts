@@ -97,9 +97,9 @@ export class AuthService {
 		return this.afs.collection<Role>('users').doc<User>('' + userId).valueChanges();
 	}
 
-	findUserByAuthUid(uid: string): Observable<User> {
+	findUserByAuthUid(authUid: string): Observable<User> {
 		return this.afs.collection<User>('users',
-			ref => ref.where('uid', '==', uid).limit(1))
+			ref => ref.where('authUid', '==', authUid).limit(1))
 			.valueChanges()
 			.pipe(
 				map(users => users[0])
