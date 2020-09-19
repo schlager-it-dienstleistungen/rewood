@@ -3,8 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { User } from '../../shared/user';
 import { UserStoreService } from '../../shared/user-store.service';
 
@@ -22,7 +20,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 	dataSource: MatTableDataSource<User>;
 
 	// Table Fields
-	displayedColumns = ['username', 'fullname', 'email', 'company', 'roles'];
+	displayedColumns = ['username', 'fullname', 'email', 'company', 'roles', 'actions'];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -53,4 +51,33 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		this.router.navigate(['..', 'user', id], { relativeTo: this.route});
 	}
 
+	/**
+	 * Redirect to edit page
+	 */
+	editUser(id) {
+		this.router.navigate(['../users/edit', id], { relativeTo: this.route });
+	}
+
+	/** ACTIONS */
+	/**
+	 * Delete user
+	 *
+	 * @param item: User
+	 */
+	deleteUser(toDelete: User) {
+		/*const _title: string = 'User Delete';
+		const _description: string = 'Are you sure to permanently delete this user?';
+		const _waitDesciption: string = 'User is deleting...';
+		const _deleteMessage = `User has been deleted`;
+
+		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
+		dialogRef.afterClosed().subscribe(res => {
+			if (!res) {
+				return;
+			}
+
+			this.store.dispatch(new UserDeleted({ id: _item.id }));
+			this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Delete);
+		});*/
+	}
 }
