@@ -3,8 +3,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../shared/user';
-import { UserStoreService } from '../../shared/user-store.service';
+import { select, Store } from '@ngrx/store';
+import { each, indexOf } from 'lodash';
+import { find, first, map } from 'rxjs/operators';
+import { Role, selectAllRoles } from 'src/app/core/auth';
+import { AppState } from 'src/app/core/reducers';
+import { User } from '../../../shared/user';
+import { UserFactoryService } from '../../../shared/user-factory.service';
+import { UserStoreService } from '../../../shared/user-store.service';
 
 @Component({
 	selector: 'rw-user-list',
@@ -19,16 +25,21 @@ export class UserListComponent implements OnInit, AfterViewInit {
 
 	dataSource: MatTableDataSource<User>;
 
+	allRoles: Role[];
+
 	// Table Fields
 	displayedColumns = ['username', 'fullname', 'email', 'company', 'roles', 'actions'];
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private userService: UserStoreService
+		private userService: UserStoreService,
+		private userFactory: UserFactoryService,
+		private store: Store<AppState>
 	) { }
 
 	ngOnInit() {
+		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
 	}
 
 	/**
@@ -51,6 +62,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		this.router.navigate(['..', 'user', id], { relativeTo: this.route});
 	}
 
+	/** ACTIONS */
 	/**
 	 * Redirect to edit page
 	 */
@@ -58,7 +70,6 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		this.router.navigate(['../users/edit', id], { relativeTo: this.route });
 	}
 
-	/** ACTIONS */
 	/**
 	 * Delete user
 	 *
@@ -79,5 +90,15 @@ export class UserListComponent implements OnInit, AfterViewInit {
 			this.store.dispatch(new UserDeleted({ id: _item.id }));
 			this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Delete);
 		});*/
+	}
+
+	/* UI */
+	/**
+	 * Returns RoleTitles string sperated with ' - '
+	 *
+	 * @param userRoles: number[]
+	 */
+	getRoleTitles(userRoles: number[]): string {
+		return this.userFactory.getRoleTitlesAsString(userRoles, this.allRoles);
 	}
 }

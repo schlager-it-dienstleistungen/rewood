@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DocumentChangeAction } from 'angularfire2/firestore';
+import { Role } from 'src/app/core/auth';
 import { User } from './user';
 
 @Injectable({
@@ -29,5 +30,21 @@ export class UserFactoryService {
 			roles: [],
 			emailVerified: false
 		};
+	}
+
+	/**
+	 * Returns RoleTitles string sperated with ' - '
+	 *
+	 * @param userRoles: number[]
+	 * @param allRoles: Role[]
+	 */
+	getRoleTitlesAsString(userRoles: number[], allRoles: Role[]): string {
+		let rolesTitle = '';
+		userRoles.forEach(roleId => {
+			const oneRole = allRoles.find(innerRole => innerRole.id === roleId);
+			rolesTitle = rolesTitle + (rolesTitle.length > 0 ? ' - ' : '') + oneRole.title;
+		});
+
+		return rolesTitle;
 	}
 }

@@ -1,9 +1,13 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../shared/user';
-import { UserFactoryService } from '../../shared/user-factory.service';
-import { UserStoreService } from '../../shared/user-store.service';
+import { select, Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
+import { Role, selectAllRoles } from 'src/app/core/auth';
+import { AppState } from 'src/app/core/reducers';
+import { User } from '../../../shared/user';
+import { UserFactoryService } from '../../../shared/user-factory.service';
+import { UserStoreService } from '../../../shared/user-store.service';
 
 @Component({
 	selector: 'rw-user-edit',
@@ -15,6 +19,9 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	@Output() submitUser = new EventEmitter<{newProduct: User, submitAndNewUser: boolean}>();
 	user: User;
 
+	rolesSubject = new BehaviorSubject<number[]>([]);
+	allRoles: Role[];
+
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
 	hasFormErrors = false;
@@ -23,10 +30,13 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
-		private userStoreService: UserStoreService) {
+		private userStoreService: UserStoreService,
+		private userFactory: UserFactoryService,
+		private store: Store<AppState>) {
 	}
 
 	ngOnInit(): void {
+		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
 		this.initForm();
 
 		const params = this.route.snapshot.paramMap;
@@ -35,6 +45,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.userStoreService.getUser(id).subscribe(res => {
 				if (res) {
 					this.user = res;
+					this.rolesSubject.next(this.user.roles);
 					this.setFormValues(this.user);
 				}
 			});
@@ -42,6 +53,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			// New User
 			this.user = UserFactoryService.empty();
 			this.user.id = this.userStoreService.createUserId();
+			this.rolesSubject.next(this.user.roles);
 			this.setFormValues(this.user);
 		}
 	}
@@ -117,7 +129,6 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	}
 
 	submitForm(submitAndNewUser: boolean) {
-		debugger;
 		this.hasFormErrors = false;
 		const controls = this.userForm.controls;
 		/** check form */
@@ -132,19 +143,31 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 		this.submitted = true;
 
-		const formValue = this.userForm.value;
-
-		const newUser: User = {
-			...formValue, authUid: this.user.authUid
-		};
+		const newUser: User = this.prepareUser();
 
 		this.userStoreService.storeUser(newUser).then(
 			() => {
-				this.router.navigate(['../../users'],
+				this.router.navigate(['../..'],
 					{ relativeTo: this.route, queryParams: {newUser: 'true', submitAndNewUser}});
 			}
 		);
 		this.userForm.reset();
+	}
+
+	/**
+	 * Returns prepared data for save
+	 */
+	prepareUser(): User {
+		const formValue = this.userForm.value;
+		const newUser: User = {...formValue};
+
+		// Firebase-Authentication UID setzen
+		newUser.authUid = this.user.authUid;
+
+		// Rollen setzen
+		newUser.roles = this.rolesSubject.value;
+
+		return newUser;
 	}
 
 	/**
@@ -162,4 +185,13 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get lastname() { return this.userForm.get('lastname'); }
 	get email() { return this.userForm.get('email'); }
 	get company() { return this.userForm.get('company'); }
+	/* UI */
+	/**
+	 * Returns RoleTitles string sperated with ' - '
+	 */
+	getRoleTitles(): string {
+		if (this.user) {
+			return this.userFactory.getRoleTitlesAsString(this.user.roles, this.allRoles);
+		}
+	}
 }

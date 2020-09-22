@@ -186,15 +186,9 @@
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Rollen</label>
-									<!--<input type="text" class="form-control" formControlName="length" required>
-									<div *ngIf="length.invalid && (length.dirty || length.touched)"
-											class="alert alert-danger">
-										<div *ngIf="length.errors.required">
-											Es muss die Länge eingegeben werden.
-										</div>
+									<div class="kt-wizard-v2__review-content" *ngIf="user">
+										<rw-user-roles-list [(rolesSubject)]="rolesSubject"></rw-user-roles-list>
 									</div>
-									<span class="form-text text-muted">Bitte geben Sie die Länge (in mm) an.</span>
-								-->
 								</div>
 							</div>
 						</div>
@@ -234,7 +228,7 @@
 										Rollen
 									</div>
 									<div class="kt-wizard-v2__review-content">
-
+										{{ getRoleTitles() }}
 									</div>
 								</div>
 							</div>

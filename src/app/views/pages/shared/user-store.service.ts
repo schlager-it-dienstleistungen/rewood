@@ -39,7 +39,6 @@ export class UserStoreService {
 	 * @param user User to save
 	 */
 	storeUser(user: User): Promise<void> {
-		debugger;
 		// Create Firestore-Batch
 		const batch = this.db.firestore.batch();
 

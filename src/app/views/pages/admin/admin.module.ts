@@ -13,21 +13,27 @@ import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
-import { UserListComponent } from './user-list/user-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserRolesListComponent } from './user/user-edit/subs/user-roles-list/user-roles-list.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatOptionModule } from '@angular/material/core';
 
 
 @NgModule({
 	declarations: [AdminComponent,
 		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
-		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent],
+		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent, UserRolesListComponent],
 	imports: [
+		MatInputModule,
 		CommonModule,
 		FormsModule,
 		PartialsModule,
@@ -38,8 +44,12 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 		MatPaginatorModule,
 		MatSortModule,
 		MatFormFieldModule,
-		MatInputModule,
-		MatIconModule
+		MatIconModule,
+		MatSelectModule,
+		MatOptionModule,
+		MatButtonModule,
+		MatTooltipModule,
+		MatOptionModule
 	]
 })
 export class AdminModule { }
