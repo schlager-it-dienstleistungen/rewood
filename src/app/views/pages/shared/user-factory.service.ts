@@ -28,6 +28,7 @@ export class UserFactoryService {
 			email: '',
 			companyName: '',
 			roles: [],
+			categoryNotifications: [],
 			emailVerified: false
 		};
 	}

@@ -161,18 +161,10 @@
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Produktgruppe</label><br/>
-									<!--<input type="text" class="form-control" formControlName="username" required minlength="6">
-									<div *ngIf="username.invalid && (username.dirty || username.touched)"
-											class="alert alert-danger">
-										<div *ngIf="username.errors.required">
-											Es muss ein Username eingegeben werden.
-										</div>
-										<div *ngIf="username.errors.minlength">
-											Username muss zumindest 6 Zeichen lang sein.
-										</div>
-									</div>-->
-									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+									<label>Kategorie</label><br/>
+									<div class="kt-wizard-v2__review-content" *ngIf="user">
+										<rw-user-notifications-list [(categoryNotificationSubject)]="categoryNotificationSubject"></rw-user-notifications-list>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -220,7 +212,7 @@
 										Benachrichtigung bei neuem Produkt der Kategorien
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Kategorien
+										{{ getCategoryNotifications() }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">

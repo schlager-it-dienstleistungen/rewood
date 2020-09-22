@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -21,6 +21,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 	rolesSubject = new BehaviorSubject<number[]>([]);
 	allRoles: Role[];
+	categoryNotificationSubject = new BehaviorSubject<string[]>([]);
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
@@ -46,6 +47,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 				if (res) {
 					this.user = res;
 					this.rolesSubject.next(this.user.roles);
+					this.categoryNotificationSubject.next(this.user.categoryNotifications);
 					this.setFormValues(this.user);
 				}
 			});
@@ -54,6 +56,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.user = UserFactoryService.empty();
 			this.user.id = this.userStoreService.createUserId();
 			this.rolesSubject.next(this.user.roles);
+			this.categoryNotificationSubject.next(this.user.categoryNotifications);
 			this.setFormValues(this.user);
 		}
 	}
@@ -167,6 +170,9 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		// Rollen setzen
 		newUser.roles = this.rolesSubject.value;
 
+		// Category Notifications
+		newUser.categoryNotifications = this.categoryNotificationSubject.value;
+
 		return newUser;
 	}
 
@@ -185,13 +191,27 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get lastname() { return this.userForm.get('lastname'); }
 	get email() { return this.userForm.get('email'); }
 	get company() { return this.userForm.get('company'); }
+
 	/* UI */
 	/**
 	 * Returns RoleTitles string sperated with ' - '
 	 */
 	getRoleTitles(): string {
 		if (this.user) {
-			return this.userFactory.getRoleTitlesAsString(this.user.roles, this.allRoles);
+			return this.userFactory.getRoleTitlesAsString(this.rolesSubject.value, this.allRoles);
 		}
+	}
+
+	/**
+	 * Returns all CategoryNotifications for UI Display
+	 */
+	getCategoryNotifications(): string {
+		let returnString = '';
+		if (this.user) {
+			this.categoryNotificationSubject.value.forEach(category => {
+				returnString = returnString + (returnString.length > 0 ? ', ' : '') + category;
+			});
+		}
+		return returnString;
 	}
 }
