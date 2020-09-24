@@ -8,6 +8,7 @@ import { each, indexOf } from 'lodash';
 import { find, first, map } from 'rxjs/operators';
 import { Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
+import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -35,11 +36,30 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		private router: Router,
 		private userService: UserStoreService,
 		private userFactory: UserFactoryService,
+		private layoutUtilsService: LayoutUtilsService,
 		private store: Store<AppState>
 	) { }
 
 	ngOnInit() {
 		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
+
+		// If a New User was created --> Show Message
+		this.route.queryParams
+			.subscribe(queryParams => {
+				if (queryParams.newUser === 'true') {
+					const message = `Neuer Benutzer wurde erfolgreich angelegt.`;
+					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+				}
+			});
+
+		// If a Existing User was saved --> Show Message
+		this.route.queryParams
+			.subscribe(queryParams => {
+				if (queryParams.editUser === 'true') {
+					const message = `Benutzer wurde erfolgreich geändert.`;
+					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+				}
+			});
 	}
 
 	/**

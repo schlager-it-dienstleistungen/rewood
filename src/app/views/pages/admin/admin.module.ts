@@ -32,7 +32,8 @@ import { UserNotificationsListComponent } from './user/user-edit/subs/user-notif
 @NgModule({
 	declarations: [AdminComponent,
 		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
-		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent, UserRolesListComponent, UserNotificationsListComponent],
+		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent,
+		UserRolesListComponent, UserNotificationsListComponent],
 	imports: [
 		MatInputModule,
 		CommonModule,

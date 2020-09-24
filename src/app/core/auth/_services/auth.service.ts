@@ -57,8 +57,8 @@ export class AuthService {
 		return this.findUserByAuthUid(localStorage.getItem(environment.authTokenKey));
 	}
 
-	register(user: User): Promise<any> {
-		return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+	register(email: string, password: string): Promise<any> {
+		return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
 // .then((result) => {
 				/* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */

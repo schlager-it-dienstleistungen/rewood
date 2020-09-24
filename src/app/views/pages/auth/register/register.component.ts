@@ -143,7 +143,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		// newUser.fullname = controls.fullname.value;
 		newUser.password = controls.password.value;
 		newUser.roles = [];
-		this.auth.register(newUser)
+		this.auth.register(newUser.email, newUser.password)
 			.then(
 				user => {
 					// if (user) {

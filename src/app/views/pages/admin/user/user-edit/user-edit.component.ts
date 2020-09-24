@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
-import { Role, selectAllRoles } from 'src/app/core/auth';
+import { AuthService, Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
+import { AuthUser } from '../../../shared/auth-user';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -26,11 +27,15 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
 	hasFormErrors = false;
+	formErrorMessage = '';
+	isNewUser: boolean;
 
 	constructor(
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
+		private auth: AuthService,
+		private cdr: ChangeDetectorRef,
 		private userStoreService: UserStoreService,
 		private userFactory: UserFactoryService,
 		private store: Store<AppState>) {
@@ -49,6 +54,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 					this.rolesSubject.next(this.user.roles);
 					this.categoryNotificationSubject.next(this.user.categoryNotifications);
 					this.setFormValues(this.user);
+					this.isNewUser = false;
 				}
 			});
 		} else {
@@ -58,6 +64,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.rolesSubject.next(this.user.roles);
 			this.categoryNotificationSubject.next(this.user.categoryNotifications);
 			this.setFormValues(this.user);
+			this.isNewUser = true;
 		}
 	}
 
@@ -110,7 +117,8 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			email: ['', [
 				Validators.required,
 				Validators.minLength(6)]],
-			company: ['', [ Validators.required]]
+			company: ['', [ Validators.required]],
+			password: ['']
 		});
 	}
 
@@ -141,20 +149,78 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			);
 
 			this.hasFormErrors = true;
+			this.formErrorMessage = 'Fehlerhafte Eingabe - Bitte füllen Sie alle Daten korrekt aus!';
 			return;
 		}
 
 		this.submitted = true;
 
-		const newUser: User = this.prepareUser();
+		// Create Firebase Authentication first if NewUser
+		if (this.isNewUser) {
+			this.registerNewUser().then (
+				user => {
+					this.user.authUid = JSON.parse(JSON.stringify(user)).user.uid;
 
-		this.userStoreService.storeUser(newUser).then(
-			() => {
-				this.router.navigate(['../..'],
-					{ relativeTo: this.route, queryParams: {newUser: 'true', submitAndNewUser}});
+					// Store User in Firestore
+					this.prepareAndSubmitUser();
+				}
+			).catch(
+				error => {
+					this.hasFormErrors = true;
+					this.formErrorMessage = error.message;
+					return;
+					// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
+				}
+			).finally(() => {
+				this.cdr.markForCheck();
+			});
+
+		// Edit Existing User
+		} else {
+			// Store User in Firestore
+			this.prepareAndSubmitUser();
+		}
+	}
+
+	/**
+	 * Registers if NewUser for Firebase Authentication
+	 */
+	registerNewUser(): Promise<any> {
+		const controls = this.userForm.controls;
+		const authUser: AuthUser = new AuthUser();
+
+		authUser.email = controls.email.value;
+		authUser.username = controls.username.value;
+		authUser.password = controls.password.value;
+
+		return this.auth.register(authUser.email, authUser.password);
+	}
+
+	/**
+	 * Store User
+	 */
+	prepareAndSubmitUser() {
+		const newUser: User = this.prepareUser();
+		this.userStoreService.storeUser(newUser).then (() => {
+
+			if (this.isNewUser) {
+				this.router.navigate(['../../users'],
+					{ relativeTo: this.route, queryParams: {newUser: true} }
+				);
+			} else {
+				this.router.navigate(['../../../users'],
+					{ relativeTo: this.route, queryParams: {editUser: true} }
+				);
 			}
-		);
-		this.userForm.reset();
+
+		}).catch(error => {
+			this.hasFormErrors = true;
+			this.formErrorMessage = error.message;
+			return;
+			// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
+		}).finally(() => {
+			this.cdr.markForCheck();
+		});
 	}
 
 	/**
@@ -191,6 +257,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get lastname() { return this.userForm.get('lastname'); }
 	get email() { return this.userForm.get('email'); }
 	get company() { return this.userForm.get('company'); }
+	get password() { return this.userForm.get('password'); }
 
 	/* UI */
 	/**

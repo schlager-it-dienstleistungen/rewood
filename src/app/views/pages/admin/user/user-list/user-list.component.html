@@ -1,5 +1,10 @@
 <kt-portlet>
 	<kt-portlet-header title="User">
+		<ng-container ktPortletTools>
+			<button [routerLink]="['../users/add']" mat-raised-button color="primary" matTooltip="Create new User">New user</button>
+			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->
+			<!-- mat-raised-button | Rectangular contained button w/ elevation  -->
+		</ng-container>
 	</kt-portlet-header>
 
 	<!-- Filter -->
