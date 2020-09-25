@@ -18,8 +18,9 @@ export class UserStoreService {
 		private afAuth: AngularFireAuth		// Inject Firebase auth Service
 		)	{}
 
-	getAllUsers(): Observable<User[]> {
-		const usersFS: AngularFirestoreCollection<User> = this.afs.collection('users');
+	getAllActiveUsers(): Observable<User[]> {
+		const usersFS: AngularFirestoreCollection<User> = this.afs.collection('users',
+			ref => ref.where('active', '==', true));
 		return usersFS.snapshotChanges().pipe(
 			map(users => {
 				return users.map(user => UserFactoryService.fromFirestoreDocumentChangeAction(user));

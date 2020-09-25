@@ -67,7 +67,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.userService.getAllUsers().subscribe(data => {
+		this.userService.getAllActiveUsers().subscribe(data => {
 			this.dataSource = new MatTableDataSource<User>(data);
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.sort = this.sort;
