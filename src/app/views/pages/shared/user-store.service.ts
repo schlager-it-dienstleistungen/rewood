@@ -6,16 +6,20 @@ import { User } from './user';
 import { UserFactoryService } from './user-factory.service';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class UserStoreService {
 
-	constructor(private db: AngularFirestore) {}
+	constructor(
+		private afs: AngularFirestore,		// Inject Firestore Service
+		private afAuth: AngularFireAuth		// Inject Firebase auth Service
+		)	{}
 
 	getAllUsers(): Observable<User[]> {
-		const usersFS: AngularFirestoreCollection<User> = this.db.collection('users');
+		const usersFS: AngularFirestoreCollection<User> = this.afs.collection('users');
 		return usersFS.snapshotChanges().pipe(
 			map(users => {
 				return users.map(user => UserFactoryService.fromFirestoreDocumentChangeAction(user));
@@ -24,13 +28,13 @@ export class UserStoreService {
 	}
 
 	getUser(userId: string): Observable<User> {
-		return this.db.collection('users').doc(userId).snapshotChanges().pipe(
+		return this.afs.collection('users').doc(userId).snapshotChanges().pipe(
 			map(product => UserFactoryService.fromFirestoreDocument(product.payload.data() as User, product.payload.id))
 		);
 	}
 
 	createUserId(): string {
-		return this.db.createId();
+		return this.afs.createId();
 	}
 
 	/**
@@ -40,14 +44,31 @@ export class UserStoreService {
 	 */
 	storeUser(user: User): Promise<void> {
 		// Create Firestore-Batch
-		const batch = this.db.firestore.batch();
+		const batch = this.afs.firestore.batch();
 
 		// Store new User
-		const userRef = this.db.collection('users').doc(user.id).ref;
+		const userRef = this.afs.collection('users').doc(user.id).ref;
 		batch.set(userRef, user);
 
 		// Batch Commit
 		return batch.commit();
+	}
+
+	/**
+	 * Deletes Firebase Authentication User
+	 */
+	deleteAuthUser(): Promise<void> {
+		return this.afAuth.auth.currentUser.delete();
+	}
+
+	/**
+	 * Deaktiviere User
+	 *
+	 * @param id uid
+	 */
+	inactivateUser(id: string): Promise<void> {
+		const userRef = this.afs.collection('users').doc(id).ref;
+		return userRef.update({active: false});
 	}
 
 }

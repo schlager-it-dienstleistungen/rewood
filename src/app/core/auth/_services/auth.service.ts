@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 import { QueryParamsModel, QueryResultsModel } from '../../_base/crud';
 import { environment } from '../../../../environments/environment';
 
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthDataContext } from '../_server/auth.data-context';
 
@@ -94,7 +94,7 @@ export class AuthService {
 	}
 
 	getUserById(userId: number): Observable<User> {
-		return this.afs.collection<Role>('users').doc<User>('' + userId).valueChanges();
+		return this.afs.collection<User>('users').doc<User>('' + userId).valueChanges();
 	}
 
 	findUserByAuthUid(authUid: string): Observable<User> {

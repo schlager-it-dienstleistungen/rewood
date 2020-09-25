@@ -11,4 +11,5 @@ export class User {
 		companyName: string;
 		phone?: string;
 		emailVerified: boolean;
+		active: boolean;
 }

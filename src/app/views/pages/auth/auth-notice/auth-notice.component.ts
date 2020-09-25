@@ -33,7 +33,6 @@ export class AuthNoticeComponent implements OnInit, OnDestroy {
 	 * On init
 	 */
 	ngOnInit() {
-		debugger;
 		this.subscriptions.push(this.authNoticeService.onNoticeChanged$.subscribe(
 			(notice: AuthNotice) => {
 				notice = Object.assign({}, {message: '', type: ''}, notice);

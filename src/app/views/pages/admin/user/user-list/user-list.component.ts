@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { each, indexOf } from 'lodash';
 import { find, first, map } from 'rxjs/operators';
-import { Role, selectAllRoles } from 'src/app/core/auth';
+import { Role, selectAllRoles, UserDeleted } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
 import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
 import { User } from '../../../shared/user';
@@ -91,25 +91,28 @@ export class UserListComponent implements OnInit, AfterViewInit {
 	}
 
 	/**
-	 * Delete user
+	 * Delete user - here: set inactive
 	 *
 	 * @param item: User
 	 */
 	deleteUser(toDelete: User) {
-		/*const _title: string = 'User Delete';
-		const _description: string = 'Are you sure to permanently delete this user?';
-		const _waitDesciption: string = 'User is deleting...';
-		const _deleteMessage = `User has been deleted`;
+		const title = 'User Delete';
+		const description = 'Are you sure to permanently delete this user?';
+		const waitDesciption = 'User is deleting...';
+		const deleteMessage = `User has been deleted`;
 
-		const dialogRef = this.layoutUtilsService.deleteElement(_title, _description, _waitDesciption);
+		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
 		dialogRef.afterClosed().subscribe(res => {
 			if (!res) {
 				return;
 			}
 
-			this.store.dispatch(new UserDeleted({ id: _item.id }));
-			this.layoutUtilsService.showActionNotification(_deleteMessage, MessageType.Delete);
-		});*/
+			this.userService.inactivateUser(toDelete.id).then(() => {
+				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+			}).catch(error => {
+				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+			});
+		});
 	}
 
 	/* UI */
