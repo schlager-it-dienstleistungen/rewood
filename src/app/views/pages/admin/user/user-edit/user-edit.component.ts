@@ -229,6 +229,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	prepareUser(): User {
 		const formValue = this.userForm.value;
 		const newUser: User = {...formValue};
+		newUser.active = true;
 
 		// Firebase-Authentication UID setzen
 		newUser.authUid = this.user.authUid;
