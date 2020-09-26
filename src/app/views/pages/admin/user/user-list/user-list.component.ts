@@ -4,9 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { each, indexOf } from 'lodash';
-import { find, first, map } from 'rxjs/operators';
-import { Role, selectAllRoles, UserDeleted } from 'src/app/core/auth';
+import { Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
 import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
 import { User } from '../../../shared/user';
@@ -25,6 +23,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 	dataSource: MatTableDataSource<User>;
+	isLoading = false;
 
 	allRoles: Role[];
 
@@ -41,6 +40,8 @@ export class UserListComponent implements OnInit, AfterViewInit {
 	) { }
 
 	ngOnInit() {
+		this.isLoading = true;
+
 		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
 
 		// If a New User was created --> Show Message
@@ -68,6 +69,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
   */
 	ngAfterViewInit() {
 		this.userService.getAllActiveUsers().subscribe(data => {
+			this.isLoading = false;
 			this.dataSource = new MatTableDataSource<User>(data);
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.sort = this.sort;
