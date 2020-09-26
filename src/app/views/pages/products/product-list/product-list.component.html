@@ -70,6 +70,8 @@
 				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 				<tr mat-row *matRowDef="let product; columns: displayedColumns" (click)="selectedProduct(product.id)"></tr>
 			</table>
+
+			<div class="mat-table__message" *ngIf="isLoading">Please wait....</div>
 		</div>
 
 		<mat-paginator #matPaginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>

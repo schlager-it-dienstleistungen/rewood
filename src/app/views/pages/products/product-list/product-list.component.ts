@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 	dataSource: MatTableDataSource<Product>;
+	isLoading = false;
 
 	// Category
 	category: string;
@@ -37,6 +38,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	) { }
 
 	ngOnInit() {
+		this.isLoading = true;
 		const params = this.route.snapshot.paramMap;
 		this.category = params.get('category');
 	}
@@ -47,6 +49,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   */
 	ngAfterViewInit() {
 		this.productService.getProductsToCategory(this.category).subscribe(data => {
+			this.isLoading = false;
 			this.dataSource = new MatTableDataSource<Product>(data);
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.sort = this.sort;
