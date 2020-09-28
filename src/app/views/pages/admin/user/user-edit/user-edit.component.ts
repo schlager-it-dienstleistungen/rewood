@@ -198,6 +198,10 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		// Firebase-Authentication UID setzen
 		newUser.authUid = this.user.authUid;
 
+		// MetaData
+		newUser.tstCreate = this.user.tstCreate;
+		newUser.userCreate = this.user.userCreate;
+
 		// Rollen setzen
 		newUser.roles = this.rolesSubject.value;
 

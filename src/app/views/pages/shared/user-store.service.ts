@@ -48,6 +48,9 @@ export class UserStoreService {
 		// Collection where to store the user
 		const collection = isNewUser ? 'newUsers' : 'users';
 
+		// Add Metadata
+		this.addMetadata(user, isNewUser);
+
 		// Create Firestore-Batch
 		const batch = this.afs.firestore.batch();
 
@@ -55,12 +58,30 @@ export class UserStoreService {
 		const userRef = this.afs.collection(collection).doc(user.id).ref;
 		batch.set(userRef, user);
 
+		// Update Timestamp
+
+
 		// Batch Commit
 		return batch.commit();
 	}
 
+	addMetadata(user: User, isNewUser: boolean) {
+		const tst = firebase.firestore.FieldValue.serverTimestamp();
+		const userId = this.afAuth.auth.currentUser.uid;
+
+		if (isNewUser) {
+			user.tstCreate = tst;
+			user.userCreate = userId;
+		} else {
+			user.tstUpdate = tst;
+			user.userUpdate = userId;
+		}
+	}
+
 	/**
 	 * Deletes Firebase Authentication User
+	 *
+	 * @deprecated
 	 */
 	deleteAuthUser(): Promise<void> {
 		return this.afAuth.auth.currentUser.delete();

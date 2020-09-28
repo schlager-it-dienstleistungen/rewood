@@ -50,7 +50,9 @@ exports.createUser = functions
 				company: snap.get('company'),
 				phone: snap.get('phone'),
 				emailVerified: snap.get('emailVerified'),
-				active: snap.get('active')
+				active: snap.get('active'),
+				tstCreate: snap.get('tstCreate'),
+				userCreate: snap.get('userCreate')
 		});
 
     // Delete the temp document

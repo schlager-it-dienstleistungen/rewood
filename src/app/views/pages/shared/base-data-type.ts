@@ -1,8 +1,8 @@
 export class BaseDataType {
-	tstCreate: string;
+	tstCreate: any;
 	userCreate: string;
-	tstUpdate?: string;
+	tstUpdate?: any;
 	userUpdate?: string;
-	tstDelete?: string;
+	tstDelete?: any;
 	userDelete?: string;
 }

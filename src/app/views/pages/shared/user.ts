@@ -1,4 +1,6 @@
-export class User {
+import { BaseDataType } from './base-data-type';
+
+export class User extends BaseDataType{
 		id: string;
 		authUid: string; // Firebase User-UID
 		username: string;
