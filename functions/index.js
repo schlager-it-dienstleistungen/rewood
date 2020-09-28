@@ -17,6 +17,35 @@ let transporter = nodemailer.createTransport({
 	}
 });
 
+exports.deleteUser = functions
+	.region('europe-west3')
+	.firestore
+	.document('delUsers/{userId}')
+	.onCreate(async (snap, context) => {
+		const userId = context.params.userId;
+
+		console.log('userId: ' + userId);
+		console.log('snap: ' + JSON.stringify(snap));
+
+		// Set Firebase Authentication User Inactive
+    await admin.auth().updateUser(snap.get('authUid'), {
+        disabled: true
+		});
+
+		// Set User Inactive
+		const deleteUser = await admin.firestore().collection('users').doc(userId).get();
+		console.log('deleteUser: ' + JSON.stringify(deleteUser));
+		await admin.firestore().collection('users').doc(userId).update({
+			active: false,
+			tstDelete: snap.get('tstDelete'),
+			userDelete: snap.get('userDelete')
+		});
+
+
+    // Delete the temp document
+    return admin.firestore().collection('delUsers').doc(userId).delete();
+});
+
 exports.createUser = functions
 	.region('europe-west3')
 	.firestore

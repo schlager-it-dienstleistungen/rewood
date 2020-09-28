@@ -90,11 +90,20 @@ export class UserStoreService {
 	/**
 	 * Deaktiviere User
 	 *
-	 * @param id uid
+	 * @param user User to deactivate
 	 */
-	inactivateUser(id: string): Promise<void> {
-		const userRef = this.afs.collection('users').doc(id).ref;
-		return userRef.update({active: false});
+	inactivateUser(user: User): Promise<void> {
+		// Create Firestore-Batch
+		const batch = this.afs.firestore.batch();
+
+		// Store User to Inactivate
+		const userRef = this.afs.collection('delUsers').doc(user.id).ref;
+		const tst = firebase.firestore.FieldValue.serverTimestamp();
+		const userId = this.afAuth.auth.currentUser.uid;
+		batch.set(userRef, {authUid: user.authUid, tstDelete: tst, userDelete: userId});
+
+		// Batch Commit
+		return batch.commit();
 	}
 
 }

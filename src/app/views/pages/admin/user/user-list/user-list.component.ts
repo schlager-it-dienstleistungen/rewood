@@ -109,7 +109,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 				return;
 			}
 
-			this.userService.inactivateUser(toDelete.id).then(() => {
+			this.userService.inactivateUser(toDelete).then(() => {
 				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
 			}).catch(error => {
 				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
