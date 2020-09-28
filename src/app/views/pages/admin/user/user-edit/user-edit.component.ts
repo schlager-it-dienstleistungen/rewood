@@ -5,7 +5,6 @@ import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService, Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
-import { AuthUser } from '../../../shared/auth-user';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -118,6 +117,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 				Validators.required,
 				Validators.minLength(6)]],
 			company: ['', [ Validators.required]],
+			phone: [''],
 			password: ['']
 		});
 	}
@@ -155,45 +155,8 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 		this.submitted = true;
 
-		// Create Firebase Authentication first if NewUser
-		if (this.isNewUser) {
-			this.registerNewUser().then (
-				user => {
-					this.user.authUid = JSON.parse(JSON.stringify(user)).user.uid;
-
-					// Store User in Firestore
-					this.prepareAndSubmitUser();
-				}
-			).catch(
-				error => {
-					this.hasFormErrors = true;
-					this.formErrorMessage = error.message;
-					return;
-					// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
-				}
-			).finally(() => {
-				this.cdr.markForCheck();
-			});
-
-		// Edit Existing User
-		} else {
-			// Store User in Firestore
-			this.prepareAndSubmitUser();
-		}
-	}
-
-	/**
-	 * Registers if NewUser for Firebase Authentication
-	 */
-	registerNewUser(): Promise<any> {
-		const controls = this.userForm.controls;
-		const authUser: AuthUser = new AuthUser();
-
-		authUser.email = controls.email.value;
-		authUser.username = controls.username.value;
-		authUser.password = controls.password.value;
-
-		return this.auth.register(authUser.email, authUser.password);
+		// Store User in Firestore
+		this.prepareAndSubmitUser();
 	}
 
 	/**
@@ -201,7 +164,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 */
 	prepareAndSubmitUser() {
 		const newUser: User = this.prepareUser();
-		this.userStoreService.storeUser(newUser).then (() => {
+		this.userStoreService.storeUser(newUser, this.isNewUser).then (() => {
 
 			if (this.isNewUser) {
 				this.router.navigate(['../../users'],
@@ -230,6 +193,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		const formValue = this.userForm.value;
 		const newUser: User = {...formValue};
 		newUser.active = true;
+		newUser.emailVerified = false;
 
 		// Firebase-Authentication UID setzen
 		newUser.authUid = this.user.authUid;
@@ -258,6 +222,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get lastname() { return this.userForm.get('lastname'); }
 	get email() { return this.userForm.get('email'); }
 	get company() { return this.userForm.get('company'); }
+	get phone() { return this.userForm.get('phone'); }
 	get password() { return this.userForm.get('password'); }
 
 	/* UI */

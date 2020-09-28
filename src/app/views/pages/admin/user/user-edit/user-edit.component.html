@@ -151,6 +151,14 @@
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
+									<label>Telefon</label><br/>
+									<input type="text" class="form-control" formControlName="phone">
+									<div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+											class="alert alert-danger">
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
 									<label>Passwort</label><br/>
 									<input type="password" class="form-control" formControlName="password">
 									<div *ngIf="password.invalid && (password.dirty || password.touched)"

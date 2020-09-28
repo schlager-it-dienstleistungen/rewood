@@ -24,5 +24,9 @@ service cloud.firestore {
     	allow read;
 			allow write: if true;
     }
+		match /newUsers/{newUsers} {
+    	allow read;
+			allow write: if true;
+    }
   }
 }

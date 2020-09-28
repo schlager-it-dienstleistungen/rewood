@@ -42,13 +42,17 @@ export class UserStoreService {
 	 * Stores the given User and Updates Firebase-AuthenticationEntry if necessary
 	 *
 	 * @param user User to save
+	 * @param isNewUser New User or existing User to save
 	 */
-	storeUser(user: User): Promise<void> {
+	storeUser(user: User, isNewUser: boolean): Promise<void> {
+		// Collection where to store the user
+		const collection = isNewUser ? 'newUsers' : 'users';
+
 		// Create Firestore-Batch
 		const batch = this.afs.firestore.batch();
 
 		// Store new User
-		const userRef = this.afs.collection('users').doc(user.id).ref;
+		const userRef = this.afs.collection(collection).doc(user.id).ref;
 		batch.set(userRef, user);
 
 		// Batch Commit
