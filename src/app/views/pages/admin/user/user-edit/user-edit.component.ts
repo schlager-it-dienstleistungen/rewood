@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService, Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
+import { PasswordFactoryService } from '../../../shared/password-factory.service';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -62,6 +63,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.user.id = this.userStoreService.createUserId();
 			this.rolesSubject.next(this.user.roles);
 			this.categoryNotificationSubject.next(this.user.categoryNotifications);
+			this.user.password = PasswordFactoryService.generatePassword();
 			this.setFormValues(this.user);
 			this.isNewUser = true;
 		}
