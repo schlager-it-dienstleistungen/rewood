@@ -1,8 +1,9 @@
+import { BaseDataType } from './base-data-type';
 import { Dimension } from './dimension';
 import { Location } from './location';
 import { Picture } from './picture';
 
-export interface Product {
+export interface Product extends BaseDataType {
 	id: string;
 	title: string;
 	category: string;

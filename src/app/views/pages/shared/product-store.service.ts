@@ -8,16 +8,20 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
 import { CategoryFactoryService } from './category-factory.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ProductStoreService {
 
-	constructor(private db: AngularFirestore) {}
+	constructor(
+		private afs: AngularFirestore,
+		private afAuth: AngularFireAuth
+	) {}
 
 	getAllProducts(): Observable<Product[]> {
-		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products');
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products');
 		return productsFS.snapshotChanges().pipe(
 			map(products => {
 				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
@@ -26,7 +30,7 @@ export class ProductStoreService {
 	}
 
 	getProductsToCategory(category: string): Observable<Product[]> {
-		const productsFS: AngularFirestoreCollection<Product> = this.db.collection('products', ref => ref.where('category', '==', category));
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products', ref => ref.where('category', '==', category));
 		return productsFS.snapshotChanges().pipe(
 			map(products => {
 				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
@@ -35,13 +39,13 @@ export class ProductStoreService {
 	}
 
 	getProduct(productId: string): Observable<Product> {
-		return this.db.collection('products').doc(productId).snapshotChanges().pipe(
+		return this.afs.collection('products').doc(productId).snapshotChanges().pipe(
 			map(product => ProductFactoryService.fromFirestoreDocument(product.payload.data() as Product, product.payload.id))
 		);
 	}
 
 	createProductId(): string {
-		return this.db.createId();
+		return this.afs.createId();
 	}
 
 	/**
@@ -53,18 +57,27 @@ export class ProductStoreService {
 		const incrementCounter = firebase.firestore.FieldValue.increment(1);
 
 		// Create Firestore-Batch
-		const batch = this.db.firestore.batch();
+		const batch = this.afs.firestore.batch();
 
 		// Store new Product
-		const productRef = this.db.collection('products').doc(product.id).ref;
+		const productRef = this.afs.collection('products').doc(product.id).ref;
+		this.addMetadata(product);
 		batch.set(productRef, product);
 
 		// Increment Category counter
-		const categoryCountRef = this.db.collection('products').doc('count_' + product.category).ref;
+		const categoryCountRef = this.afs.collection('products').doc('count_' + product.category).ref;
 		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
 
 		// Batch Commit
 		return batch.commit();
+	}
+
+	addMetadata(product: Product) {
+		const tst = firebase.firestore.FieldValue.serverTimestamp();
+		const userId = this.afAuth.auth.currentUser.uid;
+
+		product.tstCreate = tst;
+		product.userCreate = userId;
 	}
 
 	/**
@@ -77,7 +90,7 @@ export class ProductStoreService {
 		const category: Category = categoriesArray.find(oneCategory => oneCategory.title.indexOf(title) !== -1);
 
 		// Read the available Product to the Category from Firestore
-		this.db.firestore.collection('products').doc('count_' + category.title).get().then(
+		this.afs.firestore.collection('products').doc('count_' + category.title).get().then(
 			(doc) => {
 				category.numberofproducts = doc.data().count;
 			}

@@ -29,7 +29,9 @@ export class ProductFactoryService {
 			},
 			price: 0.00,
 			status: 0,
-			pictures: []
+			pictures: [],
+			tstCreate: '',
+			userCreate: ''
 		};
 	}
 }
