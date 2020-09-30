@@ -38,6 +38,23 @@ export class UserStoreService {
 		return this.afs.createId();
 	}
 
+	sendLoginEMailLink(user: User) {
+		const actionCodeSettings = {
+			// Your redirect URL
+			url: 'http://localhost:4200/loginWithEMail',
+			handleCodeInApp: true,
+		};
+
+		this.afAuth.auth.sendSignInLinkToEmail(
+			user.email,
+			actionCodeSettings
+		).then(() => {
+
+		}).catch(error => {
+			console.log('error: ' + error);
+		});
+	}
+
 	/**
 	 * Stores the given User and Updates Firebase-AuthenticationEntry if necessary
 	 *

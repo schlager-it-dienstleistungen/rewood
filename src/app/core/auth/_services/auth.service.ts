@@ -77,6 +77,11 @@ export class AuthService {
 			});*/
 	}
 
+	confirmSignIn(email: string, url: string): Promise<any> {
+		debugger;
+		return this.afAuth.auth.signInWithEmailLink(email, url);
+	}
+
 	/*
    * Submit forgot password request
    *

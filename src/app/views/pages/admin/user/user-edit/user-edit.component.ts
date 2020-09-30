@@ -166,6 +166,10 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 */
 	prepareAndSubmitUser() {
 		const newUser: User = this.prepareUser();
+
+		this.userStoreService.sendLoginEMailLink(newUser);
+		return;
+
 		this.userStoreService.storeUser(newUser, this.isNewUser).then (() => {
 
 			if (this.isNewUser) {

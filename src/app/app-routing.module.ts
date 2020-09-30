@@ -9,6 +9,9 @@ import { AuthGuard } from './core/auth';
 import { AboutComponent } from './views/pages/general/about/about.component';
 import { TeamComponent } from './views/pages/general/team/team.component';
 import { ContactComponent } from './views/pages/general/contact/contact.component';
+import { LoginEmailComponent } from './views/pages/login-email/login-email.component';
+import { LoginComponent } from './views/pages/auth/login/login.component';
+import { UserListComponent } from './views/pages/admin/user/user-list/user-list.component';
 
 const routes: Routes = [
 	{
@@ -47,6 +50,10 @@ const routes: Routes = [
 			{
 				path: 'general/contact',
 				component: ContactComponent
+			},
+			{
+				path: 'loginWithEMail',
+				component: LoginEmailComponent
 			},
 			{
 				path: 'error/403',

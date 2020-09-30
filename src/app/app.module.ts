@@ -98,6 +98,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 import * as firebase from 'firebase';
+import { MatFormFieldModule } from '@angular/material/form-field';
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
