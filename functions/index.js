@@ -52,6 +52,8 @@ exports.createUser = functions
 	.document('newUsers/{userId}')
 	.onCreate(async (snap, context) => {
 		const userId = context.params.userId;
+		console.log('snap: ' + JSON.stringify(snap));
+		console.log('userId: ' + userId);
 
 		// Create Firebase Authentication User
     const newUser = await admin.auth().createUser({
@@ -62,9 +64,7 @@ exports.createUser = functions
         phone: snap.get('phoneNumber')
 		});
 
-		console.log('userId: ' + userId);
 		console.log('newUser: ' + JSON.stringify(newUser));
-		console.log('snap: ' + JSON.stringify(snap));
 
     // Create Firestore User with additional Fields
     await admin.firestore().collection('users').doc(userId).set({
@@ -84,9 +84,37 @@ exports.createUser = functions
 				userCreate: snap.get('userCreate')
 		});
 
+		// Send Reset Password Mail
+		await sendResetPasswordMail(snap);
+
     // Delete the temp document
     return admin.firestore().collection('newUsers').doc(userId).delete();
 });
+
+var sendResetPasswordMail = function (snap){
+	console.log('generatePasswordLink - snap: ' + JSON.stringify(snap));
+
+	admin.auth().generatePasswordResetLink(snap.get('email')).then(resetLink => {
+		console.log('resetLink: ' + resetLink);
+
+		const mailOptions = {
+			from: `rewood <noreply@rewood.at`,
+			to: snap.get('email'),
+			subject: 'REWOOD - reset password',
+			text: 'Hello,\n\nFollow this link to reset your rewood password for your ' + snap.get('email') + ' account.\n\n' + resetLink + '\n\nIf you didn’t ask to reset your password, you can ignore this email.\n\nThanks,\n\nYour rewood team'
+		};
+
+		return transporter.sendMail(mailOptions, (error, data) => {
+				if (error) {
+						console.error('Error in SendMail: ' + error);
+				}
+				console.log("Sent, with data: " + JSON.stringify(data));
+		});
+	}).catch(error => {
+		console.error('Error in generatePasswordResetLink: ' + error);
+		return;
+	});
+};
 
 exports.sendEmail = functions
 		.region('europe-west3')

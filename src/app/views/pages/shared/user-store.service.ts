@@ -58,9 +58,6 @@ export class UserStoreService {
 		const userRef = this.afs.collection(collection).doc(user.id).ref;
 		batch.set(userRef, user);
 
-		// Update Timestamp
-
-
 		// Batch Commit
 		return batch.commit();
 	}
