@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService, Role, selectAllRoles } from 'src/app/core/auth';
+import { Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
 import { PasswordFactoryService } from '../../../shared/password-factory.service';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
+import { UserEmailExistsValidatorService } from '../../shared/user-email-exists-validator.service';
 
 @Component({
 	selector: 'rw-user-edit',
@@ -34,38 +35,41 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
-		private auth: AuthService,
 		private cdr: ChangeDetectorRef,
 		private userStoreService: UserStoreService,
 		private userFactory: UserFactoryService,
+		private userEmailExistsValidator: UserEmailExistsValidatorService,
 		private store: Store<AppState>) {
 	}
 
 	ngOnInit(): void {
-		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
-		this.initForm();
-
 		const params = this.route.snapshot.paramMap;
 		const id = params.get('id');
 		if (id && id.length > 0) {
-			this.userStoreService.getUser(id).subscribe(res => {
-				if (res) {
-					this.user = res;
-					this.rolesSubject.next(this.user.roles);
-					this.categoryNotificationSubject.next(this.user.categoryNotifications);
-					this.setFormValues(this.user);
-					this.isNewUser = false;
-				}
-			});
+			this.isNewUser = false;
 		} else {
-			// New User
+			this.isNewUser = true;
+		}
+
+		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
+		this.initForm();
+
+		if (this.isNewUser) {
 			this.user = UserFactoryService.empty();
 			this.user.id = this.userStoreService.createUserId();
 			this.rolesSubject.next(this.user.roles);
 			this.categoryNotificationSubject.next(this.user.categoryNotifications);
 			this.user.password = PasswordFactoryService.generatePassword();
 			this.setFormValues(this.user);
-			this.isNewUser = true;
+		} else {
+			this.userStoreService.getUser(id).subscribe(res => {
+				if (res) {
+					this.user = res;
+					this.rolesSubject.next(this.user.roles);
+					this.categoryNotificationSubject.next(this.user.categoryNotifications);
+					this.setFormValues(this.user);
+				}
+			});
 		}
 	}
 
@@ -115,9 +119,14 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			lastname: ['', [
 				Validators.required,
 				Validators.minLength(3)]],
-			email: ['', [
-				Validators.required,
-				Validators.minLength(6)]],
+			email: [
+				{value: '', disabled: !this.isNewUser },
+				[
+					Validators.required,
+					Validators.minLength(6)
+				],
+				this.isNewUser ? [this.userEmailExistsValidator] : null
+			],
 			company: ['', [ Validators.required]],
 			phone: [''],
 			password: ['']
@@ -166,6 +175,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 */
 	prepareAndSubmitUser() {
 		const newUser: User = this.prepareUser();
+
 		this.userStoreService.storeUser(newUser, this.isNewUser).then (() => {
 
 			if (this.isNewUser) {

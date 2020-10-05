@@ -133,6 +133,9 @@
 										<div *ngIf="email.errors.minlength">
 											E-Mail muss zumindest 6 Zeichen lang sein.
 										</div>
+										<div *ngIf="email.errors.UserEmailExists">
+											The email address is already in use by another account.
+										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>

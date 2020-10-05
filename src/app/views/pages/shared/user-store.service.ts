@@ -62,6 +62,14 @@ export class UserStoreService {
 		return batch.commit();
 	}
 
+	doesUserExists(email: string): Observable<boolean> {
+		return this.afs.collection('users', ref => ref.where('email' , '==', email))
+			.valueChanges()
+			.pipe(
+				map(docs => docs.length >= 1)
+			);
+	}
+
 	addMetadata(user: User, isNewUser: boolean) {
 		const tst = firebase.firestore.FieldValue.serverTimestamp();
 		const userId = this.afAuth.auth.currentUser.uid;
