@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/reducers';
+import { LocationService } from '../../../shared/location.service';
 import { Supplier } from '../../../shared/supplier';
 import { SupplierFactoryService } from '../../../shared/supplier-factory.service';
 import { SupplierStoreService } from '../../../shared/supplier-store.service';
@@ -21,6 +22,9 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 	hasFormErrors = false;
 	formErrorMessage = '';
 	isNewSupplier: boolean;
+
+	// Countries
+	countries = LocationService.getCountries();
 
 	constructor(
 		private fb: FormBuilder,
@@ -111,27 +115,14 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 	}
 
 	private setFormValues(supplier: Supplier) {
-//		this.userForm.patchValue(user);
-
-		/*this.userForm.setControl(
-			'thumbnails',
-			this.buildThumbnailsArray(product.thumbnails)
-		);*/
+		this.supplierForm.patchValue(supplier);
 	}
 
 	onSubmit() {
-		this.submitForm(false);
-	}
-
-	onSubmitAndNew() {
-		this.submitForm(true);
-	}
-
-	submitForm(submitAndNewUser: boolean) {
-/*		this.hasFormErrors = false;
-		const controls = this.userForm.controls;
-		/** check form
-		if (this.userForm.invalid) {
+		this.hasFormErrors = false;
+		const controls = this.supplierForm.controls;
+		/** check form */
+		if (this.supplierForm.invalid) {
 			Object.keys(controls).forEach(controlName =>
 				controls[controlName].markAsTouched()
 			);
@@ -143,25 +134,25 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 		this.submitted = true;
 
-		// Store User in Firestore
-		this.prepareAndSubmitUser();*/
+		// Store Supplier in Firestore
+		this.prepareAndSubmitSupplier();
 	}
 
 	/**
-	 * Store User
+	 * Store Supplier
 	 */
-	prepareAndSubmitUser() {
-/*		const newUser: User = this.prepareUser();
+	prepareAndSubmitSupplier() {
+		const newSupplier: Supplier = this.prepareSupplier();
 
-		this.userStoreService.storeUser(newUser, this.isNewUser).then (() => {
+		this.supplierStoreService.storeSupplier(newSupplier, this.isNewSupplier).then (() => {
 
-			if (this.isNewUser) {
-				this.router.navigate(['../../users'],
-					{ relativeTo: this.route, queryParams: {newUser: true} }
+			if (this.isNewSupplier) {
+				this.router.navigate(['../../suppliers'],
+					{ relativeTo: this.route, queryParams: {newSupplier: true} }
 				);
 			} else {
-				this.router.navigate(['../../../users'],
-					{ relativeTo: this.route, queryParams: {editUser: true} }
+				this.router.navigate(['../../../suppliers'],
+					{ relativeTo: this.route, queryParams: {editSupplier: true} }
 				);
 			}
 
@@ -172,33 +163,23 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 			// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
 		}).finally(() => {
 			this.cdr.markForCheck();
-		});*/
+		});
 	}
 
 	/**
 	 * Returns prepared data for save
 	 */
-/*	prepareUser(): User {
-		const formValue = this.userForm.value;
-		const newUser: User = {...formValue};
-		newUser.active = true;
-		newUser.emailVerified = false;
-
-		// Firebase-Authentication UID setzen
-		newUser.authUid = this.user.authUid;
+	prepareSupplier(): Supplier {
+		const formValue = this.supplierForm.value;
+		const newSupplier: Supplier = {...formValue};
+		newSupplier.active = true;
 
 		// MetaData
-		newUser.tstCreate = this.user.tstCreate;
-		newUser.userCreate = this.user.userCreate;
+		newSupplier.tstCreate = this.supplier.tstCreate;
+		newSupplier.userCreate = this.supplier.userCreate;
 
-		// Rollen setzen
-		newUser.roles = this.rolesSubject.value;
-
-		// Category Notifications
-		newUser.categoryNotifications = this.categoryNotificationSubject.value;
-
-		return newUser;
-	}*/
+		return newSupplier;
+	}
 
 	/**
 	 * Close Alert
