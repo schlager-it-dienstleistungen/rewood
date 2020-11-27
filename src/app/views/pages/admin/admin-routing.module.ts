@@ -5,6 +5,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,22 @@ const routes: Routes = [
 			{
 				path: 'suppliers',
 				component: SupplierListComponent
+			},
+			{
+				path: 'suppliers/add',
+				component: SupplierEditComponent
+			},
+			{
+				path: 'suppliers/add:id',
+				component: SupplierEditComponent
+			},
+			{
+				path: 'suppliers/edit',
+				component: SupplierEditComponent
+			},
+			{
+				path: 'suppliers/edit:id',
+				component: SupplierEditComponent
 			},
 			{
 				path: 'createProduct',

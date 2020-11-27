@@ -26,12 +26,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatOptionModule } from '@angular/material/core';
 import { UserNotificationsListComponent } from './user/user-edit/subs/user-notifications-list/user-notifications-list.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
 
 
 @NgModule({
 	declarations: [AdminComponent, CreateProductComponent, ProductFormComponent,
 		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent,
-		UserRolesListComponent, UserNotificationsListComponent, SupplierListComponent],
+		UserRolesListComponent, UserNotificationsListComponent, SupplierListComponent, SupplierEditComponent],
 	imports: [
 		MatInputModule,
 		CommonModule,
