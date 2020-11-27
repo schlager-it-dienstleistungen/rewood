@@ -32,5 +32,17 @@ service cloud.firestore {
     	allow read;
 			allow write: if true;
     }
+		match /suppliers/{suppliers} {
+    	allow read;
+			allow write: if true;
+    }
+		match /newSuppliers/{newSuppliers} {
+    	allow read;
+			allow write: if true;
+    }
+		match /delSuppliers/{delSuppliers} {
+    	allow read;
+			allow write: if true;
+    }
   }
 }
