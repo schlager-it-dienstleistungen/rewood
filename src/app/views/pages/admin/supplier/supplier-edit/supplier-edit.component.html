@@ -1,1 +1,222 @@
-<p>supplier-edit works!</p>
+<kt-portlet>
+	<kt-portlet-body>
+
+		<!--begin: Wizard -->
+		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2" data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-wizard-v2__aside">
+				<!--begin: Form Wizard Nav -->
+				<div class="kt-wizard-v2__nav">
+					<div class="kt-wizard-v2__nav-items">
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-globe"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Firmeninformation
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Geben Sie allgemeine Informationen an
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-responsive"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Standort
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Standort des Lieferanten
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="flaticon-confetti"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Abschluss
+									</div>
+									<div class="kt-wizard-v2__nav-label-desc">
+										Zusammenfassung und Bestellung
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--end: Form Wizard Nav -->
+
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+				<!--begin: Form Wizard Form-->
+				<form class="kt-form" id="kt_form" [formGroup]="supplierForm">
+					<!--begin: Form Wizard Step 1-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Geben Sie allgemeine Informationen an</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Firmenname</label><br/>
+									<input type="text" class="form-control" formControlName="name" required minlength="3">
+									<div *ngIf="name.invalid && (name.dirty || name.touched)"
+											class="alert alert-danger">
+										<div *ngIf="name.errors.required">
+											Es muss ein Firmenname eingegeben werden.
+										</div>
+										<div *ngIf="name.errors.minlength">
+											Firmenname muss zumindest 3 Zeichen lang sein.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>Telefon</label><br/>
+									<input type="text" class="form-control" formControlName="phone">
+								</div>
+								<div class="form-group">
+									<label>E-Mail</label><br/>
+									<input type="text" class="form-control" formControlName="email">
+								</div>
+								<div class="form-group">
+									<label>Homepage</label><br/>
+									<input type="text" class="form-control" formControlName="homepage">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 1-->
+
+					<!--begin: Form Wizard Step 2-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Adresse der Firma</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="form-group">
+									<label>Adresszeile 1</label>
+									<input type="text" class="form-control" formControlName="address1" required>
+									<div *ngIf="address1.invalid && (address1.dirty || address1.touched)"
+											class="alert alert-danger">
+										<div *ngIf="address1.errors.required">
+											Es muss eine Adresse eingegeben werden.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 1 an.</span>-->
+								</div>
+								<div class="form-group">
+									<label>Adresszeile 2</label>
+									<input type="text" class="form-control" formControlName="address2">
+									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 2 an.</span>-->
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>PLZ</label>
+											<input type="text" class="form-control" formControlName="postcode" required>
+											<div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)"
+													class="alert alert-danger">
+												<div *ngIf="postcode.errors">
+													PLZ
+												</div>
+											</div>
+											<!--<span class="form-text text-muted">PLZ</span>-->
+										</div>
+									</div>
+									<div class="col-xl-9">
+										<div class="form-group">
+											<label>Ort</label>
+											<input type="text" class="form-control" formControlName="city" required>
+											<div *ngIf="city.invalid && (city.dirty || city.touched)"
+													class="alert alert-danger">
+												<div *ngIf="city.errors.required">
+													Es muss ein Ort eingegeben werden.
+												</div>
+											</div>
+											<!--<span class="form-text text-muted">Bitte geben Sie den Ort.</span>-->
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Land</label>
+									<select class="form-control" formControlName="country" required>
+										<option *ngFor="let country of countries" value="{{country.code}}">{{country.country}}</option>
+									</select>
+									<div *ngIf="country.invalid && (country.dirty || country.touched)"
+											class="alert alert-danger">
+										<div *ngIf="country.errors.required">
+											Es muss ein Land eingegeben werden.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 2-->
+
+					<!--begin: Form Wizard Step 3-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__review">
+								<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
+									{{ formErrorMessage }}
+								</kt-alert>
+
+								<div class="kt-wizard-v2__review-item">
+									<div class="kt-wizard-v2__review-title">
+										Firmeninformationen
+									</div>
+									<div class="kt-wizard-v2__review-content">
+										Firmenname: {{ supplierForm.get('name').value }}<br/>
+										Telefon: {{ supplierForm.get('phone').value }}<br/>
+										E-Mail: {{ supplierForm.get('email').value }}<br/>
+										Homepage: {{ supplierForm.get('homepage').value }}
+									</div>
+								</div>
+								<div class="kt-wizard-v2__review-item">
+									<div class="kt-wizard-v2__review-title">
+										Standort
+									</div>
+									<div class="kt-wizard-v2__review-content">
+										{{ supplierForm.get('address1').value }}<br/>
+										{{ supplierForm.get('address2').value }}<br/>
+										{{ supplierForm.get('postcode').value }}, {{ supplierForm.get('city').value }}<br/>
+										{{ supplierForm.get('country').value }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 3-->
+
+					<!--begin: Form Actions -->
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+							Zurück
+						</div>
+						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+							Speichern
+						</div>
+						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+							Nächster Schritt
+						</div>
+					</div>
+					<!--end: Form Actions -->
+				</form>
+				<!--end: Form Wizard Form-->
+			</div>
+
+		</div>
+		<!--end: Wizard -->
+
+	</kt-portlet-body>
+</kt-portlet>
