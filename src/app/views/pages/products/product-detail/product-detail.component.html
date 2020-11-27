@@ -18,9 +18,11 @@
 						<div class="rw-detail__content">Länge (in mm): {{ product.dimension.length }}</div>
 						<div class="rw-detail__content">Breite (in mm): {{ product.dimension.width }}</div>
 						<div class="rw-detail__content">Stärke (in mm): {{ product.dimension.height }}</div>
-						<div class="rw-detail__content">Volumen (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height / 1000000000  | number:'1.4-4'}}</div>
+						<div class="rw-detail__content">Volumen/Stück (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height / 1000000000  | number:'1.4-4'}}</div>
 						<div class="rw-detail__content">Stückzahl (in m³): {{ product.dimension.quantity }}</div>
+						<div class="rw-detail__content">Gesamtvolumen (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity / 1000000000  | number:'1.2-2'}}</div>
 						<div class="rw-detail__content">Preis pro m³: {{ product.price | currency:'EUR' }}</div>
+						<div class="rw-detail__content">Gesamtpreis: {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity * product.price / 1000000000  | currency:'EUR'}}</div>
 					</div>
 					<div class="rw-detail__item">
 						<div class="rw-detail__title">Adresse</div>

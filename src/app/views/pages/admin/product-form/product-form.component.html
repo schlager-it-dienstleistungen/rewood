@@ -163,7 +163,7 @@
 
 					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Geben Sie die Abemssungen an</div>
+						<div class="kt-heading kt-heading--md">Geben Sie die Abmessungen an</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
@@ -200,7 +200,7 @@
 									<span class="form-text text-muted">Bitte geben Sie die Stärke (in mm) an.</span>
 								</div>
 								<div class="form-group">
-									<label>Volumen (in m³)</label>
+									<label>Volumen/Stück (in m³)</label>
 									{{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value / 1000000000  | number:'1.4-4'}}
 								</div>
 								<div class="form-group">
@@ -215,6 +215,10 @@
 									<span class="form-text text-muted">Bitte geben Sie die Stückzahl (in m³) an.</span>
 								</div>
 								<div class="form-group">
+									<label>Gesamtvolumen (in m³)</label>
+									{{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value * productForm.get('quantity').value / 1000000000  | number:'1.2-2'}}
+								</div>
+								<div class="form-group">
 									<label>Preis pro m³ in €</label>
 									<input type="number" class="form-control" formControlName="price" required>
 									<div *ngIf="price.invalid && (price.dirty || price.touched)"
@@ -224,6 +228,10 @@
 										</div>
 									</div>
 									<span class="form-text text-muted">Bitte geben Sie den Preis pro m³ an.</span>
+								</div>
+								<div class="form-group">
+									<label>Gesamtpreis</label>
+									{{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value * productForm.get('quantity').value * productForm.get('price').value / 1000000000  | currency:'EUR'}}
 								</div>
 							</div>
 						</div>
@@ -326,15 +334,17 @@
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Abemssungen
+										Abmessungen
 									</div>
 									<div class="kt-wizard-v2__review-content">
 										Länge (in mm): {{ productForm.get('length').value }}<br/>
 										Breite (in mm): {{ productForm.get('width').value }}<br/>
 										Stärke (in mm): {{ productForm.get('height').value }}<br/>
-										Volumen (in m³): {{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value / 1000000000  | number:'1.2-2'}}<br/>
+										Volumen/Stück (in m³): {{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value / 1000000000  | number:'1.2-2'}}<br/>
 										Stückzahl (in m³): {{ productForm.get('quantity').value }}<br/>
-										Preis (pro m³): {{ productForm.get('price').value | currency:'EUR' }}
+										Gesamtvolumen (in m³): {{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value * productForm.get('quantity').value / 1000000000  | number:'1.2-2'}}<br/>
+										Preis (pro m³): {{ productForm.get('price').value | currency:'EUR' }}<br/>
+										Gesamtpreis: {{ productForm.get('length').value * productForm.get('width').value * productForm.get('height').value * productForm.get('quantity').value * productForm.get('price').value / 1000000000  | number:'1.2-2'}}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
