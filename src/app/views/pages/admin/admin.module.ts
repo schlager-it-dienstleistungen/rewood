@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
@@ -27,13 +25,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatOptionModule } from '@angular/material/core';
 import { UserNotificationsListComponent } from './user/user-edit/subs/user-notifications-list/user-notifications-list.component';
+import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 
 
 @NgModule({
-	declarations: [AdminComponent,
-		CreateSupplierComponent, CreateProductComponent, ProductFormComponent, SupplierFormComponent,
+	declarations: [AdminComponent, CreateProductComponent, ProductFormComponent,
 		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent,
-		UserRolesListComponent, UserNotificationsListComponent],
+		UserRolesListComponent, UserNotificationsListComponent, SupplierListComponent],
 	imports: [
 		MatInputModule,
 		CommonModule,

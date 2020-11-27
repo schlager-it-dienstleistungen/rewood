@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
-import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 
 
 const routes: Routes = [
@@ -13,8 +13,8 @@ const routes: Routes = [
 		component: AdminComponent,
 		children: [
 			{
-				path: 'createSupplier',
-				component: CreateSupplierComponent
+				path: 'suppliers',
+				component: SupplierListComponent
 			},
 			{
 				path: 'createProduct',

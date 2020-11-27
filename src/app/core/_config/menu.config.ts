@@ -22,8 +22,8 @@ export class MenuConfig {
 					alignment: 'left',
 					submenu: [
 						{
-							title: 'Neuer Lieferant',
-							page: '/admin/createSupplier'
+							title: 'Lieferanten',
+							page: '/admin/suppliers'
 						},
 						{
 							title: 'Neues Produkt',
