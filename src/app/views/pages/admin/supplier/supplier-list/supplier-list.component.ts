@@ -1,15 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
+import { Supplier } from '../../../shared/supplier';
+import { SupplierFactoryService } from '../../../shared/supplier-factory.service';
+import { SupplierStoreService } from '../../../shared/supplier-store.service';
 
 @Component({
-  selector: 'rw-supplier-list',
-  templateUrl: './supplier-list.component.html',
-  styleUrls: ['./supplier-list.component.scss']
+	selector: 'rw-supplier-list',
+	templateUrl: './supplier-list.component.html',
+	styleUrls: ['./supplier-list.component.scss']
 })
-export class SupplierListComponent implements OnInit {
+export class SupplierListComponent implements OnInit, AfterViewInit {
+	// Paginator
+	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+	// Sort
+	@ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+	dataSource: MatTableDataSource<Supplier>;
+	isLoading = false;
 
-  ngOnInit(): void {
-  }
+	// Table Fields
+	displayedColumns = ['name', 'country', 'actions'];
+
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private supplierService: SupplierStoreService,
+		private supplierFactory: SupplierFactoryService,
+		private layoutUtilsService: LayoutUtilsService
+	) { }
+
+	ngOnInit() {
+		this.isLoading = true;
+
+		// If a New Supplier was created --> Show Message
+		this.route.queryParams
+			.subscribe(queryParams => {
+				if (queryParams.newSupplier === 'true') {
+					const message = `Neuer Lieferant wurde erfolgreich angelegt.`;
+					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+				}
+			});
+
+		// If a Existing Supplier was saved --> Show Message
+		this.route.queryParams
+			.subscribe(queryParams => {
+				if (queryParams.editSupplier === 'true') {
+					const message = `Lieferant wurde erfolgreich geändert.`;
+					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+				}
+			});
+	}
+
+	/**
+  * Set the paginator and sort after the view init since this component will
+  * be able to query its view for the initialized paginator and sort.
+  */
+	ngAfterViewInit() {
+		this.supplierService.getAllActiveSuppliers().subscribe(data => {
+			this.isLoading = false;
+			this.dataSource = new MatTableDataSource<Supplier>(data);
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
+	}
+
+	doFilter(filterValue: string) {
+		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+	}
 
 }
