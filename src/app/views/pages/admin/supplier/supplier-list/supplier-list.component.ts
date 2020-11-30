@@ -72,4 +72,29 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 	}
 
+	/**
+	 * Delete Supplier - here: set inactive
+	 *
+	 * @param item: Supplier
+	 */
+	deleteSupplier(toDelete: Supplier) {
+		const title = 'Delete Supplier';
+		const description = 'Are you sure to permanently delete this supplier?';
+		const waitDesciption = 'Supplier is deleting...';
+		const deleteMessage = `Supplier has been deleted`;
+
+		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
+		dialogRef.afterClosed().subscribe(res => {
+			if (!res) {
+				return;
+			}
+
+			this.supplierService.inactivateSupplier(toDelete).then(() => {
+				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+			}).catch(error => {
+				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+			});
+		});
+	}
+
 }

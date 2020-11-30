@@ -43,18 +43,40 @@ export class SupplierStoreService {
 
 		// Store new Product
 		const supplierRef = this.afs.collection('suppliers').doc(supplier.id).ref;
-		this.addMetadata(supplier, isNewSupplier);
+		this.addMetadata(supplier, isNewSupplier, false);
 		batch.set(supplierRef, supplier);
 
 		// Batch Commit
 		return batch.commit();
 	}
 
-	addMetadata(supplier: Supplier, isNewSupplier: boolean) {
+	/**
+	 * Deactivate supplier
+	 *
+	 * @param supplier supplier to deactivate
+	 */
+	inactivateSupplier(supplier: Supplier): Promise<void> {
+		// Create Firestore-Batch
+		const batch = this.afs.firestore.batch();
+
+		// Store new Product
+		const supplierRef = this.afs.collection('suppliers').doc(supplier.id).ref;
+		this.addMetadata(supplier, false, true);
+		supplier.active = false;
+		batch.set(supplierRef, supplier);
+
+		// Batch Commit
+		return batch.commit();
+	}
+
+	addMetadata(supplier: Supplier, isNewSupplier: boolean, isDeleteSupplier: boolean) {
 		const tst = firebase.firestore.FieldValue.serverTimestamp();
 		const userId = this.afAuth.auth.currentUser.uid;
 
-		if (isNewSupplier) {
+		if (isDeleteSupplier) {
+			supplier.tstDelete = tst;
+			supplier.userDelete = userId;
+		} else if (isNewSupplier) {
 			supplier.tstCreate = tst;
 			supplier.userCreate = userId;
 		} else {
