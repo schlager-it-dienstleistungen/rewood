@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef,  OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -18,7 +18,6 @@ import { UserEmailExistsValidatorService } from '../../shared/user-email-exists-
 })
 export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	userForm: FormGroup;
-	@Output() submitUser = new EventEmitter<{newProduct: User, submitAndNewUser: boolean}>();
 	user: User;
 
 	rolesSubject = new BehaviorSubject<number[]>([]);
