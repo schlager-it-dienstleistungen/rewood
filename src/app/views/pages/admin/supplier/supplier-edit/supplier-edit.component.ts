@@ -52,14 +52,12 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.supplier.id = this.supplierStoreService.createSupplierId();
 			this.setFormValues(this.supplier);
 		} else {
-/*			this.userStoreService.getUser(id).subscribe(res => {
+			this.supplierStoreService.getSupplier(id).subscribe(res => {
 				if (res) {
-					this.user = res;
-					this.rolesSubject.next(this.user.roles);
-					this.categoryNotificationSubject.next(this.user.categoryNotifications);
-					this.setFormValues(this.user);
+					this.supplier = res;
+					this.setFormValues(this.supplier);
 				}
-			});*/
+			});
 		}
 	}
 

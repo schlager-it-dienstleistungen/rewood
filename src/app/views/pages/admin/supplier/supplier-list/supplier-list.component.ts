@@ -72,6 +72,14 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 	}
 
+	/** ACTIONS */
+	/**
+	 * Redirect to edit page
+	 */
+	editSupplier(id) {
+		this.router.navigate(['../suppliers/edit', id], { relativeTo: this.route });
+	}
+
 	/**
 	 * Delete Supplier - here: set inactive
 	 *

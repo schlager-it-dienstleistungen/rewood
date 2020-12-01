@@ -27,6 +27,12 @@ export class SupplierStoreService {
 		);
 	}
 
+	getSupplier(supplierId: string): Observable<Supplier> {
+		return this.afs.collection('suppliers').doc(supplierId).snapshotChanges().pipe(
+			map(product => SupplierFactoryService.fromFirestoreDocument(product.payload.data() as Supplier, product.payload.id))
+		);
+	}
+
 	createSupplierId(): string {
 		return this.afs.createId();
 	}

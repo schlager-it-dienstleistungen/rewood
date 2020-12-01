@@ -30,7 +30,7 @@ const routes: Routes = [
 				component: SupplierEditComponent
 			},
 			{
-				path: 'suppliers/edit:id',
+				path: 'suppliers/edit/:id',
 				component: SupplierEditComponent
 			},
 			{
