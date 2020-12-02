@@ -122,7 +122,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 				{value: '', disabled: !this.isNewUser },
 				[
 					Validators.required,
-					Validators.minLength(6)
+					Validators.email
 				],
 				this.isNewUser ? [this.userEmailExistsValidator] : null
 			],

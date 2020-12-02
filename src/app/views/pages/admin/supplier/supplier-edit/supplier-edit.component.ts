@@ -103,7 +103,7 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 				Validators.minLength(3)]],
 			homepage: [''],
 			phone: [''],
-			email: [''],
+			email: ['', Validators.email],
 			address1: ['', Validators.required],
 			address2: [''],
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
