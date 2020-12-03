@@ -1,1 +1,10 @@
-<p>product-list works!</p>
+<kt-portlet>
+	<kt-portlet-header title="Produkte">
+		<ng-container ktPortletTools>
+			<button [routerLink]="['../adminproducts/add']" mat-raised-button color="primary" matTooltip="Lege ein neues Produkt an">Neues Produkt</button>
+			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->
+			<!-- mat-raised-button | Rectangular contained button w/ elevation  -->
+		</ng-container>
+	</kt-portlet-header>
+
+</kt-portlet>

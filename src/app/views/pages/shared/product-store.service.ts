@@ -49,11 +49,12 @@ export class ProductStoreService {
 	}
 
 	/**
-	 * Store the given Product and increases the counter for this Category of Product
+	 * Store the given Product
 	 *
 	 * @param product Product to save
+	 * @param isNewProduct New Product or existing Product to save
 	 */
-	createProduct(product: Product): Promise<void> {
+	storeProduct(product: Product, isNewProduct: boolean): Promise<void> {
 		const incrementCounter = firebase.firestore.FieldValue.increment(1);
 
 		// Create Firestore-Batch
@@ -61,7 +62,7 @@ export class ProductStoreService {
 
 		// Store new Product
 		const productRef = this.afs.collection('products').doc(product.id).ref;
-		this.addMetadata(product);
+		this.addMetadata(product, isNewProduct, false);
 		batch.set(productRef, product);
 
 		// Increment Category counter
@@ -72,12 +73,45 @@ export class ProductStoreService {
 		return batch.commit();
 	}
 
-	addMetadata(product: Product) {
+	/**
+	 * Store the given Product and increases the counter for this Category of Product
+	 *
+	 * @param product Product to save
+	 * @deprecated
+	 */
+	createProduct(product: Product): Promise<void> {
+		const incrementCounter = firebase.firestore.FieldValue.increment(1);
+
+		// Create Firestore-Batch
+		const batch = this.afs.firestore.batch();
+
+		// Store new Product
+		const productRef = this.afs.collection('products').doc(product.id).ref;
+		this.addMetadata(product, false, false);
+		batch.set(productRef, product);
+
+		// Increment Category counter
+		const categoryCountRef = this.afs.collection('products').doc('count_' + product.category).ref;
+		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
+
+		// Batch Commit
+		return batch.commit();
+	}
+
+	addMetadata(product: Product, isNewProduct: boolean, isDeleteProduct: boolean) {
 		const tst = firebase.firestore.FieldValue.serverTimestamp();
 		const userId = this.afAuth.auth.currentUser.uid;
 
-		product.tstCreate = tst;
-		product.userCreate = userId;
+		if (isDeleteProduct) {
+			product.tstDelete = tst;
+			product.userDelete = userId;
+		} else if (isNewProduct) {
+			product.tstCreate = tst;
+			product.userCreate = userId;
+		} else {
+			product.tstUpdate = tst;
+			product.userUpdate = userId;
+		}
 	}
 
 	/**

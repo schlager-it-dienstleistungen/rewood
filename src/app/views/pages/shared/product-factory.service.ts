@@ -31,7 +31,8 @@ export class ProductFactoryService {
 			status: 0,
 			pictures: [],
 			tstCreate: '',
-			userCreate: ''
+			userCreate: '',
+			active: true
 		};
 	}
 }
