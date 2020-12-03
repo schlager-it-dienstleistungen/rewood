@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
-import { CreateProductComponent } from './create-product/create-product.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 
 const routes: Routes = [
@@ -34,8 +35,24 @@ const routes: Routes = [
 				component: SupplierEditComponent
 			},
 			{
-				path: 'createProduct',
-				component: CreateProductComponent
+				path: 'adminproducts',
+				component: ProductListComponent
+			},
+			{
+				path: 'adminproducts/add',
+				component: ProductEditComponent
+			},
+			{
+				path: 'adminproducts/add:id',
+				component: ProductEditComponent
+			},
+			{
+				path: 'adminproducts/edit',
+				component: ProductEditComponent
+			},
+			{
+				path: 'adminproducts/edit/:id',
+				component: ProductEditComponent
 			},
 			{
 				path: 'users',

@@ -26,12 +26,12 @@ export class MenuConfig {
 							page: '/admin/suppliers'
 						},
 						{
-							title: 'Neues Produkt',
-							page: '/admin/createProduct'
+							title: 'Produkte',
+							page: '/admin/adminproducts'
 						}
 						,
 						{
-							title: 'User',
+							title: 'Benutzer',
 							page: '/admin/users'
 						}
 					]

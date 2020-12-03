@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { CreateProductComponent } from './create-product/create-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from 'src/app/core/core.module';
-import { ProductFormComponent } from './product-form/product-form.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
@@ -27,12 +25,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { UserNotificationsListComponent } from './user/user-edit/subs/user-notifications-list/user-notifications-list.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 
 @NgModule({
-	declarations: [AdminComponent, CreateProductComponent, ProductFormComponent,
-		UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent,
-		UserRolesListComponent, UserNotificationsListComponent, SupplierListComponent, SupplierEditComponent],
+	declarations: [AdminComponent, UploaderComponent, UploadTaskComponent, DropzoneDirective, UserListComponent, UserEditComponent,
+		UserRolesListComponent, UserNotificationsListComponent, SupplierListComponent, SupplierEditComponent,
+		ProductListComponent, ProductEditComponent],
 	imports: [
 		MatInputModule,
 		CommonModule,
