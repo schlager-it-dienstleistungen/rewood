@@ -66,7 +66,7 @@ export class ProductStoreService {
 		batch.set(productRef, product);
 
 		// Increment Category counter
-		const categoryCountRef = this.afs.collection('products').doc('count_' + product.category).ref;
+		const categoryCountRef = this.afs.collection('productcount').doc(product.category).ref;
 		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
 
 		// Batch Commit
@@ -91,7 +91,7 @@ export class ProductStoreService {
 		batch.set(productRef, product);
 
 		// Increment Category counter
-		const categoryCountRef = this.afs.collection('products').doc('count_' + product.category).ref;
+		const categoryCountRef = this.afs.collection('productcount').doc(product.category).ref;
 		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
 
 		// Batch Commit
@@ -124,7 +124,7 @@ export class ProductStoreService {
 		const category: Category = categoriesArray.find(oneCategory => oneCategory.title.indexOf(title) !== -1);
 
 		// Read the available Product to the Category from Firestore
-		this.afs.firestore.collection('products').doc('count_' + category.title).get().then(
+		this.afs.firestore.collection('productcount').doc(category.title).get().then(
 			(doc) => {
 				category.numberofproducts = doc.data().count;
 			}
