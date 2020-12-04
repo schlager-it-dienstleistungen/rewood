@@ -29,6 +29,16 @@ export class ProductStoreService {
 		);
 	}
 
+	getAllActiveProducts(): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
+			ref => ref.where('active', '==', true));
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
+			})
+		);
+	}
+
 	getProductsToCategory(category: string): Observable<Product[]> {
 		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products', ref => ref.where('category', '==', category));
 		return productsFS.snapshotChanges().pipe(
@@ -49,7 +59,7 @@ export class ProductStoreService {
 	}
 
 	/**
-	 * Store the given Product
+	 * Store the given Product and increase CategoryCount if NewProduct
 	 *
 	 * @param product Product to save
 	 * @param isNewProduct New Product or existing Product to save
@@ -66,6 +76,33 @@ export class ProductStoreService {
 		batch.set(productRef, product);
 
 		// Increment Category counter
+		if (isNewProduct) {
+			const categoryCountRef = this.afs.collection('productcount').doc(product.category).ref;
+			batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
+		}
+
+		// Batch Commit
+		return batch.commit();
+	}
+
+	/**
+	 * Deactivate Product and decrease the count for categors
+	 *
+	 * @param product Product to deactivate
+	 */
+	inactivateSupplier(product: Product): Promise<void> {
+		const incrementCounter = firebase.firestore.FieldValue.increment(-1);
+
+		// Create Firestore-Batch
+		const batch = this.afs.firestore.batch();
+
+		// Store new Product
+		const productRef = this.afs.collection('products').doc(product.id).ref;
+		this.addMetadata(product, false, true);
+		product.active = false;
+		batch.set(productRef, product);
+
+		// Decrease CategoryCounter
 		const categoryCountRef = this.afs.collection('productcount').doc(product.category).ref;
 		batch.set(categoryCountRef, { count: incrementCounter }, {merge: true });
 

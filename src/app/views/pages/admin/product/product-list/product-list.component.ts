@@ -61,7 +61,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.productService.getAllProducts().subscribe(data => {
+		this.productService.getAllActiveProducts().subscribe(data => {
 			this.isLoading = false;
 			this.dataSource = new MatTableDataSource<Product>(data);
 			this.dataSource.paginator = this.paginator;
@@ -71,6 +71,31 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
 	doFilter(filterValue: string) {
 		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+	}
+
+	/**
+	 * Delete Product - here: set inactive
+	 *
+	 * @param item: Product
+	 */
+	deleteProduct(toDelete: Product) {
+		const title = 'Delete Product';
+		const description = 'Are you sure to permanently delete this product?';
+		const waitDesciption = 'Product is deleting...';
+		const deleteMessage = `Product has been deleted`;
+
+		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
+		dialogRef.afterClosed().subscribe(res => {
+			if (!res) {
+				return;
+			}
+
+			this.productService.inactivateSupplier(toDelete).then(() => {
+				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+			}).catch(error => {
+				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+			});
+		});
 	}
 
 	/* UI */
