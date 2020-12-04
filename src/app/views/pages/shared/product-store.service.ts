@@ -40,7 +40,18 @@ export class ProductStoreService {
 	}
 
 	getProductsToCategory(category: string): Observable<Product[]> {
-		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products', ref => ref.where('category', '==', category));
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
+			ref => ref.where('category', '==', category));
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
+			})
+		);
+	}
+
+	getActiveProductsToCategory(category: string): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
+			ref => ref.where('category', '==', category).where('active', '==', true));
 		return productsFS.snapshotChanges().pipe(
 			map(products => {
 				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));

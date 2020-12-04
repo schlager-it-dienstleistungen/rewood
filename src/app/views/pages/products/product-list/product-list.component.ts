@@ -48,7 +48,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.productService.getProductsToCategory(this.category).subscribe(data => {
+		this.productService.getActiveProductsToCategory(this.category).subscribe(data => {
 			this.isLoading = false;
 			this.dataSource = new MatTableDataSource<Product>(data);
 			this.dataSource.paginator = this.paginator;
