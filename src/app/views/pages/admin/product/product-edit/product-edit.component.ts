@@ -51,14 +51,14 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.product = ProductFactoryService.empty();
 			this.product.id = this.productStoreService.createProductId();
 			this.setFormValues(this.product);
-		}/* else {
-			this.supplierStoreService.getSupplier(id).subscribe(res => {
+		} else {
+			this.productStoreService.getProduct(id).subscribe(res => {
 				if (res) {
-					this.supplier = res;
-					this.setFormValues(this.supplier);
+					this.product = res;
+					this.setFormValues(this.product);
 				}
 			});
-		}*/
+		}
 	}
 
 	ngAfterViewInit(): void {

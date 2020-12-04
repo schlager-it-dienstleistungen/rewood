@@ -73,6 +73,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 	}
 
+	/** ACTIONS */
+	/**
+	 * Redirect to edit page
+	 */
+	editProduct(id) {
+		this.router.navigate(['../adminproducts/edit', id], { relativeTo: this.route });
+	}
+
 	/**
 	 * Delete Product - here: set inactive
 	 *
