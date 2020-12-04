@@ -108,7 +108,10 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 			address2: [''],
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
 			city: ['', Validators.required],
-			country: ['AT', Validators.required]
+			country: ['AT', Validators.required],
+			uid: ['', Validators.required],
+			fsc: [false],
+			pefc: [false]
 		});
 	}
 
@@ -193,6 +196,9 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get email() { return this.supplierForm.get('email'); }
 	get name() { return this.supplierForm.get('name'); }
 	get phone() { return this.supplierForm.get('phone'); }
+	get uid() { return this.supplierForm.get('uid'); }
+	get fsc() { return this.supplierForm.get('fsc'); }
+	get pefc() { return this.supplierForm.get('pefc'); }
 	get address1() { return this.supplierForm.get('address1'); }
 	get address2() { return this.supplierForm.get('address2'); }
 	get postcode() { return this.supplierForm.get('postcode'); }

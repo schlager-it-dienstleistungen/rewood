@@ -23,7 +23,10 @@ export class SupplierFactoryService {
 			name: '',
 			active: true,
 			tstCreate: '',
-			userCreate: ''
+			userCreate: '',
+			uid: '',
+			fsc: false,
+			pefc: false
 		};
 	}
 }

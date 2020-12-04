@@ -27,6 +27,7 @@ import { SupplierListComponent } from './supplier/supplier-list/supplier-list.co
 import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
 		MatOptionModule,
 		MatButtonModule,
 		MatTooltipModule,
-		MatOptionModule
+		MatOptionModule,
+		MatCheckboxModule
 	]
 })
 export class AdminModule { }

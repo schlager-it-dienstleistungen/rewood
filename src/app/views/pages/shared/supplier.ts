@@ -6,6 +6,9 @@ export class Supplier extends BaseDataType {
 		homepage?: string;
 		phone?: string;
 		email?: string;
+		uid: string;
+		fsc: boolean;
+		pefc: boolean;
 		address?: Location;
 		active: boolean;
 }

@@ -97,6 +97,29 @@
 									<label>Homepage</label><br/>
 									<input type="text" class="form-control" formControlName="homepage">
 								</div>
+								<div class="form-group">
+									<label>UID</label><br/>
+									<input type="text" class="form-control" formControlName="uid" required>
+									<div *ngIf="uid.invalid && (uid.dirty || uid.touched)"
+											class="alert alert-danger">
+										<div *ngIf="uid.errors.required">
+											Es muss eine UID eingegeben werden.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<mat-checkbox formControlName="fsc" labelPosition="after">FSC</mat-checkbox>
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<mat-checkbox formControlName="pefc" labelPosition="after">PEFC</mat-checkbox>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -185,7 +208,10 @@
 										Firmenname: {{ supplierForm.get('name').value }}<br/>
 										Telefon: {{ supplierForm.get('phone').value }}<br/>
 										E-Mail: {{ supplierForm.get('email').value }}<br/>
-										Homepage: {{ supplierForm.get('homepage').value }}
+										Homepage: {{ supplierForm.get('homepage').value }}<br/>
+										UID: {{ supplierForm.get('uid').value }}<br/>
+										FSC: {{ supplierForm.get('fsc').value }}<br/>
+										PEFC: {{ supplierForm.get('pefc').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
