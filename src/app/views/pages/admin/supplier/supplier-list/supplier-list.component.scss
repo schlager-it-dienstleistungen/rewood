@@ -1,11 +1,28 @@
 .supplier_col_name {
+	width: 350px;
+}
+
+.supplier_col_location {
+	// width: 150px;
+}
+
+.supplier_col_email {
 	width: 200px;
 }
 
-.supplier_col_country {
-	width: 250px;
+.supplier_col_phone {
+	width: 100px;
+}
+
+.supplier_col_fsc {
+	width: 25px;
+}
+
+.supplier_col_pefc {
+	width: 25px;
 }
 
 .supplier_col_actions {
+	align-content: flex-end;
 	width: 50px;
 }

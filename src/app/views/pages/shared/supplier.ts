@@ -1,4 +1,5 @@
 import { BaseDataType } from './base-data-type';
+import { Location } from './location';
 
 export class Supplier extends BaseDataType {
 		id: string;

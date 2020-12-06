@@ -23,7 +23,7 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 	isLoading = false;
 
 	// Table Fields
-	displayedColumns = ['name', 'country', 'actions'];
+	displayedColumns = ['name', 'location', 'phone', 'email', 'fsc', 'pefc', 'actions'];
 
 	constructor(
 		private route: ActivatedRoute,
