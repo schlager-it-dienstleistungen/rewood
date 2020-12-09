@@ -9,11 +9,14 @@ import { CredoComponent } from './credo/credo.component';
 import { CategoryLinkComponent } from './category-link/category-link.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { IndicesComponent } from './indices/indices.component';
+import { LatestProductsComponent } from './latest-products/latest-products.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		PartialsModule,
+		MatTableModule,
 		CoreModule,
 		NgxPermissionsModule.forChild(),
 		RouterModule.forChild([
@@ -30,6 +33,7 @@ import { IndicesComponent } from './indices/indices.component';
 		CredoComponent,
 		CategoryLinkComponent,
 		IndicesComponent,
+		LatestProductsComponent,
 	]
 })
 export class HomeModule { }

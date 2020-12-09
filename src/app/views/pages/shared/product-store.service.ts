@@ -39,6 +39,19 @@ export class ProductStoreService {
 		);
 	}
 
+	getLatestProducts(): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
+			ref => ref
+				.where('active', '==', true)
+				.orderBy('tstCreate', 'desc')
+				.limit(3));
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product));
+			})
+		);
+	}
+
 	getProductsToCategory(category: string): Observable<Product[]> {
 		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
 			ref => ref.where('category', '==', category));
