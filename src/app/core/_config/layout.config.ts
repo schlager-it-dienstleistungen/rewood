@@ -82,7 +82,7 @@ export class LayoutConfig {
 			},
 		},
 		subheader: {
-			display: false,
+			display: true,
 			fixed: false,
 			layout: 'subheader-v1',
 			width: 'fixed',
