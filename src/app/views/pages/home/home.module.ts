@@ -8,6 +8,7 @@ import { NewsComponent } from './news/news.component';
 import { CredoComponent } from './credo/credo.component';
 import { CategoryLinkComponent } from './category-link/category-link.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { RewoodSellWoodComponent } from './rewood-sell-wood/rewood-sell-wood.component';
 
 @NgModule({
 	imports: [
@@ -28,6 +29,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 		NewsComponent,
 		CredoComponent,
 		CategoryLinkComponent,
+		RewoodSellWoodComponent,
 	]
 })
 export class HomeModule { }
