@@ -1,12 +1,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+		"allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "module": "esnext",
-    "moduleResolution": "node",
+		"moduleResolution": "node",
+		"noUnusedLocals": false,
+    "noUnusedParameters": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -17,7 +20,6 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-	"allowSyntheticDefaultImports": true
+    ]
   }
 }
