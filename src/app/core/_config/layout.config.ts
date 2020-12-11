@@ -10,7 +10,7 @@ export class LayoutConfig {
 				'background-image': './assets/media/misc/bg-1.jpg',
 			},
 			logo: {
-				desktop: './assets/media/logos/rewood_logo_pos_green.png',
+				desktop: './assets/rewood/logos/rewood_sells_wood_logo_negative_rgb.png',
 				sticky: './assets/media/logos/logo-9-sm.png',
 			},
 		},

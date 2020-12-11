@@ -20,11 +20,6 @@
 					<td mat-cell *matCellDef="let product" class="products_col_title"> {{product.title}} </td>
 				</ng-container>
 
-				<ng-container matColumnDef=subcategory>
-					<th mat-header-cell *matHeaderCellDef>Untergruppe</th>
-					<td mat-cell *matCellDef="let product" class="products_col_subcategory"> {{product.subcategory}} </td>
-				</ng-container>
-
 				<ng-container matColumnDef=quantity>
 					<th mat-header-cell *matHeaderCellDef>Stückzahl (in m³)</th>
 					<td mat-cell *matCellDef="let product" class="products_col_quantity"> {{product.dimension.quantity}} </td>
