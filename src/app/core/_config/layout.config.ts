@@ -18,7 +18,7 @@ export class LayoutConfig {
 		loader: {
 			enabled: true,
 			type: 'spinner-logo',
-			logo: './assets/media/logos/rewood_logo_claim_green_pos.png',
+			logo: './assets/rewood/logos/rewood_logo_claim_green_pos.png',
 			message: 'Please wait...',
 		},
 		// == Colors for javascript
@@ -110,11 +110,11 @@ export class LayoutConfig {
 			},
 		},
 		content: {
-			width: 'fixed',
+			width: 'fluid',
 		},
 		footer: {
 			self: {
-				width: 'fixed',
+				width: 'fluid',
 				layout: 'extended',
 			},
 		},

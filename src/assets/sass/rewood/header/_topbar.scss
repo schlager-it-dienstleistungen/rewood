@@ -11,7 +11,7 @@ $kt-topbar-mobile-icon-size: 31px;
 // General mode
 .kt-header__topbar {
 	display: flex;
-	align-items: stretch;
+	align-items: flex-end;
 	padding: 0;
 	justify-content: flex-end;
 	flex-grow: 1;

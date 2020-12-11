@@ -10,11 +10,11 @@ $kt-header-config: (
 	base: (
 		desktop: (
 			default: (
-				height: 90px
+				height: 110px
 			),
 			fixed: (
 				zindex: $kt-header-fixed-zindex,
-				height: 80px
+				height: 110px
 			)
 		),
 
@@ -310,7 +310,7 @@ $kt-header-config: (
 									default: #676c7b,
 									active: kt-brand-color(),
 									here: kt-brand-color(),
-									hover: kt-brand-color()
+									hover: #a5d867
 								)
 							),
 							// link arrow

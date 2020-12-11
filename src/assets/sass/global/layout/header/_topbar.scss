@@ -17,7 +17,7 @@ $kt-topbar-mobile-icon-size: 31px;
 	flex-grow: 1;
 	flex-basis: 0;
     max-width: 100%;
-	
+
 	// Topbar item
 	.kt-header__topbar-item {
 		display: flex;
@@ -48,7 +48,7 @@ $kt-topbar-mobile-icon-size: 31px;
 				height: $kt-topbar-icon-size;
 				width: $kt-topbar-icon-size;
 				cursor: pointer;
-				background: transparent; 
+				background: transparent;
 				@include kt-transition();
 
 				@include kt-rounded {
@@ -59,9 +59,9 @@ $kt-topbar-mobile-icon-size: 31px;
 					line-height: 0;
 					font-size: 1.3rem;
 					color: kt-base-color(label, 2);
-				}	
-			}		
-		}		
+				}
+			}
+		}
 
 		// Item hover states
 		&:hover,
@@ -69,10 +69,10 @@ $kt-topbar-mobile-icon-size: 31px;
 			.kt-header__topbar-icon {
 				@include kt-transition();
 				background-color: $kt-brand-hover-color;
-				
+
 				i {
 					color: kt-brand-color();
-				}	
+				}
 			}
 		}
 
@@ -99,11 +99,11 @@ $kt-topbar-mobile-icon-size: 31px;
 
 						@include kt-rounded {
 							border-radius: $kt-border-radius;
-						}						
+						}
 					}
 				}
 			}
-		}		
+		}
 
 		// User profile
 		&.kt-header__topbar-item--user {
@@ -130,7 +130,7 @@ $kt-topbar-mobile-icon-size: 31px;
 
 			// Wrapper
 			.kt-header__topbar-wrapper {
-				align-items: center;		
+				align-items: center;
 
 				img {
 					align-self: center;
@@ -139,7 +139,7 @@ $kt-topbar-mobile-icon-size: 31px;
 						border-radius: $kt-border-radius;
 					}
 				}
-			}			
+			}
 		}
 
 		&:last-child {
@@ -195,14 +195,14 @@ $kt-topbar-mobile-icon-size: 31px;
 
 					i {
 						font-size: 1.2rem;
-					}	
+					}
 				}
 			}
 
 			// Languages
 			&.kt-header__topbar-item--langs {
-				margin: 0 0.25rem;			
-			}						
+				margin: 0 0.25rem;
+			}
 
 			// User
 			&.kt-header__topbar-item--user {
@@ -224,12 +224,12 @@ $kt-topbar-mobile-icon-size: 31px;
 						margin: 0 0.5rem 0 0.2rem;
 					}
 				}
-			}	
+			}
 
 			&:last-child {
 				padding-right: 0 !important;
 				margin-right: 0 !important;
 			}
-		}	
+		}
 	}
 }

@@ -10,11 +10,11 @@ $kt-header-config: (
 	base: (
 		desktop: (
 			default: (
-				height: 80px
-			),			
-			fixed: (		 
+				height: 110px
+			),
+			fixed: (
 				zindex: $kt-header-fixed-zindex,
-				height: 60px
+				height: 1100px
 			)
 		),
 
@@ -22,8 +22,8 @@ $kt-header-config: (
 			self: (
 				default: (
 					height: 60px,
-				),		
-				fixed: (		 
+				),
+				fixed: (
 					zindex: $kt-header-fixed-zindex,
 					box-shadow: 0px 1px 9px -3px rgba(0,0,0,0.2)
 				)
@@ -32,10 +32,10 @@ $kt-header-config: (
 			toolbar: (
 				toggler: (
 					width: 26px,
-					height: 26px,  
+					height: 26px,
 					transition-duration: 0.4s,
 					thickness: 2px,
-					space: 6px, 
+					space: 6px,
 					radius: 2px,
 					color: (
 						default: lighten( kt-brand-color(), 12%),
@@ -50,14 +50,14 @@ $kt-header-config: (
 	brand: (
 		self: (
 			bg-color: #272631,
-			shadow: 0px 1px 9px -3px rgba(0,0,0,0.75)		
+			shadow: 0px 1px 9px -3px rgba(0,0,0,0.75)
 		),
 		aside-toggler: (
 			width: 26px,
-			height: 26px,  
+			height: 26px,
 			transition-duration: 0.4s,
 			thickness: 2px,
-			space: 6px, 
+			space: 6px,
 			radius: 2px,
 			color: (
 				default: #8aa4f3,
@@ -117,7 +117,7 @@ $kt-header-config: (
 								line: (
 									width: 5px,
 									height: 1px,
-								)							
+								)
 							),
 
 							// link text
@@ -153,7 +153,7 @@ $kt-header-config: (
 								width: (
 									// classic width
 									classic: 275px,
-									
+
 									// full width
 									full: (
 										offset: 20px
@@ -182,7 +182,7 @@ $kt-header-config: (
 									icon: (
 										width: 33px,
 										font-size: 1.4rem,
-										padding: 0 
+										padding: 0
 									),
 
 									// link bullet
@@ -198,9 +198,9 @@ $kt-header-config: (
 										line: (
 											width: 9px,
 											height: 1px
-										)							
-									),	
-									
+										)
+									),
+
 									// link text
 									text: (
 										font-size: 1rem,
@@ -235,7 +235,7 @@ $kt-header-config: (
 										),
 
 										// heading caption
-										caption: (										
+										caption: (
 											// caption icon
 											icon: (
 												width: 30px,
@@ -261,7 +261,7 @@ $kt-header-config: (
 						)
 					)
 				),
-			
+
 				skin: (
 					// Primary item
 					item: (
@@ -275,7 +275,7 @@ $kt-header-config: (
 									here: none, //kt-brand-color(),
 									hover: none,
 								)
-							),	
+							),
 							// link icon
 							icon: (
 								font-color:	(
@@ -302,7 +302,7 @@ $kt-header-config: (
 										here: kt-brand-color(),
 										hover: kt-brand-color()
 									)
-								)							
+								)
 							),
 							// link text
 							text: (
@@ -332,7 +332,7 @@ $kt-header-config: (
 								box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15)
 							),
 
-							// 
+							//
 							item: (
 								link: (
 									self: (
@@ -369,9 +369,9 @@ $kt-header-config: (
 												here: kt-brand-color(),
 												hover: kt-brand-color()
 											)
-										)							
-									),	
-											
+										)
+									),
+
 									// link text
 									text: (
 										font-color:	(
@@ -402,7 +402,7 @@ $kt-header-config: (
 									// heading
 									heading: (
 										// heading caption
-										caption: (										
+										caption: (
 											// caption icon
 											icon: (
 												font-color:	#cacad2
@@ -428,7 +428,7 @@ $kt-header-config: (
 				class: kt-header-menu-mobile,
 				parent-class: kt-header-menu-wrapper,
 				mode: tablet-and-mobile, //menu mode: "mobile", "tablet-and-mobile" or "general"
-			),	
+			),
 
 			// Customize
 			build: (
@@ -452,15 +452,15 @@ $kt-header-config: (
 							link: (
 								// link itself
 								self: (
-									height: 44px,				
+									height: 44px,
 									padding: 9px 30px
-								),					
+								),
 
 								// link icon
 								icon:	(
 									width: 35px,
 									font-size: 1.4rem
-								),		
+								),
 
 								// link bullet
 								bullet:	(
@@ -475,8 +475,8 @@ $kt-header-config: (
 									line: (
 										width: 5px,
 										height: 1px
-									)							
-								),					
+									)
+								),
 
 								// link text
 								text:	(
@@ -518,16 +518,16 @@ $kt-header-config: (
 									link: (
 										// link itself
 										self: (
-											height: 40px,		
+											height: 40px,
 											padding: 0 30px,
 											padding-x: 30px
-										),					
+										),
 
 										// link icon
 										icon:	(
 											width: 35px,
 											font-size: 1.35rem
-										),		
+										),
 
 										// link bullet
 										bullet:	(
@@ -540,8 +540,8 @@ $kt-header-config: (
 											line: (
 												width: 5px,
 												height: 1px
-											)							
-										),						
+											)
+										),
 
 										// link text
 										text:	(
@@ -607,7 +607,7 @@ $kt-header-config: (
 								letter-spacing: 0.3px
 							),
 
-							icon: (					
+							icon: (
 								font-size: 1.1rem
 							)
 						),
@@ -616,10 +616,10 @@ $kt-header-config: (
 						separator: (
 							margin: 15px 0,
 						)
-					)		
+					)
 				),
 
-				skin: (	
+				skin: (
 					// default mode
 					default: (
 						// menu panel itself
@@ -650,7 +650,7 @@ $kt-header-config: (
 										active: #f8f8fb,
 										hover: #f8f8fb
 									)
-								),					
+								),
 								// link icon
 								icon: (
 									font-color:	(
@@ -660,7 +660,7 @@ $kt-header-config: (
 										active: kt-brand-color(),
 										hover: kt-brand-color()
 									),
-								),		
+								),
 								// link bullet
 								bullet:	(
 									dot: (
@@ -680,8 +680,8 @@ $kt-header-config: (
 											active: kt-brand-color(),
 											hover: kt-brand-color()
 										)
-									)							
-								),					
+									)
+								),
 								// link text
 								text:	(
 									font-color:	(
@@ -690,7 +690,7 @@ $kt-header-config: (
 										here: kt-brand-color(),
 										active: kt-brand-color(),
 										hover: kt-brand-color()
-									)	
+									)
 								),
 								// link arrow
 								arrow:	(
@@ -738,7 +738,7 @@ $kt-header-config: (
 												active: #f8f8fb,
 												hover: #f8f8fb
 											)
-										),					
+										),
 										// link icon
 										icon:	(
 											font-color:	(
@@ -747,7 +747,7 @@ $kt-header-config: (
 												active: kt-brand-color(),
 												hover: kt-brand-color()
 											)
-										),		
+										),
 										// link bullet
 										bullet:	(
 											dot: (
@@ -767,8 +767,8 @@ $kt-header-config: (
 													active: kt-brand-color(),
 													hover: kt-brand-color()
 												)
-											)							
-										),						
+											)
+										),
 										// link text
 										text: (
 											font-color:	(
@@ -776,7 +776,7 @@ $kt-header-config: (
 												open: kt-brand-color(),
 												active: kt-brand-color(),
 												hover: kt-brand-color()
-											)	
+											)
 										),
 
 										// link arrow
@@ -823,9 +823,9 @@ $kt-header-config: (
 							border: 1px solid rgba(#000000, 0.07)
 						)
 					)
-				)			
+				)
 			)
-		),	
+		),
 
 		offcanvas-mobile: (
 			layout: (

@@ -32,7 +32,8 @@
 ////////////////////////////////////////////////////////////////
 
 // 5: Demo Configs
-@import "global/layout/header/config";
+//@import "global/layout/header/config";
+@import "rewood/header/config";
 @import "global/layout/aside/config";
 @import "global/layout/footer/config";
 
@@ -41,11 +42,15 @@
 // Layout
 @import "global/layout/base/base";
 
-@import "global/layout/header/header";
+//@import "global/layout/header/header";
+@import "rewood/header/header";
 @import "global/layout/header/base-mobile";
-@import "global/layout/header/menu";
-@import "global/layout/header/topbar";
-@import "global/layout/header/brand";
+//@import "global/layout/header/menu";
+@import "rewood/header/menu";
+//@import "global/layout/header/topbar";
+@import "rewood/header/topbar";
+//@import "global/layout/header/brand";
+@import "rewood/header/brand";
 
 @import "global/layout/aside/aside";
 @import "global/layout/aside/menu";
@@ -57,8 +62,5 @@
 // 7: REWOOD Styles
 @import "rewood/rewood.scss";
 @import "rewood/detail.scss";
-@import "rewood/header/config";
-@import "rewood/header/header";
-@import "rewood/header/menu";
-@import "rewood/header/topbar";
-@import "rewood/header/brand";
+
+@import "rewood/header/menu-horizontal";

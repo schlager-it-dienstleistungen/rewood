@@ -21,7 +21,7 @@
 	// Header default mode
 	.kt-header-menu-wrapper {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		justify-content: flex-start;
 		flex-grow: 1;
 		flex-basis: 0;
@@ -36,11 +36,12 @@
 					&:first-child {
 						padding-left: 0;
 					}
+					padding-right: 20px;
 
 					// Menu link
 					> .kt-menu__link {
 						padding: 0.75rem 1.1rem;
-						background-color: #a5d867;
+						background-color: kt-brand-color();
 
 						@include kt-rounded {
 							border-radius: $kt-border-radius;
@@ -64,10 +65,10 @@
 					&.kt-menu__item--here,
 					&.kt-menu__item--active {
 						> .kt-menu__link {
-							background-color: $kt-brand-hover-color;
+							background-color: kt-brand-color();
 
 							.kt-menu__link-text {
-								color: kt-brand-color();
+								color: #a5d867;
 							}
 
 							.kt-menu__hor-arrow {

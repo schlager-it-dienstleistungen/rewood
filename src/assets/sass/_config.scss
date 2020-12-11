@@ -75,11 +75,11 @@ $kt-dropdown-zindex: 95 !default;
 $kt-state-colors: (
     // Metronic states
     brand: (
-        base: #5d78ff,
-        inverse: #ffffff
+        base: #024731,
+        inverse: #a5d867
     ),
     light: (
-        base: #ffffff,
+        base: #a5d867,
         inverse: #282a3c
     ),
     dark: (
@@ -183,10 +183,10 @@ $kt-font-size: (
 
 // General Link Settings
 $kt-font-color: (
-    text: #024731,
+    text: kt-state-color(brand),
     link: (
-        default: kt-state-color(brand),
-        hover: darken(kt-state-color(brand), 6%)
+				default: kt-state-color(brand),
+				hover: darken(kt-state-color(brand, inverse), 6%)
     )
 ) !default;
 
