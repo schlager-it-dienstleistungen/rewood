@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +20,8 @@ export class LatestProductsComponent implements OnInit, AfterViewInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private productService: ProductStoreService
+		private productService: ProductStoreService,
+		private cdr: ChangeDetectorRef
 	) { }
 
 	ngOnInit() {
@@ -35,6 +36,7 @@ export class LatestProductsComponent implements OnInit, AfterViewInit {
 		this.productService.getLatestProducts().subscribe(data => {
 			this.dataSource = new MatTableDataSource<Product>(data);
 			this.isLoading = false;
+			this.cdr.markForCheck();
 		});
 	}
 
