@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 
 
 const routes: Routes = [
@@ -12,12 +13,16 @@ const routes: Routes = [
 		redirectTo: 'categories',
 	},
 	{
+		path: 'allproducts',
+		component: ProductListComponent
+	},
+	{
 		path: 'categories',
 		component: CategoryListComponent
 	},
 	{
 		path: ':category',
-		component: ProductListComponent
+		component: ProductsByCategoryComponent
 	},
 	{
 		path: 'product/:id',

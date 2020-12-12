@@ -3,17 +3,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LayoutUtilsService } from 'src/app/core/_base/crud';
-import { CategoryFactoryService } from '../../shared/category-factory.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Product } from '../../shared/product';
 import { ProductStoreService } from '../../shared/product-store.service';
 
 @Component({
-	selector: 'rw-product-list',
-	templateUrl: './product-list.component.html',
-	styleUrls: ['./product-list.component.scss']
+  selector: 'rw-products-by-category',
+  templateUrl: './products-by-category.component.html',
+  styleUrls: ['./products-by-category.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductsByCategoryComponent implements OnInit, AfterViewInit {
 	// Paginator
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// Sort
@@ -22,21 +22,25 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	dataSource: MatTableDataSource<Product>;
 	isLoading = false;
 
-	// Categories
-	categories = CategoryFactoryService.getCategories();
+	// Category
+	category: string;
 
 	// Table Fields
-	displayedColumns = ['picture', 'category', 'title', 'quantity', 'price', 'description', 'status'];
+	displayedColumns = ['picture', 'title', 'quantity', 'price', 'description', 'status'];
+
+	// Filter
+	filterQuantityKeyUp$ = new Subject<number>();
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private productService: ProductStoreService,
-		private layoutUtilsService: LayoutUtilsService
+		private productService: ProductStoreService
 	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
+		const params = this.route.snapshot.paramMap;
+		this.category = params.get('category');
 	}
 
 	/**
@@ -44,23 +48,28 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.productService.getAllActiveProducts().subscribe(data => {
+		this.productService.getActiveProductsToCategory(this.category).subscribe(data => {
 			this.isLoading = false;
 			this.dataSource = new MatTableDataSource<Product>(data);
 			this.dataSource.paginator = this.paginator;
 			this.dataSource.sort = this.sort;
 		});
+
+		this.filterQuantityKeyUp$.pipe(
+			// filter(filterValue => filterValue.length >= 3),
+			debounceTime(500),
+			distinctUntilChanged(),
+			// tap(() => this.isLoading = true),
+			// switchMap(filterValue => this.filterEvent.emit(filterValue))
+			// tap(() => this.isLoading = false)
+		).subscribe(filterValue => this.filterProdutsByQuantity(filterValue));
 	}
 
-	doFilterCategory($event) {
+	filterProdutsByQuantity($event) {
 		this.dataSource.filterPredicate = (
-			data: Product, filter: string) => (('' + data.category).indexOf(filter) !== -1
+			data: Product, filter: string) => (('' + data.dimension.quantity).indexOf(filter) !== -1
 		);
 		this.dataSource.filter = '' + $event;
-	}
-
-	doFilter(filterValue: string) {
-		this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 	}
 
 	selectedProduct(id) {

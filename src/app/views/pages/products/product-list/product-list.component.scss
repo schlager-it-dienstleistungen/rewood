@@ -3,26 +3,32 @@
 	padding-right: 10px;
 }
 
+.products_col_category {
+	width: 100px;
+}
+
 .products_col_title {
-	width: 250px;
+	// width: 250px;
 }
 
 .products_col_quantity {
 	width: auto;
+	text-align: right;
 }
 
 .products_col_price {
 	width: auto;
+	text-align: right;
 }
 
 .products_col_description {
 	width: 600px;
-	height: 80px;
+	height: 40px;
 	padding-right: 10px;
 }
 
 .products_col_description_text {
-	height: 80px;
+	height: 40px;
 	overflow: auto;
 }
 
