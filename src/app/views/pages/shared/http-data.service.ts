@@ -11,6 +11,10 @@ export class HttpDataService {
 
   constructor(private httpClient: HttpClient) { }
 
+	/**
+	 * Rates from https://exchangeratesapi.io/
+	 * Source: https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
+	 */
   public getLatestCurrencyExchangeRates(): Observable<any>{
     return this.httpClient.get(this.EXCHANGE_REST_API_SERVER).pipe(catchError(this.handleError));
 	}
