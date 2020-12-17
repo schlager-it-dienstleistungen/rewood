@@ -14,7 +14,16 @@ export class MenuConfig {
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',
-					page: '/products'
+					submenu: [
+						{
+							title: 'nach Kategorien',
+							page: '/products/categories'
+						},
+						{
+							title: 'alle Produkte',
+							page: '/products/allproducts'
+						}
+					]
 				},
 				{
 					title: 'Admin',
