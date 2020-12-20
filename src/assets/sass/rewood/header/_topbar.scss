@@ -30,6 +30,28 @@ $kt-topbar-mobile-icon-size: 31px;
 			display: flex;
 			align-items: stretch;
 
+			.kt-header__topbar-usertxt {
+				display: flex;
+				align-items: flex-end;
+				align-self: flex-end;
+				justify-content: center;
+				cursor: default;
+				background: transparent;
+				color: #a5d867;
+				padding: 0.75rem 1.1rem;
+			}
+
+			.kt-header__topbar-logintxt {
+				display: flex;
+				align-items: flex-end;
+				align-self: flex-end;
+				justify-content: center;
+				cursor: pointer;
+				background: #a5d867;
+				color: #fff;
+				padding: 0.75rem 1.1rem;
+			}
+
 			.kt-badge:not(.kt-badge--username) {
 				position: absolute;
 				left: 50%;
@@ -43,12 +65,13 @@ $kt-topbar-mobile-icon-size: 31px;
 			.kt-header__topbar-icon {
 				display: flex;
 				align-items: center;
-				align-self: center;
+				align-self: flex-end;
 				justify-content: center;
 				height: $kt-topbar-icon-size;
 				width: $kt-topbar-icon-size;
 				cursor: pointer;
 				background: transparent;
+				padding: 0.75rem 1.1rem;
 				@include kt-transition();
 
 				@include kt-rounded {
@@ -58,7 +81,6 @@ $kt-topbar-mobile-icon-size: 31px;
 				i {
 					line-height: 0;
 					font-size: 1.3rem;
-					//color: kt-base-color(label, 2);
 					color: white;
 				}
 			}
@@ -69,10 +91,10 @@ $kt-topbar-mobile-icon-size: 31px;
 		&.show {
 			.kt-header__topbar-icon {
 				@include kt-transition();
-				background-color: $kt-brand-hover-color;
+				background-color: kt-brand-color();
 
 				i {
-					color: kt-brand-color();
+					color: #a5d867;
 				}
 			}
 		}

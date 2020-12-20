@@ -146,7 +146,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 					if (user) {
 						const authUid = JSON.parse(JSON.stringify(user)).user.uid; // Credential from Firebase-Authentication
 						this.store.dispatch(new Login({authToken: authUid}));
-						this.router.navigateByUrl(this.returnUrl); // Main page
+						this.router.navigate([this.returnUrl], { queryParams: {login: true} }); // Main page
 					} else {
 						this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
 					}

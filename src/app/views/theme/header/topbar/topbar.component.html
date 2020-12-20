@@ -19,6 +19,22 @@
 	<!--<kt-user-profile2></kt-user-profile2>
 	<!--end: User bar -->
 	<!--begin: Quick panel toggler -->
+	<div class="kt-header__topbar-item" data-placement="left">
+		<div class="kt-header__topbar-wrapper" *ngIf="user$ | async as _user; else elseBlock">
+			<div class="kt-header__topbar-usertxt kt-font-bolder">Hi, {{_user.firstname}}</div>
+			<div class="kt-header__topbar-logintxt" (click)="logout()">LOGOUT</div>
+		</div>
+		<ng-template #elseBlock>
+			<div class="kt-header__topbar-wrapper">
+				<div class="kt-header__topbar-usertxt">Guest</div>
+				<div class="kt-header__topbar-logintxt" (click)="login()">LOGIN</div>
+			</div>
+		</ng-template>
+	</div>
+
+
+	<!--end: Quick panel toggler -->
+	<!--begin: Quick panel toggler -->
 	<!--<div class="kt-header__topbar-item" data-placement="left" ngbTooltip="Quick panel">
 		<div class="kt-header__topbar-wrapper">
 			<span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn"><i class="flaticon2-cube-1"></i></span>

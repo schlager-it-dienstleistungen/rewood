@@ -30,7 +30,7 @@ export class AuthEffects {
         ofType<Logout>(AuthActionTypes.Logout),
         tap(() => {
             localStorage.removeItem(environment.authTokenKey);
-						this.router.navigate(['/'], {queryParams: {returnUrl: this.returnUrl}});
+						this.router.navigate(['/'], {queryParams: {returnUrl: this.returnUrl, logout: true}});
         })
     );
 
