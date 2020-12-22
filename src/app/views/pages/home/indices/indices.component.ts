@@ -11,6 +11,7 @@ export class IndicesComponent implements OnInit {
 	chf: number;
 	usd: number;
 	gbp: number;
+	cny: number;
 
 	constructor(private httpDataService: HttpDataService) { }
 
@@ -21,6 +22,7 @@ export class IndicesComponent implements OnInit {
 			this.chf = data['rates']['CHF'];
 			this.usd = data['rates']['USD'];
 			this.gbp = data['rates']['GBP'];
+			this.cny = data['rates']['CNY'];
     })
   }
 
