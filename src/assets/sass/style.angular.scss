@@ -35,7 +35,8 @@
 //@import "global/layout/header/config";
 @import "rewood/header/config";
 @import "global/layout/aside/config";
-@import "global/layout/footer/config";
+//@import "global/layout/footer/config";
+@import "rewood/footer/config";
 
 
 // 6: Demo Includes
@@ -57,7 +58,8 @@
 
 @import "global/layout/content/content";
 
-@import "global/layout/footer/footer";
+//@import "global/layout/footer/footer";
+@import "rewood/footer/footer";
 
 // 7: REWOOD Styles
 @import "rewood/rewood.scss";
