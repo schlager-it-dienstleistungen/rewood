@@ -8,27 +8,29 @@
 .kt-footer {
   padding: 0;
 	margin: 0;
+	background: kt-brand-color();
 
     .kt-footer__wrapper {
     	display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 1rem 0;
+			align-items: center;
+			justify-content: space-between;
+			padding: 1rem 0;
 
     	.kt-footer__copyright {
-			display: flex;
-			margin: 0;
-			padding: 0 1.25rem 0 0;
-			font-size: 1rem;
-			font-weight: 400;
-			color: kt-base-color(label, 2);
-			justify-content: flex-start;
+				display: flex;
+				margin: 0;
+				padding: 0 1.25rem 0 0;
+				font-size: 1rem;
+				font-weight: 400;
+				color: #a5d867;
+				justify-content: flex-start;
 
-			> a {
-				font-weight: 500;
-				@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
+				> a {
+					font-weight: 500;
+					//@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
+					@include kt-link-color(#fff, #a5d867);
+				}
 			}
-		}
 
 		.kt-footer__menu {
 			display: flex;
@@ -42,7 +44,8 @@
 				font-size: 1rem;
 				font-weight: 500;
 
-				@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
+				//@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
+				@include kt-link-color(#fff, #a5d867);
 			}
 		}
     }
