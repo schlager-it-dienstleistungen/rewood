@@ -9,6 +9,7 @@ import { AuthGuard } from './core/auth';
 import { AboutComponent } from './views/pages/general/about/about.component';
 import { TeamComponent } from './views/pages/general/team/team.component';
 import { ContactComponent } from './views/pages/general/contact/contact.component';
+import { DsgvoComponent } from './views/pages/general/dsgvo/dsgvo.component';
 
 const routes: Routes = [
 	{
@@ -47,6 +48,10 @@ const routes: Routes = [
 			{
 				path: 'general/contact',
 				component: ContactComponent
+			},
+			{
+				path: 'general/dsgvo',
+				component: DsgvoComponent
 			},
 			{
 				path: 'error/403',

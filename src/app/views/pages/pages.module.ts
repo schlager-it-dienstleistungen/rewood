@@ -10,9 +10,10 @@ import { HomeModule } from './home/home.module';
 import { AboutComponent } from './general/about/about.component';
 import { TeamComponent } from './general/team/team.component';
 import { ContactComponent } from './general/contact/contact.component';
+import { DsgvoComponent } from './general/dsgvo/dsgvo.component';
 
 @NgModule({
-	declarations: [AboutComponent, TeamComponent, ContactComponent],
+	declarations: [AboutComponent, TeamComponent, ContactComponent, DsgvoComponent],
 	exports: [],
 	imports: [
 		CommonModule,
