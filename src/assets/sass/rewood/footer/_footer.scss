@@ -14,7 +14,7 @@
     	display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 1rem 0;
+			padding: 0.5rem 0;
 
     	.kt-footer__copyright {
 				display: flex;
@@ -29,6 +29,30 @@
 					font-weight: 500;
 					//@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
 					@include kt-link-color(#fff, #a5d867);
+				}
+			}
+
+			.kt-footer__contact {
+				//display: flex;
+				margin: 0;
+				padding: 0 1.25rem 0 0;
+				font-size: 1rem;
+				font-weight: 400;
+				color: #a5d867;
+				//justify-content: flex-start;
+
+				> a {
+					font-weight: 500;
+					//@include kt-link-color(kt-base-color(label, 2), kt-brand-color());
+					@include kt-link-color(#fff, #a5d867);
+				}
+
+				.rw-footer__contact_tel {
+					color: #a5d867;
+				}
+
+				.rw-footer__contact_mail {
+					color: #a5d867;
 				}
 			}
 
