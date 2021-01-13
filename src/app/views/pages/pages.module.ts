@@ -11,16 +11,21 @@ import { AboutComponent } from './general/about/about.component';
 import { TeamComponent } from './general/team/team.component';
 import { ContactComponent } from './general/contact/contact.component';
 import { DsgvoComponent } from './general/dsgvo/dsgvo.component';
+import { MapComponent } from './general/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
-	declarations: [AboutComponent, TeamComponent, ContactComponent, DsgvoComponent],
+	declarations: [AboutComponent, TeamComponent, ContactComponent, DsgvoComponent, MapComponent],
 	exports: [],
 	imports: [
 		CommonModule,
 		CoreModule,
 		PartialsModule,
 		HomeModule,
-		ProductsModule
+		ProductsModule,
+		AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAqmWi9KjWwRaGYjmRiDUp5UReGuAyt3Ro'
+    })
 	],
 	providers: []
 })

@@ -98,6 +98,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 import * as firebase from 'firebase';
+import { AgmCoreModule } from '@agm/core';
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
