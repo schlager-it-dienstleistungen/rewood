@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
@@ -13,6 +13,8 @@ import { Picture } from '../../shared/picture';
 export class UploadTaskComponent implements OnInit {
 
 	@Input() picture: Picture;
+
+	@Output() deletePicture = new EventEmitter<Picture>();
 
 	task: AngularFireUploadTask;
 
@@ -70,11 +72,11 @@ export class UploadTaskComponent implements OnInit {
 		return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
 	}*/
 
-/**
- * format bytes
- * @param bytes (File size in bytes)
- * @param decimals (Decimals point)
- */
+	/**
+	 * format bytes
+	 * @param bytes (File size in bytes)
+	 * @param decimals (Decimals point)
+	 */
 	formatBytes(bytes, decimals = 2) {
 		if (bytes === 0) {
 			return '0 Bytes';
@@ -86,8 +88,13 @@ export class UploadTaskComponent implements OnInit {
 		return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 	}
 
+	/**
+	 * Delete Picture from Storage and Fire Event to Uploader
+	 */
 	deleteFile() {
-		console.log('deleteFile: ' + this.picture);
+		console.log('deleteFile: ' + this.picture.path);
+		this.storage.ref(this.picture.path).delete();
+		this.deletePicture.emit(this.picture);
 	}
 
 }

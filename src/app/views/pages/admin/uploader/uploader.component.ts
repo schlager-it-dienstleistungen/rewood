@@ -31,4 +31,17 @@ export class UploaderComponent {
 			file
 		};
 	}
+
+	/**
+	 * Remove Deleted Picture from List
+	 *
+	 * @param picture deleted Picture
+	 */
+	deletePicture(picture: Picture) {
+		debugger;
+		const index = this.pictures.indexOf(picture);
+		if (index >= 0) {
+			this.pictures.splice(index, 1);
+		}
+	}
 }

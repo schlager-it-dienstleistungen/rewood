@@ -21,6 +21,6 @@
 </div>
 
 <div class="files-list" *ngFor="let picture of pictures">
-  <rw-upload-task [picture]="picture"></rw-upload-task>
+  <rw-upload-task [picture]="picture" (deletePicture)="deletePicture($event)"></rw-upload-task>
 </div>
 
