@@ -203,6 +203,14 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	prepareUser(): User {
 		const formValue = this.userForm.value;
 		const newUser: User = {...formValue};
+
+		/**
+		 * EMail is disabled when edit a user
+		 */
+		if(!this.isNewUser) {
+			newUser.email = this.user.email;
+		}
+
 		newUser.active = true;
 		newUser.emailVerified = false;
 
