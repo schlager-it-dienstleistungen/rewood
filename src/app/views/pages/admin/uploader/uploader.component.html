@@ -4,10 +4,10 @@
   (dropped)="onDrop($event)"
   [class.hovering]="isHovering">
      <!--<h3>AngularFire Drop Zone</h3>-->
-		<p>Drag and Drop a File</p>
+		<p>Drag and Drop a Picture (JPG, PNG, ...)</p>
 		<div class="file">
 		<label class="file-label">
-			<input class="file-input" type="file" multiple (change)="onDrop($event.target.files)"/>
+			<input class="file-input" type="file" multiple (change)="onDrop($event.target.files)" accept="image/*"/>
 			<span class="file-cta">
 				<span class="file-icon">
 					<i class="fa fa-upload"></i>

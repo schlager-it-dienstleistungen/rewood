@@ -19,8 +19,22 @@ export class UploaderComponent {
 
 	onDrop(uploadFiles: FileList) {
 		for (let i = 0; i < uploadFiles.length; i++) {
-			this.pictures.push(this.fromFile(uploadFiles.item(i)));
+			this.validateAndAddFile(uploadFiles.item(i));
 		}
+	}
+
+	validateAndAddFile(file: File) {
+		if(this.validateFile(file)) {
+			this.pictures.push(this.fromFile(file));
+		}
+	}
+
+	validateFile(file: File): boolean {
+		debugger;
+		if(file.type.startsWith("image/")) {
+			return true;
+		}
+		return false;
 	}
 
 	fromFile(file: File): Picture {
