@@ -30,7 +30,6 @@ export class UploaderComponent {
 	}
 
 	validateFile(file: File): boolean {
-		debugger;
 		if(file.type.startsWith("image/")) {
 			return true;
 		}
@@ -52,7 +51,6 @@ export class UploaderComponent {
 	 * @param picture deleted Picture
 	 */
 	deletePicture(picture: Picture) {
-		debugger;
 		const index = this.pictures.indexOf(picture);
 		if (index >= 0) {
 			this.pictures.splice(index, 1);

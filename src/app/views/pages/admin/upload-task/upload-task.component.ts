@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { Picture } from '../../shared/picture';
@@ -25,7 +25,19 @@ export class UploadTaskComponent implements OnInit {
 	constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
 
 	ngOnInit() {
-		this.startUpload();
+		/**
+		 * Start Upload only when new Picture
+		 */
+		if (!this.picture.url) {
+			this.startUpload();
+		} else {
+			this.loadExistingFile();
+		}
+	}
+
+	loadExistingFile() {
+		this.percentage = of(100);
+		this.downloadURL = of(this.picture.url);
 	}
 
 	startUpload() {

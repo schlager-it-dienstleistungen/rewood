@@ -13,7 +13,7 @@
 		<h4 class="name">
 			{{ picture.title }}
 		</h4>
-		<p class="size">
+		<p class="size" *ngIf="picture.file">
 			{{ formatBytes(picture.file?.size) }}
 		</p>
 	</div>

@@ -152,7 +152,7 @@
 								</div>
 								<div class="form-group">
 									<label>Bilder</label>
-									<rw-uploader [pictures]="product.pictures"></rw-uploader>
+									<rw-uploader [pictures]="product.pictures" *ngIf="product"></rw-uploader>
 									<!--<input type="text" class="form-control" name="picture" [(ngModel)]="product.picture">
 									<span class="form-text text-muted">Bitte fügen Sie Produktbilder ein.</span>-->
 								</div>
