@@ -41,6 +41,7 @@ export class UploaderComponent {
 			title: file.name,
 			path: `products/${Date.now()}_${file.name}`, // The storage path
 			url: '',
+			toDelete: false,
 			file
 		};
 	}
@@ -53,7 +54,8 @@ export class UploaderComponent {
 	deletePicture(picture: Picture) {
 		const index = this.pictures.indexOf(picture);
 		if (index >= 0) {
-			this.pictures.splice(index, 1);
+			//this.pictures.splice(index, 1);
+			this.pictures[index].toDelete = true;
 		}
 	}
 }

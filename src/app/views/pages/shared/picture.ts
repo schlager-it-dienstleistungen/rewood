@@ -3,4 +3,5 @@ export interface Picture {
 	path: string;
 	url: string;
 	file?: File;
+	toDelete: boolean;
 }

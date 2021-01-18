@@ -38,10 +38,10 @@ export class UploadTaskComponent implements OnInit {
 	loadExistingFile() {
 		this.percentage = of(100);
 		this.downloadURL = of(this.picture.url);
+		this.picture.toDelete = false;
 	}
 
 	startUpload() {
-
 		// Reference to storage bucket
 		const ref = this.storage.ref(this.picture.path);
 
@@ -105,8 +105,7 @@ export class UploadTaskComponent implements OnInit {
 	 */
 	deleteFile() {
 		console.log('deleteFile: ' + this.picture.path);
-		this.storage.ref(this.picture.path).delete();
+		this.picture.toDelete = true;
 		this.deletePicture.emit(this.picture);
 	}
-
 }

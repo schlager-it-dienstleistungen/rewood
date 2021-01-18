@@ -254,7 +254,8 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 		return {
 			title: picture.title,
 			path: picture.path,
-			url: picture.url
+			url: picture.url,
+			toDelete: picture.toDelete
 		};
 	}
 

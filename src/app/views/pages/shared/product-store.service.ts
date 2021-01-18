@@ -5,10 +5,12 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
 import { CategoryFactoryService } from './category-factory.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Picture } from './picture';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,7 +19,8 @@ export class ProductStoreService {
 
 	constructor(
 		private afs: AngularFirestore,
-		private afAuth: AngularFireAuth
+		private afAuth: AngularFireAuth,
+		private storage: AngularFireStorage
 	) {}
 
 	getAllProducts(): Observable<Product[]> {
@@ -94,6 +97,9 @@ export class ProductStoreService {
 		// Create Firestore-Batch
 		const batch = this.afs.firestore.batch();
 
+		// Store/Delete Pictures in Storage
+		this.mapPictures(product);
+
 		// Store new Product
 		const productRef = this.afs.collection('products').doc(product.id).ref;
 		this.addMetadata(product, isNewProduct, false);
@@ -107,6 +113,20 @@ export class ProductStoreService {
 
 		// Batch Commit
 		return batch.commit();
+	}
+
+	mapPictures(product: Product) {
+		const picturesToStore: Picture[] = [];
+		product.pictures.forEach(picture => {
+
+			// Delete picture
+			if(picture.toDelete) {
+				this.storage.ref(picture.path).delete();
+			} else {
+				picturesToStore.push(picture);
+			}
+		});
+		product.pictures = picturesToStore;
 	}
 
 	/**

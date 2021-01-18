@@ -10,9 +10,16 @@
 
 	<!--<img src="./assets/rewood/uploader/ic-file.svg" width="45px" alt="file">-->
 	<div class="info">
-		<h4 class="name">
-			{{ picture.title }}
-		</h4>
+		<div *ngIf="!picture.toDelete">
+			<h4 class="name">
+				{{ picture.title }}
+			</h4>
+		</div>
+		<div *ngIf="picture.toDelete">
+			<h4 class="name_deleted">
+				{{ picture.title }} - DELETED
+			</h4>
+		</div>
 		<p class="size" *ngIf="picture.file">
 			{{ formatBytes(picture.file?.size) }}
 		</p>
