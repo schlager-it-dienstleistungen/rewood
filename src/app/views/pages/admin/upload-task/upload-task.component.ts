@@ -28,7 +28,7 @@ export class UploadTaskComponent implements OnInit {
 		/**
 		 * Start Upload only when new Picture
 		 */
-		if (!this.picture.url) {
+		if (this.picture.file) {
 			this.startUpload();
 		} else {
 			this.loadExistingFile();
@@ -57,9 +57,8 @@ export class UploadTaskComponent implements OnInit {
 					this.downloadURL = ref.getDownloadURL();
 					this.downloadURL.subscribe(url => {
 						if (url) {
-							this.picture.url = url;
+							this.picture.url = this.changeDownloadUrlAfterResize(url);
 						}
-						console.log('this.picture.url: ' + this.picture.url);
 					});
 				})
 			)
@@ -78,6 +77,21 @@ export class UploadTaskComponent implements OnInit {
 				this.picture.url = this.downloadURL;
 			}),
 		);*/
+	}
+
+	/**
+	 * After Resizing in Firebase, the URL was altered
+	 *
+	 * @param url original DownloadUrl
+	 */
+	changeDownloadUrlAfterResize(url: string): string {
+		console.log('orginalURL: ' + url);
+		let indexOfQuestionMark = url.indexOf('?');
+		let alteredUrl = url.substring(0, indexOfQuestionMark);
+		alteredUrl += '_800x800';
+		alteredUrl += url.substring(indexOfQuestionMark, url.length);
+		console.log('alteredUrl: ' + alteredUrl);
+		return alteredUrl;
 	}
 
 	/*isActive(snapshot) {
