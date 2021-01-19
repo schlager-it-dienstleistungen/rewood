@@ -28,6 +28,7 @@ import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.co
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 		MatButtonModule,
 		MatTooltipModule,
 		MatOptionModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		Ng2ImgMaxModule
 	]
 })
 export class AdminModule { }

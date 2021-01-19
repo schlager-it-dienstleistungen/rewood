@@ -37,9 +37,9 @@
 						Bilder
 					</div>
 					<div class="kt-section__content">
-						<div *ngIf="product.pictures">
-							<a *ngFor="let picture of product.pictures" target="_blank" [href]="picture.url">
-								<img class="thumbnail" [src]="picture.url" alt="picture.title" width="100px">
+						<div >
+							<a *ngFor="let url of picturesUrl$ | async" target="_blank" [href]="url">
+								<img class="thumbnail" [src]="url" width="100px">
 							</a>
 						</div>
 					</div>

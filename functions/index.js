@@ -6,6 +6,34 @@ const nodemailer = require('nodemailer');
 
 admin.initializeApp();
 
+exports.renamePicturesUrl = functions
+	.storage
+	.object()
+	.onFinalize(async (object) => {
+
+		const fileBucket = object.bucket;
+    const filePath = object.name;
+		const contentType = object.contentType;
+
+		if (fileBucket && filePath && contentType) {
+			console.log('Complete data');
+			console.log('df: '+ fileBucket);
+			console.log('filePath: '+ filePath);
+			console.log('contentType: '+ contentType);
+			if (!filePath.startsWith('products/')) {
+				console.log('This is not a product');
+				return true;
+			}
+			console.log('This is a product');
+			object.name = object.name + '_test';
+			return object;
+
+	} else {
+			console.log('Incomplete data');
+			return null;
+	}
+});
+
 let transporter = nodemailer.createTransport({
 	service: 'gmail',
 	host: 'smtp.gmail.com',

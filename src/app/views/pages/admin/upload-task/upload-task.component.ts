@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable, of } from 'rxjs';
-import { tap, finalize } from 'rxjs/operators';
-import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
+import { tap, finalize, delay } from 'rxjs/operators';
+import { AngularFireUploadTask, AngularFireStorage, AngularFireStorageReference } from 'angularfire2/storage';
 import { Picture } from '../../shared/picture';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 
 @Component({
 	selector: 'rw-upload-task',
@@ -19,16 +20,17 @@ export class UploadTaskComponent implements OnInit {
 	task: AngularFireUploadTask;
 
 	percentage: Observable<number>;
-	// snapshot: Observable<any>;
-	downloadURL: Observable<string>;
 
-	constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+	constructor(
+		private storage: AngularFireStorage,
+		private ng2ImgMax: Ng2ImgMaxService
+	) { }
 
 	ngOnInit() {
 		/**
 		 * Start Upload only when new Picture
 		 */
-		if (!this.picture.url) {
+		if (this.picture.file) {
 			this.startUpload();
 		} else {
 			this.loadExistingFile();
@@ -37,37 +39,60 @@ export class UploadTaskComponent implements OnInit {
 
 	loadExistingFile() {
 		this.percentage = of(100);
-		this.downloadURL = of(this.picture.url);
 		this.picture.toDelete = false;
 	}
 
-	startUpload() {
-		// Reference to storage bucket
-		const ref = this.storage.ref(this.picture.path);
+	dataURItoBlob(dataURI) {
+		const byteString = window.atob(dataURI);
+		const arrayBuffer = new ArrayBuffer(byteString.length);
+		const int8Array = new Uint8Array(arrayBuffer);
+		for (let i = 0; i < byteString.length; i++) {
+			int8Array[i] = byteString.charCodeAt(i);
+		}
+		const blob = new Blob([int8Array], { type: 'image/png' });
+		return blob;
+ 	}
 
-		// The main task
-		this.task = this.storage.upload(this.picture.path, this.picture.file);
+	 startUpload() {
+		this.ng2ImgMax.resizeImage(this.picture.file, 400, 400).subscribe(
+			result => {
+				// Reference to storage bucket
+				const ref = this.storage.ref(this.picture.path);
 
-		// Progress monitoring
-		this.percentage = this.task.percentageChanges();
+				debugger;
 
-		this.task.snapshotChanges()
-			.pipe(
-				finalize(() => {
-					this.downloadURL = ref.getDownloadURL();
-					this.downloadURL.subscribe(url => {
+				this.picture.file = new File(result, this.picture.title);
+
+				// The main task
+				this.task = this.storage.upload(this.picture.path, this.picture.file);
+
+				// Progress monitoring
+				this.percentage = this.task.percentageChanges();
+
+				this.task.snapshotChanges()
+					.pipe(
+						finalize(() => {
+							let downloadURL = ref.getDownloadURL();
+							downloadURL.subscribe(url => {
+								if (url) {
+									this.picture.url = url;
+								}
+								console.log('this.picture.url: ' + this.picture.url);
+							});
+						})
+					)
+					.subscribe(url => {
 						if (url) {
-							this.picture.url = url;
+							console.log('url: ' + url);
 						}
-						console.log('this.picture.url: ' + this.picture.url);
 					});
-				})
-			)
-			.subscribe(url => {
-				if (url) {
-					console.log('url: ' + url);
-				}
-			});
+			},
+			error => {
+				console.log('😢 Oh no!', error);
+			}
+		);
+
+
 
 		/*this.snapshot = this.task.snapshotChanges().pipe(
 			tap(console.log),
@@ -79,6 +104,44 @@ export class UploadTaskComponent implements OnInit {
 			}),
 		);*/
 	}
+
+
+
+		/*this.snapshot = this.task.snapshotChanges().pipe(
+			tap(console.log),
+			// The file's download URL
+			finalize(async () =>  {
+				this.downloadURL = await ref.getDownloadURL().toPromise();
+
+				this.picture.url = this.downloadURL;
+			}),
+		);*/
+
+/*
+	delay(t) {
+		return of(resolve => { setTimeout(resolve, t); });
+	}
+
+	keepTrying(triesRemaining, storageRef): Promise<any> {
+		if (triesRemaining < 0) {
+			return Promise.reject('out of tries');
+		}
+
+		return storageRef.getDownloadURL().subscribe(
+			url => {return url;},
+			error =>  {
+				switch (error.code) {
+					case 'storage/object-not-found':
+						return this.delay(2000).subscribe(() => {
+							return this.keepTrying(triesRemaining - 1, storageRef)
+						});
+					default:
+						console.log(error);
+						return Promise.reject(error);
+				}
+			}
+		);
+	}*/
 
 	/*isActive(snapshot) {
 		return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;

@@ -35,7 +35,7 @@
 				<ng-container matColumnDef="picture">
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td mat-cell *matCellDef="let product" class="products_col_picture">
-						<div class="picture" *ngIf="firstPicture(product) as picture; else noImage" >
+						<div class="picture" *ngIf="firstPicture(product) | async as picture" >
 							<span> <img src="{{ picture.url }}" height="80px" width="100px"> </span>
 						</div>
 						<ng-template #noImage>

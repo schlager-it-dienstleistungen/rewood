@@ -3,7 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Product } from '../../shared/product';
 import { ProductStoreService } from '../../shared/product-store.service';
@@ -34,7 +35,8 @@ export class ProductsByCategoryComponent implements OnInit, AfterViewInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private productService: ProductStoreService
+		private productService: ProductStoreService,
+		private storage: AngularFireStorage
 	) { }
 
 	ngOnInit() {
@@ -95,7 +97,13 @@ export class ProductsByCategoryComponent implements OnInit, AfterViewInit {
 		return this.productService.getItemCssClassByStatus(status);
 	}
 
-	firstPicture(product: Product) {
-		return product.pictures[0];
+	firstPicture(product: Product): Observable<string> {
+		if(!product.pictures || product.pictures.length<=0) {
+			console.log('return not availabe');
+			return of('https://firebasestorage.googleapis.com/v0/b/rewood-a7ef8.appspot.com/o/products%2F1611068942217_IMG_9475.JPG_800x800?alt=media&token=d5f1b4ad-916d-44a5-8a1b-cd42d765f1d0');
+			return of('https://firebasestorage.googleapis.com/v0/b/rewood-a7ef8.appspot.com/o/image_not_available_small.png?alt=media&token=24790fdf-1e4d-4fb7-a284-3ea75a7dbb62');
+		}
+		const storageRef = this.storage.ref(product.pictures[0].path);
+		storageRef.getDownloadURL().subscribe(url => {console.log('url: ' + url); return url});
 	}
 }

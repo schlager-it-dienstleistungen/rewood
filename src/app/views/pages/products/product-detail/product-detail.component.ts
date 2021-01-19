@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from '../../shared/product';
 import { ProductStoreService } from '../../shared/product-store.service';
 import { MessageType, LayoutUtilsService } from 'src/app/core/_base/crud';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Picture } from '../../shared/picture';
 
 @Component({
 	selector: 'sw-product-detail',
 	templateUrl: './product-detail.component.html',
 	styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, AfterViewInit {
 	product$: Observable<Product>;
+	picturesUrl$: Observable<string[]>;
 
 	constructor(
 		private productService: ProductStoreService,
 		private route: ActivatedRoute,
 		private layoutUtilsService: LayoutUtilsService,
-		private router: Router
+		private router: Router,
+		private storage: AngularFireStorage,
+		private cdr: ChangeDetectorRef
 	) { }
 
 	ngOnInit() {
@@ -42,6 +47,23 @@ export class ProductDetailComponent implements OnInit {
 				}
 			});
 	}
+
+	/**
+	 * Load DownloadURLs from pictures
+	 */
+	ngAfterViewInit() {
+		this.product$.subscribe(product => {
+			let tmpUrls = new Array;
+			product.pictures.forEach(picture => {
+				const storageRef = this.storage.ref(picture.path);
+				storageRef.getDownloadURL().subscribe(url => {
+					tmpUrls.push(url);
+					this.picturesUrl$ = of(tmpUrls);
+					this.cdr.markForCheck();});
+			});
+		});
+	}
+
 
 	/* UI */
 	/**

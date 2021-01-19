@@ -87,6 +87,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 	}
 
 	firstPicture(product: Product) {
+		console.log('product.pictures[0]: ' + product.pictures[0]);
 		return product.pictures[0];
 	}
 }
