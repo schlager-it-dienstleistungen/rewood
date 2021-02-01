@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from 'src/app/core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { NewsComponent } from './news/news.component';
-import { CredoComponent } from './credo/credo.component';
 import { CategoryLinkComponent } from './category-link/category-link.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { IndicesComponent } from './indices/indices.component';
@@ -30,7 +29,6 @@ import { MatTableModule } from '@angular/material/table';
 	declarations: [
 		HomeComponent,
 		NewsComponent,
-		CredoComponent,
 		CategoryLinkComponent,
 		IndicesComponent,
 		LatestProductsComponent,
