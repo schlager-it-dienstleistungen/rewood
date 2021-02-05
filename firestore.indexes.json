@@ -1,4 +1,13 @@
 {
-  "indexes": [],
+  "indexes": [
+		{
+      "collectionGroup": "products",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "active", "order": "ASCENDING" },
+        { "fieldPath": "tstCreate", "order": "DESCENDING" }
+      ]
+    }
+	],
   "fieldOverrides": []
 }
