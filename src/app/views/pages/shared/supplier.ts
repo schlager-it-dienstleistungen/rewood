@@ -12,4 +12,5 @@ export class Supplier extends BaseDataType {
 		pefc: boolean;
 		address?: Location;
 		active: boolean;
+		supplierNumber: number;
 }

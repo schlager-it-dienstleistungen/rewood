@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CategoryFactoryService } from './category-factory.service';
 import { Supplier } from './supplier';
 import { SupplierFactoryService } from './supplier-factory.service';
 
@@ -43,17 +44,34 @@ export class SupplierStoreService {
 	 * @param supplier Supplier to save
 	 * @param isNewSupplier New Supplier or existing Supplier to save
 	 */
-	storeSupplier(supplier: Supplier, isNewSupplier: boolean): Promise<void> {
-		// Create Firestore-Batch
-		const batch = this.afs.firestore.batch();
-
+	async storeSupplier(supplier: Supplier, isNewSupplier: boolean): Promise<void> {
 		// Store new Product
 		const supplierRef = this.afs.collection('suppliers').doc(supplier.id).ref;
 		this.addMetadata(supplier, isNewSupplier, false);
-		batch.set(supplierRef, supplier);
 
-		// Batch Commit
-		return batch.commit();
+		// Get Next SupplierNumber and Increase
+		if(isNewSupplier){
+			const supplierCounterRef = this.afs.collection('counters').doc('supplier').ref;
+			firebase.firestore().runTransaction(async t => {
+				const supplierNumber = await (await t.get(supplierCounterRef)).data().next;
+				supplier.supplierNumber = supplierNumber;
+
+				t.update(supplierCounterRef, { next: supplierNumber + 1});
+
+			}).then(result => {
+				console.log('Transaction success, supplierNumber:' +  supplier.supplierNumber);
+				// Create new Supplier
+				return supplierRef.set(supplier);
+
+			}).catch(err => {
+				console.log('Transaction failure:', err);
+				return Promise.reject('Error to create new SupplierNumber. Exception: ' + err);
+			});
+
+		// Edit existing Supplier
+		}else{
+			return supplierRef.set(supplier);
+		}
 	}
 
 	/**

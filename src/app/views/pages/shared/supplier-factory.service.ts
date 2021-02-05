@@ -26,7 +26,8 @@ export class SupplierFactoryService {
 			userCreate: '',
 			uid: '',
 			fsc: false,
-			pefc: false
+			pefc: false,
+			supplierNumber: 0
 		};
 	}
 }
