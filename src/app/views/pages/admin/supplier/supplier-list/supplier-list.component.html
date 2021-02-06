@@ -26,6 +26,11 @@
 					<td mat-cell *matCellDef="let supplier"> {{supplier.id}} </td>
 				</ng-container>
 
+				<ng-container matColumnDef=supplierNumber>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Nummer</th>
+					<td mat-cell *matCellDef="let supplier" class="supplier_col_supplierNumber"> {{supplier.supplierNumber}} </td>
+				</ng-container>
+
 				<ng-container matColumnDef=name>
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Lieferant</th>
 					<td mat-cell *matCellDef="let supplier" class="supplier_col_name"> {{supplier.name}} </td>

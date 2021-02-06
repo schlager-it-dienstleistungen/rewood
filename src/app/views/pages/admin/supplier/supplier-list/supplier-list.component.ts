@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
 import { Supplier } from '../../../shared/supplier';
-import { SupplierFactoryService } from '../../../shared/supplier-factory.service';
 import { SupplierStoreService } from '../../../shared/supplier-store.service';
 
 @Component({
@@ -23,13 +22,12 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 	isLoading = false;
 
 	// Table Fields
-	displayedColumns = ['name', 'location', 'phone', 'email', 'fsc', 'pefc', 'actions'];
+	displayedColumns = ['supplierNumber', 'name', 'location', 'phone', 'email', 'fsc', 'pefc', 'actions'];
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private supplierService: SupplierStoreService,
-		private supplierFactory: SupplierFactoryService,
 		private layoutUtilsService: LayoutUtilsService
 	) { }
 
