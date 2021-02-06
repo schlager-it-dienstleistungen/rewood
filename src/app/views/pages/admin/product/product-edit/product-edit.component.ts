@@ -1,12 +1,17 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { AuthService, currentUser } from 'src/app/core/auth';
+import { RolesTable } from 'src/app/core/auth/_server/roles.table';
+import { AppState } from 'src/app/core/reducers';
 import { CategoryFactoryService } from '../../../shared/category-factory.service';
 import { LocationService } from '../../../shared/location.service';
 import { Picture } from '../../../shared/picture';
 import { Product } from '../../../shared/product';
 import { ProductFactoryService } from '../../../shared/product-factory.service';
 import { ProductStoreService } from '../../../shared/product-store.service';
+import { UserStoreService } from '../../../shared/user-store.service';
 
 @Component({
 	selector: 'rw-product-edit',
@@ -31,6 +36,8 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 	constructor(
 		private fb: FormBuilder,
 		private productStoreService: ProductStoreService,
+		private userStoreService: UserStoreService,
+		private store: Store<AppState>,
 		private route: ActivatedRoute,
 		private router: Router,
 		private cdr: ChangeDetectorRef
@@ -49,8 +56,29 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 		if (this.isNewProduct) {
 			this.product = ProductFactoryService.empty();
-			this.product.id = this.productStoreService.createProductId();
-			this.setFormValues(this.product);
+
+			this.store.pipe(select(currentUser)).subscribe(currentUser => {
+				this.userStoreService.getUser(currentUser.id).subscribe(user => {
+					// User not in role SUPPLIER
+					if(user.roles.indexOf(RolesTable.RolesEnum.supplier) < 0){
+						this.router.navigate(['../../adminproducts'],
+							{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer besitzt nicht die Rolle SUPPLIER'} }
+						);
+					}
+
+					// User has no SupplierNumber
+					if(!user.supplierNumber){
+						this.router.navigate(['../../adminproducts'],
+							{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer hat keine Lieferantennummer eingetragen'} }
+						);
+					}
+
+					// Store the Supplier in the product
+					this.product.supplierNumber = user.supplierNumber;
+					this.product.id = this.productStoreService.createProductId();
+					this.setFormValues(this.product);
+				})
+			});
 		} else {
 			this.productStoreService.getProduct(id).subscribe(res => {
 				if (res) {
@@ -114,7 +142,9 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			address2: [''],
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
 			city: ['', Validators.required],
-			country: ['AT', Validators.required]/*,
+			country: ['AT', Validators.required],
+			supplierNumber: [0]
+			/*,
 			pictures: this.buildPicturesArray([
 				{ title: '', path: '', url: '' }
 			])*/

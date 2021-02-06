@@ -32,7 +32,8 @@ export class ProductFactoryService {
 			pictures: [],
 			tstCreate: '',
 			userCreate: '',
-			active: true
+			active: true,
+			supplierNumber: 0
 		};
 	}
 }

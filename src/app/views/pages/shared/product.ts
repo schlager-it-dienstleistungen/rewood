@@ -17,4 +17,5 @@ export interface Product extends BaseDataType {
 	pictures?: Picture[];
 	status: number;
 	active: boolean;
+	supplierNumber: number;
 }

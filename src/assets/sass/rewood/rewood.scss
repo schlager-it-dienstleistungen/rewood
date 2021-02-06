@@ -7,8 +7,20 @@
 	margin-bottom: 1.5rem;
 }
 
-.mat-snack-bar-container {
-  background-color: #024731;
+.mat-snack-bar-container.error_class {
+	max-width: 1040px;
+	min-height: 10px;
+	max-height: 70px;
+	background-color: red;
+	font-size: 1.1rem;
+}
+
+.mat-snack-bar-container.info_class {
+	max-width: 1040px;
+	min-height: 10px;
+	max-height: 70px;
+	background-color: #024731;
+	font-size: 1.1rem;
 }
 
 .icon-color-base {
