@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MessageType, NotificationService } from '../../shared/notification.service';
 import { Product } from '../../shared/product';
 import { ProductStoreService } from '../../shared/product-store.service';
-import { MessageType, LayoutUtilsService } from 'src/app/core/_base/crud';
 
 @Component({
 	selector: 'sw-product-detail',
@@ -16,7 +16,7 @@ export class ProductDetailComponent implements OnInit {
 	constructor(
 		private productService: ProductStoreService,
 		private route: ActivatedRoute,
-		private layoutUtilsService: LayoutUtilsService,
+		private notificationService: NotificationService,
 		private router: Router
 	) { }
 
@@ -38,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
 			.subscribe(queryParams => {
 				if (queryParams.newProduct === 'true') {
 					const message = `Neues Produkt wurde erfolgreich angelegt.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message, MessageType.Create);
 				}
 			});
 	}

@@ -1,13 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
 import { Product } from '../../../shared/product';
 import { ProductStoreService } from '../../../shared/product-store.service';
-import { ActionNotificationComponent} from '../../../../partials/content/crud';
+import { MessageType, NotificationService, PanelClass } from '../../../shared/notification.service';
 
 @Component({
 	selector: 'rw-product-list',
@@ -33,8 +31,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private productService: ProductStoreService,
-		private layoutUtilsService: LayoutUtilsService,
-		private snackBar: MatSnackBar
+		private notificationService: NotificationService
 	) { }
 
 	ngOnInit() {
@@ -47,40 +44,19 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 				// If a New Producct was created --> Show Message
 				if (queryParams.newSupplier === 'true') {
 					const message = `Neues Produkt wurde erfolgreich angelegt.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message);
 				}
 
 				// If a Existing Supplier was saved --> Show Message
 				if (queryParams.editSupplier === 'true') {
 					const message = `Produkt wurde erfolgreich geändert.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message);
 				}
 
 				// If an Error occured during NewProduct --> Show Message
 				if (queryParams.errorWhenNew === 'true') {
 					const message = queryParams.message;
-					const config = new MatSnackBarConfig();
-					config.verticalPosition = 'bottom';
-					config.panelClass = ['error_class'];
-					config.duration = 10000;
-					//this.snackBar.open(message, 'Undo', config);
-
-					const _data = {
-						message: message,
-						snackBar: this.snackBar,
-						showCloseButton: true,
-						showUndoButton: false,
-						undoButtonDuration: 10000,
-						verticalPosition: 'bottom',
-						//type: Create,
-						action: 'Undo'
-					};
-					this.snackBar.openFromComponent(ActionNotificationComponent, {
-						duration: 10000,
-						data: _data,
-						verticalPosition: 'bottom',
-						panelClass: ['error_class']
-					});
+					this.notificationService.showActionNotification(message, MessageType.Create, PanelClass.ERROR);
 				}
 			});
 	}
@@ -121,16 +97,16 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		const waitDesciption = 'Product is deleting...';
 		const deleteMessage = `Product has been deleted`;
 
-		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
+		const dialogRef = this.notificationService.deleteElement(title, description, waitDesciption);
 		dialogRef.afterClosed().subscribe(res => {
 			if (!res) {
 				return;
 			}
 
 			this.productService.inactivateSupplier(toDelete).then(() => {
-				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(deleteMessage, MessageType.Delete);
 			}).catch(error => {
-				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(error.message, MessageType.Delete);
 			});
 		});
 	}

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
+import { MessageType, NotificationService } from '../../../shared/notification.service';
 import { Supplier } from '../../../shared/supplier';
 import { SupplierStoreService } from '../../../shared/supplier-store.service';
 
@@ -28,7 +28,7 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private supplierService: SupplierStoreService,
-		private layoutUtilsService: LayoutUtilsService
+		private notificationService: NotificationService
 	) { }
 
 	ngOnInit() {
@@ -39,7 +39,7 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 			.subscribe(queryParams => {
 				if (queryParams.newSupplier === 'true') {
 					const message = `Neuer Lieferant wurde erfolgreich angelegt.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message, MessageType.Create);
 				}
 			});
 
@@ -48,7 +48,7 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 			.subscribe(queryParams => {
 				if (queryParams.editSupplier === 'true') {
 					const message = `Lieferant wurde erfolgreich geändert.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message, MessageType.Create);
 				}
 			});
 	}
@@ -89,16 +89,16 @@ export class SupplierListComponent implements OnInit, AfterViewInit {
 		const waitDesciption = 'Supplier is deleting...';
 		const deleteMessage = `Supplier has been deleted`;
 
-		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
+		const dialogRef = this.notificationService.deleteElement(title, description, waitDesciption);
 		dialogRef.afterClosed().subscribe(res => {
 			if (!res) {
 				return;
 			}
 
 			this.supplierService.inactivateSupplier(toDelete).then(() => {
-				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(deleteMessage, MessageType.Delete);
 			}).catch(error => {
-				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(error.message, MessageType.Delete);
 			});
 		});
 	}

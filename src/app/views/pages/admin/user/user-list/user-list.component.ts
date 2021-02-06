@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
-import { LayoutUtilsService, MessageType } from 'src/app/core/_base/crud';
+import { MessageType, NotificationService } from '../../../shared/notification.service';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		private router: Router,
 		private userService: UserStoreService,
 		private userFactory: UserFactoryService,
-		private layoutUtilsService: LayoutUtilsService,
+		private notificationService: NotificationService,
 		private store: Store<AppState>
 	) { }
 
@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 			.subscribe(queryParams => {
 				if (queryParams.newUser === 'true') {
 					const message = `Neuer Benutzer wurde erfolgreich angelegt.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message, MessageType.Create);
 				}
 			});
 
@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 			.subscribe(queryParams => {
 				if (queryParams.editUser === 'true') {
 					const message = `Benutzer wurde erfolgreich geändert.`;
-					this.layoutUtilsService.showActionNotification(message, MessageType.Create, 10000, true, false);
+					this.notificationService.showActionNotification(message, MessageType.Create);
 				}
 			});
 	}
@@ -103,16 +103,16 @@ export class UserListComponent implements OnInit, AfterViewInit {
 		const waitDesciption = 'User is deleting...';
 		const deleteMessage = `User has been deleted`;
 
-		const dialogRef = this.layoutUtilsService.deleteElement(title, description, waitDesciption);
+		const dialogRef = this.notificationService.deleteElement(title, description, waitDesciption);
 		dialogRef.afterClosed().subscribe(res => {
 			if (!res) {
 				return;
 			}
 
 			this.userService.inactivateUser(toDelete).then(() => {
-				this.layoutUtilsService.showActionNotification(deleteMessage, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(deleteMessage, MessageType.Delete);
 			}).catch(error => {
-				this.layoutUtilsService.showActionNotification(error.message, MessageType.Delete, 10000, true, false);
+				this.notificationService.showActionNotification(error.message, MessageType.Delete);
 			});
 		});
 	}
