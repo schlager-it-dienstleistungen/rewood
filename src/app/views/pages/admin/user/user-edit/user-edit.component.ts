@@ -1,11 +1,13 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef,  OnChanges, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { Role, selectAllRoles } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
 import { PasswordFactoryService } from '../../../shared/password-factory.service';
+import { Supplier } from '../../../shared/supplier';
+import { SupplierStoreService } from '../../../shared/supplier-store.service';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
 import { UserStoreService } from '../../../shared/user-store.service';
@@ -21,6 +23,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	user: User;
 
 	rolesSubject = new BehaviorSubject<number[]>([]);
+	roles = this.rolesSubject.asObservable();
 	allRoles: Role[];
 	categoryNotificationSubject = new BehaviorSubject<string[]>([]);
 
@@ -30,6 +33,8 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	formErrorMessage = '';
 	isNewUser: boolean;
 
+	allSuppliers: Supplier[];
+
 	constructor(
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
@@ -38,6 +43,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		private userStoreService: UserStoreService,
 		private userFactory: UserFactoryService,
 		private userEmailExistsValidator: UserEmailExistsValidatorService,
+		private supplierService: SupplierStoreService,
 		private store: Store<AppState>) {
 	}
 
@@ -49,6 +55,11 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		} else {
 			this.isNewUser = true;
 		}
+
+		// Load All Suppliers
+		this.supplierService.getAllActiveSuppliers().subscribe(data => {
+			this.allSuppliers = data;
+		});
 
 		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
 		this.initForm();
@@ -128,7 +139,8 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			],
 			company: ['', [ Validators.required]],
 			phone: [''],
-			password: ['']
+			password: [''],
+			supplierNumber: [0]
 		});
 	}
 

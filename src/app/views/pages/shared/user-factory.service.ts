@@ -34,7 +34,8 @@ export class UserFactoryService {
 			emailVerified: false,
 			active: true,
 			tstCreate: '',
-			userCreate: ''
+			userCreate: '',
+			supplierNumber: 0
 		};
 	}
 

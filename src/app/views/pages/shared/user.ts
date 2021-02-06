@@ -14,4 +14,5 @@ export class User extends BaseDataType {
 		phone: string;
 		emailVerified: boolean;
 		active: boolean;
+		supplierNumber: number;
 }

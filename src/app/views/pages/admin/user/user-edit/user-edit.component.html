@@ -206,6 +206,20 @@
 										<rw-user-roles-list [(rolesSubject)]="rolesSubject"></rw-user-roles-list>
 									</div>
 								</div>
+								<div class="form-group">
+									<label>Lieferant</label><br/>
+									<select class="form-control" formControlName="supplierNumber">
+										<option *ngFor="let supplier of allSuppliers" value="{{supplier.supplierNumber}}">{{supplier.name}}</option>
+									</select>
+									<!--<input type="text" class="form-control" formControlName="supplierNumber">
+									<div *ngIf="supplierNumber.invalid && (supplierNumber.dirty || supplierNumber.touched)"
+											class="alert alert-danger">
+										<div *ngIf="supplierNumber.errors.required">
+											Es muss ein Lieferant gewählt werden.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
 							</div>
 						</div>
 					</div>
