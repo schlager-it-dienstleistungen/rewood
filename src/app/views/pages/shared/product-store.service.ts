@@ -4,7 +4,7 @@ import { Category } from './category';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
 import { CategoryFactoryService } from './category-factory.service';
@@ -81,8 +81,29 @@ export class ProductStoreService {
 		);
 	}
 
+	/**
+	 * Creates a unique ProductId via Angular Firestore
+	 */
 	createProductId(): string {
 		return this.afs.createId();
+	}
+
+	/**
+	 * Creates the next unique ProductNumber and sets it (and the ReferenceNumber)
+	 */
+	async createAndSetProductAndReferenceNumber(product: Product) {
+		const productCounterRef = this.afs.collection('counters').doc('product').ref;
+		firebase.firestore().runTransaction(async t => {
+			const productNumber = await (await t.get(productCounterRef)).data().next;
+			product.productNumber = productNumber;
+			product.productReferenceNumber = product.supplierNumber + '' + productNumber;
+			t.update(productCounterRef, { next: productNumber + 1});
+
+		}).then(result => {
+			console.log('Transaction success, productNumber:' +  product.productNumber + ', productReferenceNumber: ' + product.productReferenceNumber + '; result: ' + result);
+		}).catch(error => {
+			console.error('Transaction error: ' + error);
+		});
 	}
 
 	/**

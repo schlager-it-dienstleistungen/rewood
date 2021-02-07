@@ -76,6 +76,10 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 					// Store the Supplier in the product
 					this.product.supplierNumber = user.supplierNumber;
 					this.product.id = this.productStoreService.createProductId();
+
+					// Create and set Product- and ProductReferenceNumer
+					this.productStoreService.createAndSetProductAndReferenceNumber(this.product);
+
 					this.setFormValues(this.product);
 				})
 			});
@@ -143,7 +147,9 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
 			city: ['', Validators.required],
 			country: ['AT', Validators.required],
-			supplierNumber: [0]
+			supplierNumber: [0],
+			productNumber: [0],
+			productReferenceNumber: ['']
 			/*,
 			pictures: this.buildPicturesArray([
 				{ title: '', path: '', url: '' }
@@ -213,6 +219,13 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			return;
 		}
 
+		// Throw Exception, if no ProductNr or ProductRefenceNumber
+		if(!this.product.productNumber || !this.product.productReferenceNumber){
+			this.router.navigate(['../../adminproducts'],
+				{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Produkt hat keine gültige Produktnummer'} }
+			);
+		}
+
 		this.submitted = true;
 
 		this.prepareAndSubmitProduct(submitAndNewProduct);
@@ -271,6 +284,13 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			pictures,
 			dimension
 		};
+
+		/**
+		 * ProductNumber isn't shown in the form, so it comes from the origin Product when editing
+		 */
+		newProduct.supplierNumber = this.product.supplierNumber;
+		newProduct.productNumber = this.product.productNumber;
+		newProduct.productReferenceNumber = this.product.productReferenceNumber;
 
 		newProduct.active = true;
 		// MetaData

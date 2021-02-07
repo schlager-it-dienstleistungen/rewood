@@ -18,4 +18,6 @@ export interface Product extends BaseDataType {
 	status: number;
 	active: boolean;
 	supplierNumber: number;
+	productNumber: number;
+	productReferenceNumber: string;
 }

@@ -44,5 +44,9 @@ service cloud.firestore {
     	allow read;
 			allow write: if true;
     }
+		match /counters/{product} {
+    	allow read;
+			allow write: if true;
+    }
   }
 }

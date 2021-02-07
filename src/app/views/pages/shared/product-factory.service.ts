@@ -33,7 +33,9 @@ export class ProductFactoryService {
 			tstCreate: '',
 			userCreate: '',
 			active: true,
-			supplierNumber: 0
+			supplierNumber: 0,
+			productNumber: 0,
+			productReferenceNumber: ''
 		};
 	}
 }
