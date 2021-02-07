@@ -175,6 +175,13 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 		const newSupplier: Supplier = {...formValue};
 		newSupplier.active = true;
 
+		/**
+		 * SupplierNumber isn't shown in the form, so it comes from the origin Supplier when editing
+		 */
+		if(!this.isNewSupplier) {
+			newSupplier.supplierNumber = this.supplier.supplierNumber;
+		}
+
 		// MetaData
 		newSupplier.tstCreate = this.supplier.tstCreate;
 		newSupplier.userCreate = this.supplier.userCreate;
