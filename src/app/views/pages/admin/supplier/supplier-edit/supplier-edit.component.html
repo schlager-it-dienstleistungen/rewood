@@ -63,7 +63,7 @@
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
 						<div class="kt-heading kt-heading--md" *ngIf="supplier && supplier.supplierNumber!=0; else supplierNumberDoesntExist">
-							Lieferantennummer: {{supplier.supplierNumber}}
+							Lieferantennr.: {{supplier.supplierNumber}}
 						</div>
 						<ng-template #supplierNumberDoesntExist>
 							<div class="kt-heading kt-heading--md">Geben Sie allgemeine Informationen an</div>
@@ -198,7 +198,12 @@
 
 					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+						<div class="kt-heading kt-heading--md" *ngIf="supplier && supplier.supplierNumber!=0; else supplierNumberDoesntExist">
+							Zusammenfassung, Lieferantennr.: {{supplier.supplierNumber}}
+						</div>
+						<ng-template #supplierNumberDoesntExist>
+							<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+						</ng-template>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__review">
 								<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
