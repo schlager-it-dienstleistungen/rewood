@@ -96,7 +96,7 @@ export class ProductStoreService {
 		firebase.firestore().runTransaction(async t => {
 			const productNumber = await (await t.get(productCounterRef)).data().next;
 			product.productNumber = productNumber;
-			product.productReferenceNumber = product.supplierNumber + '' + productNumber;
+			this.createAndSetReferenceNumber(product);
 			t.update(productCounterRef, { next: productNumber + 1});
 
 		}).then(result => {
@@ -104,6 +104,15 @@ export class ProductStoreService {
 		}).catch(error => {
 			console.error('Transaction error: ' + error);
 		});
+	}
+
+	/**
+	 * Creates a new Referencenumber with the given SupplierNr and ProductNr
+	 *
+	 * @param product given product
+	 */
+	createAndSetReferenceNumber(product: Product) {
+		product.productReferenceNumber = product.supplierNumber + '' + product.productNumber;
 	}
 
 	/**

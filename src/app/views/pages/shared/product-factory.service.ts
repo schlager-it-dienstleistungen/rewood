@@ -33,7 +33,7 @@ export class ProductFactoryService {
 			tstCreate: '',
 			userCreate: '',
 			active: true,
-			supplierNumber: 0,
+			supplierNumber: null,
 			productNumber: 0,
 			productReferenceNumber: ''
 		};

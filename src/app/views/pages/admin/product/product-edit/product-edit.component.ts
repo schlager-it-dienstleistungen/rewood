@@ -11,6 +11,8 @@ import { Picture } from '../../../shared/picture';
 import { Product } from '../../../shared/product';
 import { ProductFactoryService } from '../../../shared/product-factory.service';
 import { ProductStoreService } from '../../../shared/product-store.service';
+import { Supplier } from '../../../shared/supplier';
+import { SupplierStoreService } from '../../../shared/supplier-store.service';
 import { UserStoreService } from '../../../shared/user-store.service';
 
 @Component({
@@ -26,6 +28,8 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 	categories = CategoryFactoryService.getCategories();
 	// Countries
 	countries = LocationService.getCountries();
+	// Suppliers for ADMIN
+	allSuppliers$: Supplier[];
 
 	@ViewChild('wizard', {static: true}) el: ElementRef;
 	submitted = false;
@@ -37,6 +41,7 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 		private fb: FormBuilder,
 		private productStoreService: ProductStoreService,
 		private userStoreService: UserStoreService,
+		private supplierService: SupplierStoreService,
 		private store: Store<AppState>,
 		private route: ActivatedRoute,
 		private router: Router,
@@ -59,22 +64,32 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 			this.store.pipe(select(currentUser)).subscribe(currentUser => {
 				this.userStoreService.getUser(currentUser.id).subscribe(user => {
-					// User not in role SUPPLIER
-					if(user.roles.indexOf(RolesTable.RolesEnum.supplier) < 0){
-						this.router.navigate(['../../adminproducts'],
-							{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer besitzt nicht die Rolle SUPPLIER'} }
-						);
+					// User is in role ADMIN
+					if(user.roles.indexOf(RolesTable.RolesEnum.admin) >= 0){
+						// Load All Suppliers
+						this.supplierService.getAllActiveSuppliers().subscribe(data => {
+							this.allSuppliers$ = data;
+						});
+					}else{
+						// User not in role SUPPLIER
+						if(user.roles.indexOf(RolesTable.RolesEnum.supplier) < 0){
+							this.router.navigate(['../../adminproducts'],
+								{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer besitzt nicht die Rolle SUPPLIER'} }
+							);
+						}
+
+						// User has no SupplierNumber
+						if(!user.supplierNumber){
+							this.router.navigate(['../../adminproducts'],
+								{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer hat keine Lieferantennummer eingetragen'} }
+							);
+						}
+
+						// Store the Supplier in the product
+						this.product.supplierNumber = user.supplierNumber;
 					}
 
-					// User has no SupplierNumber
-					if(!user.supplierNumber){
-						this.router.navigate(['../../adminproducts'],
-							{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer hat keine Lieferantennummer eingetragen'} }
-						);
-					}
-
-					// Store the Supplier in the product
-					this.product.supplierNumber = user.supplierNumber;
+					// Create ID
 					this.product.id = this.productStoreService.createProductId();
 
 					// Create and set Product- and ProductReferenceNumer
@@ -147,7 +162,7 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			postcode: ['', [Validators.required, Validators.pattern(/^\d{1,5}?$/)]],
 			city: ['', Validators.required],
 			country: ['AT', Validators.required],
-			supplierNumber: [0],
+			supplierNumber: ['', Validators.required],
 			productNumber: [0],
 			productReferenceNumber: ['']
 			/*,
@@ -173,6 +188,7 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get postcode() { return this.productForm.get('postcode'); }
 	get city() { return this.productForm.get('city'); }
 	get country() { return this.productForm.get('country'); }
+	get supplierNumber() { return this.productForm.get('supplierNumber'); }
 
 	/*
 	private buildPicturesArray(values: Picture[]): FormArray {
@@ -210,8 +226,9 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 		const controls = this.productForm.controls;
 		/** check form */
 		if (this.productForm.invalid) {
-			Object.keys(controls).forEach(controlName =>
-				controls[controlName].markAsTouched()
+			Object.keys(controls).forEach(controlName =>{
+				console.log('control: ' + controlName);
+				controls[controlName].markAsTouched()}
 			);
 
 			this.hasFormErrors = true;
@@ -219,11 +236,20 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			return;
 		}
 
-		// Throw Exception, if no ProductNr or ProductRefenceNumber
+		// Check SupplierNr
+		if(!this.product.supplierNumber){
+			console.log('control: ');
+			debugger;
+			this.hasFormErrors = true;
+			this.formErrorMessage = 'Produkt hat keinen gültigen Lieferanten!';
+			return;
+		}
+
+		// Check no ProductNr or ProductRefenceNumber
 		if(!this.product.productNumber || !this.product.productReferenceNumber){
-			this.router.navigate(['../../adminproducts'],
-				{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Produkt hat keine gültige Produktnummer'} }
-			);
+			this.hasFormErrors = true;
+			this.formErrorMessage = 'Produkt hat keine gültige Produktnummer!';
+			return;
 		}
 
 		this.submitted = true;
@@ -309,7 +335,6 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 		};
 	}
 
-
 	/**
 	 * Close Alert
 	 *
@@ -317,5 +342,18 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 */
 	onAlertClose($event) {
 		this.hasFormErrors = false;
+	}
+
+	/**
+	 * Change of Supplier Selection
+	 *
+	 * @param supplier selected Supplier
+	 */
+	onSupplierChange(supplier){
+		// Store the Supplier in the product
+		this.product.supplierNumber = supplier;
+
+		// Create and set Product- and ProductReferenceNumer
+		this.productStoreService.createAndSetReferenceNumber(this.product);
 	}
 }

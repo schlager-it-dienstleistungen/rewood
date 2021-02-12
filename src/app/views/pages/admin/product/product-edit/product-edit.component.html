@@ -92,7 +92,7 @@
 				<form class="kt-form" id="kt_form" [formGroup]="productForm">
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-						<div class="kt-heading kt-heading--md" *ngIf="product && product.productReferenceNumber!=0; else productNumberDoesntExist">
+						<div class="kt-heading kt-heading--md" *ngIf="product && product.supplierNumber && product.productReferenceNumber!=0; else productNumberDoesntExist">
 							Produktnr.: {{product.productReferenceNumber}}
 						</div>
 						<ng-template #productNumberDoesntExist>
@@ -100,6 +100,19 @@
 						</ng-template>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
+								<div class="form-group" *ngIf="allSuppliers$">
+									<label>Lieferant</label><br/>
+									<select class="form-control" formControlName="supplierNumber" (change)="onSupplierChange($event.target.value)">
+										<option *ngFor="let supplier of allSuppliers$" value="{{supplier.supplierNumber}}">{{supplier.name}}</option>
+									</select>
+									<div *ngIf="supplierNumber.invalid && (supplierNumber.dirty || supplierNumber.touched)"
+											class="alert alert-danger">
+										<div *ngIf="supplierNumber.errors.required">
+											Es muss ein Lieferant gewählt werden.
+										</div>
+									</div>
+									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
+								</div>
 								<div class="form-group">
 									<label>Titel</label><br/>
 									<input type="text" class="form-control" formControlName="title" required minlength="3">
