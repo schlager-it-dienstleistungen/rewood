@@ -175,6 +175,13 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			return;
 		}
 
+		// Check if a Role is selected
+		if(!this.isRoleSelected()) {
+			this.hasFormErrors = true;
+			this.formErrorMessage = 'Fehlerhafte Eingabe - Es muss eine Rolle ausgewählt werden!';
+			return;
+		}
+
 		this.submitted = true;
 
 		// Store User in Firestore
@@ -240,6 +247,16 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		newUser.categoryNotifications = this.categoryNotificationSubject.value;
 
 		return newUser;
+	}
+
+	/**
+	 * Checks if a Role is selected
+	 */
+	isRoleSelected(): boolean {
+		if(this.rolesSubject.value.length <= 0) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
