@@ -8,6 +8,7 @@ import { RolesTable } from 'src/app/core/auth/_server/roles.table';
 import { AppState } from 'src/app/core/reducers';
 import { PasswordFactoryService } from '../../../shared/password-factory.service';
 import { Supplier } from '../../../shared/supplier';
+import { SupplierFactoryService } from '../../../shared/supplier-factory.service';
 import { SupplierStoreService } from '../../../shared/supplier-store.service';
 import { User } from '../../../shared/user';
 import { UserFactoryService } from '../../../shared/user-factory.service';
@@ -60,6 +61,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 		// Load All Suppliers
 		this.supplierService.getAllActiveSuppliers().subscribe(data => {
 			this.allSuppliers = data;
+			this.allSuppliers.unshift(SupplierFactoryService.empty());
 		});
 
 		this.store.pipe(select(selectAllRoles)).subscribe(allRoles => { this.allRoles = allRoles as Role[]; });
@@ -271,7 +273,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 * Checks if a Supplier is selected, when role is SUPPLIER
 	 */
 	isSupplierValidWhenRoleSupplier(): boolean {
-		if(this.rolesSubject.value.indexOf(RolesTable.RolesEnum.supplier)>=0 && this.user.supplierNumber==0) {
+		if(this.rolesSubject.value.indexOf(RolesTable.RolesEnum.supplier)>=0 && this.supplierNumber.value==0) {
 			return false;
 		}
 		return true;
@@ -294,6 +296,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	get company() { return this.userForm.get('company'); }
 	get phone() { return this.userForm.get('phone'); }
 	get password() { return this.userForm.get('password'); }
+	get supplierNumber() { return this.userForm.get('supplierNumber'); }
 
 	/* UI */
 	/**
