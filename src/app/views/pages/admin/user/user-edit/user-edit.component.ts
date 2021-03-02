@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { Role, selectAllRoles } from 'src/app/core/auth';
+import { RolesTable } from 'src/app/core/auth/_server/roles.table';
 import { AppState } from 'src/app/core/reducers';
 import { PasswordFactoryService } from '../../../shared/password-factory.service';
 import { Supplier } from '../../../shared/supplier';
@@ -182,6 +183,13 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 			return;
 		}
 
+		// Check if valid Supplier when SUPPLIER-Role
+		if(!this.isSupplierValidWhenRoleSupplier()) {
+			this.hasFormErrors = true;
+			this.formErrorMessage = 'Fehlerhafte Eingabe - Es muss ein Lieferant gewählt werden!';
+			return;
+		}
+
 		this.submitted = true;
 
 		// Store User in Firestore
@@ -254,6 +262,16 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 */
 	isRoleSelected(): boolean {
 		if(this.rolesSubject.value.length <= 0) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Checks if a Supplier is selected, when role is SUPPLIER
+	 */
+	isSupplierValidWhenRoleSupplier(): boolean {
+		if(this.rolesSubject.value.indexOf(RolesTable.RolesEnum.supplier)>=0 && this.user.supplierNumber==0) {
 			return false;
 		}
 		return true;
