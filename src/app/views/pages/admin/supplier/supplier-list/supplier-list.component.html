@@ -1,5 +1,5 @@
 <kt-portlet>
-	<kt-portlet-header title="Lieferanten">
+	<kt-portlet-header title="Lieferanten" *ngxPermissionsOnly="['NewSupplier']">
 		<ng-container ktPortletTools>
 			<button [routerLink]="['../suppliers/add']" mat-raised-button color="primary" matTooltip="Lege neuen Lieferanten an">Neuer Lieferant</button>
 			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->

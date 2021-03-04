@@ -28,6 +28,7 @@ import { SupplierEditComponent } from './supplier/supplier-edit/supplier-edit.co
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 		MatButtonModule,
 		MatTooltipModule,
 		MatOptionModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		NgxPermissionsModule.forChild(),
 	]
 })
 export class AdminModule { }
