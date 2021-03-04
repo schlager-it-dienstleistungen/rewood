@@ -273,7 +273,7 @@ export class UserEditComponent implements OnInit, OnChanges, AfterViewInit {
 	 * Checks if a Supplier is selected, when role is SUPPLIER
 	 */
 	isSupplierValidWhenRoleSupplier(): boolean {
-		if(this.rolesSubject.value.indexOf(RolesTable.RolesEnum.supplier)>=0 && this.supplierNumber.value==0) {
+		if(this.rolesSubject.value.indexOf(RolesTable.RolesEnum.SUPPLIER)>=0 && this.supplierNumber.value==0) {
 			return false;
 		}
 		return true;

@@ -11,10 +11,13 @@ import { LayoutConfig } from '../../../core/_config/layout.config';
 import { MenuConfig } from '../../../core/_config/menu.config';
 import { PageConfig } from '../../../core/_config/page.config';
 // User permissions
-import { NgxPermissionsService } from 'ngx-permissions';
-import { currentUserPermissions, Permission } from '../../../core/auth';
+import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
+import { currentUserPermissions, currentUserRoleIds, Permission, Role } from '../../../core/auth';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../core/reducers';
+// Auth
+import { AuthService } from '../../../core/auth/';
+import { RolesTable } from 'src/app/core/auth/_server/roles.table';
 
 @Component({
 	selector: 'kt-base',
@@ -33,6 +36,7 @@ export class BaseComponent implements OnInit, OnDestroy {
 	// Private properties
 	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 	private currentUserPermissions$: Observable<Permission[]>;
+	private currentUserRoles$: Observable<number[]>;
 
 
 	/**
@@ -51,7 +55,9 @@ export class BaseComponent implements OnInit, OnDestroy {
 		private pageConfigService: PageConfigService,
 		private htmlClassService: HtmlClassService,
 		private store: Store<AppState>,
-		private permissionsService: NgxPermissionsService) {
+		private auth: AuthService,
+		private permissionsService: NgxPermissionsService,
+		private rolesService: NgxRolesService) {
 		this.loadRolesWithPermissions();
 
 		// register configs by demos
@@ -103,17 +109,39 @@ export class BaseComponent implements OnInit, OnDestroy {
 
 	/**
 	 * NGX Permissions, init roles
+	 * https://www.npmjs.com/package/ngx-permissions/v/8.1.1
 	 */
 	loadRolesWithPermissions() {
-		this.currentUserPermissions$ = this.store.pipe(select(currentUserPermissions));
-		const permissionsSubscr = this.currentUserPermissions$.subscribe(res => {
+		this.currentUserRoles$ = this.store.pipe(select(currentUserRoleIds));
+		const rolesSubscr = this.currentUserRoles$.subscribe(res => {
 			if (!res || res.length === 0) {
 				return;
 			}
 
+			this.rolesService.flushRoles();
 			this.permissionsService.flushPermissions();
-			res.forEach((pm: Permission) => this.permissionsService.addPermission(pm.name));
+
+			// Each Role
+			res.forEach(roleId => {
+				this.auth.getRoleById(roleId).subscribe(role => {
+
+					// Get Permissions
+					this.auth.getRolePermissions(role.id).subscribe(perm => {
+
+						// Only PermissionNames
+						const permissions = perm.map(onePerm => onePerm.name);
+
+						// Add Role to NgxRoleService
+						this.rolesService.addRole(role.title, permissions);
+
+						permissions.forEach(pm => {
+							// Add Permissions to NgxPermissionsService
+							this.permissionsService.addPermission(pm);
+						});
+					});
+				});
+			});
 		});
-		this.unsubscribe.push(permissionsSubscr);
+		this.unsubscribe.push(rolesSubscr);
 	}
 }

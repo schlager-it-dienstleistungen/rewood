@@ -1,10 +1,10 @@
 import { Role } from '../_models/role.model';
 
 enum RolesEnum {
-	admin = 1,
-	supplier = 2,
-	customer = 3,
-	guest = 4
+	ADMIN = 1,
+	SUPPLIER = 2,
+	CUSTOMER = 3,
+	GUEST = 4
 }
 export class RolesTable {
 	public static RolesEnum = RolesEnum;
