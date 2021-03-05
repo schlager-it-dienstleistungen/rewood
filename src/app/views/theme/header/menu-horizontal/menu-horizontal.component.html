@@ -55,8 +55,11 @@
 
 				<ul *ngIf="item.submenu?.length" class="kt-menu__subnav">
 					<ng-container *ngFor="let child of item.submenu">
-						<ng-container [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: child, parentItem: item }">
-						</ng-container>
+						<ng-container *ngIf="!child.onlyForRole" [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: child, parentItem: item }"></ng-container>
+						<ng-template *ngIf="child.onlyForRole" ngxPermissionsOnly="{{ child.onlyForRole }}">
+							<ng-container [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: child, parentItem: item }">
+							</ng-container>
+						</ng-template>
 					</ng-container>
 				</ul>
 

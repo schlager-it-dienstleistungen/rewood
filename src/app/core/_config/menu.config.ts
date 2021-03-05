@@ -32,7 +32,8 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Lieferanten',
-							page: '/admin/suppliers'
+							page: '/admin/suppliers',
+							onlyForRole: 'ADMIN'
 						},
 						{
 							title: 'Produkte',
