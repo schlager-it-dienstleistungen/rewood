@@ -42,7 +42,8 @@ export class MenuConfig {
 						,
 						{
 							title: 'Benutzer',
-							page: '/admin/users'
+							page: '/admin/users',
+							onlyForRole: 'ADMIN'
 						}
 					]
 				}
