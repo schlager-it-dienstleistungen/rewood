@@ -37,7 +37,8 @@ export class MenuConfig {
 						},
 						{
 							title: 'Produkte',
-							page: '/admin/adminproducts'
+							page: '/admin/adminproducts',
+							onlyForRole: 'SUPPLIER'
 						}
 						,
 						{
