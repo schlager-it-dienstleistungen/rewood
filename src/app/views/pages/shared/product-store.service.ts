@@ -42,6 +42,23 @@ export class ProductStoreService {
 		);
 	}
 
+	/**
+	 * Gets all active Products filtered by SupplierNumber -> only acitve products from the specified supplier
+	 *
+	 * @param supplierNumber supplierNumber to filter
+	 */
+	getAllActiveProductsBySupplier(supplierNumber: number): Observable<Product[]> {
+		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
+			ref => ref.where('active', '==', true));
+		return productsFS.snapshotChanges().pipe(
+			map(products => {
+				return products
+					.map(product => ProductFactoryService.fromFirestoreDocumentChangeAction(product))
+					.filter(product => product.supplierNumber === supplierNumber);
+			})
+		);
+	}
+
 	getLatestProducts(): Observable<Product[]> {
 		const productsFS: AngularFirestoreCollection<Product> = this.afs.collection('products',
 			ref => ref

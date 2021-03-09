@@ -6,6 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../shared/product';
 import { ProductStoreService } from '../../../shared/product-store.service';
 import { MessageType, NotificationService, PanelClass } from '../../../shared/notification.service';
+import { UserStoreService } from '../../../shared/user-store.service';
+import { AppState } from 'src/app/core/reducers';
+import { select, Store } from '@ngrx/store';
+import { currentUser } from 'src/app/core/auth';
+import { RolesTable } from 'src/app/core/auth/_server/roles.table';
 
 @Component({
 	selector: 'rw-product-list',
@@ -31,7 +36,9 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private productService: ProductStoreService,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
+		private userStoreService: UserStoreService,
+		private store: Store<AppState>,
 	) { }
 
 	ngOnInit() {
@@ -66,12 +73,38 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.productService.getAllActiveProducts().subscribe(data => {
-			this.isLoading = false;
-			this.dataSource = new MatTableDataSource<Product>(data);
-			this.dataSource.paginator = this.paginator;
-			this.dataSource.sort = this.sort;
+		// Get Current LoggedIn User and Role
+		this.store.pipe(select(currentUser)).subscribe(currentUser => {
+			this.userStoreService.getUser(currentUser.id).subscribe(user => {
+				// User is in role ADMIN
+				if(user.roles.indexOf(RolesTable.RolesEnum.ADMIN) >= 0){
+					// Load all active products when ADMIN
+					this.productService.getAllActiveProducts().subscribe(data => {
+						this.initDataSource(data);
+					});
+
+				// User is in role SUPPLIER
+				} else if(user.roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0){
+					// User has no SupplierNumber
+					if(!user.supplierNumber){
+						this.notificationService.showActionNotification('Benutzer hat keine Lieferantennummer eingetragen', MessageType.Create, PanelClass.ERROR);
+							this.isLoading = false;
+					// Load all active products filtered by SupplierNumber when SUPPLIER
+					} else {
+						this.productService.getAllActiveProductsBySupplier(user.supplierNumber).subscribe(data => {
+							this.initDataSource(data);
+						});
+					}
+				}
+			});
 		});
+	}
+
+	private initDataSource(data: Product[]) {
+		this.isLoading = false;
+		this.dataSource = new MatTableDataSource<Product>(data);
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
 	}
 
 	doFilter(filterValue: string) {
