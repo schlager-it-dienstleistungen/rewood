@@ -95,9 +95,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 						this.initDataSource([]);
 					// Filter acitve products by SupplierNumber
 					} else {
-						this.dataSource.filterPredicate = (data: Product, filter: string) =>
-							(('' + data.supplierNumber).indexOf(filter) !== -1);
-						this.dataSource.filter = '' + user.supplierNumber;
+						const filteredBySupplier = this.dataSource.data.filter(product => {
+							return product.supplierNumber === user.supplierNumber;
+						});
+						this.initDataSource(filteredBySupplier);
 					}
 				}
 			});
