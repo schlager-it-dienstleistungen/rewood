@@ -8,16 +8,16 @@
 }
 
 .products_col_title {
-	width: 250px;
+	//width: 250px;
 }
 
 .products_col_quantity {
-	width: auto;
+	width: 120px;
 	text-align: right;
 }
 
 .products_col_price {
-	width: auto;
+	width: 100px;
 	text-align: right;
 }
 
@@ -30,6 +30,10 @@
 .products_col_description_text {
 	height: 40px;
 	overflow: auto;
+}
+
+.products_col_supplierNumber {
+	width: 80px;
 }
 
 .products_col_status {

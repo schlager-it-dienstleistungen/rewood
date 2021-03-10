@@ -25,12 +25,13 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
 	dataSource: MatTableDataSource<Product>;
 	isLoading = false;
+	supplierNumber: number;
 
 	// Category
 	category: string;
 
 	// Table Fields
-	displayedColumns = ['category', 'title', 'quantity', 'price', 'description', 'status', 'actions'];
+	displayedColumns = ['category', 'title', 'quantity', 'price', 'description', 'supplierNumber', 'status', 'actions'];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -95,6 +96,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 						this.initDataSource([]);
 					// Filter acitve products by SupplierNumber
 					} else {
+						this.supplierNumber = user.supplierNumber;
+
 						const filteredBySupplier = this.dataSource.data.filter(product => {
 							return product.supplierNumber === user.supplierNumber;
 						});
