@@ -9,6 +9,14 @@ enum RolesEnum {
 export class RolesTable {
 	public static RolesEnum = RolesEnum;
 
+	public static isRoleADMIN(roles: number[]) {
+		return roles.indexOf(RolesTable.RolesEnum.ADMIN) >= 0;
+	}
+
+	public static isRoleSUPPLIER(roles: number[]) {
+		return roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0;
+	}
+
 	public static roles: Role[] = [
 				{
 						id: 1,

@@ -88,7 +88,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 				}
 
 				// User is in role SUPPLIER and not ADMIN
-				if(user.roles.indexOf(RolesTable.RolesEnum.ADMIN) < 0 && user.roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0){
+				if(!RolesTable.isRoleADMIN(user.roles) && RolesTable.isRoleSUPPLIER(user.roles)){
 					// User has no SupplierNumber
 					if(!user.supplierNumber){
 						this.notificationService.showActionNotification('Benutzer hat keine Lieferantennummer eingetragen', MessageType.Create, PanelClass.ERROR);

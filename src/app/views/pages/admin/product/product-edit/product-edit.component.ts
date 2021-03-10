@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnI
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { AuthService, currentUser } from 'src/app/core/auth';
+import { currentUser } from 'src/app/core/auth';
 import { RolesTable } from 'src/app/core/auth/_server/roles.table';
 import { AppState } from 'src/app/core/reducers';
 import { CategoryFactoryService } from '../../../shared/category-factory.service';
@@ -65,14 +65,14 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.store.pipe(select(currentUser)).subscribe(currentUser => {
 				this.userStoreService.getUser(currentUser.id).subscribe(user => {
 					// User is in role ADMIN
-					if(user.roles.indexOf(RolesTable.RolesEnum.ADMIN) >= 0){
+					if(RolesTable.isRoleADMIN(user.roles)){
 						// Load All Suppliers
 						this.supplierService.getAllActiveSuppliers().subscribe(data => {
 							this.allSuppliers$ = data;
 						});
 					}else{
 						// User not in role SUPPLIER
-						if(user.roles.indexOf(RolesTable.RolesEnum.SUPPLIER) < 0){
+						if(!RolesTable.isRoleSUPPLIER(user.roles)){
 							this.router.navigate(['../../adminproducts'],
 								{ relativeTo: this.route, queryParams: {errorWhenNew: true, message: 'Benutzer besitzt nicht die Rolle SUPPLIER'} }
 							);
