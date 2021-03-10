@@ -73,27 +73,31 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
+		this.productService.getAllActiveProducts().subscribe(data => {
+			this.initDataSource(data);
+		});
+
 		// Get Current LoggedIn User and Role
 		this.store.pipe(select(currentUser)).subscribe(currentUser => {
+			if(!currentUser || !currentUser.id) {
+				return;
+			}
 			this.userStoreService.getUser(currentUser.id).subscribe(user => {
-				// User is in role ADMIN
-				if(user.roles.indexOf(RolesTable.RolesEnum.ADMIN) >= 0){
-					// Load all active products when ADMIN
-					this.productService.getAllActiveProducts().subscribe(data => {
-						this.initDataSource(data);
-					});
+				if(!user || !user.roles) {
+					return;
+				}
 
-				// User is in role SUPPLIER
-				} else if(user.roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0){
+				// User is in role SUPPLIER and not ADMIN
+				if(user.roles.indexOf(RolesTable.RolesEnum.ADMIN) < 0 && user.roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0){
 					// User has no SupplierNumber
 					if(!user.supplierNumber){
 						this.notificationService.showActionNotification('Benutzer hat keine Lieferantennummer eingetragen', MessageType.Create, PanelClass.ERROR);
-							this.isLoading = false;
-					// Load all active products filtered by SupplierNumber when SUPPLIER
+						this.initDataSource([]);
+					// Filter acitve products by SupplierNumber
 					} else {
-						this.productService.getAllActiveProductsBySupplier(user.supplierNumber).subscribe(data => {
-							this.initDataSource(data);
-						});
+						this.dataSource.filterPredicate = (data: Product, filter: string) =>
+							(('' + data.supplierNumber).indexOf(filter) !== -1);
+						this.dataSource.filter = '' + user.supplierNumber;
 					}
 				}
 			});
