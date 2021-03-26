@@ -74,10 +74,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   * be able to query its view for the initialized paginator and sort.
   */
 	ngAfterViewInit() {
-		this.productService.getAllActiveProducts().subscribe(data => {
-			this.initDataSource(data);
-		});
-
 		// Get Current LoggedIn User and Role
 		this.store.pipe(select(currentUser)).subscribe(currentUser => {
 			if(!currentUser || !currentUser.id) {
@@ -88,22 +84,29 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 					return;
 				}
 
-				// User is in role SUPPLIER and not ADMIN
-				if(!RolesTable.isRoleADMIN(user.roles) && RolesTable.isRoleSUPPLIER(user.roles)){
-					// User has no SupplierNumber
-					if(!user.supplierNumber){
-						this.notificationService.showActionNotification('Benutzer hat keine Lieferantennummer eingetragen', MessageType.Create, PanelClass.ERROR);
-						this.initDataSource([]);
-					// Filter acitve products by SupplierNumber
-					} else {
-						this.supplierNumber = user.supplierNumber;
+				// Load all acitve products
+				this.productService.getAllActiveProducts().subscribe(data => {
+					this.initDataSource(data);
 
-						const filteredBySupplier = this.dataSource.data.filter(product => {
-							return product.supplierNumber === user.supplierNumber;
-						});
-						this.initDataSource(filteredBySupplier);
+					// If User is in in role ADMIN --> list all active products
+
+					// User is in role SUPPLIER and not ADMIN
+					if(!RolesTable.isRoleADMIN(user.roles) && RolesTable.isRoleSUPPLIER(user.roles)){
+						// User has no SupplierNumber
+						if(!user.supplierNumber){
+							this.notificationService.showActionNotification('Benutzer hat keine Lieferantennummer eingetragen', MessageType.Create, PanelClass.ERROR);
+							this.initDataSource([]);
+						// Filter acitve products by SupplierNumber
+						} else {
+							this.supplierNumber = user.supplierNumber;
+
+							const filteredBySupplier = this.dataSource.data.filter(product => {
+								return product.supplierNumber === user.supplierNumber;
+							});
+							this.initDataSource(filteredBySupplier);
+						}
 					}
-				}
+				});
 			});
 		});
 	}
