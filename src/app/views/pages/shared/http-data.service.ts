@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HttpDataService {
-	private EXCHANGE_REST_API_SERVER = "https://api.exchangeratesapi.io/latest";
+	private EXCHANGE_REST_API_SERVER = "http://api.exchangeratesapi.io/v1/latest?access_key=0a556caa2d3b5296e179e60a9bb97bee&format=1";
 
   constructor(private httpClient: HttpClient) { }
 
