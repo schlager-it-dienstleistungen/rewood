@@ -56,8 +56,7 @@
               "includePaths": [
                 "src/assets"
               ]
-            },
-            "es5BrowserSupport": true
+            }
           },
           "configurations": {
             "production": {
