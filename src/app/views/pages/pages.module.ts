@@ -13,9 +13,10 @@ import { ContactComponent } from './general/contact/contact.component';
 import { DsgvoComponent } from './general/dsgvo/dsgvo.component';
 import { MapComponent } from './general/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { AgbComponent } from './general/agb/agb.component';
 
 @NgModule({
-	declarations: [AboutComponent, TeamComponent, ContactComponent, DsgvoComponent, MapComponent],
+	declarations: [AboutComponent, TeamComponent, ContactComponent, DsgvoComponent, MapComponent, AgbComponent],
 	exports: [],
 	imports: [
 		CommonModule,
