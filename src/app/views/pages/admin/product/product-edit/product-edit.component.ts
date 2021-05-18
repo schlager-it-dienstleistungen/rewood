@@ -238,8 +238,6 @@ export class ProductEditComponent implements OnInit, OnChanges, AfterViewInit {
 
 		// Check SupplierNr
 		if(!this.product.supplierNumber){
-			console.log('control: ');
-			debugger;
 			this.hasFormErrors = true;
 			this.formErrorMessage = 'Produkt hat keinen gültigen Lieferanten!';
 			return;

@@ -2,7 +2,20 @@
 	<ng-container *ngIf="product$ | async as product; else loading">
 		<kt-portlet-body>
 			<div class="rw-detail">
-				<div class="rw-detail__heading">{{ product.title }}, Preis: {{ product.price | currency:'EUR' }}</div>
+				<div class="rw-detail__header">
+					<div class="rw-detail__header-title">
+						{{ product.title }}, Preis: {{ product.price | currency:'EUR' }}
+					</div>
+
+					<div class="rw-detail__header-toolbar">
+						<div class="rw-detail__header-state">
+							<span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(product.status) }} kt-badge--wide">{{ getItemStatusString(product.status) }}</span>
+						</div>
+						<button class="btn btn-primary btn-elevate kt-login__btn-primary" (click)="onReserveClick(product)" [disabled]="!isReservationPossible">
+							Reservieren
+						</button>
+					</div>
+				</div>
 				<div class="rw-detail__section">
 					<div class="rw-detail__item">
 						<div class="rw-detail__title">Produktinformationen</div>

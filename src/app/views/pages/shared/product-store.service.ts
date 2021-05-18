@@ -261,7 +261,26 @@ export class ProductStoreService {
 		return category;
 	}
 
-		/* UI */
+	/**
+	 * Changes state of product to reserved
+	 *
+	 * @param product Product to reserve
+	 */
+	 reserveProduct(product: Product): Promise<void> {
+		// Create Firestore-Batch
+		const batch = this.afs.firestore.batch();
+
+		// Store new Product
+		const productRef = this.afs.collection('products').doc(product.id).ref;
+		this.addMetadata(product, false, false);
+		product.status = 1;
+		batch.set(productRef, product);
+
+		// Batch Commit
+		return batch.commit();
+	}
+
+	// UI
 	/**
 	 * Returns status string
 	 *
@@ -294,5 +313,13 @@ export class ProductStoreService {
 				return 'danger';
 		}
 		return '';
+	}
+
+	isAvailable(status: number = 0): boolean {
+		if(status === 0) {
+			return true;
+		}
+
+		return false;
 	}
 }

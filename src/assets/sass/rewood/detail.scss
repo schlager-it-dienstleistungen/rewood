@@ -21,12 +21,32 @@ $rw-detail-step-border: #eeeef4;
 		padding: 2rem 2.5rem 4rem;
 	}
 
-	.rw-detail__heading{
-		font-size: 1.3rem;
-    font-weight: 500;
-    padding: 0;
-    margin: 1.75rem 0;
-    color: kt-get($kt-font-color, text);
+	.rw-detail__header{
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+		flex-wrap: wrap;
+		padding: 0;
+		margin-bottom: 1.75rem;
+		border-bottom: 1px solid $rw-detail-step-border;
+
+		.rw-detail__header-title{
+			display: flex;
+			align-items: center;
+			font-size: 1.3rem;
+    	font-weight: 500;
+    	color: kt-get($kt-font-color, text);
+		}
+
+		.rw-detail__header-toolbar{
+			display: flex;
+			align-items: center;
+			margin-right: 10rem;
+
+			.rw-detail__header-state{
+				padding-right: 2rem;
+			}
+		}
 	}
 
 	.rw-detail__section{

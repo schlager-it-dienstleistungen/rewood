@@ -17,6 +17,10 @@ export class RolesTable {
 		return roles.indexOf(RolesTable.RolesEnum.SUPPLIER) >= 0;
 	}
 
+	public static isRoleCUSTOMER(roles: number[]) {
+		return roles.indexOf(RolesTable.RolesEnum.CUSTOMER) >= 0;
+	}
+
 	public static roles: Role[] = [
 				{
 						id: 1,
