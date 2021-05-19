@@ -11,7 +11,7 @@
 						<div class="rw-detail__header-state">
 							<span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(product.status) }} kt-badge--wide">{{ getItemStatusString(product.status) }}</span>
 						</div>
-						<button class="btn btn-primary btn-elevate kt-login__btn-primary" (click)="onReserveClick(product)" [disabled]="!isReservationPossible">
+						<button class="btn btn-primary btn-elevate kt-login__btn-primary" (click)="onBookingClick(product)" [disabled]="!isBookingPossible">
 							Reservieren
 						</button>
 					</div>

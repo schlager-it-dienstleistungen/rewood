@@ -1,4 +1,5 @@
 import { BaseDataType } from './base-data-type';
+import { Booking } from './Booking';
 import { Dimension } from './dimension';
 import { Location } from './location';
 import { Picture } from './picture';
@@ -20,4 +21,5 @@ export interface Product extends BaseDataType {
 	supplierNumber: number;
 	productNumber: number;
 	productReferenceNumber: string;
+	booking: Booking;
 }

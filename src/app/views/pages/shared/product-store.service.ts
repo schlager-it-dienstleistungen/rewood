@@ -262,11 +262,11 @@ export class ProductStoreService {
 	}
 
 	/**
-	 * Changes state of product to reserved
+	 * Changes state of product to booked
 	 *
-	 * @param product Product to reserve
+	 * @param product Product to book
 	 */
-	 reserveProduct(product: Product): Promise<void> {
+	bookProduct(product: Product): Promise<void> {
 		// Create Firestore-Batch
 		const batch = this.afs.firestore.batch();
 
@@ -274,6 +274,11 @@ export class ProductStoreService {
 		const productRef = this.afs.collection('products').doc(product.id).ref;
 		this.addMetadata(product, false, false);
 		product.status = 1;
+
+		// Set Booked User and Tst from MetaData
+		product.booking.userBooking = product.userUpdate;
+		product.booking.tstBooking = product.tstUpdate;
+
 		batch.set(productRef, product);
 
 		// Batch Commit

@@ -35,7 +35,8 @@ export class ProductFactoryService {
 			active: true,
 			supplierNumber: null,
 			productNumber: 0,
-			productReferenceNumber: ''
+			productReferenceNumber: '',
+			booking: {}
 		};
 	}
 }

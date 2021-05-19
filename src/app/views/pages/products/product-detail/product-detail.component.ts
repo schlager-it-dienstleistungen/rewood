@@ -17,7 +17,7 @@ import { select, Store } from '@ngrx/store';
 })
 export class ProductDetailComponent implements OnInit {
 	product$: Observable<Product>;
-	isReservationPossible: boolean;
+	isBookingPossible: boolean;
 
 	constructor(
 		private productService: ProductStoreService,
@@ -51,13 +51,13 @@ export class ProductDetailComponent implements OnInit {
 				}
 			});
 
-		this.isReservationPossible = false;
+		this.isBookingPossible = false;
 		// Get Current LoggedIn User and Role
 		this.store.pipe(select(currentUser)).subscribe(currentUser => {
 			if(currentUser && currentUser.id) {
 				this.userStoreService.getUser(currentUser.id).subscribe(user => {
 					if(!user || !user.roles) {
-						this.isReservationPossible = false;
+						this.isBookingPossible = false;
 					}
 
 					// User is not in Role Customer
@@ -65,12 +65,12 @@ export class ProductDetailComponent implements OnInit {
 
 						this.product$.subscribe(productToCheck => {
 							if(this.productService.isAvailable(productToCheck.status)){
-								this.isReservationPossible = true;
+								this.isBookingPossible = true;
 								this.cdr.markForCheck();
 							}
 						});
 					}else{
-						this.isReservationPossible = false;
+						this.isBookingPossible = false;
 					}
 				});
 			}
@@ -78,13 +78,13 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	/**
-	 * Change status of this product to reserved
+	 * Change status of this product to booked
 	 *
-	 * @param toReserve product to reserve
+	 * @param toBook product to book
 	 */
-	onReserveClick(toReserve: Product) {
-		this.productService.reserveProduct(toReserve);
-		this.isReservationPossible = false;
+	onBookingClick(toBook: Product) {
+		this.productService.bookProduct(toBook);
+		this.isBookingPossible = false;
 	}
 
 	/* UI */
