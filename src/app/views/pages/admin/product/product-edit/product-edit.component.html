@@ -92,7 +92,7 @@
 				<form class="kt-form" id="kt_form" [formGroup]="productForm">
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-						<div class="kt-heading kt-heading--md" *ngIf="product && product.supplierNumber && product.productReferenceNumber!=0; else productNumberDoesntExist">
+						<div class="kt-heading kt-heading--md" *ngIf="product && product.supplierNumber && product.productReferenceNumber; else productNumberDoesntExist">
 							Produktnr.: {{product.productReferenceNumber}}
 						</div>
 						<ng-template #productNumberDoesntExist>
@@ -324,7 +324,7 @@
 
 					<!--begin: Form Wizard Step 5-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md" *ngIf="product && product.productReferenceNumber!=0; else productNumberDoesntExist">
+						<div class="kt-heading kt-heading--md" *ngIf="product && product.productReferenceNumber; else productNumberDoesntExist">
 							Zusammenfassung und Bestellung, Produktnr.: {{product.productReferenceNumber}}
 						</div>
 						<ng-template #productNumberDoesntExist>
