@@ -9,7 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
+		"deploy-dev": "ng build && firebase use dev && firebase deploy --only hosting",
+		"deploy-dev-all": "ng build && firebase use dev && firebase deploy",
+		"deploy-prod": "ng build --prod && firebase use prod && firebase deploy --only hosting",
+		"deploy-prod-all": "ng build --prod && firebase use prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
