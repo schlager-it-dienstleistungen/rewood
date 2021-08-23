@@ -10,7 +10,7 @@ export class SupplierFactoryService {
 	constructor() { }
 
 	static fromFirestoreDocumentChangeAction(supplier: DocumentChangeAction<Supplier>): Supplier {
-		return SupplierFactoryService.fromFirestoreDocument(supplier.payload.doc.data() as Supplier, supplier.payload.doc.id);
+		return SupplierFactoryService.fromFirestoreDocument(supplier.payload.doc.data() as Supplier, supplier.payload.doc.data().id);
 	}
 
 	static fromFirestoreDocument(data: Supplier, id: string): Supplier {

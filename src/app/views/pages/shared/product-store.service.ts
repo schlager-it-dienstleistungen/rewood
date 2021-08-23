@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from './product';
 import { Category } from './category';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from 'firebase/app';
 import { Observable, throwError } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { ProductFactoryService } from './product-factory.service';
@@ -94,7 +93,7 @@ export class ProductStoreService {
 
 	getProduct(productId: string): Observable<Product> {
 		return this.afs.collection('products').doc(productId).snapshotChanges().pipe(
-			map(product => ProductFactoryService.fromFirestoreDocument(product.payload.data() as Product, product.payload.id))
+			map(product => ProductFactoryService.fromFirestoreDocument(product.payload.data() as Product, productId))
 		);
 	}
 
@@ -111,7 +110,8 @@ export class ProductStoreService {
 	async createAndSetProductAndReferenceNumber(product: Product) {
 		const productCounterRef = this.afs.collection('counters').doc('product').ref;
 		firebase.firestore().runTransaction(async t => {
-			const productNumber = await (await t.get(productCounterRef)).data().next;
+			const doc = await t.get(productCounterRef);
+			const productNumber = doc.get('next');
 			product.productNumber = productNumber;
 			this.createAndSetReferenceNumber(product);
 			t.update(productCounterRef, { next: productNumber + 1});

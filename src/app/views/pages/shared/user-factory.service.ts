@@ -11,7 +11,7 @@ export class UserFactoryService {
 	constructor() { }
 
 	static fromFirestoreDocumentChangeAction(user: DocumentChangeAction<User>): User {
-		return UserFactoryService.fromFirestoreDocument(user.payload.doc.data() as User, user.payload.doc.id);
+		return UserFactoryService.fromFirestoreDocument(user.payload.doc.data() as User, user.payload.doc.data().id);
 	}
 
 	static fromFirestoreDocument(data: User, id: string): User {

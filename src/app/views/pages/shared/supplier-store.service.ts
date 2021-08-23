@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoryFactoryService } from './category-factory.service';
@@ -30,7 +30,7 @@ export class SupplierStoreService {
 
 	getSupplier(supplierId: string): Observable<Supplier> {
 		return this.afs.collection('suppliers').doc(supplierId).snapshotChanges().pipe(
-			map(product => SupplierFactoryService.fromFirestoreDocument(product.payload.data() as Supplier, product.payload.id))
+			map(product => SupplierFactoryService.fromFirestoreDocument(product.payload.data() as Supplier, supplierId))
 		);
 	}
 
@@ -53,7 +53,8 @@ export class SupplierStoreService {
 		if(isNewSupplier){
 			const supplierCounterRef = this.afs.collection('counters').doc('supplier').ref;
 			firebase.firestore().runTransaction(async t => {
-				const supplierNumber = await (await t.get(supplierCounterRef)).data().next;
+				const doc = await t.get(supplierCounterRef);
+				const supplierNumber = doc.get('next');
 				supplier.supplierNumber = supplierNumber;
 
 				t.update(supplierCounterRef, { next: supplierNumber + 1});

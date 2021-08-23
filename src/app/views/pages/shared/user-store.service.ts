@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './user';
 import { UserFactoryService } from './user-factory.service';
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
@@ -30,7 +29,7 @@ export class UserStoreService {
 
 	getUser(userId: string): Observable<User> {
 		return this.afs.collection('users').doc(userId).snapshotChanges().pipe(
-			map(product => UserFactoryService.fromFirestoreDocument(product.payload.data() as User, product.payload.id))
+			map(product => UserFactoryService.fromFirestoreDocument(product.payload.data() as User, userId))
 		);
 	}
 
