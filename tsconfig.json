@@ -10,7 +10,6 @@
 		"moduleResolution": "node",
 		"noUnusedLocals": false,
     "noUnusedParameters": false,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2020",

@@ -15,7 +15,7 @@ import { AgbComponent } from './views/pages/general/agb/agb.component';
 const routes: Routes = [
 	{
 		path: 'auth',
-		loadChildren: './views/pages/auth/auth.module#AuthModule'
+		loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule)
 	},
 	{
 		path: '',
@@ -23,20 +23,20 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'home',
-				loadChildren: './views/pages/home/home.module#HomeModule'
+				loadChildren: () => import('./views/pages/home/home.module').then(m => m.HomeModule)
 			},
 			{
 				path: 'products',
-				loadChildren: './views/pages/products/products.module#ProductsModule'
+				loadChildren: () => import('./views/pages/products/products.module').then(m => m.ProductsModule)
 			},
 			{
 				path: 'admin',
-				loadChildren: './views/pages/admin/admin.module#AdminModule',
+				loadChildren: () => import('./views/pages/admin/admin.module').then(m => m.AdminModule),
 				canActivate: [AuthGuard]
 			},
 			{
 				path: 'builder',
-				loadChildren: './views/theme/content/builder/builder.module#BuilderModule'
+				loadChildren: () => import('./views/theme/content/builder/builder.module').then(m => m.BuilderModule)
 			},
 			{
 				path: 'general/about',
