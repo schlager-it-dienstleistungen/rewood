@@ -1,37 +1,33 @@
-// Germany
+// USA
 export const locale = {
-	lang: 'de',
+	lang: 'it',
 	data: {
 		TRANSLATOR: {
-			SELECT: 'Wähle deine Sprache',
-		},
-		HOME: {
-			LATEST_PRODUCTS: 'Aktuellste Produkte'
+			SELECT: 'Select your language',
 		},
 		MENU: {
-			NEW: 'Neu',
-			ACTIONS: 'Aktionen',
-			CREATE_POST: 'Erstellen Sie einen neuen Beitrag',
+			NEW: 'new',
+			ACTIONS: 'Actions',
+			CREATE_POST: 'Create New Post',
 			PAGES: 'Pages',
-			FEATURES: 'Eigenschaften',
+			FEATURES: 'Features',
 			APPS: 'Apps',
-			HOME: 'Home',
-			PRODUCTS: 'Produkte'
+			DASHBOARD: 'Dashboard',
 		},
 		AUTH: {
 			GENERAL: {
-				OR: 'Oder',
-				SUBMIT_BUTTON: 'einreichen',
-				NO_ACCOUNT: 'Hast du kein Konto?',
-				SIGNUP_BUTTON: 'Anmelden',
-				FORGOT_BUTTON: 'Passwort vergessen',
-				BACK_BUTTON: 'Zurück',
-				PRIVACY: 'Privatsphäre',
+				OR: 'Or',
+				SUBMIT_BUTTON: 'Submit',
+				NO_ACCOUNT: 'Don\'t have an account?',
+				SIGNUP_BUTTON: 'Sign Up',
+				FORGOT_BUTTON: 'Forgot Password',
+				BACK_BUTTON: 'Back',
+				PRIVACY: 'Privacy',
 				LEGAL: 'Legal',
-				CONTACT: 'Kontakt',
+				CONTACT: 'Contact',
 			},
 			LOGIN: {
-				TITLE: 'Create Account',
+				TITLE: 'Login Account',
 				BUTTON: 'Sign In',
 			},
 			FORGOT: {
@@ -49,7 +45,7 @@ export const locale = {
 				FULLNAME: 'Fullname',
 				PASSWORD: 'Password',
 				CONFIRM_PASSWORD: 'Confirm Password',
-				USERNAME: 'Nutzername'
+				USERNAME: 'Username'
 			},
 			VALIDATION: {
 				INVALID: '{{name}} is not valid',
@@ -81,7 +77,7 @@ export const locale = {
 			ECOMMERCE: 'eCommerce',
 			CUSTOMERS: {
 				CUSTOMERS: 'Customers',
-				CUSTOMERS_LIST: 'Kundenliste',
+				CUSTOMERS_LIST: 'Customers list',
 				NEW_CUSTOMER: 'New Customer',
 				DELETE_CUSTOMER_SIMPLE: {
 					TITLE: 'Customer Delete',

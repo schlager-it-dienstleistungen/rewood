@@ -5,6 +5,9 @@ export const locale = {
 		TRANSLATOR: {
 			SELECT: 'Select your language',
 		},
+		HOME: {
+			LATEST_PRODUCTS: 'Latest Products'
+		},
 		MENU: {
 			NEW: 'new',
 			ACTIONS: 'Actions',
@@ -12,7 +15,8 @@ export const locale = {
 			PAGES: 'Pages',
 			FEATURES: 'Features',
 			APPS: 'Apps',
-			DASHBOARD: 'Dashboard',
+			HOME: 'Home',
+			PRODUCTS: 'Products'
 		},
 		AUTH: {
 			GENERAL: {

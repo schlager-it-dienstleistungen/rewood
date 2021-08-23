@@ -30,30 +30,15 @@ export class LanguageSelectorComponent implements OnInit {
 			flag: './assets/media/flags/012-uk.svg'
 		},
 		{
-			lang: 'ch',
-			name: 'Mandarin',
-			flag: './assets/media/flags/015-china.svg'
-		},
-		{
-			lang: 'es',
-			name: 'Spanish',
-			flag: './assets/media/flags/016-spain.svg'
-		},
-		{
-			lang: 'jp',
-			name: 'Japanese',
-			flag: './assets/media/flags/014-japan.svg'
+			lang: 'it',
+			name: 'Italian',
+			flag: './assets/media/flags/021-italy.svg'
 		},
 		{
 			lang: 'de',
 			name: 'German',
 			flag: './assets/media/flags/017-germany.svg'
-		},
-		{
-			lang: 'fr',
-			name: 'French',
-			flag: './assets/media/flags/019-france.svg'
-		},
+		}
 	];
 
 	/**

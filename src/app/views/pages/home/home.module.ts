@@ -10,6 +10,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { IndicesComponent } from './indices/indices.component';
 import { LatestProductsComponent } from './latest-products/latest-products.component';
 import { MatTableModule } from '@angular/material/table';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
 	imports: [
@@ -17,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 		PartialsModule,
 		MatTableModule,
 		CoreModule,
+		TranslateModule.forChild(),
 		NgxPermissionsModule.forChild(),
 		RouterModule.forChild([
 			{

@@ -7,13 +7,14 @@ export class MenuConfig {
 					title: 'Home',
 					root: true,
 					alignment: 'left',
-					page: '/home'
-// translate: 'MENU.HOME'
+					page: '/home',
+					translate: 'MENU.HOME'
 				},
 				{
 					title: 'Produkte',
 					root: true,
 					alignment: 'left',
+					translate: 'MENU.PRODUCTS',
 					submenu: [
 						{
 							title: 'nach Kategorien',
