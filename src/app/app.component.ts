@@ -8,6 +8,7 @@ import { LayoutConfigService, SplashScreenService, TranslationService } from './
 import { locale as enLang } from './core/_config/i18n/en';
 import { locale as deLang } from './core/_config/i18n/de';
 import { locale as itLang } from './core/_config/i18n/it';
+import { IconService } from './views/pages/shared/icon.service';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -29,11 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
 	 * @param router: Router
 	 * @param layoutConfigService: LayoutCongifService
 	 * @param splashScreenService: SplashScreenService
+	 * @param iconService: IconService
 	 */
 	constructor(private translationService: TranslationService,
 				private router: Router,
 				private layoutConfigService: LayoutConfigService,
-				private splashScreenService: SplashScreenService) {
+				private splashScreenService: SplashScreenService,
+				private iconService: IconService) {
 
 		// register translations
 		this.translationService.loadTranslations(enLang, deLang);
@@ -65,6 +68,9 @@ export class AppComponent implements OnInit, OnDestroy {
 			}
 		});
 		this.unsubscribe.push(routerSubscription);
+
+		// Load custom icons
+		this.iconService.registerIcons();
 	}
 
 	/**

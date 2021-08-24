@@ -40,6 +40,7 @@ import { HtmlClassService } from './html-class.service';
 import { HeaderMobileComponent } from './header/header-mobile/header-mobile.component';
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../core/auth';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
 	declarations: [
@@ -107,6 +108,7 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		MatTabsModule,
 		MatButtonModule,
 		MatTooltipModule,
+		MatIconModule,
 		TranslateModule.forChild(),
 		LoadingBarModule,
 		NgxDaterangepickerMd,

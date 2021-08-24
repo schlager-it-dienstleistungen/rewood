@@ -1,10 +1,12 @@
 // Angular
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { currentUser, Logout, User } from 'src/app/core/auth';
 import { AppState } from 'src/app/core/reducers';
+import { TranslationService } from 'src/app/core/_base/layout';
 
 @Component({
 	selector: 'kt-topbar',
@@ -24,7 +26,8 @@ export class TopbarComponent implements OnInit {
 	 */
 	constructor(
 		private store: Store<AppState>,
-		private router: Router
+		private router: Router,
+		private translationService: TranslationService
 	) {
 	}
 
@@ -37,6 +40,13 @@ export class TopbarComponent implements OnInit {
 	 */
 	ngOnInit(): void {
 		this.user$ = this.store.pipe(select(currentUser));
+
+		this.setSelectedLanguage();
+		this.router.events
+			.pipe(filter(event => event instanceof NavigationStart))
+			.subscribe(event => {
+				this.setSelectedLanguage();
+			});
 	}
 
 	/**
@@ -51,5 +61,16 @@ export class TopbarComponent implements OnInit {
 	 */
 	login() {
 		this.router.navigate(['/auth/login']);
+	}
+
+	setLanguage(lang) {
+		this.translationService.setLanguage(lang);
+	}
+
+	/**
+	 * Set selected language
+	 */
+	 setSelectedLanguage(): any {
+		this.setLanguage(this.translationService.getSelectedLanguage());
 	}
 }

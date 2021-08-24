@@ -21,11 +21,17 @@
 	<!--begin: Quick panel toggler -->
 	<div class="kt-header__topbar-item" data-placement="left">
 		<div class="kt-header__topbar-wrapper" *ngIf="user$ | async as _user; else elseBlock">
+
 			<div class="kt-header__topbar-usertxt kt-font-bolder">Hi, {{_user.firstname}}</div>
 			<div class="kt-header__topbar-logintxt" (click)="logout()">LOGOUT</div>
 		</div>
 		<ng-template #elseBlock>
 			<div class="kt-header__topbar-wrapper">
+				<div class="kt-header__topbar-language">
+					<mat-icon class="kt-header__topbar-language-btn" svgIcon="icon_flag_de" type="button" (click)="setLanguage('de')"></mat-icon>
+					<mat-icon class="kt-header__topbar-language-btn" svgIcon="icon_flag_en" type="button" (click)="setLanguage('en')"></mat-icon>
+					<mat-icon class="kt-header__topbar-language-btn" svgIcon="icon_flag_it" type="button" (click)="setLanguage('it')"></mat-icon>
+				</div>
 				<div class="kt-header__topbar-usertxt">Guest</div>
 				<div class="kt-header__topbar-logintxt" (click)="login()">LOGIN</div>
 			</div>
