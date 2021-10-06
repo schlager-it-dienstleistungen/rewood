@@ -1,7 +1,7 @@
 <kt-portlet>
-	<kt-portlet-header title="User">
+	<kt-portlet-header title="{{ 'USER.ALL_USER' | translate }}">
 		<ng-container ktPortletTools>
-			<button [routerLink]="['../users/add']" mat-raised-button color="primary" matTooltip="Create new User">New user</button>
+			<button [routerLink]="['../users/add']" mat-raised-button color="primary" matTooltip="{{ 'USER.NEW_TOOLTIP' | translate }}">{{ 'USER.NEW' | translate }}</button>
 			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->
 			<!-- mat-raised-button | Rectangular contained button w/ elevation  -->
 		</ng-container>
@@ -10,7 +10,7 @@
 	<!-- Filter -->
 	<kt-portlet-body>
 		<div class="kt-section">
-			<span class="kt-section__info">User filtern</span>
+			<span class="kt-section__info">{{ 'USER.FILTER_USER' | translate }}</span>
 			<div class="kt-form__filtration kt-margin-b-4">
 				<mat-form-field class="col-lg-2">
 					<input matInput (keyup)="doFilter($event.target.value)" placeholder="filter">
@@ -27,35 +27,35 @@
 				</ng-container>
 
 				<ng-container matColumnDef=username>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'USER.USERNAME' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="users_col_username"> {{user.username}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=fullname>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'USER.NAME' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="users_col_fullname"> {{user.firstname}} {{user.lastname}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=email>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>E-Mail</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'GENERAL.EMAIL' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="users_col_email"> {{user.email}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=company>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Firma</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'GENERAL.COMPANY' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="users_col_company"> {{user.company}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=roles>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Rollen</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'GENERAL.ROLES' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="users_col_roles"> {{ getRoleTitles(user.roles) }} </td>
 				</ng-container>
 
 				<ng-container matColumnDef="actions">
-					<th mat-header-cell *matHeaderCellDef>Actions</th>
+					<th mat-header-cell *matHeaderCellDef>{{ 'GENERAL.ACTIONS' | translate }}</th>
 					<td mat-cell *matCellDef="let user" class="user_col_actions">
-						<mat-icon class="icon-color-base" matTooltip="Edit user" (click)="editUser(user.id)" type="button">edit</mat-icon>
-						<mat-icon color="warn" matTooltip="Delete user" (click)="deleteUser(user)" type="button">delete</mat-icon>
+						<mat-icon class="icon-color-base" matTooltip="{{ 'USER.EDIT_TOOLTIP' | translate }}" (click)="editUser(user.id)" type="button">edit</mat-icon>
+						<mat-icon color="warn" matTooltip="{{ 'USER.DEL_TOOLTIP' | translate }}" (click)="deleteUser(user)" type="button">delete</mat-icon>
 					</td>
 				</ng-container>
 

@@ -1,11 +1,11 @@
 <kt-portlet>
-	<kt-portlet-header title="Alle Produkte">
+	<kt-portlet-header title="{{ 'PRODUCT.ALL_PRODUCTS' | translate }}">
 	</kt-portlet-header>
 
 	<!-- Filter -->
 	<kt-portlet-body>
 		<div class="kt-section">
-			<span class="kt-section__info">Produkte filtern</span>
+			<span class="kt-section__info">{{ 'PRODUCT.FILTER_PRODUCTS' | translate }}</span>
 			<div class="kt-form__filtration kt-margin-b-4">
 				<mat-form-field class="col-lg-2">
 					<mat-select placeholder="Kategorie" (selectionChange)="doFilterCategory($event.value)">
@@ -28,7 +28,7 @@
 				</ng-container>
 
 				<ng-container matColumnDef=category>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Kategorie</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PRODUCT.CATEGORY' | translate }}</th>
 					<td mat-cell *matCellDef="let product" class="products_col_category"> {{product.category}} </td>
 				</ng-container>
 
@@ -47,22 +47,22 @@
 				</ng-container>
 
 				<ng-container matColumnDef=title>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Titel</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PRODUCT.TITLE' | translate }}</th>
 					<td mat-cell *matCellDef="let product" class="products_col_title"> {{product.title}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=subcategory>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Untergruppe</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PRODUCT.SUBCATEGORY' | translate }}</th>
 					<td mat-cell *matCellDef="let product" class="products_col_subcategory"> {{product.subcategory}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=quantity>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Stückzahl (in m³)</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PRODUCT.QUANTITY' | translate }}</th>
 					<td mat-cell *matCellDef="let product" class="products_col_quantity"> {{product.dimension.quantity}} </td>
 				</ng-container>
 
 				<ng-container matColumnDef=price>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Preis pro m³</th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PRODUCT.PRICE_PER_CUBIC' | translate }}</th>
 					<td mat-cell *matCellDef="let product" class="products_col_price"> {{product.price | currency:'EUR' }} </td>
 				</ng-container>
 

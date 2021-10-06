@@ -19,6 +19,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryItemComponent } from './category-item/category-item.component';
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { MatSelectModule } from '@angular/material/select';
 		ProductsRoutingModule,
 		ReactiveFormsModule,
 		PartialsModule,
-		MatSelectModule
+		MatSelectModule,
+		TranslateModule.forChild()
 	]
 })
 export class ProductsModule { }

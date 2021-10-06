@@ -2,23 +2,23 @@
 	<div class="form-group kt-form__group row" *ngIf="unassignedRoles.length > 0">
 		<div class="col-lg-4 kt-margin-bottom-20-mobile">
 			<mat-form-field class="mat-form-field-fluid">
-				<mat-select placeholder="Select Role" [(ngModel)]="roleIdForAdding">
+				<mat-select placeholder="{{ 'USER.EDIT.SELECT_ROLE' | translate }}" [(ngModel)]="roleIdForAdding">
 					<mat-option *ngFor="let role of unassignedRoles" value="{{ role.id }}">{{role.title}}</mat-option>
 				</mat-select>
-				<mat-hint align="start">
-					<strong>Select Role</strong>
-				</mat-hint>
+				<!--<mat-hint align="start">
+					<strong>{{ 'USER.EDIT.SELECT_ROLE' | translate }}</strong>
+				</mat-hint>-->
 			</mat-form-field>
 		</div>
 		<div class="col-lg-4 kt-margin-bottom-20-mobile">
 			<button type="button" mat-raised-button matTooltip="Assign role" (click)="assignRole()" color="accent">
-				Assign
+				{{ 'NEW.ASSIGN' | translate }}
 			</button>
 		</div>
 	</div>
 	<div class="kt-separator kt-separator--dashed"></div>
 	<h6 class="kt-section__heading" *ngIf="assignedRoles.length > 0">
-		Assigned roles:
+		{{ 'USER.EDIT.ASSIGNED_ROLES' | translate }}:
 	</h6>
 	<div class="form-group kt-form__group row" *ngIf="assignedRoles.length > 0">
 		<div class="col-lg-8 kt-margin-bottom-20-mobile">
@@ -28,7 +28,7 @@
 						<span class="kt-list-timeline__badge kt-list-timeline__badge--primary"></span>
 						<span class="kt-list-timeline__text">{{ _role.title }}</span>
 						<span class="kt-list-timeline__time">
-							<mat-icon color="warn" matTooltip="Remove role" (click)="unassingRole(_role)" type="button">delete</mat-icon>
+							<mat-icon color="warn" matTooltip="{{ 'USER.EDIT.DEL_ROLE' | translate }}" (click)="unassingRole(_role)" type="button">delete</mat-icon>
 						</span>
 					</div>
 				</div>

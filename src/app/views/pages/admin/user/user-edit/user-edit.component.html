@@ -14,10 +14,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Benutzerinformationen
+										{{ 'USER.EDIT.USER_INFO' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Geben Sie allgemeine Informationen an
+										{{ 'NEW.GENERAL_INFO' | translate }}
 									</div>
 								</div>
 							</div>
@@ -29,10 +29,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Benachrichtigungen
+										{{ 'USER.EDIT.NOTIFICATION' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Bei welchen Produktkategorien soll eine Benachrichtigung erfolgen
+										{{ 'USER.EDIT.NOTIFICATION_DESC' | translate }}
 									</div>
 								</div>
 							</div>
@@ -44,10 +44,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Rollen
+										{{ 'USER.EDIT.ROLES' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										In welchen Rollen tritt der Benutzer auf
+										{{ 'USER.EDIT.ROLES_DESC' | translate }}
 									</div>
 								</div>
 							</div>
@@ -59,10 +59,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Abschluss
+										{{ 'NEW.FINISH' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Zusammenfassung und Bestellung
+										{{ 'NEW.FINISH_DESC' | translate }}
 									</div>
 								</div>
 							</div>
@@ -77,84 +77,84 @@
 				<form class="kt-form" id="kt_form" [formGroup]="userForm">
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-						<div class="kt-heading kt-heading--md">Geben Sie allgemeine Informationen an</div>
+						<div class="kt-heading kt-heading--md">{{ 'NEW.GENERAL_INFO' | translate }}</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Username</label><br/>
+									<label>{{ 'USER.USERNAME' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="username" required minlength="6">
 									<div *ngIf="username.invalid && (username.dirty || username.touched)"
 											class="alert alert-danger">
 										<div *ngIf="username.errors.required">
-											Es muss ein Username eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="username.errors.minlength">
-											Username muss zumindest 6 Zeichen lang sein.
+											{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 6
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Vorname</label><br/>
+									<label>{{ 'USER.FIRSTNAME' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="firstname" required minlength="3">
 									<div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
 											class="alert alert-danger">
 										<div *ngIf="firstname.errors.required">
-											Es muss ein Vorname eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="firstname.errors.minlength">
-											Vorname muss zumindest 3 Zeichen lang sein.
+											{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Nachname</label><br/>
+									<label>{{ 'USER.LASTNAME' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="lastname" required minlength="3">
 									<div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
 											class="alert alert-danger">
 										<div *ngIf="lastname.errors.required">
-											Es muss ein Nachname eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="lastname.errors.minlength">
-											Nachname muss zumindest 3 Zeichen lang sein.
+											{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>E-Mail</label><br/>
+									<label>{{ 'GENERAL.EMAIL' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="email" required>
 									<div *ngIf="email.invalid && (email.dirty || email.touched)"
 											class="alert alert-danger">
 										<div *ngIf="email.errors.required">
-											Es muss eine E-Mail eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="email.errors.email">
-											Es muss eine gültige E-Mail eingegeben werden.
+											{{ 'AUTH.VALIDATION.INVALID_EMAIL' | translate }}
 										</div>
 										<div *ngIf="email.errors.UserEmailExists">
-											The email address is already in use by another account.
+											{{ 'AUTH.VALIDATION.INVALID_DUPLICATE_EMAIL' | translate }}
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Firma</label><br/>
+									<label>{{ 'GENERAL.COMPANY' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="company" required minlength="3">
 									<div *ngIf="company.invalid && (company.dirty || company.touched)"
 											class="alert alert-danger">
 										<div *ngIf="company.errors.required">
-											Es muss eine Firma eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="company.errors.minlength">
-											Firma muss zumindest 3 Zeichen lang sein.
+											{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Telefon</label><br/>
+									<label>{{ 'GENERAL.PHONE' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="phone">
 									<div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
 											class="alert alert-danger">
@@ -181,11 +181,11 @@
 
 					<!--begin: Form Wizard Step 2-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-						<div class="kt-heading kt-heading--md">Bei welchen Produktkategorien soll eine Benachrichtigung erfolgen</div>
+						<div class="kt-heading kt-heading--md">{{ 'USER.EDIT.NOTIFICATION_DESC' | translate }}</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Kategorie</label><br/>
+									<label>{{ 'PRODUCT.CATEGORY' | translate }}</label><br/>
 									<div class="kt-wizard-v2__review-content" *ngIf="user">
 										<rw-user-notifications-list [(categoryNotificationSubject)]="categoryNotificationSubject"></rw-user-notifications-list>
 									</div>
@@ -197,17 +197,17 @@
 
 					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">In welchen Rollen tritt der Benutzer auf</div>
+						<div class="kt-heading kt-heading--md">{{ 'USER.EDIT.ROLES_DESC' | translate }}</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Rollen</label>
+									<label>{{ 'USER.EDIT.ROLES' | translate }}</label>
 									<div class="kt-wizard-v2__review-content" *ngIf="user">
 										<rw-user-roles-list [(rolesSubject)]="rolesSubject"></rw-user-roles-list>
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Lieferant</label><br/>
+									<label>{{ 'SUPPLIER.SUPPLIER' | translate }}</label><br/>
 									<select class="form-control" formControlName="supplierNumber">
 										<option *ngFor="let supplier of allSuppliers" value="{{supplier.supplierNumber}}">{{supplier.name}}</option>
 									</select>
@@ -227,7 +227,7 @@
 
 					<!--begin: Form Wizard Step 4-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+						<div class="kt-heading kt-heading--md">{{ 'NEW.FINISH' | translate }}</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__review">
 								<kt-alert *ngIf="hasFormErrors" type="warn" [showCloseButton]="true" [duration]="10000" (close)="onAlertClose($event)">
@@ -236,18 +236,18 @@
 
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Benutzerinformationen
+										{{ 'USER.EDIT.USER_INFO' | translate }}
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Username: {{ userForm.get('username').value }}<br/>
-										Name: {{ userForm.get('firstname').value }} {{ userForm.get('lastname').value }}<br/>
-										E-Mail: {{ userForm.get('email').value }}<br/>
-										Firma: {{ userForm.get('company').value }}
+										{{ 'USER.USERNAME' | translate }}: {{ userForm.get('username').value }}<br/>
+										{{ 'USER.NAME' | translate }}: {{ userForm.get('firstname').value }} {{ userForm.get('lastname').value }}<br/>
+										{{ 'GENERAL.EMAIL' | translate }}: {{ userForm.get('email').value }}<br/>
+										{{ 'GENERAL.COMPANY' | translate }}: {{ userForm.get('company').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Benachrichtigung bei neuem Produkt der Kategorien
+										{{ 'USER.EDIT.NOTIFICATION_DESC' | translate }}
 									</div>
 									<div class="kt-wizard-v2__review-content">
 										{{ getCategoryNotifications() }}
@@ -255,7 +255,7 @@
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Rollen
+										{{ 'USER.EDIT.ROLES' | translate }}
 									</div>
 									<div class="kt-wizard-v2__review-content">
 										{{ getRoleTitles() }}
@@ -269,13 +269,13 @@
 					<!--begin: Form Actions -->
 					<div class="kt-form__actions">
 						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-							Zurück
+							{{ 'NEW.BACK' | translate }}
 						</div>
 						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Speichern
+							{{ 'NEW.SAVE' | translate }}
 						</div>
 						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-							Nächster Schritt
+							{{ 'NEW.NEXT_STEP' | translate }}
 						</div>
 					</div>
 					<!--end: Form Actions -->

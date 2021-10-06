@@ -29,6 +29,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 		MatOptionModule,
 		MatCheckboxModule,
 		NgxPermissionsModule.forChild(),
+		TranslateModule.forChild()
 	]
 })
 export class AdminModule { }

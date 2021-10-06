@@ -1,6 +1,6 @@
 <kt-portlet class="kt-portlet--height-fluid kt-portlet--bordered">
 	<div class="rw-section-exchangerates">
-		<h5>Währungskurse vom {{ exchangeRatesDate }} (source: <a href="https://www.ecb.europa.eu" target="_blank">European Central Bank</a>)</h5>
+		<h5>{{ 'INDICES.FROM' | translate }} {{ exchangeRatesDate }} (source: <a href="https://www.ecb.europa.eu" target="_blank">European Central Bank</a>)</h5>
 	</div>
 	<kt-portlet-body class="kt-portlet__body--fit-top kt-portlet__body--fit-bottom">
 		<p *ngIf="usd" class="rw-exchangerate-text">USD: {{ usd | number:'1.4-4' }}</p>

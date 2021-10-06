@@ -14,10 +14,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Firmeninformation
+										{{ 'SUPPLIER.EDIT.SUPPLIER_INFO' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Geben Sie allgemeine Informationen an
+										{{ 'NEW.GENERAL_INFO' | translate }}
 									</div>
 								</div>
 							</div>
@@ -29,10 +29,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Standort
+										{{ 'SUPPLIER.EDIT.LOCATION' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Standort des Lieferanten
+										{{ 'SUPPLIER.EDIT.LOCATION_DESC' | translate }}
 									</div>
 								</div>
 							</div>
@@ -44,10 +44,10 @@
 								</div>
 								<div class="kt-wizard-v2__nav-label">
 									<div class="kt-wizard-v2__nav-label-title">
-										Abschluss
+										{{ 'NEW.FINISH' | translate }}
 									</div>
 									<div class="kt-wizard-v2__nav-label-desc">
-										Zusammenfassung und Bestellung
+										{{ 'NEW.FINISH_DESC' | translate }}
 									</div>
 								</div>
 							</div>
@@ -63,52 +63,52 @@
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
 						<div class="kt-heading kt-heading--md" *ngIf="supplier && supplier.supplierNumber!=0; else supplierNumberDoesntExist">
-							Lieferantennr.: {{supplier.supplierNumber}}
+							{{ 'SUPPLIER.EDIT.SUPPLIER_NR' | translate }}.: {{supplier.supplierNumber}}
 						</div>
 						<ng-template #supplierNumberDoesntExist>
-							<div class="kt-heading kt-heading--md">Geben Sie allgemeine Informationen an</div>
+							<div class="kt-heading kt-heading--md">{{ 'NEW.GENERAL_INFO' | translate }}</div>
 						</ng-template>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Firmenname</label><br/>
+									<label>{{ 'GENERAL.COMPANY' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="name" required minlength="3">
 									<div *ngIf="name.invalid && (name.dirty || name.touched)"
 											class="alert alert-danger">
 										<div *ngIf="name.errors.required">
-											Es muss ein Firmenname eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 										<div *ngIf="name.errors.minlength">
-											Firmenname muss zumindest 3 Zeichen lang sein.
+											{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Telefon</label><br/>
+									<label>{{ 'GENERAL.PHONE' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="phone">
 								</div>
 								<div class="form-group">
-									<label>E-Mail</label><br/>
+									<label>{{ 'GENERAL.EMAIL' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="email">
 									<div *ngIf="email.invalid && (email.dirty || email.touched)"
 											class="alert alert-danger">
 										<div *ngIf="email.errors.email">
-											Es muss eine gültige E-Mail eingegeben werden.
+											{{ 'AUTH.VALIDATION.INVALID_EMAIL' | translate }}
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Homepage</label><br/>
+									<label>{{ 'SUPPLIER.EDIT.HOMEPAGE' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="homepage">
 								</div>
 								<div class="form-group">
-									<label>UID</label><br/>
+									<label>{{ 'SUPPLIER.EDIT.VAT' | translate }}</label><br/>
 									<input type="text" class="form-control" formControlName="uid" required>
 									<div *ngIf="uid.invalid && (uid.dirty || uid.touched)"
 											class="alert alert-danger">
 										<div *ngIf="uid.errors.required">
-											Es muss eine UID eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie den Titel an.</span>-->
@@ -116,12 +116,12 @@
 								<div class="row">
 									<div class="col-xl-3">
 										<div class="form-group">
-											<mat-checkbox formControlName="fsc" labelPosition="after">FSC</mat-checkbox>
+											<mat-checkbox formControlName="fsc" labelPosition="after">{{ 'SUPPLIER.FSC' | translate }}</mat-checkbox>
 										</div>
 									</div>
 									<div class="col-xl-3">
 										<div class="form-group">
-											<mat-checkbox formControlName="pefc" labelPosition="after">PEFC</mat-checkbox>
+											<mat-checkbox formControlName="pefc" labelPosition="after">{{ 'SUPPLIER.PEFC' | translate }}</mat-checkbox>
 										</div>
 									</div>
 								</div>
@@ -132,34 +132,34 @@
 
 					<!--begin: Form Wizard Step 2-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-						<div class="kt-heading kt-heading--md">Adresse der Firma</div>
+						<div class="kt-heading kt-heading--md">{{ 'SUPPLIER.EDIT.LOCATION_DESC' | translate }}</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
-									<label>Adresszeile 1</label>
+									<label>{{ 'GENERAL.ADDRESS1' | translate }}</label>
 									<input type="text" class="form-control" formControlName="address1" required>
 									<div *ngIf="address1.invalid && (address1.dirty || address1.touched)"
 											class="alert alert-danger">
 										<div *ngIf="address1.errors.required">
-											Es muss eine Adresse eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 									</div>
 									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 1 an.</span>-->
 								</div>
 								<div class="form-group">
-									<label>Adresszeile 2</label>
+									<label>{{ 'GENERAL.ADDRESS2' | translate }}</label>
 									<input type="text" class="form-control" formControlName="address2">
 									<!--<span class="form-text text-muted">Bitte geben Sie die Adresszeile 2 an.</span>-->
 								</div>
 								<div class="row">
 									<div class="col-xl-3">
 										<div class="form-group">
-											<label>PLZ</label>
+											<label>{{ 'GENERAL.POSTCODE' | translate }}</label>
 											<input type="text" class="form-control" formControlName="postcode" required>
 											<div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)"
 													class="alert alert-danger">
 												<div *ngIf="postcode.errors">
-													PLZ
+													{{ 'GENERAL.POSTCODE' | translate }}
 												</div>
 											</div>
 											<!--<span class="form-text text-muted">PLZ</span>-->
@@ -167,12 +167,12 @@
 									</div>
 									<div class="col-xl-9">
 										<div class="form-group">
-											<label>Ort</label>
+											<label>{{ 'GENERAL.CITY' | translate }}</label>
 											<input type="text" class="form-control" formControlName="city" required>
 											<div *ngIf="city.invalid && (city.dirty || city.touched)"
 													class="alert alert-danger">
 												<div *ngIf="city.errors.required">
-													Es muss ein Ort eingegeben werden.
+													{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 												</div>
 											</div>
 											<!--<span class="form-text text-muted">Bitte geben Sie den Ort.</span>-->
@@ -180,14 +180,14 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Land</label>
+									<label>{{ 'GENERAL.COUNTRY' | translate }}</label>
 									<select class="form-control" formControlName="country" required>
 										<option *ngFor="let country of countries" value="{{country.code}}">{{country.country}}</option>
 									</select>
 									<div *ngIf="country.invalid && (country.dirty || country.touched)"
 											class="alert alert-danger">
 										<div *ngIf="country.errors.required">
-											Es muss ein Land eingegeben werden.
+											{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
 										</div>
 									</div>
 								</div>
@@ -199,10 +199,10 @@
 					<!--begin: Form Wizard Step 3-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
 						<div class="kt-heading kt-heading--md" *ngIf="supplier && supplier.supplierNumber!=0; else supplierNumberDoesntExist">
-							Zusammenfassung, Lieferantennr.: {{supplier.supplierNumber}}
+							{{ 'NEW.FINISH' | translate }}, {{ 'SUPPLIER.EDIT.SUPPLIER_NR' | translate }}.: {{supplier.supplierNumber}}
 						</div>
 						<ng-template #supplierNumberDoesntExist>
-							<div class="kt-heading kt-heading--md">Zusammenfassung</div>
+							<div class="kt-heading kt-heading--md">{{ 'NEW.FINISH' | translate }}</div>
 						</ng-template>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__review">
@@ -212,21 +212,21 @@
 
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Firmeninformationen
+										{{ 'SUPPLIER.EDIT.SUPPLIER_INFO' | translate }}
 									</div>
 									<div class="kt-wizard-v2__review-content">
-										Firmenname: {{ supplierForm.get('name').value }}<br/>
-										Telefon: {{ supplierForm.get('phone').value }}<br/>
-										E-Mail: {{ supplierForm.get('email').value }}<br/>
-										Homepage: {{ supplierForm.get('homepage').value }}<br/>
-										UID: {{ supplierForm.get('uid').value }}<br/>
-										FSC: {{ supplierForm.get('fsc').value }}<br/>
-										PEFC: {{ supplierForm.get('pefc').value }}
+										{{ 'GENERAL.COMPANY' | translate }}: {{ supplierForm.get('name').value }}<br/>
+										{{ 'GENERAL.PHONE' | translate }}: {{ supplierForm.get('phone').value }}<br/>
+										{{ 'GENERAL.EMAIL' | translate }}: {{ supplierForm.get('email').value }}<br/>
+										{{ 'SUPPLIER.EDIT.HOMEPAGE' | translate }}: {{ supplierForm.get('homepage').value }}<br/>
+										{{ 'SUPPLIER.EDIT.VAT' | translate }}: {{ supplierForm.get('uid').value }}<br/>
+										{{ 'SUPPLIER.FSC' | translate }}: {{ supplierForm.get('fsc').value }}<br/>
+										{{ 'SUPPLIER.PEFC' | translate }}: {{ supplierForm.get('pefc').value }}
 									</div>
 								</div>
 								<div class="kt-wizard-v2__review-item">
 									<div class="kt-wizard-v2__review-title">
-										Standort
+										{{ 'SUPPLIER.EDIT.LOCATION' | translate }}
 									</div>
 									<div class="kt-wizard-v2__review-content">
 										{{ supplierForm.get('address1').value }}<br/>
@@ -243,13 +243,13 @@
 					<!--begin: Form Actions -->
 					<div class="kt-form__actions">
 						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-							Zurück
+							{{ 'NEW.BACK' | translate }}
 						</div>
 						<div (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-							Speichern
+							{{ 'NEW.SAVE' | translate }}
 						</div>
 						<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-							Nächster Schritt
+							{{ 'NEW.NEXT_STEP' | translate }}
 						</div>
 					</div>
 					<!--end: Form Actions -->

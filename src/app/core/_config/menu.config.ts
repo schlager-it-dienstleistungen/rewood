@@ -18,11 +18,13 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'nach Kategorien',
-							page: '/products/categories'
+							page: '/products/categories',
+							translate: 'MENU.PRODUCTS_BYCATEGORIE',
 						},
 						{
 							title: 'alle Produkte',
-							page: '/products/allproducts'
+							page: '/products/allproducts',
+							translate: 'MENU.PRODUCTS_ALL',
 						}
 					]
 				},
@@ -30,21 +32,25 @@ export class MenuConfig {
 					title: 'Admin',
 					root: true,
 					alignment: 'left',
+					translate: 'MENU.ADMIN',
 					submenu: [
 						{
 							title: 'Lieferanten',
 							page: '/admin/suppliers',
+							translate: 'MENU.ADMIN_SUPPLIERS',
 							onlyForRole: 'ADMIN'
 						},
 						{
 							title: 'Produkte',
 							page: '/admin/adminproducts',
+							translate: 'MENU.ADMIN_PRODUCTS',
 							onlyForRole: 'SUPPLIER'
 						}
 						,
 						{
 							title: 'Benutzer',
 							page: '/admin/users',
+							translate: 'MENU.ADMIN_USERS',
 							onlyForRole: 'ADMIN'
 						}
 					]

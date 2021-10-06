@@ -161,7 +161,6 @@ export class SupplierEditComponent implements OnInit, OnChanges, AfterViewInit {
 			this.hasFormErrors = true;
 			this.formErrorMessage = error.message;
 			return;
-			// this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN') + '<br/><br/>' + error.message, 'danger');
 		}).finally(() => {
 			this.cdr.markForCheck();
 		});

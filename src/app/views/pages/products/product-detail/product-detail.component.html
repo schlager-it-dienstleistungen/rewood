@@ -12,13 +12,13 @@
 							<span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--{{ getItemCssClassByStatus(product.status) }} kt-badge--wide">{{ getItemStatusString(product.status) }}</span>
 						</div>
 						<button class="btn btn-primary btn-elevate kt-login__btn-primary" (click)="onBookingClick(product)" [disabled]="!isBookingPossible">
-							Reservieren
+							{{ 'PRODUCT.BOOK' | translate }}
 						</button>
 					</div>
 				</div>
 				<div class="rw-detail__section">
 					<div class="rw-detail__item">
-						<div class="rw-detail__title">Produktinformationen</div>
+						<div class="rw-detail__title">{{ 'PRODUCT.EDIT.PRODUCT_INFO' | translate }}</div>
 						<div class="rw-detail__content" *ngIf="product.subcategory else withoutSubcategory">{{ product.category }} - {{ product.subcategory }}</div>
 						<ng-template #withoutSubcategory>
 							<div class="rw-detail__content">{{ product.category }}</div>
@@ -27,18 +27,18 @@
 						<div class="rw-detail__content">{{ product.description }}</div>
 					</div>
 					<div class="rw-detail__item">
-						<div class="rw-detail__title">Abmessungen</div>
-						<div class="rw-detail__content">Länge (in mm): {{ product.dimension.length }}</div>
-						<div class="rw-detail__content">Breite (in mm): {{ product.dimension.width }}</div>
-						<div class="rw-detail__content">Stärke (in mm): {{ product.dimension.height }}</div>
-						<div class="rw-detail__content">Volumen/Stück (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height / 1000000000  | number:'1.4-4'}}</div>
-						<div class="rw-detail__content">Stückzahl (in m³): {{ product.dimension.quantity }}</div>
-						<div class="rw-detail__content">Gesamtvolumen (in m³): {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity / 1000000000  | number:'1.2-2'}}</div>
-						<div class="rw-detail__content">Preis pro m³: {{ product.price | currency:'EUR' }}</div>
-						<div class="rw-detail__content">Gesamtpreis: {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity * product.price / 1000000000  | currency:'EUR'}}</div>
+						<div class="rw-detail__title">{{ 'PRODUCT.EDIT.DIMENSIONS' | translate }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.LENGTH' | translate }}: {{ product.dimension.length }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.WIDTH' | translate }}: {{ product.dimension.width }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.HEIGHT' | translate }}: {{ product.dimension.height }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.VOLUME_PER_PIECE' | translate }}: {{ product.dimension.length * product.dimension.width * product.dimension.height / 1000000000  | number:'1.4-4'}}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.QUANTITY' | translate }}: {{ product.dimension.quantity }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.TOTAL_VOLUME' | translate }}: {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity / 1000000000  | number:'1.2-2'}}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.PRICE_PER_CUBIC' | translate }}: {{ product.price | currency:'EUR' }}</div>
+						<div class="rw-detail__content">{{ 'PRODUCT.PRICE' | translate }}: {{ product.dimension.length * product.dimension.width * product.dimension.height * product.dimension.quantity * product.price / 1000000000  | currency:'EUR'}}</div>
 					</div>
 					<div class="rw-detail__item">
-						<div class="rw-detail__title">Adresse</div>
+						<div class="rw-detail__title">{{ 'PRODUCT.EDIT.LOCATION' | translate }}</div>
 						<div class="rw-detail__content">{{ product.address1 }}</div>
 						<div class="rw-detail__content" *ngIf="product.address2">{{ product.address2 }}</div>
 						<div class="rw-detail__content">{{ product.postcode }}, {{ product.city }}</div>
@@ -47,7 +47,7 @@
 				</div>
 				<div class="kt-section">
 					<div class="kt-section__title">
-						Bilder
+						{{ 'PRODUCT.EDIT.PICTURES' | translate }}
 					</div>
 					<div class="kt-section__content">
 						<div *ngIf="product.pictures">
