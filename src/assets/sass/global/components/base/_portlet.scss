@@ -419,7 +419,7 @@
 		}
 
 		.kt-portlet__body {
-			padding-top: kt-get($kt-portlet, space, desktop) / 2;
+			padding-top: kt-get($kt-portlet, space, desktop) * 0.5;
 		}
 	}
 
@@ -648,7 +648,7 @@
         }
 
         .kt-portlet__body {
-            padding-top: kt-get($kt-portlet, space, desktop) / 2;
+            padding-top: kt-get($kt-portlet, space, desktop) * 0.5;
         }
     }
 
@@ -979,7 +979,7 @@
 		// No border
 		&.kt-portlet--head--noborder {
 			.kt-portlet__body {
-				padding-top: kt-get($kt-portlet, space, mobile) / 2;
+				padding-top: kt-get($kt-portlet, space, mobile) * 0.5;
 			}
 		}
 

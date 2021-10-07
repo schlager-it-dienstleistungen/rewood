@@ -8,13 +8,13 @@
 	&:before {
 		width: kt-get($kt-spinner-config, size, $size);
   		height: kt-get($kt-spinner-config, size, $size);
-  		margin-top: -(kt-get($kt-spinner-config, size, $size)/2);
+  		margin-top: -(kt-get($kt-spinner-config, size, $size)*0.5);
   	}
 
 	&.kt-spinner--center {
 		&:before {
 			left: 50%;
-  			margin-left: -(kt-get($kt-spinner-config, size, $size)/2);
+  			margin-left: -(kt-get($kt-spinner-config, size, $size)*0.5);
 		}
 	}
 

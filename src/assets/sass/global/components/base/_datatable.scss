@@ -482,7 +482,7 @@
 
 			> .kt-datatable__pager {
 				margin: 0;
-				padding: $table-space-mobile $table-space-mobile $table-space-mobile/2 $table-space-mobile;
+				padding: $table-space-mobile $table-space-mobile $table-space-mobile*0.5 $table-space-mobile;
 
 				.kt-datatable__pager-nav,
 				.kt-datatable__pager-info {

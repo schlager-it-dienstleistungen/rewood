@@ -35,7 +35,7 @@
             display: block;
             z-index: 1;
             padding-left: kt-get($kt-portlet, space, desktop);
-            padding-bottom: kt-get($kt-portlet, space, desktop) / 2;
+            padding-bottom: kt-get($kt-portlet, space, desktop) * 0.5;
             color: kt-base-color(label, 3);
         }
 
